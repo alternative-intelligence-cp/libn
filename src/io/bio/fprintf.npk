@@ -1,0 +1,366 @@
+// fprintf.npk — fprintf, printf, asprintf to FILE* streams (v0.6.0)
+//
+// Provides the stream-aware formatted output family, parallel to the fd-level
+// io_fprintf* family in src/io/printf.npk.
+//
+// Architecture:
+//   Each function renders into a 4096-byte stack buffer via the existing
+//   str_snprintfN engine, then emits the result via fwrite().
+//   This reuses all format specifier logic from strfmt.npk without duplication.
+//
+// Naming:
+//   fprintf0..8  — FILE* versions of io_fprintf (fp + fmt + N args)
+//   printf0..8   — to stdout (std stream, not raw fd)
+//   eprintf0..8  — to stderr (std stream, not raw fd)
+//
+// vs. the existing io_printf* family:
+//   io_printf* in printf.npk targets raw fds (int64:fd).
+//   fprintf* here targets FILE* streams (int64:fp), going through the
+//   FILE buffer and eventually the bio/ write path.
+//   Use fprintf* for code that already uses FILE* streams; io_fprintf* for
+//   code that works at the raw fd level.
+//
+// asprintf:
+//   Renders into a heap-allocated buffer sized to exactly fit the output.
+//   The caller is responsible for freeing the returned buffer via mem_free().
+//   Returns the buffer pointer (as int64) and writes the length to *out_len.
+//
+// Thread safety: inherits FILE*'s non-thread-safe status at v0.6.x.
+
+use "src/syscall/errno.npk".*;
+use "src/str/strfmt.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/slab.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fio.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+
+// Internal render buffer — same as printf.npk
+fixed int64:FPRINTF_BUF_SIZE = 4096i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Internal helper: render into stack buffer, emit via fwrite.
+//
+// Returns number of bytes written, or -1 on error.
+// We use int64 (not Result) for direct POSIX-style return value.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:bio_fprint_rendered = int64(int64:fp, int64:rendered_buf) {
+    int64:len = str_strlen(rendered_buf);
+    if len == 0i64 {
+        pass 0i64;
+    }
+    int64:written = fwrite(rendered_buf, 1i64, len, fp);
+    if written < len {
+        pass -1i64;
+    }
+    pass written;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fprintf — Write a formatted string to a FILE* stream.
+//
+// 0 format arguments
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fprintf0 = int64(int64:fp, int64:fmt) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf0 = int64(int64:fmt) {
+    bio_ensure_std_init();
+    pass fprintf0(stdout_fp, fmt);
+}
+
+pub func:eprintf0 = int64(int64:fmt) {
+    bio_ensure_std_init();
+    pass fprintf0(stderr_fp, fmt);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1 format argument
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf1 = int64(int64:fp, int64:fmt, int64:a0) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf1(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf1 = int64(int64:fmt, int64:a0) {
+    bio_ensure_std_init();
+    pass fprintf1(stdout_fp, fmt, a0);
+}
+
+pub func:eprintf1 = int64(int64:fmt, int64:a0) {
+    bio_ensure_std_init();
+    pass fprintf1(stderr_fp, fmt, a0);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 2 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf2 = int64(int64:fp, int64:fmt, int64:a0, int64:a1) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf2(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf2 = int64(int64:fmt, int64:a0, int64:a1) {
+    bio_ensure_std_init();
+    pass fprintf2(stdout_fp, fmt, a0, a1);
+}
+
+pub func:eprintf2 = int64(int64:fmt, int64:a0, int64:a1) {
+    bio_ensure_std_init();
+    pass fprintf2(stderr_fp, fmt, a0, a1);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 3 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf3 = int64(int64:fp, int64:fmt, int64:a0, int64:a1, int64:a2) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf3(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
+    bio_ensure_std_init();
+    pass fprintf3(stdout_fp, fmt, a0, a1, a2);
+}
+
+pub func:eprintf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
+    bio_ensure_std_init();
+    pass fprintf3(stderr_fp, fmt, a0, a1, a2);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 4 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf4 = int64(int64:fp, int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+    bio_ensure_std_init();
+    pass fprintf4(stdout_fp, fmt, a0, a1, a2, a3);
+}
+
+pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+    bio_ensure_std_init();
+    pass fprintf4(stderr_fp, fmt, a0, a1, a2, a3);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf5 = int64(int64:fp, int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf5 = int64(int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    bio_ensure_std_init();
+    pass fprintf5(stdout_fp, fmt, a0, a1, a2, a3, a4);
+}
+
+pub func:eprintf5 = int64(int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    bio_ensure_std_init();
+    pass fprintf5(stderr_fp, fmt, a0, a1, a2, a3, a4);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 6 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf6 = int64(int64:fp, int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf6 = int64(int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5) {
+    bio_ensure_std_init();
+    pass fprintf6(stdout_fp, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+pub func:eprintf6 = int64(int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5) {
+    bio_ensure_std_init();
+    pass fprintf6(stderr_fp, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 7 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf7 = int64(int64:fp, int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5, int64:a6) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf7(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf7 = int64(int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6) {
+    bio_ensure_std_init();
+    pass fprintf7(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+pub func:eprintf7 = int64(int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5, int64:a6) {
+    bio_ensure_std_init();
+    pass fprintf7(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 8 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:fprintf8 = int64(int64:fp, int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5, int64:a6, int64:a7) {
+    bio_ensure_std_init();
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf8(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    pass bio_fprint_rendered(fp, buf_ptr);
+}
+
+pub func:printf8 = int64(int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6, int64:a7) {
+    bio_ensure_std_init();
+    pass fprintf8(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}
+
+pub func:eprintf8 = int64(int64:fmt,
+                           int64:a0, int64:a1, int64:a2, int64:a3,
+                           int64:a4, int64:a5, int64:a6, int64:a7) {
+    bio_ensure_std_init();
+    pass fprintf8(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// asprintf — Render into a heap-allocated buffer, sized to fit the output.
+//
+// Unlike sprintf/snprintf, asprintf does not require the caller to pre-size a
+// buffer. It renders into the 4096-byte stack buffer first; if the output fits,
+// it allocates exactly (len+1) bytes and copies. If the format output exceeds
+// 4095 bytes, the result is truncated (same as snprintf — a known limitation
+// lifted in v0.7.x when the growable buffer is introduced).
+//
+// Returns a heap pointer (as int64) that the caller must free with mem_free().
+// Writes the string length (without NUL) to *out_len if out_len != 0.
+// Returns 0 on allocation failure.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:asprintf0 = int64(int64:out_len, int64:fmt) {
+    stack byte:tmp[4096];
+    int64:tmp_ptr = &tmp[0] as int64;
+    drop str_snprintf0(tmp_ptr, 4096i64, fmt);
+    int64:len = str_strlen(tmp_ptr);
+    int64:p = mem_malloc(len + 1i64);
+    if p == 0i64 { pass 0i64; }
+    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    if out_len != 0i64 { (out_len as *int64)[0] = len; }
+    pass p;
+}
+
+pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
+    stack byte:tmp[4096];
+    int64:tmp_ptr = &tmp[0] as int64;
+    drop str_snprintf1(tmp_ptr, 4096i64, fmt, a0);
+    int64:len = str_strlen(tmp_ptr);
+    int64:p = mem_malloc(len + 1i64);
+    if p == 0i64 { pass 0i64; }
+    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    if out_len != 0i64 { (out_len as *int64)[0] = len; }
+    pass p;
+}
+
+pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
+    stack byte:tmp[4096];
+    int64:tmp_ptr = &tmp[0] as int64;
+    drop str_snprintf2(tmp_ptr, 4096i64, fmt, a0, a1);
+    int64:len = str_strlen(tmp_ptr);
+    int64:p = mem_malloc(len + 1i64);
+    if p == 0i64 { pass 0i64; }
+    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    if out_len != 0i64 { (out_len as *int64)[0] = len; }
+    pass p;
+}
+
+pub func:asprintf3 = int64(int64:out_len, int64:fmt,
+                            int64:a0, int64:a1, int64:a2) {
+    stack byte:tmp[4096];
+    int64:tmp_ptr = &tmp[0] as int64;
+    drop str_snprintf3(tmp_ptr, 4096i64, fmt, a0, a1, a2);
+    int64:len = str_strlen(tmp_ptr);
+    int64:p = mem_malloc(len + 1i64);
+    if p == 0i64 { pass 0i64; }
+    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    if out_len != 0i64 { (out_len as *int64)[0] = len; }
+    pass p;
+}
+
+pub func:asprintf4 = int64(int64:out_len, int64:fmt,
+                            int64:a0, int64:a1, int64:a2, int64:a3) {
+    stack byte:tmp[4096];
+    int64:tmp_ptr = &tmp[0] as int64;
+    drop str_snprintf4(tmp_ptr, 4096i64, fmt, a0, a1, a2, a3);
+    int64:len = str_strlen(tmp_ptr);
+    int64:p = mem_malloc(len + 1i64);
+    if p == 0i64 { pass 0i64; }
+    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    if out_len != 0i64 { (out_len as *int64)[0] = len; }
+    pass p;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// perror — Write "prefix: errno description\n" to stderr FILE* stream.
+//
+// Replaces the placeholder in io_perror (printf.npk) once strerror.npk is
+// available. For now, delegates to strerror() from strerror.npk.
+// ════════════════════════════════════════════════════════════════════════════
+
+// perror is defined in strerror.npk where the full errno table is available.
+// See bio.npk for the wiring.

@@ -1,0 +1,304 @@
+// tmpfile.npk — tmpfile, tmpnam, mkstemp, mkostemp (v0.8.0)
+//
+// Temporary file creation. All functions ensure:
+//   - The file is created with mode 0600 (owner read/write only)
+//   - O_CLOEXEC is set by default (inheriting processes won't keep the fd)
+//   - The filename is unique at the time of creation (uses /proc/self/pid +
+//     an incrementing counter seeded from CLOCK_MONOTONIC for entropy)
+//
+// ── Naming strategy ─────────────────────────────────────────────────────────
+// Template format: /tmp/npk_XXXXXXXX  (8 random hex characters)
+// Entropy: PID (from getpid) XOR CLOCK_MONOTONIC nanoseconds XOR a counter.
+// This is NOT cryptographic randomness — for security-sensitive temp files,
+// use getrandom()/arc4random() (v0.22.x).
+//
+// ── Functions ───────────────────────────────────────────────────────────────
+// mkstemp(template)         — POSIX: fill Xs in template, open, return fd
+// mkostemp(template, flags) — like mkstemp but caller may add extra open flags
+// tmpfile()                 — create FILE* for an auto-deleted temp file
+// tmpnam(buf)               — generate a unique name (NOT safe, deprecated)
+//
+// ── tmpfile() auto-deletion ─────────────────────────────────────────────────
+// After open(), tmpfile() calls unlink() on the path immediately. The file
+// stays accessible via the fd/FILE* but disappears from the filesystem when
+// the last reference closes. This is the standard POSIX tmpfile() contract.
+//
+// ── Notes ───────────────────────────────────────────────────────────────────
+// mkstemp returns an fd, not a FILE*. Wrap with fdopen() if you need stdio.
+// The POSIX requirement is up to TMP_MAX (10,000) retries on name collision.
+// libn retries up to MKSTEMP_MAX_TRIES (256) — more than sufficient given
+// PID + monotonic clock + counter entropy.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/str/strlen.npk".*;
+use "src/io/open.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fopen.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Constants
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:MKSTEMP_MAX_TRIES = 256i64;
+pub fixed int64:TMP_PATH_MAX      = 256i64;
+
+// Default temp directory — can be overridden by TMPDIR env (not yet implemented)
+pub fixed byte:TMP_DIR[]  = "/tmp/";
+pub fixed byte:TMP_PREFIX[] = "npk_";
+
+// ════════════════════════════════════════════════════════════════════════════
+// Global counter for entropy mixing (monotonically increasing)
+// ════════════════════════════════════════════════════════════════════════════
+
+int64:g_tmp_counter = 0i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpfile_get_entropy — Get a pseudo-random 64-bit value for filename mixing.
+//
+// Mixes: getpid() XOR clock_gettime(CLOCK_MONOTONIC).tv_nsec XOR counter.
+// This is deterministic but unpredictable enough for temp filename uniqueness.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:tmpfile_get_entropy = int64() {
+    g_tmp_counter = g_tmp_counter + 1i64;
+
+    // getpid syscall
+    Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    int64:pid = pid_r.is_error ? 1i64 : pid_r.value;
+
+    // clock_gettime(CLOCK_MONOTONIC) — syscall writes timespec to stack
+    stack int64:ts[2];  // timespec: tv_sec (int64), tv_nsec (int64)
+    drop sys_safe(SYS_CLOCK_GETTIME, CLOCK_MONOTONIC, &ts[0] as int64, 0i64, 0i64, 0i64, 0i64);
+    int64:nsec = ts[1];
+
+    // Mix together with counter
+    int64:v = pid ^ nsec ^ (g_tmp_counter * 6364136223846793005i64);
+
+    // Extra mixing (FNV-like scramble for better distribution)
+    v = v ^ (v >> 33i64);
+    v = v * 0xFF51AFD7ED558CCDi64;
+    v = v ^ (v >> 33i64);
+    v = v * 0xC4CEB9FE1A85EC53i64;
+    v = v ^ (v >> 33i64);
+
+    pass v;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpfile_fill_hex — Fill n bytes at ptr with lowercase hex chars
+//                    from the value v (LSB first).
+// ════════════════════════════════════════════════════════════════════════════
+
+func:tmpfile_fill_hex = void(int64:ptr, int64:v, int64:n) {
+    *byte:p = ptr as *byte;
+    fixed byte:hex[] = "0123456789abcdef";
+    int64:i = 0i64;
+    while i < n {
+        p[i] = hex[(v >> (i * 4i64)) & 0xFi64];
+        i = i + 1i64;
+    }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// mkstemp — Fill Xs in template with a unique suffix and open the file.
+//
+// template must end with exactly 6 'X' characters (POSIX requirement).
+// libn accepts any number >= 6 Xs; only the last 6 are replaced.
+// The Xs in template are OVERWRITTEN with the actual characters used.
+//
+// Returns: file descriptor (>= 0) on success, -1 on error (errno set).
+//
+// Example: mkstemp("/tmp/myapp_XXXXXX") opens "/tmp/myapp_a3f8b201"
+// (well, with 6 X chars so "/tmp/myapp_a3f8b2").
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mkstemp = int64(int64:tmpl) {
+    pass mkostemp(tmpl, 0i64);
+}
+
+// mkostemp — Like mkstemp but with additional open flags (e.g., O_NOFOLLOW).
+pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
+    if tmpl == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    int64:tmpl_len = str_strlen(tmpl);
+    if tmpl_len < 6i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    // Find the trailing Xs — must be exactly 6 'X' chars at end
+    int64:x_start = tmpl_len - 6i64;
+    *byte:tp = tmpl as *byte;
+    int64:i = 0i64;
+    while i < 6i64 {
+        if tp[x_start + i] != 88u8 {  // 'X'
+            errno_set(EINVAL);
+            pass -1i64;
+        }
+        i = i + 1i64;
+    }
+
+    // Open flags: O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | extra_flags
+    int64:flags = O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | extra_flags;
+
+    int64:tries = 0i64;
+    while tries < MKSTEMP_MAX_TRIES {
+        // Generate 6 random hex chars
+        int64:entropy = tmpfile_get_entropy();
+        tmpfile_fill_hex(tmpl + x_start, entropy, 6i64);
+
+        // Try to open exclusively
+        Result<int64>:r = libn_open(tmpl, flags, 0o600i64);
+        if !r.is_error {
+            pass r.value;  // success — return fd
+        }
+
+        int64:e = r.err as int64;
+        if e != EEXIST {
+            // Error other than collision — propagate
+            errno_set(e);
+            pass -1i64;
+        }
+
+        // EEXIST: collision — try again with new entropy
+        tries = tries + 1i64;
+    }
+
+    // Exhausted retries (extremely unlikely)
+    errno_set(EEXIST);
+    pass -1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// mkdtemp — Create a unique temporary directory.
+//
+// Like mkstemp but creates a directory (mode 0700) instead of a file.
+// template must end in 6 Xs (same rules as mkstemp).
+//
+// Returns: template pointer on success (with Xs filled), or 0 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mkdtemp = int64(int64:tmpl) {
+    if tmpl == 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    int64:tmpl_len = str_strlen(tmpl);
+    if tmpl_len < 6i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    int64:x_start = tmpl_len - 6i64;
+    *byte:tp = tmpl as *byte;
+    int64:i = 0i64;
+    while i < 6i64 {
+        if tp[x_start + i] != 88u8 {
+            errno_set(EINVAL);
+            pass 0i64;
+        }
+        i = i + 1i64;
+    }
+
+    int64:tries = 0i64;
+    while tries < MKSTEMP_MAX_TRIES {
+        int64:entropy = tmpfile_get_entropy();
+        tmpfile_fill_hex(tmpl + x_start, entropy, 6i64);
+
+        Result<int64>:r = sys_safe(SYS_MKDIR, tmpl, 0o700i64, 0i64, 0i64, 0i64, 0i64);
+        if !r.is_error {
+            pass tmpl;
+        }
+
+        int64:e = r.err as int64;
+        if e != EEXIST {
+            errno_set(e);
+            pass 0i64;
+        }
+
+        tries = tries + 1i64;
+    }
+
+    errno_set(EEXIST);
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpfile — Create a temporary FILE* that is automatically deleted on close.
+//
+// The file is created in /tmp (or $TMPDIR — not yet implemented).
+// After open(), the path is immediately unlink()ed. The file remains
+// accessible via the returned FILE* until fclose() is called.
+//
+// Returns: FILE* on success (as int64), or 0 on failure (errno set).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:tmpfile = int64() {
+    bio_ensure_std_init();
+
+    // Build template: /tmp/npk_XXXXXX
+    stack byte:tmpl[32];
+    *byte:tp = &tmpl[0] as *byte;
+
+    // Copy "/tmp/npk_" into template
+    fixed byte:pfx[] = "/tmp/npk_XXXXXX";
+    int64:pfx_len = str_strlen(&pfx[0] as int64);
+    drop mem_memcpy(&tmpl[0] as int64, &pfx[0] as int64, pfx_len + 1i64);
+
+    // Open via mkstemp (fills in the Xs)
+    int64:fd = mkstemp(&tmpl[0] as int64);
+    if fd < 0i64 {
+        pass 0i64;
+    }
+
+    // Immediately unlink so the file disappears when the fd closes
+    drop sys_safe(SYS_UNLINK, &tmpl[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+
+    // Wrap in a FILE* for buffered I/O
+    int64:fp = fdopen(fd, "w+b" as int64);
+    if fp == 0i64 {
+        drop libn_close(fd);
+    }
+
+    pass fp;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpnam — Generate a unique temporary file name (DEPRECATED — do not use).
+//
+// POSIX: tmpnam() is deprecated because there is an inherent TOCTOU race
+// between generating the name and creating the file. Use mkstemp() instead.
+//
+// Provided for compatibility with legacy code.
+//
+// If buf != 0: writes into buf (must be >= L_tmpnam bytes = 256 bytes).
+// If buf == 0: returns pointer to static internal buffer (NOT thread-safe).
+//
+// Returns: pointer to the generated name, or 0 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+// Static buffer for tmpnam(NULL) — NOT thread-safe
+byte:g_tmpnam_buf[256];
+
+pub func:tmpnam = int64(int64:buf) {
+    int64:dst = buf != 0i64 ? buf : &g_tmpnam_buf[0] as int64;
+
+    // Generate a name of the form /tmp/npk_XXXXXXXX
+    fixed byte:pfx[] = "/tmp/npk_";
+    int64:pfx_len = str_strlen(&pfx[0] as int64);
+    drop mem_memcpy(dst, &pfx[0] as int64, pfx_len);
+
+    int64:entropy = tmpfile_get_entropy();
+    tmpfile_fill_hex(dst + pfx_len, entropy, 8i64);
+    (dst as *byte)[pfx_len + 8i64] = 0u8;  // NUL terminate
+
+    pass dst;
+}

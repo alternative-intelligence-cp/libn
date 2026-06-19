@@ -1,0 +1,366 @@
+// test_syscall.npk — Syscall infrastructure test suite (v0.1.5)
+//
+// Tests for v0.1.0 through v0.1.4:
+//   - Syscall number constants are correct (spot-check against known kernel values)
+//   - POSIX constants have correct values
+//   - err_from_syscall converts correctly
+//   - errno_is_retriable is correct
+//   - err_str returns non-empty strings
+//   - sys_safe / sys_full work on real syscalls
+//   - libn_getpid / libn_gettid / libn_getuid return sane values
+//   - libn_open/libn_close work on real files
+//   - libn_read returns data
+//   - libn_mmap/libn_munmap allocate and release memory
+//   - libn_getrandom returns data
+//   - EINTR retry wrapper handles multiple calls correctly
+//   - libn_write_all writes all bytes
+//
+// Target: 65+ assertions covering all v0.1.x modules.
+
+use "tests/harness/test_harness.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/errno.npk".*;
+use "src/syscall/syscall.npk".*;
+
+func:main = int32(argc, argv) {
+    t_begin("v0.1.x — Syscall Infrastructure");
+
+    // ── v0.1.0: Syscall number table ────────────────────────────────
+    t_section("Syscall number constants");
+
+    // These values are ground truth from the x86-64 Linux kernel.
+    // Any mismatch means the table is wrong.
+    t_assert_eq_i64(SYS_READ,          0i64,   "SYS_READ == 0");
+    t_assert_eq_i64(SYS_WRITE,         1i64,   "SYS_WRITE == 1");
+    t_assert_eq_i64(SYS_OPEN,          2i64,   "SYS_OPEN == 2");
+    t_assert_eq_i64(SYS_CLOSE,         3i64,   "SYS_CLOSE == 3");
+    t_assert_eq_i64(SYS_MMAP,          9i64,   "SYS_MMAP == 9");
+    t_assert_eq_i64(SYS_MPROTECT,      10i64,  "SYS_MPROTECT == 10");
+    t_assert_eq_i64(SYS_MUNMAP,        11i64,  "SYS_MUNMAP == 11");
+    t_assert_eq_i64(SYS_BRK,           12i64,  "SYS_BRK == 12");
+    t_assert_eq_i64(SYS_LSEEK,         8i64,   "SYS_LSEEK == 8");
+    t_assert_eq_i64(SYS_GETPID,        39i64,  "SYS_GETPID == 39");
+    t_assert_eq_i64(SYS_FORK,          57i64,  "SYS_FORK == 57");
+    t_assert_eq_i64(SYS_EXECVE,        59i64,  "SYS_EXECVE == 59");
+    t_assert_eq_i64(SYS_EXIT,          60i64,  "SYS_EXIT == 60");
+    t_assert_eq_i64(SYS_CLONE,         56i64,  "SYS_CLONE == 56");
+    t_assert_eq_i64(SYS_FUTEX,         202i64, "SYS_FUTEX == 202");
+    t_assert_eq_i64(SYS_GETDENTS64,    217i64, "SYS_GETDENTS64 == 217");
+    t_assert_eq_i64(SYS_CLOCK_GETTIME, 228i64, "SYS_CLOCK_GETTIME == 228");
+    t_assert_eq_i64(SYS_EXIT_GROUP,    231i64, "SYS_EXIT_GROUP == 231");
+    t_assert_eq_i64(SYS_EPOLL_CREATE1, 291i64, "SYS_EPOLL_CREATE1 == 291");
+    t_assert_eq_i64(SYS_PIPE2,         293i64, "SYS_PIPE2 == 293");
+    t_assert_eq_i64(SYS_DUP3,          292i64, "SYS_DUP3 == 292");
+    t_assert_eq_i64(SYS_STATX,         332i64, "SYS_STATX == 332");
+    t_assert_eq_i64(SYS_GETRANDOM,     318i64, "SYS_GETRANDOM == 318");
+    t_assert_eq_i64(SYS_ARCH_PRCTL,    158i64, "SYS_ARCH_PRCTL == 158");
+    t_assert_eq_i64(SYS_GETTID,        186i64, "SYS_GETTID == 186");
+    t_assert_eq_i64(SYS_GETEUID,       107i64, "SYS_GETEUID == 107");
+    t_assert_eq_i64(SYS_GETEGID,       108i64, "SYS_GETEGID == 108");
+    t_assert_eq_i64(SYS_IO_URING_SETUP, 425i64, "SYS_IO_URING_SETUP == 425");
+
+    // Alias consistency checks
+    t_assert_eq_i64(OPEN,     SYS_OPEN,     "OPEN alias == SYS_OPEN");
+    t_assert_eq_i64(FUTEX,    SYS_FUTEX,    "FUTEX alias == SYS_FUTEX");
+    t_assert_eq_i64(MMAP,     SYS_MMAP,     "MMAP alias == SYS_MMAP");
+    t_assert_eq_i64(GETPID,   SYS_GETPID,   "GETPID alias == SYS_GETPID");
+    t_assert_eq_i64(EXIT_GROUP, SYS_EXIT_GROUP, "EXIT_GROUP alias == SYS_EXIT_GROUP");
+
+    // ── v0.1.1: POSIX constants ──────────────────────────────────────
+    t_section("POSIX constant values");
+
+    // File open flags
+    t_assert_eq_i64(O_RDONLY,    0i64,      "O_RDONLY == 0");
+    t_assert_eq_i64(O_WRONLY,    1i64,      "O_WRONLY == 1");
+    t_assert_eq_i64(O_RDWR,      2i64,      "O_RDWR == 2");
+    t_assert_eq_i64(O_CREAT,     64i64,     "O_CREAT == 64 (0100 octal)");
+    t_assert_eq_i64(O_EXCL,      128i64,    "O_EXCL == 128");
+    t_assert_eq_i64(O_TRUNC,     512i64,    "O_TRUNC == 512");
+    t_assert_eq_i64(O_APPEND,    1024i64,   "O_APPEND == 1024");
+    t_assert_eq_i64(O_NONBLOCK,  2048i64,   "O_NONBLOCK == 2048");
+    t_assert_eq_i64(O_CLOEXEC,   524288i64, "O_CLOEXEC == 524288 (02000000 octal)");
+    t_assert_eq_i64(O_DIRECTORY, 65536i64,  "O_DIRECTORY == 65536");
+
+    // Seek constants
+    t_assert_eq_i64(SEEK_SET, 0i64, "SEEK_SET == 0");
+    t_assert_eq_i64(SEEK_CUR, 1i64, "SEEK_CUR == 1");
+    t_assert_eq_i64(SEEK_END, 2i64, "SEEK_END == 2");
+
+    // Permission modes (octal cross-check)
+    t_assert_eq_i64(S_IRUSR,  256i64, "S_IRUSR == 256 (0400 octal)");
+    t_assert_eq_i64(S_IWUSR,  128i64, "S_IWUSR == 128 (0200 octal)");
+    t_assert_eq_i64(S_IRWXU,  448i64, "S_IRWXU == 448 (0700 octal)");
+    t_assert_eq_i64(MODE_644, 420i64, "MODE_644 == 420 (0644 octal)");
+    t_assert_eq_i64(MODE_755, 493i64, "MODE_755 == 493 (0755 octal)");
+    t_assert_eq_i64(MODE_600, 384i64, "MODE_600 == 384 (0600 octal)");
+
+    // Signal numbers
+    t_assert_eq_i64(SIGTERM, 15i64, "SIGTERM == 15");
+    t_assert_eq_i64(SIGKILL, 9i64,  "SIGKILL == 9");
+    t_assert_eq_i64(SIGINT,  2i64,  "SIGINT == 2");
+    t_assert_eq_i64(SIGABRT, 6i64,  "SIGABRT == 6");
+    t_assert_eq_i64(SIGSEGV, 11i64, "SIGSEGV == 11");
+    t_assert_eq_i64(SIGCHLD, 17i64, "SIGCHLD == 17");
+
+    // mmap flags
+    t_assert_eq_i64(PROT_NONE,  0i64,  "PROT_NONE == 0");
+    t_assert_eq_i64(PROT_READ,  1i64,  "PROT_READ == 1");
+    t_assert_eq_i64(PROT_WRITE, 2i64,  "PROT_WRITE == 2");
+    t_assert_eq_i64(PROT_EXEC,  4i64,  "PROT_EXEC == 4");
+    t_assert_eq_i64(MAP_PRIVATE,   2i64,  "MAP_PRIVATE == 2");
+    t_assert_eq_i64(MAP_ANONYMOUS, 32i64, "MAP_ANONYMOUS == 32");
+
+    // Futex ops
+    t_assert_eq_i64(FUTEX_WAIT,         0i64,   "FUTEX_WAIT == 0");
+    t_assert_eq_i64(FUTEX_WAKE,         1i64,   "FUTEX_WAKE == 1");
+    t_assert_eq_i64(FUTEX_PRIVATE_FLAG, 128i64, "FUTEX_PRIVATE_FLAG == 128");
+    t_assert_eq_i64(FUTEX_WAIT_PRIVATE, 128i64, "FUTEX_WAIT_PRIVATE == 128");
+    t_assert_eq_i64(FUTEX_WAKE_PRIVATE, 129i64, "FUTEX_WAKE_PRIVATE == 129");
+
+    // Clone flags
+    t_assert_eq_i64(CLONE_VM,      256i64,   "CLONE_VM == 256");
+    t_assert_eq_i64(CLONE_THREAD,  65536i64, "CLONE_THREAD == 65536");
+    t_assert_eq_i64(CLONE_SETTLS,  524288i64, "CLONE_SETTLS == 524288");
+
+    // ── v0.1.2: Error propagation ────────────────────────────────────
+    t_section("err_from_syscall and errno helpers");
+
+    // Successful return values pass through
+    Result<int64>:r0 = err_from_syscall(0i64);
+    t_assert(!r0.is_error && r0.value == 0i64, "err_from_syscall(0) → success, value=0");
+
+    Result<int64>:r42 = err_from_syscall(42i64);
+    t_assert(!r42.is_error && r42.value == 42i64, "err_from_syscall(42) → success, value=42");
+
+    // Negative errno values become errors
+    Result<int64>:rnoent = err_from_syscall(-2i64);  // -ENOENT
+    t_assert(rnoent.is_error, "err_from_syscall(-2) → is_error");
+    t_assert_eq_i64(rnoent.err as int64, ENOENT, "err_from_syscall(-2).err == ENOENT");
+
+    Result<int64>:rperm = err_from_syscall(-1i64);  // -EPERM
+    t_assert(rperm.is_error, "err_from_syscall(-1) → is_error");
+    t_assert_eq_i64(rperm.err as int64, EPERM, "err_from_syscall(-1).err == EPERM");
+
+    Result<int64>:rinval = err_from_syscall(-22i64);  // -EINVAL
+    t_assert(rinval.is_error, "err_from_syscall(-22) → is_error");
+    t_assert_eq_i64(rinval.err as int64, EINVAL, "err_from_syscall(-22).err == EINVAL");
+
+    Result<int64>:renomem = err_from_syscall(-12i64);  // -ENOMEM
+    t_assert(renomem.is_error, "err_from_syscall(-12) → is_error");
+    t_assert_eq_i64(renomem.err as int64, ENOMEM, "err_from_syscall(-12).err == ENOMEM");
+
+    // errno_is_retriable
+    t_assert(raw errno_is_retriable(EINTR),  "EINTR is retriable");
+    t_assert(raw errno_is_retriable(EAGAIN), "EAGAIN is retriable");
+    t_assert(!raw errno_is_retriable(EBADF), "EBADF is NOT retriable");
+    t_assert(!raw errno_is_retriable(ENOMEM), "ENOMEM is NOT retriable");
+    t_assert(!raw errno_is_retriable(0i64),  "0 (no error) is NOT retriable");
+
+    // errno_is_fatal
+    t_assert(raw errno_is_fatal(EBADF),   "EBADF is fatal");
+    t_assert(raw errno_is_fatal(EINVAL),  "EINVAL is fatal");
+    t_assert(!raw errno_is_fatal(EINTR),  "EINTR is NOT fatal");
+    t_assert(!raw errno_is_fatal(EAGAIN), "EAGAIN is NOT fatal");
+
+    // err_str — must return non-empty string for all known codes
+    *byte:s0    = raw err_str(0i64);
+    *byte:snoent = raw err_str(ENOENT);
+    *byte:sperm  = raw err_str(EPERM);
+    *byte:senomem = raw err_str(ENOMEM);
+    *byte:sbig  = raw err_str(9999i64);   // unknown → "Unknown error"
+
+    t_assert(s0[0]    != 0u8, "err_str(0) is non-empty");
+    t_assert(snoent[0] != 0u8, "err_str(ENOENT) is non-empty");
+    t_assert(sperm[0]  != 0u8, "err_str(EPERM) is non-empty");
+    t_assert(senomem[0] != 0u8, "err_str(ENOMEM) is non-empty");
+    t_assert(sbig[0]   != 0u8, "err_str(9999) returns Unknown error string");
+
+    // ── v0.1.3 / v0.1.4: Live syscall wrappers ──────────────────────
+    t_section("Live syscall wrappers — process identity");
+
+    // getpid must return a positive number
+    Result<int64>:rpid = libn_getpid();
+    t_assert_ok(rpid, "libn_getpid() succeeds");
+    t_assert(rpid.value > 0i64, "libn_getpid() > 0");
+
+    // getppid must return a non-negative number
+    Result<int64>:rppid = libn_getppid();
+    t_assert_ok(rppid, "libn_getppid() succeeds");
+    t_assert(rppid.value >= 0i64, "libn_getppid() >= 0");
+
+    // gettid == getpid in a single-threaded process
+    Result<int64>:rtid = libn_gettid();
+    t_assert_ok(rtid, "libn_gettid() succeeds");
+    t_assert_eq_i64(rtid.value, rpid.value, "gettid == getpid (single-threaded)");
+
+    // getuid must be >= 0
+    Result<int64>:ruid = libn_getuid();
+    t_assert_ok(ruid, "libn_getuid() succeeds");
+    t_assert(ruid.value >= 0i64, "getuid >= 0");
+
+    // geteuid must be >= 0
+    Result<int64>:reuid = libn_geteuid();
+    t_assert_ok(reuid, "libn_geteuid() succeeds");
+    t_assert(reuid.value >= 0i64, "geteuid >= 0");
+
+    // getgid must be >= 0
+    Result<int64>:rgid = libn_getgid();
+    t_assert_ok(rgid, "libn_getgid() succeeds");
+    t_assert(rgid.value >= 0i64, "getgid >= 0");
+
+    t_section("Live syscall wrappers — I/O");
+
+    // Open /dev/null — must succeed
+    int64:devnull_path = "/dev/null" as int64;
+    Result<int64>:rfd = libn_open(devnull_path, O_RDONLY, 0i64);
+    t_assert_ok(rfd, "libn_open(/dev/null) succeeds");
+    t_assert(rfd.value >= 3i64, "open returns fd >= 3 (not clobbering stdio)");
+
+    // Write to /dev/null — must succeed with some bytes
+    // Open /dev/null for writing
+    Result<int64>:rfd_w = libn_open(devnull_path, O_WRONLY, 0i64);
+    t_assert_ok(rfd_w, "libn_open(/dev/null, O_WRONLY) succeeds");
+
+    // Write a small buffer
+    *byte:msg = "libn test write to /dev/null\n";
+    int64:msg_len = 30i64;
+    Result<int64>:rwr = libn_write(rfd_w.value, msg as int64, msg_len);
+    t_assert_ok(rwr, "libn_write to /dev/null succeeds");
+    t_assert_eq_i64(rwr.value, msg_len, "libn_write wrote full message");
+
+    // Read from /dev/null — must return 0 (EOF immediately)
+    stack byte:rbuf[16];
+    Result<int64>:rrd = libn_read(rfd.value, &rbuf[0] as int64, 16i64);
+    t_assert_ok(rrd, "libn_read from /dev/null succeeds");
+    t_assert_eq_i64(rrd.value, 0i64, "libn_read from /dev/null returns 0 (EOF)");
+
+    // Close both fds
+    Result<int64>:rcl1 = libn_close(rfd.value);
+    t_assert_ok(rcl1, "libn_close(devnull_read_fd) succeeds");
+
+    Result<int64>:rcl2 = libn_close(rfd_w.value);
+    t_assert_ok(rcl2, "libn_close(devnull_write_fd) succeeds");
+
+    // Open /proc/self/status — must be readable
+    int64:self_status_path = "/proc/self/status" as int64;
+    Result<int64>:rfs = libn_open(self_status_path, O_RDONLY, 0i64);
+    t_assert_ok(rfs, "libn_open(/proc/self/status) succeeds");
+
+    stack byte:status_buf[256];
+    Result<int64>:rsr = libn_read(rfs.value, &status_buf[0] as int64, 255i64);
+    t_assert_ok(rsr, "libn_read(/proc/self/status) succeeds");
+    t_assert(rsr.value > 0i64, "/proc/self/status read returned data");
+
+    libn_close(rfs.value);
+
+    // Bad fd must return EBADF
+    Result<int64>:rbad = libn_read(-1i64, &rbuf[0] as int64, 16i64);
+    t_assert(rbad.is_error, "libn_read(fd=-1) returns error");
+    t_assert_eq_i64(rbad.err as int64, EBADF, "libn_read(fd=-1) → EBADF");
+
+    t_section("Live syscall wrappers — mmap/munmap");
+
+    // Anonymous mmap — basic allocation
+    int64:page_size = 4096i64;
+    Result<int64>:rmm = libn_mmap(0i64, page_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    t_assert_ok(rmm, "libn_mmap(4096, PROT_RW, MAP_ANON_PRIV) succeeds");
+    t_assert(rmm.value != 0i64, "mmap returned non-zero address");
+    t_assert(rmm.value != -1i64, "mmap did not return MAP_FAILED (-1)");
+
+    // Write and read from mapped memory
+    *byte:mapped = rmm.value as *byte;
+    mapped[0] = 0xABu8;
+    mapped[1] = 0xCDu8;
+    mapped[4095] = 0xEFu8;
+    t_assert(mapped[0] == 0xABu8,   "mmap: byte[0] write/read works");
+    t_assert(mapped[1] == 0xCDu8,   "mmap: byte[1] write/read works");
+    t_assert(mapped[4095] == 0xEFu8, "mmap: byte[4095] write/read works");
+
+    // munmap must succeed
+    Result<int64>:rmmu = libn_munmap(rmm.value, page_size);
+    t_assert_ok(rmmu, "libn_munmap(4096 bytes) succeeds");
+
+    // Larger mmap — multiple pages
+    int64:big_size = 65536i64;  // 16 pages
+    Result<int64>:rmm2 = libn_mmap(0i64, big_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    t_assert_ok(rmm2, "libn_mmap(64KB) succeeds");
+    *byte:big = rmm2.value as *byte;
+    big[0]     = 42u8;
+    big[65535] = 99u8;
+    t_assert(big[0]     == 42u8, "64KB mmap: first byte writable");
+    t_assert(big[65535] == 99u8, "64KB mmap: last byte writable");
+    libn_munmap(rmm2.value, big_size);
+
+    // mprotect with PROT_EXEC should be rejected by libn_mprotect (safe tier)
+    Result<int64>:rmm3 = libn_mmap(0i64, page_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    t_assert_ok(rmm3, "mmap for mprotect test");
+    Result<int64>:rmp = libn_mprotect(rmm3.value, page_size, PROT_EXEC);
+    t_assert(rmp.is_error, "libn_mprotect(PROT_EXEC) rejected by safe tier");
+    t_assert_eq_i64(rmp.err as int64, ERR_BADARG, "libn_mprotect PROT_EXEC → ERR_BADARG");
+    libn_munmap(rmm3.value, page_size);
+
+    t_section("Live syscall wrappers — getrandom");
+
+    // getrandom must fill the buffer
+    stack byte:randbuf[32];
+    Result<int64>:rrng = libn_getrandom(&randbuf[0] as int64, 32i64, 0i64);
+    t_assert_ok(rrng, "libn_getrandom(32 bytes) succeeds");
+    t_assert_eq_i64(rrng.value, 32i64, "libn_getrandom returned 32 bytes");
+
+    // Sanity: 32 random bytes — at least one should be non-zero (astronomically unlikely to fail)
+    bool:any_nonzero = false;
+    int64:ri = 0i64;
+    while ri < 32i64 {
+        if randbuf[ri] != 0u8 {
+            any_nonzero = true;
+        }
+        ri = ri + 1i64;
+    }
+    t_assert(any_nonzero, "getrandom: at least one non-zero byte in 32 random bytes");
+
+    // Two getrandom calls should produce different output (astronomically unlikely to match)
+    stack byte:randbuf2[32];
+    libn_getrandom(&randbuf2[0] as int64, 32i64, 0i64);
+    bool:any_diff = false;
+    int64:rj = 0i64;
+    while rj < 32i64 {
+        if randbuf[rj] != randbuf2[rj] {
+            any_diff = true;
+        }
+        rj = rj + 1i64;
+    }
+    t_assert(any_diff, "getrandom: two calls produce different output");
+
+    t_section("Live syscall wrappers — clock_gettime");
+
+    // Stack layout for timespec: [tv_sec:8][tv_nsec:8]
+    stack byte:ts[16];
+    Result<int64>:rclk = libn_clock_gettime(CLOCK_MONOTONIC, &ts[0] as int64);
+    t_assert_ok(rclk, "libn_clock_gettime(CLOCK_MONOTONIC) succeeds");
+
+    // Read tv_sec from the stack buffer (little-endian int64 at offset 0)
+    int64:tv_sec = ((&ts[0] as int64) as *int64)[0];
+    t_assert(tv_sec > 0i64, "clock_gettime: tv_sec > 0 (machine has been up)");
+
+    // Read tv_nsec (int64 at offset 8)
+    int64:tv_nsec = ((&ts[8] as int64) as *int64)[0];
+    t_assert(tv_nsec >= 0i64 && tv_nsec < 1000000000i64,
+             "clock_gettime: tv_nsec in [0, 1e9)");
+
+    t_section("Write-all retry wrapper");
+
+    // libn_write_all to /dev/null — must report all bytes written
+    Result<int64>:rwfd = libn_open("/dev/null" as int64, O_WRONLY, 0i64);
+    t_assert_ok(rwfd, "open /dev/null for write_all test");
+
+    *byte:bigmsg = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz!!";
+    Result<int64>:rwa = libn_write_all(rwfd.value, bigmsg as int64, 64i64);
+    t_assert_ok(rwa, "libn_write_all(64 bytes) succeeds");
+    t_assert_eq_i64(rwa.value, 64i64, "libn_write_all returned 64 (all bytes written)");
+    libn_close(rwfd.value);
+
+    // ── Summary ──────────────────────────────────────────────────────
+    t_end();
+    exit raw t_exit_code() as int32;
+}

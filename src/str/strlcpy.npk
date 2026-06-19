@@ -1,0 +1,194 @@
+// strlcpy.npk — strlcpy, strlcat, strscpy, strscpy_pad (v0.3.3)
+//
+// Safe string copy and concatenation.
+//
+// Background — the strncpy problem:
+//   POSIX strncpy has two serious gotchas:
+//   1. If src is longer than n, dst is NOT NUL-terminated.
+//   2. If src is shorter than n, the remainder is NUL-padded (wasteful).
+//
+//   BSD invented strlcpy/strlcat as a replacement:
+//   - Always NUL-terminates (if dst_size > 0).
+//   - Returns the length of src (not dst) so callers can detect truncation.
+//   - No NUL-padding of the remainder.
+//
+// Linux kernel's strscpy (v5.1+):
+//   Like strlcpy but returns -ENOSPC on truncation instead of src length.
+//   This makes truncation detection via return value rather than strlen cheaper.
+//
+// libn provides both interfaces.
+
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/mem/memset.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strlcpy — Safely copy src to dst, truncating if necessary.
+//
+// Parameters:
+//   dst:      destination buffer
+//   src:      NUL-terminated source string
+//   dst_size: total size of dst buffer (including NUL byte)
+//
+// Returns:
+//   Length of src (NOT the number of bytes written).
+//   If return value >= dst_size, the copy was truncated.
+//   Caller can check: if (strlcpy(dst, src, n) >= n) { /* truncated */ }
+//
+// Guarantees:
+//   - dst is always NUL-terminated (if dst_size > 0).
+//   - At most dst_size-1 bytes of src are copied.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strlcpy = int64(int64:dst, int64:src, int64:dst_size) {
+    int64:src_len = raw str_strlen(src);
+
+    if dst == 0i64 || dst_size == 0i64 {
+        pass src_len;  // No copy, but return would-be length
+    }
+
+    // How many bytes to actually copy (excluding NUL)
+    int64:copy_len = src_len;
+    if copy_len >= dst_size {
+        copy_len = dst_size - 1i64;  // Truncate to fit
+    }
+
+    // Copy copy_len bytes then NUL-terminate
+    drop mem_memcpy(dst, src, copy_len);
+    (dst as *byte)[copy_len] = 0u8;
+
+    pass src_len;  // Return full source length (NOT copy_len)
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strlcat — Safely append src to dst.
+//
+// Parameters:
+//   dst:      NUL-terminated destination buffer
+//   src:      NUL-terminated source to append
+//   dst_size: total size of dst buffer (including space for NUL)
+//
+// Returns:
+//   strlen(dst) + strlen(src) — the length the result would have been
+//   if dst were large enough. If return >= dst_size, truncation occurred.
+//
+// Guarantees:
+//   - dst is always NUL-terminated (if dst_size > 0).
+//   - At most dst_size - strlen(dst) - 1 bytes of src are appended.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strlcat = int64(int64:dst, int64:src, int64:dst_size) {
+    int64:dst_len = raw str_strnlen(dst, dst_size);
+    int64:src_len = raw str_strlen(src);
+
+    if dst == 0i64 || dst_size == 0i64 {
+        pass dst_len + src_len;
+    }
+
+    // How much space remains in dst (minus the NUL we'll write)
+    int64:remaining = dst_size - dst_len - 1i64;
+    if remaining <= 0i64 {
+        // dst is already full — no room for any of src
+        pass dst_len + src_len;
+    }
+
+    // Append up to 'remaining' bytes of src after dst's existing content
+    int64:append_len = src_len;
+    if append_len > remaining {
+        append_len = remaining;
+    }
+
+    drop mem_memcpy(dst + dst_len, src, append_len);
+    (dst as *byte)[dst_len + append_len] = 0u8;
+
+    pass dst_len + src_len;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strscpy — Linux kernel-style safe copy.
+//
+// Like strlcpy but returns:
+//   >= 0  : number of bytes written (not including NUL) — success
+//   -1    : truncation occurred (would have returned -ENOSPC in kernel)
+//
+// This is the preferred function for new libn code because the return value
+// directly signals truncation without requiring a second strlen() call.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strscpy = int64(int64:dst, int64:src, int64:dst_size) {
+    if dst == 0i64 || dst_size == 0i64 {
+        pass -1i64;
+    }
+
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+    int64:max_bytes = dst_size - 1i64;  // reserve one for NUL
+
+    while i < max_bytes && s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+    d[i] = 0u8;
+
+    // Check if we stopped because of truncation or natural NUL
+    if s[i] != 0u8 {
+        pass -1i64;  // truncated
+    }
+
+    pass i;  // number of bytes written (not counting NUL)
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strscpy_pad — Like strscpy but NUL-pads the entire buffer.
+//
+// Same return value as strscpy. Used when the buffer must be zero-initialized
+// beyond the string content (e.g., kernel struct padding, fixed-size fields
+// in on-disk formats or network packets).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strscpy_pad = int64(int64:dst, int64:src, int64:dst_size) {
+    if dst == 0i64 || dst_size == 0i64 {
+        pass -1i64;
+    }
+
+    int64:r = raw str_strscpy(dst, src, dst_size);
+
+    // Determine where the NUL is, then zero the rest
+    int64:nul_pos = 0i64;
+    if r >= 0i64 {
+        nul_pos = r + 1i64;  // byte after the NUL
+    } else {
+        // Truncated: NUL at dst_size-1, nothing to pad (NUL already written)
+        nul_pos = dst_size;
+    }
+
+    // Zero from nul_pos onward
+    if nul_pos < dst_size {
+        mem_bzero(dst + nul_pos, dst_size - nul_pos);
+    }
+
+    pass r;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strlcpy_chk — strlcpy with compile-time-detectable bounds check.
+//
+// Identical to strlcpy but returns a Result<int64>:
+//   Ok(src_len)  — always (even on truncation, to preserve strlcpy semantics)
+// The purpose: the caller uses the return value to check truncation:
+//
+//   Result<int64>:r = str_strlcpy_chk(dst, src, sizeof_dst);
+//   if r.value >= sizeof_dst { /* truncated — handle it */ }
+//
+// This is the preferred way to call strlcpy in new libn code because it makes
+// the truncation check a result-propagation pattern.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strlcpy_chk = Result<int64>(int64:dst, int64:src, int64:dst_size) {
+    if dst == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass raw str_strlcpy(dst, src, dst_size);
+}

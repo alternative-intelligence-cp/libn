@@ -1,0 +1,184 @@
+// wait.npk — waitpid, wait, wait3, WIF* status macros (v0.11.3)
+//
+// Wait for child process state changes and decode their exit status.
+//
+// ── Wait status format (Linux x86-64 / POSIX) ─────────────────────────────
+// The raw status integer returned by wait4/waitpid is 32 bits:
+//
+//   Bits 7:0  — signal number that killed the process (if signaled)
+//   Bit  7    — core dump flag (if killed by signal)
+//   Bits 15:8 — exit code from _exit() (if exited normally)
+//   Bits 7:0  — 0x7F if the process was stopped by a signal
+//   Bits 15:8 — signal that stopped the process (if stopped)
+//
+// The WIF*/WEXITSTATUS/WTERMSIG functions decode this correctly.
+// They accept the raw status as int64 (Nitpick convention).
+//
+// ── Usage pattern ─────────────────────────────────────────────────────────
+//   int64:pid = fork();
+//   if pid == 0 {
+//       // child
+//       execlp1("ls" as int64, "ls" as int64);
+//       _exit(1i64);
+//   }
+//   int64:status = 0i64;
+//   int64:w = waitpid(pid, &status, 0i64);
+//   if wait_exited(status) {
+//       int64:code = wait_exit_code(status);
+//   }
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/errno.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Wait status decode functions (POSIX WIFEXITED etc. as Nitpick functions)
+//
+// All take the raw int32 status value as int64 (zero-extended).
+// ════════════════════════════════════════════════════════════════════════════
+
+// wait_exited — True if the child exited normally via exit() or _exit().
+pub func:wait_exited = bool(int64:status) {
+    pass (status & 0x7Fi64) == 0i64;
+}
+
+// wait_exit_code — The exit code from exit() / _exit() (0-255).
+// Only valid when wait_exited() is true.
+pub func:wait_exit_code = int64(int64:status) {
+    pass (status >> 8i64) & 0xFFi64;
+}
+
+// wait_signaled — True if the child was killed by a signal.
+pub func:wait_signaled = bool(int64:status) {
+    int64:low7 = status & 0x7Fi64;
+    pass low7 != 0i64 && low7 != 0x7Fi64;
+}
+
+// wait_termsig — The signal number that killed the child.
+// Only valid when wait_signaled() is true.
+pub func:wait_termsig = int64(int64:status) {
+    pass status & 0x7Fi64;
+}
+
+// wait_coredump — True if the child produced a core dump.
+pub func:wait_coredump = bool(int64:status) {
+    pass (status & 0x80i64) != 0i64;
+}
+
+// wait_stopped — True if the child was stopped by a signal (WUNTRACED).
+pub func:wait_stopped = bool(int64:status) {
+    pass (status & 0xFFi64) == 0x7Fi64;
+}
+
+// wait_stopsig — The signal that stopped the child.
+// Only valid when wait_stopped() is true.
+pub func:wait_stopsig = int64(int64:status) {
+    pass (status >> 8i64) & 0xFFi64;
+}
+
+// wait_continued — True if the child was resumed by SIGCONT (WCONTINUED).
+pub func:wait_continued = bool(int64:status) {
+    pass status == 0xFFFFi64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// waitpid — Wait for state change of specific child (or child group).
+//
+// pid:
+//   > 0   — wait for the specific child with that PID
+//   = -1  — wait for any child (same as wait())
+//   = 0   — wait for any child in the same process group
+//   < -1  — wait for any child in process group abs(pid)
+//
+// status_ptr: pointer to int64 to receive the status word (may be 0/NULL).
+// options: 0, WNOHANG, WUNTRACED, WCONTINUED, or combinations.
+//
+// Returns: PID of the child whose state changed, 0 if WNOHANG and no child
+//          ready, or -1 on error (errno set).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:waitpid = int64(int64:pid, int64:status_ptr, int64:options) {
+    // SYS_WAIT4: wait4(pid, status, options, rusage)
+    // We pass 0 for rusage (not collecting resource usage here)
+    Result<int64>:r = sys!!(SYS_WAIT4, pid, status_ptr, options, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
+
+// wait — Wait for any child; equivalent to waitpid(-1, status_ptr, 0).
+pub func:wait = int64(int64:status_ptr) {
+    pass waitpid(-1i64, status_ptr, 0i64);
+}
+
+// wait3 — waitpid(-1, status_ptr, options) without resource usage collection.
+// GNU/BSD extension; commonly used for non-blocking child reaping.
+pub func:wait3 = int64(int64:status_ptr, int64:options) {
+    pass waitpid(-1i64, status_ptr, options);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// proc_wait_all — Reap all terminated children, ignoring their status.
+//
+// Useful in signal handlers or cleanup code to prevent zombie accumulation.
+// Loops WNOHANG until no children remain.
+// Returns the number of children reaped.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:proc_wait_all = int64() {
+    int64:count = 0i64;
+    while true {
+        int64:r = waitpid(-1i64, 0i64, WNOHANG);
+        if r <= 0i64 { break; }
+        count = count + 1i64;
+    }
+    pass count;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// proc_run — High-level fork+exec+wait helper.
+//
+// Fork, exec the given argv (via execve), wait for the child to exit.
+// Returns the child's exit code (0-255), or -1 on fork/exec failure.
+//
+// The first element of argv must be the path to the executable.
+// envp may be 0 (uses inherited environ).
+//
+// This is the equivalent of system() but without going through a shell.
+// ════════════════════════════════════════════════════════════════════════════
+
+use "src/proc/fork.npk".*;
+use "src/proc/exec.npk".*;
+use "src/proc/exit.npk".*;
+
+pub func:proc_run = int64(int64:path, int64:argv, int64:envp) {
+    int64:pid = fork();
+    if pid < 0i64 { pass -1i64; }
+
+    if pid == 0i64 {
+        // Child
+        if envp != 0i64 {
+            drop execve(path, argv, envp);
+        } else {
+            drop execv(path, argv);
+        }
+        _exit(127i64);  // exec failed — 127 is shell's "command not found"
+    }
+
+    // Parent: wait for child
+    int64:status = 0i64;
+    int64:w = waitpid(pid, &status, 0i64);
+    if w < 0i64 { pass -1i64; }
+
+    if wait_exited(status) {
+        pass wait_exit_code(status);
+    }
+    if wait_signaled(status) {
+        // Return 128 + signal number (shell convention)
+        pass 128i64 + wait_termsig(status);
+    }
+    pass -1i64;
+}

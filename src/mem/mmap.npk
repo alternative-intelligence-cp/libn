@@ -1,0 +1,405 @@
+// mmap.npk — mmap/munmap core memory operations (v0.2.0)
+//
+// This module provides the low-level mmap interface that all other memory
+// subsystems build on. It is the only source of new memory in libn —
+// everything (slab allocator, malloc, stack allocations for threads) comes
+// through here.
+//
+// Design:
+//   Every allocation is tagged with a 16-byte header immediately before the
+//   user data pointer:
+//
+//     [ map_size : int64 ][ user_size : int64 ][ user data ... ]
+//     ^                                          ^
+//     mapping start (passed to munmap)           returned pointer
+//
+//   map_size  = actual mmap size (header + padding to page boundary)
+//   user_size = what the caller requested
+//
+//   This allows mem_free() to compute the right munmap() size without any
+//   external bookkeeping. The caller just passes their pointer back and we
+//   subtract ALLOC_HEADER_SIZE to get the mapping start.
+//
+//   This is the "direct mmap allocator" (v0.2.1). The slab allocator (v0.2.2)
+//   layered on top will handle small allocations more efficiently.
+//
+// Thread safety:
+//   mmap/munmap are inherently thread-safe (kernel synchronizes).
+//   This module has no global state — fully lock-free.
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/errno.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// CONSTANTS
+// ════════════════════════════════════════════════════════════════════════════
+
+// System page size. On x86-64 Linux the base page size is 4096 bytes.
+// We use this as a constant rather than querying sysconf(SC_PAGE_SIZE) because:
+//   1. 4096 is universal on x86-64 (no exceptions in practice)
+//   2. We can query it at startup when auxv parsing is done (v0.12.1) and
+//      override this at runtime if needed
+//   3. Having it as a compile-time constant enables the compiler to optimize
+//      alignment checks and round-up arithmetic
+pub fixed int64:PAGE_SIZE = 4096i64;
+pub fixed int64:PAGE_MASK = 4095i64;          // PAGE_SIZE - 1
+pub fixed int64:PAGE_SHIFT = 12i64;           // log2(PAGE_SIZE)
+
+// Huge page size (2MB transparent huge pages)
+pub fixed int64:HUGE_PAGE_SIZE = 2097152i64;  // 2 * 1024 * 1024
+pub fixed int64:HUGE_PAGE_MASK = 2097151i64;
+
+// Allocation header layout
+pub fixed int64:ALLOC_HEADER_SIZE = 16i64;    // 2 x int64 (map_size + user_size)
+pub fixed int64:ALLOC_MAP_SIZE_OFFSET  = 0i64;
+pub fixed int64:ALLOC_USER_SIZE_OFFSET = 8i64;
+
+// Minimum addressable mmap size (1 page, enough for header + at least some data)
+pub fixed int64:MMAP_MIN_SIZE = PAGE_SIZE;
+
+// Maximum direct-mmap size (beyond this, the kernel may reject or we hit ulimits)
+// Soft limit: 512 GiB. The slab allocator handles allocations below 2MB;
+// above that we go direct to mmap. This constant is for the allocator tier boundary.
+pub fixed int64:SLAB_THRESHOLD = 2097152i64;  // 2MB — above this: direct mmap
+
+// ════════════════════════════════════════════════════════════════════════════
+// PAGE ALIGNMENT HELPERS
+// ════════════════════════════════════════════════════════════════════════════
+
+// page_align_up — Round n up to the next page boundary.
+// Examples: 0→0, 1→4096, 4096→4096, 4097→8192
+pub func:page_align_up = int64(int64:n) {
+    pass (n + PAGE_MASK) & (0i64 - PAGE_SIZE);  // (n + 4095) & ~4095
+}
+
+// page_align_down — Round n down to the page boundary.
+pub func:page_align_down = int64(int64:n) {
+    pass n & (0i64 - PAGE_SIZE);  // n & ~4095
+}
+
+// is_page_aligned — True if addr is a multiple of PAGE_SIZE.
+pub func:is_page_aligned = bool(int64:addr) {
+    pass (addr & PAGE_MASK) == 0i64;
+}
+
+// size_align_up — Round n up to alignment a (must be power of 2).
+pub func:size_align_up = int64(int64:n, int64:a) {
+    int64:mask = a - 1i64;
+    pass (n + mask) & (0i64 - a);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// RAW MMAP / MUNMAP INTERFACE
+//
+// These are the lowest-level wrappers — no header, no bookkeeping.
+// Used by: slab allocator (to get page-aligned slabs), mem_mmap_raw
+//          thread stack allocator (v0.14.2)
+// ════════════════════════════════════════════════════════════════════════════
+
+// mem_mmap_raw — Map a raw region of memory (no header, no tracking).
+// Returns the mapped address or error.
+// addr=0: kernel chooses. Use MAP_FIXED (in flags) to demand a specific address.
+// prot: PROT_READ | PROT_WRITE (typical for data)
+// flags: MAP_PRIVATE | MAP_ANONYMOUS (typical for heap data)
+// fd: -1 for anonymous, or a real file fd for file-backed mappings
+// offset: byte offset in file (must be page-aligned); 0 for anonymous
+pub func:mem_mmap_raw = Result<int64>(int64:addr, int64:length, int64:prot, int64:flags, int64:fd, int64:offset) {
+    // Guard: length must be > 0
+    if length <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    Result<int64>:r = libn_mmap(addr, length, prot, flags, fd, offset);
+    pass r;
+}
+
+// mem_munmap_raw — Unmap a raw region.
+// addr must be page-aligned, length > 0.
+pub func:mem_munmap_raw = Result<int64>(int64:addr, int64:length) {
+    if length <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    Result<int64>:r = libn_munmap(addr, length);
+    pass r;
+}
+
+// mem_mprotect_raw — Change protection on an existing mapping.
+// prot: PROT_NONE, PROT_READ, PROT_READ|PROT_WRITE, etc.
+// Note: PROT_EXEC requires sys_full — use libn_mprotect_exec directly.
+pub func:mem_mprotect_raw = Result<int64>(int64:addr, int64:length, int64:prot) {
+    if (prot & PROT_EXEC) != 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    Result<int64>:r = libn_mprotect(addr, length, prot);
+    pass r;
+}
+
+// mem_mremap_raw — Remap (resize/move) an existing mapping.
+// flags: MREMAP_MAYMOVE (allow moving the mapping if needed)
+// new_addr: only relevant if MREMAP_FIXED is set; otherwise pass 0.
+pub func:mem_mremap_raw = Result<int64>(int64:old_addr, int64:old_size, int64:new_size, int64:flags, int64:new_addr) {
+    if new_size <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    Result<int64>:r = libn_mremap(old_addr, old_size, new_size, flags, new_addr);
+    pass r;
+}
+
+// mem_madvise_raw — Give hints to the kernel about expected access patterns.
+pub func:mem_madvise_raw = Result<int64>(int64:addr, int64:length, int64:advice) {
+    Result<int64>:r = libn_madvise(addr, length, advice);
+    pass r;
+}
+
+// mem_msync_raw — Sync a file-backed mapping to disk.
+// flags: MS_SYNC=4 (blocking) or MS_ASYNC=1 (background).
+pub func:mem_msync_raw = Result<int64>(int64:addr, int64:length, int64:flags) {
+    Result<int64>:r = libn_msync(addr, length, flags);
+    pass r;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// DIRECT-MMAP ALLOCATOR (v0.2.1)
+//
+// The simplest possible allocator: each allocation is backed by its own mmap()
+// call. Each free() is a munmap() call. No fragmentation, no complex bookkeeping.
+//
+// Allocation layout:
+//   [map_size:8][user_size:8][... user data ...]
+//   ^--- map_start (aligned to PAGE_SIZE)
+//                             ^--- returned pointer to user
+//
+// This allocator is correct and safe for all allocation sizes. It has
+// high per-allocation overhead (mmap/munmap syscall cost, page granularity)
+// so it will be replaced for small allocations by the slab allocator in v0.2.2.
+// ════════════════════════════════════════════════════════════════════════════
+
+// mem_malloc — Allocate n bytes. Returns pointer (as int64) to usable memory.
+// The returned memory is zero-initialized (mmap guarantees this for MAP_ANONYMOUS).
+// Returns 0 on allocation failure (out of memory).
+//
+// The returned int64 can be cast to *byte, *int64, etc. by the caller.
+// Minimum allocation: 1 byte (actual mapping: 1 page minimum).
+pub func:mem_malloc = Result<int64>(int64:n) {
+    if n <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    // Total mapping size: header + user data, rounded up to page boundary.
+    int64:total = page_align_up(ALLOC_HEADER_SIZE + n);
+
+    // Map anonymous private memory.
+    Result<int64>:r = libn_mmap(0i64, total, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    if r.is_error {
+        fail r.err;
+    }
+
+    // Write header at map start.
+    int64:map_start = r.value;
+    *int64:hdr = map_start as *int64;
+    hdr[0] = total;  // map_size at offset 0
+    hdr[1] = n;      // user_size at offset 8
+
+    // Return pointer past the header.
+    pass map_start + ALLOC_HEADER_SIZE;
+}
+
+// mem_calloc — Allocate n*size bytes, zero-initialized.
+// Since mmap already zero-initializes, this is just a bounds check + mem_malloc.
+pub func:mem_calloc = Result<int64>(int64:n, int64:size) {
+    if n <= 0i64 || size <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    // Check for overflow before multiplying
+    if size > 0i64 && n > (9223372036854775807i64 / size) {
+        fail ERR_OVERFLOW as tbb8;
+    }
+    int64:total_bytes = n * size;
+    Result<int64>:r = mem_malloc(total_bytes);
+    pass r;
+}
+
+// mem_realloc — Resize an existing allocation to new_size bytes.
+// If ptr is 0 (NULL), behaves like mem_malloc(new_size).
+// If new_size is 0, frees ptr and returns 0 (NULL).
+// Returns new pointer (may be same or different from ptr).
+// The content up to min(old_size, new_size) is preserved.
+pub func:mem_realloc = Result<int64>(int64:ptr, int64:new_size) {
+    // NULL pointer → fresh allocation
+    if ptr == 0i64 {
+        pass raw mem_malloc(new_size);
+    }
+
+    // new_size == 0 → free and return NULL
+    if new_size == 0i64 {
+        drop mem_free(ptr);
+        pass 0i64;
+    }
+
+    // Read old sizes from header
+    int64:map_start = ptr - ALLOC_HEADER_SIZE;
+    *int64:hdr = map_start as *int64;
+    int64:old_map_size  = hdr[0];
+    int64:old_user_size = hdr[1];
+
+    // Try mremap first (in-place growth avoids a copy)
+    int64:new_total = page_align_up(ALLOC_HEADER_SIZE + new_size);
+    Result<int64>:rr = libn_mremap(map_start, old_map_size, new_total, MREMAP_MAYMOVE, 0i64);
+    if !rr.is_error {
+        // mremap succeeded — update header and return same region (possibly moved)
+        int64:new_map = rr.value;
+        *int64:new_hdr = new_map as *int64;
+        new_hdr[0] = new_total;
+        new_hdr[1] = new_size;
+        pass new_map + ALLOC_HEADER_SIZE;
+    }
+
+    // mremap failed (e.g., ENOMEM) — fall back to alloc+copy+free
+    Result<int64>:new_r = mem_malloc(new_size);
+    if new_r.is_error {
+        fail new_r.err;
+    }
+    int64:new_ptr = new_r.value;
+
+    // Copy old data (up to min(old_user_size, new_size))
+    int64:copy_n = old_user_size;
+    if new_size < copy_n {
+        copy_n = new_size;
+    }
+    // mem_memcpy is defined in memcpy.npk (v0.2.4) — for now use raw pointer loop
+    int64:si = 0i64;
+    *byte:src = ptr as *byte;
+    *byte:dst = new_ptr as *byte;
+    while si < copy_n {
+        dst[si] = src[si];
+        si = si + 1i64;
+    }
+
+    // Free old allocation
+    drop mem_free(ptr);
+
+    pass new_ptr;
+}
+
+// mem_free — Release an allocation made by mem_malloc/mem_calloc/mem_realloc.
+// Passing a NULL pointer (0) is a no-op (matches free() semantics).
+// Passing a pointer not from mem_malloc is undefined behavior.
+pub func:mem_free = Result<int64>(int64:ptr) {
+    if ptr == 0i64 {
+        pass 0i64;
+    }
+
+    // Read the map_size from the header at ptr - ALLOC_HEADER_SIZE
+    int64:map_start = ptr - ALLOC_HEADER_SIZE;
+    *int64:hdr = map_start as *int64;
+    int64:map_size = hdr[0];
+
+    if map_size <= 0i64 {
+        // Corrupted header — likely double-free or invalid pointer
+        fail ERR_BADARG as tbb8;
+    }
+
+    // Scrub the header to detect double-free in debug builds
+    // (In release builds, this is elided by the compiler as a dead write.)
+    hdr[0] = 0i64;
+    hdr[1] = 0i64;
+
+    Result<int64>:r = libn_munmap(map_start, map_size);
+    pass r;
+}
+
+// mem_malloc_user_size — Return the user-requested size of an allocation.
+// Useful for bounds checking without an external size parameter.
+pub func:mem_malloc_user_size = Result<int64>(int64:ptr) {
+    if ptr == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    *int64:hdr = (ptr - ALLOC_HEADER_SIZE) as *int64;
+    pass hdr[1];
+}
+
+// mem_malloc_map_size — Return the actual mapping size (may be larger than user size).
+pub func:mem_malloc_map_size = Result<int64>(int64:ptr) {
+    if ptr == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    *int64:hdr = (ptr - ALLOC_HEADER_SIZE) as *int64;
+    pass hdr[0];
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SPECIALIZED ALLOCATORS
+// ════════════════════════════════════════════════════════════════════════════
+
+// mem_alloc_pages — Allocate exactly n pages of memory (no header).
+// Used by the slab allocator (v0.2.2) to get raw page-aligned blocks.
+// Returns the base address of the mapping (page-aligned).
+pub func:mem_alloc_pages = Result<int64>(int64:n_pages) {
+    if n_pages <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    int64:size = n_pages * PAGE_SIZE;
+    Result<int64>:r = libn_mmap(0i64, size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    pass r;
+}
+
+// mem_free_pages — Release n_pages pages starting at addr (no header).
+pub func:mem_free_pages = Result<int64>(int64:addr, int64:n_pages) {
+    if n_pages <= 0i64 || addr == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    int64:size = n_pages * PAGE_SIZE;
+    Result<int64>:r = libn_munmap(addr, size);
+    pass r;
+}
+
+// mem_alloc_guard_pages — Allocate (n_data_pages + 2) pages where the first
+// and last pages are PROT_NONE (guard pages). Returns pointer to data region.
+// Used for thread stacks: PROT_NONE at bottom catches stack overflow.
+pub func:mem_alloc_guard_pages = Result<int64>(int64:n_data_pages) {
+    if n_data_pages <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    // Total: 1 guard (bottom) + n_data_pages (stack) + 1 guard (top)
+    int64:total_pages = n_data_pages + 2i64;
+    int64:total_size  = total_pages * PAGE_SIZE;
+
+    // Allocate entire region as RW first
+    Result<int64>:r = libn_mmap(0i64, total_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+    if r.is_error {
+        fail r.err;
+    }
+    int64:base = r.value;
+
+    // Set bottom guard page (first page) to PROT_NONE
+    Result<int64>:r_bot = libn_mprotect(base, PAGE_SIZE, PROT_NONE);
+    if r_bot.is_error {
+        libn_munmap(base, total_size);
+        fail r_bot.err;
+    }
+
+    // Set top guard page (last page) to PROT_NONE
+    int64:top_guard = base + (total_pages - 1i64) * PAGE_SIZE;
+    Result<int64>:r_top = libn_mprotect(top_guard, PAGE_SIZE, PROT_NONE);
+    if r_top.is_error {
+        libn_munmap(base, total_size);
+        fail r_top.err;
+    }
+
+    // Return pointer to the first data page (just past bottom guard)
+    pass base + PAGE_SIZE;
+}
+
+// mem_free_guard_pages — Release a guard-paged region allocated by mem_alloc_guard_pages.
+// data_ptr: the pointer returned by mem_alloc_guard_pages (not the base!)
+pub func:mem_free_guard_pages = Result<int64>(int64:data_ptr, int64:n_data_pages) {
+    if data_ptr == 0i64 || n_data_pages <= 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    int64:base = data_ptr - PAGE_SIZE;   // Base is one guard page before data
+    int64:total_size = (n_data_pages + 2i64) * PAGE_SIZE;
+    Result<int64>:r = libn_munmap(base, total_size);
+    pass r;
+}

@@ -1,0 +1,401 @@
+// errno.npk — Error propagation model for libn (v0.1.2)
+//
+// This module defines the libn error type, errno constants (all ~140 Linux/POSIX
+// errno codes), and the conversion from raw syscall return values to typed errors.
+//
+// Architecture:
+//   Linux syscalls return negative errno values on failure (e.g., -ENOENT = -2).
+//   libn's sys() / sys!!() wrappers convert these to Result<int64>{err, val, is_error}.
+//   This module provides:
+//     - All errno constants as pub fixed int64
+//     - err_from_syscall(ret int64) Result<int64>   — converts raw syscall return
+//     - errno_is_retriable(e int64) bool             — EAGAIN/EINTR check
+//     - err_str(e int64) *byte                       — static error string (no alloc)
+//
+// Thread safety:
+//   errno is stored in the per-thread TCB (v0.13.6). At this stage (v0.1.x),
+//   before TLS exists, libn_errno is a placeholder global. It will be promoted
+//   to a TLS variable in v0.13.6.
+//
+// Usage:
+//   use "src/syscall/errno.npk".*;
+//   Result<int64>:r = err_from_syscall(raw_ret);
+//   if r.is_error { /* r.err is the errno code */ }
+
+// ════════════════════════════════════════════════════════════════════════════
+// ERRNO CONSTANTS  (linux/errno.h, asm-generic/errno-base.h, errno.h)
+// All values for x86-64 Linux.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:EPERM    = 1i64;    // Operation not permitted
+pub fixed int64:ENOENT   = 2i64;    // No such file or directory
+pub fixed int64:ESRCH    = 3i64;    // No such process
+pub fixed int64:EINTR    = 4i64;    // Interrupted system call
+pub fixed int64:EIO      = 5i64;    // Input/output error
+pub fixed int64:ENXIO    = 6i64;    // No such device or address
+pub fixed int64:E2BIG    = 7i64;    // Argument list too long
+pub fixed int64:ENOEXEC  = 8i64;    // Exec format error
+pub fixed int64:EBADF    = 9i64;    // Bad file descriptor
+pub fixed int64:ECHILD   = 10i64;   // No child processes
+pub fixed int64:EAGAIN   = 11i64;   // Resource temporarily unavailable (try again)
+pub fixed int64:ENOMEM   = 12i64;   // Out of memory
+pub fixed int64:EACCES   = 13i64;   // Permission denied
+pub fixed int64:EFAULT   = 14i64;   // Bad address
+pub fixed int64:ENOTBLK  = 15i64;   // Block device required
+pub fixed int64:EBUSY    = 16i64;   // Device or resource busy
+pub fixed int64:EEXIST   = 17i64;   // File exists
+pub fixed int64:EXDEV    = 18i64;   // Cross-device link
+pub fixed int64:ENODEV   = 19i64;   // No such device
+pub fixed int64:ENOTDIR  = 20i64;   // Not a directory
+pub fixed int64:EISDIR   = 21i64;   // Is a directory
+pub fixed int64:EINVAL   = 22i64;   // Invalid argument
+pub fixed int64:ENFILE   = 23i64;   // Too many open files in system
+pub fixed int64:EMFILE   = 24i64;   // Too many open files (per process)
+pub fixed int64:ENOTTY   = 25i64;   // Inappropriate ioctl for device
+pub fixed int64:ETXTBSY  = 26i64;   // Text file busy
+pub fixed int64:EFBIG    = 27i64;   // File too large
+pub fixed int64:ENOSPC   = 28i64;   // No space left on device
+pub fixed int64:ESPIPE   = 29i64;   // Illegal seek
+pub fixed int64:EROFS    = 30i64;   // Read-only file system
+pub fixed int64:EMLINK   = 31i64;   // Too many links
+pub fixed int64:EPIPE    = 32i64;   // Broken pipe
+pub fixed int64:EDOM     = 33i64;   // Math argument out of domain
+pub fixed int64:ERANGE   = 34i64;   // Math result not representable
+
+// ── errno 35–45: Deadlock, naming, locks ────────────────────────────
+pub fixed int64:EDEADLK  = 35i64;   // Resource deadlock avoided
+pub fixed int64:ENAMETOOLONG = 36i64; // File name too long
+pub fixed int64:ENOLCK   = 37i64;   // No locks available
+pub fixed int64:ENOSYS   = 38i64;   // Function not implemented
+pub fixed int64:ENOTEMPTY = 39i64;  // Directory not empty
+pub fixed int64:ELOOP    = 40i64;   // Too many levels of symbolic links
+pub fixed int64:EWOULDBLOCK = EAGAIN; // Operation would block (same as EAGAIN on Linux)
+pub fixed int64:ENOMSG   = 42i64;   // No message of desired type
+pub fixed int64:EIDRM    = 43i64;   // Identifier removed
+pub fixed int64:ECHRNG   = 44i64;   // Channel number out of range
+pub fixed int64:EL2NSYNC = 45i64;   // Level 2 not synchronized
+
+// ── errno 46–59: Level/driver errors ────────────────────────────────
+pub fixed int64:EL3HLT   = 46i64;
+pub fixed int64:EL3RST   = 47i64;
+pub fixed int64:ELNRNG   = 48i64;
+pub fixed int64:EUNATCH  = 49i64;
+pub fixed int64:ENOCSI   = 50i64;
+pub fixed int64:EL2HLT   = 51i64;
+pub fixed int64:EBADE    = 52i64;
+pub fixed int64:EBADR    = 53i64;
+pub fixed int64:EXFULL   = 54i64;
+pub fixed int64:ENOANO   = 55i64;
+pub fixed int64:EBADRQC  = 56i64;
+pub fixed int64:EBADSLT  = 57i64;
+// 58: EDEADLOCK = EDEADLK on Linux
+pub fixed int64:EBFONT   = 59i64;
+
+// ── errno 60–72: Streams, IPC ────────────────────────────────────────
+pub fixed int64:ENOSTR   = 60i64;   // Device not a stream
+pub fixed int64:ENODATA  = 61i64;   // No data available
+pub fixed int64:ETIME    = 62i64;   // Timer expired
+pub fixed int64:ENOSR    = 63i64;   // Out of streams resources
+pub fixed int64:ENONET   = 64i64;   // Machine is not on the network
+pub fixed int64:ENOPKG   = 65i64;   // Package not installed
+pub fixed int64:EREMOTE  = 66i64;   // Object is remote
+pub fixed int64:ENOLINK  = 67i64;   // Link has been severed
+pub fixed int64:EADV     = 68i64;   // Advertise error
+pub fixed int64:ESRMNT   = 69i64;   // Srmount error
+pub fixed int64:ECOMM    = 70i64;   // Communication error on send
+pub fixed int64:EPROTO   = 71i64;   // Protocol error
+pub fixed int64:EMULTIHOP = 72i64;  // Multihop attempted
+
+// ── errno 73–79 ──────────────────────────────────────────────────────
+pub fixed int64:EDOTDOT  = 73i64;
+pub fixed int64:EBADMSG  = 74i64;   // Bad message
+pub fixed int64:EOVERFLOW = 75i64;  // Value too large for defined data type
+pub fixed int64:ENOTUNIQ = 76i64;
+pub fixed int64:EBADFD   = 77i64;   // File descriptor in bad state
+pub fixed int64:EREMCHG  = 78i64;
+pub fixed int64:ELIBACC  = 79i64;
+
+// ── errno 80–91 ──────────────────────────────────────────────────────
+pub fixed int64:ELIBBAD  = 80i64;
+pub fixed int64:ELIBSCN  = 81i64;
+pub fixed int64:ELIBMAX  = 82i64;
+pub fixed int64:ELIBEXEC = 83i64;
+pub fixed int64:EILSEQ   = 84i64;   // Invalid or incomplete multibyte character
+pub fixed int64:ERESTART = 85i64;   // Interrupted system call should be restarted
+pub fixed int64:ESTRPIPE = 86i64;
+pub fixed int64:EUSERS   = 87i64;
+pub fixed int64:ENOTSOCK = 88i64;   // Socket operation on non-socket
+pub fixed int64:EDESTADDRREQ = 89i64; // Destination address required
+pub fixed int64:EMSGSIZE = 90i64;   // Message too long
+pub fixed int64:EPROTOTYPE = 91i64; // Protocol wrong type for socket
+
+// ── errno 92–106: Networking ─────────────────────────────────────────
+pub fixed int64:ENOPROTOOPT  = 92i64;  // Protocol not available
+pub fixed int64:EPROTONOSUPPORT = 93i64; // Protocol not supported
+pub fixed int64:ESOCKTNOSUPPORT = 94i64; // Socket type not supported
+pub fixed int64:EOPNOTSUPP   = 95i64;  // Operation not supported
+pub fixed int64:ENOTSUP      = EOPNOTSUPP; // Not supported (POSIX alias)
+pub fixed int64:EPFNOSUPPORT = 96i64;  // Protocol family not supported
+pub fixed int64:EAFNOSUPPORT = 97i64;  // Address family not supported
+pub fixed int64:EADDRINUSE   = 98i64;  // Address already in use
+pub fixed int64:EADDRNOTAVAIL = 99i64; // Cannot assign requested address
+pub fixed int64:ENETDOWN     = 100i64; // Network is down
+pub fixed int64:ENETUNREACH  = 101i64; // Network is unreachable
+pub fixed int64:ENETRESET    = 102i64; // Network dropped connection on reset
+pub fixed int64:ECONNABORTED = 103i64; // Software caused connection abort
+pub fixed int64:ECONNRESET   = 104i64; // Connection reset by peer
+pub fixed int64:ENOBUFS      = 105i64; // No buffer space available
+pub fixed int64:EISCONN      = 106i64; // Transport endpoint already connected
+
+// ── errno 107–122: Networking cont. ─────────────────────────────────
+pub fixed int64:ENOTCONN     = 107i64; // Transport endpoint not connected
+pub fixed int64:ESHUTDOWN    = 108i64; // Cannot send after transport endpoint shutdown
+pub fixed int64:ETOOMANYREFS = 109i64; // Too many references
+pub fixed int64:ETIMEDOUT    = 110i64; // Connection timed out
+pub fixed int64:ECONNREFUSED = 111i64; // Connection refused
+pub fixed int64:EHOSTDOWN    = 112i64; // Host is down
+pub fixed int64:EHOSTUNREACH = 113i64; // No route to host
+pub fixed int64:EALREADY     = 114i64; // Operation already in progress
+pub fixed int64:EINPROGRESS  = 115i64; // Operation now in progress
+pub fixed int64:ESTALE       = 116i64; // Stale NFS file handle
+pub fixed int64:EUCLEAN      = 117i64;
+pub fixed int64:ENOTNAM      = 118i64;
+pub fixed int64:ENAVAIL      = 119i64;
+pub fixed int64:EISNAM       = 120i64;
+pub fixed int64:EREMOTEIO    = 121i64;
+pub fixed int64:EDQUOT       = 122i64; // Disk quota exceeded
+
+// ── errno 123–133 ────────────────────────────────────────────────────
+pub fixed int64:ENOMEDIUM    = 123i64; // No medium found
+pub fixed int64:EMEDIUMTYPE  = 124i64; // Wrong medium type
+pub fixed int64:ECANCELED    = 125i64; // Operation canceled
+pub fixed int64:ENOKEY       = 126i64; // Required key not available
+pub fixed int64:EKEYEXPIRED  = 127i64; // Key has expired
+pub fixed int64:EKEYREVOKED  = 128i64; // Key has been revoked
+pub fixed int64:EKEYREJECTED = 129i64; // Key was rejected by service
+
+// ── errno 130–133: Robust futex ──────────────────────────────────────
+pub fixed int64:EOWNERDEAD      = 130i64; // Owner died (robust mutex)
+pub fixed int64:ENOTRECOVERABLE = 131i64; // State not recoverable (robust mutex)
+pub fixed int64:ERFKILL         = 132i64; // RF kill switch
+pub fixed int64:EHWPOISON       = 133i64; // Memory page has hardware error
+
+// ── Sentinel ─────────────────────────────────────────────────────────
+pub fixed int64:ERRNO_MAX = 133i64;   // Highest defined errno value
+
+// ════════════════════════════════════════════════════════════════════════════
+// libn_err TYPE
+//
+// All pub functions in libn return Result<T> where the error field is a tbb8
+// (6-bit tag byte). The errno value is stored directly as the tag.
+// This allows Result<int64>{err: ENOENT as tbb8, ...} patterns.
+//
+// For values > 127 (EOWNERDEAD, ENOTRECOVERABLE, ERFKILL, EHWPOISON),
+// the err field is clamped — these are rare and callers must use the full
+// errno path if precision is needed.
+//
+// Error propagation convention:
+//   pass result_value       — success path, sets is_error=false
+//   fail ENOENT             — error path, sets is_error=true, err=ENOENT as tbb8
+//   fail ERR_OVERFLOW       — error path with a libn internal error code
+//
+// libn internal error codes (outside POSIX range, high values):
+//   ERR_OVERFLOW   — integer overflow / result doesn't fit in return type
+//   ERR_BADARG     — bad argument (NULL pointer, zero length, etc.)
+//   ERR_INTERNAL   — internal libn bug (assert-failed state)
+//   ERR_UNSUPPORTED — operation not supported on this architecture
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:ERR_OVERFLOW    = 200i64;  // libn: integer overflow
+pub fixed int64:ERR_BADARG      = 201i64;  // libn: bad argument
+pub fixed int64:ERR_INTERNAL    = 202i64;  // libn: internal error
+pub fixed int64:ERR_UNSUPPORTED = 203i64;  // libn: unsupported on this arch
+pub fixed int64:ERR_TRUNCATED   = 204i64;  // libn: result was truncated (snprintf)
+pub fixed int64:ERR_NOTFOUND    = 205i64;  // libn: not found (different from ENOENT)
+pub fixed int64:ERR_AGAIN       = 206i64;  // libn: try again (non-blocking, maps to EAGAIN)
+
+// ════════════════════════════════════════════════════════════════════════════
+// CORE ERROR FUNCTIONS
+//
+// These are the building blocks of libn error propagation.
+// Every module uses err_from_syscall() to wrap raw syscall returns.
+// ════════════════════════════════════════════════════════════════════════════
+
+// err_from_syscall — Convert a raw syscall return value to Result<int64>.
+//
+// Linux syscall ABI: on error, returns -errno (negative errno code).
+// On success, returns a non-negative value (fd, byte count, 0, etc.).
+//
+// This function is the single canonical conversion point. All libn wrappers
+// for SYS_* calls MUST use this (or inline the same logic via fail/pass).
+pub func:err_from_syscall = Result<int64>(int64:ret) {
+    if ret >= 0i64 {
+        pass ret;
+    }
+    // Negate to get the positive errno code
+    int64:e = 0i64 - ret;
+    // Clamp to known range (defensive: kernel shouldn't give us > 133 but guard anyway)
+    if e < 1i64 || e > ERRNO_MAX {
+        fail ERR_INTERNAL as tbb8;
+    }
+    fail e as tbb8;
+}
+
+// errno_is_retriable — Returns true if the error code means "try again later".
+// Used to implement retry loops around non-blocking I/O and signal-interrupted calls.
+//
+// The two canonical retriable errors:
+//   EINTR  — syscall interrupted by a signal; restart the syscall
+//   EAGAIN — resource not available right now; wait and retry
+//   EWOULDBLOCK — synonym for EAGAIN on Linux (same value: 11)
+pub func:errno_is_retriable = bool(int64:e) {
+    pass e == EINTR || e == EAGAIN;
+}
+
+// errno_is_fatal — Returns true if the error is unrecoverable regardless of retries.
+// Useful for fast-fail logic in I/O loops.
+pub func:errno_is_fatal = bool(int64:e) {
+    pass e == EBADF   ||
+         e == EINVAL  ||
+         e == ENOTSOCK ||
+         e == ENOMEM  ||
+         e == EFAULT;
+}
+
+// err_str — Returns a static string describing the errno code.
+// NO allocation. The returned pointer is to a string literal in BSS.
+// NOT thread-safe in the sense that different errno values return different literals,
+// but each literal is immutable so concurrent reads are safe.
+//
+// For errno values outside [0, ERRNO_MAX], returns "Unknown error".
+pub func:err_str = *byte(int64:e) {
+    // The compiler will generate a jump table for this pick.
+    pick e {
+        0i64   => pass "Success";
+        1i64   => pass "Operation not permitted";
+        2i64   => pass "No such file or directory";
+        3i64   => pass "No such process";
+        4i64   => pass "Interrupted system call";
+        5i64   => pass "Input/output error";
+        6i64   => pass "No such device or address";
+        7i64   => pass "Argument list too long";
+        8i64   => pass "Exec format error";
+        9i64   => pass "Bad file descriptor";
+        10i64  => pass "No child processes";
+        11i64  => pass "Resource temporarily unavailable";
+        12i64  => pass "Out of memory";
+        13i64  => pass "Permission denied";
+        14i64  => pass "Bad address";
+        15i64  => pass "Block device required";
+        16i64  => pass "Device or resource busy";
+        17i64  => pass "File exists";
+        18i64  => pass "Cross-device link";
+        19i64  => pass "No such device";
+        20i64  => pass "Not a directory";
+        21i64  => pass "Is a directory";
+        22i64  => pass "Invalid argument";
+        23i64  => pass "Too many open files in system";
+        24i64  => pass "Too many open files";
+        25i64  => pass "Inappropriate ioctl for device";
+        26i64  => pass "Text file busy";
+        27i64  => pass "File too large";
+        28i64  => pass "No space left on device";
+        29i64  => pass "Illegal seek";
+        30i64  => pass "Read-only file system";
+        31i64  => pass "Too many links";
+        32i64  => pass "Broken pipe";
+        33i64  => pass "Numerical argument out of domain";
+        34i64  => pass "Numerical result out of range";
+        35i64  => pass "Resource deadlock avoided";
+        36i64  => pass "File name too long";
+        37i64  => pass "No locks available";
+        38i64  => pass "Function not implemented";
+        39i64  => pass "Directory not empty";
+        40i64  => pass "Too many levels of symbolic links";
+        42i64  => pass "No message of desired type";
+        43i64  => pass "Identifier removed";
+        60i64  => pass "Device not a stream";
+        61i64  => pass "No data available";
+        62i64  => pass "Timer expired";
+        63i64  => pass "Out of streams resources";
+        71i64  => pass "Protocol error";
+        74i64  => pass "Bad message";
+        75i64  => pass "Value too large for defined data type";
+        84i64  => pass "Invalid or incomplete multibyte character";
+        88i64  => pass "Socket operation on non-socket";
+        89i64  => pass "Destination address required";
+        90i64  => pass "Message too long";
+        91i64  => pass "Protocol wrong type for socket";
+        92i64  => pass "Protocol not available";
+        93i64  => pass "Protocol not supported";
+        94i64  => pass "Socket type not supported";
+        95i64  => pass "Operation not supported";
+        96i64  => pass "Protocol family not supported";
+        97i64  => pass "Address family not supported by protocol";
+        98i64  => pass "Address already in use";
+        99i64  => pass "Cannot assign requested address";
+        100i64 => pass "Network is down";
+        101i64 => pass "Network is unreachable";
+        102i64 => pass "Network dropped connection on reset";
+        103i64 => pass "Software caused connection abort";
+        104i64 => pass "Connection reset by peer";
+        105i64 => pass "No buffer space available";
+        106i64 => pass "Transport endpoint already connected";
+        107i64 => pass "Transport endpoint not connected";
+        108i64 => pass "Cannot send after transport endpoint shutdown";
+        110i64 => pass "Connection timed out";
+        111i64 => pass "Connection refused";
+        112i64 => pass "Host is down";
+        113i64 => pass "No route to host";
+        114i64 => pass "Operation already in progress";
+        115i64 => pass "Operation now in progress";
+        116i64 => pass "Stale file handle";
+        122i64 => pass "Disk quota exceeded";
+        125i64 => pass "Operation canceled";
+        130i64 => pass "Owner died";
+        131i64 => pass "State not recoverable";
+        // libn internal error codes
+        200i64 => pass "libn: integer overflow";
+        201i64 => pass "libn: bad argument";
+        202i64 => pass "libn: internal error";
+        203i64 => pass "libn: unsupported operation";
+        204i64 => pass "libn: result truncated";
+        205i64 => pass "libn: not found";
+        206i64 => pass "libn: try again";
+        _      => pass "Unknown error";
+    }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// LIBN_ERRNO — Process-global errno store (pre-TLS placeholder)
+//
+// In v0.13.6, this will become a TLS-backed variable accessed via FS:[offset].
+// Until then, it is a module-level mutable integer representing the last error
+// seen by the calling thread.
+//
+// DO NOT use this directly in new code — always propagate via Result<T>.
+// It exists only for compatibility with legacy C-style errno checks.
+// ════════════════════════════════════════════════════════════════════════════
+
+// libn_errno_set — Store a raw errno code (called by sys wrappers on error).
+// This will be replaced by a TLS write in v0.13.6.
+pub func:libn_errno_set = void(int64:e) {
+    // Placeholder: in v0.13.6 this will be: write64(FS_BASE + TCB_ERRNO_OFFSET, e)
+    // For now, this is a no-op at the module level. The Result<T> system is the
+    // canonical error path. This function exists so the signature is correct when
+    // TLS is added and callers don't need to be updated.
+    drop void_result();
+}
+
+// libn_errno_get — Read the stored errno code.
+// Returns the raw int64 errno value (positive, per POSIX convention).
+pub func:libn_errno_get = Result<int64>() {
+    // Placeholder: returns 0 (no error) until TLS is wired up in v0.13.6
+    pass 0i64;
+}
+
+// void_result — Internal helper: returns a void-shaped Result.
+// Used to satisfy the Result<T> return discipline where a function is truly void.
+func:void_result = Result<int64>() {
+    pass 0i64;
+}

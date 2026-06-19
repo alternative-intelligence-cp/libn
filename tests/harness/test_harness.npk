@@ -1,0 +1,282 @@
+// test_harness.npk — libn test harness (v0.0.2)
+//
+// A minimal, allocation-free test harness for libn unit tests.
+//
+// Design principles:
+//   - Zero allocations — everything on the stack, fixed-size buffers.
+//   - Zero dependencies — does not import any libn module under test (to avoid
+//     circular dependencies and to test modules in isolation).
+//   - Writes test results via sys_raw(SYS_WRITE) directly — no printf dependency.
+//   - Returns exit code 0 on full pass, 1 on any failure.
+//
+// Usage in test files:
+//   use "tests/harness/test_harness.npk".*;
+//
+//   func:main = int32(argc, argv) {
+//       t_begin("my_module tests");
+//       t_assert(1 + 1 == 2, "basic sanity");
+//       t_assert_eq_i64(some_fn(), 42i64, "some_fn returns 42");
+//       t_assert_err(failing_fn(), EINVAL, "failing_fn with bad arg");
+//       t_end();
+//       exit raw t_exit_code() as int32;
+//   }
+
+// Syscall numbers needed by the harness (inlined to avoid dependency cycles)
+fixed int64:_T_WRITE  = 1i64;   // SYS_WRITE
+fixed int64:_T_EXIT   = 231i64; // SYS_EXIT_GROUP
+fixed int64:_T_STDERR = 2i64;   // fd 2 = stderr
+fixed int64:_T_STDOUT = 1i64;   // fd 1 = stdout
+
+// ════════════════════════════════════════════════════════════════════════════
+// TEST STATE  (module-level mutable counters)
+// ════════════════════════════════════════════════════════════════════════════
+
+// These are module-level variables, not TLS — tests are single-threaded.
+int64:_t_pass    = 0i64;
+int64:_t_fail    = 0i64;
+int64:_t_total   = 0i64;
+bool:_t_any_fail = false;
+
+// ════════════════════════════════════════════════════════════════════════════
+// INTERNAL WRITE HELPERS
+//
+// All output goes through _t_write() which calls SYS_WRITE directly.
+// This works before malloc, before stdio, before anything.
+// ════════════════════════════════════════════════════════════════════════════
+
+// _t_write_fd — Write a NUL-terminated string to fd.
+// Returns bytes written.
+func:_t_write_fd = int64(int64:fd, *byte:s) {
+    // Compute length by scanning for NUL
+    int64:n = 0i64;
+    *byte:p = s;
+    while (p[n] != 0u8) {
+        n = n + 1i64;
+    }
+    if n == 0i64 {
+        pass 0i64;
+    }
+    int64:ret = sys!!!(_T_WRITE, fd, s as int64, n);
+    pass ret;
+}
+
+// _t_write — Write string to stdout.
+func:_t_write = void(*byte:s) {
+    _t_write_fd(_T_STDOUT, s);
+}
+
+// _t_err — Write string to stderr.
+func:_t_err = void(*byte:s) {
+    _t_write_fd(_T_STDERR, s);
+}
+
+// _t_write_i64 — Write a decimal int64 to stdout.
+// Uses a 21-byte stack buffer (enough for any int64 + sign + NUL).
+func:_t_write_i64 = void(int64:v) {
+    // Stack buffer for the number
+    stack byte:buf[22];
+    buf[21] = 0u8;
+    int64:pos = 20i64;
+
+    bool:neg = v < 0i64;
+    if neg {
+        v = 0i64 - v;
+    }
+    if v == 0i64 {
+        buf[pos] = 48u8;  // '0'
+        pos = pos - 1i64;
+    }
+    while v > 0i64 {
+        byte:digit = (v % 10i64) as byte + 48u8;
+        buf[pos] = digit;
+        pos = pos - 1i64;
+        v = v / 10i64;
+    }
+    if neg {
+        buf[pos] = 45u8;  // '-'
+        pos = pos - 1i64;
+    }
+    _t_write_fd(_T_STDOUT, &buf[pos + 1i64]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// PUBLIC TEST API
+// ════════════════════════════════════════════════════════════════════════════
+
+// t_begin — Print test suite header and reset counters.
+pub func:t_begin = void(*byte:name) {
+    _t_pass  = 0i64;
+    _t_fail  = 0i64;
+    _t_total = 0i64;
+    _t_any_fail = false;
+
+    _t_write("\n══════════════════════════════════════\n");
+    _t_write("  libn test: ");
+    _t_write(name);
+    _t_write("\n══════════════════════════════════════\n");
+}
+
+// t_assert — Assert that condition is true.
+// On failure: print file/line info (label), increment failure counter.
+pub func:t_assert = void(bool:condition, *byte:label) {
+    _t_total = _t_total + 1i64;
+    if condition {
+        _t_pass = _t_pass + 1i64;
+        _t_write("  [PASS] ");
+        _t_write(label);
+        _t_write("\n");
+    } else {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err("\n");
+    }
+}
+
+// t_assert_eq_i64 — Assert that got == expected (int64 comparison).
+pub func:t_assert_eq_i64 = void(int64:got, int64:expected, *byte:label) {
+    _t_total = _t_total + 1i64;
+    if got == expected {
+        _t_pass = _t_pass + 1i64;
+        _t_write("  [PASS] ");
+        _t_write(label);
+        _t_write("\n");
+    } else {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err("\n         got=");
+        _t_write_i64(got);
+        _t_err(" expected=");
+        _t_write_i64(expected);
+        _t_err("\n");
+    }
+}
+
+// t_assert_ne_i64 — Assert that got != expected.
+pub func:t_assert_ne_i64 = void(int64:got, int64:not_expected, *byte:label) {
+    _t_total = _t_total + 1i64;
+    if got != not_expected {
+        _t_pass = _t_pass + 1i64;
+        _t_write("  [PASS] ");
+        _t_write(label);
+        _t_write("\n");
+    } else {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err(" (expected != ");
+        _t_write_i64(not_expected);
+        _t_err(", but got it)\n");
+    }
+}
+
+// t_assert_ge_i64 — Assert that got >= floor.
+pub func:t_assert_ge_i64 = void(int64:got, int64:floor, *byte:label) {
+    t_assert(got >= floor, label);
+}
+
+// t_assert_le_i64 — Assert that got <= ceiling.
+pub func:t_assert_le_i64 = void(int64:got, int64:ceiling, *byte:label) {
+    t_assert(got <= ceiling, label);
+}
+
+// t_assert_range_i64 — Assert floor <= got <= ceiling.
+pub func:t_assert_range_i64 = void(int64:got, int64:floor, int64:ceiling, *byte:label) {
+    t_assert(got >= floor && got <= ceiling, label);
+}
+
+// t_assert_ok — Assert that a Result<int64> succeeded (is_error == false).
+pub func:t_assert_ok = void(Result<int64>:r, *byte:label) {
+    _t_total = _t_total + 1i64;
+    if !r.is_error {
+        _t_pass = _t_pass + 1i64;
+        _t_write("  [PASS] ");
+        _t_write(label);
+        _t_write("\n");
+    } else {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err(" (expected ok, got err=");
+        _t_write_i64(r.err as int64);
+        _t_err(")\n");
+    }
+}
+
+// t_assert_err — Assert that a Result<int64> failed with specific errno.
+pub func:t_assert_err = void(Result<int64>:r, int64:expected_err, *byte:label) {
+    _t_total = _t_total + 1i64;
+    if r.is_error && r.err as int64 == expected_err {
+        _t_pass = _t_pass + 1i64;
+        _t_write("  [PASS] ");
+        _t_write(label);
+        _t_write("\n");
+    } else if r.is_error {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err(" (got err=");
+        _t_write_i64(r.err as int64);
+        _t_err(" expected err=");
+        _t_write_i64(expected_err);
+        _t_err(")\n");
+    } else {
+        _t_fail = _t_fail + 1i64;
+        _t_any_fail = true;
+        _t_err("  [FAIL] ");
+        _t_err(label);
+        _t_err(" (expected error, got success with value=");
+        _t_write_i64(r.value);
+        _t_err(")\n");
+    }
+}
+
+// t_assert_any_err — Assert that a Result<int64> failed (any error).
+pub func:t_assert_any_err = void(Result<int64>:r, *byte:label) {
+    t_assert(r.is_error, label);
+}
+
+// t_section — Print a section header within a test suite.
+pub func:t_section = void(*byte:name) {
+    _t_write("\n  ── ");
+    _t_write(name);
+    _t_write(" ──\n");
+}
+
+// t_skip — Mark a test as intentionally skipped.
+pub func:t_skip = void(*byte:reason) {
+    _t_total = _t_total + 1i64;
+    _t_write("  [SKIP] ");
+    _t_write(reason);
+    _t_write("\n");
+}
+
+// t_end — Print summary. Does NOT exit — call t_exit_code() for exit code.
+pub func:t_end = void() {
+    _t_write("\n  Results: ");
+    _t_write_i64(_t_pass);
+    _t_write(" passed, ");
+    _t_write_i64(_t_fail);
+    _t_write(" failed, ");
+    _t_write_i64(_t_total);
+    _t_write(" total\n");
+    if _t_any_fail {
+        _t_write("  ✗ SUITE FAILED\n\n");
+    } else {
+        _t_write("  ✓ SUITE PASSED\n\n");
+    }
+}
+
+// t_exit_code — Returns 0 if all tests passed, 1 if any failed.
+pub func:t_exit_code = int32() {
+    if _t_any_fail {
+        pass 1i32;
+    }
+    pass 0i32;
+}

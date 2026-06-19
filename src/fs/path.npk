@@ -1,0 +1,617 @@
+// path.npk — Path string manipulation utilities (v0.5.1)
+//
+// Pure string-level path operations. No syscalls, no fd access. All functions
+// work on NUL-terminated byte strings passed as int64 pointers, matching the
+// rest of libn's ABI convention. All outputs are written into caller-supplied
+// buffers to avoid allocation.
+//
+// Path semantics:
+//   - Paths are POSIX byte strings. "/" is the root. "." is the cwd.
+//   - Trailing slashes are normalized away (except for the root "/").
+//   - Empty string and NULL pointer both return an empty-path error (ERR_BADARG).
+//
+// Functions:
+//   path_is_abs(path)              → 1 if absolute (starts with '/'), else 0
+//   path_join(a, b, out, out_sz)   → join two path segments with '/'
+//   path_dirname(path, out, out_sz)→ parent directory component
+//   path_basename(path, out, out_sz)→ final component (filename)
+//   path_ext(path)                 → pointer to '.' of extension, or NULL
+//   path_normalize(path, out, out_sz) → collapse "//" and "/./" segments
+//   path_depth(path)               → count '/' separators
+//   path_has_trailing_slash(path)  → 1 if path ends with '/' (and len > 1)
+//   path_strip_trailing_slash(path, out, out_sz) → copy with trailing '/' removed
+
+use "src/syscall/errno.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Internal helpers (non-pub)
+// ════════════════════════════════════════════════════════════════════════════
+
+// path_strlen — Inline strlen for path strings.
+func:path_strlen = int64(int64:s) {
+    if s == 0i64 {
+        pass 0i64;
+    }
+    *byte:p = s as *byte;
+    int64:n = 0i64;
+    while p[n] != 0u8 {
+        n = n + 1i64;
+    }
+    pass n;
+}
+
+// path_copy_n — Copy at most n bytes from src to dst, always NUL-terminates.
+// Returns number of bytes copied (not counting NUL).
+func:path_copy_n = int64(int64:dst, int64:src, int64:n) {
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+    while i < n && s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+    d[i] = 0u8;
+    pass i;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_is_abs — Test whether a path is absolute (starts with '/').
+//
+// Returns:
+//   Ok(1) — path is absolute
+//   Ok(0) — path is relative
+//   Err(ERR_BADARG) — path is NULL or empty
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_is_abs = Result<int64>(int64:path) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    *byte:p = path as *byte;
+    if p[0] == 0u8 {
+        pass 0i64;   // empty string is relative
+    }
+    if p[0] == 47u8 {  // '/'
+        pass 1i64;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_join — Join two path segments, inserting exactly one '/' between them.
+//
+// Rules:
+//   - If b is absolute (starts with '/'), b is returned as-is (mirrors Python
+//     os.path.join semantics: absolute b discards a).
+//   - If a is empty, b is returned as-is.
+//   - Otherwise: strip trailing '/' from a, prepend '/' if a doesn't end in
+//     one, then append b.
+//
+// Parameters:
+//   a:      first path segment (NUL-terminated, pointer as int64)
+//   b:      second path segment (NUL-terminated, pointer as int64)
+//   out:    destination buffer
+//   out_sz: size of out (including NUL slot)
+//
+// Returns:
+//   Ok(n)           — n bytes written to out (not counting NUL)
+//   Err(ERR_BADARG) — NULL pointer or out_sz < 1
+//   Err(ENAMETOOLONG) — result would exceed out_sz-1 bytes
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_join = Result<int64>(int64:a, int64:b, int64:out, int64:out_sz) {
+    if a == 0i64 || b == 0i64 || out == 0i64 || out_sz < 1i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:ob = out as *byte;
+    *byte:ab = a as *byte;
+    *byte:bb = b as *byte;
+
+    // If b is absolute, return b directly.
+    if bb[0] == 47u8 {  // '/'
+        int64:blen = path_strlen(b);
+        if blen >= out_sz {
+            fail ENAMETOOLONG as tbb8;
+        }
+        drop path_copy_n(out, b, blen);
+        pass blen;
+    }
+
+    int64:alen = path_strlen(a);
+    int64:blen = path_strlen(b);
+
+    // If a is empty, return b as-is.
+    if alen == 0i64 {
+        if blen >= out_sz {
+            fail ENAMETOOLONG as tbb8;
+        }
+        drop path_copy_n(out, b, blen);
+        pass blen;
+    }
+
+    // Strip trailing slashes from a.
+    int64:a_end = alen;
+    while a_end > 1i64 && ab[a_end - 1i64] == 47u8 {  // not root
+        a_end = a_end - 1i64;
+    }
+
+    // If b is empty, just copy a (stripped).
+    if blen == 0i64 {
+        if a_end >= out_sz {
+            fail ENAMETOOLONG as tbb8;
+        }
+        drop path_copy_n(out, a, a_end);
+        ob[a_end] = 0u8;
+        pass a_end;
+    }
+
+    // Total: a_end + 1 (slash) + blen
+    int64:total = a_end + 1i64 + blen;
+    if total >= out_sz {
+        fail ENAMETOOLONG as tbb8;
+    }
+
+    // Write a (stripped), then '/', then b.
+    int64:i = 0i64;
+    while i < a_end {
+        ob[i] = ab[i];
+        i = i + 1i64;
+    }
+    ob[i] = 47u8;  // '/'
+    i = i + 1i64;
+    int64:j = 0i64;
+    while j < blen {
+        ob[i] = bb[j];
+        i = i + 1i64;
+        j = j + 1i64;
+    }
+    ob[i] = 0u8;
+    pass total;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_dirname — Return the directory component of path (like POSIX dirname).
+//
+// Examples:
+//   "/usr/lib/libc.so" → "/usr/lib"
+//   "/usr/lib/"        → "/usr/lib"
+//   "/usr"             → "/"
+//   "lib"              → "."
+//   "/"                → "/"
+//   ""                 → "."
+//
+// Parameters:
+//   path:   source path
+//   out:    destination buffer
+//   out_sz: size of out
+//
+// Returns Ok(n) bytes written (not counting NUL), or Err.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_dirname = Result<int64>(int64:path, int64:out, int64:out_sz) {
+    if path == 0i64 || out == 0i64 || out_sz < 2i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p  = path as *byte;
+    *byte:ob = out  as *byte;
+
+    int64:len = path_strlen(path);
+
+    // Empty path → "."
+    if len == 0i64 {
+        ob[0] = 46u8;  // '.'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    // Find the rightmost non-trailing slash.
+    // Step 1: strip trailing slashes (POSIX says: treat as if not there)
+    int64:end = len;
+    while end > 1i64 && p[end - 1i64] == 47u8 {
+        end = end - 1i64;
+    }
+
+    // Step 2: scan backwards for the last slash
+    int64:last_slash = -1i64;
+    int64:i = end - 1i64;
+    while i >= 0i64 {
+        if p[i] == 47u8 {
+            last_slash = i;
+            break;
+        }
+        i = i - 1i64;
+    }
+
+    if last_slash < 0i64 {
+        // No slash found — dirname is "."
+        ob[0] = 46u8;  // '.'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    if last_slash == 0i64 {
+        // The only slash is the root
+        ob[0] = 47u8;  // '/'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    // dirname is path[0..last_slash], stripping any trailing slashes from that too
+    int64:dir_end = last_slash;
+    while dir_end > 1i64 && p[dir_end - 1i64] == 47u8 {
+        dir_end = dir_end - 1i64;
+    }
+
+    if dir_end >= out_sz {
+        fail ENAMETOOLONG as tbb8;
+    }
+
+    drop path_copy_n(out, path, dir_end);
+    ob[dir_end] = 0u8;
+    pass dir_end;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_basename — Return the final component of a path (like POSIX basename).
+//
+// Examples:
+//   "/usr/lib/libc.so" → "libc.so"
+//   "/usr/lib/"        → "lib"
+//   "/usr"             → "usr"
+//   "/"                → "/"
+//   ""                 → "."
+//
+// Returns Ok(n) bytes written (not counting NUL), or Err.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_basename = Result<int64>(int64:path, int64:out, int64:out_sz) {
+    if path == 0i64 || out == 0i64 || out_sz < 2i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p  = path as *byte;
+    *byte:ob = out  as *byte;
+
+    int64:len = path_strlen(path);
+
+    // Empty → "."
+    if len == 0i64 {
+        ob[0] = 46u8;  // '.'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    // "/" → "/"
+    if len == 1i64 && p[0] == 47u8 {
+        ob[0] = 47u8;
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    // Strip trailing slashes
+    int64:end = len;
+    while end > 1i64 && p[end - 1i64] == 47u8 {
+        end = end - 1i64;
+    }
+
+    // Find last slash before end
+    int64:last_slash = -1i64;
+    int64:i = end - 1i64;
+    while i >= 0i64 {
+        if p[i] == 47u8 {
+            last_slash = i;
+            break;
+        }
+        i = i - 1i64;
+    }
+
+    int64:start = 0i64;
+    if last_slash >= 0i64 {
+        start = last_slash + 1i64;
+    }
+
+    int64:blen = end - start;
+    if blen <= 0i64 {
+        // Should not happen after the checks above, but be safe
+        ob[0] = 47u8;
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    if blen >= out_sz {
+        fail ENAMETOOLONG as tbb8;
+    }
+
+    int64:j = 0i64;
+    while j < blen {
+        ob[j] = p[start + j];
+        j = j + 1i64;
+    }
+    ob[j] = 0u8;
+    pass blen;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_ext — Return pointer to the start of the file extension (the dot).
+//
+// Returns the int64 address of the LAST '.' in the basename component,
+// or 0 (NULL) if there is no extension.
+//
+// The caller can do: if ext != 0 { *byte:ep = ext as *byte; ... }
+//
+// Examples:
+//   "foo.tar.gz" → pointer to ".gz"
+//   ".hidden"    → 0 (leading dot is not an extension)
+//   "no_ext"     → 0
+//   "/path/to/a.b" → pointer to ".b"
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_ext = Result<int64>(int64:path) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p = path as *byte;
+    int64:len = path_strlen(path);
+
+    if len == 0i64 {
+        pass 0i64;
+    }
+
+    // Find start of basename (skip directory prefix)
+    int64:base_start = 0i64;
+    int64:i = len - 1i64;
+    while i >= 0i64 {
+        if p[i] == 47u8 {  // '/'
+            base_start = i + 1i64;
+            break;
+        }
+        i = i - 1i64;
+    }
+
+    // Look for last '.' in the basename, excluding a leading '.'
+    // (i.e., ".hidden" is not considered to have an extension)
+    int64:last_dot = -1i64;
+    int64:j = base_start + 1i64;   // +1 to skip leading dot of hidden files
+    while j < len {
+        if p[j] == 46u8 {  // '.'
+            last_dot = j;
+        }
+        j = j + 1i64;
+    }
+
+    if last_dot < 0i64 {
+        pass 0i64;   // no extension
+    }
+
+    pass path + last_dot;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_depth — Count the number of path components (separated by '/').
+//
+// Trailing and duplicate slashes are ignored. Root "/" has depth 1.
+//
+// Examples:
+//   "/usr/lib/x86_64-linux-gnu" → 4
+//   "foo/bar/baz"               → 3
+//   "/"                         → 1
+//   ""                          → 0
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_depth = Result<int64>(int64:path) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p = path as *byte;
+    int64:len = path_strlen(path);
+
+    if len == 0i64 {
+        pass 0i64;
+    }
+
+    int64:depth = 0i64;
+    int64:in_component = 0i64;
+    int64:i = 0i64;
+
+    while i < len {
+        if p[i] == 47u8 {  // '/'
+            if in_component != 0i64 {
+                depth = depth + 1i64;
+                in_component = 0i64;
+            } else if i == 0i64 {
+                // Leading slash = root component
+                depth = depth + 1i64;
+            }
+        } else {
+            in_component = 1i64;
+        }
+        i = i + 1i64;
+    }
+
+    // Flush last component
+    if in_component != 0i64 {
+        depth = depth + 1i64;
+    }
+
+    pass depth;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_has_trailing_slash — Test whether path ends with '/' (and len > 1).
+//
+// Returns:
+//   Ok(1) — ends with '/' (and is not just "/")
+//   Ok(0) — does not end with '/', or is "/" or empty
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_has_trailing_slash = Result<int64>(int64:path) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p = path as *byte;
+    int64:len = path_strlen(path);
+
+    if len <= 1i64 {
+        pass 0i64;
+    }
+
+    if p[len - 1i64] == 47u8 {  // '/'
+        pass 1i64;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_strip_trailing_slash — Copy path with trailing '/' removed.
+//
+// If path is "/" or has no trailing slash, copies unchanged.
+// Always NUL-terminates out.
+//
+// Returns Ok(n) bytes written (not counting NUL), or Err.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_strip_trailing_slash = Result<int64>(int64:path, int64:out, int64:out_sz) {
+    if path == 0i64 || out == 0i64 || out_sz < 2i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p  = path as *byte;
+    *byte:ob = out  as *byte;
+
+    int64:len = path_strlen(path);
+
+    if len == 0i64 {
+        ob[0] = 0u8;
+        pass 0i64;
+    }
+
+    int64:end = len;
+    while end > 1i64 && p[end - 1i64] == 47u8 {
+        end = end - 1i64;
+    }
+
+    if end >= out_sz {
+        fail ENAMETOOLONG as tbb8;
+    }
+
+    drop path_copy_n(out, path, end);
+    ob[end] = 0u8;
+    pass end;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// path_normalize — Collapse redundant slashes and "/./" sequences.
+//
+// Rules applied:
+//   - Multiple consecutive '/' → single '/'
+//   - "/./" → "/"  (current-directory segments are removed)
+//   - Leading '/' preserved for absolute paths
+//   - Trailing slash preserved only for root
+//   - Does NOT resolve ".." (that requires stat() and is done by path_realpath
+//     in a future module)
+//
+// Examples:
+//   "//usr//lib/"  → "/usr/lib"
+//   "./foo/./bar"  → "foo/bar"
+//   "/a/./b//c/"  → "/a/b/c"
+//
+// Returns Ok(n) bytes written (not counting NUL), or Err.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:path_normalize = Result<int64>(int64:path, int64:out, int64:out_sz) {
+    if path == 0i64 || out == 0i64 || out_sz < 2i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    *byte:p  = path as *byte;
+    *byte:ob = out  as *byte;
+
+    int64:len = path_strlen(path);
+
+    if len == 0i64 {
+        ob[0] = 46u8;  // '.'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    int64:out_pos  = 0i64;
+    int64:in_pos   = 0i64;
+    int64:is_abs   = 0i64;
+
+    // Handle leading '/'
+    if p[0] == 47u8 {
+        is_abs = 1i64;
+        if out_pos >= out_sz - 1i64 {
+            fail ENAMETOOLONG as tbb8;
+        }
+        ob[out_pos] = 47u8;
+        out_pos = out_pos + 1i64;
+        // Skip all leading slashes
+        while in_pos < len && p[in_pos] == 47u8 {
+            in_pos = in_pos + 1i64;
+        }
+    }
+
+    int64:component_start = in_pos;
+
+    while in_pos <= len {
+        byte:ch = 0u8;
+        if in_pos < len {
+            ch = p[in_pos];
+        }
+
+        if ch == 47u8 || in_pos == len {
+            // End of a component [component_start..in_pos)
+            int64:comp_len = in_pos - component_start;
+
+            if comp_len == 0i64 {
+                // Empty component (double slash) — skip
+            } else if comp_len == 1i64 && p[component_start] == 46u8 {
+                // "." component — skip
+            } else {
+                // Real component — emit slash separator if needed
+                if out_pos > 0i64 && ob[out_pos - 1i64] != 47u8 {
+                    if out_pos >= out_sz - 1i64 {
+                        fail ENAMETOOLONG as tbb8;
+                    }
+                    ob[out_pos] = 47u8;
+                    out_pos = out_pos + 1i64;
+                }
+                // Emit the component
+                int64:k = 0i64;
+                while k < comp_len {
+                    if out_pos >= out_sz - 1i64 {
+                        fail ENAMETOOLONG as tbb8;
+                    }
+                    ob[out_pos] = p[component_start + k];
+                    out_pos = out_pos + 1i64;
+                    k = k + 1i64;
+                }
+            }
+
+            // Advance past slashes
+            in_pos = in_pos + 1i64;
+            while in_pos < len && p[in_pos] == 47u8 {
+                in_pos = in_pos + 1i64;
+            }
+            component_start = in_pos;
+        } else {
+            in_pos = in_pos + 1i64;
+        }
+    }
+
+    // If nothing was emitted (e.g. input was "./" or all "./")
+    if out_pos == 0i64 {
+        ob[0] = 46u8;  // '.'
+        ob[1] = 0u8;
+        pass 1i64;
+    }
+
+    ob[out_pos] = 0u8;
+    pass out_pos;
+}

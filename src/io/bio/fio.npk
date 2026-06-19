@@ -1,0 +1,298 @@
+// fio.npk — fread, fwrite, fflush (v0.5.2 / v0.5.3)
+//
+// Core buffered I/O: block reads and writes through the FILE buffer.
+//
+// fread:
+//   1. Drain any unget char first.
+//   2. Copy from read buffer until request satisfied or buffer empty.
+//   3. If buffer empty: refill from kernel. For large requests (>= buf_cap),
+//      bypass the buffer and read directly to caller's memory.
+//   4. Track EOF and errors via FILE flags.
+//
+// fwrite:
+//   1. If write-mode buffer not yet active (was in read mode), discard read buf.
+//   2. Copy to write buffer until full, then flush.
+//   3. For large requests (>= buf_cap), flush then write directly to kernel.
+//   4. For line-buffered streams, flush on each '\n'.
+//
+// fflush:
+//   For write-mode streams: flush write buffer to kernel.
+//   For read-mode streams: seek back to discard prefetched bytes (POSIX-defined).
+//   fflush(NULL): flush all open streams (not yet tracked at v0.5.x; flushes nothing extra).
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/io/bio/file.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// fread — Read nmemb items of size bytes each from fp into buf.
+//
+// Returns the number of ITEMS (not bytes) successfully read.
+// On short read: sets ferror or feof flag. Returns < nmemb.
+//
+// POSIX: fread() does not distinguish between EOF and error; use
+// feof()/ferror() to find out which happened.
+//
+// Parameters:
+//   buf:    destination memory pointer (as int64)
+//   size:   size of each item in bytes
+//   nmemb:  number of items to read
+//   fp:     FILE* (as int64)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fread = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
+    if fp == 0i64 || buf == 0i64 {
+        pass 0i64;
+    }
+    if size == 0i64 || nmemb == 0i64 {
+        pass 0i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    // Not readable?
+    if (f.mode & FILE_MODE_READ) == 0i64 {
+        f.flags = f.flags | FILE_FLAG_ERROR;
+        pass 0i64;
+    }
+
+    // If buffer is in write mode, we need to flush before switching to read
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 {
+        Result<int64>:r = bio_flush_write_buf(fp);
+        if r.is_error {
+            pass 0i64;
+        }
+    }
+
+    int64:total_bytes = size * nmemb;
+    int64:bytes_read  = 0i64;
+    int64:dst         = buf;
+
+    // 1. Consume any pending unget char
+    if f.unget != FILE_UNGET_EMPTY {
+        if total_bytes > 0i64 {
+            (dst as *byte)[0] = f.unget as byte;
+            dst = dst + 1i64;
+            bytes_read = bytes_read + 1i64;
+            total_bytes = total_bytes - 1i64;
+            f.unget = FILE_UNGET_EMPTY;
+            f.file_pos = f.file_pos + 1i64;
+        }
+    }
+
+    // 2. Copy from read buffer
+    while bytes_read < size * nmemb && (f.flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64 {
+        int64:buffered = f.buf_len - f.buf_pos;
+
+        if buffered > 0i64 {
+            // Bytes available in the buffer
+            int64:remaining = size * nmemb - bytes_read;
+            int64:to_copy = buffered < remaining ? buffered : remaining;
+            drop mem_memcpy(dst, f.buf + f.buf_pos, to_copy);
+            f.buf_pos  = f.buf_pos + to_copy;
+            f.file_pos = f.file_pos + to_copy;
+            dst        = dst + to_copy;
+            bytes_read = bytes_read + to_copy;
+        } else {
+            // Buffer exhausted — refill or bypass for large requests
+            int64:remaining = size * nmemb - bytes_read;
+
+            if f.buf_mode == _IONBF || (f.buf != 0i64 && remaining >= f.buf_cap) {
+                // Large request or unbuffered: read directly to caller's buffer
+                Result<int64>:r = sys_safe(SYS_READ, f.fd, dst, remaining, 0i64, 0i64, 0i64);
+                if r.is_error {
+                    int64:e = r.err as int64;
+                    if e == EINTR { continue; }
+                    f.flags = f.flags | FILE_FLAG_ERROR;
+                    break;
+                }
+                if r.value == 0i64 {
+                    f.flags = f.flags | FILE_FLAG_EOF;
+                    break;
+                }
+                f.file_pos = f.file_pos + r.value;
+                dst        = dst + r.value;
+                bytes_read = bytes_read + r.value;
+            } else {
+                // Normal: refill the buffer
+                Result<int64>:r = bio_refill_read_buf(fp);
+                if r.is_error {
+                    break;  // flags already set by bio_refill_read_buf
+                }
+                if r.value == 0i64 {
+                    break;  // EOF
+                }
+                // Loop around to copy from the newly filled buffer
+            }
+        }
+    }
+
+    // Return number of COMPLETE items read
+    pass bytes_read / size;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fwrite — Write nmemb items of size bytes from buf to fp.
+//
+// Returns the number of ITEMS (not bytes) successfully written.
+// On short write: sets ferror flag. Returns < nmemb.
+//
+// For line-buffered streams: flushes the buffer on every '\n' encountered.
+// For fully-buffered streams: flushes only when the buffer fills.
+// For unbuffered streams: writes directly to the kernel each call.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fwrite = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
+    if fp == 0i64 || buf == 0i64 {
+        pass 0i64;
+    }
+    if size == 0i64 || nmemb == 0i64 {
+        pass 0i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    // Not writable?
+    if (f.mode & FILE_MODE_WRITE) == 0i64 {
+        f.flags = f.flags | FILE_FLAG_ERROR;
+        pass 0i64;
+    }
+
+    // If read buffer has pending bytes, discard them before switching to write
+    if (f.flags & FILE_FLAG_WRITE_MODE) == 0i64 && f.buf_len > f.buf_pos {
+        drop bio_discard_read_buf(fp);
+    }
+    f.flags = f.flags | FILE_FLAG_WRITE_MODE;
+
+    int64:total_bytes  = size * nmemb;
+    int64:bytes_written = 0i64;
+    int64:src           = buf;
+
+    // Unbuffered: write directly to kernel in one shot
+    if f.buf_mode == _IONBF || f.buf == 0i64 {
+        while bytes_written < total_bytes {
+            int64:remaining = total_bytes - bytes_written;
+            Result<int64>:r = sys_safe(SYS_WRITE, f.fd, src, remaining, 0i64, 0i64, 0i64);
+            if r.is_error {
+                int64:e = r.err as int64;
+                if e == EINTR { continue; }
+                f.flags = f.flags | FILE_FLAG_ERROR;
+                break;
+            }
+            f.file_pos    = f.file_pos + r.value;
+            src            = src + r.value;
+            bytes_written  = bytes_written + r.value;
+        }
+        pass bytes_written / size;
+    }
+
+    // Buffered write
+    while bytes_written < total_bytes && (f.flags & FILE_FLAG_ERROR) == 0i64 {
+        int64:remaining  = total_bytes - bytes_written;
+        int64:buf_space  = f.buf_cap - f.buf_pos;
+
+        if buf_space == 0i64 {
+            // Buffer full — flush
+            Result<int64>:r = bio_flush_write_buf(fp);
+            if r.is_error {
+                break;
+            }
+            continue;
+        }
+
+        // For large writes that exceed the buffer, flush and write directly
+        if remaining >= f.buf_cap && f.buf_pos == 0i64 {
+            Result<int64>:wr = sys_safe(SYS_WRITE, f.fd, src, remaining, 0i64, 0i64, 0i64);
+            if wr.is_error {
+                int64:e = wr.err as int64;
+                if e == EINTR { continue; }
+                f.flags = f.flags | FILE_FLAG_ERROR;
+                break;
+            }
+            f.file_pos    = f.file_pos + wr.value;
+            src            = src + wr.value;
+            bytes_written  = bytes_written + wr.value;
+            continue;
+        }
+
+        // Copy into write buffer
+        int64:to_copy = buf_space < remaining ? buf_space : remaining;
+
+        // For line-buffered: scan for '\n' within the copy range
+        if f.buf_mode == _IOLBF {
+            int64:nl_pos = -1i64;
+            int64:si = 0i64;
+            while si < to_copy {
+                if (src as *byte)[si] == 10u8 {  // '\n'
+                    nl_pos = si;
+                    break;
+                }
+                si = si + 1i64;
+            }
+            if nl_pos >= 0i64 {
+                // Copy up to and including the newline, then flush
+                int64:copy_to_nl = nl_pos + 1i64;
+                drop mem_memcpy(f.buf + f.buf_pos, src, copy_to_nl);
+                f.buf_pos     = f.buf_pos + copy_to_nl;
+                f.buf_len     = f.buf_pos;
+                src           = src + copy_to_nl;
+                bytes_written = bytes_written + copy_to_nl;
+                // Flush on '\n'
+                drop bio_flush_write_buf(fp);
+                continue;
+            }
+        }
+
+        // Normal copy into buffer
+        drop mem_memcpy(f.buf + f.buf_pos, src, to_copy);
+        f.buf_pos     = f.buf_pos + to_copy;
+        f.buf_len     = f.buf_pos;
+        src           = src + to_copy;
+        bytes_written = bytes_written + to_copy;
+    }
+
+    pass bytes_written / size;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fflush — Flush buffered writes to the kernel.
+//
+// For write-mode streams: flush buf[0..buf_pos] to fd.
+// For read-mode streams: seek back over unread buffered bytes (POSIX behavior;
+//                        fails silently on non-seekable fds).
+// fflush(0 / NULL): at v0.5.3, this is a no-op (no global stream list yet).
+//                   v0.5.10 will implement proper global fflush.
+//
+// Returns 0 on success, EOF on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fflush = int64(int64:fp) {
+    if fp == 0i64 {
+        // fflush(NULL): flush all open streams.
+        // Not implemented until stream table is in place (v0.5.10).
+        pass 0i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    if f.fd < 0i64 {
+        errno_set(EBADF);
+        pass FILE_EOF;
+    }
+
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 {
+        // Flush write buffer
+        Result<int64>:r = bio_flush_write_buf(fp);
+        if r.is_error {
+            errno_set(r.err as int64);
+            pass FILE_EOF;
+        }
+    } else {
+        // Read mode: seek back over unconsumed read buffer
+        drop bio_discard_read_buf(fp);
+    }
+
+    pass 0i64;
+}

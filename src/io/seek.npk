@@ -1,0 +1,146 @@
+// seek.npk — File seek operations: lseek, io_tell, io_rewind (v0.4.5)
+//
+// Provides the seek/position layer for libn file descriptors.
+//
+// POSIX lseek:
+//   SEEK_SET — seek to absolute position (offset from start of file)
+//   SEEK_CUR — seek relative to current position (offset can be 0 to query pos)
+//   SEEK_END — seek relative to end of file (use negative offset to seek backward)
+//   SEEK_DATA — seek to next data region in a sparse file (Linux extension)
+//   SEEK_HOLE — seek to next hole in a sparse file (Linux extension)
+//
+// All return the new absolute file offset from the beginning of the file,
+// or Err on failure.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_seek — Seek to absolute position (SEEK_SET).
+//
+// The most common seek: go to a specific byte offset from the start of file.
+// Returns the new file position on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_seek = Result<int64>(int64:fd, int64:offset) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, offset, SEEK_SET);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_seek_cur — Seek relative to current position.
+//
+// A positive offset moves forward; a negative offset moves backward.
+// An offset of 0 returns the current position without moving (see io_tell).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_seek_cur = Result<int64>(int64:fd, int64:offset) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, offset, SEEK_CUR);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_seek_end — Seek relative to end of file.
+//
+// Typically used with a negative or zero offset:
+//   io_seek_end(fd, 0)  — position at end-of-file
+//   io_seek_end(fd, -4) — 4 bytes before end
+// Positive offsets create a "hole" beyond the end (sparse file).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_seek_end = Result<int64>(int64:fd, int64:offset) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, offset, SEEK_END);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_tell — Return the current file position without moving it.
+//
+// Equivalent to lseek(fd, 0, SEEK_CUR).
+// Returns the current byte offset from the beginning of the file.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_tell = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, 0i64, SEEK_CUR);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_rewind — Seek to the beginning of the file (offset 0 from start).
+//
+// Never fails except for invalid fd. Returns 0 (new position) on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_rewind = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, 0i64, SEEK_SET);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_file_size — Return the size of an open file in bytes.
+//
+// Implemented by seeking to the end and then restoring the original position.
+// This is a portable way to get the file size without stat().
+//
+// Note: the returned size is the size at the moment of the call. For files
+// being written concurrently, use statx() instead for an atomic size query.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_file_size = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    // Save current position
+    Result<int64>:saved = libn_lseek(fd, 0i64, SEEK_CUR);
+    if saved.is_error {
+        fail saved.err;
+    }
+
+    // Seek to end
+    Result<int64>:end_pos = libn_lseek(fd, 0i64, SEEK_END);
+    if end_pos.is_error {
+        // Best effort: try to restore, but return the end error
+        drop libn_lseek(fd, saved.value, SEEK_SET);
+        fail end_pos.err;
+    }
+
+    // Restore original position
+    Result<int64>:restore = libn_lseek(fd, saved.value, SEEK_SET);
+    if restore.is_error {
+        // Position is now at the end, not restored — but we got the size
+        // Log-worthy but not fatal; return the size
+        pass end_pos.value;
+    }
+
+    pass end_pos.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_lseek — Raw lseek with explicit whence argument.
+//
+// Use this when you need SEEK_DATA or SEEK_HOLE, or when you want to
+// be explicit about the whence argument in a context where a named variant
+// would obscure intent.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_lseek = Result<int64>(int64:fd, int64:offset, int64:whence) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if whence < SEEK_SET || whence > SEEK_HOLE {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_lseek(fd, offset, whence);
+}

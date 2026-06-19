@@ -1,0 +1,213 @@
+// strcpy.npk — strcpy, strncpy, stpcpy, stpncpy, strdup, strndup (v0.3.1)
+//
+// String copy operations. These form the second tier after strlen.
+//
+// Safety model:
+//   - strcpy: NO bounds check. Caller must ensure dst is large enough.
+//     Only safe when you know the string length in advance (e.g., just called strlen).
+//   - strncpy: POSIX-compatible — copies up to n bytes, NUL-pads remainder.
+//     WARNING: does NOT NUL-terminate if src is ≥ n chars. Use strlcpy (v0.3.3)
+//     for safe truncation.
+//   - stpcpy/stpncpy: like strcpy/strncpy but return pointer to the NUL terminator
+//     (or end of dst). Good for building multi-segment strings without re-scanning.
+//   - strdup: allocates a copy. Caller must free with slab_free/mem_free.
+//   - strndup: allocates a copy of at most n bytes.
+//
+// The preferred safe alternatives (in v0.3.3):
+//   - strlcpy: always NUL-terminates, returns strlen(src)
+//   - strlcat: like strlcpy but appends
+
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/mem/memset.npk".*;
+use "src/mem/mmap.npk".*;
+use "src/mem/slab.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strcpy — Copy NUL-terminated string from src to dst.
+//
+// dst must have space for at least strlen(src)+1 bytes.
+// Returns dst. Undefined behavior if src and dst overlap.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strcpy = int64(int64:dst, int64:src) {
+    if dst == 0i64 || src == 0i64 {
+        pass dst;
+    }
+
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+
+    while s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+    d[i] = 0u8;  // NUL terminator
+
+    pass dst;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_stpcpy — Like strcpy but returns pointer to the NUL in dst.
+//
+// Returns: dst + strlen(src) (points to the NUL byte written at end of dst).
+// Use for chaining: dst = stpcpy(dst, "hello"); dst = stpcpy(dst, " world");
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_stpcpy = int64(int64:dst, int64:src) {
+    if dst == 0i64 || src == 0i64 {
+        pass dst;
+    }
+
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+
+    while s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+    d[i] = 0u8;
+
+    pass dst + i;  // points to the NUL byte
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strncpy — Copy at most n bytes from src to dst, NUL-pad remainder.
+//
+// POSIX strncpy behavior:
+//   - If strlen(src) < n: copies strlen(src)+1 bytes, then pads with NUL to n.
+//   - If strlen(src) >= n: copies exactly n bytes, NO NUL terminator added.
+// This is the unsafe legacy function. Prefer strlcpy (v0.3.3).
+//
+// Returns dst.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strncpy = int64(int64:dst, int64:src, int64:n) {
+    if dst == 0i64 || n <= 0i64 {
+        pass dst;
+    }
+    if src == 0i64 {
+        // POSIX: strncpy(dst, NULL, n) → NUL-fill dst
+        mem_bzero(dst, n);
+        pass dst;
+    }
+
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+
+    // Copy src bytes until NUL or we reach n
+    while i < n && s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+
+    // NUL-pad the remainder (POSIX requirement)
+    while i < n {
+        d[i] = 0u8;
+        i = i + 1i64;
+    }
+
+    pass dst;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_stpncpy — Like strncpy but returns pointer to end of copied data in dst.
+//
+// Returns pointer to the NUL placed in dst, or dst+n if src was truncated
+// (no NUL in that case — same gotcha as strncpy).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_stpncpy = int64(int64:dst, int64:src, int64:n) {
+    if dst == 0i64 || n <= 0i64 {
+        pass dst;
+    }
+    if src == 0i64 {
+        mem_bzero(dst, n);
+        pass dst;
+    }
+
+    *byte:d = dst as *byte;
+    *byte:s = src as *byte;
+    int64:i = 0i64;
+
+    while i < n && s[i] != 0u8 {
+        d[i] = s[i];
+        i = i + 1i64;
+    }
+
+    int64:end = dst + i;
+
+    while i < n {
+        d[i] = 0u8;
+        i = i + 1i64;
+    }
+
+    pass end;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strdup — Allocate a copy of the NUL-terminated string at src.
+//
+// Equivalent to malloc(strlen(src)+1) + strcpy. Caller must free with
+// slab_free() or mem_free() depending on allocation size.
+//
+// Returns pointer to new string (or error on OOM).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strdup = Result<int64>(int64:src) {
+    if src == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    int64:n = raw str_strlen(src);
+    int64:alloc_size = n + 1i64;
+
+    // Use slab for short strings, mmap for long ones
+    Result<int64>:r = slab_alloc(alloc_size);
+    if r.is_error {
+        fail r.err;
+    }
+
+    // Copy including NUL terminator
+    drop mem_memcpy(r.value, src, alloc_size);
+
+    pass r.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strndup — Allocate a copy of at most n bytes of src.
+//
+// Like strdup but only copies up to n characters. Always NUL-terminates.
+// If strlen(src) < n, the allocated string is strlen(src) bytes long.
+// If strlen(src) >= n, the allocated string is exactly n bytes (+ NUL).
+//
+// This is safer than strdup for untrusted input (bounded copy).
+// Returns pointer to new string.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strndup = Result<int64>(int64:src, int64:n) {
+    if src == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if n < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    int64:actual_len = raw str_strnlen(src, n);  // min(strlen(src), n)
+    int64:alloc_size = actual_len + 1i64;
+
+    Result<int64>:r = slab_alloc(alloc_size);
+    if r.is_error {
+        fail r.err;
+    }
+
+    // Copy actual_len bytes, then NUL-terminate
+    drop mem_memcpy(r.value, src, actual_len);
+    (r.value as *byte)[actual_len] = 0u8;
+
+    pass r.value;
+}

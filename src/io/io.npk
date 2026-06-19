@@ -1,0 +1,39 @@
+// io.npk — Top-level I/O module re-export (v0.4.8)
+//
+// Import this file to get the complete I/O subsystem in one shot.
+//
+// Module hierarchy:
+//   v0.4.1  write.npk  — io_write_n, io_write_str, io_write_char, io_print*
+//   v0.4.2  read.npk   — io_read_n, io_read_some, io_read_line, io_read_char
+//   v0.4.3  printf.npk — io_fprintf*, io_printf*, io_eprintf*, io_sprintf*,
+//                         io_dprintf*, io_perror
+//   v0.4.4  open.npk   — io_open, io_openat, io_creat, io_close, io_close_nointr,
+//                         io_open_tmp, io_open_inheritable, MODE_FILE_DEFAULT, ...
+//   v0.4.5  seek.npk   — io_seek, io_seek_cur, io_seek_end, io_tell,
+//                         io_rewind, io_file_size, io_lseek
+//   v0.4.6  dup.npk    — io_dup, io_dup_cloexec, io_dup2, io_dup3, io_redirect
+//   v0.4.7  pipe.npk   — io_pipe, io_pipe_nonblock, io_pipe_raw,
+//                         io_pipe_read_fd, io_pipe_write_fd, PIPE_BUF
+//   v0.4.8  fcntl.npk  — io_set_nonblocking, io_set_blocking, io_is_nonblocking,
+//                         io_set_cloexec, io_get_cloexec, io_set_append,
+//                         io_dupfd, io_dupfd_cloexec, io_fcntl, ...
+//
+// File descriptor constants (from write.npk):
+//   STDIN_FD  = 0
+//   STDOUT_FD = 1
+//   STDERR_FD = 2
+//
+// Future:
+//   v0.4.9  ioctl.npk    — libn_ioctl wrappers (TIOCGWINSZ, FIONREAD, etc.)
+//   v0.4.10 poll.npk     — io_poll, io_select wrappers
+//   v0.4.11 strerror.npk — strerror() string table (errno → human-readable)
+
+use "src/io/write.npk".*;
+use "src/io/read.npk".*;
+use "src/io/printf.npk".*;
+use "src/io/open.npk".*;
+use "src/io/seek.npk".*;
+use "src/io/dup.npk".*;
+use "src/io/pipe.npk".*;
+use "src/io/fcntl.npk".*;
+

@@ -1,0 +1,443 @@
+// test_string.npk — Unit tests for the string subsystem (v0.3.x)
+//
+// Tests all public functions across:
+//   strlen, strnlen
+//   strcmp, strncmp, strcasecmp
+//   strlcpy, strlcat, strscpy, strscpy_pad
+//   strchr, strrchr, strchrnul, strstr, strcasestr
+//   strpbrk, strspn, strcspn
+//   strtok_r, strsep, str_split_fields, str_split_lines
+//   strtol, strtoul, atoi, parse_i64, parse_u64, itoa, utoa, itoa_hex
+//   str_format_args / str_snprintf* variants
+//
+// All tests are allocation-free. Stack buffers only.
+
+use "tests/harness/test_harness.npk".*;
+use "src/str/string.npk".*;
+use "src/str/strtok.npk".StrField;
+
+// ════════════════════════════════════════════════════════════════════════════
+// strlen / strnlen tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strlen_tests = void(*TestSuite:ts) {
+    ts_assert_eq_i64(ts, raw str_strlen(&"hello"[0] as int64), 5i64,       &"strlen('hello')==5"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(&""[0] as int64),      0i64,       &"strlen('')==0"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(0i64),                 0i64,       &"strlen(NULL)==0"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strnlen(&"hello"[0] as int64, 3i64), 3i64, &"strnlen('hello',3)==3"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strnlen(&"hi"[0] as int64,    5i64), 2i64, &"strnlen('hi',5)==2"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strnlen(&"abc"[0] as int64,   0i64), 0i64, &"strnlen('abc',0)==0"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strcmp / strncmp / strcasecmp tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strcmp_tests = void(*TestSuite:ts) {
+    ts_assert_eq_i64(ts, raw str_strcmp(&"abc"[0] as int64, &"abc"[0] as int64), 0i64, &"strcmp equal"[0] as int64);
+    ts_assert(ts, raw str_strcmp(&"abc"[0] as int64, &"abd"[0] as int64) < 0i64,        &"strcmp less"[0] as int64);
+    ts_assert(ts, raw str_strcmp(&"abd"[0] as int64, &"abc"[0] as int64) > 0i64,        &"strcmp greater"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(&""[0] as int64, &""[0] as int64), 0i64,        &"strcmp empty"[0] as int64);
+    ts_assert(ts, raw str_strcmp(&""[0] as int64, &"a"[0] as int64) < 0i64,             &"strcmp '' < 'a'"[0] as int64);
+
+    ts_assert_eq_i64(ts, raw str_strncmp(&"abcdef"[0] as int64, &"abcXXX"[0] as int64, 3i64), 0i64,
+        &"strncmp first 3 equal"[0] as int64);
+    ts_assert(ts, raw str_strncmp(&"abcdef"[0] as int64, &"abcXXX"[0] as int64, 4i64) != 0i64,
+        &"strncmp first 4 differ"[0] as int64);
+
+    ts_assert_eq_i64(ts, raw str_strcasecmp(&"Hello"[0] as int64, &"HELLO"[0] as int64), 0i64,
+        &"strcasecmp Hello==HELLO"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcasecmp(&"abc"[0] as int64, &"ABC"[0] as int64), 0i64,
+        &"strcasecmp abc==ABC"[0] as int64);
+    ts_assert(ts, raw str_strcasecmp(&"abc"[0] as int64, &"abd"[0] as int64) != 0i64,
+        &"strcasecmp abc!=abd"[0] as int64);
+
+    ts_assert(ts, raw str_starts_with(&"foobar"[0] as int64, &"foo"[0] as int64),
+        &"starts_with foobar foo"[0] as int64);
+    ts_assert(!raw str_starts_with(&"foobar"[0] as int64, &"bar"[0] as int64),
+        &"!starts_with foobar bar"[0] as int64);
+    ts_assert(ts, raw str_ends_with(&"foobar"[0] as int64, &"bar"[0] as int64),
+        &"ends_with foobar bar"[0] as int64);
+    ts_assert(!raw str_ends_with(&"foobar"[0] as int64, &"foo"[0] as int64),
+        &"!ends_with foobar foo"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strlcpy / strlcat / strscpy / strscpy_pad tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strlcpy_tests = void(*TestSuite:ts) {
+    stack byte:dst[16];
+
+    // strlcpy: returns src length, NUL-terminates
+    int64:r = raw str_strlcpy(&dst[0] as int64, &"hello"[0] as int64, 16i64);
+    ts_assert_eq_i64(ts, r, 5i64, &"strlcpy returns src len"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(&dst[0] as int64), 5i64, &"strlcpy dst len"[0] as int64);
+    ts_assert(ts, dst[5] == 0u8, &"strlcpy NUL terminates"[0] as int64);
+
+    // strlcpy: truncation — returns src len, NUL-terminates at size-1
+    r = raw str_strlcpy(&dst[0] as int64, &"hello world"[0] as int64, 6i64);
+    ts_assert_eq_i64(ts, r, 11i64, &"strlcpy truncated returns src len"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(&dst[0] as int64), 5i64,  &"strlcpy truncated dst len=5"[0] as int64);
+    ts_assert(ts, dst[5] == 0u8, &"strlcpy truncated NUL at [5]"[0] as int64);
+
+    // strlcpy: empty src
+    r = raw str_strlcpy(&dst[0] as int64, &""[0] as int64, 16i64);
+    ts_assert_eq_i64(ts, r, 0i64, &"strlcpy empty src returns 0"[0] as int64);
+    ts_assert(ts, dst[0] == 0u8, &"strlcpy empty src NUL"[0] as int64);
+
+    // strlcat: append
+    drop raw str_strlcpy(&dst[0] as int64, &"foo"[0] as int64, 16i64);
+    r = raw str_strlcat(&dst[0] as int64, &"bar"[0] as int64, 16i64);
+    ts_assert_eq_i64(ts, r, 6i64, &"strlcat returns total len"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(&dst[0] as int64), 6i64, &"strlcat result len"[0] as int64);
+
+    // strlcat: truncation
+    drop raw str_strlcpy(&dst[0] as int64, &"hello"[0] as int64, 16i64);
+    r = raw str_strlcat(&dst[0] as int64, &"world"[0] as int64, 9i64);
+    ts_assert(ts, r >= 9i64, &"strlcat truncated returns >=size"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(&dst[0] as int64), 8i64, &"strlcat truncated dst len=8"[0] as int64);
+
+    // strscpy: success returns bytes written
+    r = raw str_strscpy(&dst[0] as int64, &"abc"[0] as int64, 16i64);
+    ts_assert_eq_i64(ts, r, 3i64, &"strscpy success returns 3"[0] as int64);
+    ts_assert(ts, dst[3] == 0u8, &"strscpy NUL"[0] as int64);
+
+    // strscpy: truncation returns -1
+    r = raw str_strscpy(&dst[0] as int64, &"toolongstring"[0] as int64, 5i64);
+    ts_assert_eq_i64(ts, r, -1i64, &"strscpy truncated returns -1"[0] as int64);
+    ts_assert(ts, dst[4] == 0u8, &"strscpy truncated NUL at size-1"[0] as int64);
+
+    // strscpy_pad: pads remaining buffer with NUL
+    // Write "ab" into 8-byte buffer → positions 0-1='a','b', [2]=NUL, [3..7]=NUL
+    stack byte:padded[8];
+    // First fill with non-zero to ensure padding works
+    int64:fi = 0i64;
+    while fi < 8i64 { padded[fi] = 255u8; fi = fi + 1i64; }
+    r = raw str_strscpy_pad(&padded[0] as int64, &"ab"[0] as int64, 8i64);
+    ts_assert_eq_i64(ts, r, 2i64, &"strscpy_pad success returns 2"[0] as int64);
+    ts_assert(ts, padded[2] == 0u8, &"strscpy_pad NUL after string"[0] as int64);
+    ts_assert(ts, padded[7] == 0u8, &"strscpy_pad end of buffer"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strchr / strrchr / strchrnul / strstr / strcasestr tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strchr_tests = void(*TestSuite:ts) {
+    int64:base = &"hello world"[0] as int64;
+
+    // strchr
+    int64:r = raw str_strchr(base, 111i64);  // 'o'
+    ts_assert(ts, r != 0i64, &"strchr finds 'o'"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 4i64, &"strchr 'o' at index 4"[0] as int64);
+
+    r = raw str_strchr(base, 122i64);  // 'z' — not present
+    ts_assert_eq_i64(ts, r, 0i64, &"strchr 'z' not found"[0] as int64);
+
+    // strchr on NUL (finds end of string)
+    r = raw str_strchr(base, 0i64);
+    ts_assert(ts, r != 0i64, &"strchr NUL finds end"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 11i64, &"strchr NUL at 11"[0] as int64);
+
+    // strrchr
+    r = raw str_strrchr(base, 108i64);  // 'l' — appears at 2, 3, 9
+    ts_assert(ts, r != 0i64, &"strrchr finds 'l'"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 9i64, &"strrchr 'l' last at 9"[0] as int64);
+
+    r = raw str_strrchr(base, 122i64);  // 'z'
+    ts_assert_eq_i64(ts, r, 0i64, &"strrchr 'z' not found"[0] as int64);
+
+    // strchrnul
+    r = raw str_strchrnul(base, 111i64);  // 'o'
+    ts_assert_eq_i64(ts, r - base, 4i64, &"strchrnul 'o' at 4"[0] as int64);
+    r = raw str_strchrnul(base, 122i64);  // 'z' not present → returns NUL ptr
+    ts_assert_eq_i64(ts, r - base, 11i64, &"strchrnul 'z' returns NUL pos"[0] as int64);
+
+    // strstr
+    r = raw str_strstr(base, &"world"[0] as int64);
+    ts_assert(ts, r != 0i64, &"strstr finds 'world'"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 6i64, &"strstr 'world' at 6"[0] as int64);
+
+    r = raw str_strstr(base, &"xyz"[0] as int64);
+    ts_assert_eq_i64(ts, r, 0i64, &"strstr 'xyz' not found"[0] as int64);
+
+    r = raw str_strstr(base, &""[0] as int64);  // empty needle
+    ts_assert_eq_i64(ts, r, base, &"strstr '' returns haystack"[0] as int64);
+
+    // strcasestr
+    r = raw str_strcasestr(base, &"WORLD"[0] as int64);
+    ts_assert(ts, r != 0i64, &"strcasestr WORLD found"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 6i64, &"strcasestr WORLD at 6"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strpbrk / strspn / strcspn tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_charset_tests = void(*TestSuite:ts) {
+    int64:base = &"hello world"[0] as int64;
+
+    // strpbrk — find first char from set
+    int64:r = raw str_strpbrk(base, &"aeiou"[0] as int64);  // first vowel
+    ts_assert(ts, r != 0i64, &"strpbrk finds vowel"[0] as int64);
+    ts_assert_eq_i64(ts, r - base, 1i64, &"strpbrk 'e' at 1"[0] as int64);
+
+    r = raw str_strpbrk(base, &"xyz"[0] as int64);
+    ts_assert_eq_i64(ts, r, 0i64, &"strpbrk no match"[0] as int64);
+
+    // strspn — count leading chars all in accept set
+    int64:s = raw str_strspn(&"abcdef"[0] as int64, &"abcd"[0] as int64);
+    ts_assert_eq_i64(ts, s, 4i64, &"strspn 'abcdef' in 'abcd' = 4"[0] as int64);
+
+    s = raw str_strspn(&"hello"[0] as int64, &"xyz"[0] as int64);
+    ts_assert_eq_i64(ts, s, 0i64, &"strspn no leading match = 0"[0] as int64);
+
+    s = raw str_strspn(&"aaa"[0] as int64, &"a"[0] as int64);
+    ts_assert_eq_i64(ts, s, 3i64, &"strspn all match = 3"[0] as int64);
+
+    // strcspn — count leading chars all NOT in reject set
+    int64:cs = raw str_strcspn(&"hello world"[0] as int64, &" "[0] as int64);
+    ts_assert_eq_i64(ts, cs, 5i64, &"strcspn up to space = 5"[0] as int64);
+
+    cs = raw str_strcspn(&"no-spaces"[0] as int64, &" "[0] as int64);
+    ts_assert_eq_i64(ts, cs, 9i64, &"strcspn no space = full len"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strtok_r / strsep / str_split_fields / str_split_lines tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_tokenize_tests = void(*TestSuite:ts) {
+    // strtok_r: basic tokenization with multiple delimiters
+    stack byte:src[32];
+    drop raw str_strlcpy(&src[0] as int64, &"foo::bar baz"[0] as int64, 32i64);
+
+    int64:saveptr = 0i64;
+    *int64:sp = &saveptr;
+
+    int64:t = raw str_strtok_r(&src[0] as int64, &": "[0] as int64, sp);
+    ts_assert(ts, t != 0i64, &"strtok_r first token"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(t, &"foo"[0] as int64), 0i64, &"strtok_r token='foo'"[0] as int64);
+
+    t = raw str_strtok_r(0i64, &": "[0] as int64, sp);
+    ts_assert_eq_i64(ts, raw str_strcmp(t, &"bar"[0] as int64), 0i64, &"strtok_r token='bar'"[0] as int64);
+
+    t = raw str_strtok_r(0i64, &": "[0] as int64, sp);
+    ts_assert_eq_i64(ts, raw str_strcmp(t, &"baz"[0] as int64), 0i64, &"strtok_r token='baz'"[0] as int64);
+
+    t = raw str_strtok_r(0i64, &": "[0] as int64, sp);
+    ts_assert_eq_i64(ts, t, 0i64, &"strtok_r exhausted = NULL"[0] as int64);
+
+    // strsep: includes empty tokens
+    stack byte:src2[32];
+    drop raw str_strlcpy(&src2[0] as int64, &"a::b"[0] as int64, 32i64);
+
+    int64:s2ptr = &src2[0] as int64;
+    *int64:s2p = &s2ptr;
+
+    int64:f = raw str_strsep(s2p, &":"[0] as int64);
+    ts_assert(ts, f != 0i64, &"strsep 'a'"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(f, &"a"[0] as int64), 0i64, &"strsep f='a'"[0] as int64);
+
+    f = raw str_strsep(s2p, &":"[0] as int64);
+    ts_assert(ts, f != 0i64, &"strsep empty field"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strlen(f), 0i64, &"strsep empty len=0"[0] as int64);
+
+    f = raw str_strsep(s2p, &":"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(f, &"b"[0] as int64), 0i64, &"strsep f='b'"[0] as int64);
+
+    // str_split_fields: non-destructive
+    int64:input = &"one:two::four"[0] as int64;
+    int64:input_len = 13i64;
+    stack StrField:fields[8];
+
+    int64:count = raw str_split_fields(input, input_len, 58u8, &fields[0], 8i64);  // 58 = ':'
+    ts_assert_eq_i64(ts, count, 4i64, &"split_fields count=4"[0] as int64);
+    ts_assert_eq_i64(ts, fields[0].len, 3i64, &"field[0] len=3 (one)"[0] as int64);
+    ts_assert_eq_i64(ts, fields[1].len, 3i64, &"field[1] len=3 (two)"[0] as int64);
+    ts_assert_eq_i64(ts, fields[2].len, 0i64, &"field[2] len=0 (empty)"[0] as int64);
+    ts_assert_eq_i64(ts, fields[3].len, 4i64, &"field[3] len=4 (four)"[0] as int64);
+
+    // str_split_lines: LF
+    int64:lines_in = &"line1\nline2\nline3"[0] as int64;
+    stack StrField:lines[8];
+    int64:lcount = raw str_split_lines(lines_in, 17i64, &lines[0], 8i64);
+    ts_assert_eq_i64(ts, lcount, 3i64, &"split_lines count=3"[0] as int64);
+    ts_assert_eq_i64(ts, lines[0].len, 5i64, &"line[0] len=5"[0] as int64);
+    ts_assert_eq_i64(ts, lines[1].len, 5i64, &"line[1] len=5"[0] as int64);
+    ts_assert_eq_i64(ts, lines[2].len, 5i64, &"line[2] len=5 (no trailing NL)"[0] as int64);
+
+    // str_split_lines: CRLF
+    int64:crlf_in = &"one\r\ntwo\r\n"[0] as int64;
+    lcount = raw str_split_lines(crlf_in, 10i64, &lines[0], 8i64);
+    ts_assert_eq_i64(ts, lcount, 3i64, &"crlf split_lines count=3 (empty at end)"[0] as int64);
+    ts_assert_eq_i64(ts, lines[0].len, 3i64, &"crlf line[0] len=3 (no \\r)"[0] as int64);
+    ts_assert_eq_i64(ts, lines[1].len, 3i64, &"crlf line[1] len=3 (no \\r)"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strconv tests (strtol, itoa, parse_i64)
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strconv_tests = void(*TestSuite:ts) {
+    // atoi
+    ts_assert_eq_i64(ts, raw str_atoi(&"42"[0] as int64),      42i64,  &"atoi 42"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_atoi(&"-100"[0] as int64),    -100i64, &"atoi -100"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_atoi(&"  99"[0] as int64),    99i64,  &"atoi leading space"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_atoi(&"0"[0] as int64),       0i64,   &"atoi 0"[0] as int64);
+
+    // strtol base 16
+    ts_assert_eq_i64(ts, raw str_strtol(&"0xFF"[0] as int64, 0i64 as *int64, 0i64), 255i64,
+        &"strtol 0xFF=255"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strtol(&"ff"[0] as int64, 0i64 as *int64, 16i64), 255i64,
+        &"strtol ff base16=255"[0] as int64);
+
+    // strtol base 8
+    ts_assert_eq_i64(ts, raw str_strtol(&"0777"[0] as int64, 0i64 as *int64, 0i64), 511i64,
+        &"strtol 0777=511"[0] as int64);
+
+    // strtol base 2
+    ts_assert_eq_i64(ts, raw str_strtol(&"1010"[0] as int64, 0i64 as *int64, 2i64), 10i64,
+        &"strtol 1010 base2=10"[0] as int64);
+
+    // parse_i64 success
+    Result<int64>:r1 = str_parse_i64(&"123"[0] as int64);
+    ts_assert(ts, r1.ok, &"parse_i64 123 ok"[0] as int64);
+    ts_assert_eq_i64(ts, r1.value, 123i64, &"parse_i64 123 value"[0] as int64);
+
+    // parse_i64 trailing junk
+    Result<int64>:r2 = str_parse_i64(&"123abc"[0] as int64);
+    ts_assert(ts, !r2.ok, &"parse_i64 trailing junk fails"[0] as int64);
+
+    // parse_i64 empty
+    Result<int64>:r3 = str_parse_i64(&""[0] as int64);
+    ts_assert(ts, !r3.ok, &"parse_i64 empty fails"[0] as int64);
+
+    // itoa
+    stack byte:buf[24];
+    int64:len = raw str_itoa(12345i64, &buf[0] as int64, 24i64);
+    ts_assert_eq_i64(ts, len, 5i64, &"itoa 12345 len=5"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(&buf[0] as int64, &"12345"[0] as int64), 0i64, &"itoa 12345"[0] as int64);
+
+    len = raw str_itoa(-42i64, &buf[0] as int64, 24i64);
+    ts_assert_eq_i64(ts, len, 3i64, &"itoa -42 len=3"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(&buf[0] as int64, &"-42"[0] as int64), 0i64, &"itoa -42"[0] as int64);
+
+    len = raw str_itoa(0i64, &buf[0] as int64, 24i64);
+    ts_assert_eq_i64(ts, len, 1i64, &"itoa 0 len=1"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(&buf[0] as int64, &"0"[0] as int64), 0i64, &"itoa 0"[0] as int64);
+
+    // itoa_hex
+    len = raw str_itoa_hex(255i64, &buf[0] as int64, 24i64, true);  // with 0x prefix
+    ts_assert_eq_i64(ts, raw str_strcmp(&buf[0] as int64, &"0xff"[0] as int64), 0i64, &"itoa_hex 255 with prefix"[0] as int64);
+
+    len = raw str_itoa_hex(255i64, &buf[0] as int64, 24i64, false);
+    ts_assert_eq_i64(ts, raw str_strcmp(&buf[0] as int64, &"ff"[0] as int64), 0i64, &"itoa_hex 255 no prefix"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strfmt (snprintf) tests
+// ════════════════════════════════════════════════════════════════════════════
+
+func:run_strfmt_tests = void(*TestSuite:ts) {
+    stack byte:buf[128];
+    int64:r = 0i64;
+    int64:bp = &buf[0] as int64;
+
+    // %d — signed integer
+    r = raw str_snprintf1(bp, 128i64, &"%d"[0] as int64, 42i64);
+    ts_assert_eq_i64(ts, r, 2i64, &"fmt %%d 42 returns 2"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"42"[0] as int64), 0i64, &"fmt %%d 42"[0] as int64);
+
+    r = raw str_snprintf1(bp, 128i64, &"%d"[0] as int64, -99i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"-99"[0] as int64), 0i64, &"fmt %%d -99"[0] as int64);
+
+    // %s
+    r = raw str_snprintf1(bp, 128i64, &"%s"[0] as int64, &"hello"[0] as int64);
+    ts_assert_eq_i64(ts, r, 5i64, &"fmt %%s returns 5"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"hello"[0] as int64), 0i64, &"fmt %%s hello"[0] as int64);
+
+    // %s with NULL
+    r = raw str_snprintf1(bp, 128i64, &"%s"[0] as int64, 0i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"(null)"[0] as int64), 0i64, &"fmt %%s NULL=(null)"[0] as int64);
+
+    // %x lowercase hex
+    r = raw str_snprintf1(bp, 128i64, &"%x"[0] as int64, 255i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"ff"[0] as int64), 0i64, &"fmt %%x 255=ff"[0] as int64);
+
+    // %X uppercase hex
+    r = raw str_snprintf1(bp, 128i64, &"%X"[0] as int64, 255i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"FF"[0] as int64), 0i64, &"fmt %%X 255=FF"[0] as int64);
+
+    // %#x alternate form
+    r = raw str_snprintf1(bp, 128i64, &"%#x"[0] as int64, 255i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"0xff"[0] as int64), 0i64, &"fmt %%#x 255=0xff"[0] as int64);
+
+    // %o octal
+    r = raw str_snprintf1(bp, 128i64, &"%o"[0] as int64, 8i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"10"[0] as int64), 0i64, &"fmt %%o 8=10"[0] as int64);
+
+    // %c character
+    r = raw str_snprintf1(bp, 128i64, &"%c"[0] as int64, 65i64);  // 'A'
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"A"[0] as int64), 0i64, &"fmt %%c 65=A"[0] as int64);
+
+    // %% literal percent
+    r = raw str_snprintf0(bp, 128i64, &"100%%"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"100%"[0] as int64), 0i64, &"fmt %%%% = %%"[0] as int64);
+
+    // Width right-align
+    r = raw str_snprintf1(bp, 128i64, &"%5d"[0] as int64, 42i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"   42"[0] as int64), 0i64, &"fmt %%5d 42 right-pad"[0] as int64);
+
+    // Width left-align with '-'
+    r = raw str_snprintf1(bp, 128i64, &"%-5d"[0] as int64, 42i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"42   "[0] as int64), 0i64, &"fmt %%-5d 42 left-pad"[0] as int64);
+
+    // Width zero-pad
+    r = raw str_snprintf1(bp, 128i64, &"%05d"[0] as int64, 42i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"00042"[0] as int64), 0i64, &"fmt %%05d 42 zero-pad"[0] as int64);
+
+    // Width zero-pad negative
+    r = raw str_snprintf1(bp, 128i64, &"%06d"[0] as int64, -42i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"-00042"[0] as int64), 0i64, &"fmt %%06d -42 zero-pad neg"[0] as int64);
+
+    // Force sign with '+'
+    r = raw str_snprintf1(bp, 128i64, &"%+d"[0] as int64, 42i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"+42"[0] as int64), 0i64, &"fmt %%+d 42=+42"[0] as int64);
+
+    // Truncation: returns total would-be length
+    r = raw str_snprintf1(bp, 4i64, &"%s"[0] as int64, &"hello"[0] as int64);
+    ts_assert_eq_i64(ts, r, 5i64, &"fmt truncated returns 5"[0] as int64);
+    // Output is "hel" + NUL
+    ts_assert(ts, buf[3] == 0u8, &"fmt truncated NUL at [3]"[0] as int64);
+
+    // Multiple args
+    r = raw str_snprintf3(bp, 128i64, &"%d + %d = %d"[0] as int64, 1i64, 2i64, 3i64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"1 + 2 = 3"[0] as int64), 0i64, &"fmt 3-arg"[0] as int64);
+
+    // %s with precision (truncates string)
+    r = raw str_snprintf1(bp, 128i64, &"%.3s"[0] as int64, &"hello"[0] as int64);
+    ts_assert_eq_i64(ts, raw str_strcmp(bp, &"hel"[0] as int64), 0i64, &"fmt %%.3s truncates to 3"[0] as int64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Entry point
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:test_string_main = int64() {
+    TestSuite:ts;
+    ts_init(&ts, &"String subsystem (v0.3.x)"[0] as int64);
+
+    raw run_strlen_tests(&ts);
+    raw run_strcmp_tests(&ts);
+    raw run_strlcpy_tests(&ts);
+    raw run_strchr_tests(&ts);
+    raw run_charset_tests(&ts);
+    raw run_tokenize_tests(&ts);
+    raw run_strconv_tests(&ts);
+    raw run_strfmt_tests(&ts);
+
+    ts_finish(&ts);
+    pass ts.failed > 0i64 ? 1i64 : 0i64;
+}

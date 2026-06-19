@@ -1,0 +1,285 @@
+// strtok.npk — strtok_r, strsep, str_split_fields (v0.3.5)
+//
+// String tokenization. These are the workhorses of command-line parsing,
+// config file reading, and protocol field extraction.
+//
+// Safety note on strtok():
+//   POSIX strtok() uses a hidden global state pointer (save_ptr), making it
+//   NOT thread-safe and NOT reentrant. libn does NOT provide strtok().
+//   We provide strtok_r() (the reentrant version) as our baseline.
+//
+//   strtok_r() is also unsafe in a different sense: it MODIFIES the input
+//   string by writing NUL bytes. This is by design (POSIX), but callers must
+//   be aware. For non-destructive tokenization, use str_split_fields().
+//
+// strsep vs strtok_r:
+//   - strtok_r: skips LEADING delimiters, returns NULL when no more tokens.
+//   - strsep: does NOT skip leading delimiters — empty tokens are returned.
+//     This is the POSIX-compliant way to parse: "field1::field3" correctly
+//     yields three tokens with strsep but two with strtok_r.
+//
+// str_split_fields:
+//   Non-destructive field splitter. Works on a single delimiter char.
+//   Fills an array of (pointer, length) pairs. Does not modify the input.
+//   Used for: HTTP header parsing, CSV fields, colon-separated paths.
+
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/str/strchr.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strtok_r — Reentrant string tokenizer. Modifies input string.
+//
+// Parameters:
+//   str:       On first call, the string to tokenize. On subsequent calls, NULL.
+//   delim:     NUL-terminated string of delimiter characters.
+//   saveptr:   Pointer to an int64 the function uses to maintain context.
+//              Must be the same variable across calls for the same string.
+//              Can be a different variable to tokenize multiple strings simultaneously.
+//
+// Returns: pointer to next token (a NUL-terminated substring of *str),
+//          or NULL when no more tokens.
+//
+// Behavior:
+//   - Leading delimiters are SKIPPED (like strtok).
+//   - The input string is modified in-place (NUL bytes written at token boundaries).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strtok_r = int64(int64:str_arg, int64:delim, *int64:saveptr) {
+    int64:s = 0i64;
+
+    if str_arg != 0i64 {
+        s = str_arg;
+    } else {
+        if saveptr == 0i64 {
+            pass 0i64;
+        }
+        s = saveptr[0];
+    }
+
+    if s == 0i64 || (s as *byte)[0] == 0u8 {
+        if saveptr != 0i64 { saveptr[0] = 0i64; }
+        pass 0i64;
+    }
+
+    // Build charset bitvector for delimiter set
+    stack byte:table[32];
+    charset_build(&table[0], delim);
+
+    *byte:p = s as *byte;
+    int64:i = 0i64;
+
+    // Skip leading delimiters
+    while p[i] != 0u8 && raw charset_test(&table[0], p[i]) {
+        i = i + 1i64;
+    }
+
+    // All remaining chars are delimiters — no more tokens
+    if p[i] == 0u8 {
+        if saveptr != 0i64 { saveptr[0] = 0i64; }
+        pass 0i64;
+    }
+
+    // Token starts at s+i
+    int64:token_start = s + i;
+
+    // Advance until we hit a delimiter or NUL
+    while p[i] != 0u8 && !raw charset_test(&table[0], p[i]) {
+        i = i + 1i64;
+    }
+
+    // Write NUL to terminate the token (if not already at end)
+    if p[i] != 0u8 {
+        p[i] = 0u8;
+        if saveptr != 0i64 { saveptr[0] = s + i + 1i64; }
+    } else {
+        if saveptr != 0i64 { saveptr[0] = 0i64; }
+    }
+
+    pass token_start;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strsep — BSD/GNU strsep. Modifies input string.
+//
+// Parameters:
+//   stringp:  Pointer to the string pointer. Updated to point past the token.
+//             *stringp is set to NULL when the string is exhausted.
+//   delim:    NUL-terminated delimiter set.
+//
+// Returns:
+//   Pointer to the token (may be empty string "").
+//   NULL if *stringp was NULL on entry.
+//
+// Unlike strtok_r, leading delimiters produce EMPTY tokens.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strsep = int64(*int64:stringp, int64:delim) {
+    if stringp == 0i64 {
+        pass 0i64;
+    }
+    if stringp[0] == 0i64 {
+        pass 0i64;
+    }
+
+    int64:s = stringp[0];
+    *byte:p = s as *byte;
+
+    // Find first delimiter (or NUL)
+    stack byte:table[32];
+    charset_build(&table[0], delim);
+
+    int64:i = 0i64;
+    while p[i] != 0u8 && !raw charset_test(&table[0], p[i]) {
+        i = i + 1i64;
+    }
+
+    if p[i] == 0u8 {
+        // No delimiter found — return entire remaining string, set *stringp = NULL
+        stringp[0] = 0i64;
+    } else {
+        // Found delimiter — terminate token, advance past delimiter
+        p[i] = 0u8;
+        stringp[0] = s + i + 1i64;
+    }
+
+    pass s;  // Original start of token (may be empty string if delimiter was at start)
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// StrField — A non-owning reference to a field within a string.
+// Stored as (ptr, len) pair. No NUL terminator is guaranteed.
+//
+// Fields are valid only as long as the original string buffer exists.
+// ════════════════════════════════════════════════════════════════════════════
+
+struct StrField {
+    int64:ptr;    // pointer into original string buffer
+    int64:len;    // length of this field (bytes, not including NUL)
+}
+
+// str_field_equals — True if field f equals NUL-terminated string s.
+pub func:str_field_equals = bool(StrField:f, int64:s) {
+    if f.len != raw str_strlen(s) {
+        pass false;
+    }
+    *byte:fp = f.ptr as *byte;
+    *byte:sp = s as *byte;
+    int64:i = 0i64;
+    while i < f.len {
+        if fp[i] != sp[i] { pass false; }
+        i = i + 1i64;
+    }
+    pass true;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_split_fields — Non-destructive field splitter with a single delimiter char.
+//
+// Parses 'input' (length 'input_len') splitting on 'delim'.
+// Fills 'fields' array with up to 'max_fields' StrField entries.
+// Returns number of fields found (may be less than actual count if max_fields hit).
+//
+// Behavior:
+//   - Does NOT modify the input string.
+//   - Empty fields ARE included (like strsep, not strtok).
+//   - If max_fields is hit, the remaining unparsed portion is stored in
+//     fields[max_fields-1] as the last (unsplit) field.
+//
+// Example: split_fields("a:b::c", 6, ':', fields, 10) yields:
+//   fields[0] = {ptr→"a", len=1}
+//   fields[1] = {ptr→"b", len=1}
+//   fields[2] = {ptr→"",  len=0}
+//   fields[3] = {ptr→"c", len=1}
+//   return 4
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_split_fields = int64(int64:input, int64:input_len, byte:delim,
+                                   *StrField:fields, int64:max_fields) {
+    if input == 0i64 || max_fields <= 0i64 {
+        pass 0i64;
+    }
+
+    *byte:p = input as *byte;
+    int64:field_count = 0i64;
+    int64:field_start = 0i64;
+    int64:i = 0i64;
+
+    while i <= input_len {
+        bool:at_delim = (i < input_len && p[i] == delim);
+        bool:at_end   = (i == input_len);
+
+        if at_delim || at_end {
+            if field_count < max_fields - 1i64 || at_end {
+                // Normal field: record it
+                fields[field_count].ptr = input + field_start;
+                fields[field_count].len = i - field_start;
+                field_count = field_count + 1i64;
+                field_start = i + 1i64;
+            } else {
+                // Last slot: store remainder as unsplit tail
+                fields[field_count].ptr = input + field_start;
+                fields[field_count].len = input_len - field_start;
+                field_count = field_count + 1i64;
+                pass field_count;
+            }
+        }
+
+        if at_end { break; }
+        i = i + 1i64;
+    }
+
+    pass field_count;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_split_lines — Split a buffer into line StrFields on '\n'.
+//
+// Handles both LF (\n) and CRLF (\r\n) line endings. If a line ends with \r\n,
+// the field length does NOT include the \r (the \n causes the split, and the
+// \r is trimmed from the end of the field).
+//
+// Empty lines produce zero-length fields.
+// Last line without terminal \n is still returned.
+//
+// Returns number of lines found.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_split_lines = int64(int64:input, int64:input_len,
+                                  *StrField:lines, int64:max_lines) {
+    if input == 0i64 || max_lines <= 0i64 {
+        pass 0i64;
+    }
+
+    *byte:p = input as *byte;
+    int64:line_count = 0i64;
+    int64:line_start = 0i64;
+    int64:i = 0i64;
+
+    while i <= input_len {
+        bool:at_lf  = (i < input_len && p[i] == 10u8);   // '\n'
+        bool:at_end = (i == input_len);
+
+        if at_lf || at_end {
+            if line_count < max_lines {
+                int64:len = i - line_start;
+                // Trim trailing \r (CRLF handling)
+                if len > 0i64 && p[line_start + len - 1i64] == 13u8 {  // '\r'
+                    len = len - 1i64;
+                }
+                lines[line_count].ptr = input + line_start;
+                lines[line_count].len = len;
+                line_count = line_count + 1i64;
+            }
+            line_start = i + 1i64;
+            if line_count >= max_lines && !at_end {
+                pass line_count;  // Output full, stop
+            }
+        }
+
+        if at_end { break; }
+        i = i + 1i64;
+    }
+
+    pass line_count;
+}

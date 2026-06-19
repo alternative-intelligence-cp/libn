@@ -1,0 +1,190 @@
+// memset.npk — memset, bzero, memset_explicit (v0.2.3)
+//
+// Pure Nitpick reference implementations plus architecture stubs.
+//
+// Implementation tiers (in order of compilation priority):
+//   1. arch/x86_64/memset.s — AVX2 vectorized (fastest, used when target supports it)
+//   2. arch/x86_64/memset_sse2.s — SSE2 fallback (all x86-64 CPUs have SSE2)
+//   3. This file — pure Nitpick reference (always correct, portable)
+//
+// The build system selects the appropriate tier at link time via:
+//   #[arch = "x86_64", feature = "avx2"]  → memset.s
+//   #[arch = "x86_64"]                    → memset_sse2.s
+//   #[arch = "any"]                        → this file
+//
+// At v0.2.3 (current), only the pure Nitpick implementation exists.
+// The x86-64 assembly stubs will be added in v0.2.6 (memcpy/memset ASM).
+//
+// memset_explicit:
+//   GCC/Clang's "explicit bzero" that the compiler guarantees NOT to elide even
+//   if the memory is about to go out of scope. Used for zeroing secrets (passwords,
+//   private keys, decrypted data). We implement this by issuing a memory barrier
+//   (compiler fence) before and after the fill.
+
+// ════════════════════════════════════════════════════════════════════════════
+// mem_memset — Fill n bytes at ptr with byte value c.
+//
+// Parameters:
+//   ptr: start address (as int64, will be cast to *byte)
+//   c:   fill byte value (0..255)
+//   n:   byte count
+//
+// Returns: ptr (same as C memset — allows chaining)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mem_memset = Result<int64>(int64:ptr, int64:c, int64:n) {
+    if ptr == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if n == 0i64 {
+        pass ptr;
+    }
+    if n < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    byte:fill = c as byte;
+    *byte:p   = ptr as *byte;
+
+    // Fast path: 8-byte word fill for large fills
+    // Write byte-by-byte until we reach 8-byte alignment
+    int64:i = 0i64;
+    while i < n && ((ptr + i) & 7i64) != 0i64 {
+        p[i] = fill;
+        i = i + 1i64;
+    }
+
+    // Build a 64-bit word with 'fill' replicated in all 8 bytes
+    int64:fill64 = fill as int64;
+    fill64 = fill64 | (fill64 << 8i64);
+    fill64 = fill64 | (fill64 << 16i64);
+    fill64 = fill64 | (fill64 << 32i64);
+
+    // Write 8 bytes at a time (word-aligned)
+    *int64:pw = (ptr + i) as *int64;
+    int64:wi = 0i64;
+    int64:word_count = (n - i) / 8i64;
+    while wi < word_count {
+        pw[wi] = fill64;
+        wi = wi + 1i64;
+    }
+    i = i + word_count * 8i64;
+
+    // Tail: remaining bytes (< 8)
+    while i < n {
+        p[i] = fill;
+        i = i + 1i64;
+    }
+
+    pass ptr;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// mem_bzero — Zero n bytes starting at ptr.
+//
+// Equivalent to memset(ptr, 0, n). Provided as a separate entry point because:
+//   1. It's in the POSIX spec (legacy from BSD)
+//   2. The x86-64 assembly can use xor-based zeroing which may be marginally faster
+//   3. It's a clearer API when the intent is zeroing (not pattern-filling)
+//
+// Returns void (unlike memset which returns the pointer).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mem_bzero = void(int64:ptr, int64:n) {
+    if ptr == 0i64 || n <= 0i64 {
+        pass void;
+    }
+    drop mem_memset(ptr, 0i64, n);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// mem_memset_explicit — Fill n bytes with c, guaranteed not elided by compiler.
+//
+// This is the security-critical variant used for zeroing secrets. The standard
+// memset() can be elided if the compiler determines the memory won't be read again
+// (e.g., local buffers holding passwords, crypto keys, plaintext before free).
+//
+// Implementation: Nitpick's 'volatile_write' barrier prevents the compiler from
+// treating the writes as dead stores. We write the last byte with a volatile write
+// and issue a compiler fence. This matches what glibc's explicit_bzero() does.
+//
+// For future work: when libn includes a seccomp filter (v0.70.x), we'll add
+// a syscall-based securely_clear mechanism for particularly sensitive operations.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mem_memset_explicit = void(int64:ptr, int64:c, int64:n) {
+    if ptr == 0i64 || n <= 0i64 {
+        pass void;
+    }
+
+    byte:fill = c as byte;
+    *byte:p   = ptr as *byte;
+    int64:i   = 0i64;
+
+    // Write byte-by-byte with volatile semantics (not elided even if dead store)
+    while i < n {
+        volatile p[i] = fill;
+        i = i + 1i64;
+    }
+
+    // Compiler fence: prevents reordering of the volatile writes relative to
+    // anything that follows (e.g., a free() of the same memory).
+    compiler_fence();
+}
+
+// mem_bzero_explicit — Alias for mem_memset_explicit(ptr, 0, n).
+// Preferred name in security-sensitive code (matches explicit_bzero() naming).
+pub func:mem_bzero_explicit = void(int64:ptr, int64:n) {
+    mem_memset_explicit(ptr, 0i64, n);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// mem_memset_pattern4 / mem_memset_pattern8
+//
+// Fill memory with a repeating 4-byte or 8-byte pattern.
+// Used by the allocator's poisoning logic (debug mode: fill freed memory with
+// a sentinel pattern to detect use-after-free).
+// ════════════════════════════════════════════════════════════════════════════
+
+// POISON_PATTERN — value written to freed memory in debug mode.
+// 0xDEADBEEF chosen to be obviously invalid as a pointer (unaligned, high value).
+pub fixed int64:LIBN_POISON_PATTERN = 0xDEADBEEFDEADBEEFi64;
+
+// mem_memset_pattern4 — Fill with repeating 4-byte pattern (int32).
+pub func:mem_memset_pattern4 = void(int64:ptr, int64:pattern32, int64:n) {
+    if ptr == 0i64 || n <= 0i64 {
+        pass void;
+    }
+
+    // Cast pattern to 4 bytes
+    int64:p32 = pattern32 & 0xFFFFFFFFi64;
+    int64:p64 = p32 | (p32 << 32i64);
+
+    // Align to 4 bytes, then write 4 at a time, then tail
+    *byte:pb   = ptr as *byte;
+    int64:i    = 0i64;
+
+    while i < n && ((ptr + i) & 3i64) != 0i64 {
+        pb[i] = (p32 >> ((i & 3i64) * 8i64)) as byte;
+        i = i + 1i64;
+    }
+
+    *int64:pi64 = (ptr + i) as *int64;
+    int64:wi = 0i64;
+    int64:wn = (n - i) / 8i64;
+    while wi < wn {
+        pi64[wi] = p64;
+        wi = wi + 1i64;
+    }
+    i = i + wn * 8i64;
+
+    while i < n {
+        pb[i] = (p32 >> ((i & 3i64) * 8i64)) as byte;
+        i = i + 1i64;
+    }
+}
+
+// mem_poison — Fill freed memory with the poison pattern (debug mode).
+pub func:mem_poison = void(int64:ptr, int64:n) {
+    mem_memset_pattern4(ptr, LIBN_POISON_PATTERN, n);
+}

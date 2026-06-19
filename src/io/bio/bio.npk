@@ -1,0 +1,73 @@
+// bio.npk — Top-level buffered I/O re-export (v0.8.0)
+//
+// Import this file to get the complete stdio subsystem in one shot:
+//   use "src/io/bio/bio.npk".*;
+//
+// Or import individual sub-modules for finer dependency control.
+//
+// Module hierarchy (import order = dependency order):
+//
+//   v0.5.0  file.npk     — FILE struct, constants, _IOFBF/_IOLBF/_IONBF,
+//                           FILE_MODE_*, FILE_FLAG_*, internal buffer helpers
+//   v0.5.1  fopen.npk    — fopen, fclose, fdopen, freopen, fileno
+//   v0.5.2  fio.npk      — fread, fwrite, fflush
+//   v0.5.4  fseek.npk    — fseek, ftell, rewind, fgetpos, fsetpos
+//   v0.5.5  fchar.npk    — fgetc, fputc, getc, putc, ungetc
+//   v0.5.6  fstr.npk     — fgets, fputs
+//   v0.5.8  fstate.npk   — feof, ferror, clearerr, setvbuf, setbuf, setlinebuf
+//   v0.5.10 stdfiles.npk — stdin_fp, stdout_fp, stderr_fp, getchar, putchar, puts,
+//                           bio_ensure_std_init, bio_flush_stdout, bio_flush_all
+//   v0.6.0  fprintf.npk  — fprintf0..8, printf0..8, eprintf0..8, asprintf0..4
+//   v0.6.1  strerror.npk — strerror, strerror_r, perror (full errno table)
+//   v0.6.2  fscanf.npk   — fscanf0..8, sscanf0..8, scanf0..8,
+//                           bio_scan_engine (parse %d/%i/%u/%o/%x/%s/%c/%n/%*)
+//   v0.8.0  tmpfile.npk  — tmpfile, tmpnam, mkstemp, mkostemp, mkdtemp
+//
+// Public symbols (key selection):
+//
+//   Types:
+//     FILE              — buffered stream struct (use as *FILE or int64 pointer)
+//
+//   Constants:
+//     _IOFBF, _IOLBF, _IONBF   — buffering modes
+//     BUFSIZ                    — default buffer size (8192)
+//     FILE_EOF                  — sentinel return value (-1) for error/EOF
+//     stdin_fp, stdout_fp, stderr_fp — standard streams
+//
+//   Lifecycle:
+//     fopen, fclose, fdopen, freopen, fileno
+//
+//   Block I/O:
+//     fread, fwrite, fflush
+//
+//   Position:
+//     fseek, ftell, rewind, fgetpos, fsetpos
+//
+//   Character I/O:
+//     fgetc, fputc, getc, putc, getchar, putchar, ungetc
+//
+//   String I/O:
+//     fgets, fputs, puts
+//
+//   State:
+//     feof, ferror, clearerr
+//
+//   Buffer control:
+//     setvbuf, setbuf, setlinebuf
+//
+// Future:
+//   v0.5.12 stdio test suite
+//   v0.6.x  fprintf, fscanf (formatted I/O to streams)
+
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fopen.npk".*;
+use "src/io/bio/fio.npk".*;
+use "src/io/bio/fseek.npk".*;
+use "src/io/bio/fchar.npk".*;
+use "src/io/bio/fstr.npk".*;
+use "src/io/bio/fstate.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+use "src/io/bio/fprintf.npk".*;
+use "src/io/bio/strerror.npk".*;
+use "src/io/bio/fscanf.npk".*;
+use "src/io/bio/tmpfile.npk".*;

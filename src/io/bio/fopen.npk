@@ -1,0 +1,333 @@
+// fopen.npk — fopen, fclose, fdopen, freopen, fileno (v0.5.1)
+//
+// Stream lifecycle management. Every FILE* in libn is backed by an fd.
+// The lifecycle is:
+//
+//   fopen(path, mode)   → allocates FILE struct + I/O buffer, opens the fd
+//   fdopen(fd, mode)    → wraps an existing fd in a FILE struct
+//   freopen(path, mode, fp) → re-opens a stream in-place (path change or mode change)
+//   fileno(fp)          → returns the underlying fd
+//   fclose(fp)          → flushes, closes fd, frees buffer and FILE struct
+//
+// stdin/stdout/stderr are special-cased: their FILE structs are statically
+// allocated in stdfiles.npk. fclose() on them flushes but does NOT close fd 0/1/2
+// and does NOT free their structs (they're not heap-allocated).
+//
+// Thread safety: NOT thread-safe at v0.5.x. Concurrent access to the same FILE*
+// requires external synchronization. Thread-safe wrappers (flockfile/funlockfile)
+// are planned for v0.14.x.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/mem/slab.npk".*;
+use "src/io/bio/file.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Default mode for file creation via fopen "w", "a"
+// ════════════════════════════════════════════════════════════════════════════
+
+fixed int64:FOPEN_CREAT_MODE = 0o666i64;  // masked by umask at open() time
+
+// ════════════════════════════════════════════════════════════════════════════
+// bio_init_stream — Initialize a FILE struct for a given fd and mode.
+//
+// Sets up the buffer, mode flags, and buffer mode. Called by fopen/fdopen.
+// Assumes the FILE struct fields are zeroed (out of bio_alloc_file or BSS).
+//
+// is_static: true if this FILE struct is NOT heap-allocated (stdin/stdout/stderr)
+//            so fclose() knows not to call slab_free() on it.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:bio_init_stream = Result<int64>(int64:fp, int64:fd, int64:file_mode, bool:is_static) {
+    *FILE:f = fp as *FILE;
+
+    f.fd       = fd;
+    f.mode     = file_mode;
+    f.unget    = FILE_UNGET_EMPTY;
+    f.flags    = FILE_FLAG_INIT;
+    f.file_pos = 0i64;
+    f.buf_pos  = 0i64;
+    f.buf_len  = 0i64;
+
+    if is_static {
+        // Don't set BUF_OWN — the struct is in BSS, not slab
+        // (buf ownership is separate from struct ownership)
+    }
+
+    // Choose default buffering mode:
+    //   stderr (fd == 2): _IONBF — unbuffered for immediate error output
+    //   stdout (fd == 1): _IOLBF — line-buffered (we can't detect tty here yet;
+    //                              v0.30.x will upgrade to isatty() check)
+    //   everything else:  _IOFBF — fully buffered
+    if fd == 2i64 {
+        f.buf_mode = _IONBF;
+        f.buf      = 0i64;
+        f.buf_cap  = 0i64;
+        pass 0i64;
+    }
+
+    f.buf_mode = (fd == 1i64) ? _IOLBF : _IOFBF;
+
+    // Allocate buffer
+    int64:buf = bio_alloc_buf(BUFSIZ);
+    if buf == 0i64 {
+        fail ENOMEM as tbb8;
+    }
+
+    f.buf     = buf;
+    f.buf_cap = BUFSIZ;
+    f.flags   = f.flags | FILE_FLAG_BUF_OWN;
+
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fopen — Open a file as a buffered stdio stream.
+//
+// Parameters:
+//   path: NUL-terminated file path (as int64 pointer)
+//   mode: mode string: "r", "w", "a", "r+", "w+", "a+", and optional "b"
+//
+// Returns: FILE* (as int64) on success, or 0 (NULL) on error.
+//
+// On error: errno is set (ENOENT, EACCES, ENOMEM, etc.)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fopen = int64(int64:path, int64:mode) {
+    if path == 0i64 || mode == 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    // Parse mode string
+    stack int64:file_mode_out[1];
+    stack int64:open_flags_out[1];
+    int64:parse_ok = bio_parse_mode(mode, &file_mode_out[0] as int64, &open_flags_out[0] as int64);
+    if parse_ok != 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    int64:file_mode  = file_mode_out[0];
+    int64:open_flags = open_flags_out[0];
+
+    // Open the file (O_CLOEXEC added automatically by libn_open)
+    Result<int64>:r = libn_open(path, open_flags, FOPEN_CREAT_MODE);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass 0i64;
+    }
+    int64:fd = r.value;
+
+    // Allocate FILE struct
+    int64:fp = bio_alloc_file();
+    if fp == 0i64 {
+        drop libn_close(fd);
+        errno_set(ENOMEM);
+        pass 0i64;
+    }
+
+    // Initialize the stream
+    Result<int64>:init_r = bio_init_stream(fp, fd, file_mode, false);
+    if init_r.is_error {
+        drop libn_close(fd);
+        bio_free_file(fp);
+        errno_set(ENOMEM);
+        pass 0i64;
+    }
+
+    pass fp;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fdopen — Create a FILE stream from an existing file descriptor.
+//
+// The mode must be compatible with the fd's open flags:
+//   - If fd was opened O_RDONLY, mode must not include writing.
+//   - libn does NOT verify compatibility at v0.5.1 (deferred to v0.5.x conformance).
+//
+// The stream takes ownership of fd: fclose() will close it.
+//
+// Returns FILE* (as int64) on success, or 0 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fdopen = int64(int64:fd, int64:mode) {
+    if fd < 0i64 || mode == 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    stack int64:file_mode_out[1];
+    stack int64:open_flags_out[1];
+    int64:parse_ok = bio_parse_mode(mode, &file_mode_out[0] as int64, &open_flags_out[0] as int64);
+    if parse_ok != 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    int64:fp = bio_alloc_file();
+    if fp == 0i64 {
+        errno_set(ENOMEM);
+        pass 0i64;
+    }
+
+    Result<int64>:init_r = bio_init_stream(fp, fd, file_mode_out[0], false);
+    if init_r.is_error {
+        bio_free_file(fp);
+        errno_set(ENOMEM);
+        pass 0i64;
+    }
+
+    pass fp;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// freopen — Re-open a stream with a new path or mode.
+//
+// If path is non-NULL: flush and close old stream, open new path, reuse struct.
+// If path is NULL: flush, change mode flags on the same fd (limited support).
+//
+// Returns fp on success (same pointer), or 0 on error (fp is NOT valid after error).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
+    if mode == 0i64 || fp == 0i64 {
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    // Parse new mode
+    stack int64:file_mode_out[1];
+    stack int64:open_flags_out[1];
+    int64:parse_ok = bio_parse_mode(mode, &file_mode_out[0] as int64, &open_flags_out[0] as int64);
+    if parse_ok != 0i64 {
+        fclose(fp);
+        errno_set(EINVAL);
+        pass 0i64;
+    }
+
+    // Flush existing write buffer
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 {
+        drop bio_flush_write_buf(fp);
+    }
+
+    int64:old_fd = f.fd;
+    bool:buf_owned = (f.flags & FILE_FLAG_BUF_OWN) != 0i64;
+
+    if path != 0i64 {
+        // Open new path
+        Result<int64>:r = libn_open(path, open_flags_out[0], FOPEN_CREAT_MODE);
+        if r.is_error {
+            // POSIX: freopen closes fp even on error
+            drop libn_close(old_fd);
+            if buf_owned { bio_free_buf(f.buf, f.buf_cap); }
+            f.fd    = -1i64;
+            f.flags = FILE_FLAG_ERROR;
+            errno_set(r.err as int64);
+            pass 0i64;
+        }
+
+        // Close old fd, install new one
+        drop libn_close(old_fd);
+        f.fd = r.value;
+    }
+
+    // Reset stream state
+    f.mode     = file_mode_out[0];
+    f.buf_pos  = 0i64;
+    f.buf_len  = 0i64;
+    f.file_pos = 0i64;
+    f.unget    = FILE_UNGET_EMPTY;
+    f.flags    = (f.flags & FILE_FLAG_BUF_OWN) | FILE_FLAG_INIT;  // preserve buf ownership
+
+    pass fp;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fclose — Flush and close a FILE stream.
+//
+// Flushes any buffered writes, closes the underlying fd, frees the I/O buffer
+// (if owned), and frees the FILE struct (if heap-allocated).
+//
+// Returns 0 on success, EOF on error (POSIX: fclose sets errno on error).
+//
+// After fclose(), fp is invalid — do not use it.
+// Closing stdin/stdout/stderr: flushes but does NOT close fd 0/1/2, and does
+// NOT free the statically allocated FILE structs.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fclose = int64(int64:fp) {
+    if fp == 0i64 {
+        errno_set(EINVAL);
+        pass FILE_EOF;
+    }
+
+    *FILE:f = fp as *FILE;
+    int64:ret = 0i64;
+
+    // Flush write buffer
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 && f.buf_pos > 0i64 {
+        Result<int64>:r = bio_flush_write_buf(fp);
+        if r.is_error {
+            errno_set(r.err as int64);
+            ret = FILE_EOF;
+            // Continue with close even on flush error
+        }
+    }
+
+    // Close the fd (skip for stdin/stdout/stderr)
+    int64:fd = f.fd;
+    bool:is_std = (fd == 0i64 || fd == 1i64 || fd == 2i64);
+    if !is_std && fd >= 0i64 {
+        Result<int64>:r = libn_close(fd);
+        if r.is_error && ret == 0i64 {
+            errno_set(r.err as int64);
+            ret = FILE_EOF;
+        }
+    }
+
+    f.fd = -1i64;
+
+    // Free I/O buffer if we own it
+    if (f.flags & FILE_FLAG_BUF_OWN) != 0i64 && f.buf != 0i64 {
+        bio_free_buf(f.buf, f.buf_cap);
+        f.buf     = 0i64;
+        f.buf_cap = 0i64;
+    }
+
+    // Free FILE struct if heap-allocated (not stdin/stdout/stderr)
+    if !is_std {
+        bio_free_file(fp);
+    } else {
+        // Reset std stream to allow re-init if needed
+        f.flags    = 0i64;
+        f.buf_pos  = 0i64;
+        f.buf_len  = 0i64;
+        f.file_pos = 0i64;
+        f.unget    = FILE_UNGET_EMPTY;
+    }
+
+    pass ret;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fileno — Return the underlying file descriptor for a stream.
+//
+// Returns the fd on success, or -1 with errno=EBADF if fp is invalid.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fileno = int64(int64:fp) {
+    if fp == 0i64 {
+        errno_set(EBADF);
+        pass -1i64;
+    }
+    *FILE:f = fp as *FILE;
+    if f.fd < 0i64 {
+        errno_set(EBADF);
+        pass -1i64;
+    }
+    pass f.fd;
+}

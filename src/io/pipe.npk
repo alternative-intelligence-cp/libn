@@ -1,0 +1,106 @@
+// pipe.npk — Pipe and FIFO creation (v0.4.7)
+//
+// Pipes are the simplest form of IPC: an anonymous, unidirectional byte stream.
+// Created by the kernel as a (read_fd, write_fd) pair. Data written to write_fd
+// can be read from read_fd. When all write ends are closed, read_fd returns EOF.
+//
+// Usage pattern:
+//
+//   stack int64:fds[2];
+//   io_pipe(&fds[0])?;
+//   // fds[0] = read end, fds[1] = write end
+//   // ... fork, exec, redirect as needed ...
+//   io_close(fds[0]);   // close the end you don't need in each process
+//   io_close(fds[1]);
+//
+// Default flags: O_CLOEXEC is set on both fds. To pass a pipe end to a child
+// process through exec(), use io_redirect() which clears O_CLOEXEC before exec.
+//
+// Pipe buffer:
+//   Linux default pipe buffer: 65536 bytes (64 KiB).
+//   Writes up to PIPE_BUF (4096 bytes) are atomic.
+//   Writes larger than PIPE_BUF may be split and interleaved.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// PIPE_BUF — Maximum atomic write size to a pipe.
+// Writes up to this size will not be interleaved with writes from other processes.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:PIPE_BUF = 4096i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_pipe — Create a pipe with O_CLOEXEC on both ends.
+//
+// Parameters:
+//   fds: pointer to int64[2] — written with [read_fd, write_fd]
+//        (fds must point to at least 16 bytes of writable memory)
+//
+// Returns Ok(0) on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_pipe = Result<int64>(int64:fds) {
+    if fds == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    // O_CLOEXEC: both ends close on exec by default (correct default).
+    // Use io_redirect() to clear O_CLOEXEC on a specific end before exec().
+    pass libn_pipe2(fds, O_CLOEXEC);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_pipe_nonblock — Create a pipe with O_CLOEXEC and O_NONBLOCK on both ends.
+//
+// Both read and write ends will not block: reads return EAGAIN when the pipe
+// is empty, writes return EAGAIN when the pipe buffer is full.
+//
+// Use for async I/O multiplexed via poll/epoll.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_pipe_nonblock = Result<int64>(int64:fds) {
+    if fds == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_pipe2(fds, O_CLOEXEC | O_NONBLOCK);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_pipe_raw — Create a pipe without O_CLOEXEC (inherits across exec).
+//
+// Use ONLY when you explicitly need the pipe fd(s) to survive exec().
+// Document why at the call site.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_pipe_raw = Result<int64>(int64:fds) {
+    if fds == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_pipe2(fds, 0i64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_pipe_read_fd / io_pipe_write_fd — Extract individual ends from fds array.
+//
+// Convenience accessors so callers don't have to remember which index
+// is which (avoids bugs from swapping read/write ends).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_pipe_read_fd = int64(int64:fds) {
+    pass (fds as *int64)[0];
+}
+
+pub func:io_pipe_write_fd = int64(int64:fds) {
+    pass (fds as *int64)[1];
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_socketpair_pipe — Create a socket-backed bidirectional pipe.
+//
+// Not yet implemented — requires the net/ subsystem (v0.25.x).
+// Placeholder for API surface consistency.
+// ════════════════════════════════════════════════════════════════════════════
+
+// pub func:io_socketpair = Result<int64>(int64:fds) { ... }   // v0.25.x

@@ -1,0 +1,150 @@
+// dup.npk — File descriptor duplication: dup, dup2, dup3, dup_cloexec (v0.4.6)
+//
+// Fd duplication is used in three main scenarios:
+//
+//   1. Shell-style stdin/stdout/stderr redirection before exec:
+//      io_dup2(file_fd, STDIN_FD)   — redirect stdin to a file
+//      io_dup2(pipe_fd[1], STDOUT_FD) — redirect stdout to a pipe
+//
+//   2. Saving and restoring file descriptors across temporary redirections:
+//      int64:saved_stdout = io_dup(STDOUT_FD)  — save original stdout
+//      io_dup2(log_fd, STDOUT_FD)              — redirect stdout
+//      ... do work ...
+//      io_dup2(saved_stdout, STDOUT_FD)        — restore
+//      io_close(saved_stdout)
+//
+//   3. Creating aliased fds for concurrent access or passing to library APIs.
+//
+// The new fd returned by io_dup/io_dup2/io_dup3 shares:
+//   - The same open file description (position, flags, underlying file)
+//   - NOT a new open: writes on one fd affect the position of the other
+//
+// Always use io_dup_cloexec() instead of io_dup() when the dup'd fd will
+// NOT be passed to a child process — it avoids O_CLOEXEC hygiene issues.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/io/write.npk".*;   // STDIN_FD, STDOUT_FD, STDERR_FD
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_dup — Duplicate fd to the lowest available fd number.
+//
+// The new fd does NOT have O_CLOEXEC set (inherits across exec by default).
+// Prefer io_dup_cloexec() unless you need an inheritable duplicate.
+//
+// Returns the new fd on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_dup = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_dup(fd);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_dup_cloexec — Duplicate fd with O_CLOEXEC set on the new fd.
+//
+// Use this in preference to io_dup() unless the new fd must be inherited
+// by a child process. This is implemented with F_DUPFD_CLOEXEC.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_dup_cloexec = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    // F_DUPFD_CLOEXEC: find the lowest fd >= 0 and set O_CLOEXEC atomically
+    pass libn_fcntl(fd, F_DUPFD_CLOEXEC, 0i64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_dup2 — Duplicate fd onto newfd.
+//
+// If newfd is already open, it is closed first (atomically).
+// If fd == newfd, no operation is performed (POSIX: return newfd unchanged).
+//
+// NOTE: The resulting fd does NOT have O_CLOEXEC set, regardless of fd's flags.
+// For redirecting stdin/stdout/stderr before exec() this is correct behavior
+// (you WANT those fds to survive exec). For any other use, prefer io_dup3()
+// with O_CLOEXEC.
+//
+// Returns newfd on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_dup2 = Result<int64>(int64:fd, int64:newfd) {
+    if fd < 0i64 || newfd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if fd == newfd {
+        // Already the same fd — validate fd is open by probing with F_GETFD
+        Result<int64>:chk = libn_fcntl(fd, F_GETFD, 0i64);
+        if chk.is_error {
+            fail chk.err;
+        }
+        pass newfd;
+    }
+    pass libn_dup2(fd, newfd);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_dup3 — Duplicate fd onto newfd with explicit flags.
+//
+// flags: O_CLOEXEC (the only flag currently accepted by the Linux kernel).
+//        Pass 0 for no flags (same behavior as dup2, but fd must != newfd).
+//
+// fd and newfd must be different — if fd == newfd, the kernel returns EINVAL.
+// (This differs from dup2 which silently returns newfd in that case.)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_dup3 = Result<int64>(int64:fd, int64:newfd, int64:flags) {
+    if fd < 0i64 || newfd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if fd == newfd {
+        fail EINVAL as tbb8;
+    }
+    pass libn_dup3(fd, newfd, flags);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_redirect — Redirect src_fd onto target_fd (stdin/stdout/stderr pattern).
+//
+// This is the standard "open file, dup2 to std fd, close original" idiom.
+// After this call:
+//   - target_fd refers to the same file as src_fd
+//   - src_fd is closed
+//   - target_fd does NOT have O_CLOEXEC (correct for std fd inheritance)
+//
+// Typical use before exec():
+//   io_redirect(pipe_read_end,  STDIN_FD)   — stdin from pipe
+//   io_redirect(pipe_write_end, STDOUT_FD)  — stdout to pipe
+//   io_redirect(log_fd,         STDERR_FD)  — stderr to log file
+//
+// Returns Ok(target_fd) on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_redirect = Result<int64>(int64:src_fd, int64:target_fd) {
+    if src_fd < 0i64 || target_fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+
+    // If they're already the same, just clear O_CLOEXEC if it's set
+    // (so the fd survives exec), then we're done.
+    if src_fd == target_fd {
+        drop libn_fcntl(target_fd, F_SETFD, 0i64);  // clear FD_CLOEXEC
+        pass target_fd;
+    }
+
+    // dup2: atomically close target_fd (if open) and point it at src_fd
+    Result<int64>:r = libn_dup2(src_fd, target_fd);
+    if r.is_error {
+        fail r.err;
+    }
+
+    // Close the original src_fd — target_fd is now the live handle
+    // Ignore close errors here — the dup2 succeeded, don't obscure that.
+    drop libn_close(src_fd);
+
+    pass target_fd;
+}

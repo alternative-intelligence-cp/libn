@@ -1,0 +1,315 @@
+// test_str_strview.npk — Unit tests for src/str/strview.npk (v0.9.0)
+//
+// Coverage:
+//   strview_of, strview_of_bytes, strview_of_strbuf, strview_empty, strview_substr
+//   strview_len, strview_ptr, strview_is_empty, strview_byte_at, first, last
+//   strview_eq, strview_eq_str, strview_cmp, strview_cmp_str
+//   strview_starts_with[_str], strview_ends_with[_str]
+//   strview_drop_prefix, strview_strip_prefix_str
+//   strview_drop_suffix, strview_strip_suffix_str
+//   strview_find_char, strview_rfind_char, strview_find_str, strview_find
+//   strview_contains_char, strview_contains_str
+//   strview_slice, strview_take, strview_drop
+//   strview_trim_left, strview_trim_right, strview_trim
+//   strview_split_once_char, strview_split_once, strview_next_token, strview_next_line
+//   strview_parse_i64, strview_parse_u64
+//   strview_to_str, strview_to_strbuf, strview_copy_to, strview_copy_to_z
+//   StrViewIter: strviewiter_of_str, strviewiter_next_line, strviewiter_next_token
+
+use "tests/harness/test_harness.npk".*;
+use "src/str/strview.npk".*;
+use "src/str/strbuf.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/mmap.npk".*;
+
+func:main = int32(int64:argc, int64:argv) {
+    t_begin("strview.npk");
+
+    // ── Construction ──────────────────────────────────────────────────────
+    t_section("strview_of");
+    stack StrView:sv;
+    strview_of("hello" as int64, &sv as int64);
+    t_assert_eq_i64(strview_len(&sv as int64), 5i64,  "of('hello').len=5");
+    t_assert(strview_ptr(&sv as int64) != 0i64,        "of('hello').ptr!=0");
+    t_assert(!strview_is_empty(&sv as int64),           "of('hello') not empty");
+
+    stack StrView:sv_empty;
+    strview_of("" as int64, &sv_empty as int64);
+    t_assert_eq_i64(strview_len(&sv_empty as int64), 0i64, "of('').len=0");
+    t_assert(strview_is_empty(&sv_empty as int64),          "of('') is_empty");
+
+    stack StrView:sv_null;
+    strview_of(0i64, &sv_null as int64);
+    t_assert_eq_i64(strview_len(&sv_null as int64), 0i64, "of(null).len=0");
+
+    t_section("strview_of_bytes");
+    stack StrView:svb;
+    strview_of_bytes("world" as int64, 3i64, &svb as int64);
+    t_assert_eq_i64(strview_len(&svb as int64), 3i64, "of_bytes('wor').len=3");
+    t_assert_eq_i64(strview_byte_at(&svb as int64, 0i64), 119i64, "byte_at(0)='w'");
+
+    t_section("strview_empty");
+    stack StrView:sve;
+    strview_empty(&sve as int64);
+    t_assert(strview_is_empty(&sve as int64), "empty view is_empty");
+    t_assert_eq_i64(strview_len(&sve as int64), 0i64, "empty view len=0");
+
+    t_section("strview_substr");
+    stack StrView:svsrc;
+    strview_of("hello world" as int64, &svsrc as int64);
+    stack StrView:sub;
+    strview_substr(&svsrc as int64, 6i64, 5i64, &sub as int64);
+    t_assert_eq_i64(strview_len(&sub as int64), 5i64, "substr(6,5).len=5");
+    t_assert_eq_i64(strview_byte_at(&sub as int64, 0i64), 119i64, "substr[0]='w'");
+    // Clamp: start beyond end → empty
+    stack StrView:sub2;
+    strview_substr(&svsrc as int64, 100i64, 5i64, &sub2 as int64);
+    t_assert_eq_i64(strview_len(&sub2 as int64), 0i64, "substr clamped → empty");
+
+    // ── Accessors ─────────────────────────────────────────────────────────
+    t_section("byte_at / first / last");
+    stack StrView:sva;
+    strview_of("abc" as int64, &sva as int64);
+    t_assert_eq_i64(strview_byte_at(&sva as int64, 0i64),  97i64,  "byte_at(0)='a'");
+    t_assert_eq_i64(strview_byte_at(&sva as int64, 2i64),  99i64,  "byte_at(2)='c'");
+    t_assert_eq_i64(strview_byte_at(&sva as int64, -1i64), -1i64,  "byte_at(-1)=-1");
+    t_assert_eq_i64(strview_byte_at(&sva as int64, 3i64),  -1i64,  "byte_at(3)=-1 oob");
+    t_assert_eq_i64(strview_first(&sva as int64), 97i64, "first='a'");
+    t_assert_eq_i64(strview_last(&sva as int64),  99i64, "last='c'");
+
+    // ── Comparison ────────────────────────────────────────────────────────
+    t_section("strview_eq / eq_str / cmp");
+    stack StrView:e1;
+    stack StrView:e2;
+    strview_of("hello" as int64, &e1 as int64);
+    strview_of("hello" as int64, &e2 as int64);
+    t_assert(strview_eq(&e1 as int64, &e2 as int64),        "eq: hello==hello");
+    t_assert(strview_eq_str(&e1 as int64, "hello" as int64),"eq_str: hello==hello");
+
+    stack StrView:e3;
+    strview_of("world" as int64, &e3 as int64);
+    t_assert(!strview_eq(&e1 as int64, &e3 as int64),       "!eq: hello!=world");
+    t_assert(!strview_eq_str(&e1 as int64, "world" as int64),"!eq_str: hello!=world");
+
+    // cmp
+    t_assert_eq_i64(strview_cmp(&e1 as int64, &e2 as int64), 0i64,  "cmp(hello,hello)=0");
+    t_assert(strview_cmp(&e1 as int64, &e3 as int64) < 0i64,         "cmp(hello,world)<0");
+    t_assert(strview_cmp(&e3 as int64, &e1 as int64) > 0i64,         "cmp(world,hello)>0");
+
+    // ── Prefix / suffix ───────────────────────────────────────────────────
+    t_section("starts_with / ends_with");
+    stack StrView:hw;
+    strview_of("hello world" as int64, &hw as int64);
+    stack StrView:pfx;
+    strview_of("hello" as int64, &pfx as int64);
+    stack StrView:sfx;
+    strview_of("world" as int64, &sfx as int64);
+
+    t_assert(strview_starts_with(&hw as int64, &pfx as int64),        "starts_with 'hello'");
+    t_assert(!strview_starts_with(&hw as int64, &sfx as int64),       "!starts_with 'world'");
+    t_assert(strview_starts_with_str(&hw as int64, "hello" as int64), "starts_with_str");
+    t_assert(strview_ends_with(&hw as int64, &sfx as int64),          "ends_with 'world'");
+    t_assert(!strview_ends_with(&hw as int64, &pfx as int64),         "!ends_with 'hello'");
+    t_assert(strview_ends_with_str(&hw as int64, "world" as int64),   "ends_with_str");
+
+    t_section("strip_prefix / strip_suffix");
+    stack StrView:stripped;
+    strview_strip_prefix_str(&hw as int64, "hello " as int64, &stripped as int64);
+    t_assert_eq_i64(strview_len(&stripped as int64), 5i64,  "strip_prefix len=5");
+    t_assert(strview_eq_str(&stripped as int64, "world" as int64), "strip_prefix='world'");
+
+    stack StrView:stripped2;
+    strview_strip_suffix_str(&hw as int64, " world" as int64, &stripped2 as int64);
+    t_assert(strview_eq_str(&stripped2 as int64, "hello" as int64), "strip_suffix='hello'");
+
+    // ── Search ────────────────────────────────────────────────────────────
+    t_section("find_char / rfind_char");
+    stack StrView:fv;
+    strview_of("abcabc" as int64, &fv as int64);
+    t_assert_eq_i64(strview_find_char(&fv as int64, 97u8),  0i64,  "find_char('a')=0");
+    t_assert_eq_i64(strview_rfind_char(&fv as int64, 97u8), 3i64,  "rfind_char('a')=3");
+    t_assert_eq_i64(strview_find_char(&fv as int64, 122u8), -1i64, "find_char('z')=-1");
+
+    t_section("find_str / contains");
+    t_assert_eq_i64(strview_find_str(&fv as int64, "bc" as int64),  1i64,  "find_str('bc')=1");
+    t_assert_eq_i64(strview_find_str(&fv as int64, "xyz" as int64), -1i64, "find_str('xyz')=-1");
+    t_assert(strview_contains_char(&fv as int64, 99u8),             "contains_char('c')");
+    t_assert(!strview_contains_char(&fv as int64, 122u8),           "!contains_char('z')");
+    t_assert(strview_contains_str(&fv as int64, "abc" as int64),    "contains_str('abc')");
+
+    // ── Slicing ───────────────────────────────────────────────────────────
+    t_section("slice / take / drop");
+    stack StrView:slsrc;
+    strview_of("0123456789" as int64, &slsrc as int64);
+
+    stack StrView:sl;
+    strview_slice(&slsrc as int64, 2i64, 5i64, &sl as int64);
+    t_assert_eq_i64(strview_len(&sl as int64), 3i64, "slice(2,5).len=3");
+    t_assert_eq_i64(strview_byte_at(&sl as int64, 0i64), 50i64, "slice[0]='2'");
+
+    stack StrView:tk;
+    strview_take(&slsrc as int64, 3i64, &tk as int64);
+    t_assert_eq_i64(strview_len(&tk as int64), 3i64, "take(3).len=3");
+    t_assert_eq_i64(strview_byte_at(&tk as int64, 0i64), 48i64, "take[0]='0'");
+
+    stack StrView:dr;
+    strview_drop(&slsrc as int64, 7i64, &dr as int64);
+    t_assert_eq_i64(strview_len(&dr as int64), 3i64, "drop(7).len=3");
+    t_assert_eq_i64(strview_byte_at(&dr as int64, 0i64), 55i64, "drop[0]='7'");
+
+    // ── Trim ──────────────────────────────────────────────────────────────
+    t_section("trim_left / trim_right / trim");
+    stack StrView:tsrc;
+    strview_of("  hello  " as int64, &tsrc as int64);
+
+    stack StrView:tl;
+    strview_trim_left(&tsrc as int64, &tl as int64);
+    t_assert_eq_i64(strview_byte_at(&tl as int64, 0i64), 104i64, "trim_left[0]='h'");
+
+    stack StrView:tr;
+    strview_trim_right(&tsrc as int64, &tr as int64);
+    t_assert_eq_i64(strview_last(&tr as int64), 111i64, "trim_right last='o'");
+
+    stack StrView:tt;
+    strview_trim(&tsrc as int64, &tt as int64);
+    t_assert_eq_i64(strview_len(&tt as int64), 5i64, "trim.len=5");
+    t_assert(strview_eq_str(&tt as int64, "hello" as int64), "trim='hello'");
+
+    // All-whitespace
+    stack StrView:ws;
+    strview_of("   " as int64, &ws as int64);
+    stack StrView:wst;
+    strview_trim(&ws as int64, &wst as int64);
+    t_assert(strview_is_empty(&wst as int64), "trim all-whitespace = empty");
+
+    // ── Tokenization ──────────────────────────────────────────────────────
+    t_section("strview_split_once_char");
+    stack StrView:csv;
+    strview_of("key=value" as int64, &csv as int64);
+    stack StrView:lft;
+    stack StrView:rgt;
+    bool:found = strview_split_once_char(&csv as int64, 61u8, &lft as int64, &rgt as int64);
+    t_assert(found,                                    "split_once_char found '='");
+    t_assert(strview_eq_str(&lft as int64, "key" as int64),   "left='key'");
+    t_assert(strview_eq_str(&rgt as int64, "value" as int64), "right='value'");
+
+    // delimiter not found
+    stack StrView:nosep;
+    strview_of("nodelim" as int64, &nosep as int64);
+    stack StrView:nl;
+    stack StrView:nr;
+    bool:nf = strview_split_once_char(&nosep as int64, 58u8, &nl as int64, &nr as int64);
+    t_assert(!nf,                                     "split_once_char not found");
+    t_assert(strview_eq_str(&nl as int64, "nodelim" as int64), "left=full when not found");
+    t_assert(strview_is_empty(&nr as int64),           "right=empty when not found");
+
+    t_section("strview_next_token");
+    stack StrView:tokens;
+    strview_of("a,b,c" as int64, &tokens as int64);
+    stack StrView:tok;
+
+    t_assert(strview_next_token(&tokens as int64, 44u8, &tok as int64), "tok1 found");
+    t_assert(strview_eq_str(&tok as int64, "a" as int64), "tok1='a'");
+    t_assert(strview_next_token(&tokens as int64, 44u8, &tok as int64), "tok2 found");
+    t_assert(strview_eq_str(&tok as int64, "b" as int64), "tok2='b'");
+    t_assert(strview_next_token(&tokens as int64, 44u8, &tok as int64), "tok3 found");
+    t_assert(strview_eq_str(&tok as int64, "c" as int64), "tok3='c'");
+    t_assert(!strview_next_token(&tokens as int64, 44u8, &tok as int64), "tok4 exhausted");
+
+    t_section("strview_next_line");
+    stack StrView:lines;
+    strview_of("line1\nline2\nline3" as int64, &lines as int64);
+    stack StrView:ln;
+
+    t_assert(strview_next_line(&lines as int64, &ln as int64), "line1 found");
+    t_assert(strview_eq_str(&ln as int64, "line1" as int64),   "line1='line1'");
+    t_assert(strview_next_line(&lines as int64, &ln as int64), "line2 found");
+    t_assert(strview_eq_str(&ln as int64, "line2" as int64),   "line2='line2'");
+    t_assert(strview_next_line(&lines as int64, &ln as int64), "line3 found");
+    t_assert(strview_eq_str(&ln as int64, "line3" as int64),   "line3='line3'");
+    t_assert(!strview_next_line(&lines as int64, &ln as int64),"exhausted");
+
+    // CRLF stripping
+    stack StrView:crlf;
+    strview_of("hello\r\nworld\r\n" as int64, &crlf as int64);
+    t_assert(strview_next_line(&crlf as int64, &ln as int64), "crlf line1");
+    t_assert(strview_eq_str(&ln as int64, "hello" as int64),  "crlf stripped \\r");
+
+    // ── Parsing ───────────────────────────────────────────────────────────
+    t_section("strview_parse_i64 / parse_u64");
+    stack StrView:pv;
+    strview_of("42" as int64, &pv as int64);
+    Result<int64>:r42 = strview_parse_i64(&pv as int64);
+    t_assert_ok(r42, "parse_i64('42') ok");
+    t_assert_eq_i64(r42.value, 42i64, "parse_i64='42'");
+
+    strview_of("-99" as int64, &pv as int64);
+    Result<int64>:rn = strview_parse_i64(&pv as int64);
+    t_assert_ok(rn, "parse_i64('-99') ok");
+    t_assert_eq_i64(rn.value, -99i64, "parse_i64='-99'");
+
+    strview_of("0" as int64, &pv as int64);
+    Result<int64>:r0 = strview_parse_u64(&pv as int64);
+    t_assert_ok(r0, "parse_u64('0') ok");
+    t_assert_eq_i64(r0.value, 0i64, "parse_u64=0");
+
+    // ── Output ────────────────────────────────────────────────────────────
+    t_section("strview_to_str");
+    stack StrView:ov;
+    strview_of("copy me" as int64, &ov as int64);
+    int64:owned = strview_to_str(&ov as int64);
+    t_assert(owned != 0i64, "to_str non-null");
+    t_assert_eq_i64(str_strlen(owned), 7i64, "to_str len=7");
+    drop mem_free(owned);
+
+    t_section("strview_to_strbuf");
+    stack StrView:bv;
+    strview_of("into buf" as int64, &bv as int64);
+    int64:sbout = strview_to_strbuf(&bv as int64);
+    t_assert(sbout != 0i64, "to_strbuf non-null");
+    t_assert_eq_i64(strbuf_len(sbout), 8i64, "to_strbuf len=8");
+    strbuf_free(sbout);
+
+    t_section("strview_copy_to_z");
+    stack StrView:cpv;
+    strview_of("hello" as int64, &cpv as int64);
+    stack byte:cpbuf[16];
+    int64:cn = strview_copy_to_z(&cpv as int64, &cpbuf[0] as int64, 16i64);
+    t_assert_eq_i64(cn, 5i64, "copy_to_z copied 5");
+    t_assert(cpbuf[5] == 0u8, "NUL at pos 5");
+
+    // Truncation
+    stack byte:small[4];
+    drop strview_copy_to_z(&cpv as int64, &small[0] as int64, 4i64);
+    t_assert(small[3] == 0u8, "copy_to_z NUL when truncated");
+
+    // ── StrViewIter ───────────────────────────────────────────────────────
+    t_section("StrViewIter");
+    stack StrViewIter:it;
+    strviewiter_of_str(&it as int64, "a:b:c" as int64);
+    t_assert_eq_i64(strviewiter_remaining(&it as int64), 5i64, "iter remaining=5");
+
+    stack StrView:itok;
+    t_assert(strviewiter_next_token(&it as int64, 58u8, &itok as int64), "iter tok1");
+    t_assert(strview_eq_str(&itok as int64, "a" as int64), "iter tok1='a'");
+    t_assert(strviewiter_next_token(&it as int64, 58u8, &itok as int64), "iter tok2");
+    t_assert(strview_eq_str(&itok as int64, "b" as int64), "iter tok2='b'");
+    t_assert(strviewiter_next_token(&it as int64, 58u8, &itok as int64), "iter tok3");
+    t_assert(strview_eq_str(&itok as int64, "c" as int64), "iter tok3='c'");
+    t_assert(!strviewiter_next_token(&it as int64, 58u8, &itok as int64), "iter exhausted");
+
+    // Line iteration
+    stack StrViewIter:lit;
+    strviewiter_of_str(&lit as int64, "x\ny\nz" as int64);
+    stack StrView:iln;
+    t_assert(strviewiter_next_line(&lit as int64, &iln as int64), "line iter 1");
+    t_assert(strview_eq_str(&iln as int64, "x" as int64), "line1='x'");
+    t_assert(strviewiter_next_line(&lit as int64, &iln as int64), "line iter 2");
+    t_assert(strview_eq_str(&iln as int64, "y" as int64), "line2='y'");
+    t_assert(strviewiter_next_line(&lit as int64, &iln as int64), "line iter 3");
+    t_assert(strview_eq_str(&iln as int64, "z" as int64), "line3='z'");
+    t_assert(!strviewiter_next_line(&lit as int64, &iln as int64), "line iter done");
+
+    t_end();
+    exit raw t_exit_code() as int32;
+}

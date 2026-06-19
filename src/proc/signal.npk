@@ -1,0 +1,269 @@
+// signal.npk — kill, raise, sigaction, signal, sigprocmask (v0.11.5)
+//
+// POSIX signal delivery.
+//
+// ── Signal safety ─────────────────────────────────────────────────────────
+// Signal handlers are inherently asynchronous. Only "async-signal-safe"
+// functions may be called from within a signal handler. From libn, these are:
+//   - _exit(), _Exit()               (immediate exit)
+//   - kill(), raise()                (send signals)
+//   - sys_raw()                      (direct syscall)
+//   - Any function that only reads/writes to local variables
+//
+// DO NOT call from a signal handler:
+//   - malloc/free (allocator uses non-reentrant state)
+//   - exit() (calls atexit handlers, not async-signal-safe)
+//   - stdio (buffered I/O, not async-signal-safe)
+//
+// ── sigaction vs signal() ─────────────────────────────────────────────────
+// Always prefer sigaction() over signal(). signal() has different semantics
+// across UNIX variants (SA_RESETHAND vs SA_RESTART behavior). sigaction()
+// is fully specified by POSIX.
+//
+// ── Struct: KernelSigAction (struct sigaction layout on x86-64 Linux) ─────
+//
+// struct kernel_sigaction {
+//     void (*sa_handler)(int);     // handler pointer or SIG_DFL/SIG_IGN
+//     unsigned long sa_flags;      // SA_* flags
+//     void (*sa_restorer)(void);   // MANDATORY on x86-64 (libc provides this)
+//     sigset_t sa_mask;            // signals to block during handler
+// };
+//
+// Size: 8 + 8 + 8 + 8 = 32 bytes on x86-64 (sigset_t is 8 bytes for 64 sigs)
+//
+// ── sa_restorer ────────────────────────────────────────────────────────────
+// On x86-64 Linux, SA_RESTORER must be set and sa_restorer must point to
+// the signal trampoline (rt_sigreturn). libn provides proc_sigreturn_tramp
+// as a minimal inline trampoline that calls SYS_RT_SIGRETURN.
+//
+// ── sigset_t ───────────────────────────────────────────────────────────────
+// On x86-64 Linux, sigset_t is 64 bits (one bit per signal, signals 1-64).
+// We represent it as int64. Bit (signo-1) corresponds to signal signo.
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/errno.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Sigset helpers — manipulate int64 signal masks
+// ════════════════════════════════════════════════════════════════════════════
+
+// sigemptyset — Clear all signals from the mask.
+pub func:sigemptyset = int64() {
+    pass 0i64;
+}
+
+// sigfillset — Set all signals in the mask.
+pub func:sigfillset = int64() {
+    pass -1i64;  // all bits set
+}
+
+// sigaddset — Add signal signo to mask.
+pub func:sigaddset = int64(int64:mask, int64:signo) {
+    if signo < 1i64 || signo > 64i64 { pass mask; }
+    pass mask | (1i64 << (signo - 1i64));
+}
+
+// sigdelset — Remove signal signo from mask.
+pub func:sigdelset = int64(int64:mask, int64:signo) {
+    if signo < 1i64 || signo > 64i64 { pass mask; }
+    pass mask & !(1i64 << (signo - 1i64));
+}
+
+// sigismember — True if signo is in mask.
+pub func:sigismember = bool(int64:mask, int64:signo) {
+    if signo < 1i64 || signo > 64i64 { pass false; }
+    pass (mask & (1i64 << (signo - 1i64))) != 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// KernelSigAction — in-memory layout of struct sigaction on x86-64 Linux
+//
+// We use a 32-byte stack allocation and encode fields manually.
+// Fields at byte offsets:
+//   0:  sa_handler  (int64 — function pointer or SIG_DFL/SIG_IGN)
+//   8:  sa_flags    (int64 — SA_* bitmask)
+//   16: sa_restorer (int64 — function pointer, MUST be set with SA_RESTORER)
+//   24: sa_mask     (int64 — sigset_t: signals to block during handler)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:SIGACTION_SIZE = 32i64;
+
+// proc_sigreturn_tramp — Minimal signal return trampoline for x86-64.
+// After the kernel invokes our handler, it uses this to call rt_sigreturn.
+// Must be pure machine code: mov rax, SYS_RT_SIGRETURN; syscall.
+// We embed it as a Nitpick raw stub.
+pub func:proc_sigreturn_tramp = void() {
+    // This function's body is replaced by the linker with the trampoline.
+    // The actual bytes are: B8 0F 00 00 00 0F 05
+    //   mov eax, 15  (SYS_RT_SIGRETURN = 15)
+    //   syscall
+    drop sys!!(SYS_RT_SIGRETURN, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+}
+
+// ── Encode a KernelSigAction into a 32-byte stack buffer ──────────────────
+func:_sigact_encode = void(int64:buf, int64:handler, int64:flags,
+                            int64:mask) {
+    *int64:p = buf as *int64;
+    p[0] = handler;
+    p[1] = flags | SA_RESTORER;
+    p[2] = proc_sigreturn_tramp as int64;
+    p[3] = mask;
+}
+
+// ── Decode a KernelSigAction from a 32-byte buffer ────────────────────────
+func:_sigact_handler = int64(int64:buf) {
+    pass (buf as *int64)[0];
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// sigaction — Examine and/or change the action for signal signo.
+//
+// new_handler:  SIG_DFL, SIG_IGN, or a function pointer (void handler(int))
+// new_flags:    SA_* flags (SA_RESTART, SA_NOCLDSTOP, etc.)
+// new_mask:     signals to block during handler (int64 sigset)
+// old_buf:      pointer to 32-byte buffer to receive previous action, or 0
+//
+// Returns 0 on success, -1 on error (errno set).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:sigaction = int64(int64:signo, int64:new_handler, int64:new_flags,
+                            int64:new_mask, int64:old_buf) {
+    // Build new action on stack
+    stack byte:new_act[32];
+    _sigact_encode(&new_act[0] as int64, new_handler, new_flags, new_mask);
+
+    // old_act buffer (may be 0 → pass 0 to kernel)
+    stack byte:old_act[32];
+    int64:old_ptr = old_buf != 0i64 ? &old_act[0] as int64 : 0i64;
+
+    // SYS_RT_SIGACTION: (signo, newact*, oldact*, sigsetsize)
+    // sigsetsize must be 8 on x86-64 (sizeof(sigset_t))
+    Result<int64>:r = sys!!(SYS_RT_SIGACTION,
+                             signo,
+                             &new_act[0] as int64,
+                             old_ptr,
+                             8i64,
+                             0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+
+    if old_buf != 0i64 {
+        // Copy old action to caller's buffer
+        *int64:op = &old_act[0] as *int64;
+        *int64:cp = old_buf as *int64;
+        cp[0] = op[0];
+        cp[1] = op[1];
+        cp[2] = op[2];
+        cp[3] = op[3];
+    }
+
+    pass 0i64;
+}
+
+// ── signal — Simplified sigaction: set handler for signo, SA_RESTART style.
+// Returns the previous handler (SIG_DFL, SIG_IGN, or function pointer).
+// Returns SIG_ERR on failure.
+pub func:signal = int64(int64:signo, int64:handler) {
+    stack byte:old_act[32];
+    int64:flags = SA_RESTART;
+    int64:r = sigaction(signo, handler, flags, sigemptyset(), &old_act[0] as int64);
+    if r < 0i64 { pass SIG_ERR; }
+    pass _sigact_handler(&old_act[0] as int64);
+}
+
+// ── SIG_DFL / SIG_IGN helpers (convenience) ────────────────────────────────
+
+// sig_ignore — Ignore signal signo (SIG_IGN).
+pub func:sig_ignore = int64(int64:signo) {
+    pass signal(signo, SIG_IGN);
+}
+
+// sig_default — Restore default action for signal signo.
+pub func:sig_default = int64(int64:signo) {
+    pass signal(signo, SIG_DFL);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// sigprocmask — Examine and/or change the blocked signals mask.
+//
+// how:  SIG_BLOCK, SIG_UNBLOCK, or SIG_SETMASK
+// set:  signal mask to apply (int64 sigset)
+// old:  pointer to int64 to receive previous mask, or 0
+//
+// Returns 0 on success, -1 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:SIG_BLOCK   = 0i64;
+pub fixed int64:SIG_UNBLOCK = 1i64;
+pub fixed int64:SIG_SETMASK = 2i64;
+
+pub func:sigprocmask = int64(int64:how, int64:set, int64:old_ptr) {
+    // SYS_RT_SIGPROCMASK: (how, set*, old*, sigsetsize)
+    // set and old are pointers to sigset_t (int64 here)
+    stack int64:set_val;
+    set_val = set;
+    stack int64:old_val;
+    int64:old_p = old_ptr != 0i64 ? &old_val : 0i64;
+
+    Result<int64>:r = sys!!(SYS_RT_SIGPROCMASK,
+                             how,
+                             &set_val,
+                             old_p,
+                             8i64,
+                             0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+
+    if old_ptr != 0i64 {
+        *(old_ptr as *int64) = old_val;
+    }
+
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// kill — Send signal signo to process (or process group) pid.
+//
+// pid:
+//   > 0  — send to process with that PID
+//   = 0  — send to every process in the same process group
+//   = -1 — send to every process the caller has permission to signal
+//   < -1 — send to every process in process group abs(pid)
+//
+// Returns 0 on success, -1 on error (errno: EPERM, ESRCH, EINVAL).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:kill = int64(int64:pid, int64:signo) {
+    Result<int64>:r = sys!!(SYS_KILL, pid, signo, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass 0i64;
+}
+
+// raise — Send signal signo to the calling process.
+// Equivalent to kill(getpid(), signo).
+pub func:raise = int64(int64:signo) {
+    // Use tkill(gettid(), signo) for correct per-thread delivery.
+    // Since we're single-threaded, getpid()==gettid(). Use SYS_TKILL.
+    Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    int64:tid = pid_r.is_error ? 1i64 : pid_r.value;
+    Result<int64>:r = sys!!(SYS_TKILL, tid, signo, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass 0i64;
+}
+
+// killpg — Send signal signo to process group pgrp.
+pub func:killpg = int64(int64:pgrp, int64:signo) {
+    pass kill(0i64 - pgrp, signo);
+}

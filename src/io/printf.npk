@@ -1,0 +1,361 @@
+// printf.npk — Formatted output to file descriptors (v0.4.3)
+//
+// This module provides printf-family functions for libn. It is built on two
+// pillars:
+//
+//   1. src/str/strfmt.npk   — format-string rendering engine
+//   2. src/io/write.npk     — fd-level write primitives
+//
+// The API mirrors the standard C printf family:
+//
+//   io_printf(fmt, ...)        → stdout
+//   io_fprintf(fd, fmt, ...)   → arbitrary fd
+//   io_dprintf(fd, fmt, ...)   → alias for fprintf (Linux convention)
+//   io_eprintf(fmt, ...)       → stderr
+//   io_sprintf(buf, n, fmt, ...) → into buffer (delegates to str_snprintf*)
+//
+// Variadic encoding:
+//   Nitpick does not have a true varargs ABI. We use the same explicit-arity
+//   pattern as strfmt.npk: io_fprintf0 through io_fprintf8. The top-level
+//   io_fprintf is a macro-like alias for the most common arities.
+//
+//   In practice, call io_fprintf_N(fd, fmt, arg0, arg1, ..., argN-1) where
+//   N is the number of format arguments (not counting fmt itself).
+//
+// Buffer strategy:
+//   We render into a fixed 4096-byte stack buffer. If the rendered string
+//   would exceed 4095 bytes, it is silently truncated (snprintf semantics).
+//   For large output, use the buffered I/O layer (bio/, v0.6.x).
+//
+// Thread safety:
+//   Not thread-safe at this layer. Concurrent writes to the same fd may
+//   interleave. Use bio/ or a mutex for concurrent output.
+
+use "src/syscall/errno.npk".*;
+use "src/io/write.npk".*;
+use "src/str/strfmt.npk".*;
+
+// Internal render buffer size. 4 KiB is adequate for a single formatted line.
+// Large formatted output should use bio/ instead.
+pub fixed int64:PRINTF_BUF_SIZE = 4096i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Internal helper — render into stack buffer, write to fd.
+//
+// All io_fprintfN functions render via str_snprintfN into a 4096-byte stack
+// buffer, then emit the result in a single io_write_n call.
+//
+// Returns Ok(bytes_written) or Err from write.
+// ════════════════════════════════════════════════════════════════════════════
+
+// ────────────────────────────────────────────────────────────────────────────
+// 0 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf0 = Result<int64>(int64:fd, int64:fmt) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf0(buf_ptr, PRINTF_BUF_SIZE, fmt);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf0 = Result<int64>(int64:fmt) {
+    pass io_fprintf0(STDOUT_FD, fmt);
+}
+
+pub func:io_eprintf0 = Result<int64>(int64:fmt) {
+    pass io_fprintf0(STDERR_FD, fmt);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 1 format argument
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf1 = Result<int64>(int64:fd, int64:fmt, int64:a0) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf1(buf_ptr, PRINTF_BUF_SIZE, fmt, a0);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf1 = Result<int64>(int64:fmt, int64:a0) {
+    pass io_fprintf1(STDOUT_FD, fmt, a0);
+}
+
+pub func:io_eprintf1 = Result<int64>(int64:fmt, int64:a0) {
+    pass io_fprintf1(STDERR_FD, fmt, a0);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 2 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf2 = Result<int64>(int64:fd, int64:fmt, int64:a0, int64:a1) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf2(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf2 = Result<int64>(int64:fmt, int64:a0, int64:a1) {
+    pass io_fprintf2(STDOUT_FD, fmt, a0, a1);
+}
+
+pub func:io_eprintf2 = Result<int64>(int64:fmt, int64:a0, int64:a1) {
+    pass io_fprintf2(STDERR_FD, fmt, a0, a1);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 3 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf3 = Result<int64>(int64:fd, int64:fmt, int64:a0, int64:a1, int64:a2) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf3(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf3 = Result<int64>(int64:fmt, int64:a0, int64:a1, int64:a2) {
+    pass io_fprintf3(STDOUT_FD, fmt, a0, a1, a2);
+}
+
+pub func:io_eprintf3 = Result<int64>(int64:fmt, int64:a0, int64:a1, int64:a2) {
+    pass io_fprintf3(STDERR_FD, fmt, a0, a1, a2);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 4 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf4 = Result<int64>(int64:fd, int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf4(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf4 = Result<int64>(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+    pass io_fprintf4(STDOUT_FD, fmt, a0, a1, a2, a3);
+}
+
+pub func:io_eprintf4 = Result<int64>(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+    pass io_fprintf4(STDERR_FD, fmt, a0, a1, a2, a3);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 5 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf5 = Result<int64>(int64:fd, int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf5(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf5 = Result<int64>(int64:fmt,
+                                    int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    pass io_fprintf5(STDOUT_FD, fmt, a0, a1, a2, a3, a4);
+}
+
+pub func:io_eprintf5 = Result<int64>(int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    pass io_fprintf5(STDERR_FD, fmt, a0, a1, a2, a3, a4);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 6 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf6 = Result<int64>(int64:fd, int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf6(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf6 = Result<int64>(int64:fmt,
+                                    int64:a0, int64:a1, int64:a2, int64:a3,
+                                    int64:a4, int64:a5) {
+    pass io_fprintf6(STDOUT_FD, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+pub func:io_eprintf6 = Result<int64>(int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5) {
+    pass io_fprintf6(STDERR_FD, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 7 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf7 = Result<int64>(int64:fd, int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5, int64:a6) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf7(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf7 = Result<int64>(int64:fmt,
+                                    int64:a0, int64:a1, int64:a2, int64:a3,
+                                    int64:a4, int64:a5, int64:a6) {
+    pass io_fprintf7(STDOUT_FD, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+pub func:io_eprintf7 = Result<int64>(int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5, int64:a6) {
+    pass io_fprintf7(STDERR_FD, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 8 format arguments
+// ────────────────────────────────────────────────────────────────────────────
+
+pub func:io_fprintf8 = Result<int64>(int64:fd, int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5, int64:a6, int64:a7) {
+    stack byte:buf[4096];
+    int64:buf_ptr = &buf[0] as int64;
+    drop str_snprintf8(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    pass io_write_str(fd, buf_ptr);
+}
+
+pub func:io_printf8 = Result<int64>(int64:fmt,
+                                    int64:a0, int64:a1, int64:a2, int64:a3,
+                                    int64:a4, int64:a5, int64:a6, int64:a7) {
+    pass io_fprintf8(STDOUT_FD, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}
+
+pub func:io_eprintf8 = Result<int64>(int64:fmt,
+                                     int64:a0, int64:a1, int64:a2, int64:a3,
+                                     int64:a4, int64:a5, int64:a6, int64:a7) {
+    pass io_fprintf8(STDERR_FD, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_dprintf* — Linux-style "dprintf" (same as fprintf, different name).
+//
+// Provided so code ported from Linux can use the familiar name.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_dprintf0 = Result<int64>(int64:fd, int64:fmt) {
+    pass io_fprintf0(fd, fmt);
+}
+
+pub func:io_dprintf1 = Result<int64>(int64:fd, int64:fmt, int64:a0) {
+    pass io_fprintf1(fd, fmt, a0);
+}
+
+pub func:io_dprintf2 = Result<int64>(int64:fd, int64:fmt, int64:a0, int64:a1) {
+    pass io_fprintf2(fd, fmt, a0, a1);
+}
+
+pub func:io_dprintf3 = Result<int64>(int64:fd, int64:fmt, int64:a0, int64:a1, int64:a2) {
+    pass io_fprintf3(fd, fmt, a0, a1, a2);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_sprintf* — Render to a caller-supplied buffer (thin wrappers on strfmt).
+//
+// These are provided for completeness / naming consistency. For most uses,
+// call str_snprintfN directly.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_sprintf0 = int64(int64:buf, int64:buf_size, int64:fmt) {
+    pass str_snprintf0(buf, buf_size, fmt);
+}
+
+pub func:io_sprintf1 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0) {
+    pass str_snprintf1(buf, buf_size, fmt, a0);
+}
+
+pub func:io_sprintf2 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0, int64:a1) {
+    pass str_snprintf2(buf, buf_size, fmt, a0, a1);
+}
+
+pub func:io_sprintf3 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2) {
+    pass str_snprintf3(buf, buf_size, fmt, a0, a1, a2);
+}
+
+pub func:io_sprintf4 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2, int64:a3) {
+    pass str_snprintf4(buf, buf_size, fmt, a0, a1, a2, a3);
+}
+
+pub func:io_sprintf5 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    pass str_snprintf5(buf, buf_size, fmt, a0, a1, a2, a3, a4);
+}
+
+pub func:io_sprintf6 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
+    pass str_snprintf6(buf, buf_size, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+pub func:io_sprintf7 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2, int64:a3,
+                             int64:a4, int64:a5, int64:a6) {
+    pass str_snprintf7(buf, buf_size, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+pub func:io_sprintf8 = int64(int64:buf, int64:buf_size, int64:fmt,
+                             int64:a0, int64:a1, int64:a2, int64:a3,
+                             int64:a4, int64:a5, int64:a6, int64:a7) {
+    pass str_snprintf8(buf, buf_size, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_perror — Print "prefix: error message\n" to stderr.
+//
+// Analogous to C's perror(). Uses the errno value stored in the global
+// errno cell. Translates to a human-readable string via err_name().
+//
+// Example:
+//   io_perror("open");   // prints: "open: No such file or directory\n"
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_perror = Result<int64>(int64:prefix) {
+    // Print: "prefix: errno_string\n"
+    // We compose this with two writes to avoid needing a format arg for the prefix.
+    if prefix != 0i64 {
+        Result<int64>:r = io_write_str(STDERR_FD, prefix);
+        if r.is_error { pass r; }
+        Result<int64>:r2 = io_write_str(STDERR_FD, ": " as int64);
+        if r2.is_error { pass r2; }
+    }
+    // errno is the global set by the last failing syscall
+    // We use libn errno literal name (e.g., "ENOENT") as a proxy
+    // for the human-readable message until a strerror() table exists (v0.4.5).
+    // For now, print the numeric errno value as a placeholder.
+    stack byte:num_buf[32];
+    int64:e = libn_errno as int64;
+    // render decimal errno value
+    int64:i = 31i64;
+    (num_buf as *byte)[i] = 0u8;
+    i = i - 1i64;
+    if e <= 0i64 {
+        (num_buf as *byte)[i] = 48u8;  // '0'
+        i = i - 1i64;
+    } else {
+        int64:v = e;
+        while v > 0i64 {
+            (num_buf as *byte)[i] = (48i64 + (v % 10i64)) as byte;
+            v = v / 10i64;
+            i = i - 1i64;
+        }
+    }
+    int64:num_start = (&num_buf[0] as int64) + i + 1i64;
+    Result<int64>:r3 = io_write_str(STDERR_FD, num_start);
+    if r3.is_error { pass r3; }
+    pass io_write_newline(STDERR_FD);
+}

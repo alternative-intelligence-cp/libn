@@ -1,0 +1,225 @@
+// strerror.npk — errno to human-readable string table (v0.6.1)
+//
+// Provides strerror(), strerror_r(), and perror() — the standard way to
+// convert an errno value into a descriptive message string.
+//
+// This replaces the placeholder numeric-errno output in io_perror() (printf.npk)
+// with actual POSIX error strings.
+//
+// Implementation:
+//   Linear scan through a static table of (errno_value, string) pairs.
+//   For the ~130 errno values in Linux x86-64, a linear scan is fast enough.
+//   A hash table or perfect hash is planned for v0.18.x if profiling warrants.
+//
+// Error strings match glibc strerror() text exactly, enabling cross-platform
+// output compatibility (test output, log correlation, etc.).
+//
+// strerror(0) returns "Success" (POSIX: undefined, but glibc returns "Success").
+// strerror(unknown) returns "Unknown error N".
+
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/str/strconv.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fio.npk".*;
+use "src/io/bio/fchar.npk".*;
+use "src/io/bio/fstr.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Internal errno string table
+//
+// Format: interleaved int64/string pairs in a flat array.
+// Each entry is: [errno_number_as_int64][NUL-terminated string pointer].
+// Terminated by an entry with errno_number = -1.
+//
+// In Nitpick, string literals are NUL-terminated byte sequences with a fixed
+// address. We build the table as a struct-array for clarity.
+//
+// Note: strings are stored as compile-time constants in the binary's read-only
+// data section. No heap allocation.
+// ════════════════════════════════════════════════════════════════════════════
+
+struct ErrEntry {
+    int64:code;
+    int64:msg;    // pointer to string literal
+}
+
+// The table. strerror() does a linear scan.
+// Coverage: all POSIX-required errnos + common Linux extensions.
+// Source: Linux man-pages errno(3), glibc strerror() text.
+
+fixed ErrEntry:errno_table[] = [
+    { 0i64,   "Success" as int64 },
+    { 1i64,   "Operation not permitted" as int64 },           // EPERM
+    { 2i64,   "No such file or directory" as int64 },         // ENOENT
+    { 3i64,   "No such process" as int64 },                   // ESRCH
+    { 4i64,   "Interrupted system call" as int64 },           // EINTR
+    { 5i64,   "Input/output error" as int64 },                // EIO
+    { 6i64,   "No such device or address" as int64 },         // ENXIO
+    { 7i64,   "Argument list too long" as int64 },            // E2BIG
+    { 8i64,   "Exec format error" as int64 },                 // ENOEXEC
+    { 9i64,   "Bad file descriptor" as int64 },               // EBADF
+    { 10i64,  "No child processes" as int64 },                // ECHILD
+    { 11i64,  "Resource temporarily unavailable" as int64 },  // EAGAIN / EWOULDBLOCK
+    { 12i64,  "Cannot allocate memory" as int64 },            // ENOMEM
+    { 13i64,  "Permission denied" as int64 },                 // EACCES
+    { 14i64,  "Bad address" as int64 },                       // EFAULT
+    { 15i64,  "Block device required" as int64 },             // ENOTBLK
+    { 16i64,  "Device or resource busy" as int64 },           // EBUSY
+    { 17i64,  "File exists" as int64 },                       // EEXIST
+    { 18i64,  "Invalid cross-device link" as int64 },         // EXDEV
+    { 19i64,  "No such device" as int64 },                    // ENODEV
+    { 20i64,  "Not a directory" as int64 },                   // ENOTDIR
+    { 21i64,  "Is a directory" as int64 },                    // EISDIR
+    { 22i64,  "Invalid argument" as int64 },                  // EINVAL
+    { 23i64,  "Too many open files in system" as int64 },     // ENFILE
+    { 24i64,  "Too many open files" as int64 },               // EMFILE
+    { 25i64,  "Inappropriate ioctl for device" as int64 },    // ENOTTY
+    { 26i64,  "Text file busy" as int64 },                    // ETXTBSY
+    { 27i64,  "File too large" as int64 },                    // EFBIG
+    { 28i64,  "No space left on device" as int64 },           // ENOSPC
+    { 29i64,  "Illegal seek" as int64 },                      // ESPIPE
+    { 30i64,  "Read-only file system" as int64 },             // EROFS
+    { 31i64,  "Too many links" as int64 },                    // EMLINK
+    { 32i64,  "Broken pipe" as int64 },                       // EPIPE
+    { 33i64,  "Numerical argument out of domain" as int64 },  // EDOM
+    { 34i64,  "Numerical result out of range" as int64 },     // ERANGE
+    { 35i64,  "Resource deadlock avoided" as int64 },         // EDEADLK
+    { 36i64,  "File name too long" as int64 },                // ENAMETOOLONG
+    { 37i64,  "No locks available" as int64 },                // ENOLCK
+    { 38i64,  "Function not implemented" as int64 },          // ENOSYS
+    { 39i64,  "Directory not empty" as int64 },               // ENOTEMPTY
+    { 40i64,  "Too many levels of symbolic links" as int64 }, // ELOOP
+    { 42i64,  "No message of desired type" as int64 },        // ENOMSG
+    { 43i64,  "Identifier removed" as int64 },                // EIDRM
+    { 61i64,  "No data available" as int64 },                 // ENODATA
+    { 62i64,  "Timer expired" as int64 },                     // ETIME
+    { 63i64,  "Out of streams resources" as int64 },          // ENOSR
+    { 67i64,  "Link has been severed" as int64 },             // ENOLINK
+    { 71i64,  "Protocol error" as int64 },                    // EPROTO
+    { 72i64,  "Multihop attempted" as int64 },                // EMULTIHOP
+    { 74i64,  "Bad message" as int64 },                       // EBADMSG
+    { 75i64,  "Value too large for defined data type" as int64 }, // EOVERFLOW
+    { 84i64,  "Invalid or incomplete multibyte or wide character" as int64 }, // EILSEQ
+    { 88i64,  "Socket operation on non-socket" as int64 },    // ENOTSOCK
+    { 89i64,  "Destination address required" as int64 },      // EDESTADDRREQ
+    { 90i64,  "Message too long" as int64 },                  // EMSGSIZE
+    { 91i64,  "Protocol wrong type for socket" as int64 },    // EPROTOTYPE
+    { 92i64,  "Protocol not available" as int64 },            // ENOPROTOOPT
+    { 93i64,  "Protocol not supported" as int64 },            // EPROTONOSUPPORT
+    { 95i64,  "Operation not supported" as int64 },           // EOPNOTSUPP
+    { 97i64,  "Address family not supported by protocol" as int64 }, // EAFNOSUPPORT
+    { 98i64,  "Address already in use" as int64 },            // EADDRINUSE
+    { 99i64,  "Cannot assign requested address" as int64 },   // EADDRNOTAVAIL
+    { 100i64, "Network is down" as int64 },                   // ENETDOWN
+    { 101i64, "Network is unreachable" as int64 },            // ENETUNREACH
+    { 102i64, "Network dropped connection on reset" as int64 }, // ENETRESET
+    { 103i64, "Software caused connection abort" as int64 },  // ECONNABORTED
+    { 104i64, "Connection reset by peer" as int64 },          // ECONNRESET
+    { 105i64, "No buffer space available" as int64 },         // ENOBUFS
+    { 106i64, "Transport endpoint is already connected" as int64 }, // EISCONN
+    { 107i64, "Transport endpoint is not connected" as int64 }, // ENOTCONN
+    { 110i64, "Connection timed out" as int64 },              // ETIMEDOUT
+    { 111i64, "Connection refused" as int64 },                // ECONNREFUSED
+    { 113i64, "No route to host" as int64 },                  // EHOSTUNREACH
+    { 114i64, "Operation already in progress" as int64 },     // EALREADY
+    { 115i64, "Operation now in progress" as int64 },         // EINPROGRESS
+    { 116i64, "Stale file handle" as int64 },                 // ESTALE
+    { 125i64, "Operation canceled" as int64 },                // ECANCELED
+    { 130i64, "Owner died" as int64 },                        // EOWNERDEAD
+    { 131i64, "State not recoverable" as int64 },             // ENOTRECOVERABLE
+    { -1i64,  0i64 },   // sentinel
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// strerror — Return a string describing the given errno value.
+//
+// Returns a pointer to a static string (must NOT be modified by the caller).
+// Thread-safe: the table is read-only; no locking needed.
+//
+// For unknown errno values, the returned string is stored in a small internal
+// buffer (NOT thread-safe for concurrent unknown-errno calls — fixed in v0.21.x).
+// ════════════════════════════════════════════════════════════════════════════
+
+// Internal buffer for "Unknown error N" fallback (not thread-safe)
+byte:g_strerror_unknown_buf[64];
+
+pub func:strerror = int64(int64:errnum) {
+    // Linear scan of the table
+    int64:i = 0i64;
+    while errno_table[i].code != -1i64 {
+        if errno_table[i].code == errnum {
+            pass errno_table[i].msg;
+        }
+        i = i + 1i64;
+    }
+
+    // Unknown errno: render "Unknown error N" into internal buffer
+    // Format: "Unknown error " + decimal(errnum)
+    *byte:dst = &g_strerror_unknown_buf[0] as *byte;
+    // Copy "Unknown error "
+    fixed byte:prefix[] = "Unknown error ";
+    int64:prefix_len = str_strlen(&prefix[0] as int64);
+    drop mem_memcpy(&dst[0] as int64, &prefix[0] as int64, prefix_len);
+    // Append decimal number
+    stack byte:num[24];
+    int64:num_len = str_int64_to_dec(errnum, &num[0] as int64, 24i64);
+    drop mem_memcpy(&dst[prefix_len] as int64, &num[0] as int64, num_len + 1i64);
+    pass &g_strerror_unknown_buf[0] as int64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// strerror_r — Thread-safe variant: write the message into caller's buffer.
+//
+// buf:     destination buffer
+// buflen:  buffer size in bytes (must be >= 1)
+//
+// Returns 0 on success, ERANGE if buf is too small (message truncated with NUL),
+// EINVAL if errnum is not recognized (writes "Unknown error N" anyway).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:strerror_r = int64(int64:errnum, int64:buf, int64:buflen) {
+    if buf == 0i64 || buflen <= 0i64 {
+        pass EINVAL;
+    }
+
+    int64:msg = strerror(errnum);
+    int64:msg_len = str_strlen(msg);
+
+    if msg_len + 1i64 > buflen {
+        // Truncate to fit
+        drop mem_memcpy(buf, msg, buflen - 1i64);
+        (buf as *byte)[buflen - 1i64] = 0u8;
+        pass ERANGE;
+    }
+
+    drop mem_memcpy(buf, msg, msg_len + 1i64);
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// perror — Write "prefix: error description\n" to stderr.
+//
+// Reads the current global errno value (libn_errno from errno.npk).
+// If prefix is non-NULL and non-empty, writes "prefix: msg\n".
+// If prefix is NULL or empty, writes just "msg\n".
+//
+// This supersedes the placeholder in io_perror() in printf.npk.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:perror = void(int64:prefix) {
+    bio_ensure_std_init();
+
+    if prefix != 0i64 && (prefix as *byte)[0] != 0u8 {
+        drop fputs(prefix, stderr_fp);
+        drop fputc(58i64, stderr_fp);   // ':'
+        drop fputc(32i64, stderr_fp);   // ' '
+    }
+
+    int64:msg = strerror(libn_errno as int64);
+    drop fputs(msg, stderr_fp);
+    drop fputc(10i64, stderr_fp);   // '\n'
+    drop fflush(stderr_fp);
+}

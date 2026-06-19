@@ -1,0 +1,185 @@
+// test_str_strbuf.npk — Unit tests for src/str/strbuf.npk (v0.7.0)
+//
+// Coverage:
+//   strbuf_new, strbuf_new_cap, strbuf_free, strbuf_reset
+//   strbuf_len, strbuf_cap, strbuf_ptr, strbuf_is_empty
+//   strbuf_append_char, strbuf_append_bytes, strbuf_append_str
+//   strbuf_append_strbuf, strbuf_append_repeat
+//   strbuf_appendf0, strbuf_appendf1, strbuf_appendf2
+//   strbuf_truncate, strbuf_strip_trailing_newline
+//   strbuf_finish, strbuf_to_str, strbuf_write_to_fd
+
+use "tests/harness/test_harness.npk".*;
+use "src/str/strbuf.npk".*;
+use "src/mem/mmap.npk".*;
+use "src/mem/memutil.npk".*;
+use "src/str/strlen.npk".*;
+
+func:main = int32(int64:argc, int64:argv) {
+    t_begin("strbuf.npk");
+
+    // ── Lifecycle ─────────────────────────────────────────────────────────
+    t_section("strbuf_new / accessors");
+
+    int64:sb = strbuf_new();
+    t_assert(sb != 0i64,                "strbuf_new() returns non-null");
+    t_assert_eq_i64(strbuf_len(sb), 0i64,  "new buf: len=0");
+    t_assert(strbuf_cap(sb) >= 1i64,    "new buf: cap >= 1");
+    t_assert(strbuf_is_empty(sb),        "new buf: is_empty");
+    t_assert(strbuf_ptr(sb) != 0i64,    "new buf: ptr != NULL");
+
+    // NUL-terminated even when empty
+    int64:p = strbuf_ptr(sb);
+    t_assert((p as *byte)[0] == 0u8,    "new buf: NUL-terminated");
+
+    strbuf_free(sb);
+
+    t_section("strbuf_new_cap");
+    int64:sb2 = strbuf_new_cap(512i64);
+    t_assert(sb2 != 0i64,               "strbuf_new_cap(512) non-null");
+    t_assert(strbuf_cap(sb2) >= 512i64, "cap >= 512");
+    t_assert_eq_i64(strbuf_len(sb2), 0i64, "len=0 after new_cap");
+    strbuf_free(sb2);
+
+    // ── Append ────────────────────────────────────────────────────────────
+    t_section("strbuf_append_char");
+    int64:sc = strbuf_new();
+    t_assert(strbuf_append_char(sc, 72u8),  "append_char 'H'");
+    t_assert(strbuf_append_char(sc, 105u8), "append_char 'i'");
+    t_assert_eq_i64(strbuf_len(sc), 2i64,   "len=2 after two chars");
+    int64:pc = strbuf_ptr(sc);
+    t_assert((pc as *byte)[0] == 72u8,  "buf[0]='H'");
+    t_assert((pc as *byte)[1] == 105u8, "buf[1]='i'");
+    t_assert((pc as *byte)[2] == 0u8,   "buf[2]=NUL");
+    strbuf_free(sc);
+
+    t_section("strbuf_append_str");
+    int64:ss = strbuf_new();
+    t_assert(strbuf_append_str(ss, "hello" as int64), "append_str 'hello'");
+    t_assert_eq_i64(strbuf_len(ss), 5i64,  "len=5");
+    t_assert(strbuf_append_str(ss, " world" as int64),"append_str ' world'");
+    t_assert_eq_i64(strbuf_len(ss), 11i64, "len=11");
+    // Verify NUL-termination
+    int64:ps = strbuf_ptr(ss);
+    t_assert((ps as *byte)[11] == 0u8,  "NUL at len");
+    strbuf_free(ss);
+
+    t_section("strbuf_append_repeat");
+    int64:sr = strbuf_new();
+    t_assert(strbuf_append_repeat(sr, 65u8, 5i64),  "append_repeat 'A'×5");
+    t_assert_eq_i64(strbuf_len(sr), 5i64,  "len=5");
+    int64:pr = strbuf_ptr(sr);
+    t_assert((pr as *byte)[0] == 65u8 && (pr as *byte)[4] == 65u8, "all bytes='A'");
+    strbuf_free(sr);
+
+    // ── Growth past STRBUF_MIN_CAP ────────────────────────────────────────
+    t_section("growth past initial cap");
+    int64:sg = strbuf_new();   // starts at 64 bytes
+    int64:i = 0i64;
+    while i < 200i64 {
+        t_assert(strbuf_append_char(sg, 88u8), "append_char growth");
+        i = i + 1i64;
+    }
+    t_assert_eq_i64(strbuf_len(sg), 200i64, "len=200 after growth");
+    t_assert(strbuf_cap(sg) >= 200i64,      "cap >= 200");
+    // NUL still correct
+    int64:pg = strbuf_ptr(sg);
+    t_assert((pg as *byte)[200] == 0u8, "NUL-termination after growth");
+    strbuf_free(sg);
+
+    // ── Reset ─────────────────────────────────────────────────────────────
+    t_section("strbuf_reset");
+    int64:srst = strbuf_new();
+    t_assert(strbuf_append_str(srst, "hello" as int64), "append before reset");
+    int64:cap_before = strbuf_cap(srst);
+    strbuf_reset(srst);
+    t_assert_eq_i64(strbuf_len(srst), 0i64,      "len=0 after reset");
+    t_assert(strbuf_cap(srst) == cap_before,      "cap unchanged after reset");
+    t_assert((strbuf_ptr(srst) as *byte)[0] == 0u8, "NUL after reset");
+    t_assert(strbuf_is_empty(srst),               "is_empty after reset");
+    strbuf_free(srst);
+
+    // ── Truncate ──────────────────────────────────────────────────────────
+    t_section("strbuf_truncate");
+    int64:st = strbuf_new();
+    t_assert(strbuf_append_str(st, "abcdef" as int64), "append 'abcdef'");
+    strbuf_truncate(st, 3i64);
+    t_assert_eq_i64(strbuf_len(st), 3i64, "len=3 after truncate(3)");
+    t_assert((strbuf_ptr(st) as *byte)[3] == 0u8, "NUL at new end");
+    strbuf_truncate(st, 100i64);   // no-op (n > len)
+    t_assert_eq_i64(strbuf_len(st), 3i64, "len unchanged when n > len");
+    strbuf_free(st);
+
+    // ── Strip trailing newline ────────────────────────────────────────────
+    t_section("strbuf_strip_trailing_newline");
+    int64:sn = strbuf_new();
+    t_assert(strbuf_append_str(sn, "hello\n" as int64), "append with LF");
+    strbuf_strip_trailing_newline(sn);
+    t_assert_eq_i64(strbuf_len(sn), 5i64, "stripped LF → len=5");
+
+    strbuf_reset(sn);
+    t_assert(strbuf_append_str(sn, "world\r\n" as int64), "append with CRLF");
+    strbuf_strip_trailing_newline(sn);
+    t_assert_eq_i64(strbuf_len(sn), 5i64, "stripped CRLF → len=5");
+    strbuf_free(sn);
+
+    // ── finish / to_str ───────────────────────────────────────────────────
+    t_section("strbuf_finish");
+    int64:sf = strbuf_new();
+    t_assert(strbuf_append_str(sf, "transfer" as int64), "append 'transfer'");
+    int64:owned = strbuf_finish(sf);
+    t_assert(owned != 0i64,            "strbuf_finish returns non-null");
+    t_assert_eq_i64(str_strlen(owned), 8i64, "owned string len=8");
+    t_assert((owned as *byte)[8] == 0u8, "owned NUL-terminated");
+    drop mem_free(owned);
+
+    t_section("strbuf_to_str");
+    int64:sc2 = strbuf_new_cap(512i64);  // over-allocated
+    t_assert(strbuf_append_str(sc2, "trim" as int64), "append 'trim'");
+    int64:trimmed = strbuf_to_str(sc2);  // frees sc2
+    t_assert(trimmed != 0i64,           "strbuf_to_str returns non-null");
+    t_assert_eq_i64(str_strlen(trimmed), 4i64, "trimmed len=4");
+    drop mem_free(trimmed);
+
+    // ── strbuf_appendf ────────────────────────────────────────────────────
+    t_section("strbuf_appendf0/1/2");
+    int64:sf2 = strbuf_new();
+    int64:n0 = strbuf_appendf0(sf2, "hello" as int64);
+    t_assert_eq_i64(n0, 5i64, "appendf0 returns 5");
+    t_assert_eq_i64(strbuf_len(sf2), 5i64, "len=5 after appendf0");
+
+    // Null sb guard
+    int64:n_null = strbuf_appendf0(0i64, "x" as int64);
+    t_assert_eq_i64(n_null, -1i64, "appendf0(null sb)=-1");
+
+    strbuf_free(sf2);
+
+    // ── strbuf_append_strbuf ──────────────────────────────────────────────
+    t_section("strbuf_append_strbuf");
+    int64:sa = strbuf_new();
+    int64:sb3 = strbuf_new();
+    t_assert(strbuf_append_str(sa, "foo" as int64), "sa='foo'");
+    t_assert(strbuf_append_str(sb3, "bar" as int64), "sb3='bar'");
+    t_assert(strbuf_append_strbuf(sa, sb3), "append_strbuf");
+    t_assert_eq_i64(strbuf_len(sa), 6i64, "sa len=6 after concat");
+    strbuf_free(sa);
+    strbuf_free(sb3);
+
+    // ── Edge cases ────────────────────────────────────────────────────────
+    t_section("edge cases");
+    // Null guards
+    t_assert(!strbuf_append_char(0i64, 65u8),        "append_char(null)=false");
+    t_assert(!strbuf_append_str(0i64, "x" as int64), "append_str(null sb)=false");
+    t_assert_eq_i64(strbuf_len(0i64), 0i64,           "len(null)=0");
+    t_assert_eq_i64(strbuf_cap(0i64), 0i64,           "cap(null)=0");
+    t_assert_eq_i64(strbuf_ptr(0i64), 0i64,           "ptr(null)=0");
+    t_assert(strbuf_is_empty(0i64),                    "is_empty(null)=true");
+    // Appending empty string is a no-op
+    int64:snop = strbuf_new();
+    t_assert(strbuf_append_str(snop, "" as int64), "append empty str ok");
+    t_assert_eq_i64(strbuf_len(snop), 0i64, "len=0 after append empty");
+    strbuf_free(snop);
+
+    t_end();
+    exit raw t_exit_code() as int32;
+}

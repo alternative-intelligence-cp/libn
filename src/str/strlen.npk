@@ -1,0 +1,156 @@
+// strlen.npk — strlen, strnlen, libn_strlen_safe (v0.3.0)
+//
+// The absolute foundation of string handling. Everything in the string module
+// calls strlen or relies on knowing the length of a string before operating.
+//
+// Design choice — NUL-terminated vs length-explicit:
+//   libn provides BOTH interfaces:
+//   - NUL-terminated (str_*): matches POSIX/C convention, zero-overhead for
+//     string literals, necessary for OS call compatibility.
+//   - Length-explicit (strn_* or mem_*): safer, no ambiguity, preferred for
+//     internal use and new APIs.
+//
+//   strlen is the bridge: it lets callers convert a C-string pointer to a length
+//   so the rest of the code can use the safer explicit-length APIs.
+//
+// Security notes:
+//   - strlen on a non-NUL-terminated buffer will read past the end and
+//     potentially fault. libn_strlen_safe adds a max-length bound.
+//   - The word-at-a-time implementation reads full 64-bit words from ptr.
+//     On x86-64, misaligned reads are safe (no bus error, minor performance
+//     penalty). The code does NOT cross page boundaries before verifying alignment
+//     to avoid reading into unmapped pages.
+//
+// Performance:
+//   - Word-at-a-time: 8 bytes per iteration, ~2-3x faster than byte loop.
+//   - The zero-byte detection uses the standard has_zero_byte bit trick.
+//   - At v0.3.0 this is the pure Nitpick reference.
+//   - v0.3.6 will add the x86-64 PCMPEQB/VPCMPEQB (SSE2/AVX2) assembly path.
+
+// ════════════════════════════════════════════════════════════════════════════
+// Word-at-a-time zero-byte detection
+// ════════════════════════════════════════════════════════════════════════════
+
+fixed int64:STRLEN_ONES     = 0x0101010101010101i64;
+fixed int64:STRLEN_HIGHBITS = 0x8080808080808080i64;
+
+// has_nul_byte — True if any byte in v is 0x00.
+func:has_nul_byte = bool(int64:v) {
+    pass ((v - STRLEN_ONES) & (0i64 - 1i64 ^ v) & STRLEN_HIGHBITS) != 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strlen — Return the length of a NUL-terminated string.
+//
+// s: pointer to first character of string (as int64).
+// Returns number of characters before the first NUL byte (does not include NUL).
+// Behavior with NULL: returns 0 (safe).
+//
+// This is equivalent to C strlen().
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strlen = int64(int64:s) {
+    if s == 0i64 {
+        pass 0i64;
+    }
+
+    *byte:p = s as *byte;
+
+    // ── Prologue: scan byte-by-byte until 8-aligned ──────────────────
+    // This avoids reading across a page boundary before we reach alignment.
+    int64:i = 0i64;
+    while (s + i) & 7i64 != 0i64 {
+        if p[i] == 0u8 {
+            pass i;
+        }
+        i = i + 1i64;
+    }
+
+    // ── Word loop: 8 bytes per iteration ─────────────────────────────
+    *int64:pw = (s + i) as *int64;
+    int64:wi = 0i64;
+    while !raw has_nul_byte(pw[wi]) {
+        wi = wi + 1i64;
+    }
+    i = i + wi * 8i64;
+
+    // ── Tail: find exact NUL position within the matching word ───────
+    while p[i] != 0u8 {
+        i = i + 1i64;
+    }
+
+    pass i;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strnlen — Return length of string, but at most max_len.
+//
+// Returns min(strlen(s), max_len).
+// Equivalent to POSIX strnlen(). Does not read beyond max_len bytes.
+// Behavior with NULL or max_len==0: returns 0 (safe).
+//
+// Use this when you have a potentially-untrusted string and a bound on
+// the maximum length you'll accept.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:str_strnlen = int64(int64:s, int64:max_len) {
+    if s == 0i64 || max_len <= 0i64 {
+        pass 0i64;
+    }
+
+    *byte:p = s as *byte;
+    int64:i = 0i64;
+
+    // Byte-by-byte until 8-aligned (bounded by max_len)
+    while i < max_len && (s + i) & 7i64 != 0i64 {
+        if p[i] == 0u8 {
+            pass i;
+        }
+        i = i + 1i64;
+    }
+
+    // Word loop (bounded)
+    *int64:pw = (s + i) as *int64;
+    int64:wi = 0i64;
+    int64:max_words = (max_len - i) / 8i64;
+    while wi < max_words && !raw has_nul_byte(pw[wi]) {
+        wi = wi + 1i64;
+    }
+    i = i + wi * 8i64;
+
+    // Tail
+    while i < max_len && p[i] != 0u8 {
+        i = i + 1i64;
+    }
+
+    // Return actual length found (may equal max_len if no NUL seen)
+    pass i;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// str_strlen_safe — Bounded strlen with error propagation.
+//
+// Like strnlen but returns a Result<int64>. Fails with ERR_TOOLONG if no NUL
+// byte is found within limit bytes. Use this as the entry point for untrusted
+// external data (network input, user input, config files, etc.)
+//
+// limit:   maximum acceptable length (not including NUL).
+//          Recommended values: 4095 (path), 255 (hostname), 65535 (line).
+// ════════════════════════════════════════════════════════════════════════════
+
+use "src/syscall/errno.npk".*;
+
+// ERR_TOOLONG — string exceeds the specified length limit.
+// Defined here for use by all string functions.
+pub fixed int64:ERR_TOOLONG = 0xF3i64;
+
+pub func:str_strlen_safe = Result<int64>(int64:s, int64:limit) {
+    if s == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    int64:n = raw str_strnlen(s, limit + 1i64);  // scan up to limit+1 to detect overrun
+    if n > limit {
+        fail ERR_TOOLONG as tbb8;
+    }
+    pass n;
+}

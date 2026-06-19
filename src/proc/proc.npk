@@ -1,0 +1,24 @@
+// proc.npk — Top-level process control module re-export (v0.11.0)
+//
+// Import this file to get the complete process control subsystem in one shot.
+// Consumers may also import individual sub-modules for finer dependency control.
+//
+// ── Module history ─────────────────────────────────────────────────────────
+//   v0.11.0  exit.npk   — exit, _exit, abort, atexit, at_quick_exit, quick_exit
+//   v0.11.1  fork.npk   — fork, vfork, getpid/ppid, uid/gid, setpgid, setsid
+//   v0.11.2  exec.npk   — execve, execv, execvp, execvpe, execl0-8, execlp1-4
+//   v0.11.3  wait.npk   — waitpid, wait, wait3, WIF* decode, proc_run, proc_wait_all
+//   v0.11.4  env.npk    — getenv, setenv, unsetenv, clearenv, putenv, environ
+//   v0.11.5  signal.npk — kill, raise, killpg, signal, sigaction, sigprocmask
+//
+// ── Future ─────────────────────────────────────────────────────────────────
+//   v0.12.x  start.npk  — _start, C runtime bootstrap, argc/argv/envp setup
+//   v0.13.x  alarm.npk  — alarm, setitimer, SIGALRM integration
+//   v0.14.x  thread.npk — pthread-compatible threads (clone-based)
+
+use "src/proc/exit.npk".*;
+use "src/proc/fork.npk".*;
+use "src/proc/exec.npk".*;
+use "src/proc/wait.npk".*;
+use "src/proc/env.npk".*;
+use "src/proc/signal.npk".*;

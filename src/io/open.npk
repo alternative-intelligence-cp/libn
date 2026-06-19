@@ -1,0 +1,159 @@
+// open.npk — File open, close, and creat operations (v0.4.4)
+//
+// This module provides the ergonomic open/close API for libn.
+// All calls delegate to the syscall wrappers in syscall.npk, which in turn
+// call the kernel. O_CLOEXEC is set by default on all new fds — see below.
+//
+// Safety model:
+//   - O_CLOEXEC is added automatically to prevent fd leaks across exec().
+//     This is the correct default for new code. If you deliberately need an
+//     inheritable fd, use io_open_inheritable() and document why.
+//   - Mode is only meaningful when O_CREAT or O_TMPFILE is in flags.
+//     For opens without O_CREAT, pass MODE_DEFAULT (0i64).
+//   - libn_close() checks for EIO and propagates it — callers must not ignore
+//     the return value on close(). Data loss is possible on NFS/CIFS.
+//
+// Common flag combinations:
+//   io_open(path, O_RDONLY,              0)          — read-only
+//   io_open(path, O_WRONLY | O_CREAT | O_TRUNC, 0o644) — write, create/truncate
+//   io_open(path, O_RDWR,                0)          — read-write
+//   io_open(path, O_WRONLY | O_CREAT | O_APPEND, 0o644) — append
+//   io_open(path, O_RDONLY | O_DIRECTORY, 0)         — directory fd
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Default mode for O_CREAT — rw-r--r-- (0644)
+// Override by passing your own mode constant.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:MODE_DEFAULT      = 0i64;
+pub fixed int64:MODE_FILE_DEFAULT = 0o644i64;   // rw-r--r--
+pub fixed int64:MODE_DIR_DEFAULT  = 0o755i64;   // rwxr-xr-x
+pub fixed int64:MODE_SECRET       = 0o600i64;   // rw------- (keys, credentials)
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_open — Open or create a file.
+//
+// Automatically adds O_CLOEXEC to flags (safe default for most programs).
+//
+// Parameters:
+//   path:  NUL-terminated file path (as int64 pointer)
+//   flags: O_RDONLY | O_WRONLY | O_RDWR | O_CREAT | O_TRUNC | O_APPEND ...
+//          Do NOT include O_CLOEXEC; it's added automatically.
+//   mode:  Permission bits (S_IRUSR etc.), masked by umask.
+//          Only used when O_CREAT is set. Pass MODE_DEFAULT (0) otherwise.
+//
+// Returns: file descriptor (>= 0) on success, or Err on failure.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_open = Result<int64>(int64:path, int64:flags, int64:mode) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_open(path, flags, mode);
+}
+
+// io_open_inheritable — Open without O_CLOEXEC (fd survives exec).
+//
+// Use only when you deliberately need the child process to inherit this fd
+// (e.g., when setting up stdin/stdout/stderr before exec). Document the call.
+pub func:io_open_inheritable = Result<int64>(int64:path, int64:flags, int64:mode) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    // libn_open adds O_CLOEXEC; we need to strip it for truly inheritable fds.
+    // Use openat with AT_FDCWD instead to bypass the automatic flag.
+    int64:safe_flags = flags & (0i64 - 1i64 ^ O_CLOEXEC);  // flags without O_CLOEXEC
+    Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
+    pass r;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_openat — Open relative to a directory fd.
+//
+// Use AT_FDCWD for dirfd to open relative to the current working directory.
+// This is preferred over io_open for security-sensitive code because it avoids
+// TOCTOU races when working within a known directory fd.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_openat = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:mode) {
+    if path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_openat(dirfd, path, flags, mode);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_creat — Create or truncate a file (shorthand).
+//
+// Equivalent to: io_open(path, O_WRONLY | O_CREAT | O_TRUNC, mode)
+// This is the traditional creat() function from early UNIX.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_creat = Result<int64>(int64:path, int64:mode) {
+    pass io_open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_close — Close a file descriptor.
+//
+// IMPORTANT: Always check this return value. close() can fail with EIO on
+// networked filesystems (NFS, CIFS), meaning buffered kernel writes were
+// lost. Ignoring close() errors is a data-loss bug.
+//
+// Returns Ok(0) on success, Err on failure.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_close = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    pass libn_close(fd);
+}
+
+// io_close_nointr — Close, retrying if interrupted by a signal.
+//
+// On most systems, close() is NOT restarted on EINTR — the fd is closed
+// even when EINTR is returned (Linux behavior since kernel 3.4). This
+// wrapper handles that correctly: on EINTR, the fd IS closed, return Ok(0).
+//
+// See: https://ewontfix.com/4/ — "Don't retry close(2) after EINTR on Linux"
+pub func:io_close_nointr = Result<int64>(int64:fd) {
+    if fd < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    Result<int64>:r = libn_close(fd);
+    if r.is_error {
+        int64:e = r.err as int64;
+        // On Linux: even on EINTR, the fd is closed. Return success.
+        if e == EINTR {
+            pass 0i64;
+        }
+        fail r.err;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_open_tmp — Create a temporary file.
+//
+// Opens a new anonymous file in dir_path using O_TMPFILE | O_RDWR.
+// The file has no name and is automatically deleted when all fds are closed.
+// If O_TMPFILE is not supported by the filesystem, falls back to mkstemp-style
+// creation (not yet implemented — fails with ENOSYS in that case).
+//
+// Returns fd on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_open_tmp = Result<int64>(int64:dir_path) {
+    if dir_path == 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    // O_TMPFILE requires O_WRONLY or O_RDWR in flags
+    // Mode 0600: only owner can read/write the temp file
+    Result<int64>:r = libn_openat(AT_FDCWD, dir_path, O_TMPFILE | O_RDWR, MODE_SECRET);
+    pass r;
+}

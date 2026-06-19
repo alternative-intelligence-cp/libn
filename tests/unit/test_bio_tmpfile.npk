@@ -1,0 +1,183 @@
+// test_bio_tmpfile.npk — Unit tests for src/io/bio/tmpfile.npk (v0.8.0)
+//
+// Coverage:
+//   mkstemp: creates a file, fills Xs, returns fd >= 0
+//   mkstemp: two calls produce different names
+//   mkstemp: bad template (no Xs, too short) → returns -1
+//   mkostemp: same as mkstemp, passes extra flags through
+//   mkdtemp: creates a directory, fills Xs
+//   tmpnam: produces non-empty string, starts with /tmp/
+//   tmpfile: returns non-null FILE*, write/read round-trip, auto-delete on close
+//
+// NOTE: These tests actually touch the filesystem. The mkstemp/mkdtemp tests
+// clean up after themselves (unlink/rmdir the created path).
+
+use "tests/harness/test_harness.npk".*;
+use "src/io/bio/tmpfile.npk".*;
+use "src/io/bio/bio.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/memutil.npk".*;
+
+func:main = int32(int64:argc, int64:argv) {
+    t_begin("tmpfile.npk");
+
+    // ── mkstemp ───────────────────────────────────────────────────────────
+    t_section("mkstemp: basic creation");
+
+    stack byte:tmpl1[32];
+    // copy "/tmp/npk_test_XXXXXX" into tmpl1
+    fixed byte:tmpl1_init[] = "/tmp/npk_test_XXXXXX";
+    drop mem_memcpy(&tmpl1[0] as int64, &tmpl1_init[0] as int64,
+                    str_strlen(&tmpl1_init[0] as int64) + 1i64);
+
+    int64:fd1 = mkstemp(&tmpl1[0] as int64);
+    t_assert(fd1 >= 0i64, "mkstemp returns fd >= 0");
+
+    // Xs have been replaced — no 'X' at positions 14..19
+    int64:xpos = str_strlen(&tmpl1[0] as int64) - 6i64;
+    bool:any_X = false;
+    int64:ci = 0i64;
+    while ci < 6i64 {
+        if tmpl1[xpos + ci] == 88u8 { any_X = true; }
+        ci = ci + 1i64;
+    }
+    t_assert(!any_X, "mkstemp replaced all Xs in template");
+
+    // Can write to the fd
+    fixed byte:wbuf[] = "hello";
+    Result<int64>:wr = libn_write_all(fd1, &wbuf[0] as int64, 5i64);
+    t_assert_ok(wr, "mkstemp fd is writable");
+
+    // Close and unlink
+    drop libn_close(fd1);
+    drop sys_safe(SYS_UNLINK, &tmpl1[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+
+    t_section("mkstemp: unique names");
+    stack byte:tmpl2[32];
+    stack byte:tmpl3[32];
+    fixed byte:tp[] = "/tmp/npk_uniq_XXXXXX";
+    int64:tplen = str_strlen(&tp[0] as int64) + 1i64;
+    drop mem_memcpy(&tmpl2[0] as int64, &tp[0] as int64, tplen);
+    drop mem_memcpy(&tmpl3[0] as int64, &tp[0] as int64, tplen);
+
+    int64:fd2 = mkstemp(&tmpl2[0] as int64);
+    int64:fd3 = mkstemp(&tmpl3[0] as int64);
+    t_assert(fd2 >= 0i64, "mkstemp unique #1 ok");
+    t_assert(fd3 >= 0i64, "mkstemp unique #2 ok");
+    // The two filled templates must differ
+    t_assert(!mem_equal(&tmpl2[0] as int64, &tmpl3[0] as int64, tplen - 1i64),
+             "two mkstemp calls produce different names");
+    drop libn_close(fd2);
+    drop libn_close(fd3);
+    drop sys_safe(SYS_UNLINK, &tmpl2[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    drop sys_safe(SYS_UNLINK, &tmpl3[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+
+    t_section("mkstemp: bad template");
+    // Too short (no Xs)
+    stack byte:bad1[8];
+    fixed byte:bad1_init[] = "/tmp/ab";
+    drop mem_memcpy(&bad1[0] as int64, &bad1_init[0] as int64,
+                    str_strlen(&bad1_init[0] as int64) + 1i64);
+    int64:bfd = mkstemp(&bad1[0] as int64);
+    t_assert_eq_i64(bfd, -1i64, "mkstemp(no Xs) returns -1");
+
+    // Template with too few Xs (only 3)
+    stack byte:bad2[32];
+    fixed byte:bad2_init[] = "/tmp/npk_XXX";
+    drop mem_memcpy(&bad2[0] as int64, &bad2_init[0] as int64,
+                    str_strlen(&bad2_init[0] as int64) + 1i64);
+    int64:bfd2 = mkstemp(&bad2[0] as int64);
+    t_assert_eq_i64(bfd2, -1i64, "mkstemp(3 Xs) returns -1");
+
+    // Null template
+    int64:bfd3 = mkstemp(0i64);
+    t_assert_eq_i64(bfd3, -1i64, "mkstemp(null) returns -1");
+
+    // ── mkostemp ──────────────────────────────────────────────────────────
+    t_section("mkostemp");
+    stack byte:tmpl4[32];
+    fixed byte:tp4[] = "/tmp/npk_mko_XXXXXX";
+    drop mem_memcpy(&tmpl4[0] as int64, &tp4[0] as int64,
+                    str_strlen(&tp4[0] as int64) + 1i64);
+    int64:fd4 = mkostemp(&tmpl4[0] as int64, 0i64);  // no extra flags
+    t_assert(fd4 >= 0i64, "mkostemp(no extra flags) ok");
+    drop libn_close(fd4);
+    drop sys_safe(SYS_UNLINK, &tmpl4[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+
+    // ── mkdtemp ───────────────────────────────────────────────────────────
+    t_section("mkdtemp");
+    stack byte:dtmpl[32];
+    fixed byte:dtp[] = "/tmp/npk_dir_XXXXXX";
+    drop mem_memcpy(&dtmpl[0] as int64, &dtp[0] as int64,
+                    str_strlen(&dtp[0] as int64) + 1i64);
+    int64:dret = mkdtemp(&dtmpl[0] as int64);
+    t_assert(dret != 0i64, "mkdtemp returns non-null");
+    t_assert(dret == &dtmpl[0] as int64, "mkdtemp returns template pointer");
+    // Xs replaced
+    int64:dxpos = str_strlen(&dtmpl[0] as int64) - 6i64;
+    bool:d_any_X = false;
+    int64:di = 0i64;
+    while di < 6i64 {
+        if dtmpl[dxpos + di] == 88u8 { d_any_X = true; }
+        di = di + 1i64;
+    }
+    t_assert(!d_any_X, "mkdtemp replaced Xs");
+    // Clean up directory
+    drop sys_safe(SYS_RMDIR, &dtmpl[0] as int64, 0i64, 0i64, 0i64, 0i64, 0i64);
+
+    // ── tmpnam ────────────────────────────────────────────────────────────
+    t_section("tmpnam");
+    stack byte:nbuf[256];
+    int64:nret = tmpnam(&nbuf[0] as int64);
+    t_assert(nret != 0i64, "tmpnam returns non-null");
+    t_assert(str_strlen(nret) > 0i64, "tmpnam: non-empty name");
+    // Should start with /tmp/
+    t_assert(nbuf[0] == 47u8 && nbuf[1] == 116u8 && nbuf[2] == 109u8 &&
+             nbuf[3] == 112u8 && nbuf[4] == 47u8,
+             "tmpnam starts with /tmp/");
+
+    // tmpnam(NULL) uses static buffer
+    int64:static_ret = tmpnam(0i64);
+    t_assert(static_ret != 0i64, "tmpnam(null) uses static buf");
+    t_assert(str_strlen(static_ret) > 0i64, "tmpnam(null) non-empty");
+
+    // Two calls produce different names
+    int64:r1 = tmpnam(0i64);
+    stack byte:save1[256];
+    drop mem_memcpy(&save1[0] as int64, r1, str_strlen(r1) + 1i64);
+    int64:r2 = tmpnam(0i64);
+    // Note: r1 and r2 point to same static buffer, so we compare save1 to r2
+    // They should differ since counter increments
+    t_assert(!mem_equal(&save1[0] as int64, r2, str_strlen(r2)),
+             "two tmpnam calls produce different names");
+
+    // ── tmpfile ───────────────────────────────────────────────────────────
+    t_section("tmpfile");
+    int64:fp = tmpfile();
+    t_assert(fp != 0i64, "tmpfile() returns non-null FILE*");
+
+    // Write something
+    fixed byte:tdata[] = "tmpfile test data";
+    int64:tw = fwrite(&tdata[0] as int64, 1i64, 17i64, fp);
+    t_assert_eq_i64(tw, 17i64, "fwrite to tmpfile wrote 17 bytes");
+
+    // Seek back and read
+    int64:seek_r = fseek(fp, 0i64, SEEK_SET);
+    t_assert_eq_i64(seek_r, 0i64, "fseek to start ok");
+
+    stack byte:rbuf[32];
+    int64:tr = fread(&rbuf[0] as int64, 1i64, 17i64, fp);
+    t_assert_eq_i64(tr, 17i64, "fread from tmpfile got 17 bytes");
+    t_assert(mem_equal(&rbuf[0] as int64, &tdata[0] as int64, 17i64),
+             "tmpfile round-trip: data matches");
+
+    // Close — file should be auto-deleted (unlinked on open)
+    drop fclose(fp);
+    t_assert(true, "fclose tmpfile did not crash");
+
+    t_end();
+    exit raw t_exit_code() as int32;
+}

@@ -1,0 +1,147 @@
+// exit.npk — exit, _exit, abort, atexit, at_quick_exit (v0.11.0)
+//
+// Process termination. All paths ultimately call SYS_EXIT_GROUP which
+// terminates the entire thread group (all threads), matching C99/POSIX exit().
+//
+// ── Execution order on exit() ─────────────────────────────────────────────
+// POSIX exit() must:
+//   1. Call functions registered via atexit() in LIFO order
+//   2. Flush and close all open stdio streams (flushed via bio_flush_all)
+//   3. Call _exit() — which calls SYS_EXIT_GROUP, no further cleanup
+//
+// This module implements the atexit registry. The stdio flush is performed
+// by bio_flush_all() from src/io/bio/stdfiles.npk.
+//
+// ── atexit capacity ───────────────────────────────────────────────────────
+// We support up to ATEXIT_MAX (32) handlers without heap allocation.
+// This matches the POSIX minimum of 32. If you need more, the registry
+// will silently discard excess registrations (and return -1 from atexit()).
+//
+// ── Thread safety ─────────────────────────────────────────────────────────
+// The atexit registry is a global array — not thread-safe. In Nitpick's
+// single-threaded use cases this is fine. Multi-threaded protection is
+// deferred to the threading module (v0.14.x).
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// atexit registry
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:ATEXIT_MAX = 32i64;
+
+// Function pointer type: atexit handlers take no arguments and return void.
+// Stored as raw int64 (pointer to function).
+int64:_atexit_handlers[32];
+int64:_atexit_count = 0i64;
+
+// Same for at_quick_exit (C11) — separate registry, same capacity.
+int64:_atqexit_handlers[32];
+int64:_atqexit_count = 0i64;
+
+// ── atexit — Register a function to be called at normal process exit ───────
+//
+// Returns 0 on success, -1 if the registry is full (POSIX).
+// Handlers are called in LIFO order (last-registered, first-called).
+pub func:atexit = int64(int64:fn_ptr) {
+    if _atexit_count >= ATEXIT_MAX {
+        pass -1i64;
+    }
+    _atexit_handlers[_atexit_count] = fn_ptr;
+    _atexit_count = _atexit_count + 1i64;
+    pass 0i64;
+}
+
+// at_quick_exit — Register a handler called only by quick_exit(), not exit().
+pub func:at_quick_exit = int64(int64:fn_ptr) {
+    if _atqexit_count >= ATEXIT_MAX {
+        pass -1i64;
+    }
+    _atqexit_handlers[_atqexit_count] = fn_ptr;
+    _atqexit_count = _atqexit_count + 1i64;
+    pass 0i64;
+}
+
+// ── _proc_run_atexit — Internal: call atexit handlers in LIFO order ────────
+// Not for external use.
+func:_proc_run_atexit = void() {
+    int64:i = _atexit_count - 1i64;
+    while i >= 0i64 {
+        int64:fn = _atexit_handlers[i];
+        if fn != 0i64 {
+            // Call the handler: it's a void() function pointer
+            call fn();
+        }
+        i = i - 1i64;
+    }
+}
+
+func:_proc_run_atqexit = void() {
+    int64:i = _atqexit_count - 1i64;
+    while i >= 0i64 {
+        int64:fn = _atqexit_handlers[i];
+        if fn != 0i64 {
+            call fn();
+        }
+        i = i - 1i64;
+    }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// _exit — Immediate process termination (no atexit, no stdio flush)
+//
+// Equivalent to POSIX _exit(). Calls SYS_EXIT_GROUP.
+// This is the ONLY way to exit from a forked child before exec — any other
+// path risks double-flushing stdio buffers from the parent.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:_exit = void(int64:code) {
+    drop sys!!(SYS_EXIT_GROUP, code, 0i64, 0i64, 0i64, 0i64, 0i64);
+    // Unreachable — but the type system needs a pass
+}
+
+// Alias: _Exit() is the C99 name for _exit()
+pub func:_Exit = void(int64:code) {
+    _exit(code);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// exit — Normal process termination with cleanup
+//
+// Steps:
+//   1. Run atexit handlers (LIFO)
+//   2. Flush all stdio buffers
+//   3. Call _exit(code)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:exit = void(int64:code) {
+    _proc_run_atexit();
+    bio_flush_all();
+    _exit(code);
+}
+
+// quick_exit — C11: run at_quick_exit handlers but NOT atexit, no stdio flush.
+pub func:quick_exit = void(int64:code) {
+    _proc_run_atqexit();
+    _exit(code);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// abort — Abnormal termination
+//
+// Sends SIGABRT to the calling process. If the signal is not caught (or
+// the handler returns), terminates with a signal-caught status.
+// POSIX: abort() must unblock SIGABRT and re-raise it after calling any
+// SIGABRT handler (to allow the debugger to catch it). We implement the
+// simplified version: raise SIGABRT, then force-exit if it returns.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:abort = void() {
+    // Raise SIGABRT to ourselves
+    drop sys!!(SYS_KILL, 0i64, SIGABRT, 0i64, 0i64, 0i64, 0i64);
+    // If a handler caught it and returned, force exit with failure
+    _exit(134i64);  // 128 + SIGABRT(6) = 134, the shell exit code for SIGABRT
+}

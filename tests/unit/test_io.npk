@@ -1,0 +1,499 @@
+// test_io.npk — Unit tests for the I/O subsystem (v0.4.x)
+//
+// Test strategy:
+//   The I/O layer talks to file descriptors, which makes pure unit testing
+//   against the kernel tricky without fork/pipe. We use three strategies:
+//
+//   1. PIPE-BASED round-trip tests:
+//      Create a pipe (read_fd, write_fd) via pipe2(2). Write to write_fd,
+//      then read from read_fd. This validates both the write and read paths
+//      end-to-end through the kernel.
+//
+//   2. /dev/null write tests:
+//      Open /dev/null for writing. Any write there returns immediately with
+//      the written byte count — confirming the write path and return value
+//      handling without consuming output.
+//
+//   3. struct/render tests:
+//      io_sprintf* (stack buffer rendering) can be tested purely in memory
+//      with no fd interaction.
+//
+//   4. stderr smoke tests:
+//      We write a canary to stderr to confirm the fd path works. These show
+//      up in test output but are clearly marked.
+//
+// Tests are organized by sub-module then scenario.
+//
+// Note: pipe(2) syscall wraps pipe2 with flags=0. We'll call sys_pipe2.
+
+use "tests/harness/test_harness.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/syscall/errno.npk".*;
+use "src/io/io.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Pipe helpers — create a pipe, return [read_fd, write_fd] via out params.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:open_pipe = Result<int64>(int64:read_fd_out, int64:write_fd_out) {
+    // pipe2(fds, 0) — fills fds[0]=read, fds[1]=write
+    stack int32:fds[2];
+    int64:fds_ptr = &fds[0] as int64;
+
+    // SYS_pipe2 = 293. flags = 0 (blocking).
+    // We call sys_full directly since pipe2 isn't in our high-level wrappers yet.
+    Result<int64>:r = sys_full(293i64, fds_ptr, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { fail r.err; }
+
+    // fds[0] = read end, fds[1] = write end
+    *int64:rp = read_fd_out as *int64;
+    *int64:wp = write_fd_out as *int64;
+    rp[0] = fds[0] as int64;
+    wp[0] = fds[1] as int64;
+
+    pass 0i64;
+}
+
+func:close_fd = void(int64:fd) {
+    drop sys_close(fd);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 1  io_write_n — exact write
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_write_n = void() {
+    test_section("io_write_n");
+
+    // Open a pipe for round-trip
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe2 succeeds", pr);
+
+    if pr.is_error { pass; }
+
+    // Write 5 bytes into pipe
+    int64:msg_ptr = "hello" as int64;
+    Result<int64>:wr = io_write_n(wfd[0], msg_ptr, 5i64);
+    test_expect_ok("write_n returns ok", wr);
+    test_expect_i64("write_n returns 5", wr.value, 5i64);
+
+    // Read back from pipe
+    stack byte:rbuf[16];
+    Result<int64>:rr = io_read_some(rfd[0], &rbuf[0] as int64, 16i64);
+    test_expect_ok("read_some returns ok", rr);
+    test_expect_i64("read_some got 5 bytes", rr.value, 5i64);
+
+    // Confirm bytes are identical
+    test_expect_byte("round-trip byte 0 is 'h'", rbuf[0], 104u8);
+    test_expect_byte("round-trip byte 1 is 'e'", rbuf[1], 101u8);
+    test_expect_byte("round-trip byte 4 is 'o'", rbuf[4], 111u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 2  io_write_str
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_write_str = void() {
+    test_section("io_write_str");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe2 for write_str", pr);
+
+    if pr.is_error { pass; }
+
+    // Write NUL-terminated string
+    Result<int64>:wr = io_write_str(wfd[0], "libn\0" as int64);
+    test_expect_ok("write_str ok", wr);
+    test_expect_i64("write_str length = 4", wr.value, 4i64);  // "libn" = 4 bytes
+
+    // Read back
+    stack byte:rbuf[32];
+    Result<int64>:rr = io_read_some(rfd[0], &rbuf[0] as int64, 32i64);
+    test_expect_ok("read after write_str", rr);
+    test_expect_i64("got 4 bytes", rr.value, 4i64);
+    test_expect_byte("first byte 'l'", rbuf[0], 108u8);
+    test_expect_byte("last byte 'n'", rbuf[3], 110u8);
+
+    // NULL pointer: should write 0 bytes (not crash)
+    Result<int64>:nr = io_write_str(wfd[0], 0i64);
+    test_expect_ok("write_str null ptr returns 0", nr);
+    test_expect_i64("null writes 0", nr.value, 0i64);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 3  io_write_char / io_write_newline
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_write_char = void() {
+    test_section("io_write_char / io_write_newline");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for write_char", pr);
+
+    if pr.is_error { pass; }
+
+    // Write 'X' (88)
+    Result<int64>:wr = io_write_char(wfd[0], 88u8);
+    test_expect_ok("write_char 'X' ok", wr);
+    test_expect_i64("write_char returns 1", wr.value, 1i64);
+
+    // Write '\n'
+    Result<int64>:nr = io_write_newline(wfd[0]);
+    test_expect_ok("write_newline ok", nr);
+
+    // Read back 2 bytes
+    stack byte:rbuf[8];
+    Result<int64>:rr = io_read_some(rfd[0], &rbuf[0] as int64, 8i64);
+    test_expect_ok("read 2 bytes ok", rr);
+    test_expect_i64("read 2 bytes", rr.value, 2i64);
+    test_expect_byte("byte[0]='X'", rbuf[0], 88u8);
+    test_expect_byte("byte[1]='\\n'", rbuf[1], 10u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 4  io_write_strln — write string + newline
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_write_strln = void() {
+    test_section("io_write_strln");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for strln", pr);
+
+    if pr.is_error { pass; }
+
+    Result<int64>:wr = io_write_strln(wfd[0], "ok\0" as int64);
+    test_expect_ok("write_strln ok", wr);
+    test_expect_i64("strln returns 3 (2 + newline)", wr.value, 3i64);
+
+    stack byte:rbuf[16];
+    Result<int64>:rr = io_read_some(rfd[0], &rbuf[0] as int64, 16i64);
+    test_expect_ok("read strln", rr);
+    test_expect_i64("read 3 bytes", rr.value, 3i64);
+    test_expect_byte("'o'", rbuf[0], 111u8);
+    test_expect_byte("'k'", rbuf[1], 107u8);
+    test_expect_byte("'\\n'", rbuf[2], 10u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 5  io_read_n — exact read
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_read_n = void() {
+    test_section("io_read_n");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for read_n", pr);
+
+    if pr.is_error { pass; }
+
+    // Write 8 bytes
+    int64:msg = "abcdefgh\0" as int64;
+    drop io_write_n(wfd[0], msg, 8i64);
+
+    // Read exactly 4
+    stack byte:rbuf[16];
+    Result<int64>:r1 = io_read_n(rfd[0], &rbuf[0] as int64, 4i64);
+    test_expect_ok("read_n 4 bytes ok", r1);
+    test_expect_i64("read_n returns 4", r1.value, 4i64);
+    test_expect_byte("first byte 'a'", rbuf[0], 97u8);
+    test_expect_byte("fourth byte 'd'", rbuf[3], 100u8);
+
+    // Read next 4
+    Result<int64>:r2 = io_read_n(rfd[0], &rbuf[0] as int64, 4i64);
+    test_expect_ok("read_n second 4 ok", r2);
+    test_expect_i64("second read returns 4", r2.value, 4i64);
+    test_expect_byte("first byte 'e'", rbuf[0], 101u8);
+    test_expect_byte("fourth byte 'h'", rbuf[3], 104u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 6  io_read_line — LF detection, CRLF stripping, truncation
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_read_line = void() {
+    test_section("io_read_line");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for read_line", pr);
+
+    if pr.is_error { pass; }
+
+    // Write two LF-terminated lines and one CRLF-terminated line
+    drop io_write_str(wfd[0], "hello\nworld\r\nshort\n\0" as int64);
+
+    // Read first line
+    stack byte:lbuf[64];
+    Result<int64>:r1 = io_read_line(rfd[0], &lbuf[0] as int64, 64i64);
+    test_expect_ok("line1 ok", r1);
+    test_expect_i64("line1 length = 5", r1.value, 5i64);
+    test_expect_byte("line1[0]='h'", lbuf[0], 104u8);
+    test_expect_byte("line1[4]='o'", lbuf[4], 111u8);
+    test_expect_byte("line1 NUL-terminated", lbuf[5], 0u8);
+
+    // Read second line (CRLF → CR should be stripped)
+    Result<int64>:r2 = io_read_line(rfd[0], &lbuf[0] as int64, 64i64);
+    test_expect_ok("line2 (CRLF) ok", r2);
+    test_expect_i64("line2 length = 5 (CR stripped)", r2.value, 5i64);
+    test_expect_byte("line2[0]='w'", lbuf[0], 119u8);
+    test_expect_byte("line2[4]='d'", lbuf[4], 100u8);
+    test_expect_byte("no CR in output", lbuf[5], 0u8);
+
+    // Read third line
+    Result<int64>:r3 = io_read_line(rfd[0], &lbuf[0] as int64, 64i64);
+    test_expect_ok("line3 ok", r3);
+    test_expect_i64("line3 length = 5", r3.value, 5i64);
+
+    // Truncation: write a line longer than buf_size
+    // Write 10 bytes then LF into a 5-byte buffer (max 4 stored + NUL)
+    drop io_write_str(wfd[0], "toolongline\n\0" as int64);
+    stack byte:small[5];
+    Result<int64>:r4 = io_read_line(rfd[0], &small[0] as int64, 5i64);
+    test_expect_ok("truncated line ok (no error)", r4);
+    test_expect_i64("truncated to 4 bytes", r4.value, 4i64);
+    test_expect_byte("small NUL-terminated", small[4], 0u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 7  io_read_until
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_read_until = void() {
+    test_section("io_read_until");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for read_until", pr);
+
+    if pr.is_error { pass; }
+
+    // Write colon-delimited fields
+    drop io_write_str(wfd[0], "root:x:0:0\0" as int64);
+
+    stack byte:field[64];
+
+    // First field up to ':'
+    Result<int64>:r1 = io_read_until(rfd[0], &field[0] as int64, 64i64, 58u8);  // ':'=58
+    test_expect_ok("until ':' ok", r1);
+    test_expect_i64("first field len=4 (root)", r1.value, 4i64);
+    test_expect_byte("'r'", field[0], 114u8);
+
+    // Second field
+    Result<int64>:r2 = io_read_until(rfd[0], &field[0] as int64, 64i64, 58u8);
+    test_expect_ok("second field ok", r2);
+    test_expect_i64("second field len=1 (x)", r2.value, 1i64);
+    test_expect_byte("'x'", field[0], 120u8);
+
+    // Third field (0)
+    Result<int64>:r3 = io_read_until(rfd[0], &field[0] as int64, 64i64, 58u8);
+    test_expect_ok("third field ok", r3);
+    test_expect_i64("third field len=1 (0)", r3.value, 1i64);
+    test_expect_byte("'0'", field[0], 48u8);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 8  io_read_char
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_read_char = void() {
+    test_section("io_read_char");
+
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    test_expect_ok("pipe for read_char", pr);
+
+    if pr.is_error { pass; }
+
+    // Write 3 bytes
+    drop io_write_str(wfd[0], "ABC\0" as int64);
+
+    Result<int64>:c0 = io_read_char(rfd[0]);
+    test_expect_ok("char 0 ok", c0);
+    test_expect_i64("char 0 = 'A' (65)", c0.value, 65i64);
+
+    Result<int64>:c1 = io_read_char(rfd[0]);
+    test_expect_ok("char 1 ok", c1);
+    test_expect_i64("char 1 = 'B' (66)", c1.value, 66i64);
+
+    Result<int64>:c2 = io_read_char(rfd[0]);
+    test_expect_ok("char 2 ok", c2);
+    test_expect_i64("char 2 = 'C' (67)", c2.value, 67i64);
+
+    // Close write end → next read_char should return -1 (EOF)
+    close_fd(wfd[0]);
+
+    Result<int64>:eof = io_read_char(rfd[0]);
+    test_expect_ok("EOF sentinel ok (not an error)", eof);
+    test_expect_i64("EOF returns -1", eof.value, -1i64);
+
+    close_fd(rfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 9  io_sprintf* — buffer-rendering (no fd needed)
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_sprintf = void() {
+    test_section("io_sprintf");
+
+    stack byte:buf[128];
+    int64:p = &buf[0] as int64;
+
+    // sprintf0 — no args
+    int64:n0 = io_sprintf0(p, 128i64, "hello world\0" as int64);
+    test_expect_i64("sprintf0 returns 11", n0, 11i64);
+    test_expect_byte("sprintf0[0]='h'", buf[0], 104u8);
+    test_expect_byte("sprintf0[10]='d'", buf[10], 100u8);
+    test_expect_byte("sprintf0 NUL", buf[11], 0u8);
+
+    // sprintf1 — one integer arg
+    int64:n1 = io_sprintf1(p, 128i64, "val=%d\0" as int64, 42i64);
+    test_expect_i64("sprintf1 returns 6", n1, 6i64);
+    test_expect_byte("'4'", buf[4], 52u8);
+    test_expect_byte("'2'", buf[5], 50u8);
+    test_expect_byte("NUL after val=42", buf[6], 0u8);
+
+    // sprintf2 — two args
+    int64:n2 = io_sprintf2(p, 128i64, "%d+%d\0" as int64, 10i64, 20i64);
+    test_expect_i64("sprintf2 returns 5", n2, 5i64);
+    test_expect_byte("'1'", buf[0], 49u8);
+    test_expect_byte("'0'", buf[1], 48u8);
+    test_expect_byte("'+'", buf[2], 43u8);
+    test_expect_byte("'2'", buf[3], 50u8);
+    test_expect_byte("'0'", buf[4], 48u8);
+
+    // Truncation: buf_size = 4, output would be longer
+    int64:n3 = io_sprintf0(p, 4i64, "toolong\0" as int64);
+    test_expect_i64("sprintf truncated returns full len 7", n3, 7i64);
+    test_expect_byte("buf[3] = NUL (truncated)", buf[3], 0u8);
+
+    // sprintf with %s
+    int64:n4 = io_sprintf1(p, 128i64, "s=%s\0" as int64, "world\0" as int64);
+    test_expect_i64("sprintf %s returns 7", n4, 7i64);
+    test_expect_byte("s[2]='w'", buf[2], 119u8);
+
+    // sprintf with %x
+    int64:n5 = io_sprintf1(p, 128i64, "0x%x\0" as int64, 255i64);
+    test_expect_i64("sprintf 0x%x returns 4", n5, 4i64);
+    test_expect_byte("'f'", buf[2], 102u8);
+    test_expect_byte("'f'", buf[3], 102u8);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 10  io_printf* sanity (write to stderr, checked by presence not content)
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_printf_smoke = void() {
+    test_section("io_printf smoke (output visible on stderr)");
+
+    // This writes to stderr — check for no crash / no error return.
+    Result<int64>:r0 = io_eprintf0("[test_io] eprintf0 smoke\n\0" as int64);
+    test_expect_ok("eprintf0 ok", r0);
+
+    Result<int64>:r1 = io_eprintf1("[test_io] eprintf1: val=%d\n\0" as int64, 99i64);
+    test_expect_ok("eprintf1 ok", r1);
+
+    Result<int64>:r2 = io_eprintf2("[test_io] two args: %d %s\n\0" as int64,
+                                    7i64, "seven\0" as int64);
+    test_expect_ok("eprintf2 ok", r2);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 11  io_write_n error path — bad fd
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_write_bad_fd = void() {
+    test_section("io_write_n bad fd");
+
+    // fd = -1 should return ERR_BADARG
+    Result<int64>:r = io_write_n(-1i64, "x\0" as int64, 1i64);
+    test_expect_error("bad fd returns error", r);
+
+    // fd = 999 (not open) — kernel returns EBADF
+    Result<int64>:r2 = io_write_str(999i64, "x\0" as int64);
+    test_expect_error("write to closed fd returns error", r2);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// § 12  io_read_n error path — bad fd / n=0
+// ════════════════════════════════════════════════════════════════════════════
+
+func:test_read_bad_fd = void() {
+    test_section("io_read_n bad fd");
+
+    stack byte:buf[16];
+
+    Result<int64>:r1 = io_read_n(-1i64, &buf[0] as int64, 4i64);
+    test_expect_error("read bad fd returns error", r1);
+
+    // n=0: should succeed immediately
+    stack int64:rfd[1];
+    stack int64:wfd[1];
+    Result<int64>:pr = open_pipe(&rfd[0] as int64, &wfd[0] as int64);
+    if pr.is_error { pass; }
+
+    Result<int64>:r2 = io_read_n(rfd[0], &buf[0] as int64, 0i64);
+    test_expect_ok("read_n 0 bytes ok", r2);
+    test_expect_i64("read_n 0 returns 0", r2.value, 0i64);
+
+    close_fd(rfd[0]);
+    close_fd(wfd[0]);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Entry point
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:main = int64() {
+    test_init("libn I/O Tests (v0.4.x)");
+
+    test_write_n();
+    test_write_str();
+    test_write_char();
+    test_write_strln();
+    test_read_n();
+    test_read_line();
+    test_read_until();
+    test_read_char();
+    test_sprintf();
+    test_printf_smoke();
+    test_write_bad_fd();
+    test_read_bad_fd();
+
+    pass test_report();
+}

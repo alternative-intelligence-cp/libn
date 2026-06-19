@@ -1,0 +1,304 @@
+// exec.npk — execve, execv, execvp, execle, execl, execvpe (v0.11.2)
+//
+// Process image replacement. After a successful exec:
+//   - The calling process is replaced by the new program image
+//   - File descriptors without O_CLOEXEC are inherited
+//   - Signal dispositions are reset to SIG_DFL (for caught signals)
+//   - Memory, code, stack are completely replaced
+//
+// execve() NEVER returns on success. It only returns -1 on failure.
+//
+// ── ABI note ──────────────────────────────────────────────────────────────
+// execve takes:
+//   path: NUL-terminated filename
+//   argv: NULL-terminated array of NUL-terminated argument strings
+//   envp: NULL-terminated array of NUL-terminated "KEY=VALUE" strings
+//
+// In Nitpick all three are int64 (pointer to array of int64 pointer values).
+//
+// ── Variadic wrappers ─────────────────────────────────────────────────────
+// execl/execlp/execle take argument lists inline (explicit-arity pattern).
+// The _N suffix means N additional arguments after the mandatory ones.
+// execl0(path, arg0) — execute path with argv = {arg0, NULL}
+// execl1(path, arg0, arg1) — argv = {arg0, arg1, NULL}
+// ... up to execl8
+//
+// execvp searches PATH for the executable (like the shell does).
+// execvpe is GNU extension: execvp + custom envp.
+//
+// ── exec with fork — canonical pattern ────────────────────────────────────
+//
+//   int64:pid = fork();
+//   if pid == 0 {
+//       // child
+//       stack int64:argv[3];
+//       argv[0] = "/bin/ls" as int64;
+//       argv[1] = "-l" as int64;
+//       argv[2] = 0i64;
+//       drop execv("/bin/ls" as int64, &argv[0] as int64);
+//       _exit(1i64);  // exec failed
+//   }
+//   // parent continues...
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+
+// ── External environ pointer (defined in env.npk, resolved at link time) ──
+// Used by execvp when it needs the current environment.
+extern int64:environ;   // NULL-terminated array of "KEY=VAL" strings
+
+// ════════════════════════════════════════════════════════════════════════════
+// execve — Core exec: replace process image with path, argv, envp.
+//
+// Returns -1 on failure (errno set). Never returns on success.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:execve = int64(int64:path, int64:argv, int64:envp) {
+    Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass 0i64;  // unreachable on success
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// execv — execve with inherited environment (current environ).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:execv = int64(int64:path, int64:argv) {
+    pass execve(path, argv, environ);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// execvp — Like execv but searches PATH for the executable name.
+//
+// If path contains a '/', it is used directly (no PATH search).
+// Otherwise, each directory in PATH is tried: PATH_dir + "/" + path.
+//
+// Uses a 4096-byte stack buffer for constructing candidate paths.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:execvp = int64(int64:name, int64:argv) {
+    pass execvpe(name, argv, environ);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// execvpe — execvp with explicit envp (GNU extension).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:execvpe = int64(int64:name, int64:argv, int64:envp) {
+    if name == 0i64 || argv == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    int64:name_len = str_strlen(name);
+    if name_len == 0i64 {
+        errno_set(ENOENT);
+        pass -1i64;
+    }
+
+    // If name contains '/', use directly — no PATH search
+    int64:i = 0i64;
+    *byte:np = name as *byte;
+    while i < name_len {
+        if np[i] == 47u8 {  // '/'
+            pass execve(name, argv, envp);
+        }
+        i = i + 1i64;
+    }
+
+    // Search PATH environment variable
+    int64:path_str = proc_getenv_from(envp, "PATH" as int64);
+    if path_str == 0i64 {
+        // No PATH → try /usr/local/bin:/usr/bin:/bin
+        path_str = "/usr/local/bin:/usr/bin:/bin" as int64;
+    }
+
+    // Iterate PATH directories separated by ':'
+    stack byte:candidate[4096];
+    *byte:pp = path_str as *byte;
+    int64:p_start = 0i64;
+    int64:p_len = str_strlen(path_str);
+    int64:last_err = ENOENT;
+
+    while p_start <= p_len {
+        // Find next ':' or end of string
+        int64:p_end = p_start;
+        while p_end < p_len && pp[p_end] != 58u8 {  // ':'
+            p_end = p_end + 1i64;
+        }
+
+        int64:dir_len = p_end - p_start;
+        // Build: dir + "/" + name + NUL
+        int64:total = dir_len + 1i64 + name_len + 1i64;
+        if total <= 4096i64 {
+            if dir_len > 0i64 {
+                int64:ci = 0i64;
+                while ci < dir_len {
+                    candidate[ci] = pp[p_start + ci];
+                    ci = ci + 1i64;
+                }
+                candidate[dir_len] = 47u8;  // '/'
+            } else {
+                // Empty PATH component means current directory (".")
+                candidate[0] = 46u8;  // '.'
+                candidate[1] = 47u8;  // '/'
+                dir_len = 1i64;
+            }
+            int64:ni = 0i64;
+            while ni < name_len {
+                candidate[dir_len + 1i64 + ni] = np[ni];
+                ni = ni + 1i64;
+            }
+            candidate[dir_len + 1i64 + name_len] = 0u8;
+
+            // Try to exec
+            int64:ret = execve(&candidate[0] as int64, argv, envp);
+            // If we get here, exec failed
+            int64:e = errno_get();
+            if e != ENOENT && e != EACCES {
+                // A real error (not "not found" or "permission denied") — stop
+                pass ret;
+            }
+            last_err = e;
+        }
+
+        if p_end >= p_len { break; }
+        p_start = p_end + 1i64;
+    }
+
+    errno_set(last_err);
+    pass -1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// proc_getenv_from — Look up a key in a custom envp array.
+// Returns pointer to the value part ("KEY=VALUE" → pointer to "VALUE"),
+// or 0 if not found.
+// Internal helper for execvpe. Also exported for use by env.npk.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:proc_getenv_from = int64(int64:envp, int64:key) {
+    if envp == 0i64 || key == 0i64 { pass 0i64; }
+    int64:klen = str_strlen(key);
+    *int64:ep = envp as *int64;
+    int64:i = 0i64;
+    while ep[i] != 0i64 {
+        int64:entry = ep[i];
+        *byte:ep_str = entry as *byte;
+        // Check if entry starts with "KEY="
+        int64:j = 0i64;
+        *byte:kp = key as *byte;
+        bool:match = true;
+        while j < klen {
+            if ep_str[j] != kp[j] { match = false; break; }
+            j = j + 1i64;
+        }
+        if match && ep_str[klen] == 61u8 {  // '='
+            pass entry + klen + 1i64;  // pointer past '='
+        }
+        i = i + 1i64;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// execl* — Inline argument list variants (explicit arity 0-8)
+//
+// Convention: execlN(path, arg0, arg1, ..., argN-1)
+//   argv is built on the stack as {arg0, ..., argN-1, NULL}
+//   path is always the executable.
+//   The first argument is conventionally the executable name (arg0 = path).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:execl0 = int64(int64:path) {
+    stack int64:argv[1];
+    argv[0] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl1 = int64(int64:path, int64:a0) {
+    stack int64:argv[2];
+    argv[0] = a0;
+    argv[1] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl2 = int64(int64:path, int64:a0, int64:a1) {
+    stack int64:argv[3];
+    argv[0] = a0; argv[1] = a1; argv[2] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl3 = int64(int64:path, int64:a0, int64:a1, int64:a2) {
+    stack int64:argv[4];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl4 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3) {
+    stack int64:argv[5];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl5 = int64(int64:path, int64:a0, int64:a1, int64:a2,
+                         int64:a3, int64:a4) {
+    stack int64:argv[6];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2;
+    argv[3] = a3; argv[4] = a4; argv[5] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl6 = int64(int64:path, int64:a0, int64:a1, int64:a2,
+                         int64:a3, int64:a4, int64:a5) {
+    stack int64:argv[7];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2;
+    argv[3] = a3; argv[4] = a4; argv[5] = a5; argv[6] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl7 = int64(int64:path, int64:a0, int64:a1, int64:a2,
+                         int64:a3, int64:a4, int64:a5, int64:a6) {
+    stack int64:argv[8];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+pub func:execl8 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3,
+                         int64:a4, int64:a5, int64:a6, int64:a7) {
+    stack int64:argv[9];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7; argv[8] = 0i64;
+    pass execve(path, &argv[0] as int64, environ);
+}
+
+// execlp* — Like execl* but search PATH (use execvp semantics)
+pub func:execlp1 = int64(int64:name, int64:a0) {
+    stack int64:argv[2];
+    argv[0] = a0; argv[1] = 0i64;
+    pass execvp(name, &argv[0] as int64);
+}
+
+pub func:execlp2 = int64(int64:name, int64:a0, int64:a1) {
+    stack int64:argv[3];
+    argv[0] = a0; argv[1] = a1; argv[2] = 0i64;
+    pass execvp(name, &argv[0] as int64);
+}
+
+pub func:execlp3 = int64(int64:name, int64:a0, int64:a1, int64:a2) {
+    stack int64:argv[4];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = 0i64;
+    pass execvp(name, &argv[0] as int64);
+}
+
+pub func:execlp4 = int64(int64:name, int64:a0, int64:a1, int64:a2, int64:a3) {
+    stack int64:argv[5];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = 0i64;
+    pass execvp(name, &argv[0] as int64);
+}

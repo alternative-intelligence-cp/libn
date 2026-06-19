@@ -1,0 +1,508 @@
+// math.npk — Integer math utilities (v0.10.0)
+//
+// Pure integer math: no floating point, no allocations, no dependencies
+// beyond the syscall layer. Every function is stateless and thread-safe.
+//
+// ── Module groups ─────────────────────────────────────────────────────────
+//
+// Basic:
+//   math_abs_i64       — absolute value (INT64_MIN-safe)
+//   math_min_i64       — minimum of two signed int64
+//   math_max_i64       — maximum of two signed int64
+//   math_min_u64       — minimum of two unsigned int64
+//   math_max_u64       — maximum of two unsigned int64
+//   math_clamp_i64     — clamp value to [lo, hi]
+//   math_sign_i64      — sign (-1 / 0 / +1)
+//
+// Saturating arithmetic (no undefined overflow):
+//   math_sat_add_i64   — saturating signed addition
+//   math_sat_sub_i64   — saturating signed subtraction
+//   math_sat_mul_i64   — saturating signed multiplication
+//   math_sat_add_u64   — saturating unsigned addition
+//   math_sat_sub_u64   — saturating unsigned subtraction
+//
+// Division utilities:
+//   math_div_ceil_i64  — ceiling division (rounds toward +∞)
+//   math_div_floor_i64 — floor division (rounds toward -∞, same as C for positives)
+//   math_div_round_i64 — round-to-nearest division
+//   math_mod_pos_i64   — always-positive modulo (Python-style %)
+//
+// Alignment:
+//   math_align_up      — round pointer/size up to next multiple of align
+//   math_align_down    — round pointer/size down to multiple of align
+//   math_is_aligned    — test whether a value is already aligned
+//
+// Power-of-two:
+//   math_is_pow2       — test whether v is a positive power of 2
+//   math_next_pow2     — smallest power of 2 >= v
+//   math_prev_pow2     — largest power of 2 <= v
+//   math_log2_floor    — floor(log2(v)) for v > 0
+//   math_log2_ceil     — ceil(log2(v)) for v > 0
+//
+// Bit manipulation:
+//   math_popcount      — count set bits (population count / Hamming weight)
+//   math_clz           — count leading zeros (undefined for v=0, returns 64)
+//   math_ctz           — count trailing zeros (undefined for v=0, returns 64)
+//   math_parity        — parity of set bits (0 or 1)
+//   math_reverse_bits  — reverse all 64 bits
+//   math_rol           — rotate left by n positions
+//   math_ror           — rotate right by n positions
+//
+// Integer square root:
+//   math_isqrt         — floor(sqrt(v)) for v >= 0 (Newton's method)
+//   math_isqrt_ceil    — ceil(sqrt(v)) for v >= 0
+//
+// GCD / LCM:
+//   math_gcd           — greatest common divisor (Euclidean, v >= 0)
+//   math_lcm           — least common multiple (lcm = |a*b| / gcd(a,b))
+
+// ════════════════════════════════════════════════════════════════════════════
+// Constants
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:INT64_MAX =  9223372036854775807i64;
+pub fixed int64:INT64_MIN = -9223372036854775808i64;
+pub fixed int64:UINT64_MAX = -1i64;   // all bits set = 0xFFFF...FFFF
+
+// ════════════════════════════════════════════════════════════════════════════
+// Basic: min, max, clamp, abs, sign
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_abs_i64 — Absolute value of a signed int64.
+// INT64_MIN case: abs(INT64_MIN) would overflow; we return INT64_MAX as a
+// defined fallback (same convention as GCC __builtin_abs for saturating mode).
+pub func:math_abs_i64 = int64(int64:v) {
+    if v == INT64_MIN { pass INT64_MAX; }
+    if v < 0i64 { pass 0i64 - v; }
+    pass v;
+}
+
+// math_min_i64 — Minimum of two signed int64 values.
+pub func:math_min_i64 = int64(int64:a, int64:b) {
+    if a < b { pass a; }
+    pass b;
+}
+
+// math_max_i64 — Maximum of two signed int64 values.
+pub func:math_max_i64 = int64(int64:a, int64:b) {
+    if a > b { pass a; }
+    pass b;
+}
+
+// math_min_u64 — Minimum of two unsigned int64 values.
+// (Nitpick stores u64 as int64 with unsigned bit semantics.)
+pub func:math_min_u64 = int64(int64:a, int64:b) {
+    // Unsigned comparison: subtract and check borrow bit
+    // a <_u b  iff  (a - b) has borrow, i.e. (a - b) < 0 in unsigned
+    // Equivalent: if a is "less" when treating as unsigned
+    // We use the trick: (a ^ b) < 0 tells us which has the higher sign bit;
+    // if equal sign bits, just compare.
+    if (a ^ b) < 0i64 {
+        // One is negative (high bit set), one is non-negative.
+        // The one with high bit set is the larger unsigned value.
+        if a < 0i64 { pass b; }  // a has high bit → a >_u b → min is b
+        pass a;
+    }
+    if a < b { pass a; }
+    pass b;
+}
+
+// math_max_u64 — Maximum of two unsigned int64 values.
+pub func:math_max_u64 = int64(int64:a, int64:b) {
+    if (a ^ b) < 0i64 {
+        if a < 0i64 { pass a; }   // a has high bit → a >_u b → max is a
+        pass b;
+    }
+    if a > b { pass a; }
+    pass b;
+}
+
+// math_clamp_i64 — Clamp v to [lo, hi].
+// Requires lo <= hi; if lo > hi, the behavior is lo.
+pub func:math_clamp_i64 = int64(int64:v, int64:lo, int64:hi) {
+    if v < lo { pass lo; }
+    if v > hi { pass hi; }
+    pass v;
+}
+
+// math_sign_i64 — Return -1, 0, or +1.
+pub func:math_sign_i64 = int64(int64:v) {
+    if v < 0i64 { pass -1i64; }
+    if v > 0i64 { pass  1i64; }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Saturating arithmetic — prevents silent integer overflow
+//
+// These are critical for safe buffer sizing, index math, etc.
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_sat_add_i64 — Saturating signed addition.
+// If a + b would overflow INT64_MAX, returns INT64_MAX.
+// If a + b would underflow INT64_MIN, returns INT64_MIN.
+pub func:math_sat_add_i64 = int64(int64:a, int64:b) {
+    int64:r = a + b;
+    // Overflow if both operands have same sign and result has different sign
+    // (a > 0 && b > 0 && r < 0) → overflow up → clamp to INT64_MAX
+    // (a < 0 && b < 0 && r > 0) → underflow  → clamp to INT64_MIN
+    if a > 0i64 && b > 0i64 && r < 0i64 { pass INT64_MAX; }
+    if a < 0i64 && b < 0i64 && r > 0i64 { pass INT64_MIN; }
+    pass r;
+}
+
+// math_sat_sub_i64 — Saturating signed subtraction (a - b).
+pub func:math_sat_sub_i64 = int64(int64:a, int64:b) {
+    // a - b overflows if b is opposite sign and result flips sign
+    if b == INT64_MIN {
+        // -INT64_MIN would overflow; a - INT64_MIN = a + INT64_MAX + 1
+        if a >= 0i64 { pass INT64_MAX; }
+        // a < 0: a - INT64_MIN wraps — but it's still representable only if a=INT64_MIN
+        // For simplicity: any negative a - INT64_MIN is safe iff a == INT64_MIN
+        pass a == INT64_MIN ? 0i64 : INT64_MAX;
+    }
+    pass math_sat_add_i64(a, 0i64 - b);
+}
+
+// math_sat_mul_i64 — Saturating signed multiplication.
+// Uses division to check for overflow before multiplying.
+pub func:math_sat_mul_i64 = int64(int64:a, int64:b) {
+    if a == 0i64 || b == 0i64 { pass 0i64; }
+    if a == 1i64 { pass b; }
+    if b == 1i64 { pass a; }
+    if a == -1i64 {
+        if b == INT64_MIN { pass INT64_MAX; }
+        pass 0i64 - b;
+    }
+    if b == -1i64 {
+        if a == INT64_MIN { pass INT64_MAX; }
+        pass 0i64 - a;
+    }
+    // General case: check if |a * b| > INT64_MAX
+    // Equivalent to: |a| > INT64_MAX / |b|
+    int64:abs_a = math_abs_i64(a);
+    int64:abs_b = math_abs_i64(b);
+    int64:limit = INT64_MAX / abs_b;
+    if abs_a > limit {
+        // Would overflow: return saturated value based on sign
+        bool:neg = (a < 0i64) ^ (b < 0i64);
+        if neg { pass INT64_MIN; }
+        pass INT64_MAX;
+    }
+    pass a * b;
+}
+
+// math_sat_add_u64 — Saturating unsigned addition.
+// If a + b wraps, returns UINT64_MAX (all-bits-set).
+pub func:math_sat_add_u64 = int64(int64:a, int64:b) {
+    int64:r = a + b;
+    // Unsigned overflow: r <_u a (carry out of MSB)
+    if math_max_u64(r, a) != r {  // r <_u a means overflow
+        // Actually simpler: overflow iff r <_u a
+        // Since we need unsigned compare: use sign-bit trick
+        // r <_u a iff (r - a) has borrow, but we can just check:
+        // a + b overflows u64 iff b > UINT64_MAX - a, i.e. b > ~a
+        // In signed terms: ~a = 0i64 - 1i64 - a
+        int64:max_b = (0i64 - 1i64) - a;  // UINT64_MAX - a
+        if math_max_u64(b, max_b) != max_b {
+            pass 0i64 - 1i64;  // UINT64_MAX
+        }
+    }
+    pass r;
+}
+
+// math_sat_sub_u64 — Saturating unsigned subtraction.
+// If a - b would go below 0 (unsigned), returns 0.
+pub func:math_sat_sub_u64 = int64(int64:a, int64:b) {
+    // b >_u a → underflow → return 0
+    if math_max_u64(b, a) == b && b != a {
+        pass 0i64;
+    }
+    pass a - b;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Division utilities
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_div_ceil_i64 — Ceiling division: ceil(a / b).
+// b must be != 0. Undefined behavior if b == 0.
+// Correct for both positive and negative values.
+pub func:math_div_ceil_i64 = int64(int64:a, int64:b) {
+    int64:q = a / b;
+    // C truncates toward zero; add 1 if remainder is non-zero and they share sign
+    int64:r = a % b;
+    if r != 0i64 && (a > 0i64) == (b > 0i64) {
+        pass q + 1i64;
+    }
+    pass q;
+}
+
+// math_div_floor_i64 — Floor division: floor(a / b).
+// For positive a,b: same as a/b. Correct for negatives.
+pub func:math_div_floor_i64 = int64(int64:a, int64:b) {
+    int64:q = a / b;
+    int64:r = a % b;
+    // Subtract 1 if remainder is non-zero and they have different signs
+    if r != 0i64 && (a < 0i64) != (b < 0i64) {
+        pass q - 1i64;
+    }
+    pass q;
+}
+
+// math_div_round_i64 — Round-to-nearest division (half-up for positive b).
+pub func:math_div_round_i64 = int64(int64:a, int64:b) {
+    pass math_div_floor_i64(2i64 * a + b, 2i64 * b);
+}
+
+// math_mod_pos_i64 — Always-positive modulo (Python-style).
+// Result is in [0, |b|-1], never negative.
+pub func:math_mod_pos_i64 = int64(int64:a, int64:b) {
+    int64:r = a % b;
+    if r < 0i64 {
+        r = r + math_abs_i64(b);
+    }
+    pass r;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Alignment — align must be a power of 2 for all these functions
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_align_up — Round v UP to the next multiple of align.
+// align must be a power of 2.
+pub func:math_align_up = int64(int64:v, int64:align) {
+    int64:mask = align - 1i64;
+    pass (v + mask) & (0i64 - align);
+}
+
+// math_align_down — Round v DOWN to the nearest multiple of align.
+pub func:math_align_down = int64(int64:v, int64:align) {
+    pass v & (0i64 - align);
+}
+
+// math_is_aligned — True if v is already a multiple of align.
+pub func:math_is_aligned = bool(int64:v, int64:align) {
+    pass (v & (align - 1i64)) == 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Power-of-two
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_is_pow2 — True if v is a positive power of 2 (v > 0 and exactly one bit set).
+pub func:math_is_pow2 = bool(int64:v) {
+    if v <= 0i64 { pass false; }
+    pass (v & (v - 1i64)) == 0i64;
+}
+
+// math_next_pow2 — Smallest power of 2 >= v.
+// Returns 1 for v <= 1. For v > 2^62, returns 2^63 (INT64_MIN, high bit set).
+pub func:math_next_pow2 = int64(int64:v) {
+    if v <= 1i64 { pass 1i64; }
+    if math_is_pow2(v) { pass v; }
+    // Round up using clz: next_pow2 = 1 << (64 - clz(v - 1))
+    int64:n = v - 1i64;
+    int64:shift = 64i64 - math_clz(n);
+    pass 1i64 << shift;
+}
+
+// math_prev_pow2 — Largest power of 2 <= v.
+// Returns 0 for v <= 0.
+pub func:math_prev_pow2 = int64(int64:v) {
+    if v <= 0i64 { pass 0i64; }
+    if math_is_pow2(v) { pass v; }
+    // Floor: 1 << floor_log2(v)
+    pass 1i64 << math_log2_floor(v);
+}
+
+// math_log2_floor — floor(log2(v)) for v > 0.
+// Returns -1 for v <= 0 (invalid input sentinel).
+pub func:math_log2_floor = int64(int64:v) {
+    if v <= 0i64 { pass -1i64; }
+    // 63 - clz(v) gives the position of the highest set bit
+    pass 63i64 - math_clz(v);
+}
+
+// math_log2_ceil — ceil(log2(v)) for v > 0.
+// Returns 0 for v == 1, -1 for v <= 0.
+pub func:math_log2_ceil = int64(int64:v) {
+    if v <= 0i64 { pass -1i64; }
+    if v == 1i64 { pass 0i64; }
+    // ceil = floor + (1 if not a power of 2, else 0)
+    int64:f = math_log2_floor(v);
+    if math_is_pow2(v) { pass f; }
+    pass f + 1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Bit manipulation
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_popcount — Count set bits (population count / Hamming weight).
+// Uses the classic parallel bit-sum algorithm (no hardware dependency).
+pub func:math_popcount = int64(int64:v) {
+    // Parallel popcount — each step pairs up groups of bits and sums them
+    // Step 1: sum pairs of bits
+    int64:x = v;
+    x = x - ((x >> 1i64) & 0x5555555555555555i64);
+    // Step 2: sum nibbles
+    x = (x & 0x3333333333333333i64) + ((x >> 2i64) & 0x3333333333333333i64);
+    // Step 3: sum bytes
+    x = (x + (x >> 4i64)) & 0x0F0F0F0F0F0F0F0Fi64;
+    // Step 4: sum all bytes via multiply trick
+    x = (x * 0x0101010101010101i64) >> 56i64;
+    pass x & 0xFFi64;
+}
+
+// math_clz — Count leading zeros in a 64-bit integer.
+// Returns 64 for v == 0 (not undefined as in hardware CLZ).
+pub func:math_clz = int64(int64:v) {
+    if v == 0i64 { pass 64i64; }
+    // Binary search for the highest set bit
+    int64:n = 0i64;
+    if (v & 0xFFFFFFFF00000000i64) == 0i64 { n = n + 32i64; v = v << 32i64; }
+    if (v & 0xFFFF000000000000i64) == 0i64 { n = n + 16i64; v = v << 16i64; }
+    if (v & 0xFF00000000000000i64) == 0i64 { n = n + 8i64;  v = v << 8i64;  }
+    if (v & 0xF000000000000000i64) == 0i64 { n = n + 4i64;  v = v << 4i64;  }
+    if (v & 0xC000000000000000i64) == 0i64 { n = n + 2i64;  v = v << 2i64;  }
+    if (v & 0x8000000000000000i64) == 0i64 { n = n + 1i64;  }
+    pass n;
+}
+
+// math_ctz — Count trailing zeros in a 64-bit integer.
+// Returns 64 for v == 0.
+pub func:math_ctz = int64(int64:v) {
+    if v == 0i64 { pass 64i64; }
+    // Use popcount trick: ctz(v) = popcount((v & -v) - 1)
+    // Or binary search (same structure as clz but checking low bits)
+    int64:n = 0i64;
+    if (v & 0x00000000FFFFFFFFi64) == 0i64 { n = n + 32i64; v = v >> 32i64; }
+    if (v & 0x000000000000FFFFi64) == 0i64 { n = n + 16i64; v = v >> 16i64; }
+    if (v & 0x00000000000000FFi64) == 0i64 { n = n + 8i64;  v = v >> 8i64;  }
+    if (v & 0x000000000000000Fi64) == 0i64 { n = n + 4i64;  v = v >> 4i64;  }
+    if (v & 0x0000000000000003i64) == 0i64 { n = n + 2i64;  v = v >> 2i64;  }
+    if (v & 0x0000000000000001i64) == 0i64 { n = n + 1i64;  }
+    pass n;
+}
+
+// math_parity — Parity of set bits: 0 if even number of 1s, 1 if odd.
+pub func:math_parity = int64(int64:v) {
+    // XOR fold the 64 bits down to 1 bit
+    int64:x = v;
+    x = x ^ (x >> 32i64);
+    x = x ^ (x >> 16i64);
+    x = x ^ (x >> 8i64);
+    x = x ^ (x >> 4i64);
+    x = x ^ (x >> 2i64);
+    x = x ^ (x >> 1i64);
+    pass x & 1i64;
+}
+
+// math_reverse_bits — Reverse all 64 bits (bit 0 ↔ bit 63, etc.).
+pub func:math_reverse_bits = int64(int64:v) {
+    int64:x = v;
+    // Swap bit pairs, then nibbles, then bytes, then words, then dwords
+    x = ((x & 0x5555555555555555i64) << 1i64)  | ((x >> 1i64)  & 0x5555555555555555i64);
+    x = ((x & 0x3333333333333333i64) << 2i64)  | ((x >> 2i64)  & 0x3333333333333333i64);
+    x = ((x & 0x0F0F0F0F0F0F0F0Fi64) << 4i64)  | ((x >> 4i64)  & 0x0F0F0F0F0F0F0F0Fi64);
+    x = ((x & 0x00FF00FF00FF00FFi64) << 8i64)  | ((x >> 8i64)  & 0x00FF00FF00FF00FFi64);
+    x = ((x & 0x0000FFFF0000FFFFi64) << 16i64) | ((x >> 16i64) & 0x0000FFFF0000FFFFi64);
+    x = ((x & 0x00000000FFFFFFFFi64) << 32i64) | ((x >> 32i64) & 0x00000000FFFFFFFFi64);
+    pass x;
+}
+
+// math_rol — Rotate left by n bits (0 <= n < 64).
+pub func:math_rol = int64(int64:v, int64:n) {
+    n = n & 63i64;
+    if n == 0i64 { pass v; }
+    pass (v << n) | (v >> (64i64 - n));
+}
+
+// math_ror — Rotate right by n bits (0 <= n < 64).
+pub func:math_ror = int64(int64:v, int64:n) {
+    n = n & 63i64;
+    if n == 0i64 { pass v; }
+    pass (v >> n) | (v << (64i64 - n));
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Integer square root
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_isqrt — floor(sqrt(v)) for v >= 0.
+// Uses Newton's method with integer convergence.
+// For v < 0: returns 0 (saturating).
+pub func:math_isqrt = int64(int64:v) {
+    if v <= 0i64 { pass 0i64; }
+    if v < 4i64 { pass 1i64; }
+    if v < 9i64 { pass 2i64; }
+
+    // Initial estimate via clz: start near 2^(floor(log2(v)/2))
+    int64:bits = 64i64 - math_clz(v);
+    int64:x = 1i64 << ((bits + 1i64) / 2i64);
+
+    // Newton's method: x = (x + v/x) / 2, converges in O(log bits) steps
+    while true {
+        int64:x1 = (x + v / x) / 2i64;
+        if x1 >= x { break; }
+        x = x1;
+    }
+
+    // x is now floor(sqrt(v)); verify (handles floating-point-like edge cases)
+    while x * x > v { x = x - 1i64; }
+    while (x + 1i64) * (x + 1i64) <= v { x = x + 1i64; }
+
+    pass x;
+}
+
+// math_isqrt_ceil — ceil(sqrt(v)) for v >= 0.
+pub func:math_isqrt_ceil = int64(int64:v) {
+    int64:r = math_isqrt(v);
+    if r * r == v { pass r; }
+    pass r + 1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// GCD / LCM
+// ════════════════════════════════════════════════════════════════════════════
+
+// math_gcd — Greatest common divisor of a and b.
+// Both a and b are treated as their absolute values.
+// math_gcd(0, 0) = 0 (by convention).
+pub func:math_gcd = int64(int64:a, int64:b) {
+    a = math_abs_i64(a);
+    b = math_abs_i64(b);
+    // Binary GCD (Stein's algorithm) — avoids division
+    if a == 0i64 { pass b; }
+    if b == 0i64 { pass a; }
+
+    // Factor out common powers of 2
+    int64:shift = math_ctz(a | b);
+    a = a >> math_ctz(a);  // make a odd
+
+    while true {
+        b = b >> math_ctz(b);  // make b odd
+        if a > b {
+            int64:tmp = a;
+            a = b;
+            b = tmp;
+        }
+        b = b - a;
+        if b == 0i64 { break; }
+    }
+
+    pass a << shift;
+}
+
+// math_lcm — Least common multiple: lcm(a, b) = |a * b| / gcd(a, b).
+// Returns 0 if either a or b is 0.
+// Saturates to INT64_MAX if the result would overflow.
+pub func:math_lcm = int64(int64:a, int64:b) {
+    if a == 0i64 || b == 0i64 { pass 0i64; }
+    int64:g = math_gcd(a, b);
+    int64:abs_a = math_abs_i64(a);
+    // Divide before multiply to avoid overflow: lcm = (a/gcd) * b
+    int64:div_a = abs_a / g;
+    pass math_sat_mul_i64(div_a, math_abs_i64(b));
+}

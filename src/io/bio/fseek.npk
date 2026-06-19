@@ -1,0 +1,211 @@
+// fseek.npk — fseek, ftell, rewind, fgetpos, fsetpos (v0.5.4)
+//
+// Stream position control.
+//
+// fseek:
+//   Moves the file position indicator for fp. Discards the ungetc pushback char.
+//   Clears the EOF flag (seeking to a valid position makes the stream readable again).
+//   If fp is in write mode, flushes the write buffer before seeking.
+//   If fp is in read mode, discards the unread bytes in the read buffer.
+//
+// ftell:
+//   Returns the current logical file position (bytes from start of file).
+//   Accounts for buffered but unread bytes (subtracts them from kernel position).
+//   Accounts for pending unget char.
+//
+// rewind:
+//   Equivalent to fseek(fp, 0, SEEK_SET) + clearerr(fp).
+//   Unlike fseek, rewind does not return an error value.
+//
+// fgetpos / fsetpos:
+//   POSIX variants that use an opaque fpos_t type. In libn at v0.5.4,
+//   fpos_t is just int64 (byte offset). Wide-character streams and locale-aware
+//   position state are deferred to v0.31.x.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/io/bio/file.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// fseek — Move the file position indicator.
+//
+// Parameters:
+//   fp:     FILE* (as int64)
+//   offset: signed byte offset (interpreted relative to whence)
+//   whence: SEEK_SET (from start), SEEK_CUR (from current), SEEK_END (from end)
+//
+// Returns 0 on success, -1 on error (errno set).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fseek = int64(int64:fp, int64:offset, int64:whence) {
+    if fp == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+    if whence < SEEK_SET || whence > SEEK_END {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    if f.fd < 0i64 {
+        errno_set(EBADF);
+        pass -1i64;
+    }
+
+    // Flush write buffer if dirty
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 && f.buf_pos > 0i64 {
+        Result<int64>:r = bio_flush_write_buf(fp);
+        if r.is_error {
+            errno_set(r.err as int64);
+            pass -1i64;
+        }
+    }
+
+    // For SEEK_CUR: adjust for unread buffered bytes to get the true logical offset
+    int64:real_offset = offset;
+    if whence == SEEK_CUR {
+        // The kernel's position is ahead by (buf_len - buf_pos) unread bytes
+        int64:buffered_ahead = f.buf_len - f.buf_pos;
+        if f.unget != FILE_UNGET_EMPTY {
+            buffered_ahead = buffered_ahead + 1i64;
+        }
+        real_offset = offset - buffered_ahead;
+    }
+
+    // Discard read buffer (kernel will be moved to new position)
+    f.buf_pos = 0i64;
+    f.buf_len = 0i64;
+
+    // Discard ungetc pushback (POSIX: fseek cancels ungetc)
+    f.unget = FILE_UNGET_EMPTY;
+
+    // Issue the actual lseek
+    Result<int64>:r = sys_safe(SYS_LSEEK, f.fd, real_offset, whence, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+
+    // Update logical file position
+    f.file_pos = r.value;
+
+    // Clear EOF flag — a successful seek makes the stream readable
+    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+    // Clear write-mode flag (position is now clean)
+    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ftell — Return the current file position as a byte offset from the start.
+//
+// Returns the position as int64 (>= 0), or -1 on error (errno set).
+//
+// Accounts for:
+//   - Buffered unread data (subtracts it from the kernel position)
+//   - Pending write buffer (adds buf_pos to kernel position)
+//   - Pushed-back unget char (subtracts 1 from position)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:ftell = int64(int64:fp) {
+    if fp == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    if f.fd < 0i64 {
+        errno_set(EBADF);
+        pass -1i64;
+    }
+
+    // Use the logical position we track — this avoids a syscall for the common case
+    // and is always accurate as long as our buffer tracking is correct.
+    int64:pos = f.file_pos;
+
+    // Unget char moves the position back by 1
+    if f.unget != FILE_UNGET_EMPTY {
+        pos = pos - 1i64;
+    }
+
+    if pos < 0i64 {
+        pos = 0i64;
+    }
+
+    pass pos;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// rewind — Seek to the beginning of the file and clear error/EOF flags.
+//
+// rewind() does not have a return value — it silently ignores seek errors
+// on non-seekable streams (POSIX). Use fseek() if you need error propagation.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:rewind = void(int64:fp) {
+    if fp == 0i64 { pass; }
+    *FILE:f = fp as *FILE;
+
+    // Flush write buffer
+    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 {
+        drop bio_flush_write_buf(fp);
+    }
+
+    // Discard read buffer and unget
+    f.buf_pos = 0i64;
+    f.buf_len = 0i64;
+    f.unget   = FILE_UNGET_EMPTY;
+
+    // Seek to start (ignore error)
+    drop sys_safe(SYS_LSEEK, f.fd, 0i64, SEEK_SET, 0i64, 0i64, 0i64);
+    f.file_pos = 0i64;
+
+    // Clear all error and EOF flags (this is what distinguishes rewind from fseek)
+    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR ^ FILE_FLAG_WRITE_MODE);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fgetpos — Store the current position in *pos.
+//
+// In libn at v0.5.4, fpos_t is simply int64 (a byte offset).
+// pos: pointer to int64 — receives the current position.
+//
+// Returns 0 on success, -1 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fgetpos = int64(int64:fp, int64:pos) {
+    if fp == 0i64 || pos == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    int64:p = ftell(fp);
+    if p < 0i64 {
+        pass -1i64;
+    }
+
+    (pos as *int64)[0] = p;
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fsetpos — Restore a position stored by fgetpos.
+//
+// pos: pointer to int64 holding the saved position.
+// Returns 0 on success, -1 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fsetpos = int64(int64:fp, int64:pos) {
+    if fp == 0i64 || pos == 0i64 {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    int64:target = (pos as *int64)[0];
+    pass fseek(fp, target, SEEK_SET);
+}

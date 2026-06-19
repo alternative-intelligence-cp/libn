@@ -1,0 +1,146 @@
+// fstr.npk — fgets, fputs, fgetln (v0.5.6)
+//
+// String-level I/O built on top of fgetc/fputc.
+//
+// fgets:
+//   Reads at most size-1 characters from fp into buf, stopping at '\n' (which IS
+//   stored in buf), EOF, or the buffer limit. Always NUL-terminates on success.
+//   Returns buf pointer (as int64) on success, or 0 (NULL) on EOF or error.
+//
+// fputs:
+//   Writes the NUL-terminated string s to fp (without the NUL terminator).
+//   Does NOT append a newline (unlike puts()).
+//   Returns a non-negative number on success, EOF on error.
+//
+// puts:
+//   Writes s to stdout followed by a newline '\n'. Equivalent to:
+//     fputs(s, stdout); fputc('\n', stdout);
+//   Returns non-negative on success, EOF on error.
+//
+// gets: INTENTIONALLY OMITTED — gets() is removed from C11 and is unsafe.
+//       Use fgets(buf, size, stdin) instead.
+
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fchar.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// fgets — Read a line from fp into buf.
+//
+// Reads at most (size - 1) characters. Stops at '\n' (inclusive) or EOF.
+// Always NUL-terminates the buffer if any characters were read.
+//
+// Returns buf (as int64) on success, or 0 on EOF (with no characters read)
+// or on error.
+//
+// Unlike io_read_line (which works on raw fds), fgets goes through the FILE
+// buffer and correctly handles unget chars and EOF state.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
+    if buf == 0i64 || size <= 0i64 || fp == 0i64 {
+        pass 0i64;
+    }
+    if size == 1i64 {
+        // Only room for the NUL terminator — store it and return buf
+        (buf as *byte)[0] = 0u8;
+        pass buf;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    // Already at EOF with nothing to give
+    if (f.flags & FILE_FLAG_EOF) != 0i64 && f.unget == FILE_UNGET_EMPTY {
+        pass 0i64;
+    }
+
+    *byte:dst = buf as *byte;
+    int64:max = size - 1i64;  // leave room for NUL
+    int64:count = 0i64;
+
+    while count < max {
+        int64:c = fgetc(fp);
+
+        if c == FILE_EOF {
+            // EOF or error
+            if count == 0i64 {
+                // Nothing read — return NULL per POSIX
+                pass 0i64;
+            }
+            break;
+        }
+
+        dst[count] = c as byte;
+        count = count + 1i64;
+
+        // Stop after newline (inclusive — newline IS stored in buf)
+        if c == 10i64 {  // '\n'
+            break;
+        }
+    }
+
+    dst[count] = 0u8;  // NUL terminate
+    pass buf;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fputs — Write a NUL-terminated string to fp (without NUL terminator).
+//
+// Returns a non-negative value on success (libn returns the byte count written),
+// or EOF on error.
+//
+// Does NOT append a newline. For newline-terminated output use puts() or
+// fputc('\n', fp) explicitly.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fputs = int64(int64:s, int64:fp) {
+    if s == 0i64 || fp == 0i64 {
+        pass FILE_EOF;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    if (f.mode & FILE_MODE_WRITE) == 0i64 {
+        f.flags = f.flags | FILE_FLAG_ERROR;
+        errno_set(EBADF);
+        pass FILE_EOF;
+    }
+
+    // Use fwrite for bulk efficiency — fputc would work but is slow for strings
+    int64:len = str_strlen(s);
+    if len == 0i64 {
+        pass 0i64;
+    }
+
+    // fwrite returns items written; for byte-items size=1, nmemb=len
+    // We use the internal path here to avoid re-importing fio.npk (circular dep)
+    // Instead: just write char by char for correctness at v0.5.6.
+    // The bulk fwrite path will be wired in bio.npk.
+    //
+    // TODO: replace with fwrite(s, 1, len, fp) once dependency ordering allows.
+    int64:i = 0i64;
+    *byte:p = s as *byte;
+    while i < len {
+        int64:c = fputc(p[i] as int64, fp);
+        if c == FILE_EOF {
+            pass FILE_EOF;
+        }
+        i = i + 1i64;
+    }
+
+    pass len;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// puts — Write string to stdout, followed by a newline.
+//
+// Equivalent to: fputs(s, stdout); fputc('\n', stdout);
+// Returns non-negative on success, EOF on error.
+//
+// The stdout reference is resolved by bio.npk which imports both this module
+// and stdfiles.npk.
+// ════════════════════════════════════════════════════════════════════════════
+
+// puts is defined in stdfiles.npk where stdout is available.
+// See that module and bio.npk.

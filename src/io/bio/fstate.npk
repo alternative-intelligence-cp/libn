@@ -1,0 +1,164 @@
+// fstate.npk — feof, ferror, clearerr, setvbuf, setbuf (v0.5.8 / v0.5.11)
+//
+// Stream state query and buffer configuration.
+//
+// feof(fp):    Returns non-zero if the end-of-file indicator is set.
+// ferror(fp):  Returns non-zero if the error indicator is set.
+// clearerr(fp): Clears both the EOF and error indicators.
+//
+// Note: feof() returns non-zero only AFTER a read attempt has encountered EOF.
+// It is NOT a look-ahead (unlike feof in some educational contexts). The correct
+// idiom is:
+//   while fgetc(fp) != FILE_EOF { ... }
+//   if ferror(fp) { /* error */ } else { /* normal EOF */ }
+//
+// setvbuf — set buffering mode and optionally supply a user buffer.
+// setbuf  — simplified interface (buf=NULL for unbuffered, else BUFSIZ-buffered).
+
+use "src/syscall/errno.npk".*;
+use "src/mem/slab.npk".*;
+use "src/io/bio/file.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// feof — Test the end-of-file indicator.
+//
+// Returns non-zero if FILE_FLAG_EOF is set, zero otherwise.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:feof = int64(int64:fp) {
+    if fp == 0i64 {
+        pass 0i64;
+    }
+    *FILE:f = fp as *FILE;
+    if (f.flags & FILE_FLAG_EOF) != 0i64 {
+        pass 1i64;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ferror — Test the error indicator.
+//
+// Returns non-zero if FILE_FLAG_ERROR is set, zero otherwise.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:ferror = int64(int64:fp) {
+    if fp == 0i64 {
+        pass 0i64;
+    }
+    *FILE:f = fp as *FILE;
+    if (f.flags & FILE_FLAG_ERROR) != 0i64 {
+        pass 1i64;
+    }
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// clearerr — Clear both the EOF and error indicators.
+//
+// After clearerr(), feof(fp) and ferror(fp) both return 0.
+// The next read or write operation will re-try from the current position.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:clearerr = void(int64:fp) {
+    if fp == 0i64 { pass; }
+    *FILE:f = fp as *FILE;
+    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// setvbuf — Set buffering mode and optionally supply a buffer.
+//
+// Must be called BEFORE any I/O on fp (typically right after fopen).
+// Calling setvbuf after I/O has occurred has undefined behavior per POSIX.
+//
+// Parameters:
+//   fp:      FILE* (as int64)
+//   buf:     user-supplied buffer pointer (as int64), or 0 to let libn allocate
+//   mode:    _IOFBF / _IOLBF / _IONBF
+//   size:    buffer size (ignored if mode == _IONBF or if buf != 0 and we don't own it)
+//
+// Returns 0 on success, non-zero on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
+    if fp == 0i64 {
+        pass -1i64;
+    }
+    if mode != _IOFBF && mode != _IOLBF && mode != _IONBF {
+        errno_set(EINVAL);
+        pass -1i64;
+    }
+
+    *FILE:f = fp as *FILE;
+
+    // Free any existing libn-owned buffer
+    if (f.flags & FILE_FLAG_BUF_OWN) != 0i64 && f.buf != 0i64 {
+        bio_free_buf(f.buf, f.buf_cap);
+        f.buf     = 0i64;
+        f.buf_cap = 0i64;
+        f.flags   = f.flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
+    }
+
+    f.buf_pos  = 0i64;
+    f.buf_len  = 0i64;
+    f.buf_mode = mode;
+
+    if mode == _IONBF {
+        // Unbuffered: no buffer needed
+        f.buf     = 0i64;
+        f.buf_cap = 0i64;
+        pass 0i64;
+    }
+
+    if buf != 0i64 {
+        // Caller supplies the buffer — libn does NOT own it (won't free on fclose)
+        int64:cap = size > 0i64 ? size : BUFSIZ;
+        f.buf     = buf;
+        f.buf_cap = cap;
+        // No FILE_FLAG_BUF_OWN — caller is responsible for the buffer lifetime
+    } else {
+        // Allocate a new buffer
+        int64:cap = size > 0i64 ? size : BUFSIZ;
+        int64:newbuf = bio_alloc_buf(cap);
+        if newbuf == 0i64 {
+            errno_set(ENOMEM);
+            pass -1i64;
+        }
+        f.buf     = newbuf;
+        f.buf_cap = cap;
+        f.flags   = f.flags | FILE_FLAG_BUF_OWN;
+    }
+
+    pass 0i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// setbuf — Simplified buffer configuration.
+//
+// setbuf(fp, buf):
+//   buf != 0: fully buffered with caller's buf (must be >= BUFSIZ bytes)
+//   buf == 0: unbuffered
+//
+// Equivalent to:
+//   buf ? setvbuf(fp, buf, _IOFBF, BUFSIZ) : setvbuf(fp, NULL, _IONBF, 0)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:setbuf = void(int64:fp, int64:buf) {
+    if buf != 0i64 {
+        drop setvbuf(fp, buf, _IOFBF, BUFSIZ);
+    } else {
+        drop setvbuf(fp, 0i64, _IONBF, 0i64);
+    }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// setlinebuf — Set stream to line-buffered mode (BSD extension).
+//
+// Equivalent to setvbuf(fp, NULL, _IOLBF, 0).
+// Commonly used on stdout when output is piped.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:setlinebuf = void(int64:fp) {
+    drop setvbuf(fp, 0i64, _IOLBF, 0i64);
+}

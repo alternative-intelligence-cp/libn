@@ -1,0 +1,178 @@
+// build.abc — libn build manifest
+// Pure Nitpick standard library — no C shims, no native FFI.
+//
+// Usage:
+//   abc build               — build library
+//   abc test                — build + run all unit tests
+//   abc test:unit           — run unit tests only
+//   abc test:integration    — run integration tests only
+//   abc bench               — run benchmarks
+
+project:libn = {
+    version: "0.11.0";
+    description: "Full glibc-parity C Standard Library in pure Nitpick";
+    license: "Apache-2.0 WITH Runtime-Library-Exception";
+
+    // ── Source modules (in dependency order) ─────────────────────────
+    sources: [
+        // v0.1.x: Syscall infrastructure
+        "src/syscall/syscall_numbers.npk",
+        "src/syscall/posix_constants.npk",
+        "src/syscall/errno.npk",
+        "src/syscall/syscall.npk",
+
+        // v0.2.x: Memory primitives
+        "src/mem/mmap.npk",
+        "src/mem/memset.npk",
+        "src/mem/memcpy.npk",
+        "src/mem/memutil.npk",
+        "src/mem/slab.npk",
+
+        // v0.3.x: String utilities
+        "src/str/strlen.npk",
+        "src/str/strcpy.npk",
+        "src/str/strcmp.npk",
+        "src/str/strlcpy.npk",
+        "src/str/strchr.npk",
+        "src/str/strtok.npk",
+        "src/str/strconv.npk",
+        "src/str/strfmt.npk",
+
+        // v0.7.x: Growable string buffer
+        "src/str/strbuf.npk",
+
+        // v0.9.x: Non-owning string view + iterator
+        "src/str/strview.npk",
+
+        // v0.10.x: Integer math utilities
+        "src/math/math.npk",
+
+        // v0.4.x: Low-level I/O
+        "src/io/write.npk",
+        "src/io/read.npk",
+        "src/io/printf.npk",
+        "src/io/open.npk",
+        "src/io/seek.npk",
+        "src/io/dup.npk",
+        "src/io/pipe.npk",
+        "src/io/fcntl.npk",
+
+        // v0.5.x: Buffered stdio
+        "src/io/bio/file.npk",
+        "src/io/bio/fopen.npk",
+        "src/io/bio/fio.npk",
+        "src/io/bio/fseek.npk",
+        "src/io/bio/fchar.npk",
+        "src/io/bio/fstr.npk",
+        "src/io/bio/fstate.npk",
+        "src/io/bio/stdfiles.npk",
+
+        // v0.6.x: Formatted I/O to streams + error strings
+        "src/io/bio/fprintf.npk",
+        "src/io/bio/strerror.npk",
+        "src/io/bio/fscanf.npk",
+
+        // v0.8.x: Temporary file creation
+        "src/io/bio/tmpfile.npk",
+
+        // v0.11.x: Process control
+        "src/proc/exit.npk",
+        "src/proc/fork.npk",
+        "src/proc/exec.npk",
+        "src/proc/wait.npk",
+        "src/proc/env.npk",
+        "src/proc/signal.npk",
+    ];
+
+    // ── Test targets ──────────────────────────────────────────────────
+    test:unit = {
+        sources: [
+            // v0.1.x tests (TODO: write these)
+            // "tests/unit/test_syscall.npk",
+            // "tests/unit/test_errno.npk",
+
+            // v0.2.x tests (TODO: write these)
+            // "tests/unit/test_mem_mmap.npk",
+            // "tests/unit/test_mem_memset.npk",
+            // "tests/unit/test_mem_memcpy.npk",
+            // "tests/unit/test_mem_memutil.npk",
+            // "tests/unit/test_mem_slab.npk",
+
+            // v0.3.x tests (TODO: write these)
+            // "tests/unit/test_str_strlen.npk",
+            // "tests/unit/test_str_strcpy.npk",
+            // "tests/unit/test_str_strcmp.npk",
+            // "tests/unit/test_str_strlcpy.npk",
+            // "tests/unit/test_str_strchr.npk",
+            // "tests/unit/test_str_strtok.npk",
+            // "tests/unit/test_str_strconv.npk",
+            // "tests/unit/test_str_strfmt.npk",
+
+            // v0.4.x tests (TODO: write these)
+            // "tests/unit/test_io_write.npk",
+            // "tests/unit/test_io_read.npk",
+            // "tests/unit/test_io_printf.npk",
+            // "tests/unit/test_io_open.npk",
+            // "tests/unit/test_io_seek.npk",
+            // "tests/unit/test_io_dup.npk",
+            // "tests/unit/test_io_pipe.npk",
+            // "tests/unit/test_io_fcntl.npk",
+
+            // v0.5.x tests (TODO: write these)
+            // "tests/unit/test_bio_fopen.npk",
+            // "tests/unit/test_bio_fio.npk",
+            // "tests/unit/test_bio_fseek.npk",
+            // "tests/unit/test_bio_fchar.npk",
+            // "tests/unit/test_bio_fstr.npk",
+            // "tests/unit/test_bio_fstate.npk",
+            // "tests/unit/test_bio_stdfiles.npk",
+
+            // v0.6.x tests (TODO: write these)
+            // "tests/unit/test_bio_fprintf.npk",
+            "tests/unit/test_bio_strerror.npk",
+            // "tests/unit/test_bio_fscanf.npk",
+
+            // v0.7.x tests (TODO: write these)
+            "tests/unit/test_str_strbuf.npk",
+
+            // v0.8.x tests (TODO: write these)
+            "tests/unit/test_bio_tmpfile.npk",
+            // "tests/unit/test_bio_mkstemp.npk",
+
+            // v0.9.x tests (TODO: write these)
+            "tests/unit/test_str_strview.npk",
+
+            // v0.10.x tests
+            "tests/unit/test_math.npk",
+
+            // v0.11.x tests (TODO: write these)
+            // "tests/unit/test_proc_exit.npk",
+            // "tests/unit/test_proc_fork_exec.npk",
+            // "tests/unit/test_proc_env.npk",
+            // "tests/unit/test_proc_signal.npk",
+        ];
+    };
+
+    // ── Future source groups (not yet implemented) ────────────────────
+    // v0.7.x–0.11.x test suite (partial):
+    //   tests/unit/test_str_strbuf.npk   ✔ written
+    //   tests/unit/test_bio_tmpfile.npk   ✔ written
+    //   tests/unit/test_str_strview.npk   ✔ written
+    //   tests/unit/test_math.npk          ✔ written
+    //   tests/unit/test_proc_exit.npk     ✕ TODO
+    //   tests/unit/test_proc_fork_exec.npk ✕ TODO
+    //   tests/unit/test_proc_env.npk      ✕ TODO
+    //   tests/unit/test_proc_signal.npk   ✕ TODO
+    //
+    // v0.12.x: C runtime bootstrap
+    //   src/proc/start.npk   — _start, argc/argv/envp, proc_env_init
+    //
+    // v0.13.x: Alarm and interval timers
+    //   src/proc/alarm.npk   — alarm, setitimer, getitimer
+    //
+    // v0.14.x: Threads
+    //   src/thread/thread.npk — clone-based pthread-compatible threads (_start, TLS init, atexit)
+    //   src/crt/start.npk
+    //   src/crt/atexit.npk
+    //   ...
+};

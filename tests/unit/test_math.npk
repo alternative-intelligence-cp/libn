@@ -1,0 +1,217 @@
+// test_math.npk — Unit tests for src/math/math.npk (v0.10.0)
+//
+// Coverage:
+//   math_abs_i64, math_min/max_i64/u64, math_clamp_i64, math_sign_i64
+//   math_sat_add/sub/mul_i64, math_sat_add/sub_u64
+//   math_div_ceil/floor/round_i64, math_mod_pos_i64
+//   math_align_up/down, math_is_aligned
+//   math_is_pow2, math_next_pow2, math_prev_pow2
+//   math_log2_floor, math_log2_ceil
+//   math_popcount, math_clz, math_ctz, math_parity
+//   math_reverse_bits, math_rol, math_ror
+//   math_isqrt, math_isqrt_ceil
+//   math_gcd, math_lcm
+
+use "tests/harness/test_harness.npk".*;
+use "src/math/math.npk".*;
+
+func:main = int32(int64:argc, int64:argv) {
+    t_begin("math.npk");
+
+    // ── Basic ────────────────────────────────────────────────────────────
+    t_section("math_abs_i64");
+    t_assert_eq_i64(math_abs_i64(0i64),         0i64,          "abs(0)=0");
+    t_assert_eq_i64(math_abs_i64(42i64),        42i64,         "abs(42)=42");
+    t_assert_eq_i64(math_abs_i64(-42i64),       42i64,         "abs(-42)=42");
+    t_assert_eq_i64(math_abs_i64(INT64_MAX),    INT64_MAX,     "abs(INT64_MAX)=INT64_MAX");
+    t_assert_eq_i64(math_abs_i64(INT64_MIN),    INT64_MAX,     "abs(INT64_MIN) saturates to INT64_MAX");
+
+    t_section("math_min/max_i64");
+    t_assert_eq_i64(math_min_i64(3i64, 5i64),   3i64,          "min(3,5)=3");
+    t_assert_eq_i64(math_min_i64(5i64, 3i64),   3i64,          "min(5,3)=3");
+    t_assert_eq_i64(math_min_i64(-1i64, 1i64),  -1i64,         "min(-1,1)=-1");
+    t_assert_eq_i64(math_min_i64(7i64, 7i64),   7i64,          "min(7,7)=7");
+    t_assert_eq_i64(math_max_i64(3i64, 5i64),   5i64,          "max(3,5)=5");
+    t_assert_eq_i64(math_max_i64(-1i64, -3i64), -1i64,         "max(-1,-3)=-1");
+
+    t_section("math_clamp_i64");
+    t_assert_eq_i64(math_clamp_i64(5i64,  0i64, 10i64), 5i64,  "clamp(5,0,10)=5");
+    t_assert_eq_i64(math_clamp_i64(-5i64, 0i64, 10i64), 0i64,  "clamp(-5,0,10)=0");
+    t_assert_eq_i64(math_clamp_i64(15i64, 0i64, 10i64), 10i64, "clamp(15,0,10)=10");
+    t_assert_eq_i64(math_clamp_i64(0i64,  0i64, 0i64),  0i64,  "clamp(0,0,0)=0");
+
+    t_section("math_sign_i64");
+    t_assert_eq_i64(math_sign_i64(100i64),  1i64,  "sign(100)=1");
+    t_assert_eq_i64(math_sign_i64(-100i64), -1i64, "sign(-100)=-1");
+    t_assert_eq_i64(math_sign_i64(0i64),    0i64,  "sign(0)=0");
+
+    // ── Saturating arithmetic ─────────────────────────────────────────────
+    t_section("math_sat_add_i64");
+    t_assert_eq_i64(math_sat_add_i64(100i64, 200i64),    300i64,    "sat_add(100,200)=300");
+    t_assert_eq_i64(math_sat_add_i64(INT64_MAX, 1i64),   INT64_MAX, "sat_add(MAX,1)=MAX");
+    t_assert_eq_i64(math_sat_add_i64(INT64_MIN, -1i64),  INT64_MIN, "sat_add(MIN,-1)=MIN");
+    t_assert_eq_i64(math_sat_add_i64(-5i64, 3i64),       -2i64,     "sat_add(-5,3)=-2");
+
+    t_section("math_sat_sub_i64");
+    t_assert_eq_i64(math_sat_sub_i64(10i64, 3i64),       7i64,      "sat_sub(10,3)=7");
+    t_assert_eq_i64(math_sat_sub_i64(INT64_MIN, 1i64),   INT64_MIN, "sat_sub(MIN,1)=MIN");
+    t_assert_eq_i64(math_sat_sub_i64(INT64_MAX, -1i64),  INT64_MAX, "sat_sub(MAX,-1)=MAX");
+
+    t_section("math_sat_mul_i64");
+    t_assert_eq_i64(math_sat_mul_i64(3i64, 4i64),        12i64,     "sat_mul(3,4)=12");
+    t_assert_eq_i64(math_sat_mul_i64(0i64, INT64_MAX),   0i64,      "sat_mul(0,MAX)=0");
+    t_assert_eq_i64(math_sat_mul_i64(INT64_MAX, 2i64),   INT64_MAX, "sat_mul(MAX,2) saturates");
+    t_assert_eq_i64(math_sat_mul_i64(INT64_MIN, 2i64),   INT64_MIN, "sat_mul(MIN,2) saturates");
+    t_assert_eq_i64(math_sat_mul_i64(-3i64, 4i64),       -12i64,    "sat_mul(-3,4)=-12");
+    t_assert_eq_i64(math_sat_mul_i64(-3i64, -4i64),      12i64,     "sat_mul(-3,-4)=12");
+
+    // ── Division ──────────────────────────────────────────────────────────
+    t_section("math_div_ceil_i64");
+    t_assert_eq_i64(math_div_ceil_i64(7i64, 2i64),   4i64,  "div_ceil(7,2)=4");
+    t_assert_eq_i64(math_div_ceil_i64(6i64, 2i64),   3i64,  "div_ceil(6,2)=3 (exact)");
+    t_assert_eq_i64(math_div_ceil_i64(-7i64, 2i64),  -3i64, "div_ceil(-7,2)=-3");
+    t_assert_eq_i64(math_div_ceil_i64(1i64, 8i64),   1i64,  "div_ceil(1,8)=1");
+
+    t_section("math_div_floor_i64");
+    t_assert_eq_i64(math_div_floor_i64(7i64, 2i64),   3i64,  "div_floor(7,2)=3");
+    t_assert_eq_i64(math_div_floor_i64(-7i64, 2i64),  -4i64, "div_floor(-7,2)=-4");
+    t_assert_eq_i64(math_div_floor_i64(6i64, 2i64),   3i64,  "div_floor(6,2)=3 (exact)");
+
+    t_section("math_mod_pos_i64");
+    t_assert_eq_i64(math_mod_pos_i64(7i64, 3i64),    1i64,  "mod_pos(7,3)=1");
+    t_assert_eq_i64(math_mod_pos_i64(-1i64, 3i64),   2i64,  "mod_pos(-1,3)=2");
+    t_assert_eq_i64(math_mod_pos_i64(-7i64, 3i64),   2i64,  "mod_pos(-7,3)=2");
+    t_assert_eq_i64(math_mod_pos_i64(6i64, 3i64),    0i64,  "mod_pos(6,3)=0");
+
+    // ── Alignment ─────────────────────────────────────────────────────────
+    t_section("math_align_up/down");
+    t_assert_eq_i64(math_align_up(0i64, 8i64),    0i64,  "align_up(0,8)=0");
+    t_assert_eq_i64(math_align_up(1i64, 8i64),    8i64,  "align_up(1,8)=8");
+    t_assert_eq_i64(math_align_up(8i64, 8i64),    8i64,  "align_up(8,8)=8");
+    t_assert_eq_i64(math_align_up(9i64, 8i64),    16i64, "align_up(9,8)=16");
+    t_assert_eq_i64(math_align_down(15i64, 8i64), 8i64,  "align_down(15,8)=8");
+    t_assert_eq_i64(math_align_down(8i64, 8i64),  8i64,  "align_down(8,8)=8");
+    t_assert(math_is_aligned(16i64, 8i64),                "is_aligned(16,8)");
+    t_assert(!math_is_aligned(15i64, 8i64),               "!is_aligned(15,8)");
+
+    // ── Power of two ──────────────────────────────────────────────────────
+    t_section("math_is_pow2");
+    t_assert(math_is_pow2(1i64),   "is_pow2(1)");
+    t_assert(math_is_pow2(2i64),   "is_pow2(2)");
+    t_assert(math_is_pow2(64i64),  "is_pow2(64)");
+    t_assert(!math_is_pow2(0i64),  "!is_pow2(0)");
+    t_assert(!math_is_pow2(3i64),  "!is_pow2(3)");
+    t_assert(!math_is_pow2(-1i64), "!is_pow2(-1)");
+
+    t_section("math_next_pow2");
+    t_assert_eq_i64(math_next_pow2(1i64),  1i64,  "next_pow2(1)=1");
+    t_assert_eq_i64(math_next_pow2(2i64),  2i64,  "next_pow2(2)=2");
+    t_assert_eq_i64(math_next_pow2(3i64),  4i64,  "next_pow2(3)=4");
+    t_assert_eq_i64(math_next_pow2(5i64),  8i64,  "next_pow2(5)=8");
+    t_assert_eq_i64(math_next_pow2(64i64), 64i64, "next_pow2(64)=64");
+    t_assert_eq_i64(math_next_pow2(65i64), 128i64,"next_pow2(65)=128");
+
+    t_section("math_prev_pow2");
+    t_assert_eq_i64(math_prev_pow2(1i64),  1i64, "prev_pow2(1)=1");
+    t_assert_eq_i64(math_prev_pow2(4i64),  4i64, "prev_pow2(4)=4");
+    t_assert_eq_i64(math_prev_pow2(5i64),  4i64, "prev_pow2(5)=4");
+    t_assert_eq_i64(math_prev_pow2(7i64),  4i64, "prev_pow2(7)=4");
+    t_assert_eq_i64(math_prev_pow2(8i64),  8i64, "prev_pow2(8)=8");
+
+    t_section("math_log2_floor/ceil");
+    t_assert_eq_i64(math_log2_floor(1i64),  0i64, "log2_floor(1)=0");
+    t_assert_eq_i64(math_log2_floor(2i64),  1i64, "log2_floor(2)=1");
+    t_assert_eq_i64(math_log2_floor(3i64),  1i64, "log2_floor(3)=1");
+    t_assert_eq_i64(math_log2_floor(4i64),  2i64, "log2_floor(4)=2");
+    t_assert_eq_i64(math_log2_floor(255i64),7i64, "log2_floor(255)=7");
+    t_assert_eq_i64(math_log2_floor(256i64),8i64, "log2_floor(256)=8");
+    t_assert_eq_i64(math_log2_ceil(1i64),   0i64, "log2_ceil(1)=0");
+    t_assert_eq_i64(math_log2_ceil(2i64),   1i64, "log2_ceil(2)=1");
+    t_assert_eq_i64(math_log2_ceil(3i64),   2i64, "log2_ceil(3)=2");
+    t_assert_eq_i64(math_log2_ceil(4i64),   2i64, "log2_ceil(4)=2");
+
+    // ── Bit operations ────────────────────────────────────────────────────
+    t_section("math_popcount");
+    t_assert_eq_i64(math_popcount(0i64),    0i64,  "popcount(0)=0");
+    t_assert_eq_i64(math_popcount(1i64),    1i64,  "popcount(1)=1");
+    t_assert_eq_i64(math_popcount(-1i64),   64i64, "popcount(all 1s)=64");
+    t_assert_eq_i64(math_popcount(255i64),  8i64,  "popcount(0xFF)=8");
+    t_assert_eq_i64(math_popcount(0x5555555555555555i64), 32i64, "popcount(0x5555...)=32");
+
+    t_section("math_clz");
+    t_assert_eq_i64(math_clz(0i64),          64i64, "clz(0)=64");
+    t_assert_eq_i64(math_clz(1i64),          63i64, "clz(1)=63");
+    t_assert_eq_i64(math_clz(2i64),          62i64, "clz(2)=62");
+    t_assert_eq_i64(math_clz(0x8000000000000000i64), 0i64,  "clz(high bit)=0");
+    t_assert_eq_i64(math_clz(256i64),        55i64, "clz(256)=55");
+
+    t_section("math_ctz");
+    t_assert_eq_i64(math_ctz(0i64),  64i64, "ctz(0)=64");
+    t_assert_eq_i64(math_ctz(1i64),  0i64,  "ctz(1)=0");
+    t_assert_eq_i64(math_ctz(2i64),  1i64,  "ctz(2)=1");
+    t_assert_eq_i64(math_ctz(12i64), 2i64,  "ctz(12)=2");
+    t_assert_eq_i64(math_ctz(256i64),8i64,  "ctz(256)=8");
+
+    t_section("math_parity");
+    t_assert_eq_i64(math_parity(0i64),   0i64, "parity(0)=0");
+    t_assert_eq_i64(math_parity(1i64),   1i64, "parity(1)=1");
+    t_assert_eq_i64(math_parity(3i64),   0i64, "parity(3)=0 (two 1s)");
+    t_assert_eq_i64(math_parity(7i64),   1i64, "parity(7)=1 (three 1s)");
+    t_assert_eq_i64(math_parity(-1i64),  0i64, "parity(all 1s)=0 (64 bits)");
+
+    t_section("math_rol / math_ror");
+    t_assert_eq_i64(math_rol(1i64, 1i64),  2i64,  "rol(1,1)=2");
+    t_assert_eq_i64(math_rol(1i64, 0i64),  1i64,  "rol(1,0)=1");
+    t_assert_eq_i64(math_ror(2i64, 1i64),  1i64,  "ror(2,1)=1");
+    // Rotating -1 (all bits set) should stay -1
+    t_assert_eq_i64(math_rol(-1i64, 32i64), -1i64, "rol(~0,32)=~0");
+    t_assert_eq_i64(math_ror(-1i64, 32i64), -1i64, "ror(~0,32)=~0");
+
+    t_section("math_reverse_bits");
+    t_assert_eq_i64(math_reverse_bits(0i64),         0i64,  "reverse(0)=0");
+    t_assert_eq_i64(math_reverse_bits(-1i64),        -1i64, "reverse(~0)=~0");
+    // bit 0 → bit 63: reverse(1) = 0x8000000000000000
+    t_assert_eq_i64(math_reverse_bits(1i64), 0x8000000000000000i64, "reverse(1)=high bit");
+    // Reversing twice is identity
+    t_assert_eq_i64(math_reverse_bits(math_reverse_bits(0x123456789ABCDEFi64)),
+                    0x123456789ABCDEFi64, "reverse(reverse(x))=x");
+
+    // ── Integer square root ───────────────────────────────────────────────
+    t_section("math_isqrt");
+    t_assert_eq_i64(math_isqrt(0i64),   0i64,  "isqrt(0)=0");
+    t_assert_eq_i64(math_isqrt(1i64),   1i64,  "isqrt(1)=1");
+    t_assert_eq_i64(math_isqrt(2i64),   1i64,  "isqrt(2)=1");
+    t_assert_eq_i64(math_isqrt(4i64),   2i64,  "isqrt(4)=2");
+    t_assert_eq_i64(math_isqrt(8i64),   2i64,  "isqrt(8)=2");
+    t_assert_eq_i64(math_isqrt(9i64),   3i64,  "isqrt(9)=3");
+    t_assert_eq_i64(math_isqrt(99i64),  9i64,  "isqrt(99)=9");
+    t_assert_eq_i64(math_isqrt(100i64), 10i64, "isqrt(100)=10");
+    t_assert_eq_i64(math_isqrt(1000000i64), 1000i64, "isqrt(10^6)=1000");
+
+    t_section("math_isqrt_ceil");
+    t_assert_eq_i64(math_isqrt_ceil(0i64),  0i64, "isqrt_ceil(0)=0");
+    t_assert_eq_i64(math_isqrt_ceil(1i64),  1i64, "isqrt_ceil(1)=1");
+    t_assert_eq_i64(math_isqrt_ceil(2i64),  2i64, "isqrt_ceil(2)=2");
+    t_assert_eq_i64(math_isqrt_ceil(4i64),  2i64, "isqrt_ceil(4)=2 (exact)");
+    t_assert_eq_i64(math_isqrt_ceil(5i64),  3i64, "isqrt_ceil(5)=3");
+    t_assert_eq_i64(math_isqrt_ceil(9i64),  3i64, "isqrt_ceil(9)=3 (exact)");
+    t_assert_eq_i64(math_isqrt_ceil(10i64), 4i64, "isqrt_ceil(10)=4");
+
+    // ── GCD / LCM ─────────────────────────────────────────────────────────
+    t_section("math_gcd");
+    t_assert_eq_i64(math_gcd(0i64, 0i64),    0i64,  "gcd(0,0)=0");
+    t_assert_eq_i64(math_gcd(12i64, 8i64),   4i64,  "gcd(12,8)=4");
+    t_assert_eq_i64(math_gcd(7i64, 3i64),    1i64,  "gcd(7,3)=1 (coprime)");
+    t_assert_eq_i64(math_gcd(100i64, 75i64), 25i64, "gcd(100,75)=25");
+    t_assert_eq_i64(math_gcd(-12i64, 8i64),  4i64,  "gcd(-12,8)=4 (abs)");
+    t_assert_eq_i64(math_gcd(0i64, 7i64),    7i64,  "gcd(0,7)=7");
+
+    t_section("math_lcm");
+    t_assert_eq_i64(math_lcm(0i64, 5i64),    0i64,  "lcm(0,5)=0");
+    t_assert_eq_i64(math_lcm(4i64, 6i64),    12i64, "lcm(4,6)=12");
+    t_assert_eq_i64(math_lcm(7i64, 3i64),    21i64, "lcm(7,3)=21");
+    t_assert_eq_i64(math_lcm(1i64, 1000i64), 1000i64, "lcm(1,1000)=1000");
+
+    t_end();
+    exit raw t_exit_code() as int32;
+}

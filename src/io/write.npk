@@ -1,0 +1,198 @@
+// write.npk — Raw fd-level write primitives (v0.4.1)
+//
+// These are the lowest-level write operations in libn. Everything higher
+// (printf, bio, logging) builds on these.
+//
+// Design:
+//   - All writes go through the kernel write(2) syscall directly.
+//   - No buffering at this layer — buffering lives in bio/ (v0.6.x).
+//   - Partial-write retry loop: POSIX allows write(2) to return fewer bytes
+//     than requested (EINTR, signal delivery, pipe limits). We retry until
+//     all bytes are written or a genuine error occurs.
+//   - EINTR is transparently retried.
+//   - Non-blocking fds: EAGAIN/EWOULDBLOCK returns the bytes-written-so-far
+//     count in an Err result so callers can drain and retry.
+//
+// Standard file descriptors:
+//   STDOUT_FD = 1
+//   STDERR_FD = 2
+//
+// All functions return Result<int64> where .value is bytes written.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/syscall.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Standard fd constants
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:STDIN_FD  = 0i64;
+pub fixed int64:STDOUT_FD = 1i64;
+pub fixed int64:STDERR_FD = 2i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_n — Write exactly n bytes from buf to fd, retrying on EINTR.
+//
+// This is the canonical low-level write. It loops until all n bytes are
+// sent or a genuine error (not EINTR) occurs.
+//
+// Parameters:
+//   fd:  file descriptor to write to
+//   buf: pointer to byte data
+//   n:   number of bytes to write
+//
+// Returns:
+//   Ok(n)        — all n bytes written successfully
+//   Err(EAGAIN)  — fd is non-blocking and would block; partial bytes written
+//                  are not tracked (caller must handle non-blocking separately)
+//   Err(e)       — write error
+//
+// For non-blocking fds, prefer io_write_nonblock which returns partial counts.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_n = Result<int64>(int64:fd, int64:buf, int64:n) {
+    if fd < 0i64 || buf == 0i64 || n < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if n == 0i64 {
+        pass 0i64;
+    }
+
+    int64:total = 0i64;
+
+    while total < n {
+        int64:remaining = n - total;
+        Result<int64>:r = sys_write(fd, buf + total, remaining);
+
+        if r.is_error {
+            int64:e = r.err as int64;
+            // EINTR: interrupted by signal — retry transparently
+            if e == EINTR {
+                continue;
+            }
+            // Any other error: return what we've written so far plus the error
+            fail r.err;
+        }
+
+        if r.value == 0i64 {
+            // Wrote 0 bytes without error — treat as pipe/fd closed
+            fail ERR_EOF as tbb8;
+        }
+
+        total = total + r.value;
+    }
+
+    pass total;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_nonblock — Write up to n bytes, returning actual bytes written.
+//
+// Unlike io_write_n, this does NOT retry on partial writes or EAGAIN.
+// It makes exactly one write(2) call and returns the result.
+// Used for non-blocking fds (sockets, pipes, ttys in non-blocking mode).
+//
+// Returns:
+//   Ok(k)         — k bytes were written (0 ≤ k ≤ n)
+//   Err(EAGAIN)   — fd would block, 0 bytes written
+//   Err(e)        — error
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_nonblock = Result<int64>(int64:fd, int64:buf, int64:n) {
+    if fd < 0i64 || buf == 0i64 || n < 0i64 {
+        fail ERR_BADARG as tbb8;
+    }
+    if n == 0i64 {
+        pass 0i64;
+    }
+
+    Result<int64>:r = sys_write(fd, buf, n);
+    if r.is_error {
+        fail r.err;
+    }
+    pass r.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_str — Write a NUL-terminated string to fd.
+//
+// Computes strlen internally. For cases where you already have the length,
+// use io_write_n directly to avoid the extra scan.
+//
+// Returns Ok(bytes_written) or Err.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_str = Result<int64>(int64:fd, int64:s) {
+    if s == 0i64 {
+        pass 0i64;
+    }
+
+    // Inline strlen to avoid circular dependency
+    *byte:p = s as *byte;
+    int64:len = 0i64;
+    while p[len] != 0u8 {
+        len = len + 1i64;
+    }
+
+    pass io_write_n(fd, s, len);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_char — Write a single byte to fd.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_char = Result<int64>(int64:fd, byte:c) {
+    stack byte:b[1];
+    b[0] = c;
+    pass io_write_n(fd, &b[0] as int64, 1i64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_cstr_n — Write exactly the first n bytes of a string (no strlen).
+//
+// For fixed-length fields where the NUL terminator must not be emitted.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_cstr_n = Result<int64>(int64:fd, int64:s, int64:n) {
+    pass io_write_n(fd, s, n);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_newline — Write a single LF to fd.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_newline = Result<int64>(int64:fd) {
+    pass io_write_char(fd, 10u8);  // '\n'
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// io_write_strln — Write a NUL-terminated string followed by LF.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_write_strln = Result<int64>(int64:fd, int64:s) {
+    Result<int64>:r = io_write_str(fd, s);
+    if r.is_error { pass r; }
+    Result<int64>:r2 = io_write_newline(fd);
+    if r2.is_error { pass r2; }
+    pass r.value + 1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Convenience: stdout / stderr shorthands
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:io_print = Result<int64>(int64:s) {
+    pass io_write_str(STDOUT_FD, s);
+}
+
+pub func:io_println = Result<int64>(int64:s) {
+    pass io_write_strln(STDOUT_FD, s);
+}
+
+pub func:io_eprint = Result<int64>(int64:s) {
+    pass io_write_str(STDERR_FD, s);
+}
+
+pub func:io_eprintln = Result<int64>(int64:s) {
+    pass io_write_strln(STDERR_FD, s);
+}

@@ -1,0 +1,634 @@
+// fscanf.npk — fscanf, sscanf, scanf input parsing engine (v0.6.2)
+//
+// Provides formatted input scanning: reading from a FILE* stream or a string
+// and parsing values according to a format string.
+//
+// ── Supported conversions ──────────────────────────────────────────────────
+//
+//   %d / %i    — signed decimal integer → int64* output
+//   %u         — unsigned decimal integer → int64* (stored as unsigned bits)
+//   %o         — unsigned octal integer → int64*
+//   %x / %X   — unsigned hex integer → int64*
+//   %s         — whitespace-delimited string → byte* output (NUL-terminated)
+//   %c         — single character (no whitespace skip) → byte* output
+//   %n         — store count of bytes consumed so far → int64* output
+//   %%         — literal '%' (no conversion)
+//
+//   Width modifier: %5d, %10s — limit input field to N characters.
+//   * suppressor: %*d — parse but discard (don't store).
+//
+// ── NOT supported at v0.6.2 ───────────────────────────────────────────────
+//   %f, %e, %g  — floating point (no FP in libn through v1.x)
+//   %p          — pointer (use %x/%lx for now)
+//   %[...]      — character sets / scansets
+//   %l, %h, %hh, %ll — length modifiers (all outputs are int64* at v0.6.2)
+//
+// ── Return value ──────────────────────────────────────────────────────────
+//   Returns the number of items successfully matched and stored.
+//   Returns 0 if no items were matched before the first mismatch.
+//   Returns FILE_EOF (-1) if end-of-file was reached before any conversion.
+//
+// ── Architecture ──────────────────────────────────────────────────────────
+//   The core is bio_scan_engine(), which works on a generic "source" abstraction:
+//   either a FILE* stream (via fgetc) or a string (via pointer + index).
+//   This avoids duplicating the parsing logic for fscanf vs sscanf.
+//
+//   fscanfN(fp, fmt, ...) — calls bio_scan_engine with FILE* source
+//   sscanfN(str, fmt, ...) — calls bio_scan_engine with string source
+//   scanfN(fmt, ...)  — calls fscanfN(stdin_fp, ...)
+//
+//   The source state is a 3-element int64 array:
+//     src[0] = source type: 0=FILE*, 1=string
+//     src[1] = FILE* pointer OR string pointer
+//     src[2] = current position (for strings) OR unused for FILE*
+//
+// ── Arity wrappers ────────────────────────────────────────────────────────
+//   Like printf, fscanf uses explicit-arity wrappers (0..8 output pointers).
+//   fscanf0..8, sscanf0..8, scanf0..8
+
+use "src/syscall/errno.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fchar.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Source abstraction — uniform read interface for FILE* and string sources
+// ════════════════════════════════════════════════════════════════════════════
+
+// Source type constants
+fixed int64:SCAN_SRC_FILE   = 0i64;   // src[1] = FILE*, src[2] = unused
+fixed int64:SCAN_SRC_STRING = 1i64;   // src[1] = string pointer, src[2] = index
+
+// bio_scan_getc — Read one character from the source. Returns -1 on EOF.
+func:bio_scan_getc = int64(int64:src) {
+    *int64:s = src as *int64;
+    if s[0] == SCAN_SRC_FILE {
+        pass fgetc(s[1]);
+    } else {
+        // String source
+        *byte:str = s[1] as *byte;
+        byte:c = str[s[2]];
+        if c == 0u8 {
+            pass -1i64;  // EOF = end of string
+        }
+        s[2] = s[2] + 1i64;
+        pass c as int64;
+    }
+}
+
+// bio_scan_ungetc — Push a character back into the source.
+func:bio_scan_ungetc = void(int64:c, int64:src) {
+    if c < 0i64 { pass; }  // don't push back EOF
+    *int64:s = src as *int64;
+    if s[0] == SCAN_SRC_FILE {
+        drop ungetc(c, s[1]);
+    } else {
+        if s[2] > 0i64 {
+            s[2] = s[2] - 1i64;
+        }
+    }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Parsing helpers
+// ════════════════════════════════════════════════════════════════════════════
+
+// bio_scan_skip_ws — Skip whitespace from source. Returns the first
+// non-whitespace character (without consuming it), or -1 on EOF.
+func:bio_scan_skip_ws = int64(int64:src) {
+    while true {
+        int64:c = bio_scan_getc(src);
+        if c < 0i64 { pass -1i64; }
+        // whitespace: space(32), tab(9), newline(10), CR(13), FF(12), VT(11)
+        if c != 32i64 && c != 9i64 && c != 10i64 &&
+           c != 13i64 && c != 12i64 && c != 11i64 {
+            bio_scan_ungetc(c, src);
+            pass c;
+        }
+    }
+    pass -1i64;  // unreachable
+}
+
+// bio_scan_int — Parse a signed decimal/octal/hex integer from source.
+// base: 10 (decimal), 8 (octal), 16 (hex), 0 (auto-detect 0x/0)
+// width: max characters to consume (0 = unlimited)
+// out:   int64* to store the result
+// consumed: pointer to int64 to accumulate bytes read
+// Returns 1 if a number was parsed, 0 otherwise.
+func:bio_scan_int = int64(int64:src, int64:base, int64:width,
+                           int64:out, int64:consumed) {
+    int64:c = bio_scan_getc(src);
+    if c < 0i64 { pass 0i64; }
+
+    bool:negative = false;
+    int64:chars = 0i64;
+    int64:max = width > 0i64 ? width : 0x7FFFFFFFFFFFFFFFi64;
+
+    // Optional sign
+    if c == 45i64 && chars < max {  // '-'
+        negative = true;
+        chars = chars + 1i64;
+        c = bio_scan_getc(src);
+    } else if c == 43i64 && chars < max {  // '+'
+        chars = chars + 1i64;
+        c = bio_scan_getc(src);
+    }
+
+    // Auto-detect base if base == 0
+    if base == 0i64 {
+        if c == 48i64 && chars < max {  // '0'
+            chars = chars + 1i64;
+            int64:next = bio_scan_getc(src);
+            if (next == 120i64 || next == 88i64) && chars < max {  // 'x' or 'X'
+                chars = chars + 1i64;
+                base = 16i64;
+                c = bio_scan_getc(src);
+            } else {
+                bio_scan_ungetc(next, src);
+                base = 8i64;
+                // c is already '0', will contribute 0 to result
+            }
+        } else {
+            base = 10i64;
+        }
+    }
+
+    // Require at least one digit
+    if c < 0i64 {
+        pass 0i64;
+    }
+
+    int64:value = 0i64;
+    bool:got_digit = false;
+
+    while chars < max && c >= 0i64 {
+        int64:digit = -1i64;
+
+        if c >= 48i64 && c <= 57i64 {   // '0'..'9'
+            digit = c - 48i64;
+        } else if base == 16i64 {
+            if c >= 65i64 && c <= 70i64 {  // 'A'..'F'
+                digit = c - 55i64;
+            } else if c >= 97i64 && c <= 102i64 {  // 'a'..'f'
+                digit = c - 87i64;
+            }
+        }
+
+        if digit < 0i64 || digit >= base {
+            bio_scan_ungetc(c, src);
+            break;
+        }
+
+        value = value * base + digit;
+        got_digit = true;
+        chars = chars + 1i64;
+        c = bio_scan_getc(src);
+    }
+
+    if !got_digit {
+        // Undo sign character if no digits followed
+        pass 0i64;
+    }
+
+    if c >= 0i64 {
+        bio_scan_ungetc(c, src);
+    }
+
+    if negative { value = 0i64 - value; }
+
+    if out != 0i64 {
+        (out as *int64)[0] = value;
+    }
+
+    if consumed != 0i64 {
+        (consumed as *int64)[0] = (consumed as *int64)[0] + chars;
+    }
+
+    pass 1i64;
+}
+
+// bio_scan_str — Parse a whitespace-delimited string from source into buf.
+// width: max characters (0 = unlimited, but ALWAYS NUL-terminates)
+// Returns 1 on success, 0 on EOF before any character.
+func:bio_scan_str = int64(int64:src, int64:width, int64:buf, int64:consumed) {
+    int64:c = bio_scan_skip_ws(src);
+    if c < 0i64 { pass 0i64; }
+
+    int64:max = width > 0i64 ? width : 0x7FFFFFFFFFFFFFFFi64;
+    int64:count = 0i64;
+
+    while count < max {
+        c = bio_scan_getc(src);
+        if c < 0i64 { break; }
+        // Stop at whitespace
+        if c == 32i64 || c == 9i64 || c == 10i64 ||
+           c == 13i64 || c == 12i64 || c == 11i64 {
+            bio_scan_ungetc(c, src);
+            break;
+        }
+        if buf != 0i64 {
+            (buf as *byte)[count] = c as byte;
+        }
+        count = count + 1i64;
+    }
+
+    if count == 0i64 { pass 0i64; }
+    if buf != 0i64 { (buf as *byte)[count] = 0u8; }
+
+    if consumed != 0i64 {
+        (consumed as *int64)[0] = (consumed as *int64)[0] + count;
+    }
+    pass 1i64;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// bio_scan_engine — Core scanner: process a format string against a source.
+//
+// args: pointer to int64 array of output pointer arguments
+// nargs: number of elements in args
+//
+// Returns number of items matched (stored), or FILE_EOF if first char is EOF.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
+    *byte:f      = fmt as *byte;
+    *int64:argv  = args as *int64;
+    int64:fi     = 0i64;    // format string index
+    int64:ai     = 0i64;    // argument index
+    int64:matched = 0i64;   // items successfully stored
+    int64:consumed = 0i64;  // total bytes consumed from source
+    bool:first   = true;    // for EOF-before-any-conversion detection
+
+    while f[fi] != 0u8 {
+        byte:ch = f[fi];
+        fi = fi + 1i64;
+
+        if ch != 37u8 {  // not '%' — literal character match
+            // Whitespace in format matches zero or more whitespace in input
+            if ch == 32u8 || ch == 9u8 || ch == 10u8 {
+                int64:c = bio_scan_skip_ws(src);
+                // Don't fail on EOF here — whitespace is optional
+                if c >= 0i64 {
+                    first = false;
+                }
+            } else {
+                // Literal: must match exactly
+                int64:c = bio_scan_getc(src);
+                if c < 0i64 {
+                    if first { pass FILE_EOF; }
+                    pass matched;
+                }
+                first = false;
+                if c != ch as int64 {
+                    bio_scan_ungetc(c, src);
+                    pass matched;  // mismatch
+                }
+                consumed = consumed + 1i64;
+            }
+            continue;
+        }
+
+        // '%' — parse conversion specifier
+        // Check for '*' suppressor
+        bool:suppress = false;
+        if f[fi] == 42u8 {  // '*'
+            suppress = true;
+            fi = fi + 1i64;
+        }
+
+        // Parse optional width
+        int64:width = 0i64;
+        while f[fi] >= 48u8 && f[fi] <= 57u8 {  // '0'..'9'
+            width = width * 10i64 + (f[fi] as int64 - 48i64);
+            fi = fi + 1i64;
+        }
+
+        // Skip length modifiers (l, h, hh, ll, z, j, t) — all use int64 anyway
+        if f[fi] == 108u8 || f[fi] == 104u8 || f[fi] == 122u8 ||
+           f[fi] == 106u8 || f[fi] == 116u8 {
+            fi = fi + 1i64;
+            if f[fi] == 108u8 || f[fi] == 104u8 {  // ll / hh
+                fi = fi + 1i64;
+            }
+        }
+
+        byte:spec = f[fi];
+        fi = fi + 1i64;
+
+        // Get the output pointer (or 0 if suppressing)
+        int64:out = 0i64;
+        if !suppress && ai < nargs {
+            out = argv[ai];
+            ai = ai + 1i64;
+        } else if !suppress {
+            // Ran out of arguments — stop
+            pass matched;
+        }
+
+        if spec == 37u8 {  // '%%' — literal percent
+            int64:c = bio_scan_getc(src);
+            if c < 0i64 { if first { pass FILE_EOF; } pass matched; }
+            first = false;
+            if c != 37i64 {
+                bio_scan_ungetc(c, src);
+                pass matched;
+            }
+            consumed = consumed + 1i64;
+            // No assignment for %%
+            if !suppress { ai = ai - 1i64; }  // undo arg advance
+            continue;
+        }
+
+        if spec == 110u8 {  // '%n' — store consumed count
+            if out != 0i64 {
+                (out as *int64)[0] = consumed;
+            }
+            // %n does NOT increment matched count (POSIX)
+            continue;
+        }
+
+        if spec == 99u8 {  // '%c' — single character, no whitespace skip
+            int64:c = bio_scan_getc(src);
+            if c < 0i64 { if first { pass FILE_EOF; } pass matched; }
+            first = false;
+            consumed = consumed + 1i64;
+            if out != 0i64 {
+                (out as *byte)[0] = c as byte;
+            }
+            matched = matched + 1i64;
+            continue;
+        }
+
+        if spec == 115u8 {  // '%s' — whitespace-delimited string
+            int64:c = bio_scan_skip_ws(src);
+            if c < 0i64 { if first { pass FILE_EOF; } pass matched; }
+            first = false;
+            int64:r = bio_scan_str(src, width, out, &consumed);
+            if r == 0i64 { pass matched; }
+            matched = matched + 1i64;
+            continue;
+        }
+
+        // Integer conversions — all skip leading whitespace
+        int64:c = bio_scan_skip_ws(src);
+        if c < 0i64 { if first { pass FILE_EOF; } pass matched; }
+        first = false;
+
+        int64:base = 10i64;
+        if spec == 100u8 || spec == 105u8 {  // %d, %i
+            base = (spec == 105u8) ? 0i64 : 10i64;  // %i auto-detects base
+        } else if spec == 117u8 {  // %u
+            base = 10i64;
+        } else if spec == 111u8 {  // %o
+            base = 8i64;
+        } else if spec == 120u8 || spec == 88u8 {  // %x, %X
+            base = 16i64;
+        } else {
+            // Unknown specifier — skip
+            continue;
+        }
+
+        int64:r = bio_scan_int(src, base, width, out, &consumed);
+        if r == 0i64 { pass matched; }
+        matched = matched + 1i64;
+    }
+
+    pass matched;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// fscanf — Read from FILE* stream, parse according to format.
+// Returns number of items matched, or FILE_EOF.
+// ════════════════════════════════════════════════════════════════════════════
+
+// Source setup helpers (inline via stack-allocated src array)
+// Each fscanfN allocates a 3-element int64 src array.
+
+pub func:fscanf0 = int64(int64:fp, int64:fmt) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, 0i64, 0i64);
+}
+
+pub func:fscanf1 = int64(int64:fp, int64:fmt, int64:a0) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[1];
+    argv[0] = a0;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 1i64);
+}
+
+pub func:fscanf2 = int64(int64:fp, int64:fmt, int64:a0, int64:a1) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[2];
+    argv[0] = a0; argv[1] = a1;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 2i64);
+}
+
+pub func:fscanf3 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[3];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 3i64);
+}
+
+pub func:fscanf4 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[4];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 4i64);
+}
+
+pub func:fscanf5 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[5];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = a4;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 5i64);
+}
+
+pub func:fscanf6 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[6];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 6i64);
+}
+
+pub func:fscanf7 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[7];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 7i64);
+}
+
+pub func:fscanf8 = int64(int64:fp, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6, int64:a7) {
+    bio_ensure_std_init();
+    stack int64:src[3];
+    stack int64:argv[8];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7;
+    src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 8i64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// sscanf — Parse from a NUL-terminated string instead of a FILE* stream.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:sscanf0 = int64(int64:str, int64:fmt) {
+    stack int64:src[3];
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, 0i64, 0i64);
+}
+
+pub func:sscanf1 = int64(int64:str, int64:fmt, int64:a0) {
+    stack int64:src[3];
+    stack int64:argv[1];
+    argv[0] = a0;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 1i64);
+}
+
+pub func:sscanf2 = int64(int64:str, int64:fmt, int64:a0, int64:a1) {
+    stack int64:src[3];
+    stack int64:argv[2];
+    argv[0] = a0; argv[1] = a1;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 2i64);
+}
+
+pub func:sscanf3 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2) {
+    stack int64:src[3];
+    stack int64:argv[3];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 3i64);
+}
+
+pub func:sscanf4 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3) {
+    stack int64:src[3];
+    stack int64:argv[4];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 4i64);
+}
+
+pub func:sscanf5 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    stack int64:src[3];
+    stack int64:argv[5];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = a4;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 5i64);
+}
+
+pub func:sscanf6 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5) {
+    stack int64:src[3];
+    stack int64:argv[6];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 6i64);
+}
+
+pub func:sscanf7 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6) {
+    stack int64:src[3];
+    stack int64:argv[7];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 7i64);
+}
+
+pub func:sscanf8 = int64(int64:str, int64:fmt,
+                          int64:a0, int64:a1, int64:a2, int64:a3,
+                          int64:a4, int64:a5, int64:a6, int64:a7) {
+    stack int64:src[3];
+    stack int64:argv[8];
+    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+    argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7;
+    src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
+    pass bio_scan_engine(&src[0] as int64, fmt, &argv[0] as int64, 8i64);
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// scanf — Read from stdin.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:scanf0 = int64(int64:fmt) {
+    bio_ensure_std_init();
+    pass fscanf0(stdin_fp, fmt);
+}
+
+pub func:scanf1 = int64(int64:fmt, int64:a0) {
+    bio_ensure_std_init();
+    pass fscanf1(stdin_fp, fmt, a0);
+}
+
+pub func:scanf2 = int64(int64:fmt, int64:a0, int64:a1) {
+    bio_ensure_std_init();
+    pass fscanf2(stdin_fp, fmt, a0, a1);
+}
+
+pub func:scanf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
+    bio_ensure_std_init();
+    pass fscanf3(stdin_fp, fmt, a0, a1, a2);
+}
+
+pub func:scanf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+    bio_ensure_std_init();
+    pass fscanf4(stdin_fp, fmt, a0, a1, a2, a3);
+}
+
+pub func:scanf5 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+    bio_ensure_std_init();
+    pass fscanf5(stdin_fp, fmt, a0, a1, a2, a3, a4);
+}
+
+pub func:scanf6 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
+                         int64:a4, int64:a5) {
+    bio_ensure_std_init();
+    pass fscanf6(stdin_fp, fmt, a0, a1, a2, a3, a4, a5);
+}
+
+pub func:scanf7 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
+                         int64:a4, int64:a5, int64:a6) {
+    bio_ensure_std_init();
+    pass fscanf7(stdin_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
+}
+
+pub func:scanf8 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
+                         int64:a4, int64:a5, int64:a6, int64:a7) {
+    bio_ensure_std_init();
+    pass fscanf8(stdin_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+}

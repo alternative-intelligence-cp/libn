@@ -1,0 +1,115 @@
+// test_bio_strerror.npk — Unit tests for src/io/bio/strerror.npk (v0.6.1)
+//
+// Coverage:
+//   strerror: known errno values → non-null, non-empty strings
+//   strerror: unknown errno → fallback string containing the number
+//   strerror_r: writes into caller buffer, returns correct length
+//   perror: just smoke-tests (writes to stderr — we verify no crash)
+
+use "tests/harness/test_harness.npk".*;
+use "src/io/bio/strerror.npk".*;
+use "src/syscall/errno.npk".*;
+use "src/str/strlen.npk".*;
+use "src/mem/memutil.npk".*;
+
+func:main = int32(int64:argc, int64:argv) {
+    t_begin("strerror.npk");
+
+    // ── strerror: known values ────────────────────────────────────────────
+    t_section("strerror known errno values");
+
+    int64:s_eperm = strerror(EPERM as int64);
+    t_assert(s_eperm != 0i64, "strerror(EPERM) non-null");
+    t_assert(str_strlen(s_eperm) > 0i64, "strerror(EPERM) non-empty");
+
+    int64:s_enoent = strerror(ENOENT as int64);
+    t_assert(s_enoent != 0i64, "strerror(ENOENT) non-null");
+    t_assert(str_strlen(s_enoent) > 0i64, "strerror(ENOENT) non-empty");
+
+    int64:s_einval = strerror(EINVAL as int64);
+    t_assert(s_einval != 0i64, "strerror(EINVAL) non-null");
+    t_assert(str_strlen(s_einval) > 0i64, "strerror(EINVAL) non-empty");
+
+    int64:s_enomem = strerror(ENOMEM as int64);
+    t_assert(s_enomem != 0i64, "strerror(ENOMEM) non-null");
+    t_assert(str_strlen(s_enomem) > 0i64, "strerror(ENOMEM) non-empty");
+
+    int64:s_eagain = strerror(EAGAIN as int64);
+    t_assert(s_eagain != 0i64, "strerror(EAGAIN) non-null");
+
+    int64:s_eacces = strerror(EACCES as int64);
+    t_assert(s_eacces != 0i64, "strerror(EACCES) non-null");
+
+    int64:s_eio = strerror(EIO as int64);
+    t_assert(s_eio != 0i64, "strerror(EIO) non-null");
+
+    int64:s_ebadf = strerror(EBADF as int64);
+    t_assert(s_ebadf != 0i64, "strerror(EBADF) non-null");
+
+    int64:s_eexist = strerror(EEXIST as int64);
+    t_assert(s_eexist != 0i64, "strerror(EEXIST) non-null");
+
+    int64:s_enotsup = strerror(ENOTSUP as int64);
+    t_assert(s_enotsup != 0i64, "strerror(ENOTSUP) non-null");
+
+    // Different errno values must give different strings
+    t_assert(!mem_equal(s_eperm, s_enoent, str_strlen(s_eperm)),
+             "strerror(EPERM) != strerror(ENOENT)");
+    t_assert(!mem_equal(s_einval, s_enomem, str_strlen(s_einval)),
+             "strerror(EINVAL) != strerror(ENOMEM)");
+
+    // ── strerror: errno 0 ────────────────────────────────────────────────
+    t_section("strerror(0)");
+    int64:s0 = strerror(0i64);
+    t_assert(s0 != 0i64, "strerror(0) non-null");
+    t_assert(str_strlen(s0) > 0i64, "strerror(0) non-empty");
+
+    // ── strerror: unknown / large errno → fallback string ─────────────────
+    t_section("strerror unknown errno");
+    int64:s_big = strerror(9999i64);
+    t_assert(s_big != 0i64, "strerror(9999) non-null");
+    t_assert(str_strlen(s_big) > 0i64, "strerror(9999) non-empty (fallback)");
+
+    int64:s_neg = strerror(-1i64);
+    t_assert(s_neg != 0i64, "strerror(-1) non-null");
+
+    // ── strerror_r ───────────────────────────────────────────────────────
+    t_section("strerror_r");
+
+    stack byte:buf[128];
+    int64:n = strerror_r(EINVAL as int64, &buf[0] as int64, 128i64);
+    t_assert(n > 0i64, "strerror_r(EINVAL) returns positive length");
+    t_assert(buf[n] == 0u8, "strerror_r NUL-terminates");
+
+    // strerror and strerror_r should agree on content
+    int64:s_einval2 = strerror(EINVAL as int64);
+    t_assert(mem_equal(&buf[0] as int64, s_einval2, n as int64),
+             "strerror_r matches strerror for same errno");
+
+    // Truncation: buf smaller than message
+    stack byte:small[4];
+    int64:sn = strerror_r(ENOENT as int64, &small[0] as int64, 4i64);
+    t_assert_eq_i64(sn, 3i64, "strerror_r truncated to 3 bytes");
+    t_assert(small[3] == 0u8, "truncated strerror_r NUL at end");
+
+    // Zero-length buf → returns 0 and doesn't write
+    stack byte:zero_buf[1];
+    zero_buf[0] = 88u8;  // sentinel
+    int64:zn = strerror_r(EPERM as int64, &zero_buf[0] as int64, 1i64);
+    t_assert_eq_i64(zn, 0i64, "strerror_r with buflen=1 returns 0");
+    t_assert(zero_buf[0] == 0u8, "strerror_r writes NUL with buflen=1");
+
+    // ── perror smoke test ─────────────────────────────────────────────────
+    // We can't easily verify stderr output, but we verify it doesn't crash.
+    t_section("perror smoke test");
+    errno_set(EINVAL);
+    perror("test_strerror prefix" as int64);  // writes to stderr
+    t_assert(true, "perror(EINVAL) did not crash");
+
+    errno_set(0);
+    perror(0i64);  // null prefix
+    t_assert(true, "perror(0, null prefix) did not crash");
+
+    t_end();
+    exit raw t_exit_code() as int32;
+}

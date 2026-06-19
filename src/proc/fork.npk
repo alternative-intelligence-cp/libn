@@ -1,0 +1,165 @@
+// fork.npk — fork, vfork, getpid, getppid, process groups, sessions (v0.11.1)
+//
+// ── fork() rules for safe child processes ────────────────────────────────
+//
+// After fork(), the child has a COPY of the parent's memory but shares
+// nothing with it. Critical rules:
+//
+//   1. Call _exit() (not exit()) in the child after exec failure.
+//      exit() would flush the parent's stdio buffers — double-flush.
+//
+//   2. Do NOT use the parent's heap in the child (allocator state is copied
+//      but not safe to share — mutex state, etc.).
+//
+//   3. Signal handlers, file descriptors, and memory mappings are inherited.
+//      File descriptor flags (O_CLOEXEC) control what survives exec.
+//
+//   4. fork() in a multi-threaded program creates a child with only ONE
+//      thread — the caller's thread. This is a common source of deadlocks
+//      (mutexes locked by other threads in the parent are still locked).
+//      libn is currently single-threaded so this does not apply yet.
+//
+// ── Return values ─────────────────────────────────────────────────────────
+//   fork()  returns child PID to parent, 0 to child, -1 on error.
+//
+// ── vfork() ───────────────────────────────────────────────────────────────
+//   vfork() shares the parent's address space with the child until the
+//   child calls exec() or _exit(). The parent is SUSPENDED until then.
+//   Only safe operations in the child after vfork: execve, _exit.
+//   All other use is undefined behavior.
+
+use "src/syscall/syscall.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+use "src/syscall/errno.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// fork — Create a child process by duplicating the calling process.
+//
+// Returns:
+//   > 0  — in parent: the child's PID
+//   = 0  — in child
+//   = -1 — error (errno set); common: EAGAIN (process limit), ENOMEM
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:fork = int64() {
+    Result<int64>:r = sys!!(SYS_FORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// vfork — Create child sharing parent's address space (exec-or-exit only).
+//
+// After vfork(), the child MUST call execve() or _exit() before the parent
+// resumes. Writing to any parent variables from the child is undefined.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:vfork = int64() {
+    Result<int64>:r = sys!!(SYS_VFORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Process identity
+// ════════════════════════════════════════════════════════════════════════════
+
+// getpid — Return the process ID of the calling process.
+pub func:getpid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// getppid — Return the parent's process ID.
+pub func:getppid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETPPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// getuid — Return real user ID.
+pub func:getuid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// geteuid — Return effective user ID.
+pub func:geteuid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETEUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// getgid — Return real group ID.
+pub func:getgid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// getegid — Return effective group ID.
+pub func:getegid = int64() {
+    Result<int64>:r = sys_safe(SYS_GETEGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error { pass -1i64; }
+    pass r.value;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// Process groups and sessions
+// ════════════════════════════════════════════════════════════════════════════
+
+// setpgid — Set the process group ID of pid to pgid.
+// If pid == 0: affects calling process. If pgid == 0: pgid = pid.
+// Returns 0 on success, -1 on error (errno set).
+pub func:setpgid = int64(int64:pid, int64:pgid) {
+    Result<int64>:r = sys!!(SYS_SETPGID, pid, pgid, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass 0i64;
+}
+
+// getpgid — Return the process group ID of pid (0 = calling process).
+pub func:getpgid = int64(int64:pid) {
+    Result<int64>:r = sys!!(SYS_GETPGID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
+
+// getpgrp — Return the process group ID of the calling process.
+pub func:getpgrp = int64() {
+    pass getpgid(0i64);
+}
+
+// setsid — Create a new session and set the calling process as session leader.
+// Returns the new session ID, or -1 on error (already a process group leader).
+pub func:setsid = int64() {
+    Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
+
+// getsid — Return the session ID of pid (0 = calling process).
+pub func:getsid = int64(int64:pid) {
+    Result<int64>:r = sys!!(SYS_GETSID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if r.is_error {
+        errno_set(r.err as int64);
+        pass -1i64;
+    }
+    pass r.value;
+}
