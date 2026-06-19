@@ -1,0 +1,17 @@
+# Build output
+build/
+*.o
+*.a
+*.so
+*.npk.bin
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Temporary files
+/tmp/
+*.log
