@@ -142,7 +142,7 @@ pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
     stack uint8[1]:one;
 
     while (count < max_store) {
-        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one[0]), 1i64);
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
 
         if (r.is_error) {
             int64:e = @cast_unchecked<int64>(r.error);
@@ -208,7 +208,7 @@ pub func:io_read_until = int64(int64:fd, int64:buf, int64:buf_size, uint8:delim)
     stack uint8[1]:one;
 
     while (count < max_store) {
-        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one[0]), 1i64);
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
 
         if (r.is_error) {
             int64:e = @cast_unchecked<int64>(r.error);
@@ -255,7 +255,7 @@ pub func:io_read_char = int64(int64:fd) {
     stack uint8[1]:b;
 
     while (true) {
-        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b[0]), 1i64);
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b), 1i64);
         if (r.is_error) {
             int64:e = @cast_unchecked<int64>(r.error);
             if (e == EINTR) { continue; }

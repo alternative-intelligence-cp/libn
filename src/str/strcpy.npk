@@ -91,7 +91,7 @@ pub func:str_strncpy = int64(int64:dst, int64:src, int64:n) {
     }
     if (src == 0i64) {
           // POSIX: strncpy(dst, NULL, n) → NUL-fill dst
-        drop mem_bzero(dst, n);
+        drop(mem_bzero(dst, n));
         pass dst;
     }
 
@@ -126,7 +126,7 @@ pub func:str_stpncpy = int64(int64:dst, int64:src, int64:n) {
         pass dst;
     }
     if (src == 0i64) {
-        drop mem_bzero(dst, n);
+        drop(mem_bzero(dst, n));
         pass dst;
     }
 
@@ -163,19 +163,19 @@ pub func:str_strdup = int64(int64:src) {
         fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    int64:n = str_strlen(src);
+    int64:n = raw str_strlen(src);
     int64:alloc_size = n + 1i64;
 
       // Use slab for short strings, mmap for long ones
     int64:r = slab_alloc(alloc_size);
-    if (r.is_error) {
-        fail r.error;
+    if (r == 0i64) {
+        fail @cast_unchecked<tbb32>(12i64);
     }
 
       // Copy including NUL terminator
-    drop mem_memcpy(r.value, src, alloc_size);
+    drop(mem_memcpy(r, src, alloc_size));
 
-    pass r.value;
+    pass r;
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -197,17 +197,17 @@ pub func:str_strndup = int64(int64:src, int64:n) {
         fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    int64:actual_len = str_strnlen(src, n);    // min(strlen(src), n)
+    int64:actual_len = raw str_strnlen(src, n);    // min(strlen(src), n)
     int64:alloc_size = actual_len + 1i64;
 
     int64:r = slab_alloc(alloc_size);
-    if (r.is_error) {
-        fail r.error;
+    if (r == 0i64) {
+        fail @cast_unchecked<tbb32>(12i64);
     }
 
       // Copy actual_len bytes, then NUL-terminate
-    drop mem_memcpy(r.value, src, actual_len);
-    (@cast_unchecked<uint8->>(r.value))[actual_len] = 0u8;
+    drop(mem_memcpy(r, src, actual_len));
+    (@cast_unchecked<uint8->>(r))[actual_len] = 0u8;
 
-    pass r.value;
+    pass r;
 };

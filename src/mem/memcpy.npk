@@ -23,6 +23,8 @@
 // Thread safety: these are stateless functions — fully thread-safe.
 
 use "../syscall/errno.npk".*;
+extern func:failsafe = int32(tbb32:err);
+
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memcpy — Copy n bytes from src to dst.
@@ -48,14 +50,14 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
         pass dst;
     }
     if (dst == 0i64 || src == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     if (n < 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
         if (n >= 16i64) {
-        drop __intrinsic_memcpy(dst, src, n);
+        drop(__intrinsic_memcpy(dst, src, n));
         pass dst;
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
@@ -79,21 +81,9 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
 
     int64:word_count = (n - i) / 8i64;
     int64:wi = 0i64;
+    int64->:si64 = @cast_unchecked<int64->>((src + i));
     while (wi < word_count) {
-          // Load 8 bytes from src (potentially unaligned read from si)
-          // Write 8 bytes to dst (aligned write to di)
-          // Note: we read uint8-by-uint8 into a word to handle src misalignment correctly
-        int64:word = 0i64;
-        int64:byte_off = wi * 8i64;
-        word = word | (@cast_unchecked<int64>(si[byte_off + 0i64]));
-        word = word | (@cast_unchecked<int64>(si[byte_off + 1i64]) << 8i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 2i64]) << 16i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 3i64]) << 24i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 4i64]) << 32i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 5i64]) << 40i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 6i64]) << 48i64);
-        word = word | (@cast_unchecked<int64>(si[byte_off + 7i64]) << 56i64);
-        di[wi] = word;
+        di[wi] = si64[wi];
         wi = wi + 1i64;
     }
     i = i + word_count * 8i64;
@@ -148,10 +138,10 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
         pass dst;
     }
     if (dst == 0i64 || src == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     if (n < 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
       // Same address: nothing to do
@@ -160,7 +150,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
     }
 
         if (n >= 16i64) {
-        drop __intrinsic_memcpy(dst, src, n);
+        drop(__intrinsic_memcpy(dst, src, n));
         pass dst;
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
@@ -174,7 +164,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
 
     if (!need_backward) {
     if (!need_backward && n >= 16i64) {
-        drop __intrinsic_memcpy(dst, src, n);
+        drop(__intrinsic_memcpy(dst, src, n));
         pass dst;
     }
 
@@ -192,20 +182,11 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
         int64:wi = 0i64;
         uint8->:si = @cast_unchecked<uint8->>((src + i));
         int64->:di = @cast_unchecked<int64->>((dst + i));
-        while (wi < word_count) {
-            int64:word = 0i64;
-            int64:bo = wi * 8i64;
-            word = word | (@cast_unchecked<int64>(si[bo + 0i64]));
-            word = word | (@cast_unchecked<int64>(si[bo + 1i64]) << 8i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 2i64]) << 16i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 3i64]) << 24i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 4i64]) << 32i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 5i64]) << 40i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 6i64]) << 48i64);
-            word = word | (@cast_unchecked<int64>(si[bo + 7i64]) << 56i64);
-            di[wi] = word;
-            wi = wi + 1i64;
-        }
+    int64->:si64 = @cast_unchecked<int64->>((src + i));
+    while (wi < word_count) {
+        di[wi] = si64[wi];
+        wi = wi + 1i64;
+    }
         i = i + word_count * 8i64;
 
           // Tail
@@ -228,17 +209,9 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
           // Backward word loop
         while (i >= 8i64) {
             i = i - 8i64;
-            int64:word = 0i64;
-            word = word | (@cast_unchecked<int64>(s[i + 0i64]));
-            word = word | (@cast_unchecked<int64>(s[i + 1i64]) << 8i64);
-            word = word | (@cast_unchecked<int64>(s[i + 2i64]) << 16i64);
-            word = word | (@cast_unchecked<int64>(s[i + 3i64]) << 24i64);
-            word = word | (@cast_unchecked<int64>(s[i + 4i64]) << 32i64);
-            word = word | (@cast_unchecked<int64>(s[i + 5i64]) << 40i64);
-            word = word | (@cast_unchecked<int64>(s[i + 6i64]) << 48i64);
-            word = word | (@cast_unchecked<int64>(s[i + 7i64]) << 56i64);
             int64->:di_word = @cast_unchecked<int64->>((dst + i));
-            di_word[0] = word;
+            int64->:si_word = @cast_unchecked<int64->>((src + i));
+            di_word[0] = si_word[0];
         }
 
           // Backward tail (remaining bytes at start)
@@ -263,7 +236,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
 // At v0.2.4, memdup uses a direct mmap allocation (no slab dependency here).
 pub func:mem_memdup = int64(int64:src, int64:n) {
     if (src == 0i64 || n <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
       // Allocate n bytes (page-aligned, zero-initialized by mmap)
@@ -282,7 +255,7 @@ pub func:mem_memdup = int64(int64:src, int64:n) {
       // Copy the source bytes
     Result<int64>:rc = mem_memcpy(r.value, src, n);
     if (rc.is_error) {
-        drop mem_free(r.value);
+        drop(mem_free(r.value));
         fail rc.error;
     }
 

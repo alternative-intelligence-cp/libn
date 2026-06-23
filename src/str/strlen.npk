@@ -35,7 +35,7 @@ fixed int64:STRLEN_ONES     = 0x0101010101010101i64;
 fixed int64:STRLEN_HIGHBITS = 0x8080808080808080i64;
 
 // has_nul_byte — True if any uint8 in v is 0x00.
-func:has_nul_byte = bool(int64:v) {
+comptime func:has_nul_byte = bool(int64:v) {
     pass ((v - STRLEN_ONES) & (0i64 - 1i64 ^ v) & STRLEN_HIGHBITS) != 0i64;
 };
 
@@ -69,7 +69,7 @@ pub func:str_strlen = int64(int64:s) {
       // ── Word loop: 8 bytes per iteration ─────────────────────────────
     int64->:pw = @cast_unchecked<int64->>((s + i));
     int64:wi = 0i64;
-    while (!has_nul_byte(pw[wi])) {
+    while ((raw has_nul_byte(pw[wi]) == false)) {
         wi = wi + 1i64;
     }
     i = i + wi * 8i64;
@@ -113,7 +113,7 @@ pub func:str_strnlen = int64(int64:s, int64:max_len) {
     int64->:pw = @cast_unchecked<int64->>((s + i));
     int64:wi = 0i64;
     int64:max_words = (max_len - i) / 8i64;
-    while (wi < max_words && !has_nul_byte(pw[wi])) {
+    while (wi < max_words && (raw has_nul_byte(pw[wi]) == false)) {
         wi = wi + 1i64;
     }
     i = i + wi * 8i64;
@@ -144,11 +144,11 @@ use "../syscall/errno.npk".*;
 // Defined here for use by all string functions.
 pub fixed int64:ERR_TOOLONG = 0xF3i64;
 
-pub func:str_strlen_safe = Result<int64>(int64:s, int64:max_len) {
+pub func:str_strlen_safe = int64(int64:s, int64:max_len) {
     if (s == 0i64) {
         fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    int64:n = str_strnlen(s, max_len + 1i64);    // scan up to max_len+1 to detect overrun
+    int64:n = raw str_strnlen(s, max_len + 1i64);    // scan up to max_len+1 to detect overrun
     if (n > max_len) {
         fail @cast_unchecked<tbb32>(ERR_TOOLONG);
     }

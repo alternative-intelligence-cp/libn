@@ -40,18 +40,18 @@ use "../../io/bio/file.npk".*;
 
 pub func:fseek = int64(int64:fp, int64:offset, int64:whence) {
     if (fp == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
     if (whence < SEEK_SET || whence > SEEK_END) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
     FILE->:f = @cast_unchecked<FILE->>(fp);
 
     if (f->fd < 0i64) {
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass -1i64;
     }
 
@@ -59,7 +59,7 @@ pub func:fseek = int64(int64:fp, int64:offset, int64:whence) {
     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64 && f->buf_pos > 0i64) {
         Result<int64>:r = bio_flush_write_buf(fp);
         if (r.is_error) {
-            drop errno_set(@cast_unchecked<int64>(r.error));
+            drop(errno_set(@cast_unchecked<int64>(r.error)));
             pass -1i64;
         }
     }
@@ -85,7 +85,7 @@ pub func:fseek = int64(int64:fp, int64:offset, int64:whence) {
       // Issue the actual lseek
     Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, real_offset, whence, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
 
@@ -113,14 +113,14 @@ pub func:fseek = int64(int64:fp, int64:offset, int64:whence) {
 
 pub func:ftell = int64(int64:fp) {
     if (fp == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
     FILE->:f = @cast_unchecked<FILE->>(fp);
 
     if (f->fd < 0i64) {
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass -1i64;
     }
 
@@ -153,7 +153,7 @@ pub func:rewind = NIL(int64:fp) {
 
       // Flush write buffer
     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
-        drop bio_flush_write_buf(fp);
+        drop(bio_flush_write_buf(fp));
     }
 
       // Discard read buffer and unget
@@ -162,7 +162,7 @@ pub func:rewind = NIL(int64:fp) {
     f->unget   = FILE_UNGET_EMPTY;
 
       // Seek to start (ignore error)
-    drop sys_safe(SYS_LSEEK, f->fd, 0i64, SEEK_SET, 0i64, 0i64, 0i64);
+    drop(sys_safe(SYS_LSEEK, f->fd, 0i64, SEEK_SET, 0i64, 0i64, 0i64));
     f->file_pos = 0i64;
 
       // Clear all error and EOF flags (this is what distinguishes rewind from fseek)
@@ -180,7 +180,7 @@ pub func:rewind = NIL(int64:fp) {
 
 pub func:fgetpos = int64(int64:fp, int64:pos) {
     if (fp == 0i64 || pos == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
@@ -202,7 +202,7 @@ pub func:fgetpos = int64(int64:fp, int64:pos) {
 
 pub func:fsetpos = int64(int64:fp, int64:pos) {
     if (fp == 0i64 || pos == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 

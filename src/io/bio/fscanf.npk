@@ -81,7 +81,7 @@ func:bio_scan_ungetc = NIL(int64:c, int64:src) {
     if (c < 0i64) { pass NIL; }    // don't push back EOF
     int64->:s = @cast_unchecked<int64->>(src);
     if (s[0] == SCAN_SRC_FILE) {
-        drop ungetc(c, s[1]);
+        drop(ungetc(c, s[1]));
     } else {
         if (s[2] > 0i64) {
             s[2] = s[2] - 1i64;
@@ -102,7 +102,7 @@ func:bio_scan_skip_ws = int64(int64:src) {
           // whitespace: space(32), tab(9), newline(10), CR(13), FF(12), VT(11)
         if (c != 32i64 && c != 9i64 && c != 10i64 &&
            c != 13i64 && c != 12i64 && c != 11i64) {
-            drop bio_scan_ungetc(c, src);
+            drop(bio_scan_ungetc(c, src));
             pass c;
         }
     }
@@ -144,7 +144,7 @@ func:bio_scan_int = int64(int64:src, int64:base, int64:width,
                 base = 16i64;
                 c = bio_scan_getc(src);
             } else {
-                drop bio_scan_ungetc(next, src);
+                drop(bio_scan_ungetc(next, src));
                 base = 8i64;
                   // c is already '0', will contribute 0 to result
             }
@@ -175,7 +175,7 @@ func:bio_scan_int = int64(int64:src, int64:base, int64:width,
         }
 
         if (digit < 0i64 || digit >= base) {
-            drop bio_scan_ungetc(c, src);
+            drop(bio_scan_ungetc(c, src));
             break;
         }
 
@@ -191,7 +191,7 @@ func:bio_scan_int = int64(int64:src, int64:base, int64:width,
     }
 
     if (c >= 0i64) {
-        drop bio_scan_ungetc(c, src);
+        drop(bio_scan_ungetc(c, src));
     }
 
     if (negative) { value = 0i64 - value; }
@@ -223,7 +223,7 @@ func:bio_scan_str = int64(int64:src, int64:width, int64:buf, int64:consumed) {
           // Stop at whitespace
         if (c == 32i64 || c == 9i64 || c == 10i64 ||
            c == 13i64 || c == 12i64 || c == 11i64) {
-            drop bio_scan_ungetc(c, src);
+            drop(bio_scan_ungetc(c, src));
             break;
         }
         if (buf != 0i64) {
@@ -280,7 +280,7 @@ func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
                 }
                 first = false;
                 if (c != @cast_unchecked<int64>(ch)) {
-                    drop bio_scan_ungetc(c, src);
+                    drop(bio_scan_ungetc(c, src));
                     pass matched;    // mismatch
                 }
                 consumed = consumed + 1i64;
@@ -330,7 +330,7 @@ func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
             if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
             first = false;
             if (c != 37i64) {
-                drop bio_scan_ungetc(c, src);
+                drop(bio_scan_ungetc(c, src));
                 pass matched;
             }
             consumed = consumed + 1i64;
@@ -363,7 +363,7 @@ func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
             int64:c = raw bio_scan_skip_ws(src);
             if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
             first = false;
-            int64:r = raw bio_scan_str(src, width, out, @consumed);
+            int64:r = raw bio_scan_str(src, width, out, @cast_unchecked<int64>(@consumed));
             if (r == 0i64) { pass matched; }
             matched = matched + 1i64;
             continue;
@@ -388,7 +388,7 @@ is (base = (spec == 105u8)) : 0i64 : 10i64;    // %i auto-detects base
             continue;
         }
 
-        int64:r = raw bio_scan_int(src, base, width, out, @consumed);
+        int64:r = raw bio_scan_int(src, base, width, out, @cast_unchecked<int64>(@consumed));
         if (r == 0i64) { pass matched; }
         matched = matched + 1i64;
     }
@@ -405,94 +405,94 @@ is (base = (spec == 105u8)) : 0i64 : 10i64;    // %i auto-detects base
 // Each fscanfN allocates a 3-element int64 src array.
 
 pub func:fscanf0 = int64(int64:fp, int64:fmt) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, 0i64, 0i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, 0i64, 0i64);
 };
 
 pub func:fscanf1 = int64(int64:fp, int64:fmt, int64:a0) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[1]:argv;
     argv[0] = a0;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 1i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 1i64);
 };
 
 pub func:fscanf2 = int64(int64:fp, int64:fmt, int64:a0, int64:a1) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[2]:argv;
     argv[0] = a0; argv[1] = a1;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 2i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 2i64);
 };
 
 pub func:fscanf3 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[3]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 3i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 3i64);
 };
 
 pub func:fscanf4 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[4]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 4i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 4i64);
 };
 
 pub func:fscanf5 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[5]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = a4;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 5i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 5i64);
 };
 
 pub func:fscanf6 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[6]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 6i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 6i64);
 };
 
 pub func:fscanf7 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5, int64:a6) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[7]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 7i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 7i64);
 };
 
 pub func:fscanf8 = int64(int64:fp, int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5, int64:a6, int64:a7) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack int64[3]:src;
     stack int64[8]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7;
     src[0] = SCAN_SRC_FILE; src[1] = fp; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 8i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 8i64);
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -502,7 +502,7 @@ pub func:fscanf8 = int64(int64:fp, int64:fmt,
 pub func:sscanf0 = int64(int64:str, int64:fmt) {
     stack int64[3]:src;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, 0i64, 0i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, 0i64, 0i64);
 };
 
 pub func:sscanf1 = int64(int64:str, int64:fmt, int64:a0) {
@@ -510,7 +510,7 @@ pub func:sscanf1 = int64(int64:str, int64:fmt, int64:a0) {
     stack int64[1]:argv;
     argv[0] = a0;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 1i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 1i64);
 };
 
 pub func:sscanf2 = int64(int64:str, int64:fmt, int64:a0, int64:a1) {
@@ -518,7 +518,7 @@ pub func:sscanf2 = int64(int64:str, int64:fmt, int64:a0, int64:a1) {
     stack int64[2]:argv;
     argv[0] = a0; argv[1] = a1;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 2i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 2i64);
 };
 
 pub func:sscanf3 = int64(int64:str, int64:fmt,
@@ -527,7 +527,7 @@ pub func:sscanf3 = int64(int64:str, int64:fmt,
     stack int64[3]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 3i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 3i64);
 };
 
 pub func:sscanf4 = int64(int64:str, int64:fmt,
@@ -536,7 +536,7 @@ pub func:sscanf4 = int64(int64:str, int64:fmt,
     stack int64[4]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 4i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 4i64);
 };
 
 pub func:sscanf5 = int64(int64:str, int64:fmt,
@@ -545,7 +545,7 @@ pub func:sscanf5 = int64(int64:str, int64:fmt,
     stack int64[5]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = a4;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 5i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 5i64);
 };
 
 pub func:sscanf6 = int64(int64:str, int64:fmt,
@@ -556,7 +556,7 @@ pub func:sscanf6 = int64(int64:str, int64:fmt,
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 6i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 6i64);
 };
 
 pub func:sscanf7 = int64(int64:str, int64:fmt,
@@ -567,7 +567,7 @@ pub func:sscanf7 = int64(int64:str, int64:fmt,
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 7i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 7i64);
 };
 
 pub func:sscanf8 = int64(int64:str, int64:fmt,
@@ -578,7 +578,7 @@ pub func:sscanf8 = int64(int64:str, int64:fmt,
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7;
     src[0] = SCAN_SRC_STRING; src[1] = str; src[2] = 0i64;
-    pass bio_scan_engine(@cast_unchecked<int64>(@src[0]), fmt, @cast_unchecked<int64>(@argv[0]), 8i64);
+    pass bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 8i64);
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -586,49 +586,49 @@ pub func:sscanf8 = int64(int64:str, int64:fmt,
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:scanf0 = int64(int64:fmt) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf0(stdin_fp, fmt);
 };
 
 pub func:scanf1 = int64(int64:fmt, int64:a0) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf1(stdin_fp, fmt, a0);
 };
 
 pub func:scanf2 = int64(int64:fmt, int64:a0, int64:a1) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf2(stdin_fp, fmt, a0, a1);
 };
 
 pub func:scanf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf3(stdin_fp, fmt, a0, a1, a2);
 };
 
 pub func:scanf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf4(stdin_fp, fmt, a0, a1, a2, a3);
 };
 
 pub func:scanf5 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf5(stdin_fp, fmt, a0, a1, a2, a3, a4);
 };
 
 pub func:scanf6 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
                          int64:a4, int64:a5) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf6(stdin_fp, fmt, a0, a1, a2, a3, a4, a5);
 };
 
 pub func:scanf7 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
                          int64:a4, int64:a5, int64:a6) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf7(stdin_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
 };
 
 pub func:scanf8 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3,
                          int64:a4, int64:a5, int64:a6, int64:a7) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fscanf8(stdin_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
 };

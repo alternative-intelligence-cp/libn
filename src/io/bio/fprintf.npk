@@ -64,20 +64,20 @@ func:bio_fprint_rendered = int64(int64:fp, int64:rendered_buf) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:fprintf0 = int64(int64:fp, int64:fmt) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf0 = int64(int64:fmt) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf0(stdout_fp, fmt);
 };
 
 pub func:eprintf0 = int64(int64:fmt) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf0(stderr_fp, fmt);
 };
 
@@ -86,20 +86,20 @@ pub func:eprintf0 = int64(int64:fmt) {
 // ────────────────────────────────────────────────────────────────────────────
 
 pub func:fprintf1 = int64(int64:fp, int64:fmt, int64:a0) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf1(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf1(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf1 = int64(int64:fmt, int64:a0) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf1(stdout_fp, fmt, a0);
 };
 
 pub func:eprintf1 = int64(int64:fmt, int64:a0) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf1(stderr_fp, fmt, a0);
 };
 
@@ -108,20 +108,20 @@ pub func:eprintf1 = int64(int64:fmt, int64:a0) {
 // ────────────────────────────────────────────────────────────────────────────
 
 pub func:fprintf2 = int64(int64:fp, int64:fmt, int64:a0, int64:a1) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf2(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf2(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf2 = int64(int64:fmt, int64:a0, int64:a1) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf2(stdout_fp, fmt, a0, a1);
 };
 
 pub func:eprintf2 = int64(int64:fmt, int64:a0, int64:a1) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass raw fprintf2(stderr_fp, fmt, a0, a1);
 };
 
@@ -130,20 +130,20 @@ pub func:eprintf2 = int64(int64:fmt, int64:a0, int64:a1) {
 // ────────────────────────────────────────────────────────────────────────────
 
 pub func:fprintf3 = int64(int64:fp, int64:fmt, int64:a0, int64:a1, int64:a2) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf3(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf3(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf3(stdout_fp, fmt, a0, a1, a2);
 };
 
 pub func:eprintf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf3(stderr_fp, fmt, a0, a1, a2);
 };
 
@@ -153,20 +153,20 @@ pub func:eprintf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
 
 pub func:fprintf4 = int64(int64:fp, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf4(stdout_fp, fmt, a0, a1, a2, a3);
 };
 
 pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass raw fprintf4(stderr_fp, fmt, a0, a1, a2, a3);
 };
 
@@ -176,22 +176,22 @@ pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
 
 pub func:fprintf5 = int64(int64:fp, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf5 = int64(int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf5(stdout_fp, fmt, a0, a1, a2, a3, a4);
 };
 
 pub func:eprintf5 = int64(int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf5(stderr_fp, fmt, a0, a1, a2, a3, a4);
 };
 
@@ -202,24 +202,24 @@ pub func:eprintf5 = int64(int64:fmt,
 pub func:fprintf6 = int64(int64:fp, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf6 = int64(int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf6(stdout_fp, fmt, a0, a1, a2, a3, a4, a5);
 };
 
 pub func:eprintf6 = int64(int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf6(stderr_fp, fmt, a0, a1, a2, a3, a4, a5);
 };
 
@@ -230,24 +230,24 @@ pub func:eprintf6 = int64(int64:fmt,
 pub func:fprintf7 = int64(int64:fp, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5, int64:a6) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf7(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf7(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf7 = int64(int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5, int64:a6) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf7(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
 };
 
 pub func:eprintf7 = int64(int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5, int64:a6) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf7(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
 };
 
@@ -258,24 +258,24 @@ pub func:eprintf7 = int64(int64:fmt,
 pub func:fprintf8 = int64(int64:fp, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5, int64:a6, int64:a7) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf8(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf8(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7));
     pass bio_fprint_rendered(fp, buf_ptr);
 };
 
 pub func:printf8 = int64(int64:fmt,
                           int64:a0, int64:a1, int64:a2, int64:a3,
                           int64:a4, int64:a5, int64:a6, int64:a7) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf8(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
 };
 
 pub func:eprintf8 = int64(int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3,
                            int64:a4, int64:a5, int64:a6, int64:a7) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fprintf8(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
 };
 
@@ -295,36 +295,36 @@ pub func:eprintf8 = int64(int64:fmt,
 
 pub func:asprintf0 = int64(int64:out_len, int64:fmt) {
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf0(tmp_ptr, 4096i64, fmt);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf0(tmp_ptr, 4096i64, fmt));
     int64:len = raw str_strlen(tmp_ptr);
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
 };
 
 pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf1(tmp_ptr, 4096i64, fmt, a0);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf1(tmp_ptr, 4096i64, fmt, a0));
     int64:len = raw str_strlen(tmp_ptr);
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
 };
 
 pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf2(tmp_ptr, 4096i64, fmt, a0, a1);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf2(tmp_ptr, 4096i64, fmt, a0, a1));
     int64:len = raw str_strlen(tmp_ptr);
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
 };
@@ -332,12 +332,12 @@ pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
 pub func:asprintf3 = int64(int64:out_len, int64:fmt,
                             int64:a0, int64:a1, int64:a2) {
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf3(tmp_ptr, 4096i64, fmt, a0, a1, a2);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf3(tmp_ptr, 4096i64, fmt, a0, a1, a2));
     int64:len = raw str_strlen(tmp_ptr);
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
 };
@@ -345,12 +345,12 @@ pub func:asprintf3 = int64(int64:out_len, int64:fmt,
 pub func:asprintf4 = int64(int64:out_len, int64:fmt,
                             int64:a0, int64:a1, int64:a2, int64:a3) {
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf4(tmp_ptr, 4096i64, fmt, a0, a1, a2, a3);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf4(tmp_ptr, 4096i64, fmt, a0, a1, a2, a3));
     int64:len = raw str_strlen(tmp_ptr);
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop mem_memcpy(p, tmp_ptr, len + 1i64);
+    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
 };

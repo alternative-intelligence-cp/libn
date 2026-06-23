@@ -44,7 +44,7 @@ use "../syscall/errno.npk".*;
 pub func:fork = int64() {
     Result<int64>:r = sys!!(SYS_FORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;
@@ -60,7 +60,7 @@ pub func:fork = int64() {
 pub func:vfork = int64() {
     Result<int64>:r = sys!!(SYS_VFORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;
@@ -122,7 +122,7 @@ pub func:getegid = int64() {
 pub func:setpgid = int64(int64:pid, int64:pgid) {
     Result<int64>:r = sys!!(SYS_SETPGID, pid, pgid, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass 0i64;
@@ -132,7 +132,7 @@ pub func:setpgid = int64(int64:pid, int64:pgid) {
 pub func:getpgid = int64(int64:pid) {
     Result<int64>:r = sys!!(SYS_GETPGID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;
@@ -148,7 +148,7 @@ pub func:getpgrp = int64() {
 pub func:setsid = int64() {
     Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;
@@ -158,7 +158,7 @@ pub func:setsid = int64() {
 pub func:getsid = int64(int64:pid) {
     Result<int64>:r = sys!!(SYS_GETSID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;

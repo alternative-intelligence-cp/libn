@@ -103,7 +103,7 @@ pub func:fputs = int64(int64:s, int64:fp) {
 
     if ((f->mode & FILE_MODE_WRITE) == 0i64) {
         f->flags = f->flags | FILE_FLAG_ERROR;
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 

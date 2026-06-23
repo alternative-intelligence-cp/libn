@@ -50,88 +50,144 @@ struct:ErrEntry = {
 // Coverage: all POSIX-required errnos + common Linux extensions.
 // Source: Linux man-pages errno(3), glibc strerror() text.
 
-fixed ErrEntry[]:errno_table = [
-    { 0i64,   @cast_unchecked<int64>(@"Success") },
-    { 1i64,   @cast_unchecked<int64>(@"Operation not permitted") },             // EPERM
-    { 2i64,   @cast_unchecked<int64>(@"No such file or directory") },           // ENOENT
-    { 3i64,   @cast_unchecked<int64>(@"No such process") },                     // ESRCH
-    { 4i64,   @cast_unchecked<int64>(@"Interrupted system call") },             // EINTR
-    { 5i64,   @cast_unchecked<int64>(@"Input/output error") },                  // EIO
-    { 6i64,   @cast_unchecked<int64>(@"No such device or address") },           // ENXIO
-    { 7i64,   @cast_unchecked<int64>(@"Argument list too long") },              // E2BIG
-    { 8i64,   @cast_unchecked<int64>(@"Exec format error") },                   // ENOEXEC
-    { 9i64,   @cast_unchecked<int64>(@"Bad file descriptor") },                 // EBADF
-    { 10i64,  @cast_unchecked<int64>(@"No child processes") },                  // ECHILD
-    { 11i64,  @cast_unchecked<int64>(@"Resource temporarily unavailable") },    // EAGAIN / EWOULDBLOCK
-    { 12i64,  @cast_unchecked<int64>(@"Cannot allocate memory") },              // ENOMEM
-    { 13i64,  @cast_unchecked<int64>(@"Permission denied") },                   // EACCES
-    { 14i64,  @cast_unchecked<int64>(@"Bad address") },                         // EFAULT
-    { 15i64,  @cast_unchecked<int64>(@"Block device required") },               // ENOTBLK
-    { 16i64,  @cast_unchecked<int64>(@"Device or resource busy") },             // EBUSY
-    { 17i64,  @cast_unchecked<int64>(@"File exists") },                         // EEXIST
-    { 18i64,  @cast_unchecked<int64>(@"Invalid cross-device link") },           // EXDEV
-    { 19i64,  @cast_unchecked<int64>(@"No such device") },                      // ENODEV
-    { 20i64,  @cast_unchecked<int64>(@"Not a directory") },                     // ENOTDIR
-    { 21i64,  @cast_unchecked<int64>(@"Is a directory") },                      // EISDIR
-    { 22i64,  @cast_unchecked<int64>(@"Invalid argument") },                    // EINVAL
-    { 23i64,  @cast_unchecked<int64>(@"Too many open files in system") },       // ENFILE
-    { 24i64,  @cast_unchecked<int64>(@"Too many open files") },                 // EMFILE
-    { 25i64,  @cast_unchecked<int64>(@"Inappropriate ioctl for device") },      // ENOTTY
-    { 26i64,  @cast_unchecked<int64>(@"Text file busy") },                      // ETXTBSY
-    { 27i64,  @cast_unchecked<int64>(@"File too large") },                      // EFBIG
-    { 28i64,  @cast_unchecked<int64>(@"No space left on device") },             // ENOSPC
-    { 29i64,  @cast_unchecked<int64>(@"Illegal seek") },                        // ESPIPE
-    { 30i64,  @cast_unchecked<int64>(@"Read-only file system") },               // EROFS
-    { 31i64,  @cast_unchecked<int64>(@"Too many links") },                      // EMLINK
-    { 32i64,  @cast_unchecked<int64>(@"Broken pipe") },                         // EPIPE
-    { 33i64,  @cast_unchecked<int64>(@"Numerical argument out of domain") },    // EDOM
-    { 34i64,  @cast_unchecked<int64>(@"Numerical result out of range") },       // ERANGE
-    { 35i64,  @cast_unchecked<int64>(@"Resource deadlock avoided") },           // EDEADLK
-    { 36i64,  @cast_unchecked<int64>(@"File name too long") },                  // ENAMETOOLONG
-    { 37i64,  @cast_unchecked<int64>(@"No locks available") },                  // ENOLCK
-    { 38i64,  @cast_unchecked<int64>(@"Function not implemented") },            // ENOSYS
-    { 39i64,  @cast_unchecked<int64>(@"Directory not empty") },                 // ENOTEMPTY
-    { 40i64,  @cast_unchecked<int64>(@"Too many levels of symbolic links") },   // ELOOP
-    { 42i64,  @cast_unchecked<int64>(@"No message of desired type") },          // ENOMSG
-    { 43i64,  @cast_unchecked<int64>(@"Identifier removed") },                  // EIDRM
-    { 61i64,  @cast_unchecked<int64>(@"No data available") },                   // ENODATA
-    { 62i64,  @cast_unchecked<int64>(@"Timer expired") },                       // ETIME
-    { 63i64,  @cast_unchecked<int64>(@"Out of streams resources") },            // ENOSR
-    { 67i64,  @cast_unchecked<int64>(@"Link has been severed") },               // ENOLINK
-    { 71i64,  @cast_unchecked<int64>(@"Protocol error") },                      // EPROTO
-    { 72i64,  @cast_unchecked<int64>(@"Multihop attempted") },                  // EMULTIHOP
-    { 74i64,  @cast_unchecked<int64>(@"Bad message") },                         // EBADMSG
-    { 75i64,  @cast_unchecked<int64>(@"Value too large for defined data type") },   // EOVERFLOW
-    { 84i64,  @cast_unchecked<int64>(@"Invalid or incomplete multibyte or wide character") },   // EILSEQ
-    { 88i64,  @cast_unchecked<int64>(@"Socket operation on non-socket") },      // ENOTSOCK
-    { 89i64,  @cast_unchecked<int64>(@"Destination address required") },        // EDESTADDRREQ
-    { 90i64,  @cast_unchecked<int64>(@"Message too long") },                    // EMSGSIZE
-    { 91i64,  @cast_unchecked<int64>(@"Protocol wrong type for socket") },      // EPROTOTYPE
-    { 92i64,  @cast_unchecked<int64>(@"Protocol not available") },              // ENOPROTOOPT
-    { 93i64,  @cast_unchecked<int64>(@"Protocol not supported") },              // EPROTONOSUPPORT
-    { 95i64,  @cast_unchecked<int64>(@"Operation not supported") },             // EOPNOTSUPP
-    { 97i64,  @cast_unchecked<int64>(@"Address family not supported by protocol") },   // EAFNOSUPPORT
-    { 98i64,  @cast_unchecked<int64>(@"Address already in use") },              // EADDRINUSE
-    { 99i64,  @cast_unchecked<int64>(@"Cannot assign requested address") },     // EADDRNOTAVAIL
-    { 100i64, @cast_unchecked<int64>(@"Network is down") },                     // ENETDOWN
-    { 101i64, @cast_unchecked<int64>(@"Network is unreachable") },              // ENETUNREACH
-    { 102i64, @cast_unchecked<int64>(@"Network dropped connection on reset") },   // ENETRESET
-    { 103i64, @cast_unchecked<int64>(@"Software caused connection abort") },    // ECONNABORTED
-    { 104i64, @cast_unchecked<int64>(@"Connection reset by peer") },            // ECONNRESET
-    { 105i64, @cast_unchecked<int64>(@"No buffer space available") },           // ENOBUFS
-    { 106i64, @cast_unchecked<int64>(@"Transport endpoint is already connected") },   // EISCONN
-    { 107i64, @cast_unchecked<int64>(@"Transport endpoint is not connected") },   // ENOTCONN
-    { 110i64, @cast_unchecked<int64>(@"Connection timed out") },                // ETIMEDOUT
-    { 111i64, @cast_unchecked<int64>(@"Connection refused") },                  // ECONNREFUSED
-    { 113i64, @cast_unchecked<int64>(@"No route to host") },                    // EHOSTUNREACH
-    { 114i64, @cast_unchecked<int64>(@"Operation already in progress") },       // EALREADY
-    { 115i64, @cast_unchecked<int64>(@"Operation now in progress") },           // EINPROGRESS
-    { 116i64, @cast_unchecked<int64>(@"Stale file handle") },                   // ESTALE
-    { 125i64, @cast_unchecked<int64>(@"Operation canceled") },                  // ECANCELED
-    { 130i64, @cast_unchecked<int64>(@"Owner died") },                          // EOWNERDEAD
-    { 131i64, @cast_unchecked<int64>(@"State not recoverable") },               // ENOTRECOVERABLE
-    { -1i64,  0i64 }
+fixed int64[135]:errno_table = [
+    @cast_unchecked<int64>(@"Success"),
+    @cast_unchecked<int64>(@"Operation not permitted"),
+    @cast_unchecked<int64>(@"No such file or directory"),
+    @cast_unchecked<int64>(@"No such process"),
+    @cast_unchecked<int64>(@"Interrupted system call"),
+    @cast_unchecked<int64>(@"Input/output error"),
+    @cast_unchecked<int64>(@"No such device or address"),
+    @cast_unchecked<int64>(@"Argument list too long"),
+    @cast_unchecked<int64>(@"Exec format error"),
+    @cast_unchecked<int64>(@"Bad file descriptor"),
+    @cast_unchecked<int64>(@"No child processes"),
+    @cast_unchecked<int64>(@"Resource temporarily unavailable"),
+    @cast_unchecked<int64>(@"Cannot allocate memory"),
+    @cast_unchecked<int64>(@"Permission denied"),
+    @cast_unchecked<int64>(@"Bad address"),
+    @cast_unchecked<int64>(@"Block device required"),
+    @cast_unchecked<int64>(@"Device or resource busy"),
+    @cast_unchecked<int64>(@"File exists"),
+    @cast_unchecked<int64>(@"Invalid cross-device link"),
+    @cast_unchecked<int64>(@"No such device"),
+    @cast_unchecked<int64>(@"Not a directory"),
+    @cast_unchecked<int64>(@"Is a directory"),
+    @cast_unchecked<int64>(@"Invalid argument"),
+    @cast_unchecked<int64>(@"Too many open files in system"),
+    @cast_unchecked<int64>(@"Too many open files"),
+    @cast_unchecked<int64>(@"Inappropriate ioctl for device"),
+    @cast_unchecked<int64>(@"Text file busy"),
+    @cast_unchecked<int64>(@"File too large"),
+    @cast_unchecked<int64>(@"No space left on device"),
+    @cast_unchecked<int64>(@"Illegal seek"),
+    @cast_unchecked<int64>(@"Read-only file system"),
+    @cast_unchecked<int64>(@"Too many links"),
+    @cast_unchecked<int64>(@"Broken pipe"),
+    @cast_unchecked<int64>(@"Numerical argument out of domain"),
+    @cast_unchecked<int64>(@"Numerical result out of range"),
+    @cast_unchecked<int64>(@"Resource deadlock avoided"),
+    @cast_unchecked<int64>(@"File name too long"),
+    @cast_unchecked<int64>(@"No locks available"),
+    @cast_unchecked<int64>(@"Function not implemented"),
+    @cast_unchecked<int64>(@"Directory not empty"),
+    @cast_unchecked<int64>(@"Too many levels of symbolic links"),
+    0i64,
+    @cast_unchecked<int64>(@"No message of desired type"),
+    @cast_unchecked<int64>(@"Identifier removed"),
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"No data available"),
+    @cast_unchecked<int64>(@"Timer expired"),
+    @cast_unchecked<int64>(@"Out of streams resources"),
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Link has been severed"),
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Protocol error"),
+    @cast_unchecked<int64>(@"Multihop attempted"),
+    0i64,
+    @cast_unchecked<int64>(@"Bad message"),
+    @cast_unchecked<int64>(@"Value too large for defined data type"),
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Invalid or incomplete multibyte or wide character"),
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Socket operation on non-socket"),
+    @cast_unchecked<int64>(@"Destination address required"),
+    @cast_unchecked<int64>(@"Message too long"),
+    @cast_unchecked<int64>(@"Protocol wrong type for socket"),
+    @cast_unchecked<int64>(@"Protocol not available"),
+    @cast_unchecked<int64>(@"Protocol not supported"),
+    0i64,
+    @cast_unchecked<int64>(@"Operation not supported"),
+    0i64,
+    @cast_unchecked<int64>(@"Address family not supported by protocol"),
+    @cast_unchecked<int64>(@"Address already in use"),
+    @cast_unchecked<int64>(@"Cannot assign requested address"),
+    @cast_unchecked<int64>(@"Network is down"),
+    @cast_unchecked<int64>(@"Network is unreachable"),
+    @cast_unchecked<int64>(@"Network dropped connection on reset"),
+    @cast_unchecked<int64>(@"Software caused connection abort"),
+    @cast_unchecked<int64>(@"Connection reset by peer"),
+    @cast_unchecked<int64>(@"No buffer space available"),
+    @cast_unchecked<int64>(@"Transport endpoint is already connected"),
+    @cast_unchecked<int64>(@"Transport endpoint is not connected"),
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Connection timed out"),
+    @cast_unchecked<int64>(@"Connection refused"),
+    0i64,
+    @cast_unchecked<int64>(@"No route to host"),
+    @cast_unchecked<int64>(@"Operation already in progress"),
+    @cast_unchecked<int64>(@"Operation now in progress"),
+    @cast_unchecked<int64>(@"Stale file handle"),
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Operation canceled"),
+    0i64,
+    0i64,
+    0i64,
+    0i64,
+    @cast_unchecked<int64>(@"Owner died"),
+    @cast_unchecked<int64>(@"State not recoverable"),
+    0i64,
+    0i64,
+    0i64
 ];
+
 
 // ════════════════════════════════════════════════════════════════════════════
 // strerror — Return a string describing the given errno value.
@@ -147,27 +203,20 @@ fixed ErrEntry[]:errno_table = [
 uint8[64]:g_strerror_unknown_buf;
 
 pub func:strerror = int64(int64:errnum) {
-      // Linear scan of the table
-    int64:i = 0i64;
-    while (errno_table[i].code != -1i64) {
-        if (errno_table[i].code == errnum) {
-            pass errno_table[i].msg;
+    if (errnum >= 0i64 && errnum <= 134i64) {
+        int64:msg = errno_table[errnum];
+        if (msg != 0i64) {
+            pass msg;
         }
-        i = i + 1i64;
     }
-
-      // Unknown errno: render "Unknown error N" into internal buffer
-      // Format: "Unknown error " + decimal(errnum)
-    uint8->:dst = @cast_unchecked<uint8->>(@g_strerror_unknown_buf[0]);
-      // Copy "Unknown error "
+    uint8->:dst = @cast_unchecked<uint8->>(@g_strerror_unknown_buf);
     fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
-    int64:prefix_len = str_strlen(@cast_unchecked<int64>(prefix));
-    drop mem_memcpy(@cast_unchecked<int64>(@dst[0]), @cast_unchecked<int64>(prefix), prefix_len);
-      // Append decimal number
+    int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+    drop(mem_memcpy(@cast_unchecked<int64>(@dst), @cast_unchecked<int64>(prefix), prefix_len));
     stack uint8[24]:num;
-    int64:num_len = str_int64_to_dec(errnum, @cast_unchecked<int64>(@num[0]), 24i64);
-    drop mem_memcpy(@cast_unchecked<int64>(@dst[prefix_len]), @cast_unchecked<int64>(@num[0]), num_len + 1i64);
-    pass @cast_unchecked<int64>(@g_strerror_unknown_buf[0]);
+    int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+    drop(mem_memcpy((@cast_unchecked<int64>(dst)) + prefix_len, @cast_unchecked<int64>(@num), num_len + 1i64));
+    pass @cast_unchecked<int64>(@g_strerror_unknown_buf);
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -185,18 +234,47 @@ pub func:strerror_r = int64(int64:errnum, int64:buf, int64:buflen) {
         pass EINVAL;
     }
 
-    int64:msg = raw strerror(errnum);
-    int64:msg_len = raw str_strlen(msg);
+    int64:msg = 0i64;
+    if (errnum >= 0i64 && errnum <= 134i64) {
+        msg = errno_table[errnum];
+    }
+    
+    if (msg != 0i64) {
+        int64:msg_len = raw str_strlen(msg);
+        if (msg_len + 1i64 > buflen) {
+            drop(mem_memcpy(buf, msg, buflen - 1i64));
+            (@cast_unchecked<uint8->>(buf))[buflen - 1i64] = 0u8;
+            pass ERANGE;
+        }
+        drop(mem_memcpy(buf, msg, msg_len + 1i64));
+        pass 0i64;
+    }
 
-    if (msg_len + 1i64 > buflen) {
-          // Truncate to fit
-        drop mem_memcpy(buf, msg, buflen - 1i64);
+    // Unknown error rendering securely into caller buffer
+    fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
+    int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+    
+    stack uint8[24]:num;
+    int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+    
+    int64:total_len = prefix_len + num_len;
+    if (total_len + 1i64 > buflen) {
+        // Truncation required for unknown error
+        int64:copy1 = prefix_len;
+        if (copy1 > buflen - 1i64) { copy1 = buflen - 1i64; }
+        drop(mem_memcpy(buf, @cast_unchecked<int64>(prefix), copy1));
+        
+        int64:copy2 = buflen - 1i64 - copy1;
+        if (copy2 > 0i64) {
+            drop(mem_memcpy(buf + copy1, @cast_unchecked<int64>(@num), copy2));
+        }
         (@cast_unchecked<uint8->>(buf))[buflen - 1i64] = 0u8;
         pass ERANGE;
     }
-
-    drop mem_memcpy(buf, msg, msg_len + 1i64);
-    pass 0i64;
+    
+    drop(mem_memcpy(buf, @cast_unchecked<int64>(prefix), prefix_len));
+    drop(mem_memcpy(buf + prefix_len, @cast_unchecked<int64>(@num), num_len + 1i64));
+    pass EINVAL;
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -210,16 +288,20 @@ pub func:strerror_r = int64(int64:errnum, int64:buf, int64:buflen) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:perror = NIL(int64:prefix) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
 
     if (prefix != 0i64 && (@cast_unchecked<uint8->>(prefix))[0] != 0u8) {
-        drop fputs(prefix, stderr_fp);
-        drop fputc(58i64, stderr_fp);     // ':'
-        drop fputc(32i64, stderr_fp);     // ' '
+        drop(fputs(prefix, stderr_fp));
+        drop(fputc(58i64, stderr_fp));     // ':'
+        drop(fputc(32i64, stderr_fp));     // ' '
     }
 
-    int64:msg = raw strerror(@cast_unchecked<int64>(libn_errno));
-    drop fputs(msg, stderr_fp);
-    drop fputc(10i64, stderr_fp);     // '\n'
-    drop fflush(stderr_fp);
+    stack uint8[256]:msg_buf;
+    int64:errnum = @cast_unchecked<int64>(libn_errno);
+    drop(strerror_r(errnum, @cast_unchecked<int64>(@msg_buf), 256i64));
+    
+    drop(fputs(@cast_unchecked<int64>(@msg_buf), stderr_fp));
+    drop(fputc(10i64, stderr_fp));     // '
+'
+    drop(fflush(stderr_fp));
 };

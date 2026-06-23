@@ -112,7 +112,7 @@ pub func:io_file_size = int64(int64:fd) {
     Result<int64>:end_pos = libn_lseek(fd, 0i64, SEEK_END);
     if (end_pos.is_error) {
           // Best effort: try to restore, but return the end error
-        drop libn_lseek(fd, saved.value, SEEK_SET);
+        drop(libn_lseek(fd, saved.value, SEEK_SET));
         fail end_pos.error;
     }
 

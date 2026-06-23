@@ -50,6 +50,8 @@
 use "../syscall/errno.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../mem/mmap.npk".*;
+extern func:failsafe = int32(tbb32:err);
+
 
 // ════════════════════════════════════════════════════════════════════════════
 // SIZE CLASS TABLE
@@ -75,11 +77,11 @@ fixed int64:SLAB_CLASS_SIZE_9  = 4096i64;
 // For each class: slots_per_page = 4096 / (1 + class_size)
 // class 0: 4096/9=455, class 1: 4096/17=241, ..., class 9: 4096/4097=0 (1 slot spans 2 pages)
 // For large classes (slot > page), we allocate 2 pages per slab.
-fixed int64:SLAB_SLOTS_PER_PAGE_0 = 455i64;
-fixed int64:SLAB_SLOTS_PER_PAGE_1 = 241i64;
-fixed int64:SLAB_SLOTS_PER_PAGE_2 = 127i64;
-fixed int64:SLAB_SLOTS_PER_PAGE_3 = 63i64;
-fixed int64:SLAB_SLOTS_PER_PAGE_4 = 31i64;
+fixed int64:SLAB_SLOTS_PER_PAGE_0 = 256i64;
+fixed int64:SLAB_SLOTS_PER_PAGE_1 = 170i64;
+fixed int64:SLAB_SLOTS_PER_PAGE_2 = 102i64;
+fixed int64:SLAB_SLOTS_PER_PAGE_3 = 56i64;
+fixed int64:SLAB_SLOTS_PER_PAGE_4 = 30i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_5 = 15i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_6 = 7i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_7 = 3i64;
@@ -88,7 +90,7 @@ fixed int64:SLAB_SLOTS_PER_PAGE_9 = 0i64;     // Handled by large-object path (d
 
 // Header uint8 placed before each slot's user data.
 // Stores the class index (0-9) so free() can identify the class.
-pub fixed int64:SLAB_HEADER_SIZE = 1i64;
+pub fixed int64:SLAB_HEADER_SIZE = 8i64;
 
 // Slab class 9 (4096 bytes) is above the 2-page threshold for inline slabs.
 // Allocations of exactly 4096 bytes go through the direct-mmap allocator instead.
@@ -205,7 +207,7 @@ func:slab_refill = int64(int64:i) {
     int64:slots     = raw slab_class_slots(i);
 
     if (slots == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);    // class 9+ should not reach here
+        !!! 10i32;    // class 9+ should not reach here
     }
 
       // Pages needed: for class 8, slots=1 and slot_full=2049 → need 2 pages
@@ -240,7 +242,7 @@ func:slab_refill = int64(int64:i) {
         if (j == 0i64) {
               // First slot: update the global freelist head to point here.
               // (We'll fix up the chain after the loop, or do it inline)
-            drop slab_freelist_set(i, slot_start);
+            drop(slab_freelist_set(i, slot_start));
         }
 
           // Link previous slot's "next" to this slot.
@@ -267,7 +269,7 @@ func:slab_refill = int64(int64:i) {
 // Returns error on out-of-memory.
 pub func:slab_alloc = int64(int64:n) {
     if (n <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
     int64:cls = raw slab_class_for_size(n);
@@ -303,7 +305,7 @@ pub func:slab_alloc = int64(int64:n) {
     int64:next = next_ptr[0];
 
       // Advance freelist head
-    drop slab_freelist_set(cls, next);
+    drop(slab_freelist_set(cls, next));
 
       // Clear the "next" pointer field before handing to user
       // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
@@ -347,7 +349,7 @@ pub func:slab_free = int64(int64:ptr) {
     int64:old_head = raw slab_freelist_get(cls);
     int64->:next_ptr = @cast_unchecked<int64->>(ptr);
     next_ptr[0] = old_head;
-    drop slab_freelist_set(cls, slot_start);
+    drop(slab_freelist_set(cls, slot_start));
 
     pass 0i64;
 };

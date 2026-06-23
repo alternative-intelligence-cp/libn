@@ -1,33 +1,34 @@
 use "time_types.npk".*;
 use "../syscall/syscall.npk".*;
+use "../syscall/syscall_numbers.npk".*;
 
 pub func:clock_gettime = int64(int64:clockid, timespec->:tp) {
     if (@cast_unchecked<int64>(tp) == 0i64) {
-        drop errno_set(14i64); pass -1i64;     // EFAULT
+        drop(errno_set(14i64)); pass -1i64;     // EFAULT
     }
     Result<int64>:r = sys_safe(SYS_CLOCK_GETTIME, clockid, @cast_unchecked<int64>(tp), 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error); pass -1i64;
+        drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
     }
     pass 0i64;
 };
 pub func:clock_getres = int64(int64:clockid, timespec->:res) {
     if (@cast_unchecked<int64>(res) == 0i64) {
-        drop errno_set(14i64); pass -1i64;     // EFAULT
+        drop(errno_set(14i64)); pass -1i64;     // EFAULT
     }
     Result<int64>:r = sys_safe(SYS_CLOCK_GETRES, clockid, @cast_unchecked<int64>(res), 0i64, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error); pass -1i64;
+        drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
     }
     pass 0i64;
 };
 pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
     if (@cast_unchecked<int64>(tp) == 0i64) {
-        drop errno_set(14i64); pass -1i64;     // EFAULT
+        drop(errno_set(14i64)); pass -1i64;     // EFAULT
     }
-    Result<int64>:r = sys(CLOCK_SETTIME, clockid, @cast_unchecked<int64>(tp), 0i64, 0i64, 0i64, 0i64);
+    Result<int64>:r = sys_safe(SYS_CLOCK_SETTIME, clockid, @cast_unchecked<int64>(tp), 0i64, 0i64, 0i64, 0i64);
     if (r.is_error == true) {
-        drop errno_set(@cast_unchecked<int64>(r.error)); pass -1i64;
+        drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
     }
     pass 0i64;
 };

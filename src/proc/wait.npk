@@ -22,7 +22,7 @@
 //       _exit(1i64);
 //   }
 //   int64:status = 0i64;
-//   int64:w = waitpid(pid, @status, 0i64);
+//   int64:w = waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
 //   if wait_exited(status) {
 //       int64:code = wait_exit_code(status);
 //   }
@@ -103,7 +103,7 @@ pub func:waitpid = int64(int64:pid, int64:status_ptr, int64:options) {
       // We pass 0 for rusage (not collecting resource usage here)
     Result<int64>:r = sys!!(SYS_WAIT4, pid, status_ptr, options, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass r.value;
@@ -161,16 +161,16 @@ pub func:proc_run = int64(int64:path, int64:argv, int64:envp) {
     if (pid == 0i64) {
           // Child
         if (envp != 0i64) {
-            drop execve(path, argv, envp);
+            drop(execve(path, argv, envp));
         } else {
-            drop execv(path, argv);
+            drop(execv(path, argv));
         }
-        _exit(127i64);    // exec failed — 127 is shell's "command not found"
+        drop(_exit(127i64));    // exec failed — 127 is shell's "command not found"
     }
 
       // Parent: wait for child
     int64:status = 0i64;
-    int64:w = raw waitpid(pid, @status, 0i64);
+    int64:w = raw waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
     if (w < 0i64) { pass -1i64; }
 
     if (raw wait_exited(status)) {
@@ -178,7 +178,7 @@ pub func:proc_run = int64(int64:path, int64:argv, int64:envp) {
     }
     if (raw wait_signaled(status)) {
           // Return 128 + signal number (shell convention)
-        pass 128i64 + wait_termsig(status);
+        pass 128i64 + raw wait_termsig(status);
     }
     pass -1i64;
 };

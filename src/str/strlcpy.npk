@@ -42,7 +42,7 @@ use "../mem/memset.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strlcpy = int64(int64:dst, int64:src, int64:dst_size) {
-    int64:src_len = str_strlen(src);
+    int64:src_len = raw str_strlen(src);
 
     if (dst == 0i64 || dst_size == 0i64) {
         pass src_len;    // No copy, but return would-be length
@@ -55,7 +55,7 @@ pub func:str_strlcpy = int64(int64:dst, int64:src, int64:dst_size) {
     }
 
       // Copy copy_len bytes then NUL-terminate
-    drop mem_memcpy(dst, src, copy_len);
+    drop(mem_memcpy(dst, src, copy_len));
     (@cast_unchecked<uint8->>(dst))[copy_len] = 0u8;
 
     pass src_len;    // Return full source length (NOT copy_len)
@@ -79,8 +79,8 @@ pub func:str_strlcpy = int64(int64:dst, int64:src, int64:dst_size) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strlcat = int64(int64:dst, int64:src, int64:dst_size) {
-    int64:dst_len = str_strnlen(dst, dst_size);
-    int64:src_len = str_strlen(src);
+    int64:dst_len = raw str_strnlen(dst, dst_size);
+    int64:src_len = raw str_strlen(src);
 
     if (dst == 0i64 || dst_size == 0i64) {
         pass dst_len + src_len;
@@ -99,7 +99,7 @@ pub func:str_strlcat = int64(int64:dst, int64:src, int64:dst_size) {
         append_len = remaining;
     }
 
-    drop mem_memcpy(dst + dst_len, src, append_len);
+    drop(mem_memcpy(dst + dst_len, src, append_len));
     (@cast_unchecked<uint8->>(dst))[dst_len + append_len] = 0u8;
 
     pass dst_len + src_len;
@@ -166,7 +166,7 @@ pub func:str_strscpy_pad = int64(int64:dst, int64:src, int64:dst_size) {
 
       // Zero from nul_pos onward
     if (nul_pos < dst_size) {
-        drop mem_bzero(dst + nul_pos, dst_size - nul_pos);
+        drop(mem_bzero(dst + nul_pos, dst_size - nul_pos));
     }
 
     pass r;

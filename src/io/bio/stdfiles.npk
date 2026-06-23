@@ -36,7 +36,7 @@ use "../../io/bio/fstr.npk".*;
 FILE:g_stdin_file;
 FILE:g_stdout_file;
 FILE:g_stderr_file;
-pub int64:g_open_files = 0i64;
+
 
 // Lazy-init guard (0 = not yet initialized)
 int64:g_std_init_done = 0i64;
@@ -76,7 +76,7 @@ pub func:bio_ensure_std_init = NIL() {
     sin->buf_mode = _IOFBF;
     sin->flags    = FILE_FLAG_INIT;
     sin->unget    = FILE_UNGET_EMPTY;
-    int64:stdin_buf = bio_alloc_buf(BUFSIZ);
+    int64:stdin_buf = raw bio_alloc_buf(BUFSIZ);
     if (stdin_buf != 0i64) {
         sin->buf     = stdin_buf;
         sin->buf_cap = BUFSIZ;
@@ -93,7 +93,7 @@ pub func:bio_ensure_std_init = NIL() {
     sout->buf_mode = _IOLBF;
     sout->flags    = FILE_FLAG_INIT;
     sout->unget    = FILE_UNGET_EMPTY;
-    int64:stdout_buf = bio_alloc_buf(BUFSIZ);
+    int64:stdout_buf = raw bio_alloc_buf(BUFSIZ);
     if (stdout_buf != 0i64) {
         sout->buf     = stdout_buf;
         sout->buf_cap = BUFSIZ;
@@ -126,17 +126,17 @@ pub func:bio_ensure_std_init = NIL() {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:getchar = int64() {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fgetc(stdin_fp);
 };
 
 pub func:putchar = int64(int64:c) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fputc(c, stdout_fp);
 };
 
 pub func:puts = int64(int64:s) {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     if (s == 0i64) {
         pass FILE_EOF;
     }
@@ -154,17 +154,17 @@ pub func:puts = int64(int64:s) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:bio_flush_stdout = int64() {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fflush(stdout_fp);
 };
 
 pub func:bio_flush_stderr = int64() {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     pass fflush(stderr_fp);    // no-op for unbuffered; here for completeness
 };
 
 pub func:bio_flush_all = int64() {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
     int64:r1 = raw fflush(stdin_fp);
     int64:r2 = raw fflush(stdout_fp);
     int64:r3 = raw fflush(stderr_fp);

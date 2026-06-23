@@ -117,7 +117,7 @@ pub func:strbuf_new_cap = int64(int64:init_cap) {
       // Allocate the string buffer
     Result<int64>:br = mem_malloc(cap);
     if (br.is_error) {
-        drop mem_free(sb);
+        drop(mem_free(sb));
         pass 0i64;
     }
 
@@ -138,9 +138,9 @@ pub func:strbuf_free = NIL(int64:sb) {
     if (sb == 0i64) { pass NIL; }
     StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
     if (s->ptr != 0i64) {
-        drop mem_free(s->ptr);
+        drop(mem_free(s->ptr));
     }
-    drop mem_free(sb);
+    drop(mem_free(sb));
 };
 
 // strbuf_reset — Clear content (set len=0, NUL-terminate) without freeing.
@@ -164,7 +164,7 @@ pub func:strbuf_finish = int64(int64:sb) {
     StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
     int64:ptr = s->ptr;
     s->ptr = 0i64;    // prevent double-free in strbuf_free
-    drop mem_free(sb);
+    drop(mem_free(sb));
     pass ptr;
 };
 
@@ -179,12 +179,12 @@ pub func:strbuf_to_str = int64(int64:sb) {
     int64:n = s->len;
     Result<int64>:r = mem_malloc(n + 1i64);
     if (r.is_error) {
-        drop strbuf_free(sb);
+        drop(strbuf_free(sb));
         pass 0i64;
     }
 
-    drop mem_memcpy(r.value, s->ptr, n + 1i64);    // includes NUL
-    drop strbuf_free(sb);
+    drop(mem_memcpy(r.value, s->ptr, n + 1i64));    // includes NUL
+    drop(strbuf_free(sb));
     pass r.value;
 };
 
@@ -242,7 +242,7 @@ pub func:strbuf_append_bytes = bool(int64:sb, int64:ptr, int64:n) {
     if (!raw strbuf_grow(sb, n)) { pass false; }
 
     StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
-    drop mem_memcpy(s->ptr + s->len, ptr, n);
+    drop(mem_memcpy(s->ptr + s->len, ptr, n));
     s->len = s->len + n;
     (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;    // NUL-terminate
     pass true;
@@ -252,7 +252,7 @@ pub func:strbuf_append_bytes = bool(int64:sb, int64:ptr, int64:n) {
 // Returns true on success, false on OOM or null input.
 pub func:strbuf_append_str = bool(int64:sb, int64:str) {
     if (sb == 0i64 || str == 0i64) { pass false; }
-    int64:n = str_strlen(str);
+    int64:n = raw str_strlen(str);
     if (n == 0i64) { pass true; }    // appending empty string is a no-op
     pass strbuf_append_bytes(sb, str, n);
 };
@@ -270,7 +270,7 @@ pub func:strbuf_append_repeat = bool(int64:sb, uint8:c, int64:n) {
     if (sb == 0i64 || n <= 0i64) { pass false; }
     if (!raw strbuf_grow(sb, n)) { pass false; }
     StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
-    drop mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n);
+    drop(mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n));
     s->len = s->len + n;
     (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;
     pass true;
@@ -289,9 +289,9 @@ pub func:strbuf_append_repeat = bool(int64:sb, uint8:c, int64:n) {
 pub func:strbuf_appendf0 = int64(int64:sb, int64:fmt) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf0(tmp_ptr, STRBUF_FMT_BUF, fmt);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf0(tmp_ptr, STRBUF_FMT_BUF, fmt));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -300,9 +300,9 @@ pub func:strbuf_appendf0 = int64(int64:sb, int64:fmt) {
 pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf1(tmp_ptr, STRBUF_FMT_BUF, fmt, a0);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf1(tmp_ptr, STRBUF_FMT_BUF, fmt, a0));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -311,9 +311,9 @@ pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
 pub func:strbuf_appendf2 = int64(int64:sb, int64:fmt, int64:a0, int64:a1) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf2(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf2(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -323,9 +323,9 @@ pub func:strbuf_appendf3 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf3(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf3(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -335,9 +335,9 @@ pub func:strbuf_appendf4 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf4(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf4(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -347,9 +347,9 @@ pub func:strbuf_appendf5 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf5(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf5(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -360,9 +360,9 @@ pub func:strbuf_appendf6 = int64(int64:sb, int64:fmt,
                                   int64:a4, int64:a5) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf6(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf6(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -373,9 +373,9 @@ pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
                                   int64:a4, int64:a5, int64:a6) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf7(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf7(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
@@ -386,9 +386,9 @@ pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
                                   int64:a4, int64:a5, int64:a6, int64:a7) {
     if (sb == 0i64) { pass -1i64; }
     stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
-    drop str_snprintf8(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
-    int64:n = str_strlen(tmp_ptr);
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+    drop(str_snprintf8(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6, a7));
+    int64:n = raw str_strlen(tmp_ptr);
     if (n == 0i64) { pass 0i64; }
     if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;

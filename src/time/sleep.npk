@@ -2,16 +2,39 @@ use "time_types.npk".*;
 use "../syscall/syscall.npk".*;
 
 pub func:nanosleep = int64(timespec->:req, timespec->:rem) {
-    if (req == 0i64) {
-        pass(libn_errno_set(14i64));     // EFAULT
+    if (@cast_unchecked<int64>(req) == 0i64) {
+        drop(errno_set(14i64)); pass -1i64;     // EFAULT
     }
-        // libn_nanosleep handles the EINTR retry internally, but we'll expose a wrapper that behaves like POSIX
-        // POSIX nanosleep should return -1 and set errno to EINTR if (interrupted, updating rem if not NULL.
-        // However, our libn_nanosleep does the loop internally if we call it.
-        // Let's just use the syscall so we match POSIX behavior exactly.
-    Result<int64>:r = sys(NANOSLEEP, @cast_unchecked<int64>(req), @cast_unchecked<int64>(rem), 0i64, 0i64, 0i64, 0i64);
-    if (r.is_error == true) {
-        pass(libn_errno_set(@cast_unchecked<int64>(r.error)));
+    
+    stack int64[2]:creq;
+    stack int64[2]:crem;
+    int64->:req_arr = @cast_unchecked<int64->>(req);
+    creq[0] = req_arr[0];
+    creq[1] = req_arr[1];
+
+    while (true) {
+        Result<int64>:r = sys_safe(SYS_NANOSLEEP, @cast_unchecked<int64>(@creq), @cast_unchecked<int64>(@crem), 0i64, 0i64, 0i64, 0i64);
+        if (r.is_error == false) { break; }
+        
+        int64:err = @cast_unchecked<int64>(r.error);
+        if (err != 4i64) { // 4 is EINTR
+            drop(errno_set(err)); 
+            if (@cast_unchecked<int64>(rem) != 0i64) {
+                int64->:rem_arr = @cast_unchecked<int64->>(rem);
+                rem_arr[0] = crem[0];
+                rem_arr[1] = crem[1];
+            }
+            pass -1i64;
+        }
+        
+        creq[0] = crem[0];
+        creq[1] = crem[1];
+    }
+    
+    if (@cast_unchecked<int64>(rem) != 0i64) {
+        int64->:rem_arr = @cast_unchecked<int64->>(rem);
+        rem_arr[0] = 0i64;
+        rem_arr[1] = 0i64;
     }
     pass 0i64;
-}
+};

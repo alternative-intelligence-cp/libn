@@ -40,7 +40,7 @@ fixed int64:FOPEN_CREAT_MODE = 0o666i64;    // masked by umask at open() time
 //            so fclose() knows not to call slab_free() on it.
 // ════════════════════════════════════════════════════════════════════════════
 
-func:bio_init_stream = Result<int64>(int64:fp, int64:fd, int64:file_mode, bool:is_static) {
+func:bio_init_stream = int64(int64:fp, int64:fd, int64:file_mode, bool:is_static) {
     FILE->:f = @cast_unchecked<FILE->>(fp);
 
     f->fd       = fd;
@@ -71,7 +71,7 @@ func:bio_init_stream = Result<int64>(int64:fp, int64:fd, int64:file_mode, bool:i
 is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
 
       // Allocate buffer
-    int64:buf = bio_alloc_buf(BUFSIZ);
+    int64:buf = raw bio_alloc_buf(BUFSIZ);
     if (buf == 0i64) {
         fail @cast_unchecked<tbb32>(ENOMEM);
     }
@@ -97,16 +97,16 @@ is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
 
 pub func:fopen = int64(int64:path, int64:mode) {
     if (path == 0i64 || mode == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
       // Parse mode string
     stack int64[1]:file_mode_out;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out[0]), @cast_unchecked<int64>(@open_flags_out[0]));
+    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
@@ -116,25 +116,25 @@ pub func:fopen = int64(int64:path, int64:mode) {
       // Open the file (O_CLOEXEC added automatically by libn_open)
     Result<int64>:r = libn_open(path, open_flags, FOPEN_CREAT_MODE);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass 0i64;
     }
     int64:fd = r.value;
 
       // Allocate FILE struct
-    int64:fp = bio_alloc_file();
+    int64:fp = raw bio_alloc_file();
     if (fp == 0i64) {
-        drop libn_close(fd);
-        drop drop(errno_set(ENOMEM));
+        drop(libn_close(fd));
+        drop(errno_set(ENOMEM));
         pass 0i64;
     }
 
       // Initialize the stream
     Result<int64>:init_r = bio_init_stream(fp, fd, file_mode, false);
     if (init_r.is_error) {
-        drop libn_close(fd);
-        drop bio_free_file(fp);
-        drop drop(errno_set(ENOMEM));
+        drop(libn_close(fd));
+        drop(bio_free_file(fp));
+        drop(errno_set(ENOMEM));
         pass 0i64;
     }
 
@@ -158,28 +158,28 @@ pub func:fopen = int64(int64:path, int64:mode) {
 
 pub func:fdopen = int64(int64:fd, int64:mode) {
     if (fd < 0i64 || mode == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
     stack int64[1]:file_mode_out;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out[0]), @cast_unchecked<int64>(@open_flags_out[0]));
+    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
-    int64:fp = bio_alloc_file();
+    int64:fp = raw bio_alloc_file();
     if (fp == 0i64) {
-        drop drop(errno_set(ENOMEM));
+        drop(errno_set(ENOMEM));
         pass 0i64;
     }
 
     Result<int64>:init_r = bio_init_stream(fp, fd, file_mode_out[0], false);
     if (init_r.is_error) {
-        drop bio_free_file(fp);
-        drop drop(errno_set(ENOMEM));
+        drop(bio_free_file(fp));
+        drop(errno_set(ENOMEM));
         pass 0i64;
     }
 
@@ -200,7 +200,7 @@ pub func:fdopen = int64(int64:fd, int64:mode) {
 
 pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
     if (mode == 0i64 || fp == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
@@ -209,16 +209,16 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
       // Parse new mode
     stack int64[1]:file_mode_out;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out[0]), @cast_unchecked<int64>(@open_flags_out[0]));
+    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
-        drop fclose(fp);
-        drop drop(errno_set(EINVAL));
+        drop(fclose(fp));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
       // Flush existing write buffer
     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
-        drop bio_flush_write_buf(fp);
+        drop(bio_flush_write_buf(fp));
     }
 
     int64:old_fd = f->fd;
@@ -229,16 +229,16 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
         Result<int64>:r = libn_open(path, open_flags_out[0], FOPEN_CREAT_MODE);
         if (r.is_error) {
               // POSIX: freopen closes fp even on error
-            drop libn_close(old_fd);
-            if (buf_owned) { drop bio_free_buf(f->buf, f->buf_cap); }
+            drop(libn_close(old_fd));
+            if (buf_owned) { drop(bio_free_buf(f->buf, f->buf_cap)); }
             f->fd    = -1i64;
             f->flags = FILE_FLAG_ERROR;
-            drop errno_set(@cast_unchecked<int64>(r.error));
+            drop(errno_set(@cast_unchecked<int64>(r.error)));
             pass 0i64;
         }
 
           // Close old fd, install new one
-        drop libn_close(old_fd);
+        drop(libn_close(old_fd));
         f->fd = r.value;
     }
 
@@ -271,7 +271,7 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
 
 pub func:fclose = int64(int64:fp) {
     if (fp == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass FILE_EOF;
     }
 
@@ -282,7 +282,7 @@ pub func:fclose = int64(int64:fp) {
     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64 && f->buf_pos > 0i64) {
         Result<int64>:r = bio_flush_write_buf(fp);
         if (r.is_error) {
-            drop errno_set(@cast_unchecked<int64>(r.error));
+            drop(errno_set(@cast_unchecked<int64>(r.error)));
             ret = FILE_EOF;
               // Continue with close even on flush error
         }
@@ -294,7 +294,7 @@ pub func:fclose = int64(int64:fp) {
     if (!is_std && fd >= 0i64) {
         Result<int64>:r = libn_close(fd);
         if (r.is_error && ret == 0i64) {
-            drop errno_set(@cast_unchecked<int64>(r.error));
+            drop(errno_set(@cast_unchecked<int64>(r.error)));
             ret = FILE_EOF;
         }
     }
@@ -303,14 +303,14 @@ pub func:fclose = int64(int64:fp) {
 
       // Free I/O buffer if we own it
     if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {
-        drop bio_free_buf(f->buf, f->buf_cap);
+        drop(bio_free_buf(f->buf, f->buf_cap));
         f->buf     = 0i64;
         f->buf_cap = 0i64;
     }
 
       // Free FILE struct if heap-allocated (not stdin/stdout/stderr)
     if (!is_std) {
-        drop bio_free_file(fp);
+        drop(bio_free_file(fp));
     } else {
           // Reset std stream to allow re-init if needed
         f->flags    = 0i64;
@@ -331,12 +331,12 @@ pub func:fclose = int64(int64:fp) {
 
 pub func:fileno = int64(int64:fp) {
     if (fp == 0i64) {
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass -1i64;
     }
     FILE->:f = @cast_unchecked<FILE->>(fp);
     if (f->fd < 0i64) {
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass -1i64;
     }
     pass f->fd;

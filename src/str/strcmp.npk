@@ -102,7 +102,7 @@ pub func:str_strcmp = int64(int64:a, int64:b) {
         int64:va = wa[wi];
         int64:vb = wb[wi];
           // If either word has a NUL uint8 OR they differ, drop to uint8 loop
-        if (va != vb || strcmp_has_nul(va)) {
+        if (va != vb || raw strcmp_has_nul(va)) {
             break;
         }
         wi = wi + 1i64;
@@ -211,8 +211,8 @@ pub func:str_strcasecmp = int64(int64:a, int64:b) {
     int64:i = 0i64;
 
     while (true) {
-        uint8:ca = to_lower_ascii(pa[i]);
-        uint8:cb = to_lower_ascii(pb[i]);
+        uint8:ca = raw to_lower_ascii(pa[i]);
+        uint8:cb = raw to_lower_ascii(pb[i]);
         if (ca != cb) {
             if (ca < cb) { pass -1i64; }
             pass 1i64;
@@ -249,8 +249,8 @@ pub func:str_strncasecmp = int64(int64:a, int64:b, int64:n) {
     int64:i = 0i64;
 
     while (i < n) {
-        uint8:ca = to_lower_ascii(pa[i]);
-        uint8:cb = to_lower_ascii(pb[i]);
+        uint8:ca = raw to_lower_ascii(pa[i]);
+        uint8:cb = raw to_lower_ascii(pb[i]);
         if (ca != cb) {
             if (ca < cb) { pass -1i64; }
             pass 1i64;
@@ -279,7 +279,7 @@ pub func:str_casecmp_prefix = bool(int64:a, int64:b) {
     int64:i = 0i64;
 
     while (pb[i] != 0u8) {
-        if (pa[i] == 0u8 || to_lower_ascii(pa[i]) != to_lower_ascii(pb[i])) {
+        if (pa[i] == 0u8 || raw to_lower_ascii(pa[i]) != raw to_lower_ascii(pb[i])) {
             pass false;
         }
         i = i + 1i64;

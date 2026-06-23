@@ -91,7 +91,7 @@ pub func:fread = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
               // Bytes available in the buffer
             int64:remaining = size * nmemb - bytes_read;
             int64:to_copy = is (buffered < remaining) : buffered : remaining;
-            drop mem_memcpy(dst, f->buf + f->buf_pos, to_copy);
+            drop(mem_memcpy(dst, f->buf + f->buf_pos, to_copy));
             f->buf_pos  = f->buf_pos + to_copy;
             f->file_pos = f->file_pos + to_copy;
             dst        = dst + to_copy;
@@ -163,7 +163,7 @@ pub func:fwrite = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
 
       // If read buffer has pending bytes, discard them before switching to write
     if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
-        drop bio_discard_read_buf(fp);
+        drop(bio_discard_read_buf(fp));
     }
     f->flags = f->flags | FILE_FLAG_WRITE_MODE;
 
@@ -235,19 +235,19 @@ pub func:fwrite = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
             if (nl_pos >= 0i64) {
                   // Copy up to and including the newline, then flush
                 int64:copy_to_nl = nl_pos + 1i64;
-                drop mem_memcpy(f->buf + f->buf_pos, src, copy_to_nl);
+                drop(mem_memcpy(f->buf + f->buf_pos, src, copy_to_nl));
                 f->buf_pos     = f->buf_pos + copy_to_nl;
                 f->buf_len     = f->buf_pos;
                 src           = src + copy_to_nl;
                 bytes_written = bytes_written + copy_to_nl;
                   // Flush on '\n'
-                drop bio_flush_write_buf(fp);
+                drop(bio_flush_write_buf(fp));
                 continue;
             }
         }
 
           // Normal copy into buffer
-        drop mem_memcpy(f->buf + f->buf_pos, src, to_copy);
+        drop(mem_memcpy(f->buf + f->buf_pos, src, to_copy));
         f->buf_pos     = f->buf_pos + to_copy;
         f->buf_len     = f->buf_pos;
         src           = src + to_copy;
@@ -287,7 +287,7 @@ pub func:fflush = int64(int64:fp) {
     FILE->:f = @cast_unchecked<FILE->>(fp);
 
     if (f->fd < 0i64) {
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 
@@ -295,12 +295,12 @@ pub func:fflush = int64(int64:fp) {
           // Flush write buffer
         Result<int64>:r = bio_flush_write_buf(fp);
         if (r.is_error) {
-            drop errno_set(@cast_unchecked<int64>(r.error));
+            drop(errno_set(@cast_unchecked<int64>(r.error)));
             pass FILE_EOF;
         }
     } else {
           // Read mode: seek back over unconsumed read buffer
-        drop bio_discard_read_buf(fp);
+        drop(bio_discard_read_buf(fp));
     }
 
     pass 0i64;

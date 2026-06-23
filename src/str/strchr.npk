@@ -200,14 +200,14 @@ pub func:str_strcasestr = int64(int64:haystack, int64:needle) {
         pass haystack;
     }
 
-    uint8:first_lo = to_lower_ascii(n[0]);
+    uint8:first_lo = raw to_lower_ascii(n[0]);
     int64:i = 0i64;
 
     while (h[i] != 0u8) {
-        if (to_lower_ascii(h[i]) == first_lo) {
+        if (raw to_lower_ascii(h[i]) == first_lo) {
             int64:j = 1i64;
             while (n[j] != 0u8 && h[i + j] != 0u8 &&
-                  to_lower_ascii(h[i + j]) == to_lower_ascii(n[j])) {
+                  raw to_lower_ascii(h[i + j]) == raw to_lower_ascii(n[j])) {
                 j = j + 1i64;
             }
             if (n[j] == 0u8) {
@@ -248,7 +248,7 @@ pub func:charset_build = NIL(uint8->:table, int64:charset) {
 
 // charset_test — True if uint8 c is in the 32-uint8 bitvector table.
 pub func:charset_test = bool(uint8->:table, uint8:c) {
-    pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
+    pass ((table[c >> 3u8] >> (c & 7u8)) & 1u8) != 0u8;
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -264,13 +264,13 @@ pub func:str_strpbrk = int64(int64:s, int64:accept) {
 
       // Build charset bitvector on stack
     stack uint8[32]:table;
-    drop charset_build(@table[0], accept);
+    drop(charset_build(@cast_unchecked<uint8->>(@table), accept));
 
     uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
     while (p[i] != 0u8) {
-        if (charset_test(@table[0], p[i])) {
+        if (raw charset_test(@cast_unchecked<uint8->>(@table), p[i])) {
             pass s + i;
         }
         i = i + 1i64;
@@ -297,12 +297,12 @@ pub func:str_strspn = int64(int64:s, int64:accept) {
     }
 
     stack uint8[32]:table;
-    drop charset_build(@table[0], accept);
+    drop(charset_build(@cast_unchecked<uint8->>(@table), accept));
 
     uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while (p[i] != 0u8 && charset_test(@table[0], p[i])) {
+    while (p[i] != 0u8 && raw charset_test(@cast_unchecked<uint8->>(@table), p[i])) {
         i = i + 1i64;
     }
 
@@ -321,16 +321,16 @@ pub func:str_strcspn = int64(int64:s, int64:reject) {
         pass 0i64;
     }
     if (reject == 0i64) {
-        pass str_strlen(s);
+        pass raw str_strlen(s);
     }
 
     stack uint8[32]:table;
-    drop charset_build(@table[0], reject);
+    drop(charset_build(@cast_unchecked<uint8->>(@table), reject));
 
     uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while (p[i] != 0u8 && !charset_test(@table[0], p[i])) {
+    while (p[i] != 0u8 && raw charset_test(@cast_unchecked<uint8->>(@table), p[i]) == false) {
         i = i + 1i64;
     }
 

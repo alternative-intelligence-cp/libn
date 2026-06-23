@@ -51,7 +51,7 @@ pub func:fgetc = int64(int64:fp) {
       // Not readable
     if ((f->mode & FILE_MODE_READ) == 0i64) {
         f->flags = f->flags | FILE_FLAG_ERROR;
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 
@@ -75,7 +75,7 @@ pub func:fgetc = int64(int64:fp) {
     if (f->buf_mode == _IONBF || f->buf == 0i64) {
         stack uint8[1]:one;
         while (true) {
-            Result<int64>:r = sys_safe(SYS_READ, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+            Result<int64>:r = sys_safe(SYS_READ, f->fd, @cast_unchecked<int64>(@one), 1i64, 0i64, 0i64, 0i64);
             if (r.is_error) {
                 int64:e = @cast_unchecked<int64>(r.error);
                 if (e == EINTR) { continue; }
@@ -96,7 +96,8 @@ pub func:fgetc = int64(int64:fp) {
       // Buffered: refill if exhausted
     if (f->buf_pos >= f->buf_len) {
         Result<int64>:r = bio_refill_read_buf(fp);
-        if (r.is_error || r.value == 0i64) {
+        if (r.is_error) { pass FILE_EOF; }
+        if (r.value == 0i64) {
             pass FILE_EOF;
         }
     }
@@ -125,13 +126,13 @@ pub func:fputc = int64(int64:c, int64:fp) {
 
     if ((f->mode & FILE_MODE_WRITE) == 0i64) {
         f->flags = f->flags | FILE_FLAG_ERROR;
-        drop drop(errno_set(EBADF));
+        drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 
       // If read buffer has pending bytes, discard before writing
     if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
-        drop bio_discard_read_buf(fp);
+        drop(bio_discard_read_buf(fp));
     }
     f->flags = f->flags | FILE_FLAG_WRITE_MODE;
 
@@ -142,7 +143,7 @@ pub func:fputc = int64(int64:c, int64:fp) {
         stack uint8[1]:one;
         one[0] = b;
         while (true) {
-            Result<int64>:r = sys_safe(SYS_WRITE, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+            Result<int64>:r = sys_safe(SYS_WRITE, f->fd, @cast_unchecked<int64>(@one), 1i64, 0i64, 0i64, 0i64);
             if (r.is_error) {
                 int64:e = @cast_unchecked<int64>(r.error);
                 if (e == EINTR) { continue; }

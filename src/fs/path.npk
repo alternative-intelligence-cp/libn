@@ -114,7 +114,7 @@ pub func:path_join = int64(int64:a, int64:b, int64:out, int64:out_sz) {
         if (blen >= out_sz) {
             fail @cast_unchecked<tbb32>(ENAMETOOLONG);
         }
-        drop path_copy_n(out, b, blen);
+        drop(path_copy_n(out, b, blen));
         pass blen;
     }
 
@@ -126,7 +126,7 @@ pub func:path_join = int64(int64:a, int64:b, int64:out, int64:out_sz) {
         if (blen >= out_sz) {
             fail @cast_unchecked<tbb32>(ENAMETOOLONG);
         }
-        drop path_copy_n(out, b, blen);
+        drop(path_copy_n(out, b, blen));
         pass blen;
     }
 
@@ -141,7 +141,7 @@ pub func:path_join = int64(int64:a, int64:b, int64:out, int64:out_sz) {
         if (a_end >= out_sz) {
             fail @cast_unchecked<tbb32>(ENAMETOOLONG);
         }
-        drop path_copy_n(out, a, a_end);
+        drop(path_copy_n(out, a, a_end));
         ob[a_end] = 0u8;
         pass a_end;
     }
@@ -248,7 +248,7 @@ pub func:path_dirname = int64(int64:path, int64:out, int64:out_sz) {
         fail @cast_unchecked<tbb32>(ENAMETOOLONG);
     }
 
-    drop path_copy_n(out, path, dir_end);
+    drop(path_copy_n(out, path, dir_end));
     ob[dir_end] = 0u8;
     pass dir_end;
 };
@@ -499,7 +499,7 @@ pub func:path_strip_trailing_slash = int64(int64:path, int64:out, int64:out_sz) 
         fail @cast_unchecked<tbb32>(ENAMETOOLONG);
     }
 
-    drop path_copy_n(out, path, end_idx);
+    drop(path_copy_n(out, path, end_idx));
     ob[end_idx] = 0u8;
     pass end_idx;
 };

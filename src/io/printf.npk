@@ -54,8 +54,8 @@ pub fixed int64:PRINTF_BUF_SIZE = 4096i64;
 
 pub func:io_fprintf0 = int64(int64:fd, int64:fmt) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf0(buf_ptr, PRINTF_BUF_SIZE, fmt);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf0(buf_ptr, PRINTF_BUF_SIZE, fmt));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -73,8 +73,8 @@ pub func:io_eprintf0 = int64(int64:fmt) {
 
 pub func:io_fprintf1 = int64(int64:fd, int64:fmt, int64:a0) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf1(buf_ptr, PRINTF_BUF_SIZE, fmt, a0);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf1(buf_ptr, PRINTF_BUF_SIZE, fmt, a0));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -92,8 +92,8 @@ pub func:io_eprintf1 = int64(int64:fmt, int64:a0) {
 
 pub func:io_fprintf2 = int64(int64:fd, int64:fmt, int64:a0, int64:a1) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf2(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf2(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -111,8 +111,8 @@ pub func:io_eprintf2 = int64(int64:fmt, int64:a0, int64:a1) {
 
 pub func:io_fprintf3 = int64(int64:fd, int64:fmt, int64:a0, int64:a1, int64:a2) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf3(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf3(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -131,8 +131,8 @@ pub func:io_eprintf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
 pub func:io_fprintf4 = int64(int64:fd, int64:fmt,
                                      int64:a0, int64:a1, int64:a2, int64:a3) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf4(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf4(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -151,8 +151,8 @@ pub func:io_eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) 
 pub func:io_fprintf5 = int64(int64:fd, int64:fmt,
                                      int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf5(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf5(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -174,8 +174,8 @@ pub func:io_fprintf6 = int64(int64:fd, int64:fmt,
                                      int64:a0, int64:a1, int64:a2, int64:a3,
                                      int64:a4, int64:a5) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf6(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf6(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -199,8 +199,8 @@ pub func:io_fprintf7 = int64(int64:fd, int64:fmt,
                                      int64:a0, int64:a1, int64:a2, int64:a3,
                                      int64:a4, int64:a5, int64:a6) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf7(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf7(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -224,8 +224,8 @@ pub func:io_fprintf8 = int64(int64:fd, int64:fmt,
                                      int64:a0, int64:a1, int64:a2, int64:a3,
                                      int64:a4, int64:a5, int64:a6, int64:a7) {
     stack uint8[4096]:buf;
-    int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
-    drop str_snprintf8(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    int64:buf_ptr = @cast_unchecked<int64>(@buf);
+    drop(str_snprintf8(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7));
     pass io_write_str(fd, buf_ptr);
 };
 
@@ -328,9 +328,10 @@ pub func:io_perror = int64(int64:prefix) {
       // Print: "prefix: errno_string\n"
       // We compose this with two writes to avoid needing a format arg for the prefix.
     if (prefix != 0i64) {
-        int64:r = io_write_str(STDERR_FD, prefix);
+        int64:r = raw io_write_str(STDERR_FD, prefix);
         if (r < 0i64) { pass r; }
-        int64:r2 = io_write_str(STDERR_FD, @cast_unchecked<int64>(@": "));
+        int64:colon_space = @cast_unchecked<int64>(@": ");
+        int64:r2 = raw io_write_str(STDERR_FD, colon_space);
         if (r2 < 0i64) { pass r2; }
     }
       // errno is the global set by the last failing syscall
@@ -341,20 +342,20 @@ pub func:io_perror = int64(int64:prefix) {
     int64:e = @cast_unchecked<int64>(libn_errno);
       // render decimal errno value
     int64:i = 31i64;
-    (@cast_unchecked<uint8->>(@num_buf[0]))[i] = 0u8;
+    (@cast_unchecked<uint8->>(@num_buf))[i] = 0u8;
     i = i - 1i64;
     if (e <= 0i64) {
-        (@cast_unchecked<uint8->>(@num_buf[0]))[i] = 48u8;    // '0'
+        (@cast_unchecked<uint8->>(@num_buf))[i] = 48u8;    // '0'
         i = i - 1i64;
     } else {
         int64:v = e;
         while (v > 0i64) {
-            (@cast_unchecked<uint8->>(@num_buf[0]))[i] = @cast_unchecked<uint8>((48i64 + (v % 10i64)));
+            (@cast_unchecked<uint8->>(@num_buf))[i] = @cast_unchecked<uint8>((48i64 + (v % 10i64)));
             v = v / 10i64;
             i = i - 1i64;
         }
     }
-    int64:num_start = (@cast_unchecked<int64>(@num_buf[0])) + i + 1i64;
+    int64:num_start = (@cast_unchecked<int64>(@num_buf)) + i + 1i64;
     Result<int64>:r3 = io_write_str(STDERR_FD, num_start);
     if (r3.is_error) { return r3; }
     pass io_write_newline(STDERR_FD);

@@ -132,7 +132,7 @@ pub func:io_redirect = int64(int64:src_fd, int64:target_fd) {
       // If they're already the same, just clear O_CLOEXEC if it's set
       // (so the fd survives exec), then we're done.
     if (src_fd == target_fd) {
-        drop libn_fcntl(target_fd, F_SETFD, 0i64);    // clear FD_CLOEXEC
+        drop(libn_fcntl(target_fd, F_SETFD, 0i64));    // clear FD_CLOEXEC
         pass target_fd;
     }
 
@@ -144,7 +144,7 @@ pub func:io_redirect = int64(int64:src_fd, int64:target_fd) {
 
       // Close the original src_fd — target_fd is now the live handle
       // Ignore close errors here — the dup2 succeeded, don't obscure that.
-    drop libn_close(src_fd);
+    drop(libn_close(src_fd));
 
     pass target_fd;
 };

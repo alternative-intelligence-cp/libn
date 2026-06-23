@@ -35,7 +35,7 @@
 //       argv[0] = "/bin/ls"@cast_unchecked<int64>();
 //       argv[1] = "-l"@cast_unchecked<int64>();
 //       argv[2] = 0i64;
-//       drop execv("/bin/ls"@cast_unchecked<int64>(), @cast_unchecked<int64>(@argv[0]));
+//       drop(execv("/bin/ls"@cast_unchecked<int64>(), @cast_unchecked<int64>(@argv)));
 //       _exit(1i64);  // exec failed
 //   }
 //   // parent continues...
@@ -58,7 +58,7 @@ use "../str/strlen.npk".*;
 pub func:execve = int64(int64:path, int64:argv, int64:envp) {
     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
     if (r.is_error) {
-        drop errno_set(@cast_unchecked<int64>(r.error));
+        drop(errno_set(@cast_unchecked<int64>(r.error)));
         pass -1i64;
     }
     pass 0i64;    // unreachable on success
@@ -91,13 +91,13 @@ pub func:execvp = int64(int64:name, int64:argv) {
 
 pub func:execvpe = int64(int64:name, int64:argv, int64:envp) {
     if (name == 0i64 || argv == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
     int64:name_len = raw str_strlen(name);
     if (name_len == 0i64) {
-        drop drop(errno_set(ENOENT));
+        drop(errno_set(ENOENT));
         pass -1i64;
     }
 
@@ -111,11 +111,13 @@ pub func:execvpe = int64(int64:name, int64:argv, int64:envp) {
         i = i + 1i64;
     }
 
+    int64:path_key = @cast_unchecked<int64>(@"PATH");
+    int64:default_path = @cast_unchecked<int64>(@"/usr/local/bin:/usr/bin:/bin");
       // Search PATH environment variable
-    int64:path_str = raw proc_getenv_from(envp, @cast_unchecked<int64>(@"PATH"));
+    int64:path_str = raw proc_getenv_from(envp, path_key);
     if (path_str == 0i64) {
           // No PATH → try /usr/local/bin:/usr/bin:/bin
-        path_str = @cast_unchecked<int64>(@"/usr/local/bin:/usr/bin:/bin");
+        path_str = default_path;
     }
 
       // Iterate PATH directories separated by ':'
@@ -157,9 +159,9 @@ pub func:execvpe = int64(int64:name, int64:argv, int64:envp) {
             candidate[dir_len + 1i64 + name_len] = 0u8;
 
               // Try to exec
-            int64:ret = raw execve(@cast_unchecked<int64>(@candidate[0]), argv, envp);
+            int64:ret = raw execve(@cast_unchecked<int64>(@candidate), argv, envp);
               // If we get here, exec failed
-            int64:e = libn_errno_get();
+            int64:e = raw libn_errno_get();
             if (e != ENOENT && e != EACCES) {
                   // A real error (not "not found" or "permission denied") — stop
                 pass ret;
@@ -171,7 +173,7 @@ pub func:execvpe = int64(int64:name, int64:argv, int64:envp) {
         p_start = p_end + 1i64;
     }
 
-    drop drop(errno_set(last_err));
+    drop(errno_set(last_err));
     pass -1i64;
 };
 
@@ -218,32 +220,32 @@ pub func:proc_getenv_from = int64(int64:envp, int64:key) {
 pub func:execl0 = int64(int64:path) {
     stack int64[1]:argv;
     argv[0] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl1 = int64(int64:path, int64:a0) {
     stack int64[2]:argv;
     argv[0] = a0;
     argv[1] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl2 = int64(int64:path, int64:a0, int64:a1) {
     stack int64[3]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl3 = int64(int64:path, int64:a0, int64:a1, int64:a2) {
     stack int64[4]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl4 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3) {
     stack int64[5]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl5 = int64(int64:path, int64:a0, int64:a1, int64:a2,
@@ -251,7 +253,7 @@ pub func:execl5 = int64(int64:path, int64:a0, int64:a1, int64:a2,
     stack int64[6]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2;
     argv[3] = a3; argv[4] = a4; argv[5] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl6 = int64(int64:path, int64:a0, int64:a1, int64:a2,
@@ -259,7 +261,7 @@ pub func:execl6 = int64(int64:path, int64:a0, int64:a1, int64:a2,
     stack int64[7]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2;
     argv[3] = a3; argv[4] = a4; argv[5] = a5; argv[6] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl7 = int64(int64:path, int64:a0, int64:a1, int64:a2,
@@ -267,7 +269,7 @@ pub func:execl7 = int64(int64:path, int64:a0, int64:a1, int64:a2,
     stack int64[8]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 pub func:execl8 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3,
@@ -275,30 +277,30 @@ pub func:execl8 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3,
     stack int64[9]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
     argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = a7; argv[8] = 0i64;
-    pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+    pass execve(path, @cast_unchecked<int64>(@argv), environ);
 };
 
 // execlp* — Like execl* but search PATH (use execvp semantics)
 pub func:execlp1 = int64(int64:name, int64:a0) {
     stack int64[2]:argv;
     argv[0] = a0; argv[1] = 0i64;
-    pass execvp(name, @cast_unchecked<int64>(@argv[0]));
+    pass execvp(name, @cast_unchecked<int64>(@argv));
 };
 
 pub func:execlp2 = int64(int64:name, int64:a0, int64:a1) {
     stack int64[3]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = 0i64;
-    pass execvp(name, @cast_unchecked<int64>(@argv[0]));
+    pass execvp(name, @cast_unchecked<int64>(@argv));
 };
 
 pub func:execlp3 = int64(int64:name, int64:a0, int64:a1, int64:a2) {
     stack int64[4]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = 0i64;
-    pass execvp(name, @cast_unchecked<int64>(@argv[0]));
+    pass execvp(name, @cast_unchecked<int64>(@argv));
 };
 
 pub func:execlp4 = int64(int64:name, int64:a0, int64:a1, int64:a2, int64:a3) {
     stack int64[5]:argv;
     argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3; argv[4] = 0i64;
-    pass execvp(name, @cast_unchecked<int64>(@argv[0]));
+    pass execvp(name, @cast_unchecked<int64>(@argv));
 };

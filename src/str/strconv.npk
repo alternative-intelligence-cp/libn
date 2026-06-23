@@ -22,6 +22,7 @@
 
 use "../syscall/errno.npk".*;
 use "../str/strlen.npk".*;
+use "../str/strlcpy.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // ASCII classification helpers
@@ -39,7 +40,7 @@ func:is_digit = bool(uint8:c) {
 
 // is_hex_digit — True for '0'-'9', 'a'-'f', 'A'-'F'
 func:is_hex_digit = bool(uint8:c) {
-    pass is_digit(c) || (c >= 65u8 && c <= 70u8) || (c >= 97u8 && c <= 102u8);
+    pass raw is_digit(c) || (c >= 65u8 && c <= 70u8) || (c >= 97u8 && c <= 102u8);
 };
 
 // digit_val — Convert ASCII digit to integer value. Base-agnostic.
@@ -84,7 +85,7 @@ pub func:str_strtol = int64(int64:s, int64->:endptr, int64:base) {
     int64:i = 0i64;
 
       // Skip leading whitespace
-    while (is_whitespace(p[i])) { i = i + 1i64; }
+    while (raw is_whitespace(p[i])) { i = i + 1i64; }
 
       // Sign
     bool:negative = false;
@@ -116,7 +117,7 @@ pub func:str_strtol = int64(int64:s, int64->:endptr, int64:base) {
     bool:overflow = false;
 
     while (true) {
-        int64:dv = digit_val(p[i], base);
+        int64:dv = raw digit_val(p[i], base);
         if (dv < 0i64) { break; }
 
           // Overflow check before multiply
@@ -135,13 +136,13 @@ pub func:str_strtol = int64(int64:s, int64->:endptr, int64:base) {
 
       // No digits found
     if (i == digit_start) {
-        drop drop(errno_set(ERR_BADARG));
+        drop(errno_set(ERR_BADARG));
         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s; }
         pass 0i64;
     }
 
     if (overflow) {
-        drop drop(errno_set(ERANGE));
+        drop(errno_set(ERANGE));
         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
         if (negative) { pass INT64_MIN; }
         pass INT64_MAX;
@@ -168,7 +169,7 @@ pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
     uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while (is_whitespace(p[i])) { i = i + 1i64; }
+    while (raw is_whitespace(p[i])) { i = i + 1i64; }
 
       // strtoul: POSIX says '+' is accepted, '-' causes value to be negated modulo
       // the max uint value. We implement the simpler but correct approach.
@@ -199,7 +200,7 @@ pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
     bool:overflow = false;
 
     while (true) {
-        int64:dv = digit_val(p[i], base);
+        int64:dv = raw digit_val(p[i], base);
         if (dv < 0i64) { break; }
           // Unsigned overflow: result > (UINT64_MAX - dv) / base
           // In two's complement int64: UINT64_MAX = -1 (all bits set)
@@ -228,13 +229,13 @@ pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
     }
 
     if (i == digit_start) {
-        drop drop(errno_set(ERR_BADARG));
+        drop(errno_set(ERR_BADARG));
         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s; }
         pass 0i64;
     }
 
     if (overflow) {
-        drop drop(errno_set(ERANGE));
+        drop(errno_set(ERANGE));
         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
         pass UINT64_MAX;
     }
@@ -275,11 +276,11 @@ pub func:str_parse_i64 = int64(int64:s) {
     int64:endptr = 0i64;
     int64:endptr_val = s;
     int64->:ep = @endptr_val;
-    int64:v = str_strtol(s, ep, 10i64);
+    int64:v = raw str_strtol(s, ep, 10i64);
 
       // Check for overflow (errno set by strtol)
     if (raw libn_errno_get() == ERANGE) {
-        drop errno_clear();
+        drop(errno_clear());
         fail @cast_unchecked<tbb32>(ERANGE);
     }
 
@@ -302,10 +303,10 @@ pub func:str_parse_u64 = int64(int64:s) {
 
     int64:endptr_val = s;
     int64->:ep = @endptr_val;
-    int64:v = str_strtoul(s, ep, 10i64);
+    int64:v = raw str_strtoul(s, ep, 10i64);
 
     if (raw libn_errno_get() == ERANGE) {
-        drop errno_clear();
+        drop(errno_clear());
         fail @cast_unchecked<tbb32>(ERANGE);
     }
 
@@ -330,10 +331,10 @@ pub func:str_parse_i64_base = int64(int64:s, int64:base) {
 
     int64:endptr_val = s;
     int64->:ep = @endptr_val;
-    int64:v = str_strtol(s, ep, base);
+    int64:v = raw str_strtol(s, ep, base);
 
     if (raw libn_errno_get() == ERANGE) {
-        drop errno_clear();
+        drop(errno_clear());
         fail @cast_unchecked<tbb32>(ERANGE);
     }
 
@@ -368,17 +369,18 @@ pub func:str_itoa = int64(int64:v, int64:buf, int64:buf_size) {
 
       // Handle INT64_MIN specially (cannot negate it)
     if (v == INT64_MIN) {
-        int64:s = str_strlen("-9223372036854775808");
+        int64:min_str = @cast_unchecked<int64>(@"-9223372036854775808");
+        int64:s = raw str_strlen(min_str);
         if (buf_size <= s) { pass 0i64; }
-        drop str_strcpy(buf, @cast_unchecked<int64>(@"-9223372036854775808"));
+        drop(str_strlcpy(buf, min_str, buf_size));
         pass s;
     }
 
       // Use a small temp buffer (21 bytes max for int64)
-    stack uint8[21]:tmp;
+    stack uint8[21]:tmp; tmp[0] = 0u8;
     bool:neg = v < 0i64;
     uint64:u = @cast_unchecked<uint64>(v);
-    if (neg) { u = 0i64 - v; }
+    if (neg) { u = @cast_unchecked<uint64>(0i64 - v); }
 
     int64:ti = 0i64;
     while (u > 0i64) {
@@ -424,7 +426,7 @@ pub func:str_utoa = int64(int64:v, int64:buf, int64:buf_size) {
         pass 1i64;
     }
 
-    stack uint8[21]:tmp;
+    stack uint8[21]:tmp; tmp[0] = 0u8;
     int64:ti = 0i64;
       // Treat @cast_unchecked<unsigned>(v): use bit pattern, divide step by step
       // For unsigned we need to be careful: high bit means large number
@@ -463,7 +465,7 @@ pub func:str_itoa_hex = int64(int64:v, int64:buf, int64:buf_size, bool:include_p
     if (buf == 0i64 || buf_size <= 0i64) { pass 0i64; }
 
     uint8->:b = @cast_unchecked<uint8->>(buf);
-    stack uint8[18]:tmp;    // max 16 hex digits + optional 0x prefix
+    stack uint8[18]:tmp; tmp[0] = 0u8;    // max 16 hex digits + optional 0x prefix
     int64:ti = 0i64;
 
       // Build hex digits in reverse

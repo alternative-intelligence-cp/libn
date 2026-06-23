@@ -64,13 +64,13 @@ pub func:str_strtok_r = int64(int64:str_arg, int64:delim, int64->:saveptr) {
 
       // Build charset bitvector for delimiter set
     stack uint8[32]:table;
-    drop charset_build(@table[0], delim);
+    drop(charset_build(@cast_unchecked<uint8->>(@table), delim));
 
     uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
       // Skip leading delimiters
-    while (p[i] != 0u8 && charset_test(@table[0], p[i])) {
+    while (p[i] != 0u8 && raw charset_test(@cast_unchecked<uint8->>(@table), p[i])) {
         i = i + 1i64;
     }
 
@@ -84,7 +84,7 @@ pub func:str_strtok_r = int64(int64:str_arg, int64:delim, int64->:saveptr) {
     int64:token_start = s + i;
 
       // Advance until we hit a delimiter or NUL
-    while (p[i] != 0u8 && !charset_test(@table[0], p[i])) {
+    while (p[i] != 0u8 && raw charset_test(@cast_unchecked<uint8->>(@table), p[i]) == false) {
         i = i + 1i64;
     }
 
@@ -127,10 +127,10 @@ pub func:str_strsep = int64(int64->:stringp, int64:delim) {
 
       // Find first delimiter (or NUL)
     stack uint8[32]:table;
-    drop charset_build(@table[0], delim);
+    drop(charset_build(@cast_unchecked<uint8->>(@table), delim));
 
     int64:i = 0i64;
-    while (p[i] != 0u8 && !charset_test(@table[0], p[i])) {
+    while (p[i] != 0u8 && raw charset_test(@cast_unchecked<uint8->>(@table), p[i]) == false) {
         i = i + 1i64;
     }
 
@@ -160,7 +160,7 @@ struct:StrField = {
 
 // str_field_equals — True if field f equals NUL-terminated string s.
 pub func:str_field_equals = bool(StrField:f, int64:s) {
-    if (f.len != str_strlen(s)) {
+    if (f.len != raw str_strlen(s)) {
         pass false;
     }
     uint8->:fp = @cast_unchecked<uint8->>(f.ptr);

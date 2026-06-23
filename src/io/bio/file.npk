@@ -23,12 +23,12 @@
 //     fwrite fills buf[buf_pos], increments buf_pos; flushes when buf_pos == buf_cap
 //
 // Switching direction (POSIX: must fflush or fseek between read→write or write→read)
-// is handled by bio_flush_if_dirty() / drop bio_discard_read_buf() in the internal helpers.
+// is handled by bio_flush_if_dirty() / drop(bio_discard_read_buf() in the internal helpers.
 //
 // unget:
 //   One character of pushback via ungetc(). Stored in the FILE struct.
 //   @cast_unchecked<int64>(Represented): -1 means "no unget char", 0..255 means pending char.
-//   ungetc pushes the char; the next fgetc/fread consumes it first.
+//   ungetc pushes the char); the next fgetc/fread consumes it first.
 //
 // stdin/stdout/stderr:
 //   @cast_unchecked<module>(Declared)-level FILE structs in stdfiles.npk.
@@ -133,7 +133,7 @@ pub func:bio_alloc_file = int64() {
 // Does NOT close the fd or free the buffer — callers must do that first.
 pub func:bio_free_file = NIL(int64:fp) {
     if (fp == 0i64) { pass NIL; }
-    drop slab_free(0i64, fp);
+    drop(slab_free(0i64, fp));
 };
 
 // bio_alloc_buf — Allocate an I/O buffer. Uses slab for BUFSIZ (8192 falls
@@ -154,9 +154,9 @@ pub func:bio_alloc_buf = int64(int64:size) {
 pub func:bio_free_buf = NIL(int64:buf, int64:size) {
     if (buf == 0i64) { pass NIL; }
     if (size <= 4096i64) {
-        drop slab_free(0i64, buf);
+        drop(slab_free(0i64, buf));
     } else {
-        drop mem_free(buf);
+        drop(mem_free(buf));
     }
 };
 
@@ -317,3 +317,4 @@ if (has_plus) {
 
     pass 0i64;
 };
+pub int64:g_open_files = 0i64;

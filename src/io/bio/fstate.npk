@@ -86,7 +86,7 @@ pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
         pass -1i64;
     }
     if (mode != _IOFBF && mode != _IOLBF && mode != _IONBF) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
@@ -94,7 +94,7 @@ pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
 
       // Free any existing libn-owned buffer
     if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {
-        drop bio_free_buf(f->buf, f->buf_cap);
+        drop(bio_free_buf(f->buf, f->buf_cap));
         f->buf     = 0i64;
         f->buf_cap = 0i64;
         f->flags   = f->flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
@@ -120,9 +120,9 @@ pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
     } else {
           // Allocate a new buffer
         int64:cap = is (size > 0i64) : size : BUFSIZ;
-        int64:newbuf = bio_alloc_buf(cap);
+        int64:newbuf = raw bio_alloc_buf(cap);
         if (newbuf == 0i64) {
-            drop drop(errno_set(ENOMEM));
+            drop(errno_set(ENOMEM));
             pass -1i64;
         }
         f->buf     = newbuf;
@@ -146,9 +146,9 @@ pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
 
 pub func:setbuf = NIL(int64:fp, int64:buf) {
     if (buf != 0i64) {
-        drop setvbuf(fp, buf, _IOFBF, BUFSIZ);
+        drop(setvbuf(fp, buf, _IOFBF, BUFSIZ));
     } else {
-        drop setvbuf(fp, 0i64, _IONBF, 0i64);
+        drop(setvbuf(fp, 0i64, _IONBF, 0i64));
     }
 };
 
@@ -160,5 +160,5 @@ pub func:setbuf = NIL(int64:fp, int64:buf) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:setlinebuf = NIL(int64:fp) {
-    drop setvbuf(fp, 0i64, _IOLBF, 0i64);
+    drop(setvbuf(fp, 0i64, _IOLBF, 0i64));
 };

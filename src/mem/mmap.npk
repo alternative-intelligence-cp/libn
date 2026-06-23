@@ -31,6 +31,8 @@ use "../syscall/syscall.npk".*;
 use "../syscall/syscall_numbers.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../syscall/errno.npk".*;
+extern func:failsafe = int32(tbb32:err);
+
 
 // ════════════════════════════════════════════════════════════════════════════
 // CONSTANTS
@@ -108,7 +110,7 @@ pub func:size_align_up = int64(int64:n, int64:a) {
 pub func:mem_mmap_raw = int64(int64:addr, int64:length, int64:prot, int64:flags, int64:fd, int64:offset) {
       // Guard: length must be > 0
     if (length <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     Result<int64>:r = libn_mmap(addr, length, prot, flags, fd, offset);
     return r;
@@ -118,7 +120,7 @@ pub func:mem_mmap_raw = int64(int64:addr, int64:length, int64:prot, int64:flags,
 // addr must be page-aligned, length > 0.
 pub func:mem_munmap_raw = int64(int64:addr, int64:length) {
     if (length <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     Result<int64>:r = libn_munmap(addr, length);
     return r;
@@ -129,7 +131,7 @@ pub func:mem_munmap_raw = int64(int64:addr, int64:length) {
 // Note: PROT_EXEC requires sys_full — use libn_mprotect_exec directly.
 pub func:mem_mprotect_raw = int64(int64:addr, int64:length, int64:prot) {
     if ((prot & PROT_EXEC) != 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     Result<int64>:r = libn_mprotect(addr, length, prot);
     return r;
@@ -140,7 +142,7 @@ pub func:mem_mprotect_raw = int64(int64:addr, int64:length, int64:prot) {
 // new_addr: only relevant if MREMAP_FIXED is set; otherwise pass 0.
 pub func:mem_mremap_raw = int64(int64:old_addr, int64:old_size, int64:new_size, int64:flags, int64:new_addr) {
     if (new_size <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     Result<int64>:r = libn_mremap(old_addr, old_size, new_size, flags, new_addr);
     return r;
@@ -183,7 +185,7 @@ pub func:mem_msync_raw = int64(int64:addr, int64:length, int64:flags) {
 // Minimum allocation: 1 uint8 (actual mapping: 1 page minimum).
 pub func:mem_malloc = int64(int64:n) {
     if (n <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
       // Total mapping size: header + user data, rounded up to page boundary.
@@ -209,7 +211,7 @@ pub func:mem_malloc = int64(int64:n) {
 // Since mmap already zero-initializes, this is just a bounds check + mem_malloc.
 pub func:mem_calloc = int64(int64:n, int64:size) {
     if (n <= 0i64 || size <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
       // Check for overflow before multiplying
     if (size > 0i64 && n > (9223372036854775807i64 / size)) {
@@ -233,7 +235,7 @@ pub func:mem_realloc = int64(int64:ptr, int64:new_size) {
 
       // new_size == 0 → free and return NULL
     if (new_size == 0i64) {
-        drop mem_free(ptr);
+        drop(mem_free(ptr));
         pass 0i64;
     }
 
@@ -277,7 +279,7 @@ pub func:mem_realloc = int64(int64:ptr, int64:new_size) {
     }
 
       // Free old allocation
-    drop mem_free(ptr);
+    drop(mem_free(ptr));
 
     pass new_ptr;
 };
@@ -297,7 +299,7 @@ pub func:mem_free = int64(int64:ptr) {
 
     if (map_size <= 0i64) {
           // Corrupted header — likely double-free or invalid pointer
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
       // Scrub the header to detect double-free in debug builds
@@ -313,7 +315,7 @@ pub func:mem_free = int64(int64:ptr) {
 // Useful for bounds checking without an external size parameter.
 pub func:mem_malloc_user_size = int64(int64:ptr) {
     if (ptr == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     int64->:hdr = @cast_unchecked<int64->>((ptr - ALLOC_HEADER_SIZE));
     pass hdr[1];
@@ -322,7 +324,7 @@ pub func:mem_malloc_user_size = int64(int64:ptr) {
 // mem_malloc_map_size — Return the actual mapping size (may be larger than user size).
 pub func:mem_malloc_map_size = int64(int64:ptr) {
     if (ptr == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     int64->:hdr = @cast_unchecked<int64->>((ptr - ALLOC_HEADER_SIZE));
     pass hdr[0];
@@ -337,7 +339,7 @@ pub func:mem_malloc_map_size = int64(int64:ptr) {
 // Returns the base address of the mapping (page-aligned).
 pub func:mem_alloc_pages = int64(int64:n_pages) {
     if (n_pages <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     int64:size = n_pages * PAGE_SIZE;
     Result<int64>:r = libn_mmap(0i64, size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
@@ -347,7 +349,7 @@ pub func:mem_alloc_pages = int64(int64:n_pages) {
 // mem_free_pages — Release n_pages pages starting at addr (no header).
 pub func:mem_free_pages = int64(int64:addr, int64:n_pages) {
     if (n_pages <= 0i64 || addr == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     int64:size = n_pages * PAGE_SIZE;
     Result<int64>:r = libn_munmap(addr, size);
@@ -359,7 +361,7 @@ pub func:mem_free_pages = int64(int64:addr, int64:n_pages) {
 // Used for thread stacks: PROT_NONE at bottom catches stack overflow.
 pub func:mem_alloc_guard_pages = int64(int64:n_data_pages) {
     if (n_data_pages <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
       // Total: 1 guard (bottom) + n_data_pages (stack) + 1 guard (top)
@@ -376,7 +378,7 @@ pub func:mem_alloc_guard_pages = int64(int64:n_data_pages) {
       // Set bottom guard page (first page) to PROT_NONE
     Result<int64>:r_bot = libn_mprotect(base, PAGE_SIZE, PROT_NONE);
     if (r_bot.is_error) {
-        drop libn_munmap(base, total_size);
+        drop(libn_munmap(base, total_size));
         fail r_bot.error;
     }
 
@@ -384,7 +386,7 @@ pub func:mem_alloc_guard_pages = int64(int64:n_data_pages) {
     int64:top_guard = base + (total_pages - 1i64) * PAGE_SIZE;
     Result<int64>:r_top = libn_mprotect(top_guard, PAGE_SIZE, PROT_NONE);
     if (r_top.is_error) {
-        drop libn_munmap(base, total_size);
+        drop(libn_munmap(base, total_size));
         fail r_top.error;
     }
 
@@ -396,7 +398,7 @@ pub func:mem_alloc_guard_pages = int64(int64:n_data_pages) {
 // data_ptr: the pointer returned by mem_alloc_guard_pages (not the base!)
 pub func:mem_free_guard_pages = int64(int64:data_ptr, int64:n_data_pages) {
     if (data_ptr == 0i64 || n_data_pages <= 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     int64:base = data_ptr - PAGE_SIZE;     // Base is one guard page before data
     int64:total_size = (n_data_pages + 2i64) * PAGE_SIZE;

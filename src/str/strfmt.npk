@@ -64,7 +64,7 @@ func:fmt_puts_n = NIL(FmtState->:st, int64:ptr, int64:n) {
     uint8->:p = @cast_unchecked<uint8->>(ptr);
     int64:i = 0i64;
     while (i < n) {
-        fmt_putc(st, p[i]);
+        drop(fmt_putc(st, p[i]));
         i = i + 1i64;
     }
 };
@@ -73,7 +73,7 @@ func:fmt_puts_n = NIL(FmtState->:st, int64:ptr, int64:n) {
 func:fmt_pad = NIL(FmtState->:st, uint8:pad_char, int64:n) {
     int64:i = 0i64;
     while (i < n) {
-        fmt_putc(st, pad_char);
+        drop(fmt_putc(st, pad_char));
         i = i + 1i64;
     }
 };
@@ -89,50 +89,38 @@ fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
 // render_uint — Render an unsigned value into a small buffer, returns length.
 // base must be 2, 8, 10, or 16.
 // buf must be at least 66 bytes.
-func:render_uint = int64(int64:v, int64:base, int64:buf, bool:upper) {
+func:render_uint = int64(uint64:v, int64:base, int64:buf, bool:upper) {
     uint8->:b = @cast_unchecked<uint8->>(buf);
     uint8->:digits = @cast_unchecked<uint8->>(is (upper) : DIGITS_UPPER : DIGITS_LOWER);
 
-    if (v == 0i64) {
+    if (v == 0u64) {
         b[0] = 48u8;    // '0'
         pass 1i64;
     }
 
     stack uint8[66]:tmp;
     int64:ti = 0i64;
-    int64:u = v;
+    uint64:u = v;
+    uint64:ubase = @cast_unchecked<uint64>(base);
 
       // Build digits in reverse
-    while (u != 0i64) {
+    while (u != 0u64) {
         int64:d = 0i64;
-          // For base 2, 8, 16: use bitwise ops (exact for unsigned interpretation)
         if (base == 16i64) {
-            d = u & 0xFi64;
-            u = (u >> 4i64) & 0x0FFFFFFFFFFFFFFFi64;    // logical shift: mask off sign
+            d = @cast_unchecked<int64>(u & 0xFu64);
+            u = u >> 4u64;
         } else if (base == 8i64) {
-            d = u & 7i64;
-            u = (u >> 3i64) & 0x1FFFFFFFFFFFFFFFi64;
+            d = @cast_unchecked<int64>(u & 7u64);
+            u = u >> 3u64;
         } else if (base == 2i64) {
-            d = u & 1i64;
-            u = (u >> 1i64) & 0x7FFFFFFFFFFFFFFFi64;
+            d = @cast_unchecked<int64>(u & 1u64);
+            u = u >> 1u64;
         } else {
-              // base 10: if top bit is set, do two-step to handle uint64 > INT64_MAX
-            if (u < 0i64) {
-                  // v > INT64_MAX: split into high/low halves
-                  // u = high * 10000000000000000000 + low
-                  // This handles values up to UINT64_MAX correctly
-                  // Simple approximation for v0.3.7: use modular arithmetic
-                  // For values in [INT64_MAX+1..UINT64_MAX] this is a known-hard problem
-                  // without unsigned division. Defer to v0.40.x uint64 division.
-                  // For now: render INT64_MAX @cast_unchecked<the>(("9223372036854775807")) max.
-                pass str_itoa(9223372036854775807i64, buf, 66i64);
-            }
-            d = u % 10i64;
-            u = u / 10i64;
+            d = @cast_unchecked<int64>(u % ubase);
+            u = u / ubase;
         }
         tmp[ti] = digits[d];
         ti = ti + 1i64;
-        if (u == 0i64) { break; }
     }
 
       // Copy reversed digits to buf
@@ -176,10 +164,12 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
     uint8->:f = @cast_unchecked<uint8->>(fmt);
     int64:fi = 0i64;     // format string position
     int64:ai = 0i64;     // args array index
+    stack uint8[68]:nbuf;
+    stack uint8[3]:prefix;
 
     while (f[fi] != 0u8) {
         if (f[fi] != 37u8) {    // '%'
-            fmt_putc(stp, f[fi]);
+            drop(fmt_putc(stp, f[fi]));
             fi = fi + 1i64;
             continue;
         }
@@ -244,14 +234,14 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
         if (ai < nargs) { arg_val = args[ai]; ai = ai + 1i64; }
 
         if (spec == 37u8) {    // '%%'
-            fmt_putc(stp, 37u8);
+            drop(fmt_putc(stp, 37u8));
             continue;
         }
 
         if (spec == 99u8) {    // '%c'
-            if (!flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
-            fmt_putc(stp, @cast_unchecked<uint8>(arg_val));
-            if (flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+            if (!flag_left) { drop(fmt_pad(stp, 32u8, width - 1i64)); }
+            drop(fmt_putc(stp, @cast_unchecked<uint8>(arg_val)));
+            if (flag_left) { drop(fmt_pad(stp, 32u8, width - 1i64)); }
             continue;
         }
 
@@ -262,16 +252,16 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
                 sptr = @cast_unchecked<int64>(@"(null)");
                 slen = 6i64;
             } else {
-                slen = str_strlen(sptr);
+                slen = raw str_strlen(sptr);
             }
             if (precision >= 0i64 && slen > precision) {
                 slen = precision;
             }
             int64:pad = 0i64;
             if (width > slen) { pad = width - slen; }
-            if (!flag_left) { fmt_pad(stp, 32u8, pad); }
-            fmt_puts_n(stp, sptr, slen);
-            if (flag_left) { fmt_pad(stp, 32u8, pad); }
+            if (!flag_left) { drop(fmt_pad(stp, 32u8, pad)); }
+            drop(fmt_puts_n(stp, sptr, slen));
+            if (flag_left) { drop(fmt_pad(stp, 32u8, pad)); }
             continue;
         }
 
@@ -289,17 +279,17 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
         }
 
           // Build number string
-        stack uint8[68]:nbuf;     // 64 binary + prefix + sign + NUL
+        // nbuf is declared outside the loop to prevent stack bloat
         int64:nlen = 0i64;
         bool:is_neg = is_signed && arg_val < 0i64;
         int64:uval = arg_val;
         if (is_neg) { uval = 0i64 - arg_val; }
 
-        nlen = render_uint(uval, num_base, @cast_unchecked<int64>(@nbuf[0]), is_upper);
+        nlen = raw render_uint(@cast_unchecked<uint64>(uval), num_base, @cast_unchecked<int64>(@nbuf), is_upper);
 
           // Alternate form prefix
         int64:prefix_len = 0i64;
-        stack uint8[3]:prefix;
+        // prefix is declared outside the loop to prevent stack bloat
         if (is_neg) {
             prefix[0] = 45u8; prefix_len = 1i64;     // '-'
         } else if (flag_plus) {
@@ -328,19 +318,19 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
 
         if (flag_left) {
               // Left-align: prefix, digits, then space-pad
-            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
-            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
-            fmt_pad(stp, 32u8, pad_total);
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
+            drop(fmt_pad(stp, 32u8, pad_total));
         } else if (flag_zero) {
               // Zero-pad: prefix first, then zeros, then digits
-            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
-            fmt_pad(stp, 48u8, pad_total);
-            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+            drop(fmt_pad(stp, 48u8, pad_total));
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
         } else {
               // Space-pad: spaces, then prefix, then digits
-            fmt_pad(stp, 32u8, pad_total);
-            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
-            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+            drop(fmt_pad(stp, 32u8, pad_total));
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+            drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
         }
     }
 
@@ -369,14 +359,14 @@ pub func:str_snprintf0 = int64(int64:buf, int64:buf_size, int64:fmt) {
 pub func:str_snprintf1 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0) {
     stack int64[1]:a;
     a[0] = a0;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 1i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 1i64);
 };
 
 // Two-arg version
 pub func:str_snprintf2 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0, int64:a1) {
     stack int64[2]:a;
     a[0] = a0; a[1] = a1;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 2i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 2i64);
 };
 
 // Three-arg version
@@ -384,7 +374,7 @@ pub func:str_snprintf3 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2) {
     stack int64[3]:a;
     a[0] = a0; a[1] = a1; a[2] = a2;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 3i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 3i64);
 };
 
 // Four-arg version
@@ -392,7 +382,7 @@ pub func:str_snprintf4 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2, int64:a3) {
     stack int64[4]:a;
     a[0] = a0; a[1] = a1; a[2] = a2; a[3] = a3;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 4i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 4i64);
 };
 
 // Six-arg version
@@ -401,7 +391,7 @@ pub func:str_snprintf6 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a3, int64:a4, int64:a5) {
     stack int64[6]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3; a[4]=a4; a[5]=a5;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 6i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 6i64);
 };
 
 // Eight-arg version
@@ -411,7 +401,7 @@ pub func:str_snprintf8 = int64(int64:buf, int64:buf_size, int64:fmt,
     stack int64[8]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3;
     a[4]=a4; a[5]=a5; a[6]=a6; a[7]=a7;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 8i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 8i64);
 };
 
 // Five-arg version
@@ -420,7 +410,7 @@ pub func:str_snprintf5 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a3, int64:a4) {
     stack int64[5]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3; a[4]=a4;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 5i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 5i64);
 };
 
 // Seven-arg version
@@ -430,5 +420,5 @@ pub func:str_snprintf7 = int64(int64:buf, int64:buf_size, int64:fmt,
     stack int64[7]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3;
     a[4]=a4; a[5]=a5; a[6]=a6;
-    pass str_format_args(buf, buf_size, fmt, @a[0], 7i64);
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 7i64);
 };

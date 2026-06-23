@@ -67,7 +67,7 @@ pub func:io_open_inheritable = int64(int64:path, int64:flags, int64:mode) {
       // libn_open adds O_CLOEXEC; we need to strip it for truly inheritable fds.
       // Use openat with AT_FDCWD instead to bypass the automatic flag.
     int64:safe_flags = flags & (0i64 - 1i64 ^ O_CLOEXEC);    // flags without O_CLOEXEC
-    Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
+    Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode, 0i64, 0i64, 0i64);
     return r;
 };
 

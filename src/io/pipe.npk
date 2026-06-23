@@ -7,7 +7,7 @@
 // Usage pattern:
 //
 //   stack int64[2]:fds;
-//   io_pipe(@fds[0])?;
+//   io_pipe(@fds)?;
 //   // fds[0] = read end, fds[1] = write end
 //   // ... fork, exec, @cast_unchecked<needed>(redirect) ...
 //   io_close(fds[0]);   // close the end you don't need in each process

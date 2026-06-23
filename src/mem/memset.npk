@@ -1,3 +1,5 @@
+extern func:failsafe = int32(tbb32:err);
+
 // memset.npk — memset, bzero, memset_explicit (v0.2.3)
 //
 // Pure Nitpick reference implementations plus architecture stubs.
@@ -34,13 +36,13 @@
 
 pub func:mem_memset = int64(int64:ptr, int64:c, int64:n) {
     if (ptr == 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
     if (n == 0i64) {
         pass ptr;
     }
     if (n < 0i64) {
-        fail @cast_unchecked<tbb32>(ERR_BADARG);
+        !!! 10i32;
     }
 
     uint8:fill = @cast_unchecked<uint8>(c);
@@ -94,7 +96,7 @@ pub func:mem_bzero = NIL(int64:ptr, int64:n) {
     if (ptr == 0i64 || n <= 0i64) {
         pass NIL;
     }
-    drop mem_memset(ptr, 0i64, n);
+    drop(mem_memset(ptr, 0i64, n));
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -127,15 +129,16 @@ pub func:mem_memset_explicit = NIL(int64:ptr, int64:c, int64:n) {
         i = i + 1i64;
     }
 
-      // Compiler fence: prevents reordering of the volatile writes relative to
-      // anything that follows (e.g., a free() of the same memory).
-    // drop compiler_fence();
+    // Compiler fence: prevents reordering of the volatile writes relative to
+    // anything that follows (e.g., a free() of the same memory).
+    // Nitpick inline assembly block with no instructions but a memory clobber
+    drop(asm!!<int64>("x86_64", "", "r", ptr));
 };
 
 // mem_bzero_explicit — Alias for mem_memset_explicit(ptr, 0, n).
 // Preferred name in security-sensitive code (matches explicit_bzero() naming).
 pub func:mem_bzero_explicit = NIL(int64:ptr, int64:n) {
-    drop mem_memset_explicit(ptr, 0i64, n);
+    drop(mem_memset_explicit(ptr, 0i64, n));
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -186,5 +189,5 @@ pub func:mem_memset_pattern4 = NIL(int64:ptr, int64:pattern32, int64:n) {
 
 // mem_poison — Fill freed memory with the poison pattern (debug mode).
 pub func:mem_poison = NIL(int64:ptr, int64:n) {
-    drop mem_memset_pattern4(ptr, LIBN_POISON_PATTERN, n);
+    drop(mem_memset_pattern4(ptr, LIBN_POISON_PATTERN, n));
 };

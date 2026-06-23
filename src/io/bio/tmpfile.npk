@@ -65,9 +65,15 @@ int64:g_tmp_counter = 0i64;
 
 func:tmpfile_get_entropy = int64() {
     int64:entropy = 0i64;
-    int64:ptr = __addrof(entropy);
+    int64:ptr = @cast_unchecked<int64>(@entropy);
     Result<int64>:r = libn_getrandom(ptr, 8i64, 0i64);
-    if (r.is_error) { pass 0i64; }
+    if (r.is_error) {
+        stack int64[2]:ts;
+        drop(libn_clock_gettime(CLOCK_MONOTONIC, @cast_unchecked<int64>(@ts)));
+        int64:pid = raw libn_getpid();
+        entropy = pid ^ ts[1] ^ g_tmp_counter;
+    }
+    g_tmp_counter = g_tmp_counter + 1i64;
     pass entropy;
 };
 
@@ -106,13 +112,13 @@ pub func:mkstemp = int64(int64:tmpl) {
 // mkostemp — Like mkstemp but with additional open flags (e.g., O_NOFOLLOW).
 pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
     if (tmpl == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
     int64:tmpl_len = raw str_strlen(tmpl);
     if (tmpl_len < 6i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass -1i64;
     }
 
@@ -122,7 +128,7 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
     int64:i = 0i64;
     while (i < 6i64) {
         if (tp[x_start + i] != 88u8) {    // 'X'
-            drop drop(errno_set(EINVAL));
+            drop(errno_set(EINVAL));
             pass -1i64;
         }
         i = i + 1i64;
@@ -135,7 +141,7 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
     while (tries < MKSTEMP_MAX_TRIES) {
           // Generate 6 random hex chars
         int64:entropy = raw tmpfile_get_entropy();
-        drop tmpfile_fill_hex(tmpl + x_start, entropy, 6i64);
+        drop(tmpfile_fill_hex(tmpl + x_start, entropy, 6i64));
 
           // Try to open exclusively
         Result<int64>:r = libn_open(tmpl, flags, 0o600i64);
@@ -146,7 +152,7 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
         int64:e = @cast_unchecked<int64>(r.error);
         if (e != EEXIST) {
               // Error other than collision — propagate
-            drop drop(errno_set(e));
+            drop(errno_set(e));
             pass -1i64;
         }
 
@@ -155,7 +161,7 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
     }
 
       // Exhausted retries (extremely unlikely)
-    drop drop(errno_set(EEXIST));
+    drop(errno_set(EEXIST));
     pass -1i64;
 };
 
@@ -170,13 +176,13 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
 
 pub func:mkdtemp = int64(int64:tmpl) {
     if (tmpl == 0i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
     int64:tmpl_len = raw str_strlen(tmpl);
     if (tmpl_len < 6i64) {
-        drop drop(errno_set(EINVAL));
+        drop(errno_set(EINVAL));
         pass 0i64;
     }
 
@@ -185,7 +191,7 @@ pub func:mkdtemp = int64(int64:tmpl) {
     int64:i = 0i64;
     while (i < 6i64) {
         if (tp[x_start + i] != 88u8) {
-            drop drop(errno_set(EINVAL));
+            drop(errno_set(EINVAL));
             pass 0i64;
         }
         i = i + 1i64;
@@ -194,7 +200,7 @@ pub func:mkdtemp = int64(int64:tmpl) {
     int64:tries = 0i64;
     while (tries < MKSTEMP_MAX_TRIES) {
         int64:entropy = raw tmpfile_get_entropy();
-        drop tmpfile_fill_hex(tmpl + x_start, entropy, 6i64);
+        drop(tmpfile_fill_hex(tmpl + x_start, entropy, 6i64));
 
         Result<int64>:r = sys_safe(SYS_MKDIR, tmpl, 0o700i64, 0i64, 0i64, 0i64, 0i64);
         if (!r.is_error) {
@@ -203,14 +209,14 @@ pub func:mkdtemp = int64(int64:tmpl) {
 
         int64:e = @cast_unchecked<int64>(r.error);
         if (e != EEXIST) {
-            drop drop(errno_set(e));
+            drop(errno_set(e));
             pass 0i64;
         }
 
         tries = tries + 1i64;
     }
 
-    drop drop(errno_set(EEXIST));
+    drop(errno_set(EEXIST));
     pass 0i64;
 };
 
@@ -225,30 +231,31 @@ pub func:mkdtemp = int64(int64:tmpl) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:tmpfile = int64() {
-    drop bio_ensure_std_init();
+    drop(bio_ensure_std_init());
 
       // Build template: /tmp/npk_XXXXXX
     stack uint8[32]:tmpl;
-    uint8->:tp = @cast_unchecked<uint8->>(@tmpl[0]);
+    uint8->:tp = @cast_unchecked<uint8->>(@tmpl);
 
       // Copy "/tmp/npk_" into template
     fixed int64:pfx = @cast_unchecked<int64>(@"/tmp/npk_XXXXXX");
-    int64:pfx_len = str_strlen(@cast_unchecked<int64>(pfx));
-    drop mem_memcpy(@cast_unchecked<int64>(@tmpl[0]), @cast_unchecked<int64>(pfx), pfx_len + 1i64);
+    int64:pfx_len = raw str_strlen(@cast_unchecked<int64>(pfx));
+    drop(mem_memcpy(@cast_unchecked<int64>(@tmpl), @cast_unchecked<int64>(pfx), pfx_len + 1i64));
 
       // Open via mkstemp (fills in the Xs)
-    int64:fd = raw mkstemp(@cast_unchecked<int64>(@tmpl[0]));
+    int64:fd = raw mkstemp(@cast_unchecked<int64>(@tmpl));
     if (fd < 0i64) {
         pass 0i64;
     }
 
       // Immediately unlink so the file disappears when the fd closes
-    drop sys_safe(SYS_UNLINK, @cast_unchecked<int64>(@tmpl[0]), 0i64, 0i64, 0i64, 0i64, 0i64);
+    drop(sys_safe(SYS_UNLINK, @cast_unchecked<int64>(@tmpl), 0i64, 0i64, 0i64, 0i64, 0i64));
 
       // Wrap in a FILE* for buffered I/O
-    int64:fp = raw fdopen(fd, @cast_unchecked<int64>(@"w+b"));
+    int64:wb_mode = @cast_unchecked<int64>(@"w+b");
+    int64:fp = raw fdopen(fd, wb_mode);
     if (fp == 0i64) {
-        drop libn_close(fd);
+        drop(libn_close(fd));
     }
 
     pass fp;
@@ -272,15 +279,18 @@ pub func:tmpfile = int64() {
 uint8[256]:g_tmpnam_buf;
 
 pub func:tmpnam = int64(int64:buf) {
-    int64:dst = is (buf != 0i64) : buf : @cast_unchecked<int64>(@g_tmpnam_buf[0]);
+    fixed int64:warn_msg = @cast_unchecked<int64>(@"WARNING: tmpnam() is deprecated and insecure. Use mkstemp() instead.\n");
+    drop(sys_safe(SYS_WRITE, 2i64, warn_msg, 69i64, 0i64, 0i64, 0i64));
+
+    int64:dst = is (buf != 0i64) : buf : @cast_unchecked<int64>(@g_tmpnam_buf);
 
       // Generate a name of the form /tmp/npk_XXXXXXXX
     fixed int64:pfx = @cast_unchecked<int64>(@"/tmp/npk_");
-    int64:pfx_len = str_strlen(@cast_unchecked<int64>(pfx));
-    drop mem_memcpy(dst, @cast_unchecked<int64>(pfx), pfx_len);
+    int64:pfx_len = raw str_strlen(@cast_unchecked<int64>(pfx));
+    drop(mem_memcpy(dst, @cast_unchecked<int64>(pfx), pfx_len));
 
     int64:entropy = raw tmpfile_get_entropy();
-    drop tmpfile_fill_hex(dst + pfx_len, entropy, 8i64);
+    drop(tmpfile_fill_hex(dst + pfx_len, entropy, 8i64));
     (@cast_unchecked<uint8->>(dst))[pfx_len + 8i64] = 0u8;    // NUL terminate
 
     pass dst;
