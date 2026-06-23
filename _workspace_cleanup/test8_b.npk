@@ -1,0 +1,8 @@
+use "test8_a.npk".*;
+pub func:my_caller = int64() {
+    int64:alloc_size = 42i64;
+    Result<int64>:r = my_func(alloc_size);
+    if (r.is_error) { fail r.error; }
+    int64:n = r.value;
+    pass n;
+};

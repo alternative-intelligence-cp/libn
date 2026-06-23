@@ -1,0 +1,1086 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1: Failed to load module 'src/syscall/syscall.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 233, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 379, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 391, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 93, Column 46: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 94, Column 46: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 98, Column 20: Undefined identifier: 'wa'. Did you mean 'wi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 20: Undefined identifier: 'wb'. Did you mean 'wi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 13: Undefined identifier: 'va'. Did you mean 'pa'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 19: Undefined identifier: 'vb'. Did you mean 'pb'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 197, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 203, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 211, Column 48: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 19: Undefined identifier: 'pw'. Did you mean 'p'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 31: Undefined identifier: 'v'. Did you mean 'i'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 234, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 260, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 5: Cannot initialize variable 'first' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 304, Column 79: Undefined identifier: 'first'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 13: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 24: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 28: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 317, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 349, Column 48: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 13: Undefined identifier: 'pw'. Did you mean 'p'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 378, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 422, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1: Failed to load module 'src/mem/slab.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected expression
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 339, column 27:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token '!='[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 340, column 25:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 342, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'Result'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 344, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 556, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 558, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 559, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'n'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 565, column 22:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 573, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 574, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 11:
+  Expected '(' after 'while'
+  Found: identifier 'remaining'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 583, column 28:
+  Expected ')' after while condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 12:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 585, column 23:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected ')' after if condition
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 586, column 22:
+  Expected statement or block after if condition. Syntax: if (condition) { body; };
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 596, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 597, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m205 errors[0m

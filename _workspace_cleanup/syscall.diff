@@ -1,0 +1,779 @@
+diff --git a/src/syscall/syscall.npk b/src/syscall/syscall.npk
+index 3746837..8411587 100644
+--- a/src/syscall/syscall.npk
++++ b/src/syscall/syscall.npk
+@@ -32,7 +32,7 @@
+ //
+ //   // Open a file:
+ //   Result<int64>:r = sys_safe(SYS_READ, fd, buf_ptr, nbytes, 0i64, 0i64, 0i64);
+-//   if r.is_error { fail r.err; }
++//   if (r.is_error) { fail r.err; }
+ //   int64:nread = r.value;
+ //
+ //   // Exit (doesn't return — use sys_raw):
+@@ -72,36 +72,47 @@ use "src/syscall/posix_constants.npk".*;
+ //   SYS_FUTEX (FUTEX_WAIT, FUTEX_WAKE, FUTEX_WAIT_PRIVATE, FUTEX_WAKE_PRIVATE),
+ //   SYS_SET_TID_ADDRESS, SYS_SCHED_GETAFFINITY
+ 
+-pub func:sys_safe = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
++pub func:sys_safe = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
+     // Delegate to the Nitpick sys() builtin (safe tier).
+     // sys() returns Result<int64> directly — if the kernel returns a negative
+     // value, sys() negates it and places it in .err; otherwise .value holds the result.
+     Result<int64>:ret = sys(nr, a1, a2, a3, a4, a5, a6);
+-    pass ret;
+-}
++    if (ret.is_error) { fail ret.error; }
++    pass ret.value;
++};
+ 
+ // Convenience overloads for common arities (avoid callers having to pad with 0i64).
+ // These exist because Nitpick does not yet support default arguments.
+ 
+-pub func:sys1 = Result<int64>(int64:nr, int64:a1) {
+-    pass raw sys_safe(nr, a1, 0i64, 0i64, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys2 = Result<int64>(int64:nr, int64:a1, int64:a2) {
+-    pass raw sys_safe(nr, a1, a2, 0i64, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys3 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3) {
+-    pass raw sys_safe(nr, a1, a2, a3, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys4 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4) {
+-    pass raw sys_safe(nr, a1, a2, a3, a4, 0i64, 0i64);
+-}
+-
+-pub func:sys5 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
+-    pass raw sys_safe(nr, a1, a2, a3, a4, a5, 0i64);
+-}
++pub func:sys1 = int64(int64:nr, int64:a1) {
++    Result<int64>:r = sys_safe(nr, a1, 0i64, 0i64, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys2 = int64(int64:nr, int64:a1, int64:a2) {
++    Result<int64>:r = sys_safe(nr, a1, a2, 0i64, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys3 = int64(int64:nr, int64:a1, int64:a2, int64:a3) {
++    Result<int64>:r = sys_safe(nr, a1, a2, a3, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys4 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4) {
++    Result<int64>:r = sys_safe(nr, a1, a2, a3, a4, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys5 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
++    Result<int64>:r = sys_safe(nr, a1, a2, a3, a4, a5, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ════════════════════════════════════════════════════════════════════════════
+ // TIER 2: sys_full — All syscalls, dangerous operations included
+@@ -114,31 +125,42 @@ pub func:sys5 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4,
+ // the compiler (yet — v0.50.x will add compile-time audit annotations).
+ // ════════════════════════════════════════════════════════════════════════════
+ 
+-pub func:sys_full = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
++pub func:sys_full = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
+     // Delegate to sys!!() — no whitelist, full syscall table access.
+     Result<int64>:ret = sys!!(nr, a1, a2, a3, a4, a5, a6);
+-    pass ret;
+-}
+-
+-pub func:sys_full1 = Result<int64>(int64:nr, int64:a1) {
+-    pass raw sys_full(nr, a1, 0i64, 0i64, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys_full2 = Result<int64>(int64:nr, int64:a1, int64:a2) {
+-    pass raw sys_full(nr, a1, a2, 0i64, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys_full3 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3) {
+-    pass raw sys_full(nr, a1, a2, a3, 0i64, 0i64, 0i64);
+-}
+-
+-pub func:sys_full4 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4) {
+-    pass raw sys_full(nr, a1, a2, a3, a4, 0i64, 0i64);
+-}
+-
+-pub func:sys_full5 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
+-    pass raw sys_full(nr, a1, a2, a3, a4, a5, 0i64);
+-}
++    if (ret.is_error) { fail ret.error; }
++    pass ret.value;
++};
++
++pub func:sys_full1 = int64(int64:nr, int64:a1) {
++    Result<int64>:r = sys_full(nr, a1, 0i64, 0i64, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys_full2 = int64(int64:nr, int64:a1, int64:a2) {
++    Result<int64>:r = sys_full(nr, a1, a2, 0i64, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys_full3 = int64(int64:nr, int64:a1, int64:a2, int64:a3) {
++    Result<int64>:r = sys_full(nr, a1, a2, a3, 0i64, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys_full4 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4) {
++    Result<int64>:r = sys_full(nr, a1, a2, a3, a4, 0i64, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
++
++pub func:sys_full5 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
++    Result<int64>:r = sys_full(nr, a1, a2, a3, a4, a5, 0i64);
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ════════════════════════════════════════════════════════════════════════════
+ // TIER 3: sys_raw — Bare int64 return, no Result wrapping
+@@ -154,8 +176,9 @@ pub func:sys_full5 = Result<int64>(int64:nr, int64:a1, int64:a2, int64:a3, int64
+ pub func:sys_raw = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
+     // sys!!!() is the Nitpick bare syscall — returns int64 directly.
+     int64:ret = sys!!!(nr, a1, a2, a3, a4, a5, a6);
+-    pass ret;
+-}
++    if (ret.is_error) { fail ret.error; }
++    pass ret.value;
++};
+ 
+ // ════════════════════════════════════════════════════════════════════════════
+ // HIGH-LEVEL WRAPPER FAMILY: Specific safe wrappers for the most common calls
+@@ -170,33 +193,33 @@ pub func:sys_raw = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64
+ 
+ // ── Process identity ────────────────────────────────────────────────
+ 
+-pub func:libn_getpid = Result<int64>() {
++pub func:libn_getpid = int64() {
+     pass raw sys1(SYS_GETPID, 0i64);
+-}
++};
+ 
+-pub func:libn_getppid = Result<int64>() {
++pub func:libn_getppid = int64() {
+     pass raw sys1(SYS_GETPPID, 0i64);
+-}
++};
+ 
+-pub func:libn_gettid = Result<int64>() {
++pub func:libn_gettid = int64() {
+     pass raw sys1(SYS_GETTID, 0i64);
+-}
++};
+ 
+-pub func:libn_getuid = Result<int64>() {
++pub func:libn_getuid = int64() {
+     pass raw sys1(SYS_GETUID, 0i64);
+-}
++};
+ 
+-pub func:libn_getgid = Result<int64>() {
++pub func:libn_getgid = int64() {
+     pass raw sys1(SYS_GETGID, 0i64);
+-}
++};
+ 
+-pub func:libn_geteuid = Result<int64>() {
++pub func:libn_geteuid = int64() {
+     pass raw sys1(SYS_GETEUID, 0i64);
+-}
++};
+ 
+-pub func:libn_getegid = Result<int64>() {
++pub func:libn_getegid = int64() {
+     pass raw sys1(SYS_GETEGID, 0i64);
+-}
++};
+ 
+ // ── File descriptor operations ───────────────────────────────────────
+ 
+@@ -205,83 +228,94 @@ pub func:libn_getegid = Result<int64>() {
+ // flags: O_RDONLY | O_WRONLY | O_RDWR etc. (from posix_constants.npk)
+ // mode: S_IRUSR | S_IWUSR etc. — only meaningful when O_CREAT is in flags
+ // Returns: fd on success, error on failure.
+-pub func:libn_open = Result<int64>(int64:path, int64:flags, int64:mode) {
++pub func:libn_open = int64(int64:path, int64:flags, int64:mode) {
+     // Always add O_CLOEXEC by default — prevents fd leaks across exec.
+     // Callers who deliberately want an inheritable fd must pass O_RDONLY (0)
+     // and explicitly NOT include O_CLOEXEC in their flags — but must document why.
+     int64:safe_flags = flags | O_CLOEXEC;
+     Result<int64>:r = sys3(SYS_OPEN, path, safe_flags, mode);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_openat — Open relative to a directory fd.
+ // Use AT_FDCWD for dirfd to open relative to CWD (equivalent to libn_open).
+-pub func:libn_openat = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:mode) {
++pub func:libn_openat = int64(int64:dirfd, int64:path, int64:flags, int64:mode) {
+     int64:safe_flags = flags | O_CLOEXEC;
+     Result<int64>:r = sys4(SYS_OPENAT, dirfd, path, safe_flags, mode);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_close — Close a file descriptor.
+ // IMPORTANT: Always check the return value. close() can fail with EIO on NFS,
+ // and silently ignoring that drops data.
+-pub func:libn_close = Result<int64>(int64:fd) {
++pub func:libn_close = int64(int64:fd) {
+     Result<int64>:r = sys1(SYS_CLOSE, fd);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_read — Read up to nbytes bytes from fd into buf.
+ // Returns number of bytes read (may be less than nbytes), 0 on EOF, or error.
+ // Does NOT retry on EINTR — use libn_read_all() for retry behavior.
+-pub func:libn_read = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
++pub func:libn_read = int64(int64:fd, int64:buf, int64:nbytes) {
+     Result<int64>:r = sys3(SYS_READ, fd, buf, nbytes);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_write — Write nbytes bytes from buf to fd.
+ // Returns number of bytes written (may be less than nbytes — short write), or error.
+ // Does NOT retry — use libn_write_all() for guaranteed full write.
+-pub func:libn_write = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
++pub func:libn_write = int64(int64:fd, int64:buf, int64:nbytes) {
+     Result<int64>:r = sys3(SYS_WRITE, fd, buf, nbytes);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_pread — Read from fd at offset (positional read, doesn't move fd position).
+-pub func:libn_pread = Result<int64>(int64:fd, int64:buf, int64:nbytes, int64:offset) {
++pub func:libn_pread = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+     Result<int64>:r = sys4(SYS_PREAD64, fd, buf, nbytes, offset);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_pwrite — Write to fd at offset.
+-pub func:libn_pwrite = Result<int64>(int64:fd, int64:buf, int64:nbytes, int64:offset) {
++pub func:libn_pwrite = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+     Result<int64>:r = sys4(SYS_PWRITE64, fd, buf, nbytes, offset);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_lseek — Seek within fd. whence: SEEK_SET, SEEK_CUR, or SEEK_END.
+ // Returns new file position (from beginning of file), or error.
+-pub func:libn_lseek = Result<int64>(int64:fd, int64:offset, int64:whence) {
++pub func:libn_lseek = int64(int64:fd, int64:offset, int64:whence) {
+     Result<int64>:r = sys3(SYS_LSEEK, fd, offset, whence);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_dup — Duplicate a file descriptor (next available fd >= 0).
+-pub func:libn_dup = Result<int64>(int64:fd) {
++pub func:libn_dup = int64(int64:fd) {
+     Result<int64>:r = sys1(SYS_DUP, fd);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_dup2 — Duplicate fd to newfd, closing newfd first if it's open.
+-pub func:libn_dup2 = Result<int64>(int64:fd, int64:newfd) {
++pub func:libn_dup2 = int64(int64:fd, int64:newfd) {
+     Result<int64>:r = sys2(SYS_DUP2, fd, newfd);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_dup3 — dup2 with flags. flags: O_CLOEXEC.
+-pub func:libn_dup3 = Result<int64>(int64:fd, int64:newfd, int64:flags) {
++pub func:libn_dup3 = int64(int64:fd, int64:newfd, int64:flags) {
+     Result<int64>:r = sys3(SYS_DUP3, fd, newfd, flags);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_fcntl — File control.
+ // Common uses:
+@@ -289,27 +323,30 @@ pub func:libn_dup3 = Result<int64>(int64:fd, int64:newfd, int64:flags) {
+ //   libn_fcntl(fd, F_SETFL, O_NONBLOCK) → set non-blocking
+ //   libn_fcntl(fd, F_GETFD, 0) → get fd flags (FD_CLOEXEC)
+ //   libn_fcntl(fd, F_SETFD, FD_CLOEXEC) → set close-on-exec
+-pub func:libn_fcntl = Result<int64>(int64:fd, int64:cmd, int64:arg) {
++pub func:libn_fcntl = int64(int64:fd, int64:cmd, int64:arg) {
+     Result<int64>:r = sys3(SYS_FCNTL, fd, cmd, arg);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_ioctl — General device control.
+ // request: TIOCGWINSZ, FIONREAD, etc.
+ // arg: device-dependent (often a pointer cast to int64).
+-pub func:libn_ioctl = Result<int64>(int64:fd, int64:request, int64:arg) {
++pub func:libn_ioctl = int64(int64:fd, int64:request, int64:arg) {
+     Result<int64>:r = sys3(SYS_IOCTL, fd, request, arg);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Pipe operations ──────────────────────────────────────────────────
+ 
+ // libn_pipe2 — Create a pipe pair. flags: O_CLOEXEC | O_NONBLOCK.
+ // pipefd: pointer to int64[2] — pipefd[0]=read end, pipefd[1]=write end.
+-pub func:libn_pipe2 = Result<int64>(int64:pipefd, int64:flags) {
++pub func:libn_pipe2 = int64(int64:pipefd, int64:flags) {
+     Result<int64>:r = sys2(SYS_PIPE2, pipefd, flags);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Memory operations ────────────────────────────────────────────────
+ 
+@@ -320,87 +357,98 @@ pub func:libn_pipe2 = Result<int64>(int64:pipefd, int64:flags) {
+ // fd=-1 for anonymous mappings (required by kernel)
+ // offset=0 for anonymous mappings
+ // Returns: mapped address as int64, or error.
+-pub func:libn_mmap = Result<int64>(int64:addr, int64:length, int64:prot, int64:flags, int64:fd, int64:offset) {
++pub func:libn_mmap = int64(int64:addr, int64:length, int64:prot, int64:flags, int64:fd, int64:offset) {
+     Result<int64>:r = sys_safe(SYS_MMAP, addr, length, prot, flags, fd, offset);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_munmap — Unmap memory. Always call this to release mmap'd memory.
+-pub func:libn_munmap = Result<int64>(int64:addr, int64:length) {
++pub func:libn_munmap = int64(int64:addr, int64:length) {
+     Result<int64>:r = sys2(SYS_MUNMAP, addr, length);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_mprotect — Change memory protection flags.
+ // IMPORTANT: Changing to PROT_EXEC requires sys_full (not sys_safe).
+ // This wrapper is safe-tier only (no PROT_EXEC).
+-pub func:libn_mprotect = Result<int64>(int64:addr, int64:length, int64:prot) {
++pub func:libn_mprotect = int64(int64:addr, int64:length, int64:prot) {
+     // Reject PROT_EXEC attempts — caller must use sys_full directly and document why.
+-    if (prot & PROT_EXEC) != 0i64 {
+-        fail ERR_BADARG as tbb8;
++    if ((prot & PROT_EXEC) != 0i64) {
++        fail ERR_BADARG;
+     }
+     Result<int64>:r = sys3(SYS_MPROTECT, addr, length, prot);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_mprotect_exec — Set PROT_EXEC (for JIT code pages). Uses sys_full.
+ // Callers MUST have a comment explaining why writable+executable memory is needed.
+-pub func:libn_mprotect_exec = Result<int64>(int64:addr, int64:length, int64:prot) {
++pub func:libn_mprotect_exec = int64(int64:addr, int64:length, int64:prot) {
+     // sys_full: PROT_EXEC requires full tier — JIT / arch/ assembly page setup
+     Result<int64>:r = sys_full3(SYS_MPROTECT, addr, length, prot);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_mremap — Remap (grow/shrink/move) an existing mmap'd region.
+ // flags: MREMAP_MAYMOVE | MREMAP_FIXED
+-pub func:libn_mremap = Result<int64>(int64:old_addr, int64:old_size, int64:new_size, int64:flags, int64:new_addr) {
++pub func:libn_mremap = int64(int64:old_addr, int64:old_size, int64:new_size, int64:flags, int64:new_addr) {
+     Result<int64>:r = sys5(SYS_MREMAP, old_addr, old_size, new_size, flags, new_addr);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_madvise — Give kernel hints about memory usage.
+ // advice: MADV_DONTNEED, MADV_SEQUENTIAL, MADV_HUGEPAGE, etc.
+-pub func:libn_madvise = Result<int64>(int64:addr, int64:length, int64:advice) {
++pub func:libn_madvise = int64(int64:addr, int64:length, int64:advice) {
+     Result<int64>:r = sys3(SYS_MADVISE, addr, length, advice);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_msync — Flush changes to a mmap'd file back to disk.
+ // flags: MS_SYNC (blocking) or MS_ASYNC (background)
+-pub func:libn_msync = Result<int64>(int64:addr, int64:length, int64:flags) {
++pub func:libn_msync = int64(int64:addr, int64:length, int64:flags) {
+     Result<int64>:r = sys3(SYS_MSYNC, addr, length, flags);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Clock / time ─────────────────────────────────────────────────────
+ 
+ // libn_clock_gettime — Read a POSIX clock.
+ // clockid: CLOCK_REALTIME, CLOCK_MONOTONIC, CLOCK_PROCESS_CPUTIME_ID, etc.
+ // tp: pointer to struct timespec {int64 tv_sec; int64 tv_nsec;} (cast to int64)
+-pub func:libn_clock_gettime = Result<int64>(int64:clockid, int64:tp) {
++pub func:libn_clock_gettime = int64(int64:clockid, int64:tp) {
+     Result<int64>:r = sys2(SYS_CLOCK_GETTIME, clockid, tp);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_clock_getres — Get clock resolution.
+-pub func:libn_clock_getres = Result<int64>(int64:clockid, int64:res) {
++pub func:libn_clock_getres = int64(int64:clockid, int64:res) {
+     Result<int64>:r = sys2(SYS_CLOCK_GETRES, clockid, res);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_nanosleep — Sleep for the duration in *req. Stores remaining time in *rem.
+ // req/rem: pointers to struct timespec (cast to int64). rem may be 0 (NULL).
+ // On EINTR: the remaining time is written to *rem; caller can loop to retry.
+-pub func:libn_nanosleep = Result<int64>(int64:req, int64:rem) {
++pub func:libn_nanosleep = int64(int64:req, int64:rem) {
+     Result<int64>:r = sys2(SYS_NANOSLEEP, req, rem);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_sched_yield — Voluntarily yield the CPU to another ready thread/process.
+-pub func:libn_sched_yield = Result<int64>() {
++pub func:libn_sched_yield = int64() {
+     Result<int64>:r = sys1(SYS_SCHED_YIELD, 0i64);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Futex ────────────────────────────────────────────────────────────
+ 
+@@ -409,57 +457,64 @@ pub func:libn_sched_yield = Result<int64>() {
+ // val: expected value at *uaddr
+ // timeout: pointer to timespec, or 0 for infinite wait
+ // Returns 0 on wake, ETIMEDOUT on timeout, EINTR on signal, EAGAIN if val mismatch.
+-pub func:libn_futex_wait = Result<int64>(int64:uaddr, int64:val, int64:timeout) {
++pub func:libn_futex_wait = int64(int64:uaddr, int64:val, int64:timeout) {
+     Result<int64>:r = sys4(SYS_FUTEX, uaddr, FUTEX_WAIT_PRIVATE, val, timeout);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_futex_wake — Wake up to nwake threads waiting on *uaddr.
+ // Returns number of threads woken.
+-pub func:libn_futex_wake = Result<int64>(int64:uaddr, int64:nwake) {
++pub func:libn_futex_wake = int64(int64:uaddr, int64:nwake) {
+     Result<int64>:r = sys3(SYS_FUTEX, uaddr, FUTEX_WAKE_PRIVATE, nwake);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Process control ─────────────────────────────────────────────────
+ 
+ // libn_exit_group — Terminate the entire process (all threads).
+ // Does NOT return. Use sys_raw because there's nothing to return to.
+ // Exit code is the low 8 bits of code (kernel masks to byte).
+-pub func:libn_exit_group = void(int64:code) {
++pub func:libn_exit_group = NIL(int64:code) {
+     // sys_full: SYS_EXIT_GROUP terminates the entire process — full tier
+-    sys_raw(SYS_EXIT_GROUP, code, 0i64, 0i64, 0i64, 0i64, 0i64);
+-}
++    drop(sys_raw(SYS_EXIT_GROUP, code, 0i64, 0i64, 0i64, 0i64, 0i64));
++
++};
+ 
+ // libn_exit_thread — Terminate only the calling thread.
+ // Needed for pthread_exit() — doesn't call atexit handlers.
+-pub func:libn_exit_thread = void(int64:code) {
+-    sys_raw(SYS_EXIT, code, 0i64, 0i64, 0i64, 0i64, 0i64);
+-}
++pub func:libn_exit_thread = NIL(int64:code) {
++    drop(sys_raw(SYS_EXIT, code, 0i64, 0i64, 0i64, 0i64, 0i64));
++
++};
+ 
+ // libn_fork — Fork the process. Uses sys_full.
+ // Returns 0 in child, child PID in parent, or error.
+-pub func:libn_fork = Result<int64>() {
++pub func:libn_fork = int64() {
+     // sys_full: SYS_FORK duplicates the process — requires full tier
+     Result<int64>:r = sys_full1(SYS_FORK, 0i64);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_kill — Send signal sig to process pid.
+ // sig: SIGTERM, SIGKILL, SIGUSR1, etc. (from posix_constants.npk)
+-pub func:libn_kill = Result<int64>(int64:pid, int64:sig) {
++pub func:libn_kill = int64(int64:pid, int64:sig) {
+     // sys_full: SYS_KILL can affect other processes — requires full tier
+     Result<int64>:r = sys_full2(SYS_KILL, pid, sig);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_tgkill — Send signal to a specific thread (tid) in thread group tgid.
+ // More precise than kill() — targets one thread, not whole process.
+-pub func:libn_tgkill = Result<int64>(int64:tgid, int64:tid, int64:sig) {
++pub func:libn_tgkill = int64(int64:tgid, int64:tid, int64:sig) {
+     // sys_full: SYS_TGKILL can deliver signals — requires full tier
+     Result<int64>:r = sys_full3(SYS_TGKILL, tgid, tid, sig);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Stat / filesystem identity ───────────────────────────────────────
+ 
+@@ -467,10 +522,11 @@ pub func:libn_tgkill = Result<int64>(int64:tgid, int64:tid, int64:sig) {
+ // flags: AT_STATX_SYNC_AS_STAT | AT_EMPTY_PATH etc.
+ // mask: STATX_BASIC_STATS | STATX_SIZE | STATX_BTIME etc.
+ // statxbuf: pointer to struct statx (256 bytes, cast to int64)
+-pub func:libn_statx = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:mask, int64:statxbuf) {
++pub func:libn_statx = int64(int64:dirfd, int64:path, int64:flags, int64:mask, int64:statxbuf) {
+     Result<int64>:r = sys5(SYS_STATX, dirfd, path, flags, mask, statxbuf);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── Random data ─────────────────────────────────────────────────────
+ 
+@@ -478,10 +534,11 @@ pub func:libn_statx = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:
+ // flags: 0 (block until seeded), GRND_NONBLOCK (return EAGAIN if not seeded),
+ //        GRND_RANDOM (use /dev/random pool — slower, not recommended).
+ // Returns number of bytes filled (may be less than len in GRND_NONBLOCK mode).
+-pub func:libn_getrandom = Result<int64>(int64:buf, int64:len, int64:flags) {
++pub func:libn_getrandom = int64(int64:buf, int64:len, int64:flags) {
+     Result<int64>:r = sys3(SYS_GETRANDOM, buf, len, flags);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── getcwd ───────────────────────────────────────────────────────────
+ 
+@@ -490,22 +547,25 @@ pub func:libn_getrandom = Result<int64>(int64:buf, int64:len, int64:flags) {
+ // size: size of buf in bytes (must be >= 2 for "/\0")
+ // Returns number of bytes written (including NUL), or error.
+ // ENAMETOOLONG if the path is longer than size-1 bytes.
+-pub func:libn_getcwd = Result<int64>(int64:buf, int64:size) {
++pub func:libn_getcwd = int64(int64:buf, int64:size) {
+     Result<int64>:r = sys2(SYS_GETCWD, buf, size);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_chdir — Change working directory.
+-pub func:libn_chdir = Result<int64>(int64:path) {
++pub func:libn_chdir = int64(int64:path) {
+     Result<int64>:r = sys1(SYS_CHDIR, path);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_fchdir — Change working directory via fd (must be O_DIRECTORY).
+-pub func:libn_fchdir = Result<int64>(int64:fd) {
++pub func:libn_fchdir = int64(int64:fd) {
+     Result<int64>:r = sys1(SYS_FCHDIR, fd);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── getdents64 ───────────────────────────────────────────────────────
+ 
+@@ -514,10 +574,11 @@ pub func:libn_fchdir = Result<int64>(int64:fd) {
+ // buf: pointer to byte buffer for dirent64 records (cast to int64)
+ // count: size of buf
+ // Returns bytes read (0 = end of directory), or error.
+-pub func:libn_getdents64 = Result<int64>(int64:fd, int64:buf, int64:count) {
++pub func:libn_getdents64 = int64(int64:fd, int64:buf, int64:count) {
+     Result<int64>:r = sys3(SYS_GETDENTS64, fd, buf, count);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ── arch_prctl (TLS setup) ───────────────────────────────────────────
+ 
+@@ -525,18 +586,20 @@ pub func:libn_getdents64 = Result<int64>(int64:fd, int64:buf, int64:count) {
+ // Used by v0.13.x TLS init to set FS:0 = TCB pointer.
+ // code: ARCH_SET_FS, ARCH_GET_FS, ARCH_SET_GS, ARCH_GET_GS
+ // addr: pointer/value depending on get vs set
+-pub func:libn_arch_prctl = Result<int64>(int64:code, int64:addr) {
++pub func:libn_arch_prctl = int64(int64:code, int64:addr) {
+     // sys_full: ARCH_PRCTL manipulates segment registers — full tier required
+     Result<int64>:r = sys_full2(SYS_ARCH_PRCTL, code, addr);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // libn_set_tid_address — Set the clear_child_tid pointer for futex-based join.
+ // Returns the tid of the calling thread.
+-pub func:libn_set_tid_address = Result<int64>(int64:tidptr) {
++pub func:libn_set_tid_address = int64(int64:tidptr) {
+     Result<int64>:r = sys1(SYS_SET_TID_ADDRESS, tidptr);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};
+ 
+ // ════════════════════════════════════════════════════════════════════════════
+ // RETRY WRAPPERS
+@@ -548,21 +611,21 @@ pub func:libn_set_tid_address = Result<int64>(int64:tidptr) {
+ // libn_read_retry — Read exactly nbytes bytes (retrying on EINTR).
+ // Does NOT retry on EAGAIN — callers must decide how to handle non-blocking fds.
+ // Returns total bytes read, which may be < nbytes only on EOF.
+-pub func:libn_read_retry = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
++pub func:libn_read_retry = int64(int64:fd, int64:buf, int64:nbytes) {
+     int64:total = 0i64;
+     int64:remaining = nbytes;
+     int64:ptr = buf;
+ 
+-    while remaining > 0i64 {
++    while (remaining > 0i64) {
+         Result<int64>:r = sys3(SYS_READ, fd, ptr, remaining);
+-        if r.is_error {
+-            if r.err as int64 == EINTR {
++        if (r.is_error) {
++            if (@cast_unchecked<int64>(r.error) == EINTR) {
+                 continue;
+             }
+             fail r.err;
+         }
+         int64:n = r.value;
+-        if n == 0i64 {
++        if (n == 0i64) {
+             // EOF
+             break;
+         }
+@@ -571,19 +634,19 @@ pub func:libn_read_retry = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
+         remaining = remaining - n;
+     }
+     pass total;
+-}
++};
+ 
+ // libn_write_all — Write exactly nbytes bytes (retrying on EINTR and short writes).
+ // Returns nbytes on success, or error. A short write is always retried.
+-pub func:libn_write_all = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
++pub func:libn_write_all = int64(int64:fd, int64:buf, int64:nbytes) {
+     int64:total = 0i64;
+     int64:remaining = nbytes;
+     int64:ptr = buf;
+ 
+-    while remaining > 0i64 {
++    while (remaining > 0i64) {
+         Result<int64>:r = sys3(SYS_WRITE, fd, ptr, remaining);
+-        if r.is_error {
+-            if r.err as int64 == EINTR {
++        if (r.is_error) {
++            if (@cast_unchecked<int64>(r.error) == EINTR) {
+                 continue;
+             }
+             fail r.err;
+@@ -594,17 +657,18 @@ pub func:libn_write_all = Result<int64>(int64:fd, int64:buf, int64:nbytes) {
+         remaining = remaining - n;
+     }
+     pass total;
+-}
++};
+ 
+ // libn_nanosleep_retry — Sleep for the full duration even if interrupted.
+ // Uses the remaining time output to restart after EINTR.
+ // ts_req: pointer to timespec (cast to int64) — the desired sleep duration.
+ // Returns 0 on success, or ETIMEDOUT / other errors.
+-pub func:libn_nanosleep_retry = Result<int64>(int64:ts_req) {
++pub func:libn_nanosleep_retry = int64(int64:ts_req) {
+     // We need two timespec slots on the stack: req and rem.
+     // Stack layout: [tv_sec_req:8][tv_nsec_req:8][tv_sec_rem:8][tv_nsec_rem:8]
+     // For now (pre-v0.2.x), we simply call nanosleep once.
+     // v0.11.3 will implement the full retry loop using stack-allocated timespec.
+     Result<int64>:r = sys2(SYS_NANOSLEEP, ts_req, 0i64);
+-    pass r;
+-}
++    if (r.is_error) { fail r.error; }
++    pass r.value;
++};

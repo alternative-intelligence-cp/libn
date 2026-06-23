@@ -1,0 +1,3343 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ptr_to_int_u8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=compiler_fence, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fdopen, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=freopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fclose, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fseek, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ftell, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=rewind, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fsetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgets, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=feof, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ferror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=clearerr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setvbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setbuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=setlinebuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=puts, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_putc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_puts_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_pad, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=render_uint, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_format_args, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=is_whitespace, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_hex_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=digit_val, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtol, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtoul, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_atoi, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_u64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64_base, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_utoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strndup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=to_lower_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=to_upper_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_alpha_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strcmp_has_nul, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_casecmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strerror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strerror_r, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=perror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_getc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_skip_ws, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_scan_int, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_engine, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=scanf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=tmpfile_get_entropy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=tmpfile_fill_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mkstemp, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mkostemp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mkdtemp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=tmpfile, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=tmpnam, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_open_inheritable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_creat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_close_nointr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_open_tmp, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b11580db0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11587460
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11588140
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11588f90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11589ab0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158a5e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158b990
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158c410
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158cd90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158d8b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158e3d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1158fa20
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115901e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11590d90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11591840
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11542310
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11542cb0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11543730
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115441e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11544c90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11545740
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159a7b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159c290
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159caf0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159d620
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159e470
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159efb0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1159fae0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a0610
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a1150
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a1c80
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a27b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a33a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a3e10
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a4950
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a5490
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a5fd0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a6b00
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a7630
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a8170
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a8ca0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115a97e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115aa320
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1157ead0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1157f3b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115adde0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115ae870
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115af700
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b0230
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b1380
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b1ec0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b29c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b3510
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b4060
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b4ba0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b56f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b6230
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b6d70
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b78c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b8410
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b8f60
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115b9a70
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115ba600
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bb150
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bbc90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bc7d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bd320
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bde70
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115be9c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115bf510
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c0060
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c0bb0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c16c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c2250
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c2d90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c38d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c48a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1157c3d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115c5b30
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115926b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11593000
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11593a90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115945d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11595110
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11595c50
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11596790
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115ab320
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115abbb0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115ac6f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115ad230
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11597010
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b115976c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: void_result
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11611a40
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11641190
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11642c80
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11644740
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11646200
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11647cc0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11649780
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'safe_flags', value = 0x628b1163f7d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for safe_flags
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11613290
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'safe_flags', value = 0x628b1164e390
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for safe_flags
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1164f190
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116513e0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11653560
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116559d0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11657e10
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1165a510
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1165c890
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1165e7d0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116607b0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11662b90
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11664e80
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11667400
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116695e0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1162fb30
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1166ef50
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11671640
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116733f0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1163bf90
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115ca880
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115cd1c0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115ced90
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115d0f10
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115d2e20
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b115d4a90
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116952e0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11697720
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!!
+[DEBUG CODEGEN CALL] Generating call to: sys!!!
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11699f60
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1169c3e0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1169ea20
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116a1620
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116a3d10
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116a4480
+[DEBUG IR_GEN] InitVal type: 0x628b11512570
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116385d0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116ac970
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116aef50
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116b1310
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys!!
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116b3140
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'total', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b116b4be0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG IR_GEN] Initializer generated for 'ptr', value = 0x628b116b4e00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ptr
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116b6b60
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'n', value = 0x628b116fa7a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for n
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'total', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b116fdc60
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG IR_GEN] Initializer generated for 'ptr', value = 0x628b116fde80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ptr
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116fb660
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'n', value = 0x628b117127b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for n
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116e6fd0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 't', value = 0x628b11713e00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for t
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11714850
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pa', value = 0x628b116b5890
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pa
+[DEBUG IR_GEN] Initializer generated for 'pb', value = 0x628b116e5aa0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pb
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG IR_GEN] Initializer generated for 'ba', value = 0x628b116eb3c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ba
+[DEBUG IR_GEN] Initializer generated for 'bb', value = 0x628b116e5480
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bb
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'wa', value = 0x628b116d4f40
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for wa
+[DEBUG IR_GEN] Initializer generated for 'wb', value = 0x628b116d4e60
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for wb
+[DEBUG IR_GEN] Initializer generated for 'wc', value = 0x628b11728a10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wc
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'va', value = 0x628b116e6d80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for va
+[DEBUG IR_GEN] Initializer generated for 'vb', value = 0x628b116ce840
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for vb
+[DEBUG IR_GEN] Initializer generated for 'diff', value = 0x628b116deb80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for diff
+[DEBUG IR_GEN] Initializer generated for 'j', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for j
+[DEBUG IR_GEN] Initializer generated for 'shift', value = 0x628b1172c720
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for shift
+[DEBUG IR_GEN] Initializer generated for 'ba', value = 0x628b1172cc00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ba
+[DEBUG IR_GEN] Initializer generated for 'bb', value = 0x628b1172d180
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bb
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'ba', value = 0x628b1178ed20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ba
+[DEBUG IR_GEN] Initializer generated for 'bb', value = 0x628b1178f0e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bb
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: mem_memcmp
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11790cf0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'pa', value = 0x628b1163e850
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pa
+[DEBUG IR_GEN] Initializer generated for 'pb', value = 0x628b116e6210
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pb
+[DEBUG IR_GEN] Initializer generated for 'diff', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for diff
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b115d35b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'target', value = 0x628b115fd010
+[DEBUG IR_GEN] InitVal type: 0x628b10df7370
+[DEBUG IR_GEN] Default builder.CreateStore for target
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: replicate_byte
+[DEBUG IR_GEN] Initializer generated for 'tword', value = 0x628b117950a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for tword
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pw', value = 0x628b116d9ca0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pw
+[DEBUG IR_GEN] Initializer generated for 'wc', value = 0x628b116cb6b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wc
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'v', value = 0x628b116cbd10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for v
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: has_zero_byte
+[DEBUG IR_GEN] Initializer generated for 'word_base', value = 0x628b116f8640
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word_base
+[DEBUG IR_GEN] Initializer generated for 'wb', value = 0x628b116f89f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for wb
+[DEBUG IR_GEN] Initializer generated for 'j', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for j
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b115ef620
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'target', value = 0x628b115fa8b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df7370
+[DEBUG IR_GEN] Default builder.CreateStore for target
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b1176fcd0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'h', value = 0x628b116e3890
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for h
+[DEBUG IR_GEN] Initializer generated for 'n', value = 0x628b11635f50
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for n
+[DEBUG IR_GEN] Initializer generated for 'first', value = 0x628b1171f200
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for first
+[DEBUG IR_GEN] Initializer generated for 'limit_idx', value = 0x628b116ce680
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for limit_idx
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: mem_memchr
+[DEBUG IR_GEN] Initializer generated for 'candidate', value = 0x628b116c0f00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for candidate
+[DEBUG IR_GEN] Initializer generated for 'offset', value = 0x628b116a98c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for offset
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: mem_memcmp
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b11604cd0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pw', value = 0x628b1176ccf0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pw
+[DEBUG IR_GEN] Initializer generated for 'wc', value = 0x628b11775080
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wc
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pa', value = 0x628b116036d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pa
+[DEBUG IR_GEN] Initializer generated for 'pb', value = 0x628b11603740
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pb
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG IR_GEN] Initializer generated for 'tmp', value = 0x628b116366a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for tmp
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'wa', value = 0x628b11632900
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for wa
+[DEBUG IR_GEN] Initializer generated for 'wb', value = 0x628b116ee3b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for wb
+[DEBUG IR_GEN] Initializer generated for 'wc', value = 0x628b115c6b80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wc
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'tmp', value = 0x628b11774130
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for tmp
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'tmp', value = 0x628b115c62a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for tmp
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b116ee500
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'lo', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for lo
+[DEBUG IR_GEN] Initializer generated for 'hi', value = 0x628b1172fa70
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for hi
+[DEBUG IR_GEN] Initializer generated for 'tmp', value = 0x628b1175e120
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for tmp
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'mask', value = 0x628b116bf6e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for mask
+[DEBUG IR_GEN] Initializer generated for 'mask', value = 0x628b117196d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for mask
+[DEBUG CODEGEN CALL] Generating call to: libn_mmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116a7770
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11564970
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: libn_mprotect
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1171b980
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: libn_mremap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116219f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: libn_madvise
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116d9590
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: libn_msync
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116e2c20
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: page_align_up
+[DEBUG IR_GEN] Initializer generated for 'total', value = 0x628b115fffb0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total
+[DEBUG CODEGEN CALL] Generating call to: libn_mmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116003e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'map_start', value = 0x628b11721ae0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for map_start
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b115eeb40
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'total_bytes', value = 0x628b1170df00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_bytes
+[DEBUG CODEGEN CALL] Generating call to: mem_malloc
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1176c6c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: mem_malloc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG IR_GEN] Initializer generated for 'map_start', value = 0x628b11744d10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for map_start
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b116f31e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG IR_GEN] Initializer generated for 'old_map_size', value = 0x628b116198b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for old_map_size
+[DEBUG IR_GEN] Initializer generated for 'old_user_size', value = 0x628b11619b70
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for old_user_size
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: page_align_up
+[DEBUG IR_GEN] Initializer generated for 'new_total', value = 0x628b11619f40
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for new_total
+[DEBUG CODEGEN CALL] Generating call to: libn_mremap
+[DEBUG IR_GEN] Initializer generated for 'rr', value = 0x628b1173c850
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for rr
+[DEBUG IR_GEN] Initializer generated for 'new_map', value = 0x628b1172e3e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for new_map
+[DEBUG IR_GEN] Initializer generated for 'new_hdr', value = 0x628b1172e6d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for new_hdr
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: mem_malloc
+[DEBUG IR_GEN] Initializer generated for 'new_r', value = 0x628b116e5e40
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for new_r
+[DEBUG IR_GEN] Initializer generated for 'new_ptr', value = 0x628b116df830
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for new_ptr
+[DEBUG IR_GEN] Initializer generated for 'copy_n', value = 0x628b116df9e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for copy_n
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'si', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for si
+[DEBUG IR_GEN] Initializer generated for 'src', value = 0x628b115d16e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for src
+[DEBUG IR_GEN] Initializer generated for 'dst', value = 0x628b115d1750
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for dst
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG IR_GEN] Initializer generated for 'map_start', value = 0x628b1175cda0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for map_start
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b1170e710
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG IR_GEN] Initializer generated for 'map_size', value = 0x628b1175d3d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for map_size
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116ed0d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b115fcd70
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b1173d540
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG IR_GEN] Initializer generated for 'size', value = 0x628b1172bcc0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for size
+[DEBUG CODEGEN CALL] Generating call to: libn_mmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116da3a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'size', value = 0x628b117203b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for size
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11720880
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'total_pages', value = 0x628b11731d00
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_pages
+[DEBUG IR_GEN] Initializer generated for 'total_size', value = 0x628b11732030
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_size
+[DEBUG CODEGEN CALL] Generating call to: libn_mmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11732440
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'base', value = 0x628b11717970
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for base
+[DEBUG CODEGEN CALL] Generating call to: libn_mprotect
+[DEBUG IR_GEN] Initializer generated for 'r_bot', value = 0x628b116ef290
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r_bot
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b117326e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'top_guard', value = 0x628b11565430
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for top_guard
+[DEBUG CODEGEN CALL] Generating call to: libn_mprotect
+[DEBUG IR_GEN] Initializer generated for 'r_top', value = 0x628b116e1ba0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r_top
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11566350
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'base', value = 0x628b116d5c80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for base
+[DEBUG IR_GEN] Initializer generated for 'total_size', value = 0x628b116d6140
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_size
+[DEBUG CODEGEN CALL] Generating call to: libn_munmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b116d6450
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: slab_class_size
+[DEBUG IR_GEN] Initializer generated for 'slot_full', value = 0x628b11763ed0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for slot_full
+[DEBUG CODEGEN CALL] Generating call to: slab_class_slots
+[DEBUG IR_GEN] Initializer generated for 'slots', value = 0x628b11764100
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for slots
+[DEBUG IR_GEN] Initializer generated for 'n_pages', value = 0x628b11510740
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for n_pages
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'slab_size', value = 0x628b117660b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for slab_size
+[DEBUG CODEGEN CALL] Generating call to: libn_mmap
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11766480
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'slab_base', value = 0x628b11767f20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for slab_base
+[DEBUG IR_GEN] Initializer generated for 'prev_next_ptr', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for prev_next_ptr
+[DEBUG IR_GEN] Initializer generated for 'j', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for j
+[DEBUG IR_GEN] Initializer generated for 'slot_start', value = 0x628b11769080
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for slot_start
+[DEBUG IR_GEN] Initializer generated for 'hdr_byte', value = 0x628b11769490
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr_byte
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'next_ptr_addr', value = 0x628b11769c20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for next_ptr_addr
+[DEBUG IR_GEN] Initializer generated for 'next_ptr', value = 0x628b1176a030
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for next_ptr
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_set
+[DEBUG IR_GEN] Initializer generated for 'prev', value = 0x628b117887f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for prev
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_class_for_size
+[DEBUG IR_GEN] Initializer generated for 'cls', value = 0x628b11789900
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for cls
+[DEBUG CODEGEN CALL] Generating call to: mem_malloc
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11789e20
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_get
+[DEBUG IR_GEN] Initializer generated for 'head', value = 0x628b1178b010
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for head
+[DEBUG CODEGEN CALL] Generating call to: slab_refill
+[DEBUG IR_GEN] Initializer generated for 'rr', value = 0x628b11734ec0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for rr
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_get
+[DEBUG IR_GEN] Initializer generated for 'user_ptr', value = 0x628b11785a90
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for user_ptr
+[DEBUG IR_GEN] Initializer generated for 'next_ptr', value = 0x628b117846b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for next_ptr
+[DEBUG IR_GEN] Initializer generated for 'next', value = 0x628b11785d60
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for next
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_set
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'slot_start', value = 0x628b116d1120
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for slot_start
+[DEBUG IR_GEN] Initializer generated for 'hdr', value = 0x628b116c8890
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for hdr
+[DEBUG IR_GEN] Initializer generated for 'cls', value = 0x628b116d13b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for cls
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1174b450
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_get
+[DEBUG IR_GEN] Initializer generated for 'old_head', value = 0x628b116779a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for old_head
+[DEBUG IR_GEN] Initializer generated for 'next_ptr', value = 0x628b1178c000
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for next_ptr
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: slab_freelist_set
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc
+[DEBUG IR_GEN] Initializer generated for 'ptr', value = 0x628b11728ff0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ptr
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_class_for_size
+[DEBUG IR_GEN] Initializer generated for 'cls', value = 0x628b116bc930
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for cls
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_class_size
+[DEBUG IR_GEN] Initializer generated for 'sz', value = 0x628b117838b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for sz
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b11608980
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'zi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for zi
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'fill', value = 0x628b11783af0
+[DEBUG IR_GEN] InitVal type: 0x628b10df7370
+[DEBUG IR_GEN] Default builder.CreateStore for fill
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b1178b740
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'fill64', value = 0x628b1174ae20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fill64
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pw', value = 0x628b11766c90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pw
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'word_count', value = 0x628b117380e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word_count
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memset
+[DEBUG IR_GEN] Initializer generated for 'fill', value = 0x628b1178c150
+[DEBUG IR_GEN] InitVal type: 0x628b10df7370
+[DEBUG IR_GEN] Default builder.CreateStore for fill
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b1178c4a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: compiler_fence
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memset_explicit
+[DEBUG IR_GEN] Initializer generated for 'p32', value = 0x628b1174e460
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for p32
+[DEBUG IR_GEN] Initializer generated for 'p64', value = 0x628b1174d8c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for p64
+[DEBUG IR_GEN] Initializer generated for 'pb', value = 0x628b11783d90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pb
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pi64', value = 0x628b1173a2f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pi64
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'wn', value = 0x628b11674960
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wn
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memset_pattern4
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc_zero
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b11757450
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1174a940
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: fd
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc_zero
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11759f40
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b1177d890
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG IR_GEN] Initializer generated for 'ptr', value = 0x628b1177e060
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ptr
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_write
+[DEBUG IR_GEN] Initializer generated for 'res', value = 0x628b1177f420
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for res
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b117df1a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1155f380
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'unread', value = 0x628b117df8a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for unread
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_lseek
+[DEBUG IR_GEN] Initializer generated for 'res', value = 0x628b117f4520
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for res
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11755020
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_read
+[DEBUG IR_GEN] Initializer generated for 'res', value = 0x628b117f59c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for res
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b1168fbe0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG IR_GEN] Initializer generated for 'm', value = 0x628b117e2420
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for m
+[DEBUG IR_GEN] Initializer generated for 'fmode', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fmode
+[DEBUG IR_GEN] Initializer generated for 'oflags', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for oflags
+[DEBUG IR_GEN] Initializer generated for 'first', value = 0x628b11706590
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for first
+[DEBUG IR_GEN] Initializer generated for 'has_plus', value = 0x628b11567b30
+[DEBUG IR_GEN] InitVal type: 0x628b10df7358
+[DEBUG IR_GEN] Default builder.CreateStore for has_plus
+[DEBUG IR_GEN] Initializer generated for 'has_b', value = 0x628b11567b30
+[DEBUG IR_GEN] InitVal type: 0x628b10df7358
+[DEBUG IR_GEN] Default builder.CreateStore for has_b
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11510740
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1155c570
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: fd
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: mode
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_mode
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_mode
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_mode
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_buf
+[DEBUG IR_GEN] Initializer generated for 'buf', value = 0x628b11763290
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_parse_mode
+[DEBUG IR_GEN] Initializer generated for 'parse_res', value = 0x628b11622140
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for parse_res
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'open_flags', value = 0x628b117394f0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for open_flags
+[DEBUG IR_GEN] Initializer generated for 'file_mode', value = 0x628b11739620
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for file_mode
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_open
+[DEBUG IR_GEN] Initializer generated for 'fd', value = 0x628b11739730
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fd
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_file
+[DEBUG IR_GEN] Initializer generated for 'fp', value = 0x628b11692e90
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fp
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_close
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: bio_init_stream
+[DEBUG IR_GEN] Initializer generated for 'init_r', value = 0x628b11804240
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for init_r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_close
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_file
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_parse_mode
+[DEBUG IR_GEN] Initializer generated for 'parse_res', value = 0x628b11811f10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for parse_res
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'open_flags', value = 0x628b11707a60
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for open_flags
+[DEBUG IR_GEN] Initializer generated for 'file_mode', value = 0x628b11707d10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for file_mode
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_file
+[DEBUG IR_GEN] Initializer generated for 'fp', value = 0x628b117f2e60
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fp
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: bio_init_stream
+[DEBUG IR_GEN] Initializer generated for 'init_r', value = 0x628b117f3480
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for init_r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_file
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1173d620
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_parse_mode
+[DEBUG IR_GEN] Initializer generated for 'parse_res', value = 0x628b117e0b20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for parse_res
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: fclose
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'open_flags', value = 0x628b117e1120
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for open_flags
+[DEBUG IR_GEN] Initializer generated for 'file_mode', value = 0x628b117e1250
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for file_mode
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'old_fd', value = 0x628b116c3a10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for old_fd
+[DEBUG IR_GEN] Initializer generated for 'buf_owned', value = 0x628b11708590
+[DEBUG IR_GEN] InitVal type: 0x628b10df7358
+[DEBUG IR_GEN] Default builder.CreateStore for buf_owned
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_open
+[DEBUG IR_GEN] Initializer generated for 'fd', value = 0x628b1167c790
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fd
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_close
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: fd
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_close
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: fd
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: mode
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1167c610
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'ret', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ret
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11848cb0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'fd', value = 0x628b118432e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for fd
+[DEBUG IR_GEN] Initializer generated for 'is_std', value = 0x628b1181fdc8
+[DEBUG IR_GEN] InitVal type: 0x628b10df7358
+[DEBUG IR_GEN] Default builder.CreateStore for is_std
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: libn_close
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118226d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: fd
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_file
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11679870
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b11708f30
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b117756d0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'di', value = 0x628b116a9240
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for di
+[DEBUG IR_GEN] Initializer generated for 'si', value = 0x628b11730460
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for si
+[DEBUG IR_GEN] Initializer generated for 'word_count', value = 0x628b116046e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word_count
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'word', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word
+[DEBUG IR_GEN] Initializer generated for 'byte_off', value = 0x628b11730010
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for byte_off
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11846520
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b11841e10
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1170e440
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'need_backward', value = 0x628b117dd1e8
+[DEBUG IR_GEN] InitVal type: 0x628b10df7358
+[DEBUG IR_GEN] Default builder.CreateStore for need_backward
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'word_count', value = 0x628b1182fbf0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word_count
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'si', value = 0x628b117e6790
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for si
+[DEBUG IR_GEN] Initializer generated for 'di', value = 0x628b117e6720
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for di
+[DEBUG IR_GEN] Initializer generated for 'word', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word
+[DEBUG IR_GEN] Initializer generated for 'bo', value = 0x628b11831d80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bo
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11837ac0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'word', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for word
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'di_word', value = 0x628b1183d560
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for di_word
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: mem_malloc
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1183fc70
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG IR_GEN] Initializer generated for 'rc', value = 0x628b11825d00
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for rc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_free
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11740240
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b117e6380
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'total_bytes', value = 0x628b1184ed60
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_bytes
+[DEBUG IR_GEN] Initializer generated for 'bytes_read', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bytes_read
+[DEBUG IR_GEN] Initializer generated for 'dst', value = 0x628b1184f090
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for dst
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG IR_GEN] Initializer generated for 'buffered', value = 0x628b118539a0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for buffered
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b11854fb0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG IR_GEN] Initializer generated for 'to_copy', value = 0x628b11855290
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for to_copy
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b11870660
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11890830
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b118c4ca0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: bio_refill_read_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118fb9b0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11776d40
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_discard_read_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG IR_GEN] Initializer generated for 'total_bytes', value = 0x628b115e9620
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for total_bytes
+[DEBUG IR_GEN] Initializer generated for 'bytes_written', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for bytes_written
+[DEBUG IR_GEN] Initializer generated for 'src', value = 0x628b117fe960
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for src
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b118a8960
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118a98d0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b1180a320
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'remaining', value = 0x628b1180d430
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for remaining
+[DEBUG IR_GEN] Initializer generated for 'buf_space', value = 0x628b11811010
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for buf_space
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b1189d130
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'wr', value = 0x628b117ed870
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for wr
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b117ee6d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'to_copy', value = 0x628b118edb30
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for to_copy
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'nl_pos', value = 0x628b11575150
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for nl_pos
+[DEBUG IR_GEN] Initializer generated for 'si', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for si
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'copy_to_nl', value = 0x628b118bb610
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for copy_to_nl
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b117f16a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11876bd0
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_discard_read_buf
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11623910
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11710d20
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'real_offset', value = 0x628b115f2810
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for real_offset
+[DEBUG IR_GEN] Initializer generated for 'buffered_ahead', value = 0x628b1182af20
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for buffered_ahead
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118ca780
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b117f1970
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'pos', value = 0x628b118f7ef0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for pos
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11740d70
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: ftell
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b118125b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'target', value = 0x628b117e8bd0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for target
+[DEBUG CODEGEN CALL] Generating call to: fseek
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b118a6020
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118d9d40
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'ch', value = 0x628b1184a850
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ch
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118e2f00
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b118b3880
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG CODEGEN CALL] Generating call to: bio_refill_read_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11886480
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG IR_GEN] Initializer generated for 'ch', value = 0x628b11880f10
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for ch
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11748bf0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_discard_read_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG IR_GEN] Initializer generated for 'b', value = 0x628b115379e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df7370
+[DEBUG IR_GEN] Default builder.CreateStore for b
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: sys
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118b1dd0
+[DEBUG IR_GEN] InitVal type: 0x628b11512530
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG IR_GEN] Initializer generated for 'e', value = 0x628b1187b970
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for e
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11786710
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG CODEGEN CALL] Generating call to: bio_flush_write_buf
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11898d30
+[DEBUG IR_GEN] InitVal type: 0x628b11511bc0
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: fgetc
+[DEBUG CODEGEN CALL] Generating call to: fputc
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11862ec0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: unget
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: file_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b1184ce00
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pw', value = 0x628b118d2230
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pw
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: has_nul_byte
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b1184f9a0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'pw', value = 0x628b118e0180
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for pw
+[DEBUG IR_GEN] Initializer generated for 'wi', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for wi
+[DEBUG IR_GEN] Initializer generated for 'max_words', value = 0x628b11859580
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for max_words
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: has_nul_byte
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: str_strnlen
+[DEBUG IR_GEN] Initializer generated for 'n', value = 0x628b1170a6f0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for n
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11828830
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'dst', value = 0x628b118abba0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for dst
+[DEBUG IR_GEN] Initializer generated for 'max', value = 0x628b1189aba0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for max
+[DEBUG IR_GEN] Initializer generated for 'count', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for count
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fgetc
+[DEBUG IR_GEN] Initializer generated for 'c', value = 0x628b118b9ad0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for c
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b118a0680
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: str_strlen
+[DEBUG IR_GEN] Initializer generated for 'len', value = 0x628b11907900
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for len
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG IR_GEN] Initializer generated for 'p', value = 0x628b1190e410
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for p
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fputc
+[DEBUG IR_GEN] Initializer generated for 'c', value = 0x628b1190dd80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for c
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b11786570
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b1172c390
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b115f79e0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x628b118d1ce0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_free_buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_pos
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_len
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_mode
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG IR_GEN] Initializer generated for 'cap', value = 0x628b11704420
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for cap
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG IR_GEN] Initializer generated for 'cap', value = 0x628b11910ab0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for cap
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_buf
+[DEBUG IR_GEN] Initializer generated for 'newbuf', value = 0x628b119115c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for newbuf
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: libn_errno_set
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: buf_cap
+[DEBUG ASSIGNMENT] op=168, leftType=7 (POINTER_MEMBER=7)
+[DEBUG POINTER_MEMBER_ASSIGN] SUCCESS for: flags
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: setvbuf
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: setvbuf
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: setvbuf
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_file
+[DEBUG IR_GEN] Initializer generated for 'sin', value = 0x628b11892a50
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for sin
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_buf
+[DEBUG IR_GEN] Initializer generated for 'stdin_buf', value = 0x628b1190d4d0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for stdin_buf
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_file
+[DEBUG IR_GEN] Initializer generated for 'sout', value = 0x628b1190f960
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for sout
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_buf
+[DEBUG IR_GEN] Initializer generated for 'stdout_buf', value = 0x628b118d4930
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for stdout_buf
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: bio_alloc_file
+[DEBUG IR_GEN] Initializer generated for 'serr', value = 0x628b1182b110
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for serr
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=6 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: fgetc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: fputc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fputs
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b118d7200
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: fputc
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: fflush
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: fflush
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: bio_ensure_std_init
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fflush
+[DEBUG IR_GEN] Initializer generated for 'r1', value = 0x628b118ccf50
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r1
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fflush
+[DEBUG IR_GEN] Initializer generated for 'r2', value = 0x628b118cd2c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r2
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: fflush
+[DEBUG IR_GEN] Initializer generated for 'r3', value = 0x628b118ccb80
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r3
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b11860780
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1190f8f0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b1184b950
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b1190fe90
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_bzero
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b118995c0
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11842250
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_bzero
+[DEBUG IR_GEN] Initializer generated for 'd', value = 0x628b11842e00
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for d
+[DEBUG IR_GEN] Initializer generated for 's', value = 0x628b11842c40
+[DEBUG IR_GEN] InitVal type: 0x628b11511b80
+[DEBUG IR_GEN] Default builder.CreateStore for s
+[DEBUG IR_GEN] Initializer generated for 'i', value = 0x628b11511240
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for i
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'end_ptr', value = 0x628b118625e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for end_ptr
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: str_strlen
+[DEBUG IR_GEN] Initializer generated for 'n', value = 0x628b119122e0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for n
+[DEBUG IR_GEN] Initializer generated for 'alloc_size', value = 0x628b119125b0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for alloc_size
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11912820
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG CODEGEN CALL] Generating call to: raw
+[DEBUG CODEGEN CALL] Generating call to: str_strnlen
+[DEBUG IR_GEN] Initializer generated for 'actual_len', value = 0x628b119261c0
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for actual_len
+[DEBUG IR_GEN] Initializer generated for 'alloc_size', value = 0x628b11926490
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for alloc_size
+[DEBUG CODEGEN CALL] Generating call to: slab_alloc
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x628b11926700
+[DEBUG IR_GEN] InitVal type: 0x628b10df73b8
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: mem_memcpy
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: is_digit
+npkc: /usr/lib/llvm-20/include/llvm/IR/Instructions.h:1163: void llvm::ICmpInst::AssertOK(): Assertion `getOperand(0)->getType() == getOperand(1)->getType() && "Both operands to ICmp instruction are not of the same type!"' failed.

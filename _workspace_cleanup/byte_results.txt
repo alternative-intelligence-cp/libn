@@ -1,0 +1,449 @@
+./tests/harness/test_harness.npk:48:// Returns bytes written.
+./tests/unit/test_io.npk:76:    // Write 5 bytes into pipe
+./tests/unit/test_io.npk:86:    test_expect_i64("read_some got 5 bytes", rr.value, 5i64);
+./tests/unit/test_io.npk:88:    // Confirm bytes are identical
+./tests/unit/test_io.npk:89:    test_expect_byte("round-trip uint8 0 is 'h'", rbuf[0], 104u8);
+./tests/unit/test_io.npk:90:    test_expect_byte("round-trip uint8 1 is 'e'", rbuf[1], 101u8);
+./tests/unit/test_io.npk:91:    test_expect_byte("round-trip uint8 4 is 'o'", rbuf[4], 111u8);
+./tests/unit/test_io.npk:114:    test_expect_i64("write_str length = 4", wr.value, 4i64);  // "libn" = 4 bytes
+./tests/unit/test_io.npk:120:    test_expect_i64("got 4 bytes", rr.value, 4i64);
+./tests/unit/test_io.npk:121:    test_expect_byte("first uint8 'l'", rbuf[0], 108u8);
+./tests/unit/test_io.npk:122:    test_expect_byte("last uint8 'n'", rbuf[3], 110u8);
+./tests/unit/test_io.npk:124:    // NULL pointer: should write 0 bytes (not crash)
+./tests/unit/test_io.npk:156:    // Read back 2 bytes
+./tests/unit/test_io.npk:159:    test_expect_ok("read 2 bytes ok", rr);
+./tests/unit/test_io.npk:160:    test_expect_i64("read 2 bytes", rr.value, 2i64);
+./tests/unit/test_io.npk:161:    test_expect_byte("uint8[0]='X'", rbuf[0], 88u8);
+./tests/unit/test_io.npk:162:    test_expect_byte("uint8[1]='\\n'", rbuf[1], 10u8);
+./tests/unit/test_io.npk:189:    test_expect_i64("read 3 bytes", rr.value, 3i64);
+./tests/unit/test_io.npk:190:    test_expect_byte("'o'", rbuf[0], 111u8);
+./tests/unit/test_io.npk:191:    test_expect_byte("'k'", rbuf[1], 107u8);
+./tests/unit/test_io.npk:192:    test_expect_byte("'\\n'", rbuf[2], 10u8);
+./tests/unit/test_io.npk:212:    // Write 8 bytes
+./tests/unit/test_io.npk:219:    test_expect_ok("read_n 4 bytes ok", r1);
+./tests/unit/test_io.npk:221:    test_expect_byte("first uint8 'a'", rbuf[0], 97u8);
+./tests/unit/test_io.npk:222:    test_expect_byte("fourth uint8 'd'", rbuf[3], 100u8);
+./tests/unit/test_io.npk:228:    test_expect_byte("first uint8 'e'", rbuf[0], 101u8);
+./tests/unit/test_io.npk:229:    test_expect_byte("fourth uint8 'h'", rbuf[3], 104u8);
+./tests/unit/test_io.npk:257:    test_expect_byte("line1[0]='h'", lbuf[0], 104u8);
+./tests/unit/test_io.npk:258:    test_expect_byte("line1[4]='o'", lbuf[4], 111u8);
+./tests/unit/test_io.npk:259:    test_expect_byte("line1 NUL-terminated", lbuf[5], 0u8);
+./tests/unit/test_io.npk:265:    test_expect_byte("line2[0]='w'", lbuf[0], 119u8);
+./tests/unit/test_io.npk:266:    test_expect_byte("line2[4]='d'", lbuf[4], 100u8);
+./tests/unit/test_io.npk:267:    test_expect_byte("no CR in output", lbuf[5], 0u8);
+./tests/unit/test_io.npk:275:    // Write 10 bytes then LF into a 5-uint8 buffer (max 4 stored + NUL)
+./tests/unit/test_io.npk:280:    test_expect_i64("truncated to 4 bytes", r4.value, 4i64);
+./tests/unit/test_io.npk:281:    test_expect_byte("small NUL-terminated", small[4], 0u8);
+./tests/unit/test_io.npk:310:    test_expect_byte("'r'", field[0], 114u8);
+./tests/unit/test_io.npk:316:    test_expect_byte("'x'", field[0], 120u8);
+./tests/unit/test_io.npk:322:    test_expect_byte("'0'", field[0], 48u8);
+./tests/unit/test_io.npk:342:    // Write 3 bytes
+./tests/unit/test_io.npk:380:    test_expect_byte("sprintf0[0]='h'", buf[0], 104u8);
+./tests/unit/test_io.npk:381:    test_expect_byte("sprintf0[10]='d'", buf[10], 100u8);
+./tests/unit/test_io.npk:382:    test_expect_byte("sprintf0 NUL", buf[11], 0u8);
+./tests/unit/test_io.npk:387:    test_expect_byte("'4'", buf[4], 52u8);
+./tests/unit/test_io.npk:388:    test_expect_byte("'2'", buf[5], 50u8);
+./tests/unit/test_io.npk:389:    test_expect_byte("NUL after val=42", buf[6], 0u8);
+./tests/unit/test_io.npk:394:    test_expect_byte("'1'", buf[0], 49u8);
+./tests/unit/test_io.npk:395:    test_expect_byte("'0'", buf[1], 48u8);
+./tests/unit/test_io.npk:396:    test_expect_byte("'+'", buf[2], 43u8);
+./tests/unit/test_io.npk:397:    test_expect_byte("'2'", buf[3], 50u8);
+./tests/unit/test_io.npk:398:    test_expect_byte("'0'", buf[4], 48u8);
+./tests/unit/test_io.npk:403:    test_expect_byte("buf[3] = NUL (truncated)", buf[3], 0u8);
+./tests/unit/test_io.npk:408:    test_expect_byte("s[2]='w'", buf[2], 119u8);
+./tests/unit/test_io.npk:413:    test_expect_byte("'f'", buf[2], 102u8);
+./tests/unit/test_io.npk:414:    test_expect_byte("'f'", buf[3], 102u8);
+./tests/unit/test_io.npk:471:    test_expect_ok("read_n 0 bytes ok", r2);
+./tests/unit/test_bio_tmpfile.npk:165:    t_assert_eq_i64(tw, 17i64, "fwrite to tmpfile wrote 17 bytes");
+./tests/unit/test_bio_tmpfile.npk:173:    t_assert_eq_i64(tr, 17i64, "fread from tmpfile got 17 bytes");
+./tests/unit/test_str_strview.npk:4://   strview_of, strview_of_bytes, strview_of_strbuf, strview_empty, strview_substr
+./tests/unit/test_str_strview.npk:5://   strview_len, strview_ptr, strview_is_empty, strview_byte_at, first, last
+./tests/unit/test_str_strview.npk:45:    t_section("strview_of_bytes");
+./tests/unit/test_str_strview.npk:47:    strview_of_bytes("world" as int64, 3i64, &svb as int64);
+./tests/unit/test_str_strview.npk:48:    t_assert_eq_i64(strview_len(&svb as int64), 3i64, "of_bytes('wor').len=3");
+./tests/unit/test_str_strview.npk:49:    t_assert_eq_i64(strview_byte_at(&svb as int64, 0i64), 119i64, "byte_at(0)='w'");
+./tests/unit/test_str_strview.npk:63:    t_assert_eq_i64(strview_byte_at(&sub as int64, 0i64), 119i64, "substr[0]='w'");
+./tests/unit/test_str_strview.npk:70:    t_section("byte_at / first / last");
+./tests/unit/test_str_strview.npk:73:    t_assert_eq_i64(strview_byte_at(&sva as int64, 0i64),  97i64,  "byte_at(0)='a'");
+./tests/unit/test_str_strview.npk:74:    t_assert_eq_i64(strview_byte_at(&sva as int64, 2i64),  99i64,  "byte_at(2)='c'");
+./tests/unit/test_str_strview.npk:75:    t_assert_eq_i64(strview_byte_at(&sva as int64, -1i64), -1i64,  "byte_at(-1)=-1");
+./tests/unit/test_str_strview.npk:76:    t_assert_eq_i64(strview_byte_at(&sva as int64, 3i64),  -1i64,  "byte_at(3)=-1 oob");
+./tests/unit/test_str_strview.npk:148:    t_assert_eq_i64(strview_byte_at(&sl as int64, 0i64), 50i64, "slice[0]='2'");
+./tests/unit/test_str_strview.npk:153:    t_assert_eq_i64(strview_byte_at(&tk as int64, 0i64), 48i64, "take[0]='0'");
+./tests/unit/test_str_strview.npk:158:    t_assert_eq_i64(strview_byte_at(&dr as int64, 0i64), 55i64, "drop[0]='7'");
+./tests/unit/test_str_strview.npk:167:    t_assert_eq_i64(strview_byte_at(&tl as int64, 0i64), 104i64, "trim_left[0]='h'");
+./tests/unit/test_bio_strerror.npk:92:    t_assert_eq_i64(sn, 3i64, "strerror_r truncated to 3 bytes");
+./tests/unit/test_string.npk:101:    // strscpy: success returns bytes written
+./tests/unit/test_mem.npk:13://   - mem_memset: basic fill, word-aligned fill, zero fill, tail bytes
+./tests/unit/test_mem.npk:40:// fill_seq — Fill buf with bytes 0, 1, 2, ..., n-1 (mod 256).
+./tests/unit/test_mem.npk:129:    Result<int64>:rc = mem_calloc(4i64, 16i64);  // 64 bytes
+./tests/unit/test_mem.npk:138:    t_assert(all_zero, "mem_calloc: all 64 bytes are zero");
+./tests/unit/test_mem.npk:175:    // Class 0: ≤8 bytes
+./tests/unit/test_mem.npk:182:    // Class 1: ≤16 bytes
+./tests/unit/test_mem.npk:186:    // Class 4: ≤128 bytes
+./tests/unit/test_mem.npk:192:    // Class 8: ≤2048 bytes
+./tests/unit/test_mem.npk:212:    t_assert(slab_zero, "slab_alloc_zero(64): all bytes zero");
+./tests/unit/test_mem.npk:259:    // Fill unaligned start (5 bytes at offset +3)
+./tests/unit/test_mem.npk:287:    // Copy 256 bytes
+./tests/unit/test_mem.npk:336:    // memmove(buf+0, buf+10, 100): copies bytes 10..109 to 0..99
+./tests/unit/test_mem.npk:388:    fill_seq(srcbuf.@cast_unchecked<uint8->>(value), 64i64);  // bytes 0..63
+./tests/unit/test_syscall.npk:16://   - libn_write_all writes all bytes
+./tests/unit/test_syscall.npk:220:    // Write to /dev/null — must succeed with some bytes
+./tests/unit/test_syscall.npk:282:    t_assert_ok(rmmu, "libn_munmap(4096 bytes) succeeds");
+./tests/unit/test_syscall.npk:308:    t_assert_ok(rrng, "libn_getrandom(32 bytes) succeeds");
+./tests/unit/test_syscall.npk:309:    t_assert_eq_i64(rrng.value, 32i64, "libn_getrandom returned 32 bytes");
+./tests/unit/test_syscall.npk:311:    // Sanity: 32 random bytes — at least one should be non-zero (astronomically unlikely to fail)
+./tests/unit/test_syscall.npk:320:    t_assert(any_nonzero, "getrandom: at least one non-zero uint8 in 32 random bytes");
+./tests/unit/test_syscall.npk:353:    // libn_write_all to /dev/null — must report all bytes written
+./tests/unit/test_syscall.npk:359:    t_assert_ok(rwa, "libn_write_all(64 bytes) succeeds");
+./tests/unit/test_syscall.npk:360:    t_assert_eq_i64(rwa.value, 64i64, "libn_write_all returned 64 (all bytes written)");
+./tests/unit/test_str_strbuf.npk:6://   strbuf_append_char, strbuf_append_bytes, strbuf_append_str
+./tests/unit/test_str_strbuf.npk:72:    t_assert((@cast_unchecked<uint8->>(pr))[0] == 65u8 && (@cast_unchecked<uint8->>(pr))[4] == 65u8, "all bytes='A'");
+./tests/unit/test_str_strbuf.npk:77:    int64:sg = strbuf_new();   // starts at 64 bytes
+./src/proc/signal.npk:32:// Size: 8 + 8 + 8 + 8 = 32 bytes on x86-64 (sigset_t is 8 bytes for 64 sigs)
+./src/proc/signal.npk:99:    // The actual bytes are: B8 0F 00 00 00 0F 05
+./src/io/bio/fprintf.npk:47:// Returns number of bytes written, or -1 on error.
+./src/io/bio/fprintf.npk:292:// it allocates exactly (len+1) bytes and copies. If the format output exceeds
+./src/io/bio/fprintf.npk:293:// 4095 bytes, the result is truncated (same as snprintf — a known limitation
+./src/io/bio/fseek.npk:9://   If fp is in read mode, discards the unread bytes in the read buffer.
+./src/io/bio/fseek.npk:12://   Returns the current logical file position (bytes from start of file).
+./src/io/bio/fseek.npk:13://   Accounts for buffered but unread bytes (subtracts them from kernel position).
+./src/io/bio/fseek.npk:22://   fpos_t is just int64 (byte offset). Wide-character streams and locale-aware
+./src/io/bio/fseek.npk:35://   offset: signed byte offset (interpreted relative to whence)
+./src/io/bio/fseek.npk:71:    // For SEEK_CUR: adjust for unread buffered bytes to get the true logical offset
+./src/io/bio/fseek.npk:74:        // The kernel's position is ahead by (buf_len - buf_pos) unread bytes
+./src/io/bio/fseek.npk:109:// ftell — Return the current file position as a byte offset from the start.
+./src/io/bio/fseek.npk:182:// In libn at v0.5.4, fpos_t is simply int64 (a byte offset).
+./src/io/bio/fio.npk:20://   For read-mode streams: seek back to discard prefetched bytes (POSIX-defined).
+./src/io/bio/fio.npk:31:// fread — Read nmemb items of size bytes each from fp into buf.
+./src/io/bio/fio.npk:33:// Returns the number of ITEMS (not bytes) successfully read.
+./src/io/bio/fio.npk:41://   size:   size of each item in bytes
+./src/io/bio/fio.npk:70:    int64:total_bytes = size * nmemb;
+./src/io/bio/fio.npk:71:    int64:bytes_read  = 0i64;
+./src/io/bio/fio.npk:76:        if (total_bytes > 0i64) {
+./src/io/bio/fio.npk:79:            bytes_read = bytes_read + 1i64;
+./src/io/bio/fio.npk:80:            total_bytes = total_bytes - 1i64;
+./src/io/bio/fio.npk:87:    while (bytes_read < size * nmemb && (f.flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64) {
+./src/io/bio/fio.npk:92:            int64:remaining = size * nmemb - bytes_read;
+./src/io/bio/fio.npk:99:            bytes_read = bytes_read + to_copy;
+./src/io/bio/fio.npk:102:            int64:remaining = size * nmemb - bytes_read;
+./src/io/bio/fio.npk:119:                bytes_read = bytes_read + r.value;
+./src/io/bio/fio.npk:135:    pass bytes_read / size;
+./src/io/bio/fio.npk:139:// fwrite — Write nmemb items of size bytes from buf to fp.
+./src/io/bio/fio.npk:141:// Returns the number of ITEMS (not bytes) successfully written.
+./src/io/bio/fio.npk:165:    // If read buffer has pending bytes, discard them before switching to write
+./src/io/bio/fio.npk:171:    int64:total_bytes  = size * nmemb;
+./src/io/bio/fio.npk:172:    int64:bytes_written = 0i64;
+./src/io/bio/fio.npk:177:        while (bytes_written < total_bytes) {
+./src/io/bio/fio.npk:178:            int64:remaining = total_bytes - bytes_written;
+./src/io/bio/fio.npk:188:            bytes_written  = bytes_written + r.value;
+./src/io/bio/fio.npk:190:        pass bytes_written / size;
+./src/io/bio/fio.npk:194:    while (bytes_written < total_bytes && (f.flags & FILE_FLAG_ERROR) == 0i64) {
+./src/io/bio/fio.npk:195:        int64:remaining  = total_bytes - bytes_written;
+./src/io/bio/fio.npk:218:            bytes_written  = bytes_written + wr.value;
+./src/io/bio/fio.npk:244:                bytes_written = bytes_written + copy_to_nl;
+./src/io/bio/fio.npk:256:        bytes_written = bytes_written + to_copy;
+./src/io/bio/fio.npk:259:    pass bytes_written / size;
+./src/io/bio/fio.npk:266:// For read-mode streams: seek back over unread buffered bytes (POSIX behavior;
+./src/io/bio/tmpfile.npk:95:// tmpfile_fill_hex — Fill n bytes at ptr with lowercase hex chars
+./src/io/bio/tmpfile.npk:287:// If buf != 0: writes into buf (must be >= L_tmpnam bytes = 256 bytes).
+./src/io/bio/fchar.npk:30:// Returns the character as an unsigned byte value (0–255) cast to int64,
+./src/io/bio/fchar.npk:76:    // Unbuffered: read one byte directly from kernel
+./src/io/bio/fchar.npk:106:    // Return next byte from buffer
+./src/io/bio/fchar.npk:135:    // If read buffer has pending bytes, discard before writing
+./src/io/bio/fchar.npk:143:    // Unbuffered: single-byte write directly to kernel
+./src/io/bio/fchar.npk:222:// Returns the character pushed back (as unsigned byte value), or EOF on error.
+./src/io/bio/strerror.npk:116:    if (errnum == 84i64) { string:s = "Invalid or incomplete multibyte or wide character"; pass @cast_unchecked<int64>(@s); }
+./src/io/bio/strerror.npk:162:// buflen:  buffer size in bytes (must be >= 1)
+./src/io/bio/fstate.npk:146://   buf != 0: fully buffered with caller's buf (must be >= BUFSIZ bytes)
+./src/io/bio/file.npk:9:// sizeof(FILE) = 10 * 8 = 80 bytes — fits in the 128-uint8 slab class.
+./src/io/bio/file.npk:14://     buf[0..buf_len]   — kernel bytes loaded into buffer
+./src/io/bio/file.npk:61:    int64:buf_cap;   // total buffer capacity in bytes
+./src/io/bio/file.npk:62:    int64:buf_pos;   // read: index of next unread uint8 / write: bytes pending flush
+./src/io/bio/file.npk:63:    int64:buf_len;   // read: valid bytes loaded from kernel / write: same as buf_pos
+./src/io/bio/file.npk:64:    int64:file_pos;  // logical file position as seen by caller (bytes from file start)
+./src/io/bio/file.npk:117:    int64:p = slab_alloc_zero(80i64);  // 80 bytes = sizeof(FILE), goes in 128-uint8 class
+./src/io/bio/file.npk:163:// Writes all buf[0..buf_pos] bytes to fd, retrying on short writes and EINTR.
+./src/io/bio/file.npk:197:// bio_discard_read_buf — Discard unread bytes in the read buffer.
+./src/io/bio/file.npk:209:    // Seek backward by the number of buffered but unconsumed bytes
+./src/io/bio/file.npk:224:// Returns number of bytes loaded (0 = EOF, negative = error via flags).
+./src/io/seek.npk:52://   io_seek_end(fd, -4) — 4 bytes before end
+./src/io/seek.npk:91:// io_file_size — Return the size of an open file in bytes.
+./src/io/write.npk:9://   - Partial-write retry loop: POSIX allows write(2) to return fewer bytes
+./src/io/write.npk:11://     all bytes are written or a genuine error occurs.
+./src/io/write.npk:13://   - Non-blocking fds: EAGAIN/EWOULDBLOCK returns the bytes-written-so-far
+./src/io/write.npk:20:// All functions return Result<int64> where .value is bytes written.
+./src/io/write.npk:34:// io_write_n — Write exactly n bytes from buf to fd, retrying on EINTR.
+./src/io/write.npk:36:// This is the canonical low-level write. It loops until all n bytes are
+./src/io/write.npk:42://   n:   number of bytes to write
+./src/io/write.npk:45://   Ok(n)        — all n bytes written successfully
+./src/io/write.npk:46://   Err(EAGAIN)  — fd is non-blocking and would block; partial bytes written
+./src/io/write.npk:78:            // Wrote 0 bytes without error — treat as pipe/fd closed
+./src/io/write.npk:89:// io_write_nonblock — Write up to n bytes, returning actual bytes written.
+./src/io/write.npk:96://   Ok(k)         — k bytes were written (0 ≤ k ≤ n)
+./src/io/write.npk:97://   Err(EAGAIN)   — fd would block, 0 bytes written
+./src/io/write.npk:122:// Returns Ok(bytes_written) or Err.
+./src/io/write.npk:151:// io_write_cstr_n — Write exactly the first n bytes of a string (no strlen).
+./src/io/pipe.npk:20://   Linux default pipe buffer: 65536 bytes (64 KiB).
+./src/io/pipe.npk:21://   Writes up to PIPE_BUF (4096 bytes) are atomic.
+./src/io/pipe.npk:40://        (fds must point to at least 16 bytes of writable memory)
+./src/io/printf.npk:27://   would exceed 4095 bytes, it is silently truncated (snprintf semantics).
+./src/io/printf.npk:48:// Returns Ok(bytes_written) or Err from write.
+./src/io/read.npk:6://   - io_read_n:      blocking — retries until exactly n bytes read or EOF/error.
+./src/io/read.npk:7://   - io_read_some:   non-blocking single call — returns however many bytes the
+./src/io/read.npk:9://   - io_read_line:   reads bytes one-at-a-time until LF, NUL, or EOF.
+./src/io/read.npk:12://                     "read exactly n bytes or fail").
+./src/io/read.npk:16://   ERR_EOF     — clean EOF (0 bytes read when bytes expected)
+./src/io/read.npk:25:// io_read_some — Single read(2) call, returns however many bytes were read.
+./src/io/read.npk:31://   Ok(k)       — k bytes written into buf (0 < k ≤ n)
+./src/io/read.npk:50:// io_read_n — Blocking: read exactly n bytes into buf.
+./src/io/read.npk:52:// Retries on EINTR and partial reads until all n bytes are in buf or a
+./src/io/read.npk:57://   buf: destination buffer (must have room for at least n bytes)
+./src/io/read.npk:58://   n:   exact number of bytes to read
+./src/io/read.npk:61://   Ok(n)       — exactly n bytes read
+./src/io/read.npk:62://   Err(ERR_EOF)— EOF before n bytes were available
+./src/io/read.npk:89:            // EOF before we got all n bytes
+./src/io/read.npk:108:// io_read_line — Read a line from fd into buf, up to buf_size-1 bytes.
+./src/io/read.npk:112://   - buf_size-1 bytes have been read (line truncated)
+./src/io/read.npk:128://   Ok(k)        — k bytes stored in buf (not counting NUL), line complete
+./src/io/read.npk:129://   Ok(0)        — EOF with no bytes read (clean EOF)
+./src/io/read.npk:130://   Err(ERR_EOF) — EOF after some bytes (partial line) — buf is still valid
+./src/io/read.npk:194://   Ok(k)        — k bytes read, delimiter reached
+./src/io/read.npk:195://   Ok(0)        — EOF with 0 bytes
+./src/io/read.npk:245://   Ok(byte_value_as_int64)  — uint8 read (0–255)
+./src/fs/path.npk:43:// path_copy_n — Copy at most n bytes from src to dst, always NUL-terminates.
+./src/fs/path.npk:44:// Returns number of bytes copied (not counting NUL).
+./src/fs/path.npk:97://   Ok(n)           — n bytes written to out (not counting NUL)
+./src/fs/path.npk:99://   Err(ENAMETOOLONG) — result would exceed out_sz-1 bytes
+./src/fs/path.npk:189:// Returns Ok(n) bytes written (not counting NUL), or Err.
+./src/fs/path.npk:266:// Returns Ok(n) bytes written (not counting NUL), or Err.
+./src/fs/path.npk:475:// Returns Ok(n) bytes written (not counting NUL), or Err.
+./src/fs/path.npk:523:// Returns Ok(n) bytes written (not counting NUL), or Err.
+./src/mem/slab.npk:7://   10 size classes: 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 bytes.
+./src/mem/slab.npk:11://   Slab page layout (one 4096-byte page per refill):
+./src/mem/slab.npk:17://   The slot's first 8 bytes store the address of the next free slot.
+./src/mem/slab.npk:31://   2. Store class index before the user data (1 byte header)
+./src/mem/slab.npk:34:// We choose option 2 (1-byte header) for correctness and simplicity.
+./src/mem/slab.npk:42:// This wastes 1 byte per allocation. For the 8-byte class, effective payload = 7.
+./src/mem/slab.npk:61:// Size of each class (in bytes — user payload excluding 1-byte header)
+./src/mem/slab.npk:62:// Class 0: 8 bytes, class 1: 16, ..., class 9: 4096
+./src/mem/slab.npk:89:// Header byte placed before each slot's user data.
+./src/mem/slab.npk:93:// Slab class 9 (4096 bytes) is above the 2-page threshold for inline slabs.
+./src/mem/slab.npk:94:// Allocations of exactly 4096 bytes go through the direct-mmap allocator instead.
+./src/mem/slab.npk:96:pub fixed int64:SLAB_MAX_SIZE  = 2048i64;   // max payload in bytes via slab path
+./src/mem/slab.npk:193:// For class 8 (2048-byte slots), we need 2 pages (8192 bytes).
+./src/mem/slab.npk:217:    // Freelist is threaded through the first 8 bytes of each free slot
+./src/mem/slab.npk:218:    // (past the 1-byte header). The header byte stores the class index.
+./src/mem/slab.npk:223:        byte->:hdr_byte = @cast_unchecked<byte->>(slot_start);
+./src/mem/slab.npk:224:        hdr_byte[0] = @cast_unchecked<byte>(i);  // class index in header byte
+./src/mem/slab.npk:226:        // The 8 bytes after the header are the freelist "next" pointer.
+./src/mem/slab.npk:257:// slab_alloc — Allocate n bytes from the slab pool.
+./src/mem/slab.npk:292:    //   head = slot_start (the 1-byte-header slot)
+./src/mem/slab.npk:318:    // The class index is stored at (ptr - SLAB_HEADER_SIZE) [1 byte].
+./src/mem/slab.npk:320:    byte->:hdr = @cast_unchecked<byte->>(slot_start);
+./src/mem/slab.npk:324:    // The class byte would hold a garbage value — but the direct-mmap allocator
+./src/mem/slab.npk:325:    // uses a 16-byte header starting at (ptr - 16), so we'd read the wrong byte.
+./src/mem/slab.npk:327:    // while direct-mmap has a 16-byte aligned header.
+./src/mem/slab.npk:329:    // To avoid ambiguity, we adopt the rule: class index byte > 8 → not a slab slot.
+./src/mem/slab.npk:330:    // (Valid class indices are 0..8; direct-mmap header bytes will typically be large
+./src/mem/slab.npk:334:        // The direct-mmap header is 16 bytes before the user pointer.
+./src/mem/slab.npk:363:    // For now, use a byte loop as a temporary measure.
+./src/mem/slab.npk:366:    byte->:p = @cast_unchecked<byte->>(ptr);
+./src/mem/memcpy.npk:18://   - Word loop: 8 bytes per iteration (64-bit load+store)
+./src/mem/memcpy.npk:19://   - Tail: up to 7 remaining bytes uint8-by-uint8
+./src/mem/memcpy.npk:28:// mem_memcpy — Copy n bytes from src to dst.
+./src/mem/memcpy.npk:58:    // ── Word loop: copy 8 bytes per iteration ────────────────────────
+./src/mem/memcpy.npk:70:        // Load 8 bytes from src (potentially unaligned read from si)
+./src/mem/memcpy.npk:71:        // Write 8 bytes to dst (aligned write to di)
+./src/mem/memcpy.npk:74:        int64:byte_off = wi * 8i64;
+./src/mem/memcpy.npk:75:        word = word | (@cast_unchecked<int64>(si[byte_off + 0i64]));
+./src/mem/memcpy.npk:76:        word = word | (@cast_unchecked<int64>(si[byte_off + 1i64]) << 8i64);
+./src/mem/memcpy.npk:77:        word = word | (@cast_unchecked<int64>(si[byte_off + 2i64]) << 16i64);
+./src/mem/memcpy.npk:78:        word = word | (@cast_unchecked<int64>(si[byte_off + 3i64]) << 24i64);
+./src/mem/memcpy.npk:79:        word = word | (@cast_unchecked<int64>(si[byte_off + 4i64]) << 32i64);
+./src/mem/memcpy.npk:80:        word = word | (@cast_unchecked<int64>(si[byte_off + 5i64]) << 40i64);
+./src/mem/memcpy.npk:81:        word = word | (@cast_unchecked<int64>(si[byte_off + 6i64]) << 48i64);
+./src/mem/memcpy.npk:82:        word = word | (@cast_unchecked<int64>(si[byte_off + 7i64]) << 56i64);
+./src/mem/memcpy.npk:88:    // ── Tail: remaining bytes (< 8) ──────────────────────────────────
+./src/mem/memcpy.npk:98:// mem_mempcpy — Copy n bytes from src to dst, return dst + n.
+./src/mem/memcpy.npk:120:// mem_memmove — Copy n bytes from src to dst, handling overlapping regions.
+./src/mem/memcpy.npk:222:        // Backward tail (remaining bytes at start)
+./src/mem/memcpy.npk:233:// mem_memdup — Allocate a copy of n bytes from src.
+./src/mem/memcpy.npk:247:    // Allocate n bytes (page-aligned, zero-initialized by mmap)
+./src/mem/memcpy.npk:260:    // Copy the source bytes
+./src/mem/memutil.npk:17://   Instead of one uint8 per iteration, load 8 bytes at a time and use bit tricks
+./src/mem/memutil.npk:20://     has_zero_byte(v) = (v - 0x0101010101010101) & ~v & 0x8080808080808080
+./src/mem/memutil.npk:34:// has_zero_byte — True if (any of the 8 bytes in v is 0x00.
+./src/mem/memutil.npk:37:func:has_zero_byte = bool(int64:v) {
+./src/mem/memutil.npk:42:// replicate_byte — Replicate a uint8 value into all 8 bytes of a word.
+./src/mem/memutil.npk:43:// E.g., replicate_byte(0x41) = 0x4141414141414141
+./src/mem/memutil.npk:44:func:replicate_byte = int64(int64:c) {
+./src/mem/memutil.npk:53:// mem_memcmp — Compare n bytes at a and b.
+./src/mem/memutil.npk:76:    // Word-at-a-time comparison: compare 8 bytes at a time.
+./src/mem/memutil.npk:136:// mem_mem_equal — Return true if (n bytes at a equal n bytes at b.
+./src/mem/memutil.npk:158:// variant always compares all n bytes regardless of where they differ.
+./src/mem/memutil.npk:174:    // Always iterate all n bytes — no early exit
+./src/mem/memutil.npk:180:    // diff is 0 iff all bytes were equal
+./src/mem/memutil.npk:185:// mem_memchr — Find first occurrence of uint8 c in the n bytes at ptr.
+./src/mem/memutil.npk:198:    int64:tword = replicate_byte(c);
+./src/mem/memutil.npk:216:        if (has_zero_byte(v)) {
+./src/mem/memutil.npk:244:// mem_memrchr — Find LAST occurrence of uint8 c in the n bytes at ptr.
+./src/mem/memutil.npk:324:// mem_is_zero — Return true if (all n bytes at ptr are 0x00.
+./src/mem/memutil.npk:372:// mem_swap — Swap n bytes between a and b.
+./src/mem/memutil.npk:416:// mem_reverse — Reverse n bytes in-place at ptr.
+./src/mem/memset.npk:25:// mem_memset — Fill n bytes at ptr with uint8 value c.
+./src/mem/memset.npk:57:    // Build a 64-bit word with 'fill' replicated in all 8 bytes
+./src/mem/memset.npk:63:    // Write 8 bytes at a time (word-aligned)
+./src/mem/memset.npk:73:    // Tail: remaining bytes (< 8)
+./src/mem/memset.npk:83:// mem_bzero — Zero n bytes starting at ptr.
+./src/mem/memset.npk:101:// mem_memset_explicit — Fill n bytes with c, guaranteed not elided by compiler.
+./src/mem/memset.npk:161:    // Cast pattern to 4 bytes
+./src/mem/memset.npk:165:    // Align to 4 bytes, then write 4 at a time, then tail
+./src/mem/mmap.npk:39:// System page size. On x86-64 Linux the base page size is 4096 bytes.
+./src/mem/mmap.npk:178:// mem_malloc — Allocate n bytes. Returns pointer (as int64) to usable memory.
+./src/mem/mmap.npk:208:// mem_calloc — Allocate n*size bytes, zero-initialized.
+./src/mem/mmap.npk:218:    int64:total_bytes = n * size;
+./src/mem/mmap.npk:219:    Result<int64>:r = mem_malloc(total_bytes);
+./src/mem/mmap.npk:223:// mem_realloc — Resize an existing allocation to new_size bytes.
+./src/str/strtok.npk:12://   string by writing NUL bytes. This is by design (POSIX), but callers must
+./src/str/strtok.npk:45://   - The input string is modified in-place (NUL bytes written at token boundaries).
+./src/str/strtok.npk:160:    int64:len;    // length of this field (bytes, not including NUL)
+./src/str/strview.npk:18://   StrView is a small struct (16 bytes). Functions that return a StrView
+./src/str/strview.npk:23://   Construction:  strview_of, strview_of_bytes, strview_of_strbuf,
+./src/str/strview.npk:25://   Accessors:     strview_len, strview_ptr, strview_is_empty, strview_byte_at
+./src/str/strview.npk:54:// StrView struct — 16 bytes, no ownership
+./src/str/strview.npk:59:    int64:len;    // number of bytes in the view (NOT counting a NUL)
+./src/str/strview.npk:79:// strview_of_bytes — Create a view over [ptr, ptr+len).
+./src/str/strview.npk:81:pub func:strview_of_bytes = NIL(int64:ptr, int64:len, int64:out) {
+./src/str/strview.npk:109:// for length len bytes. Clamps to sv.len automatically.
+./src/str/strview.npk:131:// strview_len — Length of the view in bytes.
+./src/str/strview.npk:149:// strview_byte_at — Return the uint8 at index i (0-indexed).
+./src/str/strview.npk:151:pub func:strview_byte_at = int64(int64:sv, int64:i) {
+./src/str/strview.npk:160:    pass strview_byte_at(sv, 0i64);
+./src/str/strview.npk:224:// strview_starts_with — True if (sv starts with the bytes in prefix view.
+./src/str/strview.npk:243:// strview_ends_with — True if (sv ends with the bytes in suffix view.
+./src/str/strview.npk:263://                       bytes removed. Otherwise return sv unchanged.
+./src/str/strview.npk:278://                            return sv with those bytes removed.
+./src/str/strview.npk:403:// strview_take — First n bytes of sv. Clamps to sv.len.
+./src/str/strview.npk:413:// strview_drop — Skip the first n bytes of sv. Clamps to sv.len.
+./src/str/strview.npk:502:// left = bytes before needle, right = bytes after needle.
+./src/str/strview.npk:681:        drop strbuf_append_bytes(sb, s.ptr, s.len);
+./src/str/strview.npk:686:// strview_copy_to — Copy at most buflen bytes of the view into buf.
+./src/str/strview.npk:687:// Does NOT NUL-terminate. Returns number of bytes copied.
+./src/str/strview.npk:696:// strview_copy_to_z — Copy at most (buflen-1) bytes into buf, NUL-terminate.
+./src/str/strview.npk:697:// Equivalent to strlcpy semantics. Returns number of bytes written (excl. NUL).
+./src/str/strview.npk:712:// strview_write_to_fd — Write the view's bytes directly to a file descriptor.
+./src/str/strview.npk:713:// Returns number of bytes written, or -1 on error.
+./src/str/strview.npk:723:// strview_write_to_fp — Write the view's bytes to a FILE* stream.
+./src/str/strview.npk:724:// Returns number of bytes written, or -1 on error.
+./src/str/strview.npk:752:    int64:len;    // remaining bytes
+./src/str/strview.npk:790:// strviewiter_remaining — How many bytes are left in the iterator.
+./src/str/strcpy.npk:8://   - strncpy: POSIX-compatible — copies up to n bytes, NUL-pads remainder.
+./src/str/strcpy.npk:14://   - strndup: allocates a copy of at most n bytes.
+./src/str/strcpy.npk:30:// dst must have space for at least strlen(src)+1 bytes.
+./src/str/strcpy.npk:78:// str_strncpy — Copy at most n bytes from src to dst, NUL-pad remainder.
+./src/str/strcpy.npk:81://   - If strlen(src) < n: copies strlen(src)+1 bytes, then pads with NUL to n.
+./src/str/strcpy.npk:82://   - If strlen(src) >= n: copies exactly n bytes, NO NUL terminator added.
+./src/str/strcpy.npk:103:    // Copy src bytes until NUL or we reach n
+./src/str/strcpy.npk:184:// str_strndup — Allocate a copy of at most n bytes of src.
+./src/str/strcpy.npk:187:// If strlen(src) < n, the allocated string is strlen(src) bytes long.
+./src/str/strcpy.npk:188:// If strlen(src) >= n, the allocated string is exactly n bytes (+ NUL).
+./src/str/strcpy.npk:210:    // Copy actual_len bytes, then NUL-terminate
+./src/str/strfmt.npk:32://   - Number conversion uses a local fixed-size buffer (65 bytes covers all
+./src/str/strfmt.npk:62:// fmt_puts_n — Write exactly n bytes from ptr to the output buffer
+./src/str/strfmt.npk:93:// buf must be at least 66 bytes.
+./src/str/strlcpy.npk:35://   Length of src (NOT the number of bytes written).
+./src/str/strlcpy.npk:41://   - At most dst_size-1 bytes of src are copied.
+./src/str/strlcpy.npk:51:    // How many bytes to actually copy (excluding NUL)
+./src/str/strlcpy.npk:57:    // Copy copy_len bytes then NUL-terminate
+./src/str/strlcpy.npk:78://   - At most dst_size - strlen(dst) - 1 bytes of src are appended.
+./src/str/strlcpy.npk:96:    // Append up to 'remaining' bytes of src after dst's existing content
+./src/str/strlcpy.npk:112://   >= 0  : number of bytes written (not including NUL) — success
+./src/str/strlcpy.npk:127:    int64:max_bytes = dst_size - 1i64;  // reserve one for NUL
+./src/str/strlcpy.npk:129:    while (i < max_bytes && s[i] != 0u8) {
+./src/str/strlcpy.npk:140:    pass i;  // number of bytes written (not counting NUL)
+./src/str/strconv.npk:356:// Writes into 'buf' (must be at least 21 bytes for INT64_MIN).
+./src/str/strconv.npk:384:    // Use a small temp buffer (21 bytes max for int64)
+./src/str/strlen.npk:27://   - Word-at-a-time: 8 bytes per iteration, ~2-3x faster than uint8 loop.
+./src/str/strlen.npk:28://   - The zero-uint8 detection uses the standard has_zero_byte bit trick.
+./src/str/strlen.npk:39:// has_nul_byte — True if (any uint8 in v is 0x00.
+./src/str/strlen.npk:40:func:has_nul_byte = bool(int64:v) {
+./src/str/strlen.npk:71:    // ── Word loop: 8 bytes per iteration ─────────────────────────────
+./src/str/strlen.npk:74:    while (!has_nul_byte(pw[wi])) {
+./src/str/strlen.npk:91:// Equivalent to POSIX strnlen(). Does not read beyond max_len bytes.
+./src/str/strlen.npk:118:    while (wi < max_words && !has_nul_byte(pw[wi])) {
+./src/str/strlen.npk:136:// uint8 is found within limit bytes. Use this as the entry point for untrusted
+./src/str/strcmp.npk:10://   - strncmp compares at most n bytes. If either string is shorter than n,
+./src/str/strcmp.npk:13://     folded; other bytes are compared as-is. This is NOT locale-aware.
+./src/str/strcmp.npk:18://     a zero uint8, one string has ended or bytes differ.
+./src/str/strcmp.npk:29:// to_lower_ascii — Convert an ASCII uint8 to lowercase. Non-alpha bytes unchanged.
+./src/str/strcmp.npk:37:// to_upper_ascii — Convert an ASCII uint8 to uppercase. Non-alpha bytes unchanged.
+./src/str/strcmp.npk:130:// str_strncmp — Compare at most n bytes of two NUL-terminated strings.
+./src/str/strcmp.npk:164:    pass 0i64;  // n bytes compared, all equal
+./src/str/strcmp.npk:230:// str_strncasecmp — Case-insensitive compare of at most n bytes.
+./src/str/strbuf.npk:10://   len  — current content length (bytes, excluding NUL)
+./src/str/strbuf.npk:20:// Minimum initial capacity: STRBUF_MIN_CAP (64 bytes).
+./src/str/strbuf.npk:25://   strbuf_new_cap(n)             — allocate with at least n bytes capacity
+./src/str/strbuf.npk:32://   strbuf_append_bytes(sb, p, n) — append n raw bytes
+./src/str/strbuf.npk:55:    int64:len;    // content length in bytes (excluding NUL)
+./src/str/strbuf.npk:59:// Minimum initial capacity — 64 bytes is enough for most short strings
+./src/str/strbuf.npk:69:// strbuf_grow — Ensure buf has room for at least (sb.len + need + 1) bytes.
+./src/str/strbuf.npk:108:// strbuf_new_cap — Allocate with at least init_cap bytes of capacity.
+./src/str/strbuf.npk:112:    // Allocate the StrBuf struct itself (24 bytes, fits in slab 32-uint8 class)
+./src/str/strbuf.npk:197:// strbuf_len — Current content length (bytes, excluding NUL).
+./src/str/strbuf.npk:240:// strbuf_append_bytes — Append n bytes from ptr to the buffer.
+./src/str/strbuf.npk:242:pub func:strbuf_append_bytes = bool(int64:sb, int64:ptr, int64:n) {
+./src/str/strbuf.npk:259:    pass strbuf_append_bytes(sb, str, n);
+./src/str/strbuf.npk:267:    pass strbuf_append_bytes(sb, o.ptr, o.len);
+./src/str/strbuf.npk:285:// then appends the result to the StrBuf. For output exceeding 4095 bytes,
+./src/str/strbuf.npk:288:// Returns number of bytes appended, or -1 on OOM.
+./src/str/strbuf.npk:298:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:309:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:320:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:332:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:344:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:356:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:369:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:382:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:395:    if (!strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+./src/str/strbuf.npk:403:// strbuf_truncate — Shorten the content to at most n bytes.
+./src/str/strbuf.npk:436:// Returns number of bytes written, or -1 on error.
+./src/math/math.npk:351:    // Step 3: sum bytes
+./src/math/math.npk:353:    // Step 4: sum all bytes via multiply trick
+./src/math/math.npk:405:    // Swap bit pairs, then nibbles, then bytes, then words, then dwords
+./src/syscall/syscall.npk:34://   Result<int64>:r = sys_safe(SYS_READ, fd, buf_ptr, nbytes, 0i64, 0i64, 0i64);
+./src/syscall/syscall.npk:227:// path: NUL-terminated byte string (pointer as int64)
+./src/syscall/syscall.npk:259:// libn_read — Read up to nbytes bytes from fd into buf.
+./src/syscall/syscall.npk:260:// Returns number of bytes read (may be less than nbytes), 0 on EOF, or error.
+./src/syscall/syscall.npk:262:pub func:libn_read = int64(int64:fd, int64:buf, int64:nbytes) {
+./src/syscall/syscall.npk:263:    Result<int64>:r = sys3(SYS_READ, fd, buf, nbytes);
+./src/syscall/syscall.npk:268:// libn_write — Write nbytes bytes from buf to fd.
+./src/syscall/syscall.npk:269:// Returns number of bytes written (may be less than nbytes — short write), or error.
+./src/syscall/syscall.npk:271:pub func:libn_write = int64(int64:fd, int64:buf, int64:nbytes) {
+./src/syscall/syscall.npk:272:    Result<int64>:r = sys3(SYS_WRITE, fd, buf, nbytes);
+./src/syscall/syscall.npk:278:pub func:libn_pread = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+./src/syscall/syscall.npk:279:    Result<int64>:r = sys4(SYS_PREAD64, fd, buf, nbytes, offset);
+./src/syscall/syscall.npk:285:pub func:libn_pwrite = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+./src/syscall/syscall.npk:286:    Result<int64>:r = sys4(SYS_PWRITE64, fd, buf, nbytes, offset);
+./src/syscall/syscall.npk:478:// Exit code is the low 8 bits of code (kernel masks to byte).
+./src/syscall/syscall.npk:524:// statxbuf: pointer to struct statx (256 bytes, cast to int64)
+./src/syscall/syscall.npk:533:// libn_getrandom — Fill buf with random bytes from the kernel CSPRNG.
+./src/syscall/syscall.npk:536:// Returns number of bytes filled (may be less than len in GRND_NONBLOCK mode).
+./src/syscall/syscall.npk:546:// buf: pointer to byte buffer (cast to int64)
+./src/syscall/syscall.npk:547:// size: size of buf in bytes (must be >= 2 for "/\0")
+./src/syscall/syscall.npk:548:// Returns number of bytes written (including NUL), or error.
+./src/syscall/syscall.npk:549:// ENAMETOOLONG if the path is longer than size-1 bytes.
+./src/syscall/syscall.npk:574:// buf: pointer to byte buffer for dirent64 records (cast to int64)
+./src/syscall/syscall.npk:576:// Returns bytes read (0 = end of directory), or error.
+./src/syscall/syscall.npk:611:// libn_read_retry — Read exactly nbytes bytes (retrying on EINTR).
+./src/syscall/syscall.npk:613:// Returns total bytes read, which may be < nbytes only on EOF.
+./src/syscall/syscall.npk:614:pub func:libn_read_retry = int64(int64:fd, int64:buf, int64:nbytes) {
+./src/syscall/syscall.npk:616:    int64:remaining = nbytes;
+./src/syscall/syscall.npk:639:// libn_write_all — Write exactly nbytes bytes (retrying on EINTR and short writes).
+./src/syscall/syscall.npk:640:// Returns nbytes on success, or error. A short write is always retried.
+./src/syscall/syscall.npk:641:pub func:libn_write_all = int64(int64:fd, int64:buf, int64:nbytes) {
+./src/syscall/syscall.npk:643:    int64:remaining = nbytes;
+./src/syscall/posix_constants.npk:451:// epoll_event struct size (packed: events=4, pad=4, data=8 = 12 bytes on x86-64)
+./src/syscall/posix_constants.npk:612:pub fixed int64:STATX_STRUCT_SIZE = 256i64;    // bytes, kernel statx struct
+./src/syscall/errno.npk:123:pub fixed int64:EILSEQ   = 84i64;   // Invalid or incomplete multibyte character
+./src/syscall/errno.npk:322:    } else if (e == 84i64) { string:s = "Invalid or incomplete multibyte character"; pass @cast_unchecked<uint8->>(@s);

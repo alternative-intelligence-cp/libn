@@ -1,0 +1,4 @@
+pub func:my_func = int64(int64:n) {
+    if (n < 0i64) { fail 1tbb8; }
+    pass n;
+};

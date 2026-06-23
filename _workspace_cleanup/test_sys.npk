@@ -1,0 +1,4 @@
+use "stdlib/sys.npk".*;
+pub func:my_syscall = int64(int64:nr) {
+    pass sys!!!(nr, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+};

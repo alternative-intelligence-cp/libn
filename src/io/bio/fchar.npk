@@ -12,21 +12,21 @@
 //   Calling ungetc after fseek/fsetpos discards the pushed-back char (POSIX).
 //
 // Performance note:
-//   In a production implementation, getc/putc would be implemented as macros
+//   In a production implementation, getc/putc would be @cast_unchecked<macros>(implemented)
 //   that inline the buffer fast-path, bypassing the function call overhead.
 //   At v0.5.5, they are functions. The macro form is planned for v0.6.x when
 //   libn has a header/include system.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/syscall/syscall.npk".*;
-use "src/io/bio/file.npk".*;
-use "src/io/bio/fio.npk".*;
+use "../../syscall/errno.npk".*;
+use "../../syscall/posix_constants.npk".*;
+use "../../syscall/syscall.npk".*;
+use "../../io/bio/file.npk".*;
+use "../../io/bio/fio.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // fgetc — Read one character from fp.
 //
-// Returns the character as an unsigned byte value (0–255) cast to int64,
+// Returns the @cast_unchecked<an>(character) unsigned uint8 value (0–255) cast to int64,
 // or FILE_EOF (-1) on end-of-file or error.
 //
 // This is the fundamental character-read primitive. It consumes from the
@@ -34,79 +34,79 @@ use "src/io/bio/fio.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:fgetc = int64(int64:fp) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass FILE_EOF;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    // EOF/error already set
-    if (f.flags & FILE_FLAG_EOF) != 0i64 {
+      // EOF/error already set
+    if ((f->flags & FILE_FLAG_EOF) != 0i64) {
         pass FILE_EOF;
     }
-    if (f.flags & FILE_FLAG_ERROR) != 0i64 {
-        pass FILE_EOF;
-    }
-
-    // Not readable
-    if (f.mode & FILE_MODE_READ) == 0i64 {
-        f.flags = f.flags | FILE_FLAG_ERROR;
-        errno_set(EBADF);
+    if ((f->flags & FILE_FLAG_ERROR) != 0i64) {
         pass FILE_EOF;
     }
 
-    // Flush write buffer if we were writing
-    if (f.flags & FILE_FLAG_WRITE_MODE) != 0i64 {
+      // Not readable
+    if ((f->mode & FILE_MODE_READ) == 0i64) {
+        f->flags = f->flags | FILE_FLAG_ERROR;
+        drop drop(errno_set(EBADF));
+        pass FILE_EOF;
+    }
+
+      // Flush write buffer if we were writing
+    if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
         Result<int64>:r = bio_flush_write_buf(fp);
-        if r.is_error {
+        if (r.is_error) {
             pass FILE_EOF;
         }
     }
 
-    // Consume unget char first
-    if f.unget != FILE_UNGET_EMPTY {
-        int64:ch = f.unget;
-        f.unget    = FILE_UNGET_EMPTY;
-        f.file_pos = f.file_pos + 1i64;
+      // Consume unget char first
+    if (f->unget != FILE_UNGET_EMPTY) {
+        int64:ch = f->unget;
+        f->unget    = FILE_UNGET_EMPTY;
+        f->file_pos = f->file_pos + 1i64;
         pass ch;
     }
 
-    // Unbuffered: read one byte directly from kernel
-    if f.buf_mode == _IONBF || f.buf == 0i64 {
-        stack byte:one[1];
-        while true {
-            Result<int64>:r = sys_safe(SYS_READ, f.fd, &one[0] as int64, 1i64, 0i64, 0i64, 0i64);
-            if r.is_error {
-                int64:e = r.err as int64;
-                if e == EINTR { continue; }
-                f.flags = f.flags | FILE_FLAG_ERROR;
+      // Unbuffered: read one uint8 directly from kernel
+    if (f->buf_mode == _IONBF || f->buf == 0i64) {
+        stack uint8[1]:one;
+        while (true) {
+            Result<int64>:r = sys_safe(SYS_READ, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+            if (r.is_error) {
+                int64:e = @cast_unchecked<int64>(r.error);
+                if (e == EINTR) { continue; }
+                f->flags = f->flags | FILE_FLAG_ERROR;
                 pass FILE_EOF;
             }
-            if r.value == 0i64 {
-                f.flags = f.flags | FILE_FLAG_EOF;
+            if (r.value == 0i64) {
+                f->flags = f->flags | FILE_FLAG_EOF;
                 pass FILE_EOF;
             }
-            f.file_pos = f.file_pos + 1i64;
-            pass one[0] as int64;
+            f->file_pos = f->file_pos + 1i64;
+            pass @cast_unchecked<int64>(one[0]);
         }
-        // unreachable
+          // unreachable
         pass FILE_EOF;
     }
 
-    // Buffered: refill if exhausted
-    if f.buf_pos >= f.buf_len {
+      // Buffered: refill if exhausted
+    if (f->buf_pos >= f->buf_len) {
         Result<int64>:r = bio_refill_read_buf(fp);
-        if r.is_error || r.value == 0i64 {
+        if (r.is_error || r.value == 0i64) {
             pass FILE_EOF;
         }
     }
 
-    // Return next byte from buffer
-    byte:ch = (f.buf as *byte)[f.buf_pos];
-    f.buf_pos  = f.buf_pos + 1i64;
-    f.file_pos = f.file_pos + 1i64;
-    pass ch as int64;
-}
+      // Return next uint8 from buffer
+    uint8:ch = (@cast_unchecked<uint8->>(f->buf))[f->buf_pos];
+    f->buf_pos  = f->buf_pos + 1i64;
+    f->file_pos = f->file_pos + 1i64;
+    pass @cast_unchecked<int64>(ch);
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // fputc — Write one character c to fp.
@@ -117,68 +117,68 @@ pub func:fgetc = int64(int64:fp) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:fputc = int64(int64:c, int64:fp) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass FILE_EOF;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    if (f.mode & FILE_MODE_WRITE) == 0i64 {
-        f.flags = f.flags | FILE_FLAG_ERROR;
-        errno_set(EBADF);
+    if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+        f->flags = f->flags | FILE_FLAG_ERROR;
+        drop drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 
-    // If read buffer has pending bytes, discard before writing
-    if (f.flags & FILE_FLAG_WRITE_MODE) == 0i64 && f.buf_len > f.buf_pos {
+      // If read buffer has pending bytes, discard before writing
+    if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
         drop bio_discard_read_buf(fp);
     }
-    f.flags = f.flags | FILE_FLAG_WRITE_MODE;
+    f->flags = f->flags | FILE_FLAG_WRITE_MODE;
 
-    byte:b = c as byte;
+    uint8:b = @cast_unchecked<uint8>(c);
 
-    // Unbuffered: single-byte write directly to kernel
-    if f.buf_mode == _IONBF || f.buf == 0i64 {
-        stack byte:one[1];
+      // Unbuffered: single-uint8 write directly to kernel
+    if (f->buf_mode == _IONBF || f->buf == 0i64) {
+        stack uint8[1]:one;
         one[0] = b;
-        while true {
-            Result<int64>:r = sys_safe(SYS_WRITE, f.fd, &one[0] as int64, 1i64, 0i64, 0i64, 0i64);
-            if r.is_error {
-                int64:e = r.err as int64;
-                if e == EINTR { continue; }
-                f.flags = f.flags | FILE_FLAG_ERROR;
+        while (true) {
+            Result<int64>:r = sys_safe(SYS_WRITE, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+            if (r.is_error) {
+                int64:e = @cast_unchecked<int64>(r.error);
+                if (e == EINTR) { continue; }
+                f->flags = f->flags | FILE_FLAG_ERROR;
                 pass FILE_EOF;
             }
-            f.file_pos = f.file_pos + 1i64;
+            f->file_pos = f->file_pos + 1i64;
             pass c & 0xFFi64;
         }
-        // unreachable
+          // unreachable
         pass FILE_EOF;
     }
 
-    // Buffer full: flush first
-    if f.buf_pos >= f.buf_cap {
+      // Buffer full: flush first
+    if (f->buf_pos >= f->buf_cap) {
         Result<int64>:r = bio_flush_write_buf(fp);
-        if r.is_error {
+        if (r.is_error) {
             pass FILE_EOF;
         }
     }
 
-    // Write to buffer
-    (f.buf as *byte)[f.buf_pos] = b;
-    f.buf_pos = f.buf_pos + 1i64;
-    f.buf_len = f.buf_pos;
+      // Write to buffer
+    (@cast_unchecked<uint8->>(f->buf))[f->buf_pos] = b;
+    f->buf_pos = f->buf_pos + 1i64;
+    f->buf_len = f->buf_pos;
 
-    // Line-buffered: flush on '\n'
-    if f.buf_mode == _IOLBF && b == 10u8 {
+      // Line-buffered: flush on '\n'
+    if (f->buf_mode == _IOLBF && b == 10u8) {
         Result<int64>:r = bio_flush_write_buf(fp);
-        if r.is_error {
+        if (r.is_error) {
             pass FILE_EOF;
         }
     }
 
     pass c & 0xFFi64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // getc / putc — Aliases for fgetc / fputc.
@@ -190,17 +190,17 @@ pub func:fputc = int64(int64:c, int64:fp) {
 
 pub func:getc = int64(int64:fp) {
     pass fgetc(fp);
-}
+};
 
 pub func:putc = int64(int64:c, int64:fp) {
     pass fputc(c, fp);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // getchar / putchar — Read/write one character from/to stdin/stdout.
 //
 // These reference the global stdin/stdout from stdfiles.npk.
-// The dependency is declared via use "src/io/bio/stdfiles.npk".* in bio.npk;
+// The dependency is declared via use "../../io/bio/stdfiles.npk".* in bio.npk;
 // here we forward-reference via the extern pattern common in libn.
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -216,40 +216,40 @@ pub func:putc = int64(int64:c, int64:fp) {
 // ungetc(EOF, fp) is a no-op and returns EOF.
 // Calling fseek/fsetpos discards any pushed-back character.
 //
-// Returns the character pushed back (as unsigned byte value), or EOF on error.
+// Returns the character pushed back (as unsigned uint8 value), or EOF on error.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:ungetc = int64(int64:c, int64:fp) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass FILE_EOF;
     }
 
-    // ungetc(EOF) is always a no-op
-    if c == FILE_EOF || c < 0i64 {
+      // ungetc(EOF) is always a no-op
+    if (c == FILE_EOF || c < 0i64) {
         pass FILE_EOF;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    if (f.mode & FILE_MODE_READ) == 0i64 {
+    if ((f->mode & FILE_MODE_READ) == 0i64) {
         pass FILE_EOF;
     }
 
-    // Only one pushback slot available
-    if f.unget != FILE_UNGET_EMPTY {
-        // Already have a pushed-back character — POSIX doesn't require more.
+      // Only one pushback slot available
+    if (f->unget != FILE_UNGET_EMPTY) {
+          // Already have a pushed-back character — POSIX doesn't require more.
         pass FILE_EOF;
     }
 
-    f.unget = c & 0xFFi64;
+    f->unget = c & 0xFFi64;
 
-    // Un-advance the logical file position (POSIX: ungetc moves position back one)
-    if f.file_pos > 0i64 {
-        f.file_pos = f.file_pos - 1i64;
+      // Un-advance the logical file position (POSIX: ungetc moves position back one)
+    if (f->file_pos > 0i64) {
+        f->file_pos = f->file_pos - 1i64;
     }
 
-    // Clear EOF flag — stream is now readable again (POSIX requirement)
-    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+      // Clear EOF flag — stream is now readable again (POSIX requirement)
+    f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
 
     pass c & 0xFFi64;
-}
+};

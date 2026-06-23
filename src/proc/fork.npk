@@ -28,9 +28,9 @@
 //   Only safe operations in the child after vfork: execve, _exit.
 //   All other use is undefined behavior.
 
-use "src/syscall/syscall.npk".*;
-use "src/syscall/syscall_numbers.npk".*;
-use "src/syscall/errno.npk".*;
+use "../syscall/syscall.npk".*;
+use "../syscall/syscall_numbers.npk".*;
+use "../syscall/errno.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // fork — Create a child process by duplicating the calling process.
@@ -43,12 +43,12 @@ use "src/syscall/errno.npk".*;
 
 pub func:fork = int64() {
     Result<int64>:r = sys!!(SYS_FORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // vfork — Create child sharing parent's address space (exec-or-exit only).
@@ -59,12 +59,12 @@ pub func:fork = int64() {
 
 pub func:vfork = int64() {
     Result<int64>:r = sys!!(SYS_VFORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Process identity
@@ -72,45 +72,45 @@ pub func:vfork = int64() {
 
 // getpid — Return the process ID of the calling process.
 pub func:getpid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // getppid — Return the parent's process ID.
 pub func:getppid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETPPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETPPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // getuid — Return real user ID.
 pub func:getuid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // geteuid — Return effective user ID.
 pub func:geteuid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETEUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETEUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // getgid — Return real group ID.
 pub func:getgid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // getegid — Return effective group ID.
 pub func:getegid = int64() {
-    Result<int64>:r = sys_safe(SYS_GETEGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error { pass -1i64; }
+    Result<int64>:r = sys!!(SYS_GETEGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Process groups and sessions
@@ -121,45 +121,45 @@ pub func:getegid = int64() {
 // Returns 0 on success, -1 on error (errno set).
 pub func:setpgid = int64(int64:pid, int64:pgid) {
     Result<int64>:r = sys!!(SYS_SETPGID, pid, pgid, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass 0i64;
-}
+};
 
 // getpgid — Return the process group ID of pid (0 = calling process).
 pub func:getpgid = int64(int64:pid) {
     Result<int64>:r = sys!!(SYS_GETPGID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass r.value;
-}
+};
 
 // getpgrp — Return the process group ID of the calling process.
 pub func:getpgrp = int64() {
     pass getpgid(0i64);
-}
+};
 
-// setsid — Create a new session and set the calling process as session leader.
+// setsid — Create a new session and set the calling @cast_unchecked<session>(process) leader.
 // Returns the new session ID, or -1 on error (already a process group leader).
 pub func:setsid = int64() {
     Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass r.value;
-}
+};
 
 // getsid — Return the session ID of pid (0 = calling process).
 pub func:getsid = int64(int64:pid) {
     Result<int64>:r = sys!!(SYS_GETSID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
-    if r.is_error {
-        errno_set(r.err as int64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error));
         pass -1i64;
     }
     pass r.value;
-}
+};

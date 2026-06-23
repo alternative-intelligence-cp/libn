@@ -1,0 +1,17 @@
+use "time_types.npk".*;
+use "../syscall/syscall.npk".*;
+
+pub func:nanosleep = int64(timespec->:req, timespec->:rem) {
+    if (req == 0i64) {
+        pass(libn_errno_set(14i64));     // EFAULT
+    }
+        // libn_nanosleep handles the EINTR retry internally, but we'll expose a wrapper that behaves like POSIX
+        // POSIX nanosleep should return -1 and set errno to EINTR if (interrupted, updating rem if not NULL.
+        // However, our libn_nanosleep does the loop internally if we call it.
+        // Let's just use the syscall so we match POSIX behavior exactly.
+    Result<int64>:r = sys(NANOSLEEP, @cast_unchecked<int64>(req), @cast_unchecked<int64>(rem), 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error == true) {
+        pass(libn_errno_set(@cast_unchecked<int64>(r.error)));
+    }
+    pass 0i64;
+}

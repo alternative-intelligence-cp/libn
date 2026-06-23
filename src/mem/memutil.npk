@@ -10,25 +10,25 @@
 //   - Using word-at-a-time techniques where correctness allows
 //
 // Naming convention:
-//   mem_*  — operates on raw byte regions with explicit length
+//   mem_*  — operates on raw uint8 regions with explicit length
 //   str_*  — operates on NUL-terminated strings (defined in str/string.npk)
 //
 // The word-at-a-time technique for memchr/memcmp:
-//   Instead of one byte per iteration, load 8 bytes at a time and use bit tricks
-//   to detect the target byte or first difference. This is the same approach used
+//   Instead of one uint8 per iteration, load 8 bytes at a time and use bit tricks
+//   to detect the target uint8 or first difference. This is the same approach used
 //   by glibc, musl, and dietlibc. The bit trick for NUL detection is:
 //     has_zero_byte(v) = (v - 0x0101010101010101) & ~v & 0x8080808080808080
-//   For a target byte `c`: XOR with replicated-c turns the search into a zero-detect.
+//   For a target uint8 `c`: XOR with replicated-c turns the search into a zero-detect.
 
-use "src/syscall/errno.npk".*;
+use "../syscall/errno.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Word-at-a-time bit trick constants
 // ════════════════════════════════════════════════════════════════════════════
 
-// ONES — 0x0101...01 — used in the "has zero byte" trick.
+// ONES — 0x0101...01 — used in the "has zero uint8" trick.
 fixed int64:WORD_ONES    = 0x0101010101010101i64;
-// HIGH_BITS — 0x8080...80 — selects the high bit of each byte in a word.
+// HIGH_BITS — 0x8080...80 — selects the high bit of each uint8 in a word.
 fixed int64:WORD_HIGHBITS = 0x8080808080808080i64;
 
 // has_zero_byte — True if any of the 8 bytes in v is 0x00.
@@ -37,9 +37,9 @@ fixed int64:WORD_HIGHBITS = 0x8080808080808080i64;
 func:has_zero_byte = bool(int64:v) {
     int64:t = (v - WORD_ONES) & (0i64 - 1i64 ^ v) & WORD_HIGHBITS;
     pass t != 0i64;
-}
+};
 
-// replicate_byte — Replicate a byte value into all 8 bytes of a word.
+// replicate_byte — Replicate a uint8 value into all 8 bytes of a word.
 // E.g., replicate_byte(0x41) = 0x4141414141414141
 func:replicate_byte = int64(int64:c) {
     int64:r = c & 0xFFi64;
@@ -47,14 +47,14 @@ func:replicate_byte = int64(int64:c) {
     r = r | (r << 16i64);
     r = r | (r << 32i64);
     pass r;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memcmp — Compare n bytes at a and b.
 //
 // Returns:
 //   0       if a[0..n-1] == b[0..n-1]
-//   < 0     if a < b (first differing byte in a is less than in b)
+//   < 0     if a < b (first differing uint8 in a is less than in b)
 //   > 0     if a > b
 //
 // Identical semantics to C memcmp. The sign and magnitude of the non-zero
@@ -66,49 +66,49 @@ func:replicate_byte = int64(int64:c) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_memcmp = int64(int64:a, int64:b, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
 
-    // Word-at-a-time comparison: compare 8 bytes at a time.
-    // We require BOTH pointers to be 8-byte aligned for the word path.
-    // If either is misaligned, fall back to byte-by-byte.
+      // Word-at-a-time comparison: compare 8 bytes at a time.
+      // We require BOTH pointers to be 8-uint8 aligned for the word path.
+      // If either is misaligned, fall back to uint8-by-uint8.
     int64:i = 0i64;
 
-    // Byte-by-byte until both are 8-aligned (or we exhaust n)
-    while i < n && (((a + i) | (b + i)) & 7i64) != 0i64 {
-        int64:ba = pa[i] as int64;
-        int64:bb = pb[i] as int64;
-        if ba != bb {
-            if ba < bb { pass -1i64; }
+      // Byte-by-uint8 until both are 8-aligned (or we exhaust n)
+    while (i < n && (((a + i) | (b + i)) & 7i64) != 0i64) {
+        int64:ba = @cast_unchecked<int64>(pa[i]);
+        int64:bb = @cast_unchecked<int64>(pb[i]);
+        if (ba != bb) {
+            if (ba < bb) { pass -1i64; }
             pass 1i64;
         }
         i = i + 1i64;
     }
 
-    // Both aligned — word loop
-    *int64:wa = (a + i) as *int64;
-    *int64:wb = (b + i) as *int64;
+      // Both aligned — word loop
+    int64->:wa = @cast_unchecked<int64->>((a + i));
+    int64->:wb = @cast_unchecked<int64->>((b + i));
     int64:wc = (n - i) / 8i64;
     int64:wi = 0i64;
-    while wi < wc {
+    while (wi < wc) {
         int64:va = wa[wi];
         int64:vb = wb[wi];
-        if va != vb {
-            // Words differ — find the first differing byte
-            // XOR the two words: the first byte where they differ is the first set byte
+        if (va != vb) {
+              // Words differ — find the first differing uint8
+              // XOR the two words: the first uint8 where they differ is the first set uint8
             int64:diff = va ^ vb;
-            // Scan from LSB (little-endian: first byte is in bits 0-7)
+              // Scan from LSB (little-endian: first uint8 is in bits 0-7)
             int64:j = 0i64;
-            while j < 8i64 {
+            while (j < 8i64) {
                 int64:shift = j * 8i64;
                 int64:ba = (va >> shift) & 0xFFi64;
                 int64:bb = (vb >> shift) & 0xFFi64;
-                if ba != bb {
-                    if ba < bb { pass -1i64; }
+                if (ba != bb) {
+                    if (ba < bb) { pass -1i64; }
                     pass 1i64;
                 }
                 j = j + 1i64;
@@ -118,19 +118,19 @@ pub func:mem_memcmp = int64(int64:a, int64:b, int64:n) {
     }
     i = i + wc * 8i64;
 
-    // Tail
-    while i < n {
-        int64:ba = pa[i] as int64;
-        int64:bb = pb[i] as int64;
-        if ba != bb {
-            if ba < bb { pass -1i64; }
+      // Tail
+    while (i < n) {
+        int64:ba = @cast_unchecked<int64>(pa[i]);
+        int64:bb = @cast_unchecked<int64>(pb[i]);
+        if (ba != bb) {
+            if (ba < bb) { pass -1i64; }
             pass 1i64;
         }
         i = i + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_mem_equal — Return true if n bytes at a equal n bytes at b.
@@ -140,15 +140,15 @@ pub func:mem_memcmp = int64(int64:a, int64:b, int64:n) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_equal = bool(int64:a, int64:b, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass true;
     }
-    if a == b {
+    if (a == b) {
         pass true;
     }
     int64:r = raw mem_memcmp(a, b, n);
     pass r == 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memcmp_ct — Constant-time memcmp (for security-sensitive comparisons).
@@ -162,64 +162,64 @@ pub func:mem_equal = bool(int64:a, int64:b, int64:n) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_memcmp_ct = int64(int64:a, int64:b, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:diff = 0i64;
     int64:i = 0i64;
 
-    // Always iterate all n bytes — no early exit
-    while i < n {
-        diff = diff | (pa[i] as int64 ^ pb[i] as int64);
+      // Always iterate all n bytes — no early exit
+    while (i < n) {
+        diff = diff | (@cast_unchecked<int64>(pa[i]) ^ @cast_unchecked<int64>(pb[i]));
         i = i + 1i64;
     }
 
-    // diff is 0 iff all bytes were equal
+      // diff is 0 iff all bytes were equal
     pass diff;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// mem_memchr — Find first occurrence of byte c in the n bytes at ptr.
+// mem_memchr — Find first occurrence of uint8 c in the n bytes at ptr.
 //
-// Returns: pointer to the first matching byte (as int64), or 0 (NULL) if not found.
+// Returns: pointer to the first matching uint8 (as int64), or 0 (NULL) if not found.
 // n == 0: returns 0 (not found, no memory accessed).
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_memchr = int64(int64:ptr, int64:c, int64:n) {
-    if n == 0i64 || ptr == 0i64 {
+    if (n == 0i64 || ptr == 0i64) {
         pass 0i64;
     }
 
-    *byte:p  = ptr as *byte;
-    byte:target = c as byte;
-    int64:tword = replicate_byte(c);
+    uint8->:p  = @cast_unchecked<uint8->>(ptr);
+    uint8:target = @cast_unchecked<uint8>(c);
+    int64:tword = raw replicate_byte(c);
     int64:i = 0i64;
 
-    // Byte-by-byte until 8-aligned
-    while i < n && ((ptr + i) & 7i64) != 0i64 {
-        if p[i] == target {
+      // Byte-by-uint8 until 8-aligned
+    while (i < n && ((ptr + i) & 7i64) != 0i64) {
+        if (p[i] == target) {
             pass ptr + i;
         }
         i = i + 1i64;
     }
 
-    // Word-at-a-time search: XOR each word with replicated target,
-    // then check if any byte is zero (= match).
-    *int64:pw = (ptr + i) as *int64;
+      // Word-at-a-time search: XOR each word with replicated target,
+      // then check if any uint8 is zero (= match).
+    int64->:pw = @cast_unchecked<int64->>((ptr + i));
     int64:wc = (n - i) / 8i64;
     int64:wi = 0i64;
-    while wi < wc {
+    while (wi < wc) {
         int64:v = pw[wi] ^ tword;
-        if raw has_zero_byte(v) {
-            // Match is somewhere in this word — find exact byte
+        if (raw has_zero_byte(v)) {
+              // Match is somewhere in this word — find exact uint8
             int64:word_base = ptr + i + wi * 8i64;
-            *byte:wb = word_base as *byte;
+            uint8->:wb = @cast_unchecked<uint8->>(word_base);
             int64:j = 0i64;
-            while j < 8i64 {
-                if wb[j] == target {
+            while (j < 8i64) {
+                if (wb[j] == target) {
                     pass word_base + j;
                 }
                 j = j + 1i64;
@@ -229,48 +229,48 @@ pub func:mem_memchr = int64(int64:ptr, int64:c, int64:n) {
     }
     i = i + wc * 8i64;
 
-    // Tail
-    while i < n {
-        if p[i] == target {
+      // Tail
+    while (i < n) {
+        if (p[i] == target) {
             pass ptr + i;
         }
         i = i + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// mem_memrchr — Find LAST occurrence of byte c in the n bytes at ptr.
+// mem_memrchr — Find LAST occurrence of uint8 c in the n bytes at ptr.
 //
 // Scans from ptr+n-1 backward to ptr. Returns pointer to last match, or 0.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_memrchr = int64(int64:ptr, int64:c, int64:n) {
-    if n == 0i64 || ptr == 0i64 {
+    if (n == 0i64 || ptr == 0i64) {
         pass 0i64;
     }
 
-    *byte:p  = ptr as *byte;
-    byte:target = c as byte;
+    uint8->:p  = @cast_unchecked<uint8->>(ptr);
+    uint8:target = @cast_unchecked<uint8>(c);
     int64:i = n - 1i64;
 
-    // Simple backward scan (no word trick for reverse — adds complexity, little gain)
-    while i >= 0i64 {
-        if p[i] == target {
+      // Simple backward scan (no word trick for reverse — adds complexity, little gain)
+    while (i >= 0i64) {
+        if (p[i] == target) {
             pass ptr + i;
         }
         i = i - 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memmem — Find first occurrence of needle[0..nlen) in haystack[0..hlen).
 //
 // Equivalent to glibc's memmem(). Returns pointer to start of match, or 0.
-// This is the generalized substring search: memchr is the single-byte special case.
+// This is the generalized substring search: memchr is the single-uint8 special case.
 //
 // Algorithm: naive O(n*m) search at v0.2.5. A two-way / BMHS algorithm will
 // be implemented in v0.3.9 (string search algorithms) for large haystacks.
@@ -282,43 +282,43 @@ pub func:mem_memrchr = int64(int64:ptr, int64:c, int64:n) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_memmem = int64(int64:haystack, int64:hlen, int64:needle, int64:nlen) {
-    // Vacuous needle: matches at the start (POSIX behavior)
-    if nlen == 0i64 {
+      // Vacuous needle: matches at the start (POSIX behavior)
+    if (nlen == 0i64) {
         pass haystack;
     }
-    if haystack == 0i64 || needle == 0i64 {
+    if (haystack == 0i64 || needle == 0i64) {
         pass 0i64;
     }
-    if nlen > hlen {
+    if (nlen > hlen) {
         pass 0i64;
     }
 
-    *byte:h = haystack as *byte;
-    *byte:n = needle as *byte;
-    byte:first = n[0];
+    uint8->:h = @cast_unchecked<uint8->>(haystack);
+    uint8->:n = @cast_unchecked<uint8->>(needle);
+    uint8:first = n[0];
 
-    int64:limit = hlen - nlen;
+    int64:max_offset = hlen - nlen;
     int64:i = 0i64;
-    while i <= limit {
-        // Use memchr to jump to next candidate for the first byte of needle
-        int64:candidate = raw mem_memchr(haystack + i, first as int64, hlen - i);
-        if candidate == 0i64 {
-            pass 0i64;  // first byte not found at all
+    while (i <= max_offset) {
+          // Use memchr to jump to next candidate for the first uint8 of needle
+        int64:candidate = raw mem_memchr(haystack + i, @cast_unchecked<int64>(first), hlen - i);
+        if (candidate == 0i64) {
+            pass 0i64;    // first uint8 not found at all
         }
         int64:offset = candidate - haystack;
-        if offset > limit {
-            pass 0i64;  // first byte found but too close to end for needle to fit
+        if (offset > max_offset) {
+            pass 0i64;    // first uint8 found but too close to end for needle to fit
         }
 
-        // Compare full needle at this position
-        if raw mem_memcmp(candidate, needle, nlen) == 0i64 {
+          // Compare full needle at this position
+        if (raw mem_memcmp(candidate, needle, nlen) == 0i64) {
             pass candidate;
         }
         i = offset + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_is_zero — Return true if all n bytes at ptr are 0x00.
@@ -327,46 +327,46 @@ pub func:mem_memmem = int64(int64:haystack, int64:hlen, int64:needle, int64:nlen
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:mem_is_zero = bool(int64:ptr, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass true;
     }
-    if ptr == 0i64 {
+    if (ptr == 0i64) {
         pass false;
     }
 
-    *byte:p = ptr as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(ptr);
     int64:i = 0i64;
 
-    // Byte-by-byte until 8-aligned
-    while i < n && ((ptr + i) & 7i64) != 0i64 {
-        if p[i] != 0u8 {
+      // Byte-by-uint8 until 8-aligned
+    while (i < n && ((ptr + i) & 7i64) != 0i64) {
+        if (p[i] != 0u8) {
             pass false;
         }
         i = i + 1i64;
     }
 
-    // Word loop
-    *int64:pw = (ptr + i) as *int64;
+      // Word loop
+    int64->:pw = @cast_unchecked<int64->>((ptr + i));
     int64:wc = (n - i) / 8i64;
     int64:wi = 0i64;
-    while wi < wc {
-        if pw[wi] != 0i64 {
+    while (wi < wc) {
+        if (pw[wi] != 0i64) {
             pass false;
         }
         wi = wi + 1i64;
     }
     i = i + wc * 8i64;
 
-    // Tail
-    while i < n {
-        if p[i] != 0u8 {
+      // Tail
+    while (i < n) {
+        if (p[i] != 0u8) {
             pass false;
         }
         i = i + 1i64;
     }
 
     pass true;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_swap — Swap n bytes between a and b.
@@ -375,28 +375,28 @@ pub func:mem_is_zero = bool(int64:ptr, int64:n) {
 // Used by sorting algorithms and container operations.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_swap = void(int64:a, int64:b, int64:n) {
-    if a == b || n <= 0i64 {
-        pass void;
+pub func:mem_swap = NIL(int64:a, int64:b, int64:n) {
+    if (a == b || n <= 0i64) {
+        pass NIL;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
 
-    // Word-at-a-time swap
+      // Word-at-a-time swap
     int64:i = 0i64;
-    while i < n && ((a + i) & 7i64) != 0i64 {
-        byte:tmp = pa[i];
+    while (i < n && ((a + i) & 7i64) != 0i64) {
+        uint8:tmp = pa[i];
         pa[i] = pb[i];
         pb[i] = tmp;
         i = i + 1i64;
     }
 
-    *int64:wa = (a + i) as *int64;
-    *int64:wb = (b + i) as *int64;
+    int64->:wa = @cast_unchecked<int64->>((a + i));
+    int64->:wb = @cast_unchecked<int64->>((b + i));
     int64:wc = (n - i) / 8i64;
     int64:wi = 0i64;
-    while wi < wc {
+    while (wi < wc) {
         int64:tmp = wa[wi];
         wa[wi] = wb[wi];
         wb[wi] = tmp;
@@ -404,37 +404,37 @@ pub func:mem_swap = void(int64:a, int64:b, int64:n) {
     }
     i = i + wc * 8i64;
 
-    while i < n {
-        byte:tmp = pa[i];
+    while (i < n) {
+        uint8:tmp = pa[i];
         pa[i] = pb[i];
         pb[i] = tmp;
         i = i + 1i64;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_reverse — Reverse n bytes in-place at ptr.
 //
 // Used by: integer-to-string formatting (builds digits in reverse then flips),
-// byte-order swapping, and various codec utilities.
+// uint8-order swapping, and various codec utilities.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_reverse = void(int64:ptr, int64:n) {
-    if ptr == 0i64 || n <= 1i64 {
-        pass void;
+pub func:mem_reverse = NIL(int64:ptr, int64:n) {
+    if (ptr == 0i64 || n <= 1i64) {
+        pass NIL;
     }
 
-    *byte:p = ptr as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(ptr);
     int64:lo = 0i64;
     int64:hi = n - 1i64;
-    while lo < hi {
-        byte:tmp = p[lo];
+    while (lo < hi) {
+        uint8:tmp = p[lo];
         p[lo] = p[hi];
         p[hi] = tmp;
         lo = lo + 1i64;
         hi = hi - 1i64;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_align_ptr — Align a pointer UP to the next multiple of align.
@@ -444,9 +444,9 @@ pub func:mem_reverse = void(int64:ptr, int64:n) {
 pub func:mem_align_ptr = int64(int64:ptr, int64:align) {
     int64:mask = align - 1i64;
     pass (ptr + mask) & (0i64 - align);
-}
+};
 
 // mem_is_aligned — True if ptr is a multiple of align (power of 2).
 pub func:mem_is_aligned = bool(int64:ptr, int64:align) {
     pass (ptr & (align - 1i64)) == 0i64;
-}
+};

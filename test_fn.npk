@@ -1,0 +1,6 @@
+pub func:foo = NIL() {};
+pub func:main = int32() {
+    int64:f = 0i64;
+    @cast_unchecked<func:NIL()>(f)();
+    pass 0;
+};

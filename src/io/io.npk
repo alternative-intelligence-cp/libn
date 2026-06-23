@@ -28,12 +28,12 @@
 //   v0.4.10 poll.npk     — io_poll, io_select wrappers
 //   v0.4.11 strerror.npk — strerror() string table (errno → human-readable)
 
-use "src/io/write.npk".*;
-use "src/io/read.npk".*;
-use "src/io/printf.npk".*;
-use "src/io/open.npk".*;
-use "src/io/seek.npk".*;
-use "src/io/dup.npk".*;
-use "src/io/pipe.npk".*;
-use "src/io/fcntl.npk".*;
+use "../io/write.npk".*;
+use "../io/read.npk".*;
+use "../io/printf.npk".*;
+use "../io/open.npk".*;
+use "../io/seek.npk".*;
+use "../io/dup.npk".*;
+use "../io/pipe.npk".*;
+use "../io/fcntl.npk".*;
 

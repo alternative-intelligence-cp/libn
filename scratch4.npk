@@ -1,0 +1,6 @@
+func:main = int64() {
+    int64:x = 0i64;
+    *byte:p = x as *byte;
+    pass(0i64);
+};
+func:failsafe = int64(int64:err) { pass(0i64); };

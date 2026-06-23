@@ -1,0 +1,5 @@
+uint8[32]:g_buf;
+pub func:test_addr = int64() {
+    int64:addr1 = @cast_unchecked<int64>(@g_buf);
+    pass 0i64;
+};

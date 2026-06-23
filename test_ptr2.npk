@@ -1,0 +1,9 @@
+struct:Foo = { int64:bar; };
+pub func:main = int32() {
+    *Foo:f = @cast_unchecked<*Foo>(0i64);
+    int64:x = f->bar;
+    int64:y = f -> bar;
+    int64:z = f@bar;
+    int64:w = f^.bar;
+    exit 0i32;
+};

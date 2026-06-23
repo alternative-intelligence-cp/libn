@@ -1,0 +1,6 @@
+use "src/syscall/syscall_numbers.npk".*;
+pub func:mem_malloc = int64(int64:n) {
+    if (n <= 0i64) { fail 22i64; }
+    Result<int64>:r = sys(SYS_WRITE, 2i64, 3i64, 4i64, 5i64, 6i64, 7i64);
+    pass r;
+};

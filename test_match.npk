@@ -1,0 +1,8 @@
+func:main = int32() {
+    int64:x = 1i64;
+    match (x) {
+        0i64 => exit 0i32;
+        _ => exit 1i32;
+    };
+    exit 0i32;
+};

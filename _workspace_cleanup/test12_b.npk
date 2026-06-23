@@ -1,0 +1,6 @@
+use "test12_a.npk".*;
+pub func:my_caller = int64() {
+    Result<int64>:r = z_slab_alloc(42i64);
+    if (r.is_error) { fail r.error; }
+    pass r.value;
+};

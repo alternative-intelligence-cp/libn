@@ -1,0 +1,6 @@
+pub func:main = int32() {
+    int64:x = 0i64;
+    *byte[]:p = @cast_unchecked<*byte[]>(x);
+    byte:b = p[0];
+    exit 0i32;
+};

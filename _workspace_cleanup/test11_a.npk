@@ -1,0 +1,5 @@
+pub fixed int64:ERR_BADARG = 22i64;
+pub func:my_func = int64(int64:n) {
+    if (n < 0i64) { fail @cast_unchecked<tbb8>(ERR_BADARG); }
+    pass n;
+};

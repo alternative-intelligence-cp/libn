@@ -20,13 +20,13 @@
 //   v0.3.10 strtrim.npk — ltrim, rtrim, trim, chomp
 //   v0.10.x math.npk    — abs, min, max, clamp, pow2 utilities
 
-use "src/str/strlen.npk".*;
-use "src/str/strcpy.npk".*;
-use "src/str/strcmp.npk".*;
-use "src/str/strlcpy.npk".*;
-use "src/str/strchr.npk".*;
-use "src/str/strtok.npk".*;
-use "src/str/strconv.npk".*;
-use "src/str/strfmt.npk".*;
-use "src/str/strbuf.npk".*;
-use "src/str/strview.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strcpy.npk".*;
+use "../str/strcmp.npk".*;
+use "../str/strlcpy.npk".*;
+use "../str/strchr.npk".*;
+use "../str/strtok.npk".*;
+use "../str/strconv.npk".*;
+use "../str/strfmt.npk".*;
+use "../str/strbuf.npk".*;
+use "../str/strview.npk".*;

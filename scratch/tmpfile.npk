@@ -1,0 +1,149 @@
+// tmpfile.npk — tmpfile, tmpnam, mkstemp, mkostemp (v0.8.0)
+//
+// Temporary file creation. All functions ensure:
+//   - The file is created with mode 0600 (owner read/write only)
+//   - O_CLOEXEC is set by default (inheriting processes won't keep the fd)
+//   - The filename is unique at the time of creation (uses /proc/self/pid +
+//     an incrementing counter seeded from CLOCK_MONOTONIC for entropy)
+//
+// ── Naming strategy ─────────────────────────────────────────────────────────
+// Template format: /tmp/npk_XXXXXXXX  (8 random hex characters)
+// Entropy: PID (from getpid) XOR CLOCK_MONOTONIC nanoseconds XOR a counter.
+// This is NOT cryptographic randomness — for security-sensitive temp files,
+// use getrandom()/arc4random() (v0.22.x).
+//
+// ── Functions ───────────────────────────────────────────────────────────────
+// mkstemp(template)         — POSIX: fill Xs in template, open, return fd
+// mkostemp(template, flags) — like mkstemp but caller may add extra open flags
+// tmpfile()                 — create FILE* for an auto-deleted temp file
+// tmpnam(buf)               — generate a unique name (NOT safe, deprecated)
+//
+// ── tmpfile() auto-deletion ─────────────────────────────────────────────────
+// After open(), tmpfile() calls unlink() on the path immediately. The file
+// stays accessible via the fd/FILE* but disappears from the filesystem when
+// the last reference closes. This is the standard POSIX tmpfile() contract.
+//
+// ── Notes ───────────────────────────────────────────────────────────────────
+// mkstemp returns an fd, not a FILE*. Wrap with fdopen() if you need stdio.
+// The POSIX requirement is up to TMP_MAX (10,000) retries on name collision.
+// libn retries up to MKSTEMP_MAX_TRIES (256) — more than sufficient given
+// PID + monotonic clock + counter entropy.
+
+use "src/syscall/errno.npk".*;
+use "src/syscall/posix_constants.npk".*;
+use "src/syscall/syscall.npk".*;
+use "src/mem/memcpy.npk".*;
+use "src/str/strlen.npk".*;
+use "src/io/open.npk".*;
+use "src/io/bio/file.npk".*;
+use "src/io/bio/fopen.npk".*;
+use "src/io/bio/stdfiles.npk".*;
+use "src/syscall/syscall_numbers.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Constants
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:MKSTEMP_MAX_TRIES = 256i64;
+pub fixed int64:TMP_PATH_MAX      = 256i64;
+
+// Default temp directory — can be overridden by TMPDIR env (not yet implemented)
+pub fixed string:TMP_DIR = "/tmp/";
+pub fixed string:TMP_PREFIX = "npk_";
+
+// ════════════════════════════════════════════════════════════════════════════
+// Global counter for entropy mixing (monotonically increasing)
+// ════════════════════════════════════════════════════════════════════════════
+
+int64:g_tmp_counter = 0i64;
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpfile_get_entropy — Get a pseudo-random 64-bit value for filename mixing.
+//
+// Mixes: getpid() XOR clock_gettime(CLOCK_MONOTONIC).tv_nsec XOR counter.
+// This is deterministic but unpredictable enough for temp filename uniqueness.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:tmpfile_get_entropy = int64() {
+    g_tmp_counter = g_tmp_counter + 1i64;
+
+    // getpid syscall
+    Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    int64:pid = 1i64;
+    if (!pid_r.is_error) { pid = pid_r.value; }
+
+    // clock_gettime(CLOCK_MONOTONIC) — syscall writes timespec to stack
+    stack int64[2]:ts;  // timespec: tv_sec (int64), tv_nsec (int64)
+    drop(sys_safe(SYS_CLOCK_GETTIME, CLOCK_MONOTONIC, @cast_unchecked<int64>(@ts), 0i64, 0i64, 0i64, 0i64));
+    int64:nsec = ts[1];
+
+    // Mix together with counter
+    int64:v = pid ^ nsec ^ (g_tmp_counter * 6364136223846793005i64);
+
+    // Extra mixing (FNV-like scramble for better distribution)
+    v = v ^ (v >> 33i64);
+    v = v * 0xFF51AFD7ED558CCDi64;
+    v = v ^ (v >> 33i64);
+    v = v * 0xC4CEB9FE1A85EC53i64;
+    v = v ^ (v >> 33i64);
+
+    pass v;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// tmpfile_fill_hex — Fill n bytes at ptr with lowercase hex chars
+//                    from the value v (LSB first).
+// ════════════════════════════════════════════════════════════════════════════
+
+func:tmpfile_fill_hex = NIL(int64:ptr, int64:v, int64:n) {
+    uint8->:p = @cast_unchecked<uint8->>(ptr);
+    fixed string:hex = "0123456789abcdef";
+    int64:i = 0i64;
+    while (i < n) {
+        p[i] = hex[(v >> (i * 4i64)) & 0xFi64];
+        i = i + 1i64;
+    }
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// mkstemp — Fill Xs in template with a unique suffix and open the file.
+//
+// template must end with exactly 6 'X' characters (POSIX requirement).
+// libn accepts any number >= 6 Xs; only the last 6 are replaced.
+// The Xs in template are OVERWRITTEN with the actual characters used.
+//
+// Returns: file descriptor (>= 0) on success, -1 on error (errno set).
+//
+// Example: mkstemp("/tmp/myapp_XXXXXX") opens "/tmp/myapp_a3f8b201"
+// (well, with 6 X chars so "/tmp/myapp_a3f8b2").
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:mkstemp = int64(int64:tmpl) {
+    pass mkostemp(tmpl, 0i64);
+};
+
+// mkostemp — Like mkstemp but with additional open flags (e.g., O_NOFOLLOW).
+pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
+    if (tmpl == 0i64) {
+        drop(libn_errno_set(EINVAL));
+        pass -1i64;
+    }
+
+    int64:tmpl_len = raw(str_strlen(tmpl));
+    if (tmpl_len < 6i64) {
+        drop(libn_errno_set(EINVAL));
+        pass -1i64;
+    }
+
+    // Find the trailing Xs — must be exactly 6 'X' chars at end
+    int64:x_start = tmpl_len - 6i64;
+    uint8->:tp = @cast_unchecked<uint8->>(tmpl);
+    int64:i = 0i64;
+    while (i < 6i64) {
+        if (tp[x_start + i] != 88u8) {  // 'X'
+            drop(libn_errno_set(EINVAL));
+            pass -1i64;
+        }
+        i = i + 1i64;
+    }
+

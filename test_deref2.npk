@@ -1,0 +1,10 @@
+pub func:test = int64() {
+    stack int64:val;
+    val = 10i64;
+    int64->:ptr = @val;
+    *ptr = 20i64;
+    pass *ptr;
+};
+func:failsafe = int32(tbb32:err) {
+    exit 1;
+};

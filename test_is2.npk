@@ -1,0 +1,6 @@
+pub func:test = int64(int64:x) {
+    pass is (x == 0i64) : 1i64 : 2i64;
+};
+func:failsafe = int32(tbb32:err) {
+    exit 1;
+};

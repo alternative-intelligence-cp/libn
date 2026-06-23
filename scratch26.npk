@@ -1,0 +1,8 @@
+func:main = int32() {
+    int64:raw_fn = @cast_unchecked<int64>(@my_func);
+    (int32)():fn = raw_fn;
+    fn();
+    exit 0i32;
+};
+func:my_func = int32() { pass 0i32; };
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

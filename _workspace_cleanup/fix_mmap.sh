@@ -1,0 +1,10 @@
+#!/bin/bash
+f="src/mem/mmap.npk"
+sed -i 's/\.err/\.error/g' "$f"
+sed -i 's/page_align_up(/raw page_align_up(/g' "$f"
+sed -i 's/\*int64:hdr = map_start as \*int64/int64->:hdr = @cast_unchecked<int64->>(map_start)/g' "$f"
+sed -i 's/\*int64:new_hdr = new_map as \*int64/int64->:new_hdr = @cast_unchecked<int64->>(new_map)/g' "$f"
+sed -i 's/\*int64:hdr = old_ptr as \*int64/int64->:hdr = @cast_unchecked<int64->>(old_ptr)/g' "$f"
+sed -i 's/alloc_get_class(/raw alloc_get_class(/g' "$f"
+sed -i 's/^\s*libn_munmap(/    drop libn_munmap(/g' "$f"
+sed -i 's/^\s*mem_free(/    drop mem_free(/g' "$f"

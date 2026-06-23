@@ -7,107 +7,107 @@
 //   - Architecture: x86-64 (Linux ABI)
 //
 // Usage:
-//   use "src/syscall/posix_constants.npk".*;
+//   use "../syscall/posix_constants.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // FILE OPEN FLAGS  (fcntl.h, O_* values for x86-64 Linux)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:O_RDONLY    = 0i64;         // Open for reading only
-pub fixed int64:O_WRONLY    = 1i64;         // Open for writing only
-pub fixed int64:O_RDWR      = 2i64;         // Open for reading and writing
-pub fixed int64:O_CREAT     = 64i64;        // Create if doesn't exist  (0100 octal)
-pub fixed int64:O_EXCL      = 128i64;       // Error if already exists  (0200 octal)
-pub fixed int64:O_NOCTTY    = 256i64;       // Don't assign controlling terminal
-pub fixed int64:O_TRUNC     = 512i64;       // Truncate to zero on open
-pub fixed int64:O_APPEND    = 1024i64;      // Writes always go to end
-pub fixed int64:O_NONBLOCK  = 2048i64;      // Non-blocking I/O
-pub fixed int64:O_DSYNC     = 4096i64;      // Data sync (fdatasync on write)
-pub fixed int64:O_FASYNC    = 8192i64;      // Enable SIGIO on I/O
-pub fixed int64:O_DIRECT    = 16384i64;     // Direct I/O (bypass page cache)
-pub fixed int64:O_LARGEFILE = 32768i64;     // Large file support (obsolete on x86-64)
-pub fixed int64:O_DIRECTORY = 65536i64;     // Fail if not a directory
-pub fixed int64:O_NOFOLLOW  = 131072i64;    // Don't follow symlinks
-pub fixed int64:O_NOATIME   = 262144i64;    // Don't update atime on read
-pub fixed int64:O_CLOEXEC   = 524288i64;    // Close-on-exec (FD_CLOEXEC)
-pub fixed int64:O_SYNC      = 1052672i64;   // Full data+metadata sync (O_DSYNC|O_RSYNC)
-pub fixed int64:O_PATH      = 2097152i64;   // Path-only fd (no I/O)
-pub fixed int64:O_TMPFILE   = 4194304i64;   // Unnamed temp file (dir must be writable)
-pub fixed int64:O_NDELAY    = O_NONBLOCK;   // Alias for O_NONBLOCK
+pub fixed int64:O_RDONLY    = 0i64;           // Open for reading only
+pub fixed int64:O_WRONLY    = 1i64;           // Open for writing only
+pub fixed int64:O_RDWR      = 2i64;           // Open for reading and writing
+pub fixed int64:O_CREAT     = 64i64;          // Create if doesn't exist  (0100 octal)
+pub fixed int64:O_EXCL      = 128i64;         // Error if already exists  (0200 octal)
+pub fixed int64:O_NOCTTY    = 256i64;         // Don't assign controlling terminal
+pub fixed int64:O_TRUNC     = 512i64;         // Truncate to zero on open
+pub fixed int64:O_APPEND    = 1024i64;        // Writes always go to end
+pub fixed int64:O_NONBLOCK  = 2048i64;        // Non-blocking I/O
+pub fixed int64:O_DSYNC     = 4096i64;        // Data sync (fdatasync on write)
+pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+pub fixed int64:O_DIRECT    = 16384i64;       // Direct I/O (bypass page cache)
+pub fixed int64:O_LARGEFILE = 32768i64;       // Large file support (obsolete on x86-64)
+pub fixed int64:O_DIRECTORY = 65536i64;       // Fail if not a directory
+pub fixed int64:O_NOFOLLOW  = 131072i64;      // Don't follow symlinks
+pub fixed int64:O_NOATIME   = 262144i64;      // Don't update atime on read
+pub fixed int64:O_CLOEXEC   = 524288i64;      // Close-on-exec (FD_CLOEXEC)
+pub fixed int64:O_SYNC      = 1052672i64;     // Full data+metadata sync (O_DSYNC|O_RSYNC)
+pub fixed int64:O_PATH      = 2097152i64;     // Path-only fd (no I/O)
+pub fixed int64:O_TMPFILE   = 4194304i64;     // Unnamed temp file (dir must be writable)
+pub fixed int64:O_NDELAY    = O_NONBLOCK;     // Alias for O_NONBLOCK
 
 // ════════════════════════════════════════════════════════════════════════════
 // SEEK WHENCE VALUES  (unistd.h)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:SEEK_SET = 0i64;    // Seek from beginning of file
-pub fixed int64:SEEK_CUR = 1i64;    // Seek from current position
-pub fixed int64:SEEK_END = 2i64;    // Seek from end of file
-pub fixed int64:SEEK_DATA = 3i64;   // Next location containing data (SEEK_HOLE/DATA)
-pub fixed int64:SEEK_HOLE = 4i64;   // Next hole (sparse file support)
+pub fixed int64:SEEK_SET = 0i64;      // Seek from beginning of file
+pub fixed int64:SEEK_CUR = 1i64;      // Seek from current position
+pub fixed int64:SEEK_END = 2i64;      // Seek from end of file
+pub fixed int64:SEEK_DATA = 3i64;     // Next location containing data (SEEK_HOLE/DATA)
+pub fixed int64:SEEK_HOLE = 4i64;     // Next hole (sparse file support)
 
 // ════════════════════════════════════════════════════════════════════════════
 // FILE PERMISSION MODES  (sys/stat.h S_I* values)
 // ════════════════════════════════════════════════════════════════════════════
 
 // File type masks
-pub fixed int64:S_IFMT   = 61440i64;    // 0170000 — type field bitmask
-pub fixed int64:S_IFSOCK = 49152i64;    // 0140000 — socket
-pub fixed int64:S_IFLNK  = 40960i64;   // 0120000 — symbolic link
-pub fixed int64:S_IFREG  = 32768i64;   // 0100000 — regular file
-pub fixed int64:S_IFBLK  = 24576i64;   // 0060000 — block device
-pub fixed int64:S_IFDIR  = 16384i64;   // 0040000 — directory
-pub fixed int64:S_IFCHR  = 8192i64;    // 0020000 — character device
-pub fixed int64:S_IFIFO  = 4096i64;    // 0010000 — FIFO/named pipe
+pub fixed int64:S_IFMT   = 61440i64;      // 0170000 — type field bitmask
+pub fixed int64:S_IFSOCK = 49152i64;      // 0140000 — socket
+pub fixed int64:S_IFLNK  = 40960i64;     // 0120000 — symbolic link
+pub fixed int64:S_IFREG  = 32768i64;     // 0100000 — regular file
+pub fixed int64:S_IFBLK  = 24576i64;     // 0060000 — block device
+pub fixed int64:S_IFDIR  = 16384i64;     // 0040000 — directory
+pub fixed int64:S_IFCHR  = 8192i64;      // 0020000 — character device
+pub fixed int64:S_IFIFO  = 4096i64;      // 0010000 — FIFO/named pipe
 
 // SUID/SGID/sticky
-pub fixed int64:S_ISUID  = 2048i64;    // 04000 — set-user-ID bit
-pub fixed int64:S_ISGID  = 1024i64;    // 02000 — set-group-ID bit
-pub fixed int64:S_ISVTX  = 512i64;     // 01000 — sticky bit
+pub fixed int64:S_ISUID  = 2048i64;      // 04000 — set-user-ID bit
+pub fixed int64:S_ISGID  = 1024i64;      // 02000 — set-group-ID bit
+pub fixed int64:S_ISVTX  = 512i64;       // 01000 — sticky bit
 
 // Owner permissions
-pub fixed int64:S_IRWXU  = 448i64;     // 0700 — owner: rwx
-pub fixed int64:S_IRUSR  = 256i64;     // 0400 — owner: read
-pub fixed int64:S_IWUSR  = 128i64;     // 0200 — owner: write
-pub fixed int64:S_IXUSR  = 64i64;      // 0100 — owner: execute
+pub fixed int64:S_IRWXU  = 448i64;       // 0700 — owner: rwx
+pub fixed int64:S_IRUSR  = 256i64;       // 0400 — owner: read
+pub fixed int64:S_IWUSR  = 128i64;       // 0200 — owner: write
+pub fixed int64:S_IXUSR  = 64i64;        // 0100 — owner: execute
 
 // Group permissions
-pub fixed int64:S_IRWXG  = 56i64;      // 070  — group: rwx
-pub fixed int64:S_IRGRP  = 32i64;      // 040  — group: read
-pub fixed int64:S_IWGRP  = 16i64;      // 020  — group: write
-pub fixed int64:S_IXGRP  = 8i64;       // 010  — group: execute
+pub fixed int64:S_IRWXG  = 56i64;        // 070  — group: rwx
+pub fixed int64:S_IRGRP  = 32i64;        // 040  — group: read
+pub fixed int64:S_IWGRP  = 16i64;        // 020  — group: write
+pub fixed int64:S_IXGRP  = 8i64;         // 010  — group: execute
 
 // Other permissions
-pub fixed int64:S_IRWXO  = 7i64;       // 07   — other: rwx
-pub fixed int64:S_IROTH  = 4i64;       // 04   — other: read
-pub fixed int64:S_IWOTH  = 2i64;       // 02   — other: write
-pub fixed int64:S_IXOTH  = 1i64;       // 01   — other: execute
+pub fixed int64:S_IRWXO  = 7i64;         // 07   — other: rwx
+pub fixed int64:S_IROTH  = 4i64;         // 04   — other: read
+pub fixed int64:S_IWOTH  = 2i64;         // 02   — other: write
+pub fixed int64:S_IXOTH  = 1i64;         // 01   — other: execute
 
 // Commonly used combined modes
-pub fixed int64:MODE_644 = 420i64;     // rw-r--r--  (user rw, group r, other r)
-pub fixed int64:MODE_755 = 493i64;     // rwxr-xr-x  (user rwx, group rx, other rx)
-pub fixed int64:MODE_777 = 511i64;     // rwxrwxrwx  (all permissions)
-pub fixed int64:MODE_600 = 384i64;     // rw-------  (user rw only)
-pub fixed int64:MODE_700 = 448i64;     // rwx------  (user rwx only)
-pub fixed int64:MODE_400 = 256i64;     // r--------  (user read only)
+pub fixed int64:MODE_644 = 420i64;       // rw-r--r--  (user rw, group r, other r)
+pub fixed int64:MODE_755 = 493i64;       // rwxr-xr-x  (user rwx, group rx, other rx)
+pub fixed int64:MODE_777 = 511i64;       // rwxrwxrwx  (all permissions)
+pub fixed int64:MODE_600 = 384i64;       // rw-------  (user rw only)
+pub fixed int64:MODE_700 = 448i64;       // rwx------  (user rwx only)
+pub fixed int64:MODE_400 = 256i64;       // r--------  (user read only)
 
 // ════════════════════════════════════════════════════════════════════════════
 // ACCESS CHECK MODES  (unistd.h, faccessat flags)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:F_OK = 0i64;    // Test existence
-pub fixed int64:R_OK = 4i64;    // Test read permission
-pub fixed int64:W_OK = 2i64;    // Test write permission
-pub fixed int64:X_OK = 1i64;    // Test execute permission
+pub fixed int64:F_OK = 0i64;      // Test existence
+pub fixed int64:R_OK = 4i64;      // Test read permission
+pub fixed int64:W_OK = 2i64;      // Test write permission
+pub fixed int64:X_OK = 1i64;      // Test execute permission
 
 // AT flags (for *at() syscalls)
-pub fixed int64:AT_FDCWD            = -100i64;  // Use current working directory
-pub fixed int64:AT_SYMLINK_NOFOLLOW = 256i64;   // Don't follow symlinks
-pub fixed int64:AT_REMOVEDIR        = 512i64;   // Remove directory instead of file
-pub fixed int64:AT_SYMLINK_FOLLOW   = 1024i64;  // Follow symlinks
-pub fixed int64:AT_EACCESS          = 512i64;   // Use effective UID/GID for access check
-pub fixed int64:AT_EMPTY_PATH       = 4096i64;  // Allow empty path (use fd directly)
-pub fixed int64:AT_NO_AUTOMOUNT     = 2048i64;  // Don't trigger automount
-pub fixed int64:AT_STATX_SYNC_AS_STAT = 0i64;  // statx sync behaviour
+pub fixed int64:AT_FDCWD            = -100i64;    // Use current working directory
+pub fixed int64:AT_SYMLINK_NOFOLLOW = 256i64;     // Don't follow symlinks
+pub fixed int64:AT_REMOVEDIR        = 512i64;     // Remove directory instead of file
+pub fixed int64:AT_SYMLINK_FOLLOW   = 1024i64;    // Follow symlinks
+pub fixed int64:AT_EACCESS          = 512i64;     // Use effective UID/GID for access check
+pub fixed int64:AT_EMPTY_PATH       = 4096i64;    // Allow empty path (use fd directly)
+pub fixed int64:AT_NO_AUTOMOUNT     = 2048i64;    // Don't trigger automount
+pub fixed int64:AT_STATX_SYNC_AS_STAT = 0i64;    // statx sync behaviour
 pub fixed int64:AT_STATX_FORCE_SYNC   = 8192i64;
 pub fixed int64:AT_STATX_DONT_SYNC    = 16384i64;
 
@@ -115,37 +115,37 @@ pub fixed int64:AT_STATX_DONT_SYNC    = 16384i64;
 // MMAP PROTECTION FLAGS  (sys/mman.h PROT_*)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:PROT_NONE  = 0i64;    // Page cannot be accessed
-pub fixed int64:PROT_READ  = 1i64;    // Page can be read
-pub fixed int64:PROT_WRITE = 2i64;    // Page can be written
-pub fixed int64:PROT_EXEC  = 4i64;    // Page can be executed
-pub fixed int64:PROT_RW    = 3i64;    // Read + write (convenience alias)
-pub fixed int64:PROT_RWX   = 7i64;    // Read + write + execute (for JIT)
+pub fixed int64:PROT_NONE  = 0i64;      // Page cannot be accessed
+pub fixed int64:PROT_READ  = 1i64;      // Page can be read
+pub fixed int64:PROT_WRITE = 2i64;      // Page can be written
+pub fixed int64:PROT_EXEC  = 4i64;      // Page can be executed
+pub fixed int64:PROT_RW    = 3i64;      // Read + write (convenience alias)
+pub fixed int64:PROT_RWX   = 7i64;      // Read + write + execute (for JIT)
 
 // ════════════════════════════════════════════════════════════════════════════
 // MMAP MAP FLAGS  (sys/mman.h MAP_*)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:MAP_SHARED          = 1i64;       // Share changes with other mappings
-pub fixed int64:MAP_PRIVATE         = 2i64;       // Private copy-on-write mapping
-pub fixed int64:MAP_FIXED           = 16i64;      // Exact address — replace any existing
-pub fixed int64:MAP_ANONYMOUS       = 32i64;      // Not backed by file (fd=-1, offset=0)
-pub fixed int64:MAP_ANON            = 32i64;      // Alias for MAP_ANONYMOUS
-pub fixed int64:MAP_GROWSDOWN       = 256i64;     // Stack-like segment
-pub fixed int64:MAP_DENYWRITE       = 2048i64;    // ETXTBSY on write to mapped file
-pub fixed int64:MAP_EXECUTABLE      = 4096i64;    // Mark as executable
-pub fixed int64:MAP_LOCKED          = 8192i64;    // Lock pages in memory
-pub fixed int64:MAP_NORESERVE       = 16384i64;   // Don't reserve swap space
-pub fixed int64:MAP_POPULATE        = 32768i64;   // Prefault page tables
-pub fixed int64:MAP_NONBLOCK        = 65536i64;   // POPULATE: don't block on page fault
-pub fixed int64:MAP_STACK           = 131072i64;  // Allocation for stack
-pub fixed int64:MAP_HUGETLB         = 262144i64;  // Use huge pages
-pub fixed int64:MAP_SYNC            = 524288i64;  // Sync mapping (DAX)
-pub fixed int64:MAP_FIXED_NOREPLACE = 1048576i64; // Fixed: EEXIST if addr occupied
-pub fixed int64:MAP_UNINITIALIZED   = 67108864i64; // Don't zero anonymous pages
+pub fixed int64:MAP_SHARED          = 1i64;         // Share changes with other mappings
+pub fixed int64:MAP_PRIVATE         = 2i64;         // Private copy-on-write mapping
+pub fixed int64:MAP_FIXED           = 16i64;        // Exact address — replace any existing
+pub fixed int64:MAP_ANONYMOUS       = 32i64;        // Not backed by file (fd=-1, offset=0)
+pub fixed int64:MAP_ANON            = 32i64;        // Alias for MAP_ANONYMOUS
+pub fixed int64:MAP_GROWSDOWN       = 256i64;       // Stack-like segment
+pub fixed int64:MAP_DENYWRITE       = 2048i64;      // ETXTBSY on write to mapped file
+pub fixed int64:MAP_EXECUTABLE      = 4096i64;      // @cast_unchecked<executable>(Mark)
+pub fixed int64:MAP_LOCKED          = 8192i64;      // Lock pages in memory
+pub fixed int64:MAP_NORESERVE       = 16384i64;     // Don't reserve swap space
+pub fixed int64:MAP_POPULATE        = 32768i64;     // Prefault page tables
+pub fixed int64:MAP_NONBLOCK        = 65536i64;     // POPULATE: don't block on page fault
+pub fixed int64:MAP_STACK           = 131072i64;    // Allocation for stack
+pub fixed int64:MAP_HUGETLB         = 262144i64;    // Use huge pages
+pub fixed int64:MAP_SYNC            = 524288i64;    // Sync mapping (DAX)
+pub fixed int64:MAP_FIXED_NOREPLACE = 1048576i64;   // Fixed: EEXIST if addr occupied
+pub fixed int64:MAP_UNINITIALIZED   = 67108864i64;   // Don't zero anonymous pages
 
 // Convenience combinations used in libn
-pub fixed int64:MAP_ANON_PRIV = 34i64;   // MAP_PRIVATE|MAP_ANONYMOUS — most common
+pub fixed int64:MAP_ANON_PRIV = 34i64;     // MAP_PRIVATE|MAP_ANONYMOUS — most common
 
 // madvise hints (SYS_MADVISE arg3)
 pub fixed int64:MADV_NORMAL      = 0i64;
@@ -173,66 +173,66 @@ pub fixed int64:MREMAP_FIXED     = 2i64;
 pub fixed int64:MREMAP_DONTUNMAP = 4i64;
 
 // ════════════════════════════════════════════════════════════════════════════
-// SIGNAL NUMBERS  (signal.h — x86-64 Linux, same as POSIX)
+// SIGNAL NUMBERS  (signal.h — x86-64 Linux, @cast_unchecked<POSIX>(same))
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:SIGHUP    = 1i64;    // Hangup
-pub fixed int64:SIGINT    = 2i64;    // Terminal interrupt (Ctrl+C)
-pub fixed int64:SIGQUIT   = 3i64;    // Terminal quit (Ctrl+\)
-pub fixed int64:SIGILL    = 4i64;    // Illegal instruction
-pub fixed int64:SIGTRAP   = 5i64;    // Trace/breakpoint trap
-pub fixed int64:SIGABRT   = 6i64;    // Abort signal
-pub fixed int64:SIGBUS    = 7i64;    // Bus error (bad memory access)
-pub fixed int64:SIGFPE    = 8i64;    // Floating-point exception
-pub fixed int64:SIGKILL   = 9i64;    // Kill signal (cannot be caught)
-pub fixed int64:SIGUSR1   = 10i64;   // User-defined signal 1
-pub fixed int64:SIGSEGV   = 11i64;   // Segmentation fault
-pub fixed int64:SIGUSR2   = 12i64;   // User-defined signal 2
-pub fixed int64:SIGPIPE   = 13i64;   // Broken pipe
-pub fixed int64:SIGALRM   = 14i64;   // Timer signal from alarm()
-pub fixed int64:SIGTERM   = 15i64;   // Termination signal (graceful)
-pub fixed int64:SIGSTKFLT = 16i64;   // Stack fault on coprocessor (unused)
-pub fixed int64:SIGCHLD   = 17i64;   // Child stopped or terminated
-pub fixed int64:SIGCONT   = 18i64;   // Continue if stopped
-pub fixed int64:SIGSTOP   = 19i64;   // Stop process (cannot be caught)
-pub fixed int64:SIGTSTP   = 20i64;   // Terminal stop (Ctrl+Z)
-pub fixed int64:SIGTTIN   = 21i64;   // Background read from terminal
-pub fixed int64:SIGTTOU   = 22i64;   // Background write to terminal
-pub fixed int64:SIGURG    = 23i64;   // Urgent data on socket
-pub fixed int64:SIGXCPU   = 24i64;   // CPU time limit exceeded
-pub fixed int64:SIGXFSZ   = 25i64;   // File size limit exceeded
-pub fixed int64:SIGVTALRM = 26i64;   // Virtual timer signal
-pub fixed int64:SIGPROF   = 27i64;   // Profiling timer signal
-pub fixed int64:SIGWINCH  = 28i64;   // Terminal window size change
-pub fixed int64:SIGIO     = 29i64;   // I/O possible (async I/O)
-pub fixed int64:SIGPOLL   = 29i64;   // Synonym for SIGIO
-pub fixed int64:SIGPWR    = 30i64;   // Power failure restart
-pub fixed int64:SIGSYS    = 31i64;   // Bad system call
-pub fixed int64:SIGUNUSED = 31i64;   // Synonym for SIGSYS
+pub fixed int64:SIGHUP    = 1i64;      // Hangup
+pub fixed int64:SIGINT    = 2i64;      // Terminal interrupt (Ctrl+C)
+pub fixed int64:SIGQUIT   = 3i64;      // Terminal quit (Ctrl+\)
+pub fixed int64:SIGILL    = 4i64;      // Illegal instruction
+pub fixed int64:SIGTRAP   = 5i64;      // Trace/breakpoint trap
+pub fixed int64:SIGABRT   = 6i64;      // Abort signal
+pub fixed int64:SIGBUS    = 7i64;      // Bus error (bad memory access)
+pub fixed int64:SIGFPE    = 8i64;      // Floating-point exception
+pub fixed int64:SIGKILL   = 9i64;      // Kill signal (cannot be caught)
+pub fixed int64:SIGUSR1   = 10i64;     // User-defined signal 1
+pub fixed int64:SIGSEGV   = 11i64;     // Segmentation fault
+pub fixed int64:SIGUSR2   = 12i64;     // User-defined signal 2
+pub fixed int64:SIGPIPE   = 13i64;     // Broken pipe
+pub fixed int64:SIGALRM   = 14i64;     // Timer signal from alarm()
+pub fixed int64:SIGTERM   = 15i64;     // Termination signal (graceful)
+pub fixed int64:SIGSTKFLT = 16i64;     // Stack fault on coprocessor (unused)
+pub fixed int64:SIGCHLD   = 17i64;     // Child stopped or terminated
+pub fixed int64:SIGCONT   = 18i64;     // Continue if stopped
+pub fixed int64:SIGSTOP   = 19i64;     // Stop process (cannot be caught)
+pub fixed int64:SIGTSTP   = 20i64;     // Terminal stop (Ctrl+Z)
+pub fixed int64:SIGTTIN   = 21i64;     // Background read from terminal
+pub fixed int64:SIGTTOU   = 22i64;     // Background write to terminal
+pub fixed int64:SIGURG    = 23i64;     // Urgent data on socket
+pub fixed int64:SIGXCPU   = 24i64;     // CPU time limit exceeded
+pub fixed int64:SIGXFSZ   = 25i64;     // File size limit exceeded
+pub fixed int64:SIGVTALRM = 26i64;     // Virtual timer signal
+pub fixed int64:SIGPROF   = 27i64;     // Profiling timer signal
+pub fixed int64:SIGWINCH  = 28i64;     // Terminal window size change
+pub fixed int64:SIGIO     = 29i64;     // I/O possible (async I/O)
+pub fixed int64:SIGPOLL   = 29i64;     // Synonym for SIGIO
+pub fixed int64:SIGPWR    = 30i64;     // Power failure restart
+pub fixed int64:SIGSYS    = 31i64;     // Bad system call
+pub fixed int64:SIGUNUSED = 31i64;     // Synonym for SIGSYS
 
 // Real-time signals (POSIX 1003.1b)
-pub fixed int64:SIGRTMIN  = 34i64;   // First real-time signal
-pub fixed int64:SIGRTMAX  = 64i64;   // Last real-time signal
+pub fixed int64:SIGRTMIN  = 34i64;     // First real-time signal
+pub fixed int64:SIGRTMAX  = 64i64;     // Last real-time signal
 
 // sigaction SA_* flags
 pub fixed int64:SA_NOCLDSTOP = 1i64;
 pub fixed int64:SA_NOCLDWAIT = 2i64;
-pub fixed int64:SA_SIGINFO   = 4i64;       // Handler receives siginfo_t
-pub fixed int64:SA_RESTORER  = 67108864i64; // 0x4000000 — required on x86-64
-pub fixed int64:SA_ONSTACK   = 134217728i64; // 0x8000000 — use alternate stack
-pub fixed int64:SA_RESTART   = 268435456i64; // 0x10000000 — restart interrupted syscalls
-pub fixed int64:SA_NODEFER   = 1073741824i64; // 0x40000000 — don't mask signal
-pub fixed int64:SA_RESETHAND = -2147483648i64; // 0x80000000 — reset to SIG_DFL after
+pub fixed int64:SA_SIGINFO   = 4i64;         // Handler receives siginfo_t
+pub fixed int64:SA_RESTORER  = 67108864i64;   // 0x4000000 — required on x86-64
+pub fixed int64:SA_ONSTACK   = 134217728i64;   // 0x8000000 — use alternate stack
+pub fixed int64:SA_RESTART   = 268435456i64;   // 0x10000000 — restart interrupted syscalls
+pub fixed int64:SA_NODEFER   = 1073741824i64;   // 0x40000000 — don't mask signal
+pub fixed int64:SA_RESETHAND = -2147483648i64;   // 0x80000000 — reset to SIG_DFL after
 
-// Special handler values (stored as int64 function pointer slots)
-pub fixed int64:SIG_DFL = 0i64;    // Default signal action
-pub fixed int64:SIG_IGN = 1i64;    // Ignore signal
-pub fixed int64:SIG_ERR = -1i64;   // Error from signal()
+// Special handler values (@cast_unchecked<int64>(stored) function pointer slots)
+pub fixed int64:SIG_DFL = 0i64;      // Default signal action
+pub fixed int64:SIG_IGN = 1i64;      // Ignore signal
+pub fixed int64:SIG_ERR = -1i64;     // Error from signal()
 
 // sigprocmask how values
-pub fixed int64:SIG_BLOCK   = 0i64;    // Block signals in set
-pub fixed int64:SIG_UNBLOCK = 1i64;    // Unblock signals in set
-pub fixed int64:SIG_SETMASK = 2i64;    // Set mask to set
+pub fixed int64:SIG_BLOCK   = 0i64;      // Block signals in set
+pub fixed int64:SIG_UNBLOCK = 1i64;      // Unblock signals in set
+pub fixed int64:SIG_SETMASK = 2i64;      // Set mask to set
 
 // ════════════════════════════════════════════════════════════════════════════
 // DIRECTORY ENTRY TYPES  (dirent.h d_type values from getdents64)
@@ -246,7 +246,7 @@ pub fixed int64:DT_BLK     = 6i64;
 pub fixed int64:DT_REG     = 8i64;
 pub fixed int64:DT_LNK     = 10i64;
 pub fixed int64:DT_SOCK    = 12i64;
-pub fixed int64:DT_WHT     = 14i64;   // BSD whiteout (Linux: unused)
+pub fixed int64:DT_WHT     = 14i64;     // BSD whiteout (Linux: unused)
 
 // ════════════════════════════════════════════════════════════════════════════
 // CLOCK IDS  (time.h, POSIX clockid_t values)
@@ -269,9 +269,9 @@ pub fixed int64:CLOCK_TAI               = 11i64;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub fixed int64:AF_UNSPEC   = 0i64;
-pub fixed int64:AF_UNIX     = 1i64;    // Unix domain sockets
-pub fixed int64:AF_LOCAL    = 1i64;    // Alias for AF_UNIX
-pub fixed int64:AF_INET     = 2i64;    // IPv4
+pub fixed int64:AF_UNIX     = 1i64;      // Unix domain sockets
+pub fixed int64:AF_LOCAL    = 1i64;      // Alias for AF_UNIX
+pub fixed int64:AF_INET     = 2i64;      // IPv4
 pub fixed int64:AF_AX25     = 3i64;
 pub fixed int64:AF_IPX      = 4i64;
 pub fixed int64:AF_APPLETALK = 5i64;
@@ -279,11 +279,11 @@ pub fixed int64:AF_NETROM   = 6i64;
 pub fixed int64:AF_BRIDGE   = 7i64;
 pub fixed int64:AF_ATMPVC   = 8i64;
 pub fixed int64:AF_X25      = 9i64;
-pub fixed int64:AF_INET6    = 10i64;   // IPv6
+pub fixed int64:AF_INET6    = 10i64;     // IPv6
 pub fixed int64:AF_ROSE     = 11i64;
-pub fixed int64:AF_NETLINK  = 16i64;   // Kernel netlink
-pub fixed int64:AF_PACKET   = 17i64;   // Raw packet
-pub fixed int64:AF_VSOCK    = 40i64;   // VM sockets
+pub fixed int64:AF_NETLINK  = 16i64;     // Kernel netlink
+pub fixed int64:AF_PACKET   = 17i64;     // Raw packet
+pub fixed int64:AF_VSOCK    = 40i64;     // VM sockets
 
 // Also PF_ aliases (historical, same values)
 pub fixed int64:PF_UNSPEC = AF_UNSPEC;
@@ -295,15 +295,15 @@ pub fixed int64:PF_INET6  = AF_INET6;
 // SOCKET TYPES  (sys/socket.h SOCK_*)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:SOCK_STREAM    = 1i64;       // TCP-style
-pub fixed int64:SOCK_DGRAM     = 2i64;       // UDP-style
-pub fixed int64:SOCK_RAW       = 3i64;       // Raw socket
-pub fixed int64:SOCK_RDM       = 4i64;       // Reliable datagram (rarely used)
-pub fixed int64:SOCK_SEQPACKET = 5i64;       // Sequential packet
-pub fixed int64:SOCK_DCCP      = 6i64;       // DCCP
-pub fixed int64:SOCK_PACKET    = 10i64;      // Obsolete raw packet
-pub fixed int64:SOCK_NONBLOCK  = 2048i64;    // Set O_NONBLOCK on new socket
-pub fixed int64:SOCK_CLOEXEC   = 524288i64;  // Set O_CLOEXEC on new socket
+pub fixed int64:SOCK_STREAM    = 1i64;         // TCP-style
+pub fixed int64:SOCK_DGRAM     = 2i64;         // UDP-style
+pub fixed int64:SOCK_RAW       = 3i64;         // Raw socket
+pub fixed int64:SOCK_RDM       = 4i64;         // Reliable datagram (rarely used)
+pub fixed int64:SOCK_SEQPACKET = 5i64;         // Sequential packet
+pub fixed int64:SOCK_DCCP      = 6i64;         // DCCP
+pub fixed int64:SOCK_PACKET    = 10i64;        // Obsolete raw packet
+pub fixed int64:SOCK_NONBLOCK  = 2048i64;      // Set O_NONBLOCK on new socket
+pub fixed int64:SOCK_CLOEXEC   = 524288i64;    // Set O_CLOEXEC on new socket
 
 // ════════════════════════════════════════════════════════════════════════════
 // SOCKET OPTION LEVELS  (sys/socket.h SOL_*)
@@ -391,31 +391,31 @@ pub fixed int64:MSG_CMSG_CLOEXEC = 1073741824i64;
 // FCNTL COMMANDS  (fcntl.h F_* commands)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:F_DUPFD         = 0i64;    // Duplicate file descriptor
-pub fixed int64:F_GETFD         = 1i64;    // Get file descriptor flags
-pub fixed int64:F_SETFD         = 2i64;    // Set file descriptor flags
-pub fixed int64:F_GETFL         = 3i64;    // Get file status flags
-pub fixed int64:F_SETFL         = 4i64;    // Set file status flags
-pub fixed int64:F_GETLK         = 5i64;    // Get record locking info
-pub fixed int64:F_SETLK         = 6i64;    // Set record locking info
-pub fixed int64:F_SETLKW        = 7i64;    // Set record locking (blocking)
-pub fixed int64:F_SETOWN        = 8i64;    // Set owner for SIGIO
-pub fixed int64:F_GETOWN        = 9i64;    // Get owner for SIGIO
-pub fixed int64:F_SETSIG        = 10i64;   // Set signal sent for I/O
-pub fixed int64:F_GETSIG        = 11i64;   // Get signal sent for I/O
-pub fixed int64:F_GETLK64       = 12i64;   // Get record locking info (64-bit)
-pub fixed int64:F_SETLK64       = 13i64;   // Set record locking (64-bit)
-pub fixed int64:F_SETLKW64      = 14i64;   // Set record locking (blocking, 64-bit)
-pub fixed int64:F_SETOWN_EX     = 15i64;   // Set owner with struct
-pub fixed int64:F_GETOWN_EX     = 16i64;   // Get owner with struct
-pub fixed int64:F_GETOWNER_UIDS = 17i64;   // Get UIDs of signal receivers
-pub fixed int64:F_OFD_GETLK     = 36i64;   // Open file description lock: get
-pub fixed int64:F_OFD_SETLK     = 37i64;   // Open file description lock: set
-pub fixed int64:F_OFD_SETLKW    = 38i64;   // Open file description lock: set+wait
-pub fixed int64:F_DUPFD_CLOEXEC = 1030i64; // dup with FD_CLOEXEC
+pub fixed int64:F_DUPFD         = 0i64;      // Duplicate file descriptor
+pub fixed int64:F_GETFD         = 1i64;      // Get file descriptor flags
+pub fixed int64:F_SETFD         = 2i64;      // Set file descriptor flags
+pub fixed int64:F_GETFL         = 3i64;      // Get file status flags
+pub fixed int64:F_SETFL         = 4i64;      // Set file status flags
+pub fixed int64:F_GETLK         = 5i64;      // Get record locking info
+pub fixed int64:F_SETLK         = 6i64;      // Set record locking info
+pub fixed int64:F_SETLKW        = 7i64;      // Set record locking (blocking)
+pub fixed int64:F_SETOWN        = 8i64;      // Set owner for SIGIO
+pub fixed int64:F_GETOWN        = 9i64;      // Get owner for SIGIO
+pub fixed int64:F_SETSIG        = 10i64;     // Set signal sent for I/O
+pub fixed int64:F_GETSIG        = 11i64;     // Get signal sent for I/O
+pub fixed int64:F_GETLK64       = 12i64;     // Get record locking info (64-bit)
+pub fixed int64:F_SETLK64       = 13i64;     // Set record locking (64-bit)
+pub fixed int64:F_SETLKW64      = 14i64;     // Set record locking (blocking, 64-bit)
+pub fixed int64:F_SETOWN_EX     = 15i64;     // Set owner with struct
+pub fixed int64:F_GETOWN_EX     = 16i64;     // Get owner with struct
+pub fixed int64:F_GETOWNER_UIDS = 17i64;     // Get UIDs of signal receivers
+pub fixed int64:F_OFD_GETLK     = 36i64;     // Open file description lock: get
+pub fixed int64:F_OFD_SETLK     = 37i64;     // Open file description lock: set
+pub fixed int64:F_OFD_SETLKW    = 38i64;     // Open file description lock: set+wait
+pub fixed int64:F_DUPFD_CLOEXEC = 1030i64;   // dup with FD_CLOEXEC
 
 // File descriptor flags (used with F_GETFD/F_SETFD)
-pub fixed int64:FD_CLOEXEC = 1i64;    // Close-on-exec
+pub fixed int64:FD_CLOEXEC = 1i64;      // Close-on-exec
 
 // fcntl lock types (struct flock l_type)
 pub fixed int64:F_RDLCK = 0i64;
@@ -437,16 +437,16 @@ pub fixed int64:EPOLLWRNORM    = 256i64;
 pub fixed int64:EPOLLWRBAND    = 512i64;
 pub fixed int64:EPOLLMSG       = 1024i64;
 pub fixed int64:EPOLLRDHUP     = 8192i64;
-pub fixed int64:EPOLLEXCLUSIVE = 268435456i64;  // 1 << 28
-pub fixed int64:EPOLLWAKEUP    = 536870912i64;  // 1 << 29
-pub fixed int64:EPOLLONESHOT   = 1073741824i64; // 1 << 30
-pub fixed int64:EPOLLET        = 2147483648i64; // 1 << 31 — edge-triggered
+pub fixed int64:EPOLLEXCLUSIVE = 268435456i64;    // 1 << 28
+pub fixed int64:EPOLLWAKEUP    = 536870912i64;    // 1 << 29
+pub fixed int64:EPOLLONESHOT   = 1073741824i64;   // 1 << 30
+pub fixed int64:EPOLLET        = 2147483648i64;   // 1 << 31 — edge-triggered
 
 pub fixed int64:EPOLL_CTL_ADD  = 1i64;
 pub fixed int64:EPOLL_CTL_DEL  = 2i64;
 pub fixed int64:EPOLL_CTL_MOD  = 3i64;
 
-pub fixed int64:EPOLL_CLOEXEC  = 524288i64;   // O_CLOEXEC for epoll_create1
+pub fixed int64:EPOLL_CLOEXEC  = 524288i64;     // O_CLOEXEC for epoll_create1
 
 // epoll_event struct size (packed: events=4, pad=4, data=8 = 12 bytes on x86-64)
 pub fixed int64:EPOLL_EVENT_SIZE = 12i64;
@@ -458,9 +458,9 @@ pub fixed int64:EPOLL_EVENT_SIZE = 12i64;
 // These are used like: if wait_exited(status) { code = wait_exit_code(status); }
 // status is the raw int32 returned by wait4/waitpid
 
-pub fixed int64:WNOHANG    = 1i64;    // Don't block if no child has exited
-pub fixed int64:WUNTRACED  = 2i64;    // Report stopped children
-pub fixed int64:WCONTINUED = 8i64;    // Report continued children
+pub fixed int64:WNOHANG    = 1i64;      // Don't block if no child has exited
+pub fixed int64:WUNTRACED  = 2i64;      // Report stopped children
+pub fixed int64:WCONTINUED = 8i64;      // Report continued children
 
 // ════════════════════════════════════════════════════════════════════════════
 // FUTEX OPERATIONS  (linux/futex.h FUTEX_*)
@@ -483,37 +483,37 @@ pub fixed int64:FUTEX_PRIVATE_FLAG     = 128i64;
 pub fixed int64:FUTEX_CLOCK_REALTIME   = 256i64;
 
 // Private futex variants (same-process only, more efficient)
-pub fixed int64:FUTEX_WAIT_PRIVATE    = 128i64;  // FUTEX_WAIT | FUTEX_PRIVATE_FLAG
-pub fixed int64:FUTEX_WAKE_PRIVATE    = 129i64;  // FUTEX_WAKE | FUTEX_PRIVATE_FLAG
+pub fixed int64:FUTEX_WAIT_PRIVATE    = 128i64;    // FUTEX_WAIT | FUTEX_PRIVATE_FLAG
+pub fixed int64:FUTEX_WAKE_PRIVATE    = 129i64;    // FUTEX_WAKE | FUTEX_PRIVATE_FLAG
 
 // ════════════════════════════════════════════════════════════════════════════
 // CLONE FLAGS  (sched.h, used with SYS_CLONE for threading)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:CLONE_VM             = 256i64;         // 0x00000100 — Share VM
-pub fixed int64:CLONE_FS             = 512i64;         // 0x00000200 — Share fs info
-pub fixed int64:CLONE_FILES          = 1024i64;        // 0x00000400 — Share open files
-pub fixed int64:CLONE_SIGHAND        = 2048i64;        // 0x00000800 — Share signal handlers
-pub fixed int64:CLONE_PIDFD          = 4096i64;        // 0x00001000 — New pidfd
-pub fixed int64:CLONE_PTRACE         = 8192i64;        // 0x00002000 — Allow ptrace
-pub fixed int64:CLONE_VFORK          = 16384i64;       // 0x00004000 — Suspend parent until exec
-pub fixed int64:CLONE_PARENT         = 32768i64;       // 0x00008000 — Same parent as caller
-pub fixed int64:CLONE_THREAD         = 65536i64;       // 0x00010000 — Same thread group
-pub fixed int64:CLONE_NEWNS          = 131072i64;      // 0x00020000 — New mount namespace
-pub fixed int64:CLONE_SYSVSEM        = 262144i64;      // 0x00040000 — Share SYSV semaphore
-pub fixed int64:CLONE_SETTLS         = 524288i64;      // 0x00080000 — Set TLS (arg5)
-pub fixed int64:CLONE_PARENT_SETTID  = 1048576i64;     // 0x00100000 — Write tid to arg3
-pub fixed int64:CLONE_CHILD_CLEARTID = 2097152i64;     // 0x00200000 — Clear tid on exit
-pub fixed int64:CLONE_DETACHED       = 4194304i64;     // 0x00400000 — (obsolete)
-pub fixed int64:CLONE_UNTRACED       = 8388608i64;     // 0x00800000 — No forced ptrace
-pub fixed int64:CLONE_CHILD_SETTID   = 16777216i64;    // 0x01000000 — Write tid to arg4
-pub fixed int64:CLONE_NEWCGROUP      = 33554432i64;    // 0x02000000 — New cgroup ns
-pub fixed int64:CLONE_NEWUTS         = 67108864i64;    // 0x04000000 — New UTS ns
-pub fixed int64:CLONE_NEWIPC         = 134217728i64;   // 0x08000000 — New IPC ns
-pub fixed int64:CLONE_NEWUSER        = 268435456i64;   // 0x10000000 — New user ns
-pub fixed int64:CLONE_NEWPID         = 536870912i64;   // 0x20000000 — New PID ns
-pub fixed int64:CLONE_NEWNET         = 1073741824i64;  // 0x40000000 — New network ns
-pub fixed int64:CLONE_IO             = -2147483648i64; // 0x80000000 — Clone IO context
+pub fixed int64:CLONE_VM             = 256i64;           // 0x00000100 — Share VM
+pub fixed int64:CLONE_FS             = 512i64;           // 0x00000200 — Share fs info
+pub fixed int64:CLONE_FILES          = 1024i64;          // 0x00000400 — Share open files
+pub fixed int64:CLONE_SIGHAND        = 2048i64;          // 0x00000800 — Share signal handlers
+pub fixed int64:CLONE_PIDFD          = 4096i64;          // 0x00001000 — New pidfd
+pub fixed int64:CLONE_PTRACE         = 8192i64;          // 0x00002000 — Allow ptrace
+pub fixed int64:CLONE_VFORK          = 16384i64;         // 0x00004000 — Suspend parent until exec
+pub fixed int64:CLONE_PARENT         = 32768i64;         // 0x00008000 — Same @cast_unchecked<caller>(parent)
+pub fixed int64:CLONE_THREAD         = 65536i64;         // 0x00010000 — Same thread group
+pub fixed int64:CLONE_NEWNS          = 131072i64;        // 0x00020000 — New mount namespace
+pub fixed int64:CLONE_SYSVSEM        = 262144i64;        // 0x00040000 — Share SYSV semaphore
+pub fixed int64:CLONE_SETTLS         = 524288i64;        // 0x00080000 — Set TLS (arg5)
+pub fixed int64:CLONE_PARENT_SETTID  = 1048576i64;       // 0x00100000 — Write tid to arg3
+pub fixed int64:CLONE_CHILD_CLEARTID = 2097152i64;       // 0x00200000 — Clear tid on exit
+pub fixed int64:CLONE_DETACHED       = 4194304i64;       // 0x00400000 — (obsolete)
+pub fixed int64:CLONE_UNTRACED       = 8388608i64;       // 0x00800000 — No forced ptrace
+pub fixed int64:CLONE_CHILD_SETTID   = 16777216i64;      // 0x01000000 — Write tid to arg4
+pub fixed int64:CLONE_NEWCGROUP      = 33554432i64;      // 0x02000000 — New cgroup ns
+pub fixed int64:CLONE_NEWUTS         = 67108864i64;      // 0x04000000 — New UTS ns
+pub fixed int64:CLONE_NEWIPC         = 134217728i64;     // 0x08000000 — New IPC ns
+pub fixed int64:CLONE_NEWUSER        = 268435456i64;     // 0x10000000 — New user ns
+pub fixed int64:CLONE_NEWPID         = 536870912i64;     // 0x20000000 — New PID ns
+pub fixed int64:CLONE_NEWNET         = 1073741824i64;    // 0x40000000 — New network ns
+pub fixed int64:CLONE_IO             = -2147483648i64;   // 0x80000000 — Clone IO context
 
 // Standard pthread_create clone flags (CLONE_VM|FS|FILES|SIGHAND|THREAD|SYSVSEM|SETTLS|PARENT_SETTID|CHILD_CLEARTID)
 pub fixed int64:CLONE_PTHREAD_FLAGS = 3801151i64;
@@ -522,12 +522,12 @@ pub fixed int64:CLONE_PTHREAD_FLAGS = 3801151i64;
 // ARCH_PRCTL  (for TLS — x86-64 specific)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub fixed int64:ARCH_SET_GS    = 4097i64;   // 0x1001
-pub fixed int64:ARCH_SET_FS    = 4098i64;   // 0x1002
-pub fixed int64:ARCH_GET_FS    = 4099i64;   // 0x1003
-pub fixed int64:ARCH_GET_GS    = 4100i64;   // 0x1004
-pub fixed int64:ARCH_GET_CPUID = 8193i64;   // 0x2001
-pub fixed int64:ARCH_SET_CPUID = 8194i64;   // 0x2002
+pub fixed int64:ARCH_SET_GS    = 4097i64;     // 0x1001
+pub fixed int64:ARCH_SET_FS    = 4098i64;     // 0x1002
+pub fixed int64:ARCH_GET_FS    = 4099i64;     // 0x1003
+pub fixed int64:ARCH_GET_GS    = 4100i64;     // 0x1004
+pub fixed int64:ARCH_GET_CPUID = 8193i64;     // 0x2001
+pub fixed int64:ARCH_SET_CPUID = 8194i64;     // 0x2002
 
 // ════════════════════════════════════════════════════════════════════════════
 // PRCTL  (sys/prctl.h PR_* options for SYS_PRCTL)
@@ -562,7 +562,7 @@ pub fixed int64:RLIMIT_MSGQUEUE   = 12i64;
 pub fixed int64:RLIMIT_NICE       = 13i64;
 pub fixed int64:RLIMIT_RTPRIO     = 14i64;
 pub fixed int64:RLIMIT_RTTIME     = 15i64;
-pub fixed int64:RLIMIT_INFINITY   = -1i64;  // RLIM_INFINITY
+pub fixed int64:RLIMIT_INFINITY   = -1i64;    // RLIM_INFINITY
 
 // ════════════════════════════════════════════════════════════════════════════
 // SCHEDULING POLICIES  (sched.h SCHED_*)
@@ -574,7 +574,7 @@ pub fixed int64:SCHED_RR          = 2i64;
 pub fixed int64:SCHED_BATCH       = 3i64;
 pub fixed int64:SCHED_IDLE        = 5i64;
 pub fixed int64:SCHED_DEADLINE    = 6i64;
-pub fixed int64:SCHED_RESET_ON_FORK = 1073741824i64; // 0x40000000
+pub fixed int64:SCHED_RESET_ON_FORK = 1073741824i64;   // 0x40000000
 
 // ════════════════════════════════════════════════════════════════════════════
 // GETRANDOM FLAGS  (sys/random.h)
@@ -589,7 +589,7 @@ pub fixed int64:GRND_INSECURE = 4i64;
 // ════════════════════════════════════════════════════════════════════════════
 
 // statx flags (arg4 to SYS_STATX)
-pub fixed int64:AT_STATX_SYNC_TYPE = 24576i64;  // 0x6000
+pub fixed int64:AT_STATX_SYNC_TYPE = 24576i64;    // 0x6000
 
 // statx attribute masks (what you're requesting)
 pub fixed int64:STATX_TYPE        = 1i64;
@@ -603,19 +603,19 @@ pub fixed int64:STATX_CTIME       = 128i64;
 pub fixed int64:STATX_INO         = 256i64;
 pub fixed int64:STATX_SIZE        = 512i64;
 pub fixed int64:STATX_BLOCKS      = 1024i64;
-pub fixed int64:STATX_BASIC_STATS = 2047i64;   // All of the above
-pub fixed int64:STATX_BTIME       = 2048i64;   // Birth time
+pub fixed int64:STATX_BASIC_STATS = 2047i64;     // All of the above
+pub fixed int64:STATX_BTIME       = 2048i64;     // Birth time
 pub fixed int64:STATX_MNT_ID      = 4096i64;
 pub fixed int64:STATX_ALL         = 4095i64;
 
 // statx struct size (x86-64 Linux kernel layout)
-pub fixed int64:STATX_STRUCT_SIZE = 256i64;    // bytes, kernel statx struct
+pub fixed int64:STATX_STRUCT_SIZE = 256i64;      // bytes, kernel statx struct
 
 // ════════════════════════════════════════════════════════════════════════════
-// PIPE2 FLAGS (pipe2 flags arg — same values as O_* flags)
+// PIPE2 FLAGS (pipe2 flags arg — same @cast_unchecked<O_>(values)* flags)
 // ════════════════════════════════════════════════════════════════════════════
 
-// pipe2 accepts O_CLOEXEC and O_NONBLOCK — already defined above as O_CLOEXEC/O_NONBLOCK
+// pipe2 accepts O_CLOEXEC and O_NONBLOCK — already defined @cast_unchecked<O_CLOEXEC>(above)/O_NONBLOCK
 
 // ════════════════════════════════════════════════════════════════════════════
 // INOTIFY  (sys/inotify.h IN_*)
@@ -644,7 +644,7 @@ pub fixed int64:IN_MASK_ADD      = 536870912i64;
 pub fixed int64:IN_ISDIR         = 1073741824i64;
 pub fixed int64:IN_ONESHOT       = -2147483648i64;
 pub fixed int64:IN_ALL_EVENTS    = 4095i64;
-pub fixed int64:IN_CLOSE         = 24i64;    // IN_CLOSE_WRITE | IN_CLOSE_NOWRITE
-pub fixed int64:IN_MOVE          = 192i64;   // IN_MOVED_FROM | IN_MOVED_TO
+pub fixed int64:IN_CLOSE         = 24i64;      // IN_CLOSE_WRITE | IN_CLOSE_NOWRITE
+pub fixed int64:IN_MOVE          = 192i64;     // IN_MOVED_FROM | IN_MOVED_TO
 pub fixed int64:IN_CLOEXEC       = O_CLOEXEC;
 pub fixed int64:IN_NONBLOCK      = O_NONBLOCK;

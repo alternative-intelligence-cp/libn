@@ -1,0 +1,12 @@
+pub func:sys_safe = int64() {
+    fail 1i64;
+};
+
+pub func:sys1 = int64() {
+    pass raw sys_safe();
+};
+
+pub func:main = int32() {
+    Result<int64>:r = sys1();
+    exit 0i32;
+};

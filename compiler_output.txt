@@ -1,0 +1,112 @@
+[DEBUG parseFuncDecl] nameToken=), peek()=), type=222
+[DEBUG parseFuncDecl] nameToken=at_quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_proc_run_atexit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=_proc_run_atqexit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=), peek()=), type=222
+[DEBUG parseFuncDecl] nameToken=), peek()=), type=222
+[DEBUG parseFuncDecl] nameToken=exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=abort, peek()==, type=168
+[1msrc/proc/exit.npk:34:16: [0m[1;31merror[0m: [1m  Expected ':' after type in variable declaration
+  Found: token ')'[0m
+   34 | pub fixed int64) ? ATEXIT_MAX = 32i64;
+                       [1;32m^[0m
+
+[1msrc/proc/exit.npk:34:16: [0m[1;31merror[0m: [1m  Expected variable name
+  Found: token ')'[0m
+   34 | pub fixed int64) ? ATEXIT_MAX = 32i64;
+                       [1;32m^[0m
+
+[1msrc/proc/exit.npk:49:9: [0m[1;31merror[0m: [1m  Expected ':' after 'func'
+  Found: token ')'[0m
+   49 | pub func) ? atexit = int64(int64 : fn_ptr) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:49:9: [0m[1;31merror[0m: [1m  Expected function name
+  Found: token ')'[0m
+   49 | pub func) ? atexit = int64(int64 : fn_ptr) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:49:9: [0m[1;31merror[0m: [1m  Expected '=' after function name
+  Found: token ')'[0m
+   49 | pub func) ? atexit = int64(int64 : fn_ptr) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:49:9: [0m[1;31merror[0m: [1m  Expected type annotation
+  Found: token ')'[0m
+   49 | pub func) ? atexit = int64(int64 : fn_ptr) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:49:9: [0m[1;31merror[0m: [1m  Expected return type. Syntax: func:name = ReturnType(params) { body; };  Example: func:add = int32(int32:a, int32:b) { pass a + b; };
+  Found: token ')'[0m
+   49 | pub func) ? atexit = int64(int64 : fn_ptr) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:56:1: [0m[1;31merror[0m: [1m  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+   56 | };
+        [1;32m^[0m
+
+[1msrc/proc/exit.npk:101:9: [0m[1;31merror[0m: [1m  Expected ':' after 'func'
+  Found: token ')'[0m
+  101 | pub func) ? _exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:101:9: [0m[1;31merror[0m: [1m  Expected function name
+  Found: token ')'[0m
+  101 | pub func) ? _exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:101:9: [0m[1;31merror[0m: [1m  Expected '=' after function name
+  Found: token ')'[0m
+  101 | pub func) ? _exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:101:9: [0m[1;31merror[0m: [1m  Expected type annotation
+  Found: token ')'[0m
+  101 | pub func) ? _exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:101:9: [0m[1;31merror[0m: [1m  Expected return type. Syntax: func:name = ReturnType(params) { body; };  Example: func:add = int32(int32:a, int32:b) { pass a + b; };
+  Found: token ')'[0m
+  101 | pub func) ? _exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:104:1: [0m[1;31merror[0m: [1m  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+  104 | };
+        [1;32m^[0m
+
+[1msrc/proc/exit.npk:107:9: [0m[1;31merror[0m: [1m  Expected ':' after 'func'
+  Found: token ')'[0m
+  107 | pub func) ? _Exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:107:9: [0m[1;31merror[0m: [1m  Expected function name
+  Found: token ')'[0m
+  107 | pub func) ? _Exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:107:9: [0m[1;31merror[0m: [1m  Expected '=' after function name
+  Found: token ')'[0m
+  107 | pub func) ? _Exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:107:9: [0m[1;31merror[0m: [1m  Expected type annotation
+  Found: token ')'[0m
+  107 | pub func) ? _Exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:107:9: [0m[1;31merror[0m: [1m  Expected return type. Syntax: func:name = ReturnType(params) { body; };  Example: func:add = int32(int32:a, int32:b) { pass a + b; };
+  Found: token ')'[0m
+  107 | pub func) ? _Exit = NIL(int64 : code) {
+                [1;32m^[0m
+
+[1msrc/proc/exit.npk:110:1: [0m[1;31merror[0m: [1m  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+  110 | };
+        [1;32m^[0m
+
+[1mSummary: [0m[1;31m20 errors[0m

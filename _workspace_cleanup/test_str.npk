@@ -1,0 +1,4 @@
+pub func:foo = int64() {
+    fixed uint8[]:s = @cast_unchecked<uint8[]>("Hello");
+    pass 0i64;
+};

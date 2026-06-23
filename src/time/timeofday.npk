@@ -1,0 +1,23 @@
+use "time_types.npk".*;
+use "../syscall/syscall.npk".*;
+
+pub func:gettimeofday = int64(timeval->:tv, int64:tz) {
+    if (@cast_unchecked<int64>(tv) == 0i64) {
+        drop errno_set(14i64); pass -1i64;     // EFAULT
+    }
+    Result<int64>:r = sys_safe(SYS_GETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error)); pass -1i64;
+    }
+    pass 0i64;
+};
+pub func:settimeofday = int64(timeval->:tv, int64:tz) {
+    if (@cast_unchecked<int64>(tv) == 0i64) {
+        drop errno_set(14i64); pass -1i64;     // EFAULT
+    }
+    Result<int64>:r = sys_safe(SYS_SETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+    if (r.is_error) {
+        drop errno_set(@cast_unchecked<int64>(r.error)); pass -1i64;
+    }
+    pass 0i64;
+};

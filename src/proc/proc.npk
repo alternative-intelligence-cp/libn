@@ -16,9 +16,9 @@
 //   v0.13.x  alarm.npk  — alarm, setitimer, SIGALRM integration
 //   v0.14.x  thread.npk — pthread-compatible threads (clone-based)
 
-use "src/proc/exit.npk".*;
-use "src/proc/fork.npk".*;
-use "src/proc/exec.npk".*;
-use "src/proc/wait.npk".*;
-use "src/proc/env.npk".*;
-use "src/proc/signal.npk".*;
+use "../proc/exit.npk".*;
+use "../proc/fork.npk".*;
+use "../proc/exec.npk".*;
+use "../proc/wait.npk".*;
+use "../proc/env.npk".*;
+use "../proc/signal.npk".*;

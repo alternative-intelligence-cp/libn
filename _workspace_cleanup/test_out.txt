@@ -1,0 +1,18 @@
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=foo, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=baz, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=qux, peek()==, type=168
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 9: Undefined identifier: 'r'. Did you mean 'bar'?[0m
+
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 10: Undefined identifier: 'r'. Did you mean 'bar'?[0m
+
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 11, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 14, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mcheck_expr.npk:0:0: [0m[1;31merror[0m: [1mLine 15, Column 10: Undefined identifier: 'r'. Did you mean 'bar'?[0m
+
+[1mSummary: [0m[1;31m6 errors[0m

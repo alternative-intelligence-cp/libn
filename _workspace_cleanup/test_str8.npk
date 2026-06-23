@@ -1,0 +1,4 @@
+pub func:foo = int64() {
+    fixed byte:s[] = "Hello";
+    pass 0i64;
+};

@@ -1,0 +1,4 @@
+pub func:main = int32() {
+    Result<int64>:r = sys(39i64, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+    pass 0i32;
+};

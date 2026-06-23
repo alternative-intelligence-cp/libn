@@ -1,0 +1,5 @@
+func:main = int32() {
+    int64:fn = 12345i64;
+    @cast_unchecked<(void)()->>(fn)();
+    exit 0i32;
+};

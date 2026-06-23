@@ -1,0 +1,8 @@
+pub func:main = int32() {
+    byte[1]:b;
+    exit 0i32;
+};
+
+pub func:failsafe = int32(int32:err) {
+    exit err;
+};

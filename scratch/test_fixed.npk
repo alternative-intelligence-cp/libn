@@ -1,0 +1,5 @@
+fixed string:pfx = "/tmp/npk_XXXXXX";
+pub func:test_addr = int64() {
+    int64:addr1 = @cast_unchecked<int64>(@pfx);
+    pass 0i64;
+};

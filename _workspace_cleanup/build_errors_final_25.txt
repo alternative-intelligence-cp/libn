@@ -1,0 +1,905 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fdopen, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=freopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fclose, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fseek, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ftell, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=rewind, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fsetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgets, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=feof, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ferror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=clearerr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setvbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setbuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=setlinebuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=puts, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_putc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_puts_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_pad, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=render_uint, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_format_args, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 233, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 379, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 391, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 25: Unknown syscall constant 'nr' in sys(). See stdlib/sys.npk for available syscall names.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 10: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 91, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 95, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 120, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 128, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 136, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 140, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 190, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 198, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 213, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 221, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 222, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 229, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 230, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 237, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 238, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 245, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 246, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 251, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 252, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 257, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 258, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 264, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 265, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 270, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 271, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 277, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 283, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 293, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 294, Column 10: Undefined identifier: 'r'. Did you mean 'arg'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 10: Undefined identifier: 'r'. Did you mean 'arg'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 310, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 311, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 324, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 325, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 330, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 10: Undefined identifier: 'r'. Did you mean 'prot'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 350, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 351, Column 10: Undefined identifier: 'r'. Did you mean 'prot'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 357, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 358, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 364, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 365, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 372, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 381, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 382, Column 10: Undefined identifier: 'r'. Did you mean 'tp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 387, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 388, Column 10: Undefined identifier: 'r'. Did you mean 'res'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 395, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 396, Column 10: Undefined identifier: 'r'. Did you mean 'rem'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 401, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 402, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 413, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 414, Column 10: Undefined identifier: 'r'. Did you mean 'val'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 420, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 421, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 429, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 436, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 444, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 445, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 452, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 453, Column 10: Undefined identifier: 'r'. Did you mean 'sig'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 460, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 461, Column 10: Undefined identifier: 'r'. Did you mean 'sig'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 471, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 472, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 482, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 483, Column 10: Undefined identifier: 'r'. Did you mean 'len'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 494, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 495, Column 10: Undefined identifier: 'r'. Did you mean 'buf'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 500, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 501, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 506, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 507, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 518, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 519, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 530, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 531, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 537, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 538, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 557, Column 9: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 558, Column 13: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 564, Column 19: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 565, Column 13: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 569, Column 25: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 570, Column 21: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 571, Column 33: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 573, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 584, Column 9: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 585, Column 13: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 591, Column 19: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 592, Column 25: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 593, Column 21: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 594, Column 33: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 596, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 608, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 609, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 93, Column 46: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 94, Column 46: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 98, Column 20: Undefined identifier: 'wa'. Did you mean 'wi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 20: Undefined identifier: 'wb'. Did you mean 'wi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 13: Undefined identifier: 'va'. Did you mean 'pa'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 19: Undefined identifier: 'vb'. Did you mean 'pb'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 197, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 203, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 211, Column 48: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 19: Undefined identifier: 'pw'. Did you mean 'p'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 31: Undefined identifier: 'v'. Did you mean 'i'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 234, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 260, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 5: Cannot initialize variable 'first' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 304, Column 79: Undefined identifier: 'first'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 13: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 24: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 28: Undefined identifier: 'candidate'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 317, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 349, Column 48: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 13: Undefined identifier: 'pw'. Did you mean 'p'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 378, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 422, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 113, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 114, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 135, Column 10: Undefined identifier: 'r'. Did you mean 'prot'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 146, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 152, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 158, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 159, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 190, Column 5: Cannot silently unwrap Result<int64> into 'total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 193, Column 39: Undefined identifier: 'total'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 199, Column 23: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 200, Column 44: Type 'map' has no method 'start'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 201, Column 5: Undefined identifier: 'hdr'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 202, Column 5: Undefined identifier: 'hdr'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 205, Column 10: Type 'map' has no method 'start'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 219, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 220, Column 10: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 231, Column 9: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 237, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 247, Column 5: Cannot silently unwrap Result<int64> into 'new_total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 248, Column 61: Undefined identifier: 'new_total'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 249, Column 10: Undefined identifier: 'rr'. Did you mean 'hdr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 259, Column 5: Cannot silently unwrap Result<Result<int64>> into 'new_r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 260, Column 9: Undefined identifier: 'new_r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 263, Column 21: Undefined identifier: 'new_r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 44: Undefined identifier: 'new_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 275, Column 9: Undefined identifier: 'dst'. Did you mean 'si'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 10: Undefined identifier: 'new_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 290, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 10: Undefined identifier: 'r'. Did you mean 'hdr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 318, Column 49: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 319, Column 10: Undefined identifier: 'hdr'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 327, Column 49: Arithmetic operators require numeric types (int*, uint*, flt*, tbb*), got 'int64@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 328, Column 10: Undefined identifier: 'hdr'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 344, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 354, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 370, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 9: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 374, Column 18: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 377, Column 41: Undefined identifier: 'base'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 378, Column 9: Undefined identifier: 'r_bot'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 384, Column 23: Undefined identifier: 'base'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 385, Column 41: Undefined identifier: 'top_guard'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 386, Column 9: Undefined identifier: 'r_top'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 392, Column 10: Undefined identifier: 'base'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 403, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 404, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 264, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 267, Column 9: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 36: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 9: Undefined identifier: 'head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 292, Column 22: Undefined identifier: 'head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 293, Column 49: Undefined identifier: 'user_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 294, Column 18: Undefined identifier: 'next_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 297, Column 23: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 5: Undefined identifier: 'next_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 10: Undefined identifier: 'user_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 311, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 9: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 14: Undefined identifier: 'r'. Did you mean 'hdr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 338, Column 5: Cannot silently unwrap Result<int64> into 'old_head' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 340, Column 19: Undefined identifier: 'old_head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 341, Column 22: Unused result value. This function returns a result that must be checked. Use drop(func(...)) to discard, raw func(...) to extract the value, or check .is_error to handle failures.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 350, Column 5: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 351, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 354, Column 17: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 358, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 359, Column 34: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 360, Column 42: Undefined identifier: 'ptr'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 362, Column 17: Undefined identifier: 'sz'. Did you mean 'zi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 367, Column 10: Undefined identifier: 'ptr'. Did you mean 'zi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strfmt.npk: Parse error at line 269, column 24:
+  Expected expression
+  Found: token '&'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strfmt.npk: Parse error at line 269, column 24:
+  Expected expression after operator
+  Found: token '&'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strfmt.npk: Parse error at line 326, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'nlen'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strfmt.npk: Parse error at line 326, column 48:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strfmt.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strfmt.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m229 errors[0m

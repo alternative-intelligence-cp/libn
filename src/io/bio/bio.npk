@@ -1,7 +1,7 @@
 // bio.npk — Top-level buffered I/O re-export (v0.8.0)
 //
 // Import this file to get the complete stdio subsystem in one shot:
-//   use "src/io/bio/bio.npk".*;
+//   use "../../io/bio/bio.npk".*;
 //
 // Or import individual sub-modules for finer dependency control.
 //
@@ -26,7 +26,7 @@
 // Public symbols (key selection):
 //
 //   Types:
-//     FILE              — buffered stream struct (use as *FILE or int64 pointer)
+//     FILE              — buffered stream struct (@cast_unchecked<FILE->>(use) or int64 pointer)
 //
 //   Constants:
 //     _IOFBF, _IOLBF, _IONBF   — buffering modes
@@ -59,15 +59,15 @@
 //   v0.5.12 stdio test suite
 //   v0.6.x  fprintf, fscanf (formatted I/O to streams)
 
-use "src/io/bio/file.npk".*;
-use "src/io/bio/fopen.npk".*;
-use "src/io/bio/fio.npk".*;
-use "src/io/bio/fseek.npk".*;
-use "src/io/bio/fchar.npk".*;
-use "src/io/bio/fstr.npk".*;
-use "src/io/bio/fstate.npk".*;
-use "src/io/bio/stdfiles.npk".*;
-use "src/io/bio/fprintf.npk".*;
-use "src/io/bio/strerror.npk".*;
-use "src/io/bio/fscanf.npk".*;
-use "src/io/bio/tmpfile.npk".*;
+use "../../io/bio/file.npk".*;
+use "../../io/bio/fopen.npk".*;
+use "../../io/bio/fio.npk".*;
+use "../../io/bio/fseek.npk".*;
+use "../../io/bio/fchar.npk".*;
+use "../../io/bio/fstr.npk".*;
+use "../../io/bio/fstate.npk".*;
+use "../../io/bio/stdfiles.npk".*;
+use "../../io/bio/fprintf.npk".*;
+use "../../io/bio/strerror.npk".*;
+use "../../io/bio/fscanf.npk".*;
+use "../../io/bio/tmpfile.npk".*;

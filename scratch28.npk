@@ -1,0 +1,13 @@
+int64[32]:_atexit_handlers;
+
+func:main = int32() {
+    _atexit_handlers[0i64] = @cast_unchecked<int64>(@my_func);
+    int64:raw_fn = _atexit_handlers[0i64];
+    if (raw_fn != 0i64) {
+        (int32)():fn = @cast_unchecked<(int32)()>(raw_fn);
+        fn();
+    }
+    exit 0i32;
+};
+func:my_func = int32() { pass 0i32; };
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

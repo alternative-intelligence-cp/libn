@@ -1,0 +1,6 @@
+pub func:foo = int64(int64:n) { pass n; };
+pub func:mem_malloc = int64(int64:n) {
+    if (n <= 0i64) { fail 22i64; }
+    int64:a = foo(n);
+    pass a;
+};

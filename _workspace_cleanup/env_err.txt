@@ -1,0 +1,113 @@
+[DEBUG parseFuncDecl] nameToken=proc_env_init, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=getenv, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=_env_ensure_heap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_env_grow, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=setenv, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=unsetenv, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=putenv, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=clearenv, peek()==, type=168
+[1msrc/proc/env.npk:67:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+   67 |     *int64:ep = envp as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:83:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+   83 |     *int64:hp = _env_heap_envp as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:102:36: [0m[1;31merror[0m: [1m  Expected '{' before function body. Syntax: func:name = RetType(params) { body; };
+  Found: token ')'[0m
+  102 | pub func:getenv = int64(int64:name)) {
+                                           [1;32m^[0m
+
+[1msrc/proc/env.npk:102:36: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token ')'[0m
+  102 | pub func:getenv = int64(int64:name)) {
+                                           [1;32m^[0m
+
+[1msrc/proc/env.npk:108:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+  108 |     *int64:ep = environ as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:149:24: [0m[1;31merror[0m: [1m  Expected '{' before function body. Syntax: func:name = RetType(params) { body; };
+  Found: token ')'[0m
+  149 | func:_env_grow = bool()) {
+                               [1;32m^[0m
+
+[1msrc/proc/env.npk:149:24: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token ')'[0m
+  149 | func:_env_grow = bool()) {
+                               [1;32m^[0m
+
+[1msrc/proc/env.npk:171:66: [0m[1;31merror[0m: [1m  Expected '{' before function body. Syntax: func:name = RetType(params) { body; };
+  Found: token ')'[0m
+  171 | pub func:setenv = int64(int64:name, int64:value, int64:overwrite)) {
+                                                                         [1;32m^[0m
+
+[1msrc/proc/env.npk:171:66: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token ')'[0m
+  171 | pub func:setenv = int64(int64:name, int64:value, int64:overwrite)) {
+                                                                         [1;32m^[0m
+
+[1msrc/proc/env.npk:200:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+  200 |     *int64:ep = _env_heap_envp as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:221:25: [0m[1;31merror[0m: [1m  Expected ';' after expression
+  Found: token 'as'[0m
+  221 |     ep = _env_heap_envp as *int64;  // re-fetch after possible realloc
+                                [1;32m^[0m
+
+[1msrc/proc/env.npk:221:25: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  221 |     ep = _env_heap_envp as *int64;  // re-fetch after possible realloc
+                                [1;32m^[0m
+
+[1msrc/proc/env.npk:239:38: [0m[1;31merror[0m: [1m  Expected '{' before function body. Syntax: func:name = RetType(params) { body; };
+  Found: token ')'[0m
+  239 | pub func:unsetenv = int64(int64:name)) {
+                                             [1;32m^[0m
+
+[1msrc/proc/env.npk:239:38: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token ')'[0m
+  239 | pub func:unsetenv = int64(int64:name)) {
+                                             [1;32m^[0m
+
+[1msrc/proc/env.npk:252:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+  252 |     *int64:ep = _env_heap_envp as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:313:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+  313 |     *int64:hp = _env_heap_envp as *int64;
+            [1;32m^[0m
+
+[1msrc/proc/env.npk:337:25: [0m[1;31merror[0m: [1m  Expected ';' after expression
+  Found: token 'as'[0m
+  337 |     hp = _env_heap_envp as *int64;
+                                [1;32m^[0m
+
+[1msrc/proc/env.npk:337:25: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  337 |     hp = _env_heap_envp as *int64;
+                                [1;32m^[0m
+
+[1msrc/proc/env.npk:358:5: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+  358 |     *int64:hp = _env_heap_envp as *int64;
+            [1;32m^[0m
+
+[1mSummary: [0m[1;31m19 errors[0m

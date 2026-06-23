@@ -20,9 +20,9 @@
 //   io_open(path, O_WRONLY | O_CREAT | O_APPEND, 0o644) — append
 //   io_open(path, O_RDONLY | O_DIRECTORY, 0)         — directory fd
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/syscall/syscall.npk".*;
+use "../syscall/errno.npk".*;
+use "../syscall/posix_constants.npk".*;
+use "../syscall/syscall.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Default mode for O_CREAT — rw-r--r-- (0644)
@@ -30,9 +30,9 @@ use "src/syscall/syscall.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub fixed int64:MODE_DEFAULT      = 0i64;
-pub fixed int64:MODE_FILE_DEFAULT = 0o644i64;   // rw-r--r--
-pub fixed int64:MODE_DIR_DEFAULT  = 0o755i64;   // rwxr-xr-x
-pub fixed int64:MODE_SECRET       = 0o600i64;   // rw------- (keys, credentials)
+pub fixed int64:MODE_FILE_DEFAULT = 0o644i64;     // rw-r--r--
+pub fixed int64:MODE_DIR_DEFAULT  = 0o755i64;     // rwxr-xr-x
+pub fixed int64:MODE_SECRET       = 0o600i64;     // rw------- (keys, credentials)
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_open — Open or create a file.
@@ -49,27 +49,27 @@ pub fixed int64:MODE_SECRET       = 0o600i64;   // rw------- (keys, credentials)
 // Returns: file descriptor (>= 0) on success, or Err on failure.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_open = Result<int64>(int64:path, int64:flags, int64:mode) {
-    if path == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_open = int64(int64:path, int64:flags, int64:mode) {
+    if (path == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_open(path, flags, mode);
-}
+};
 
 // io_open_inheritable — Open without O_CLOEXEC (fd survives exec).
 //
 // Use only when you deliberately need the child process to inherit this fd
 // (e.g., when setting up stdin/stdout/stderr before exec). Document the call.
-pub func:io_open_inheritable = Result<int64>(int64:path, int64:flags, int64:mode) {
-    if path == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_open_inheritable = int64(int64:path, int64:flags, int64:mode) {
+    if (path == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    // libn_open adds O_CLOEXEC; we need to strip it for truly inheritable fds.
-    // Use openat with AT_FDCWD instead to bypass the automatic flag.
-    int64:safe_flags = flags & (0i64 - 1i64 ^ O_CLOEXEC);  // flags without O_CLOEXEC
+      // libn_open adds O_CLOEXEC; we need to strip it for truly inheritable fds.
+      // Use openat with AT_FDCWD instead to bypass the automatic flag.
+    int64:safe_flags = flags & (0i64 - 1i64 ^ O_CLOEXEC);    // flags without O_CLOEXEC
     Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
-    pass r;
-}
+    return r;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_openat — Open relative to a directory fd.
@@ -79,12 +79,12 @@ pub func:io_open_inheritable = Result<int64>(int64:path, int64:flags, int64:mode
 // TOCTOU races when working within a known directory fd.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_openat = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:mode) {
-    if path == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_openat = int64(int64:dirfd, int64:path, int64:flags, int64:mode) {
+    if (path == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_openat(dirfd, path, flags, mode);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_creat — Create or truncate a file (shorthand).
@@ -93,9 +93,9 @@ pub func:io_openat = Result<int64>(int64:dirfd, int64:path, int64:flags, int64:m
 // This is the traditional creat() function from early UNIX.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_creat = Result<int64>(int64:path, int64:mode) {
+pub func:io_creat = int64(int64:path, int64:mode) {
     pass io_open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_close — Close a file descriptor.
@@ -107,12 +107,12 @@ pub func:io_creat = Result<int64>(int64:path, int64:mode) {
 // Returns Ok(0) on success, Err on failure.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_close = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_close = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_close(fd);
-}
+};
 
 // io_close_nointr — Close, retrying if interrupted by a signal.
 //
@@ -121,21 +121,21 @@ pub func:io_close = Result<int64>(int64:fd) {
 // wrapper handles that correctly: on EINTR, the fd IS closed, return Ok(0).
 //
 // See: https://ewontfix.com/4/ — "Don't retry close(2) after EINTR on Linux"
-pub func:io_close_nointr = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_close_nointr = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_close(fd);
-    if r.is_error {
-        int64:e = r.err as int64;
-        // On Linux: even on EINTR, the fd is closed. Return success.
-        if e == EINTR {
+    if (r.is_error) {
+        int64:e = @cast_unchecked<int64>(r.error);
+          // On Linux: even on EINTR, the fd is closed. Return success.
+        if (e == EINTR) {
             pass 0i64;
         }
-        fail r.err;
+        fail r.error;
     }
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_open_tmp — Create a temporary file.
@@ -148,12 +148,12 @@ pub func:io_close_nointr = Result<int64>(int64:fd) {
 // Returns fd on success.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_open_tmp = Result<int64>(int64:dir_path) {
-    if dir_path == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_open_tmp = int64(int64:dir_path) {
+    if (dir_path == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    // O_TMPFILE requires O_WRONLY or O_RDWR in flags
-    // Mode 0600: only owner can read/write the temp file
+      // O_TMPFILE requires O_WRONLY or O_RDWR in flags
+      // Mode 0600: only owner can read/write the temp file
     Result<int64>:r = libn_openat(AT_FDCWD, dir_path, O_TMPFILE | O_RDWR, MODE_SECRET);
-    pass r;
-}
+    return r;
+};

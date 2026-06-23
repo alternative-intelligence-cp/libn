@@ -20,10 +20,10 @@
 // gets: INTENTIONALLY OMITTED — gets() is removed from C11 and is unsafe.
 //       Use fgets(buf, size, stdin) instead.
 
-use "src/syscall/errno.npk".*;
-use "src/str/strlen.npk".*;
-use "src/io/bio/file.npk".*;
-use "src/io/bio/fchar.npk".*;
+use "../../syscall/errno.npk".*;
+use "../../str/strlen.npk".*;
+use "../../io/bio/file.npk".*;
+use "../../io/bio/fchar.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // fgets — Read a line from fp into buf.
@@ -39,55 +39,55 @@ use "src/io/bio/fchar.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
-    if buf == 0i64 || size <= 0i64 || fp == 0i64 {
+    if (buf == 0i64 || size <= 0i64 || fp == 0i64) {
         pass 0i64;
     }
-    if size == 1i64 {
-        // Only room for the NUL terminator — store it and return buf
-        (buf as *byte)[0] = 0u8;
+    if (size == 1i64) {
+          // Only room for the NUL terminator — store it and return buf
+        (@cast_unchecked<uint8->>(buf))[0] = 0u8;
         pass buf;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    // Already at EOF with nothing to give
-    if (f.flags & FILE_FLAG_EOF) != 0i64 && f.unget == FILE_UNGET_EMPTY {
+      // Already at EOF with nothing to give
+    if ((f->flags & FILE_FLAG_EOF) != 0i64 && f->unget == FILE_UNGET_EMPTY) {
         pass 0i64;
     }
 
-    *byte:dst = buf as *byte;
-    int64:max = size - 1i64;  // leave room for NUL
+    uint8->:dst = @cast_unchecked<uint8->>(buf);
+    int64:max = size - 1i64;    // leave room for NUL
     int64:count = 0i64;
 
-    while count < max {
-        int64:c = fgetc(fp);
+    while (count < max) {
+        int64:c = raw fgetc(fp);
 
-        if c == FILE_EOF {
-            // EOF or error
-            if count == 0i64 {
-                // Nothing read — return NULL per POSIX
+        if (c == FILE_EOF) {
+              // EOF or error
+            if (count == 0i64) {
+                  // Nothing read — return NULL per POSIX
                 pass 0i64;
             }
             break;
         }
 
-        dst[count] = c as byte;
+        dst[count] = @cast_unchecked<uint8>(c);
         count = count + 1i64;
 
-        // Stop after newline (inclusive — newline IS stored in buf)
-        if c == 10i64 {  // '\n'
+          // Stop after newline (inclusive — newline IS stored in buf)
+        if (c == 10i64) {    // '\n'
             break;
         }
     }
 
-    dst[count] = 0u8;  // NUL terminate
+    dst[count] = 0u8;    // NUL terminate
     pass buf;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // fputs — Write a NUL-terminated string to fp (without NUL terminator).
 //
-// Returns a non-negative value on success (libn returns the byte count written),
+// Returns a non-negative value on success (libn returns the uint8 count written),
 // or EOF on error.
 //
 // Does NOT append a newline. For newline-terminated output use puts() or
@@ -95,42 +95,42 @@ pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:fputs = int64(int64:s, int64:fp) {
-    if s == 0i64 || fp == 0i64 {
+    if (s == 0i64 || fp == 0i64) {
         pass FILE_EOF;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    if (f.mode & FILE_MODE_WRITE) == 0i64 {
-        f.flags = f.flags | FILE_FLAG_ERROR;
-        errno_set(EBADF);
+    if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+        f->flags = f->flags | FILE_FLAG_ERROR;
+        drop drop(errno_set(EBADF));
         pass FILE_EOF;
     }
 
-    // Use fwrite for bulk efficiency — fputc would work but is slow for strings
-    int64:len = str_strlen(s);
-    if len == 0i64 {
+      // Use fwrite for bulk efficiency — fputc would work but is slow for strings
+    int64:len = raw str_strlen(s);
+    if (len == 0i64) {
         pass 0i64;
     }
 
-    // fwrite returns items written; for byte-items size=1, nmemb=len
-    // We use the internal path here to avoid re-importing fio.npk (circular dep)
-    // Instead: just write char by char for correctness at v0.5.6.
-    // The bulk fwrite path will be wired in bio.npk.
-    //
-    // TODO: replace with fwrite(s, 1, len, fp) once dependency ordering allows.
+      // fwrite returns items written; for uint8-items size=1, nmemb=len
+      // We use the internal path here to avoid re-importing fio.npk (circular dep)
+      // Instead: just write char by char for correctness at v0.5.6.
+      // The bulk fwrite path will be wired in bio.npk.
+      //
+      // TODO: replace with fwrite(s, 1, len, fp) once dependency ordering allows.
     int64:i = 0i64;
-    *byte:p = s as *byte;
-    while i < len {
-        int64:c = fputc(p[i] as int64, fp);
-        if c == FILE_EOF {
+    uint8->:p = @cast_unchecked<uint8->>(s);
+    while (i < len) {
+        int64:c = raw fputc(@cast_unchecked<int64>(p[i]), fp);
+        if (c == FILE_EOF) {
             pass FILE_EOF;
         }
         i = i + 1i64;
     }
 
     pass len;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // puts — Write string to stdout, followed by a newline.

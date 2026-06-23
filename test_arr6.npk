@@ -1,0 +1,9 @@
+pub func:test = int64() {
+    stack int64[1]:candidate;
+    int64->:ptr = @candidate[0];
+    int64@:ptr2 = @candidate[0];
+    pass @cast_unchecked<int64>(ptr);
+};
+func:failsafe = int32(tbb32:err) {
+    exit 1;
+};

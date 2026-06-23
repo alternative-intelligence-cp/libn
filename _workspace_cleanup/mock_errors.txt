@@ -1,0 +1,9 @@
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[1mtest_sys_mock.npk:19:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: end of file
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+

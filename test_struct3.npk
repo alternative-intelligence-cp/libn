@@ -1,0 +1,8 @@
+struct:Foo = { int64:bar; };
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:main = int32() {
+    Foo:f1 = Foo{bar: 42i64};
+    *Foo:f = @cast_unchecked<*Foo>(0i64);
+    int64:x = f.bar;
+    exit 0i32;
+};

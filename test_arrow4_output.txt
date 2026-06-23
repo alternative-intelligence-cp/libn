@@ -1,0 +1,29 @@
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_arrow4.npk:5:16: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '*'[0m
+    5 |     int64:x = (*f).bar;
+                       [1;32m^[0m
+
+[1mtest_arrow4.npk:5:16: [0m[1;31merror[0m: [1m  Expected expression inside parentheses
+  Found: token '*'[0m
+    5 |     int64:x = (*f).bar;
+                       [1;32m^[0m
+
+[1mtest_arrow4.npk:5:16: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '*'[0m
+    5 |     int64:x = (*f).bar;
+                       [1;32m^[0m
+
+[1mtest_arrow4.npk:5:18: [0m[1;31merror[0m: [1m  Expected ':' after type in variable declaration
+  Found: token ')'[0m
+    5 |     int64:x = (*f).bar;
+                         [1;32m^[0m
+
+[1mtest_arrow4.npk:5:18: [0m[1;31merror[0m: [1m  Expected variable name
+  Found: token ')'[0m
+    5 |     int64:x = (*f).bar;
+                         [1;32m^[0m
+
+[1mSummary: [0m[1;31m5 errors[0m

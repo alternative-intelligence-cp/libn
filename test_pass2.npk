@@ -1,0 +1,24 @@
+pub func:test_sys = Result<int64>() {
+    Result<int64>:dummy;
+    pass dummy;
+};
+
+pub func:t1 = Result<int64>() {
+    int64:x = 0i64;
+    pass x;
+};
+
+pub func:t2 = Result<int64>() {
+    pass raw test_sys();
+};
+
+pub func:t3 = Result<int64>() {
+    pass test_sys();
+};
+
+pub func:main = void() {
+    Result<int64>:r1 = test_sys();
+    Result<int64>:r2 = t1();
+    Result<int64>:r3 = t2();
+    Result<int64>:r4 = t3();
+};

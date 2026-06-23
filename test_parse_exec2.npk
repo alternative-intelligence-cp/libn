@@ -1,0 +1,13 @@
+struct Dummy {};
+
+extern {
+    var SYS_EXECVE: int64 = 59;
+};
+
+func execve(pathname: *char, argv: **char, envp: **char): Result<int64> {
+    var res: int64 = sys!!(SYS_EXECVE, pathname as int64, argv as int64, envp as int64);
+    if (res < 0) {
+        return Result<int64>.Err(res);
+    };
+    return Result<int64>.Ok(res);
+};

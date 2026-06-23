@@ -1,0 +1,6 @@
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: *Foo
+[1mtest_struct3.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 16: Member access (.) requires struct, object, or union type, got '*Foo'. Use -> for pointer member access.[0m
+

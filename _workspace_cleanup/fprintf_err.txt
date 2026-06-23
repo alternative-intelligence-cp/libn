@@ -1,0 +1,1148 @@
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 30, Column 1: Failed to load module 'src/syscall/errno.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 30, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 30, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1: Failed to load module 'src/str/strfmt.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 31, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1: Failed to load module 'src/str/strlen.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 32, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1: Failed to load module 'src/mem/slab.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 33, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1: Failed to load module 'src/mem/memutil.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 34, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1: Failed to load module 'src/mem/mmap.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 35, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1: Failed to load module 'src/mem/memcpy.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 36, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1: Failed to load module 'src/io/bio/file.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 37, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1: Failed to load module 'src/io/bio/fio.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   File path 'src/io/bio/fio.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 38, Column 1:   Could not resolve module 'src/io/bio/fio.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1: Failed to load module 'src/io/bio/stdfiles.npk'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/fio.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/fio.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strfmt.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strfmt.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/str/strlen.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/str/strlen.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/slab.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/slab.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memutil.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memutil.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/mmap.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/mmap.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/mem/memcpy.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/mem/memcpy.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/fio.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/fio.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   File path 'src/io/bio/stdfiles.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 39, Column 1:   Could not resolve module 'src/io/bio/stdfiles.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 9: Undefined identifier: 'len'. Did you mean 'fp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 21: Undefined identifier: 'fwrite'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 57, Column 9: Undefined identifier: 'written'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 57, Column 19: Undefined identifier: 'len'. Did you mean 'fp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 10: Undefined identifier: 'written'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 70, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 73, Column 10: Undefined identifier: 'str_snprintf0'. Did you mean 'asprintf0'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 83, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 84, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 92, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 95, Column 10: Undefined identifier: 'str_snprintf1'. Did you mean 'asprintf1'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 101, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 114, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 117, Column 10: Undefined identifier: 'str_snprintf2'. Did you mean 'asprintf2'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 127, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 128, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 136, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 139, Column 10: Undefined identifier: 'str_snprintf3'. Did you mean 'asprintf3'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 144, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 149, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 150, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 159, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 162, Column 10: Undefined identifier: 'str_snprintf4'. Did you mean 'asprintf4'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 167, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 172, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 173, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 10: Undefined identifier: 'str_snprintf5'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 191, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 192, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 197, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 198, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 208, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 211, Column 10: Undefined identifier: 'str_snprintf6'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 218, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 219, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 225, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 226, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 236, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 239, Column 10: Undefined identifier: 'str_snprintf7'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 246, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 247, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 264, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 267, Column 10: Undefined identifier: 'str_snprintf8'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 275, Column 19: Undefined identifier: 'stdout_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 281, Column 10: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 19: Undefined identifier: 'stderr_fp'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 10: Undefined identifier: 'str_snprintf0'. Did you mean 'asprintf0'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 304, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 306, Column 10: Undefined identifier: 'mem_memcpy'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 307, Column 69: Undefined identifier: 'len'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 10: Undefined identifier: 'str_snprintf1'. Did you mean 'asprintf1'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 315, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 316, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 317, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 318, Column 10: Undefined identifier: 'mem_memcpy'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 319, Column 69: Undefined identifier: 'len'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 320, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 326, Column 10: Undefined identifier: 'str_snprintf2'. Did you mean 'asprintf2'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 327, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 328, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 329, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 330, Column 10: Undefined identifier: 'mem_memcpy'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 69: Undefined identifier: 'len'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 339, Column 10: Undefined identifier: 'str_snprintf3'. Did you mean 'asprintf3'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 340, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 341, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 10: Undefined identifier: 'mem_memcpy'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 344, Column 69: Undefined identifier: 'len'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 345, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 352, Column 10: Undefined identifier: 'str_snprintf4'. Did you mean 'asprintf4'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 21: Undefined identifier: 'str_strlen'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 354, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 355, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 356, Column 10: Undefined identifier: 'mem_memcpy'[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 357, Column 69: Undefined identifier: 'len'. Did you mean 'tmp'?[0m
+
+[1msrc/io/bio/fprintf.npk:0:0: [0m[1;31merror[0m: [1mLine 358, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mSummary: [0m[1;31m545 errors[0m

@@ -1,0 +1,1054 @@
+[DEBUG parseFuncDecl] nameToken=atexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=at_quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_proc_run_atexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_proc_run_atqexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_Exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=abort, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+[DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=puts, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fdopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=freopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fclose, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgets, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 431, Column 12: Unused result value. This function returns a result that must be checked. Use drop(func(...)) to discard, raw func(...) to extract the value, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 437, Column 12: Unused result value. This function returns a result that must be checked. Use drop(func(...)) to discard, raw func(...) to extract the value, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 558, Column 16: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 564, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 585, Column 16: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 591, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 113, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 146, Column 10: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 158, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 190, Column 5: Cannot silently unwrap Result<int64> into 'total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 193, Column 31: Undefined identifier: 'total'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 199, Column 24: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 200, Column 44: Type 'map' has no method 'start'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 201, Column 6: Cannot index non-array type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 202, Column 6: Cannot index non-array type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 205, Column 10: Type 'map' has no method 'start'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 219, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 243, Column 26: 'raw' argument must be Result<T> — got 'int64'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 244, Column 27: 'raw' argument must be Result<T> — got 'int64'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 247, Column 5: Cannot silently unwrap Result<int64> into 'new_total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 248, Column 39: Undefined identifier: 'old_map_size'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 249, Column 13: Member access (.) requires struct, object, or union type, got 'int64@'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 259, Column 5: Cannot silently unwrap Result<int64> into 'new_r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 260, Column 9: Undefined identifier: 'new_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 263, Column 21: Undefined identifier: 'new_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 266, Column 20: Undefined identifier: 'old_user_size'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 267, Column 20: Undefined identifier: 'copy_n'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 44: Undefined identifier: 'new_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 17: Undefined identifier: 'copy_n'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 10: Undefined identifier: 'new_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 296, Column 22: 'raw' argument must be Result<T> — got 'int64'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 9: Type 'map' has no method 'size'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 38: Type 'map' has no method 'size'
+  Available methods: new, length, insert, get, has, remove[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 5: Pass value type 'int64@' does not match function value type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 344, Column 10: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 370, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 9: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 374, Column 18: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 377, Column 33: Undefined identifier: 'main'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 378, Column 9: Undefined identifier: 'r_bot'. Did you mean 'abort'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 384, Column 23: Undefined identifier: 'main'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 385, Column 33: Undefined identifier: 'top_guard'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 386, Column 9: Undefined identifier: 'r_top'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 392, Column 10: Undefined identifier: 'main'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 403, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 404, Column 10: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 265, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 269, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 5: Cannot silently unwrap Result<int64> into 'head' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 277, Column 9: Undefined identifier: 'head'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 293, Column 22: Undefined identifier: 'head'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 294, Column 49: Undefined identifier: 'user_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 295, Column 22: Undefined identifier: 'next_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 22: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 5: Undefined identifier: 'next_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 304, Column 10: Undefined identifier: 'user_ptr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 333, Column 9: Pass value type 'uint8@' does not match function value type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 339, Column 5: Cannot silently unwrap Result<int64> into 'old_head' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 341, Column 19: Undefined identifier: 'old_head'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 22: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 352, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 355, Column 18: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 359, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 360, Column 5: Cannot silently unwrap Result<int64> into 'sz' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 14: Cannot assign value of type 'int64' to variable of type 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 75, Column 14: Cannot assign value of type 'int64' to variable of type 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 14: Cannot assign value of type 'int64' to variable of type 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 5: Undefined identifier: 'compiler_fence'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 138, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 189, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 117, Column 5: Cannot silently unwrap Result<int64> into 'p' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 118, Column 9: Undefined identifier: 'p'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 40: Undefined identifier: 'p'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 5: Undefined identifier: 'f'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 5: Undefined identifier: 'f'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 10: Undefined identifier: 'p'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 14: slab_free() requires exactly two arguments (handle, ptr)[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 146, Column 10: Undefined identifier: 'mem_malloc'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 153, Column 18: slab_free() requires exactly two arguments (handle, ptr)[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 155, Column 9: Undefined identifier: 'mem_free'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 177, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 183, Column 14: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 22: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 188, Column 36: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 189, Column 34: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 5: Undefined identifier: 'es_r'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 9: Undefined identifier: 'res_r'. Did you mean 'res_es_r'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 15: Undefined identifier: 'res_r'. Did you mean 'res_es_r'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 217, Column 10: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 244, Column 5: Undefined identifier: 'es_r'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 247, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 22: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 14: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 257, Column 15: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 281, Column 19: 'raw' argument must be Result<T> — got 'uint8'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 300, Column 9: Undefined identifier: 'first'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 107, Column 43: @cast supports numeric types and pointer types only. Cannot cast 'int64[1]' to 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 113, Column 23: 'raw' argument must be Result<T> — got 'int64'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 114, Column 24: 'raw' argument must be Result<T> — got 'int64'.
+  'raw' extracts .value without an is_error check.
+  If you have a plain value already, 'raw' is not needed.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 117, Column 31: Undefined identifier: 'open_flags'. Did you mean 'open_flags_out'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 118, Column 9: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 16: Undefined identifier: 'r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 15: Cannot compare incompatible types: 'func(int64, int64) -> Result<int64>' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 49: Undefined identifier: 'file_mode'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 9: Undefined identifier: 'init_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 141, Column 5: Pass value type 'func(int64, int64) -> Result<int64>' does not match function value type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 158, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 164, Column 43: @cast supports numeric types and pointer types only. Cannot cast 'int64[1]' to 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 170, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 172, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 176, Column 5: Cannot silently unwrap Result<int64> into 'init_r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 177, Column 9: Undefined identifier: 'init_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 197, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 206, Column 43: @cast supports numeric types and pointer types only. Cannot cast 'int64[1]' to 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 207, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 223, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 224, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 236, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 265, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 275, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 284, Column 22: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 284, Column 35: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 284, Column 48: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 285, Column 10: Undefined identifier: 'is_std'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 285, Column 22: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 297, Column 21: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 10: Undefined identifier: 'is_std'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 325, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 330, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 112, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 113, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 256, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 261, Column 28: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 262, Column 12: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 267, Column 11: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 63, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 64, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 57: Undefined identifier: 'res_r'. Did you mean 'res_es_r'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 110, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 120, Column 44: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 121, Column 37: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 44: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 17: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 129, Column 22: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 57: Undefined identifier: 'res_r'. Did you mean 'res_es_r'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 18: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 193, Column 43: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 37: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 195, Column 47: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 207, Column 13: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 208, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 218, Column 5: Undefined identifier: 'es_wr'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 219, Column 58: Undefined identifier: 'res_wr'. Did you mean 'res_es_wr'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 221, Column 20: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 227, Column 45: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 228, Column 39: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 229, Column 49: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 295, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 54, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 61, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 55: @cast supports numeric types and pointer types only. Cannot cast 'uint8[1]' to 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 9: Undefined identifier: 'res_es_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 5: Undefined identifier: 'es_r'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 81, Column 9: Undefined identifier: 'res_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 82, Column 15: Undefined identifier: 'res_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 83, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 89, Column 18: Struct 'FILE' has no member named 'value'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 102, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 28: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 149, Column 56: @cast supports numeric types and pointer types only. Cannot cast 'uint8[1]' to 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 150, Column 9: Undefined identifier: 'res_es_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 5: Undefined identifier: 'es_r'. Did you mean 'exit'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 152, Column 9: Undefined identifier: 'res_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 153, Column 15: Undefined identifier: 'res_r'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 154, Column 17: Undefined identifier: 'r'. Did you mean 'b'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 170, Column 14: Struct 'FILE' has no member named 'is_error'
+  Available fields: fd, buf, buf_cap, buf_pos, buf_len, file_pos, mode, buf_mode, flags, unget[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 176, Column 51: Cannot assign value of type 'FILE@' to variable of type 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 181, Column 36: Cannot compare incompatible types: 'FILE@' and 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 62, Column 20: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 72, Column 12: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 35: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 30: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 5: Cannot silently unwrap Result<int64> into 'n' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 63, Column 24: Function expects 3 argument(s), but 1 provided[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 65, Column 15: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 74, Column 22: @cast supports numeric types and pointer types only. Cannot cast 'FILE@' to 'uint8'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 15: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 111, Column 5: Cannot silently unwrap Result<int64> into 'len' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 112, Column 11: Cannot compare incompatible types: 'FILE@' and 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 14: Cannot compare incompatible types: 'int64' and 'uint8@'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 5: Pass value type 'uint8@' does not match function value type 'int64'[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 127, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 14: Function expects 1 argument(s), but 2 provided[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 137, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 141, Column 19: Function expects 1 argument(s), but 2 provided[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 14: Function expects 1 argument(s), but 2 provided[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 155, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 160, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 24: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 5: Cannot silently unwrap Result<int64> into 'r1' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 167, Column 5: Cannot silently unwrap Result<int64> into 'r2' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 5: Cannot silently unwrap Result<int64> into 'r3' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 9: Undefined identifier: 'r1'. Did you mean 'sys1'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 27: Undefined identifier: 'r2'. Did you mean 'sys2'?[0m
+
+[1m/home/randy/Workspace/REPOS/libn/src/proc/exit.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 45: Undefined identifier: 'r3'. Did you mean 'sys3'?[0m
+
+[1mSummary: [0m[1;31m229 errors[0m

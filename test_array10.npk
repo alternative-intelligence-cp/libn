@@ -1,0 +1,9 @@
+pub func:main = int32() {
+    byte[1]:one;
+    int64:p = @cast_unchecked<int64>(@one[0]);
+    exit 0i32;
+};
+
+pub func:failsafe = int32(tbb32:err) {
+    exit @cast_unchecked<int32>(err);
+};

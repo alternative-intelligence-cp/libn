@@ -1,0 +1,8 @@
+pub func:test_func = int64() { pass 0i64; };
+pub func:my_test = int64() {
+    Result<int64>:r2 = test_func();
+    if (r2.is_error) { pass 1i64; }
+    pass r2.value;
+};
+pub func:main = int32() { exit 0i32; };
+pub func:failsafe = int32(tbb32:err) { exit err; };

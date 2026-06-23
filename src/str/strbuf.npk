@@ -1,16 +1,16 @@
 // strbuf.npk — Growable string buffer (v0.7.0)
 //
 // StrBuf is the foundational dynamic string type in libn. It solves the core
-// limitation of the snprintf/asprintf family: the 4096-byte stack-buffer cap.
+// limitation of the snprintf/asprintf family: the 4096-uint8 stack-buffer cap.
 //
 // ── Design ────────────────────────────────────────────────────────────────
 //
-// A StrBuf is a heap-allocated byte buffer with:
+// A StrBuf is a heap-allocated uint8 buffer with:
 //   ptr  — pointer to the buffer (always NUL-terminated after any write)
 //   len  — current content length (bytes, excluding NUL)
-//   cap  — allocated capacity (always >= len + 1 for the NUL byte)
+//   cap  — allocated capacity (always >= len + 1 for the NUL uint8)
 //
-// Represented in libn as an int64 pointer to a StrBuf struct.
+// Represented in @cast_unchecked<an>(libn) int64 pointer to a StrBuf struct.
 // Use strbuf_new() to allocate, strbuf_free() when done.
 // The buffer is always NUL-terminated so strbuf_ptr() can be passed
 // directly to any function expecting a C string.
@@ -28,7 +28,7 @@
 //   strbuf_len(sb)                — current content length
 //   strbuf_cap(sb)                — current capacity
 //   strbuf_ptr(sb)                — pointer to NUL-terminated content
-//   strbuf_append_char(sb, c)     — append one byte
+//   strbuf_append_char(sb, c)     — append one uint8
 //   strbuf_append_bytes(sb, p, n) — append n raw bytes
 //   strbuf_append_str(sb, s)      — append NUL-terminated string
 //   strbuf_appendf0..8(sb, fmt, ...) — append formatted output (any length)
@@ -39,22 +39,22 @@
 // ── Thread safety ─────────────────────────────────────────────────────────
 // Not thread-safe. External synchronization required for concurrent access.
 
-use "src/syscall/errno.npk".*;
-use "src/mem/mmap.npk".*;
-use "src/mem/memcpy.npk".*;
-use "src/mem/memset.npk".*;
-use "src/str/strlen.npk".*;
-use "src/str/strfmt.npk".*;
+use "../syscall/errno.npk".*;
+use "../mem/mmap.npk".*;
+use "../mem/memcpy.npk".*;
+use "../mem/memset.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strfmt.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // StrBuf struct
 // ════════════════════════════════════════════════════════════════════════════
 
-pub struct StrBuf {
-    int64:ptr;    // heap buffer pointer (always NUL-terminated)
-    int64:len;    // content length in bytes (excluding NUL)
-    int64:cap;    // total allocated capacity (buf[0..cap-1], NUL at buf[len])
-}
+pub struct:StrBuf = {
+    int64:ptr;      // heap buffer pointer (always NUL-terminated)
+    int64:len;      // content length in bytes (excluding NUL)
+    int64:cap;      // total allocated capacity (buf[0..cap-1], NUL at buf[len])
+};
 
 // Minimum initial capacity — 64 bytes is enough for most short strings
 pub fixed int64:STRBUF_MIN_CAP = 64i64;
@@ -66,34 +66,34 @@ fixed int64:STRBUF_FMT_BUF = 4096i64;
 // Internal helpers
 // ════════════════════════════════════════════════════════════════════════════
 
-// strbuf_grow — Ensure buf has room for at least (sb.len + need + 1) bytes.
+// strbuf_grow — Ensure buf has room for at least (sb->len + need + 1) bytes.
 // Returns true on success, false on OOM.
 func:strbuf_grow = bool(int64:sb, int64:need) {
-    *StrBuf:s = sb as *StrBuf;
-    int64:required = s.len + need + 1i64;
-    if required <= s.cap {
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    int64:required = s->len + need + 1i64;
+    if (required <= s.cap) {
         pass true;
     }
 
-    // Double until we fit
-    int64:new_cap = s.cap > 0i64 ? s.cap : STRBUF_MIN_CAP;
-    while new_cap < required {
+      // Double until we fit
+    int64:new_cap = is (s.cap > 0i64) : s.cap : STRBUF_MIN_CAP;
+    while (new_cap < required) {
         new_cap = new_cap * 2i64;
-        // Overflow guard (very unlikely to hit in practice)
-        if new_cap < 0i64 {
+          // Overflow guard (very unlikely to hit in practice)
+        if (new_cap < 0i64) {
             pass false;
         }
     }
 
-    Result<int64>:r = mem_realloc(s.ptr, new_cap);
-    if r.is_error {
+    Result<int64>:r = mem_realloc(s->ptr, new_cap);
+    if (r.is_error) {
         pass false;
     }
 
-    s.ptr = r.value;
+    s->ptr = r.value;
     s.cap = new_cap;
     pass true;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Lifecycle
@@ -103,56 +103,56 @@ func:strbuf_grow = bool(int64:sb, int64:need) {
 // Returns StrBuf* (as int64), or 0 on allocation failure.
 pub func:strbuf_new = int64() {
     pass strbuf_new_cap(STRBUF_MIN_CAP);
-}
+};
 
 // strbuf_new_cap — Allocate with at least init_cap bytes of capacity.
 pub func:strbuf_new_cap = int64(int64:init_cap) {
-    int64:cap = init_cap > STRBUF_MIN_CAP ? init_cap : STRBUF_MIN_CAP;
+    int64:cap = is (init_cap > STRBUF_MIN_CAP) : init_cap : STRBUF_MIN_CAP;
 
-    // Allocate the StrBuf struct itself (24 bytes, fits in slab 32-byte class)
+      // Allocate the StrBuf struct itself (24 bytes, fits in slab 32-uint8 class)
     Result<int64>:sr = mem_malloc(24i64);
-    if sr.is_error { pass 0i64; }
+    if (sr.is_error) { pass 0i64; }
     int64:sb = sr.value;
 
-    // Allocate the string buffer
+      // Allocate the string buffer
     Result<int64>:br = mem_malloc(cap);
-    if br.is_error {
+    if (br.is_error) {
         drop mem_free(sb);
         pass 0i64;
     }
 
-    *StrBuf:s = sb as *StrBuf;
-    s.ptr = br.value;
-    s.len = 0i64;
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    s->ptr = br.value;
+    s->len = 0i64;
     s.cap = cap;
 
-    // NUL-terminate the empty string
-    (s.ptr as *byte)[0] = 0u8;
+      // NUL-terminate the empty string
+    (@cast_unchecked<uint8->>(s->ptr))[0] = 0u8;
 
     pass sb;
-}
+};
 
 // strbuf_free — Free the string buffer and the StrBuf struct.
 // After this call, sb is invalid. Passing 0 is a no-op.
-pub func:strbuf_free = void(int64:sb) {
-    if sb == 0i64 { pass; }
-    *StrBuf:s = sb as *StrBuf;
-    if s.ptr != 0i64 {
-        drop mem_free(s.ptr);
+pub func:strbuf_free = NIL(int64:sb) {
+    if (sb == 0i64) { pass NIL; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    if (s->ptr != 0i64) {
+        drop mem_free(s->ptr);
     }
     drop mem_free(sb);
-}
+};
 
 // strbuf_reset — Clear content (set len=0, NUL-terminate) without freeing.
 // The allocated buffer is reused. Useful for building multiple strings.
-pub func:strbuf_reset = void(int64:sb) {
-    if sb == 0i64 { pass; }
-    *StrBuf:s = sb as *StrBuf;
-    s.len = 0i64;
-    if s.ptr != 0i64 {
-        (s.ptr as *byte)[0] = 0u8;
+pub func:strbuf_reset = NIL(int64:sb) {
+    if (sb == 0i64) { pass NIL; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    s->len = 0i64;
+    if (s->ptr != 0i64) {
+        (@cast_unchecked<uint8->>(s->ptr))[0] = 0u8;
     }
-}
+};
 
 // strbuf_finish — Transfer the string buffer to the caller and free the struct.
 //
@@ -160,33 +160,33 @@ pub func:strbuf_reset = void(int64:sb) {
 // NUL-terminated string — the CALLER is responsible for calling mem_free() on it.
 // Returns 0 if sb was 0 or its ptr was 0.
 pub func:strbuf_finish = int64(int64:sb) {
-    if sb == 0i64 { pass 0i64; }
-    *StrBuf:s = sb as *StrBuf;
-    int64:ptr = s.ptr;
-    s.ptr = 0i64;  // prevent double-free in strbuf_free
+    if (sb == 0i64) { pass 0i64; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    int64:ptr = s->ptr;
+    s->ptr = 0i64;    // prevent double-free in strbuf_free
     drop mem_free(sb);
     pass ptr;
-}
+};
 
 // strbuf_to_str — Copy content to a new heap buffer, free the StrBuf.
 //
 // Unlike strbuf_finish, the returned pointer is a fresh minimum-size allocation.
 // Useful when you want to trim excess capacity before storing the string long-term.
 pub func:strbuf_to_str = int64(int64:sb) {
-    if sb == 0i64 { pass 0i64; }
-    *StrBuf:s = sb as *StrBuf;
+    if (sb == 0i64) { pass 0i64; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
 
-    int64:n = s.len;
+    int64:n = s->len;
     Result<int64>:r = mem_malloc(n + 1i64);
-    if r.is_error {
-        strbuf_free(sb);
+    if (r.is_error) {
+        drop strbuf_free(sb);
         pass 0i64;
     }
 
-    drop mem_memcpy(r.value, s.ptr, n + 1i64);  // includes NUL
-    strbuf_free(sb);
+    drop mem_memcpy(r.value, s->ptr, n + 1i64);    // includes NUL
+    drop strbuf_free(sb);
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Accessors
@@ -194,92 +194,92 @@ pub func:strbuf_to_str = int64(int64:sb) {
 
 // strbuf_len — Current content length (bytes, excluding NUL).
 pub func:strbuf_len = int64(int64:sb) {
-    if sb == 0i64 { pass 0i64; }
-    pass (sb as *StrBuf).len;
-}
+    if (sb == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrBuf->>(sb)).len;
+};
 
 // strbuf_cap — Current total capacity.
 pub func:strbuf_cap = int64(int64:sb) {
-    if sb == 0i64 { pass 0i64; }
-    pass (sb as *StrBuf).cap;
-}
+    if (sb == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrBuf->>(sb)).cap;
+};
 
 // strbuf_ptr — Pointer to the NUL-terminated content string.
 // Valid until the next mutating strbuf_* call (growth may realloc).
 pub func:strbuf_ptr = int64(int64:sb) {
-    if sb == 0i64 { pass 0i64; }
-    pass (sb as *StrBuf).ptr;
-}
+    if (sb == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrBuf->>(sb)).ptr;
+};
 
 // strbuf_is_empty — True if the buffer has no content (len == 0).
 pub func:strbuf_is_empty = bool(int64:sb) {
-    if sb == 0i64 { pass true; }
-    pass (sb as *StrBuf).len == 0i64;
-}
+    if (sb == 0i64) { pass true; }
+    pass (@cast_unchecked<StrBuf->>(sb)).len == 0i64;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Append operations
 // ════════════════════════════════════════════════════════════════════════════
 
-// strbuf_append_char — Append a single byte to the buffer.
+// strbuf_append_char — Append a single uint8 to the buffer.
 // Returns true on success, false on OOM.
-pub func:strbuf_append_char = bool(int64:sb, byte:c) {
-    if sb == 0i64 { pass false; }
-    if !strbuf_grow(sb, 1i64) { pass false; }
+pub func:strbuf_append_char = bool(int64:sb, uint8:c) {
+    if (sb == 0i64) { pass false; }
+    if (!raw strbuf_grow(sb, 1i64)) { pass false; }
 
-    *StrBuf:s = sb as *StrBuf;
-    *byte:p = s.ptr as *byte;
-    p[s.len] = c;
-    s.len = s.len + 1i64;
-    p[s.len] = 0u8;  // keep NUL-terminated
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    uint8->:p = @cast_unchecked<uint8->>(s->ptr);
+    p[s->len] = c;
+    s->len = s->len + 1i64;
+    p[s->len] = 0u8;    // keep NUL-terminated
     pass true;
-}
+};
 
 // strbuf_append_bytes — Append n bytes from ptr to the buffer.
 // Returns true on success, false on OOM or invalid args.
 pub func:strbuf_append_bytes = bool(int64:sb, int64:ptr, int64:n) {
-    if sb == 0i64 || ptr == 0i64 || n <= 0i64 { pass false; }
-    if !strbuf_grow(sb, n) { pass false; }
+    if (sb == 0i64 || ptr == 0i64 || n <= 0i64) { pass false; }
+    if (!raw strbuf_grow(sb, n)) { pass false; }
 
-    *StrBuf:s = sb as *StrBuf;
-    drop mem_memcpy(s.ptr + s.len, ptr, n);
-    s.len = s.len + n;
-    (s.ptr as *byte)[s.len] = 0u8;  // NUL-terminate
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    drop mem_memcpy(s->ptr + s->len, ptr, n);
+    s->len = s->len + n;
+    (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;    // NUL-terminate
     pass true;
-}
+};
 
 // strbuf_append_str — Append a NUL-terminated string to the buffer.
 // Returns true on success, false on OOM or null input.
 pub func:strbuf_append_str = bool(int64:sb, int64:str) {
-    if sb == 0i64 || str == 0i64 { pass false; }
+    if (sb == 0i64 || str == 0i64) { pass false; }
     int64:n = str_strlen(str);
-    if n == 0i64 { pass true; }  // appending empty string is a no-op
+    if (n == 0i64) { pass true; }    // appending empty string is a no-op
     pass strbuf_append_bytes(sb, str, n);
-}
+};
 
 // strbuf_append_strbuf — Append the content of another StrBuf.
 pub func:strbuf_append_strbuf = bool(int64:sb, int64:other) {
-    if sb == 0i64 || other == 0i64 { pass false; }
-    *StrBuf:o = other as *StrBuf;
-    if o.len == 0i64 { pass true; }
+    if (sb == 0i64 || other == 0i64) { pass false; }
+    StrBuf->:o = @cast_unchecked<StrBuf->>(other);
+    if (o.len == 0i64) { pass true; }
     pass strbuf_append_bytes(sb, o.ptr, o.len);
-}
+};
 
-// strbuf_append_repeat — Append byte c repeated n times.
-pub func:strbuf_append_repeat = bool(int64:sb, byte:c, int64:n) {
-    if sb == 0i64 || n <= 0i64 { pass false; }
-    if !strbuf_grow(sb, n) { pass false; }
-    *StrBuf:s = sb as *StrBuf;
-    drop mem_memset(s.ptr + s.len, c as int64, n);
-    s.len = s.len + n;
-    (s.ptr as *byte)[s.len] = 0u8;
+// strbuf_append_repeat — Append uint8 c repeated n times.
+pub func:strbuf_append_repeat = bool(int64:sb, uint8:c, int64:n) {
+    if (sb == 0i64 || n <= 0i64) { pass false; }
+    if (!raw strbuf_grow(sb, n)) { pass false; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    drop mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n);
+    s->len = s->len + n;
+    (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;
     pass true;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Formatted append — strbuf_appendf*
 //
-// Renders a format string into a 4096-byte stack buffer via str_snprintfN,
+// Renders a format string into a 4096-uint8 stack buffer via str_snprintfN,
 // then appends the result to the StrBuf. For output exceeding 4095 bytes,
 // use multiple calls or pre-render into a large intermediate buffer.
 //
@@ -287,112 +287,112 @@ pub func:strbuf_append_repeat = bool(int64:sb, byte:c, int64:n) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:strbuf_appendf0 = int64(int64:sb, int64:fmt) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf0(tmp_ptr, STRBUF_FMT_BUF, fmt);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf1(tmp_ptr, STRBUF_FMT_BUF, fmt, a0);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf2 = int64(int64:sb, int64:fmt, int64:a0, int64:a1) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf2(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf3 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf3(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf4 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf4(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf5 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf5(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf6 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3,
                                   int64:a4, int64:a5) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf6(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3,
                                   int64:a4, int64:a5, int64:a6) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf7(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
                                   int64:a0, int64:a1, int64:a2, int64:a3,
                                   int64:a4, int64:a5, int64:a6, int64:a7) {
-    if sb == 0i64 { pass -1i64; }
-    stack byte:tmp[4096];
-    int64:tmp_ptr = &tmp[0] as int64;
+    if (sb == 0i64) { pass -1i64; }
+    stack uint8[4096]:tmp;
+    int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
     drop str_snprintf8(tmp_ptr, STRBUF_FMT_BUF, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
     int64:n = str_strlen(tmp_ptr);
-    if n == 0i64 { pass 0i64; }
-    if !strbuf_append_bytes(sb, tmp_ptr, n) { pass -1i64; }
+    if (n == 0i64) { pass 0i64; }
+    if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
     pass n;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Truncation and trimming
@@ -400,30 +400,30 @@ pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
 
 // strbuf_truncate — Shorten the content to at most n bytes.
 // No-op if n >= current len.
-pub func:strbuf_truncate = void(int64:sb, int64:n) {
-    if sb == 0i64 { pass; }
-    *StrBuf:s = sb as *StrBuf;
-    if n >= s.len { pass; }
-    if n < 0i64 { n = 0i64; }
-    s.len = n;
-    (s.ptr as *byte)[s.len] = 0u8;
-}
+pub func:strbuf_truncate = NIL(int64:sb, int64:n) {
+    if (sb == 0i64) { pass NIL; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    if (n >= s->len) { pass NIL; }
+    if (n < 0i64) { n = 0i64; }
+    s->len = n;
+    (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;
+};
 
 // strbuf_strip_trailing_newline — Remove a trailing '\n' (and optional '\r').
 // Useful for cleaning up line-read output.
-pub func:strbuf_strip_trailing_newline = void(int64:sb) {
-    if sb == 0i64 { pass; }
-    *StrBuf:s = sb as *StrBuf;
-    *byte:p = s.ptr as *byte;
-    if s.len > 0i64 && p[s.len - 1i64] == 10u8 {   // '\n'
-        s.len = s.len - 1i64;
-        p[s.len] = 0u8;
+pub func:strbuf_strip_trailing_newline = NIL(int64:sb) {
+    if (sb == 0i64) { pass NIL; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    uint8->:p = @cast_unchecked<uint8->>(s->ptr);
+    if (s->len > 0i64 && p[s->len - 1i64] == 10u8) {     // '\n'
+        s->len = s->len - 1i64;
+        p[s->len] = 0u8;
     }
-    if s.len > 0i64 && p[s.len - 1i64] == 13u8 {   // '\r'
-        s.len = s.len - 1i64;
-        p[s.len] = 0u8;
+    if (s->len > 0i64 && p[s->len - 1i64] == 13u8) {     // '\r'
+        s->len = s->len - 1i64;
+        p[s->len] = 0u8;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // I/O integration
@@ -433,10 +433,10 @@ pub func:strbuf_strip_trailing_newline = void(int64:sb) {
 // Uses libn_write_all for reliable full-write behavior.
 // Returns number of bytes written, or -1 on error.
 pub func:strbuf_write_to_fd = int64(int64:sb, int64:fd) {
-    if sb == 0i64 { pass 0i64; }
-    *StrBuf:s = sb as *StrBuf;
-    if s.len == 0i64 { pass 0i64; }
-    Result<int64>:r = libn_write_all(fd, s.ptr, s.len);
-    if r.is_error { pass -1i64; }
+    if (sb == 0i64) { pass 0i64; }
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    if (s->len == 0i64) { pass 0i64; }
+    Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};

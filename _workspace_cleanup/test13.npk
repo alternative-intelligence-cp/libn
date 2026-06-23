@@ -1,0 +1,12 @@
+pub func:replicate_byte = int64(int64:c) {
+    int64:w = c & 255i64;
+    w = w | (w << 8i64);
+    w = w | (w << 16i64);
+    w = w | (w << 32i64);
+    pass w;
+};
+
+pub func:my_caller = int64() {
+    int64:tword = replicate_byte(42i64);
+    pass tword;
+};

@@ -1,0 +1,8 @@
+pub struct:timespec = {
+    int64:tv_sec;
+    int64:tv_nsec;
+};
+pub struct:timeval = {
+    int64:tv_sec;
+    int64:tv_usec;
+};

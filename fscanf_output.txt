@@ -1,0 +1,367 @@
+[DEBUG parseFuncDecl] nameToken=bio_scan_getc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_skip_ws, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_scan_int, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_engine, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=scanf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf8, peek()==, type=168
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 49, Column 1: Failed to load module 'src/syscall/errno.npk'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 49, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 49, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1: Failed to load module 'src/io/bio/file.npk'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 50, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1: Failed to load module 'src/io/bio/fchar.npk'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   File path 'src/io/bio/fchar.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 51, Column 1:   Could not resolve module 'src/io/bio/fchar.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1: Failed to load module 'src/io/bio/stdfiles.npk'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/fchar.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/fchar.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/file.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/file.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/fchar.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/fchar.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   File path 'src/io/bio/stdfiles.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 52, Column 1:   Could not resolve module 'src/io/bio/stdfiles.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/io/bio, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 66, Column 14: Undefined identifier: 'fgetc'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 70, Column 9: Cannot initialize variable 'c' of type 'byte' with value of type 'uint8'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 71, Column 13: Undefined identifier: 'c'. Did you mean 's'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 75, Column 37: Undefined identifier: 'c'. Did you mean 's'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 84, Column 14: Undefined identifier: 'ungetc'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 101, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 12: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 26: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 120, Column 5: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 121, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 129, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 140, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 158, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 5: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 223, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 224, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 226, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 226, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 226, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 227, Column 12: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 227, Column 26: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 227, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 232, Column 76: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 266, Column 9: Cannot initialize variable 'ch' of type 'byte' with value of type 'uint8'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 269, Column 13: Undefined identifier: 'ch'. Did you mean 'ai'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 318, Column 9: Cannot initialize variable 'spec' of type 'byte' with value of type 'uint8'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 13: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 345, Column 13: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 13: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 365, Column 13: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 376, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 377, Column 13: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 381, Column 13: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 381, Column 30: Undefined identifier: 'spec'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 395, Column 55: @cast supports numeric types and pointer types only. Cannot cast 'int64[1]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 396, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 412, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 415, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 419, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 424, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 428, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 433, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 438, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 443, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 448, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 453, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 458, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 463, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 469, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 475, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 481, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 487, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 493, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 499, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 509, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 517, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 525, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 534, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 543, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 552, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 563, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 574, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 585, Column 26: @cast supports numeric types and pointer types only. Cannot cast 'int64[3]' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 593, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 594, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 598, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 599, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 603, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 604, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 608, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 609, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 613, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 614, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 618, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 619, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 624, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 625, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 630, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 631, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 636, Column 5: Undefined identifier: 'bio_ensure_std_init'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 637, Column 18: Undefined identifier: 'stdin_fp'[0m
+
+[1mSummary: [0m[1;31m133 errors[0m

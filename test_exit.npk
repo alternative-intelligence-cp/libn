@@ -1,0 +1,6 @@
+use "src/proc/exit.npk".*;
+func:main = int32() {
+    exit(0i64);
+    pass 0i32;
+};
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

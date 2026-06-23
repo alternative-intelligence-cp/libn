@@ -1,0 +1,21 @@
+use "../../src/time/time_types.npk".*;
+use "../../src/time/clock.npk".*;
+use "../../src/time/timeofday.npk".*;
+use "../../src/time/sleep.npk".*;
+use "../../src/syscall/posix_constants.npk".*;
+
+pub func:test_time_clock = Result<int64>() {
+    timespec:ts = timespec{tv_sec: 0i64, tv_nsec: 0i64};
+    Result<int64>:r1 = clock_gettime(CLOCK_REALTIME, @ts);
+    if (r1.is_error) {
+        return r1;
+    }
+    
+    timeval:tv = timeval{tv_sec: 0i64, tv_usec: 0i64};
+    Result<int64>:r2 = gettimeofday(@tv, 0i64);
+    if (r2.is_error) {
+        return r2;
+    }
+    
+    pass(0i64);
+};

@@ -1,0 +1,14 @@
+use "src/fs/path.npk".*;
+use "src/io/io.npk".*;
+use "src/io/bio/bio.npk".*;
+use "src/math/math.npk".*;
+use "src/mem/memutil.npk".*;
+use "src/mem/slab.npk".*;
+use "src/mem/mmap.npk".*;
+use "src/proc/proc.npk".*;
+use "src/str/string.npk".*;
+use "src/syscall/syscall.npk".*;
+
+pub func:main = int32() {
+    exit 0i32;
+};

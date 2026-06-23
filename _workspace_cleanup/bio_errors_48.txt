@@ -1,0 +1,111 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 131, column 8:
+  Expected '(' after 'if'
+  Found: identifier 'fp'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 131, column 19:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 151, column 8:
+  Expected '(' after 'if'
+  Found: identifier 'buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 151, column 20:
+  Expected ')' after if condition
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'e'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected field name in struct literal
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected ':' after field name
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected expression
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected field value
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected expression after operator
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 175, column 29:
+  Expected condition expression in if statement
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 188, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: identifier 'f'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 192, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 16:
+  Expected '(' after 'if'
+  Found: identifier 'e'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected field name in struct literal
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected ':' after field name
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected expression
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected field value
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected expression after operator
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 237, column 29:
+  Expected condition expression in if statement
+  Found: token 'continue'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 249, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'fail'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 250, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m24 errors[0m

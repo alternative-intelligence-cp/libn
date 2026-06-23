@@ -1,0 +1,5 @@
+pub func:test_addr = int64() {
+    stack int64[1]:arr;
+    int64:addr1 = @cast_unchecked<int64>(arr);
+    pass 0i64;
+};

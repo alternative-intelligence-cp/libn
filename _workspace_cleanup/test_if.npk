@@ -1,0 +1,6 @@
+func:main = int64() {
+    if (1 == 1) {
+        pass 0i64;
+    };
+    pass 0i64;
+};

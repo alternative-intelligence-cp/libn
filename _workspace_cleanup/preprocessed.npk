@@ -1,0 +1,9 @@
+use "src/syscall/syscall.npk".*;
+use "src/mem/memutil.npk".*;
+use "src/mem/slab.npk".*;
+use "src/io/bio/bio.npk".*;
+pub func:main = int32() { exit 0i32; };
+
+pub func:failsafe = int32(tbb32:err) {
+    exit 1i32;
+};

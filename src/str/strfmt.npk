@@ -36,116 +36,116 @@
 //     A macro-style wrapper snprintf(buf, n, fmt, a, b, c, ...) exists for
 //     the common cases (up to 8 args). Full variadic support is in v0.10.x.
 
-use "src/syscall/errno.npk".*;
-use "src/str/strlen.npk".*;
-use "src/str/strconv.npk".*;
-use "src/str/strcmp.npk".*;
+use "../syscall/errno.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strconv.npk".*;
+use "../str/strcmp.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // FmtState — Internal formatter state (passed by pointer through helpers)
 // ════════════════════════════════════════════════════════════════════════════
 
-struct FmtState {
-    int64:buf;      // Output buffer pointer
-    int64:size;     // Total buffer size
-    int64:pos;      // Current write position
-}
+struct:FmtState = {
+    int64:buf;        // Output buffer pointer
+    int64:size;       // Total buffer size
+    int64:pos;        // Current write position
+};
 
 // fmt_putc — Write one character to the output buffer (or count it if full)
-func:fmt_putc = void(*FmtState:st, byte:c) {
-    if st.pos < st.size - 1i64 {
-        (st.buf as *byte)[st.pos] = c;
+func:fmt_putc = NIL(FmtState->:st, uint8:c) {
+    if (st.pos < st.size - 1i64) {
+        (@cast_unchecked<uint8->>(st->buf))[st.pos] = c;
     }
     st.pos = st.pos + 1i64;
-}
+};
 
 // fmt_puts_n — Write exactly n bytes from ptr to the output buffer
-func:fmt_puts_n = void(*FmtState:st, int64:ptr, int64:n) {
-    *byte:p = ptr as *byte;
+func:fmt_puts_n = NIL(FmtState->:st, int64:ptr, int64:n) {
+    uint8->:p = @cast_unchecked<uint8->>(ptr);
     int64:i = 0i64;
-    while i < n {
-        raw fmt_putc(st, p[i]);
+    while (i < n) {
+        fmt_putc(st, p[i]);
         i = i + 1i64;
     }
-}
+};
 
 // fmt_pad — Write n copies of pad_char
-func:fmt_pad = void(*FmtState:st, byte:pad_char, int64:n) {
+func:fmt_pad = NIL(FmtState->:st, uint8:pad_char, int64:n) {
     int64:i = 0i64;
-    while i < n {
-        raw fmt_putc(st, pad_char);
+    while (i < n) {
+        fmt_putc(st, pad_char);
         i = i + 1i64;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Number rendering helpers
 // ════════════════════════════════════════════════════════════════════════════
 
 // DIGITS — Lowercase and uppercase hex digit tables
-fixed int64:DIGITS_LOWER = &"0123456789abcdef"[0] as int64;
-fixed int64:DIGITS_UPPER = &"0123456789ABCDEF"[0] as int64;
+fixed int64:DIGITS_LOWER = @cast_unchecked<int64>(@"0123456789abcdef");
+fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
 
 // render_uint — Render an unsigned value into a small buffer, returns length.
 // base must be 2, 8, 10, or 16.
 // buf must be at least 66 bytes.
 func:render_uint = int64(int64:v, int64:base, int64:buf, bool:upper) {
-    *byte:b = buf as *byte;
-    *byte:digits = (upper ? DIGITS_UPPER : DIGITS_LOWER) as *byte;
+    uint8->:b = @cast_unchecked<uint8->>(buf);
+    uint8->:digits = @cast_unchecked<uint8->>(is (upper) : DIGITS_UPPER : DIGITS_LOWER);
 
-    if v == 0i64 {
-        b[0] = 48u8;  // '0'
+    if (v == 0i64) {
+        b[0] = 48u8;    // '0'
         pass 1i64;
     }
 
-    stack byte:tmp[66];
+    stack uint8[66]:tmp;
     int64:ti = 0i64;
     int64:u = v;
 
-    // Build digits in reverse
-    while u != 0i64 {
+      // Build digits in reverse
+    while (u != 0i64) {
         int64:d = 0i64;
-        // For base 2, 8, 16: use bitwise ops (exact for unsigned interpretation)
-        if base == 16i64 {
+          // For base 2, 8, 16: use bitwise ops (exact for unsigned interpretation)
+        if (base == 16i64) {
             d = u & 0xFi64;
-            u = (u >> 4i64) & 0x0FFFFFFFFFFFFFFFi64;  // logical shift: mask off sign
-        } else if base == 8i64 {
+            u = (u >> 4i64) & 0x0FFFFFFFFFFFFFFFi64;    // logical shift: mask off sign
+        } else if (base == 8i64) {
             d = u & 7i64;
             u = (u >> 3i64) & 0x1FFFFFFFFFFFFFFFi64;
-        } else if base == 2i64 {
+        } else if (base == 2i64) {
             d = u & 1i64;
             u = (u >> 1i64) & 0x7FFFFFFFFFFFFFFFi64;
         } else {
-            // base 10: if top bit is set, do two-step to handle uint64 > INT64_MAX
-            if u < 0i64 {
-                // v > INT64_MAX: split into high/low halves
-                // u = high * 10000000000000000000 + low
-                // This handles values up to UINT64_MAX correctly
-                // Simple approximation for v0.3.7: use modular arithmetic
-                // For values in [INT64_MAX+1..UINT64_MAX] this is a known-hard problem
-                // without unsigned division. Defer to v0.40.x uint64 division.
-                // For now: render INT64_MAX ("9223372036854775807") as the max.
-                pass raw str_itoa(9223372036854775807i64, buf, 66i64);
+              // base 10: if top bit is set, do two-step to handle uint64 > INT64_MAX
+            if (u < 0i64) {
+                  // v > INT64_MAX: split into high/low halves
+                  // u = high * 10000000000000000000 + low
+                  // This handles values up to UINT64_MAX correctly
+                  // Simple approximation for v0.3.7: use modular arithmetic
+                  // For values in [INT64_MAX+1..UINT64_MAX] this is a known-hard problem
+                  // without unsigned division. Defer to v0.40.x uint64 division.
+                  // For now: render INT64_MAX @cast_unchecked<the>(("9223372036854775807")) max.
+                pass str_itoa(9223372036854775807i64, buf, 66i64);
             }
             d = u % 10i64;
             u = u / 10i64;
         }
         tmp[ti] = digits[d];
         ti = ti + 1i64;
-        if u == 0i64 { break; }
+        if (u == 0i64) { break; }
     }
 
-    // Copy reversed digits to buf
+      // Copy reversed digits to buf
     int64:len = ti;
     int64:bi = 0i64;
-    while ti > 0i64 {
+    while (ti > 0i64) {
         ti = ti - 1i64;
         b[bi] = tmp[ti];
         bi = bi + 1i64;
     }
 
     pass len;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_format_args — Core formatter. Takes an array of int64 args.
@@ -162,158 +162,158 @@ func:render_uint = int64(int64:v, int64:base, int64:buf, bool:upper) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
-                                  *int64:args, int64:nargs) {
-    if buf == 0i64 || buf_size <= 0i64 {
+                                  int64->:args, int64:nargs) {
+    if (buf == 0i64 || buf_size <= 0i64) {
         pass 0i64;
     }
 
     FmtState:st;
-    st.buf  = buf;
+    st->buf  = buf;
     st.size = buf_size;
     st.pos  = 0i64;
-    *FmtState:stp = &st;
+    FmtState->:stp = @st;
 
-    *byte:f = fmt as *byte;
-    int64:fi = 0i64;   // format string position
-    int64:ai = 0i64;   // args array index
+    uint8->:f = @cast_unchecked<uint8->>(fmt);
+    int64:fi = 0i64;     // format string position
+    int64:ai = 0i64;     // args array index
 
-    while f[fi] != 0u8 {
-        if f[fi] != 37u8 {  // '%'
-            raw fmt_putc(stp, f[fi]);
+    while (f[fi] != 0u8) {
+        if (f[fi] != 37u8) {    // '%'
+            fmt_putc(stp, f[fi]);
             fi = fi + 1i64;
             continue;
         }
-        fi = fi + 1i64;  // skip '%'
+        fi = fi + 1i64;    // skip '%'
 
-        // ── Parse flags ──────────────────────────────────────────────
+          // ── Parse flags ──────────────────────────────────────────────
         bool:flag_left    = false;
         bool:flag_zero    = false;
         bool:flag_plus    = false;
         bool:flag_space   = false;
         bool:flag_alt     = false;
 
-        while true {
-            if f[fi] == 45u8      { flag_left  = true; fi = fi + 1i64; }  // '-'
-            else if f[fi] == 48u8 { flag_zero  = true; fi = fi + 1i64; }  // '0'
-            else if f[fi] == 43u8 { flag_plus  = true; fi = fi + 1i64; }  // '+'
-            else if f[fi] == 32u8 { flag_space = true; fi = fi + 1i64; }  // ' '
-            else if f[fi] == 35u8 { flag_alt   = true; fi = fi + 1i64; }  // '#'
+        while (true) {
+            if (f[fi] == 45u8) { flag_left  = true; fi = fi + 1i64; }    // '-'
+            else if (f[fi] == 48u8) { flag_zero  = true; fi = fi + 1i64; }    // '0'
+            else if (f[fi] == 43u8) { flag_plus  = true; fi = fi + 1i64; }    // '+'
+            else if (f[fi] == 32u8) { flag_space = true; fi = fi + 1i64; }    // ' '
+            else if (f[fi] == 35u8) { flag_alt   = true; fi = fi + 1i64; }    // '#'
             else { break; }
         }
 
-        // ── Parse width ──────────────────────────────────────────────
+          // ── Parse width ──────────────────────────────────────────────
         int64:width = 0i64;
-        if f[fi] == 42u8 {  // '*' — width from args
-            if ai < nargs { width = args[ai]; ai = ai + 1i64; }
+        if (f[fi] == 42u8) {    // '*' — width from args
+            if (ai < nargs) { width = args[ai]; ai = ai + 1i64; }
             fi = fi + 1i64;
         } else {
-            while f[fi] >= 48u8 && f[fi] <= 57u8 {
-                width = width * 10i64 + (f[fi] - 48u8) as int64;
+            while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+                width = width * 10i64 + @cast_unchecked<int64>((f[fi] - 48u8));
                 fi = fi + 1i64;
             }
         }
 
-        // ── Parse precision ──────────────────────────────────────────
-        int64:precision  = -1i64;  // -1 means "not specified"
-        if f[fi] == 46u8 {  // '.'
+          // ── Parse precision ──────────────────────────────────────────
+        int64:precision  = -1i64;    // -1 means "not specified"
+        if (f[fi] == 46u8) {    // '.'
             fi = fi + 1i64;
             precision = 0i64;
-            if f[fi] == 42u8 {
-                if ai < nargs { precision = args[ai]; ai = ai + 1i64; }
+            if (f[fi] == 42u8) {
+                if (ai < nargs) { precision = args[ai]; ai = ai + 1i64; }
                 fi = fi + 1i64;
             } else {
-                while f[fi] >= 48u8 && f[fi] <= 57u8 {
-                    precision = precision * 10i64 + (f[fi] - 48u8) as int64;
+                while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+                    precision = precision * 10i64 + @cast_unchecked<int64>((f[fi] - 48u8));
                     fi = fi + 1i64;
                 }
             }
         }
 
-        // ── Parse length modifier (skip — we always use int64) ────────
-        if f[fi] == 108u8 { fi = fi + 1i64; }  // 'l'
-        if f[fi] == 108u8 { fi = fi + 1i64; }  // 'll'
-        if f[fi] == 122u8 { fi = fi + 1i64; }  // 'z'
-        if f[fi] == 104u8 { fi = fi + 1i64; }  // 'h'
-        if f[fi] == 104u8 { fi = fi + 1i64; }  // 'hh'
+          // ── Parse length modifier (skip — we always use int64) ────────
+        if (f[fi] == 108u8) { fi = fi + 1i64; }    // 'l'
+        if (f[fi] == 108u8) { fi = fi + 1i64; }    // 'll'
+        if (f[fi] == 122u8) { fi = fi + 1i64; }    // 'z'
+        if (f[fi] == 104u8) { fi = fi + 1i64; }    // 'h'
+        if (f[fi] == 104u8) { fi = fi + 1i64; }    // 'hh'
 
-        // ── Specifier ────────────────────────────────────────────────
-        byte:spec = f[fi];
+          // ── Specifier ────────────────────────────────────────────────
+        uint8:spec = f[fi];
         fi = fi + 1i64;
 
         int64:arg_val = 0i64;
-        if ai < nargs { arg_val = args[ai]; ai = ai + 1i64; }
+        if (ai < nargs) { arg_val = args[ai]; ai = ai + 1i64; }
 
-        if spec == 37u8 {  // '%%'
-            raw fmt_putc(stp, 37u8);
+        if (spec == 37u8) {    // '%%'
+            fmt_putc(stp, 37u8);
             continue;
         }
 
-        if spec == 99u8 {  // '%c'
-            if !flag_left { raw fmt_pad(stp, 32u8, width - 1i64); }
-            raw fmt_putc(stp, arg_val as byte);
-            if flag_left { raw fmt_pad(stp, 32u8, width - 1i64); }
+        if (spec == 99u8) {    // '%c'
+            if (!flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+            fmt_putc(stp, @cast_unchecked<uint8>(arg_val));
+            if (flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
             continue;
         }
 
-        if spec == 115u8 {  // '%s'
+        if (spec == 115u8) {    // '%s'
             int64:sptr = arg_val;
             int64:slen = 0i64;
-            if sptr == 0i64 {
-                sptr = &"(null)"[0] as int64;
+            if (sptr == 0i64) {
+                sptr = @cast_unchecked<int64>(@"(null)");
                 slen = 6i64;
             } else {
-                slen = raw str_strlen(sptr);
+                slen = str_strlen(sptr);
             }
-            if precision >= 0i64 && slen > precision {
+            if (precision >= 0i64 && slen > precision) {
                 slen = precision;
             }
             int64:pad = 0i64;
-            if width > slen { pad = width - slen; }
-            if !flag_left { raw fmt_pad(stp, 32u8, pad); }
-            raw fmt_puts_n(stp, sptr, slen);
-            if flag_left { raw fmt_pad(stp, 32u8, pad); }
+            if (width > slen) { pad = width - slen; }
+            if (!flag_left) { fmt_pad(stp, 32u8, pad); }
+            fmt_puts_n(stp, sptr, slen);
+            if (flag_left) { fmt_pad(stp, 32u8, pad); }
             continue;
         }
 
-        // Numeric specifiers: %d, %i, %u, %x, %X, %o, %p, %b
-        bool:is_signed = spec == 100u8 || spec == 105u8;  // 'd' or 'i'
-        bool:is_upper   = spec == 88u8;   // 'X'
+          // Numeric specifiers: %d, %i, %u, %x, %X, %o, %p, %b
+        bool:is_signed = spec == 100u8 || spec == 105u8;    // 'd' or 'i'
+        bool:is_upper   = spec == 88u8;     // 'X'
         int64:num_base  = 10i64;
-        if spec == 120u8 || spec == 88u8 { num_base = 16i64; }  // 'x' or 'X'
-        else if spec == 111u8 { num_base = 8i64; }               // 'o'
-        else if spec == 98u8  { num_base = 2i64; }               // 'b' (extension)
-        else if spec == 112u8 {                                   // 'p' — pointer
+        if (spec == 120u8 || spec == 88u8) { num_base = 16i64; }    // 'x' or 'X'
+        else if (spec == 111u8) { num_base = 8i64; }                 // 'o'
+        else if (spec == 98u8)  { num_base = 2i64; }                 // 'b' (extension)
+        else if (spec == 112u8) {                                     // 'p' — pointer
             num_base = 16i64;
             flag_alt = true;
             is_signed = false;
         }
 
-        // Build number string
-        stack byte:nbuf[68];   // 64 binary + prefix + sign + NUL
+          // Build number string
+        stack uint8[68]:nbuf;     // 64 binary + prefix + sign + NUL
         int64:nlen = 0i64;
         bool:is_neg = is_signed && arg_val < 0i64;
         int64:uval = arg_val;
-        if is_neg { uval = 0i64 - arg_val; }
+        if (is_neg) { uval = 0i64 - arg_val; }
 
-        nlen = raw render_uint(uval, num_base, &nbuf[0] as int64, is_upper);
+        nlen = render_uint(uval, num_base, @cast_unchecked<int64>(@nbuf[0]), is_upper);
 
-        // Alternate form prefix
+          // Alternate form prefix
         int64:prefix_len = 0i64;
-        stack byte:prefix[3];
-        if is_neg {
-            prefix[0] = 45u8; prefix_len = 1i64;   // '-'
-        } else if flag_plus {
-            prefix[0] = 43u8; prefix_len = 1i64;   // '+'
-        } else if flag_space {
-            prefix[0] = 32u8; prefix_len = 1i64;   // ' '
+        stack uint8[3]:prefix;
+        if (is_neg) {
+            prefix[0] = 45u8; prefix_len = 1i64;     // '-'
+        } else if (flag_plus) {
+            prefix[0] = 43u8; prefix_len = 1i64;     // '+'
+        } else if (flag_space) {
+            prefix[0] = 32u8; prefix_len = 1i64;     // ' '
         }
-        if flag_alt && num_base == 16i64 && arg_val != 0i64 {
-            prefix[prefix_len] = 48u8;  // '0'
-            prefix[prefix_len + 1i64] = is_upper ? 88u8 : 120u8;  // 'X' or 'x'
+        if (flag_alt && num_base == 16i64 && arg_val != 0i64) {
+            prefix[prefix_len] = 48u8;    // '0'
+            prefix[prefix_len + 1i64] = is (is_upper) : 88u8 : 120u8;    // 'X' or 'x'
             prefix_len = prefix_len + 2i64;
-        } else if flag_alt && num_base == 8i64 {
-            // Only add '0' prefix if not already starting with 0
-            if nlen == 0i64 || nbuf[0] != 48u8 {
+        } else if (flag_alt && num_base == 8i64) {
+              // Only add '0' prefix if not already starting with 0
+            if (nlen == 0i64 || nbuf[0] != 48u8) {
                 prefix[prefix_len] = 48u8;
                 prefix_len = prefix_len + 1i64;
             }
@@ -321,95 +321,114 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
 
         int64:total_num_len = prefix_len + nlen;
         int64:pad_total = 0i64;
-        if width > total_num_len { pad_total = width - total_num_len; }
+        if (width > total_num_len) { pad_total = width - total_num_len; }
 
-        byte:pad_char = 32u8;  // space
-        if flag_zero && !flag_left { pad_char = 48u8; }  // '0'
+        uint8:pad_char = 32u8;    // space
+        if (flag_zero && !flag_left) { pad_char = 48u8; }    // '0'
 
-        if flag_left {
-            // Left-align: prefix, digits, then space-pad
-            raw fmt_puts_n(stp, &prefix[0] as int64, prefix_len);
-            raw fmt_puts_n(stp, &nbuf[0] as int64, nlen);
-            raw fmt_pad(stp, 32u8, pad_total);
-        } else if flag_zero {
-            // Zero-pad: prefix first, then zeros, then digits
-            raw fmt_puts_n(stp, &prefix[0] as int64, prefix_len);
-            raw fmt_pad(stp, 48u8, pad_total);
-            raw fmt_puts_n(stp, &nbuf[0] as int64, nlen);
+        if (flag_left) {
+              // Left-align: prefix, digits, then space-pad
+            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+            fmt_pad(stp, 32u8, pad_total);
+        } else if (flag_zero) {
+              // Zero-pad: prefix first, then zeros, then digits
+            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+            fmt_pad(stp, 48u8, pad_total);
+            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
         } else {
-            // Space-pad: spaces, then prefix, then digits
-            raw fmt_pad(stp, 32u8, pad_total);
-            raw fmt_puts_n(stp, &prefix[0] as int64, prefix_len);
-            raw fmt_puts_n(stp, &nbuf[0] as int64, nlen);
+              // Space-pad: spaces, then prefix, then digits
+            fmt_pad(stp, 32u8, pad_total);
+            fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+            fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
         }
     }
 
-    // NUL-terminate
-    if st.size > 0i64 {
+      // NUL-terminate
+    if (st.size > 0i64) {
         int64:nul_pos = st.pos;
-        if nul_pos >= st.size { nul_pos = st.size - 1i64; }
-        (st.buf as *byte)[nul_pos] = 0u8;
+        if (nul_pos >= st.size) { nul_pos = st.size - 1i64; }
+        (@cast_unchecked<uint8->>(st->buf))[nul_pos] = 0u8;
     }
 
     pass st.pos;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_snprintf — Convenience wrapper for up to 8 integer/pointer arguments.
 //
-// args are passed as an int64 array via stack-constructed temporary.
+// args are @cast_unchecked<an>(passed) int64 array via stack-constructed temporary.
 // ════════════════════════════════════════════════════════════════════════════
 
 // Zero-arg version
 pub func:str_snprintf0 = int64(int64:buf, int64:buf_size, int64:fmt) {
-    pass raw str_format_args(buf, buf_size, fmt, 0i64 as *int64, 0i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(0i64), 0i64);
+};
 
 // One-arg version
 pub func:str_snprintf1 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0) {
-    stack int64:a[1];
+    stack int64[1]:a;
     a[0] = a0;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 1i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 1i64);
+};
 
 // Two-arg version
 pub func:str_snprintf2 = int64(int64:buf, int64:buf_size, int64:fmt, int64:a0, int64:a1) {
-    stack int64:a[2];
+    stack int64[2]:a;
     a[0] = a0; a[1] = a1;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 2i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 2i64);
+};
 
 // Three-arg version
 pub func:str_snprintf3 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2) {
-    stack int64:a[3];
+    stack int64[3]:a;
     a[0] = a0; a[1] = a1; a[2] = a2;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 3i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 3i64);
+};
 
 // Four-arg version
 pub func:str_snprintf4 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2, int64:a3) {
-    stack int64:a[4];
+    stack int64[4]:a;
     a[0] = a0; a[1] = a1; a[2] = a2; a[3] = a3;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 4i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 4i64);
+};
 
 // Six-arg version
 pub func:str_snprintf6 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2,
                                 int64:a3, int64:a4, int64:a5) {
-    stack int64:a[6];
+    stack int64[6]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3; a[4]=a4; a[5]=a5;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 6i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 6i64);
+};
 
 // Eight-arg version
 pub func:str_snprintf8 = int64(int64:buf, int64:buf_size, int64:fmt,
                                 int64:a0, int64:a1, int64:a2, int64:a3,
                                 int64:a4, int64:a5, int64:a6, int64:a7) {
-    stack int64:a[8];
+    stack int64[8]:a;
     a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3;
     a[4]=a4; a[5]=a5; a[6]=a6; a[7]=a7;
-    pass raw str_format_args(buf, buf_size, fmt, &a[0], 8i64);
-}
+    pass str_format_args(buf, buf_size, fmt, @a[0], 8i64);
+};
+
+// Five-arg version
+pub func:str_snprintf5 = int64(int64:buf, int64:buf_size, int64:fmt,
+                                int64:a0, int64:a1, int64:a2,
+                                int64:a3, int64:a4) {
+    stack int64[5]:a;
+    a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3; a[4]=a4;
+    pass str_format_args(buf, buf_size, fmt, @a[0], 5i64);
+};
+
+// Seven-arg version
+pub func:str_snprintf7 = int64(int64:buf, int64:buf_size, int64:fmt,
+                                int64:a0, int64:a1, int64:a2, int64:a3,
+                                int64:a4, int64:a5, int64:a6) {
+    stack int64[7]:a;
+    a[0]=a0; a[1]=a1; a[2]=a2; a[3]=a3;
+    a[4]=a4; a[5]=a5; a[6]=a6;
+    pass str_format_args(buf, buf_size, fmt, @a[0], 7i64);
+};

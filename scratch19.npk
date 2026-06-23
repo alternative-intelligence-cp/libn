@@ -1,0 +1,10 @@
+func:my_func = NIL() {
+    pass(NIL);
+};
+
+func:main = int32() {
+    int64:fn_ptr = 12345i64; // mock
+    @cast_unchecked<(NIL)()>(fn_ptr)();
+    exit 0i32;
+};
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

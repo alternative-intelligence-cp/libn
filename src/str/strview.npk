@@ -1,6 +1,6 @@
 // strview.npk — Non-owning string view / slice (v0.9.0)
 //
-// StrView is Nitpick's equivalent of C++17 std::string_view, Rust's &str,
+// StrView is Nitpick's equivalent of C++17 std::string_view, Rust's @str,
 // or Go's string. It holds a pointer and a length but owns neither.
 //
 // ── Core invariant ────────────────────────────────────────────────────────
@@ -10,7 +10,7 @@
 //   NEVER free sv.ptr — the view does not own the memory.
 //
 // ── NUL-termination ───────────────────────────────────────────────────────
-//   StrView is NOT guaranteed to be NUL-terminated. The byte at ptr+len
+//   StrView is NOT guaranteed to be NUL-terminated. The uint8 at ptr+len
 //   may be anything. To pass to a function expecting a C string, call
 //   strview_to_str() (heap copy) or strview_copy_to_z() (stack/buf copy).
 //
@@ -39,25 +39,25 @@
 //                  strview_copy_to, strview_copy_to_z,
 //                  strview_write_to_fd, strview_write_to_fp
 
-use "src/syscall/errno.npk".*;
-use "src/mem/mmap.npk".*;
-use "src/mem/memcpy.npk".*;
-use "src/mem/memutil.npk".*;
-use "src/str/strlen.npk".*;
-use "src/str/strconv.npk".*;
-use "src/str/strbuf.npk".*;
-use "src/io/write.npk".*;
-use "src/io/bio/file.npk".*;
-use "src/io/bio/fio.npk".*;
+use "../syscall/errno.npk".*;
+use "../mem/mmap.npk".*;
+use "../mem/memcpy.npk".*;
+use "../mem/memutil.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strconv.npk".*;
+use "../str/strbuf.npk".*;
+use "../io/write.npk".*;
+use "../io/bio/file.npk".*;
+use "../io/bio/fio.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // StrView struct — 16 bytes, no ownership
 // ════════════════════════════════════════════════════════════════════════════
 
-pub struct StrView {
-    int64:ptr;    // pointer to first byte of the viewed region
-    int64:len;    // number of bytes in the view (NOT counting a NUL)
-}
+pub struct:StrView = {
+    int64:ptr;      // pointer to first uint8 of the viewed region
+    int64:len;      // number of bytes in the view (NOT counting a NUL)
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Construction
@@ -65,64 +65,64 @@ pub struct StrView {
 
 // strview_of — Create a view over a NUL-terminated string.
 // out: *StrView to write into.
-pub func:strview_of = void(int64:s, int64:out) {
-    *StrView:sv = out as *StrView;
-    if s == 0i64 {
+pub func:strview_of = NIL(int64:s, int64:out) {
+    StrView->:sv = @cast_unchecked<StrView->>(out);
+    if (s == 0i64) {
         sv.ptr = 0i64;
         sv.len = 0i64;
-        pass;
+        pass NIL;
     }
     sv.ptr = s;
     sv.len = str_strlen(s);
-}
+};
 
 // strview_of_bytes — Create a view over [ptr, ptr+len).
 // Does NOT check for NUL or validity — caller ensures the range is readable.
-pub func:strview_of_bytes = void(int64:ptr, int64:len, int64:out) {
-    *StrView:sv = out as *StrView;
+pub func:strview_of_bytes = NIL(int64:ptr, int64:len, int64:out) {
+    StrView->:sv = @cast_unchecked<StrView->>(out);
     sv.ptr = ptr;
-    sv.len = len < 0i64 ? 0i64 : len;
-}
+is (sv.len = len < 0i64) : 0i64 : len;
+};
 
 // strview_of_strbuf — Create a view over a StrBuf's current content.
 // The view is valid until the next mutation of sb (growth may relocate the buffer).
-pub func:strview_of_strbuf = void(int64:sb, int64:out) {
-    *StrView:sv = out as *StrView;
-    if sb == 0i64 {
+pub func:strview_of_strbuf = NIL(int64:sb, int64:out) {
+    StrView->:sv = @cast_unchecked<StrView->>(out);
+    if (sb == 0i64) {
         sv.ptr = 0i64;
         sv.len = 0i64;
-        pass;
+        pass NIL;
     }
-    *StrBuf:s = sb as *StrBuf;
-    sv.ptr = s.ptr;
-    sv.len = s.len;
-}
+    StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+    sv.ptr = s->ptr;
+    sv.len = s->len;
+};
 
 // strview_empty — Initialize sv to the empty view (ptr=0, len=0).
-pub func:strview_empty = void(int64:out) {
-    *StrView:sv = out as *StrView;
+pub func:strview_empty = NIL(int64:out) {
+    StrView->:sv = @cast_unchecked<StrView->>(out);
     sv.ptr = 0i64;
     sv.len = 0i64;
-}
+};
 
-// strview_substr — Create a sub-view of sv starting at byte offset start,
+// strview_substr — Create a sub-view of sv starting at uint8 offset start,
 // for length len bytes. Clamps to sv.len automatically.
 // out: *StrView to write the result into.
-pub func:strview_substr = void(int64:sv, int64:start, int64:len, int64:out) {
-    *StrView:s  = sv as *StrView;
-    *StrView:o  = out as *StrView;
+pub func:strview_substr = NIL(int64:sv, int64:start, int64:len, int64:out) {
+    StrView->:s  = @cast_unchecked<StrView->>(sv);
+    StrView->:o  = @cast_unchecked<StrView->>(out);
 
-    if start < 0i64 { start = 0i64; }
-    if start > s.len {
-        o.ptr = s.ptr;
+    if (start < 0i64) { start = 0i64; }
+    if (start > s->len) {
+        o.ptr = s->ptr;
         o.len = 0i64;
-        pass;
+        pass NIL;
     }
-    int64:avail = s.len - start;
-    if len < 0i64 || len > avail { len = avail; }
-    o.ptr = s.ptr + start;
+    int64:avail = s->len - start;
+    if (len < 0i64 || len > avail) { len = avail; }
+    o.ptr = s->ptr + start;
     o.len = len;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Accessors
@@ -130,42 +130,42 @@ pub func:strview_substr = void(int64:sv, int64:start, int64:len, int64:out) {
 
 // strview_len — Length of the view in bytes.
 pub func:strview_len = int64(int64:sv) {
-    if sv == 0i64 { pass 0i64; }
-    pass (sv as *StrView).len;
-}
+    if (sv == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrView->>(sv)).len;
+};
 
-// strview_ptr — Pointer to the first byte of the view.
+// strview_ptr — Pointer to the first uint8 of the view.
 pub func:strview_ptr = int64(int64:sv) {
-    if sv == 0i64 { pass 0i64; }
-    pass (sv as *StrView).ptr;
-}
+    if (sv == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrView->>(sv)).ptr;
+};
 
 // strview_is_empty — True if len == 0 or sv is null.
 pub func:strview_is_empty = bool(int64:sv) {
-    if sv == 0i64 { pass true; }
-    pass (sv as *StrView).len == 0i64;
-}
+    if (sv == 0i64) { pass true; }
+    pass (@cast_unchecked<StrView->>(sv)).len == 0i64;
+};
 
-// strview_byte_at — Return the byte at index i (0-indexed).
+// strview_byte_at — Return the uint8 at index i (0-indexed).
 // Returns -1 if i is out of range.
 pub func:strview_byte_at = int64(int64:sv, int64:i) {
-    if sv == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
-    if i < 0i64 || i >= s.len { pass -1i64; }
-    pass ((s.ptr as *byte)[i]) as int64;
-}
+    if (sv == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (i < 0i64 || i >= s->len) { pass -1i64; }
+    pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[i]));
+};
 
-// strview_first / strview_last — First or last byte. Returns -1 if empty.
+// strview_first / strview_last — First or last uint8. Returns -1 if empty.
 pub func:strview_first = int64(int64:sv) {
     pass strview_byte_at(sv, 0i64);
-}
+};
 
 pub func:strview_last = int64(int64:sv) {
-    if sv == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { pass -1i64; }
-    pass ((s.ptr as *byte)[s.len - 1i64]) as int64;
-}
+    if (sv == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { pass -1i64; }
+    pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[s->len - 1i64]));
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Comparison
@@ -173,48 +173,48 @@ pub func:strview_last = int64(int64:sv) {
 
 // strview_eq — True if both views have the same length and content.
 pub func:strview_eq = bool(int64:a, int64:b) {
-    *StrView:sa = a as *StrView;
-    *StrView:sb = b as *StrView;
-    if sa.len != sb.len { pass false; }
-    if sa.len == 0i64 { pass true; }
-    if sa.ptr == sb.ptr { pass true; }  // same buffer, same range
-    pass mem_equal(sa.ptr, sb.ptr, sa.len);
-}
+    StrView->:sa = @cast_unchecked<StrView->>(a);
+    StrView->:sb = @cast_unchecked<StrView->>(b);
+    if (sa->len != sb->len) { pass false; }
+    if (sa->len == 0i64) { pass true; }
+    if (sa->ptr == sb->ptr) { pass true; }    // same buffer, same range
+    pass mem_equal(sa->ptr, sb->ptr, sa->len);
+};
 
 // strview_eq_str — True if view equals NUL-terminated string s.
 pub func:strview_eq_str = bool(int64:sv, int64:s) {
-    if s == 0i64 { pass strview_is_empty(sv); }
-    *StrView:v = sv as *StrView;
+    if (s == 0i64) { pass strview_is_empty(sv); }
+    StrView->:v = @cast_unchecked<StrView->>(sv);
     int64:slen = str_strlen(s);
-    if v.len != slen { pass false; }
-    if v.len == 0i64 { pass true; }
+    if (v.len != slen) { pass false; }
+    if (v.len == 0i64) { pass true; }
     pass mem_equal(v.ptr, s, slen);
-}
+};
 
 // strview_cmp — Lexicographic comparison of two views.
 // Returns < 0, 0, > 0 (like memcmp).
 pub func:strview_cmp = int64(int64:a, int64:b) {
-    *StrView:sa = a as *StrView;
-    *StrView:sb = b as *StrView;
-    int64:min_len = sa.len < sb.len ? sa.len : sb.len;
-    int64:r = mem_memcmp(sa.ptr, sb.ptr, min_len);
-    if r != 0i64 { pass r; }
-    if sa.len < sb.len { pass -1i64; }
-    if sa.len > sb.len { pass  1i64; }
+    StrView->:sa = @cast_unchecked<StrView->>(a);
+    StrView->:sb = @cast_unchecked<StrView->>(b);
+    int64:min_len = is (sa->len < sb->len) : sa->len : sb->len;
+    int64:r = raw mem_memcmp(sa->ptr, sb->ptr, min_len);
+    if (r != 0i64) { pass r; }
+    if (sa->len < sb->len) { pass -1i64; }
+    if (sa->len > sb->len) { pass  1i64; }
     pass 0i64;
-}
+};
 
 // strview_cmp_str — Compare view to NUL-terminated string.
 pub func:strview_cmp_str = int64(int64:sv, int64:s) {
-    if s == 0i64 {
-        *StrView:v = sv as *StrView;
-        if v.len == 0i64 { pass 0i64; }
+    if (s == 0i64) {
+        StrView->:v = @cast_unchecked<StrView->>(sv);
+        if (v.len == 0i64) { pass 0i64; }
         pass 1i64;
     }
     stack StrView:bv;
-    strview_of(s, &bv as int64);
-    pass strview_cmp(sv, &bv as int64);
-}
+    drop strview_of(s, @cast_unchecked<int64>(@bv));
+    pass strview_cmp(sv, @cast_unchecked<int64>(@bv));
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Prefix / Suffix
@@ -222,302 +222,302 @@ pub func:strview_cmp_str = int64(int64:sv, int64:s) {
 
 // strview_starts_with — True if sv starts with the bytes in prefix view.
 pub func:strview_starts_with = bool(int64:sv, int64:prefix) {
-    *StrView:s = sv as *StrView;
-    *StrView:p = prefix as *StrView;
-    if p.len == 0i64 { pass true; }
-    if p.len > s.len { pass false; }
-    pass mem_equal(s.ptr, p.ptr, p.len);
-}
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:p = @cast_unchecked<StrView->>(prefix);
+    if (p.len == 0i64) { pass true; }
+    if (p.len > s->len) { pass false; }
+    pass mem_equal(s->ptr, p.ptr, p.len);
+};
 
 // strview_starts_with_str — True if sv starts with the NUL-terminated string.
 pub func:strview_starts_with_str = bool(int64:sv, int64:prefix) {
-    if prefix == 0i64 { pass true; }
-    *StrView:s = sv as *StrView;
+    if (prefix == 0i64) { pass true; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
     int64:plen = str_strlen(prefix);
-    if plen == 0i64 { pass true; }
-    if plen > s.len { pass false; }
-    pass mem_equal(s.ptr, prefix, plen);
-}
+    if (plen == 0i64) { pass true; }
+    if (plen > s->len) { pass false; }
+    pass mem_equal(s->ptr, prefix, plen);
+};
 
 // strview_ends_with — True if sv ends with the bytes in suffix view.
 pub func:strview_ends_with = bool(int64:sv, int64:suffix) {
-    *StrView:s = sv as *StrView;
-    *StrView:x = suffix as *StrView;
-    if x.len == 0i64 { pass true; }
-    if x.len > s.len { pass false; }
-    pass mem_equal(s.ptr + s.len - x.len, x.ptr, x.len);
-}
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:x = @cast_unchecked<StrView->>(suffix);
+    if (x.len == 0i64) { pass true; }
+    if (x.len > s->len) { pass false; }
+    pass mem_equal(s->ptr + s->len - x.len, x.ptr, x.len);
+};
 
 // strview_ends_with_str — True if sv ends with the NUL-terminated string.
 pub func:strview_ends_with_str = bool(int64:sv, int64:suffix) {
-    if suffix == 0i64 { pass true; }
-    *StrView:s = sv as *StrView;
+    if (suffix == 0i64) { pass true; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
     int64:xlen = str_strlen(suffix);
-    if xlen == 0i64 { pass true; }
-    if xlen > s.len { pass false; }
-    pass mem_equal(s.ptr + s.len - xlen, suffix, xlen);
-}
+    if (xlen == 0i64) { pass true; }
+    if (xlen > s->len) { pass false; }
+    pass mem_equal(s->ptr + s->len - xlen, suffix, xlen);
+};
 
 // strview_drop_prefix — If sv starts with prefix view, return sv with those
 //                       bytes removed. Otherwise return sv unchanged.
-pub func:strview_drop_prefix = void(int64:sv, int64:prefix, int64:out) {
-    if strview_starts_with(sv, prefix) {
-        *StrView:p = prefix as *StrView;
-        strview_substr(sv, p.len, -1i64, out);
+pub func:strview_drop_prefix = NIL(int64:sv, int64:prefix, int64:out) {
+    if (raw strview_starts_with(sv, prefix)) {
+        StrView->:p = @cast_unchecked<StrView->>(prefix);
+        drop strview_substr(sv, p.len, -1i64, out);
     } else {
-        *StrView:s = sv as *StrView;
-        *StrView:o = out as *StrView;
-        o.ptr = s.ptr;
-        o.len = s.len;
+        StrView->:s = @cast_unchecked<StrView->>(sv);
+        StrView->:o = @cast_unchecked<StrView->>(out);
+        o.ptr = s->ptr;
+        o.len = s->len;
     }
-}
+};
 
 // strview_strip_prefix_str — If sv starts with the NUL-terminated prefix,
 //                            return sv with those bytes removed.
-pub func:strview_strip_prefix_str = void(int64:sv, int64:prefix, int64:out) {
-    if strview_starts_with_str(sv, prefix) {
-        int64:plen = prefix != 0i64 ? str_strlen(prefix) : 0i64;
-        strview_substr(sv, plen, -1i64, out);
+pub func:strview_strip_prefix_str = NIL(int64:sv, int64:prefix, int64:out) {
+    if (raw strview_starts_with_str(sv, prefix)) {
+        int64:plen = is (prefix != 0i64) : str_strlen(prefix) : 0i64;
+        drop strview_substr(sv, plen, -1i64, out);
     } else {
-        *StrView:s = sv as *StrView;
-        *StrView:o = out as *StrView;
-        o.ptr = s.ptr;
-        o.len = s.len;
+        StrView->:s = @cast_unchecked<StrView->>(sv);
+        StrView->:o = @cast_unchecked<StrView->>(out);
+        o.ptr = s->ptr;
+        o.len = s->len;
     }
-}
+};
 
 // strview_drop_suffix — If sv ends with suffix view, return sv without it.
-pub func:strview_drop_suffix = void(int64:sv, int64:suffix, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    if strview_ends_with(sv, suffix) {
-        *StrView:x = suffix as *StrView;
-        o.ptr = s.ptr;
-        o.len = s.len - x.len;
+pub func:strview_drop_suffix = NIL(int64:sv, int64:suffix, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    if (raw strview_ends_with(sv, suffix)) {
+        StrView->:x = @cast_unchecked<StrView->>(suffix);
+        o.ptr = s->ptr;
+        o.len = s->len - x.len;
     } else {
-        o.ptr = s.ptr;
-        o.len = s.len;
+        o.ptr = s->ptr;
+        o.len = s->len;
     }
-}
+};
 
 // strview_strip_suffix_str — If sv ends with NUL-terminated suffix, strip it.
-pub func:strview_strip_suffix_str = void(int64:sv, int64:suffix, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    if strview_ends_with_str(sv, suffix) {
-        int64:xlen = suffix != 0i64 ? str_strlen(suffix) : 0i64;
-        o.ptr = s.ptr;
-        o.len = s.len - xlen;
+pub func:strview_strip_suffix_str = NIL(int64:sv, int64:suffix, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    if (raw strview_ends_with_str(sv, suffix)) {
+        int64:xlen = is (suffix != 0i64) : str_strlen(suffix) : 0i64;
+        o.ptr = s->ptr;
+        o.len = s->len - xlen;
     } else {
-        o.ptr = s.ptr;
-        o.len = s.len;
+        o.ptr = s->ptr;
+        o.len = s->len;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Search
 // ════════════════════════════════════════════════════════════════════════════
 
-// strview_find_char — Return index of first occurrence of byte c in sv.
+// strview_find_char — Return index of first occurrence of uint8 c in sv.
 // Returns -1 if not found.
-pub func:strview_find_char = int64(int64:sv, byte:c) {
-    if sv == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { pass -1i64; }
-    int64:found = mem_memchr(s.ptr, c as int64, s.len);
-    if found == 0i64 { pass -1i64; }
-    pass found - s.ptr;
-}
+pub func:strview_find_char = int64(int64:sv, uint8:c) {
+    if (sv == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { pass -1i64; }
+    int64:found = raw mem_memchr(s->ptr, @cast_unchecked<int64>(c), s->len);
+    if (found == 0i64) { pass -1i64; }
+    pass found - s->ptr;
+};
 
-// strview_rfind_char — Return index of LAST occurrence of byte c.
+// strview_rfind_char — Return index of LAST occurrence of uint8 c.
 // Returns -1 if not found.
-pub func:strview_rfind_char = int64(int64:sv, byte:c) {
-    if sv == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { pass -1i64; }
-    int64:found = mem_memrchr(s.ptr, c as int64, s.len);
-    if found == 0i64 { pass -1i64; }
-    pass found - s.ptr;
-}
+pub func:strview_rfind_char = int64(int64:sv, uint8:c) {
+    if (sv == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { pass -1i64; }
+    int64:found = raw mem_memrchr(s->ptr, @cast_unchecked<int64>(c), s->len);
+    if (found == 0i64) { pass -1i64; }
+    pass found - s->ptr;
+};
 
-// strview_find_str — Return byte offset of first occurrence of NUL-terminated
+// strview_find_str — Return uint8 offset of first occurrence of NUL-terminated
 //                    needle in sv. Returns -1 if not found.
 pub func:strview_find_str = int64(int64:sv, int64:needle) {
-    if sv == 0i64 || needle == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
+    if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
     int64:nlen = str_strlen(needle);
-    if nlen == 0i64 { pass 0i64; }
-    if nlen > s.len { pass -1i64; }
-    int64:found = mem_memmem(s.ptr, s.len, needle, nlen);
-    if found == 0i64 { pass -1i64; }
-    pass found - s.ptr;
-}
+    if (nlen == 0i64) { pass 0i64; }
+    if (nlen > s->len) { pass -1i64; }
+    int64:found = raw mem_memmem(s->ptr, s->len, needle, nlen);
+    if (found == 0i64) { pass -1i64; }
+    pass found - s->ptr;
+};
 
-// strview_find — Return byte offset of first occurrence of needle view in sv.
+// strview_find — Return uint8 offset of first occurrence of needle view in sv.
 // Returns -1 if not found.
 pub func:strview_find = int64(int64:sv, int64:needle) {
-    if sv == 0i64 || needle == 0i64 { pass -1i64; }
-    *StrView:s = sv as *StrView;
-    *StrView:n = needle as *StrView;
-    if n.len == 0i64 { pass 0i64; }
-    if n.len > s.len { pass -1i64; }
-    int64:found = mem_memmem(s.ptr, s.len, n.ptr, n.len);
-    if found == 0i64 { pass -1i64; }
-    pass found - s.ptr;
-}
+    if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:n = @cast_unchecked<StrView->>(needle);
+    if (n->len == 0i64) { pass 0i64; }
+    if (n->len > s->len) { pass -1i64; }
+    int64:found = raw mem_memmem(s->ptr, s->len, n->ptr, n->len);
+    if (found == 0i64) { pass -1i64; }
+    pass found - s->ptr;
+};
 
-// strview_contains_char — True if byte c appears anywhere in sv.
-pub func:strview_contains_char = bool(int64:sv, byte:c) {
-    pass strview_find_char(sv, c) >= 0i64;
-}
+// strview_contains_char — True if uint8 c appears anywhere in sv.
+pub func:strview_contains_char = bool(int64:sv, uint8:c) {
+    pass raw strview_find_char(sv, c) >= 0i64;
+};
 
 // strview_contains_str — True if the NUL-terminated needle appears in sv.
 pub func:strview_contains_str = bool(int64:sv, int64:needle) {
-    pass strview_find_str(sv, needle) >= 0i64;
-}
+    pass raw strview_find_str(sv, needle) >= 0i64;
+};
 
 // strview_contains — True if needle view appears in sv.
 pub func:strview_contains = bool(int64:sv, int64:needle) {
-    pass strview_find(sv, needle) >= 0i64;
-}
+    pass raw strview_find(sv, needle) >= 0i64;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Slicing
 // ════════════════════════════════════════════════════════════════════════════
 
-// strview_slice — [start, end) byte range of sv (0-indexed, end exclusive).
+// strview_slice — [start, end) uint8 range of sv (0-indexed, end exclusive).
 // Clamps both bounds to [0, sv.len].
-pub func:strview_slice = void(int64:sv, int64:start, int64:end, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    if start < 0i64 { start = 0i64; }
-    if end < 0i64 || end > s.len { end = s.len; }
-    if start > end { start = end; }
-    o.ptr = s.ptr + start;
-    o.len = end - start;
-}
+pub func:strview_slice = NIL(int64:sv, int64:start, int64:end_idx, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    if (start < 0i64) { start = 0i64; }
+    if (end_idx < 0i64 || end_idx > s->len) { end_idx = s->len; }
+    if (start > end_idx) { start = end_idx; }
+    o.ptr = s->ptr + start;
+    o.len = end_idx - start;
+};
 
 // strview_take — First n bytes of sv. Clamps to sv.len.
-pub func:strview_take = void(int64:sv, int64:n, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    if n < 0i64 { n = 0i64; }
-    if n > s.len { n = s.len; }
-    o.ptr = s.ptr;
+pub func:strview_take = NIL(int64:sv, int64:n, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    if (n < 0i64) { n = 0i64; }
+    if (n > s->len) { n = s->len; }
+    o.ptr = s->ptr;
     o.len = n;
-}
+};
 
 // strview_drop — Skip the first n bytes of sv. Clamps to sv.len.
-pub func:strview_drop = void(int64:sv, int64:n, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    if n < 0i64 { n = 0i64; }
-    if n > s.len { n = s.len; }
-    o.ptr = s.ptr + n;
-    o.len = s.len - n;
-}
+pub func:strview_drop = NIL(int64:sv, int64:n, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    if (n < 0i64) { n = 0i64; }
+    if (n > s->len) { n = s->len; }
+    o.ptr = s->ptr + n;
+    o.len = s->len - n;
+};
 
 // strview_trim_left — Skip leading whitespace (space, \\t, \\n, \\r, \\f, \\v).
-pub func:strview_trim_left = void(int64:sv, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
+pub func:strview_trim_left = NIL(int64:sv, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
     int64:i = 0i64;
-    *byte:p = s.ptr as *byte;
-    while i < s.len {
-        byte:c = p[i];
-        if c != 32u8 && c != 9u8 && c != 10u8 &&
-           c != 13u8 && c != 12u8 && c != 11u8 {
+    uint8->:p = @cast_unchecked<uint8->>(s->ptr);
+    while (i < s->len) {
+        uint8:c = p[i];
+        if (c != 32u8 && c != 9u8 && c != 10u8 &&
+           c != 13u8 && c != 12u8 && c != 11u8) {
             break;
         }
         i = i + 1i64;
     }
-    o.ptr = s.ptr + i;
-    o.len = s.len - i;
-}
+    o.ptr = s->ptr + i;
+    o.len = s->len - i;
+};
 
 // strview_trim_right — Remove trailing whitespace.
-pub func:strview_trim_right = void(int64:sv, int64:out) {
-    *StrView:s = sv as *StrView;
-    *StrView:o = out as *StrView;
-    int64:n = s.len;
-    *byte:p = s.ptr as *byte;
-    while n > 0i64 {
-        byte:c = p[n - 1i64];
-        if c != 32u8 && c != 9u8 && c != 10u8 &&
-           c != 13u8 && c != 12u8 && c != 11u8 {
+pub func:strview_trim_right = NIL(int64:sv, int64:out) {
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    StrView->:o = @cast_unchecked<StrView->>(out);
+    int64:n = s->len;
+    uint8->:p = @cast_unchecked<uint8->>(s->ptr);
+    while (n > 0i64) {
+        uint8:c = p[n - 1i64];
+        if (c != 32u8 && c != 9u8 && c != 10u8 &&
+           c != 13u8 && c != 12u8 && c != 11u8) {
             break;
         }
         n = n - 1i64;
     }
-    o.ptr = s.ptr;
+    o.ptr = s->ptr;
     o.len = n;
-}
+};
 
 // strview_trim — Remove both leading and trailing whitespace.
-pub func:strview_trim = void(int64:sv, int64:out) {
+pub func:strview_trim = NIL(int64:sv, int64:out) {
     stack StrView:tmp;
-    strview_trim_left(sv, &tmp as int64);
-    strview_trim_right(&tmp as int64, out);
-}
+    drop strview_trim_left(sv, @cast_unchecked<int64>(@tmp));
+    drop strview_trim_right(@cast_unchecked<int64>(@tmp), out);
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Tokenization
 // ════════════════════════════════════════════════════════════════════════════
 
-// strview_split_once_char — Split sv at the first occurrence of byte delim.
+// strview_split_once_char — Split sv at the first occurrence of uint8 delim.
 //
 // On success: left = [0, pos), right = [pos+1, len), returns true.
 // If delim is not found: left = sv, right = empty, returns false.
 //
-// left and right may be the same *StrView pointer as sv (aliasing is safe
+// left and right may be the same *StrView @cast_unchecked<sv>(pointer) (aliasing is safe
 // because we read sv before writing).
-pub func:strview_split_once_char = bool(int64:sv, byte:delim,
+pub func:strview_split_once_char = bool(int64:sv, uint8:delim,
                                          int64:left_out, int64:right_out) {
-    *StrView:s = sv as *StrView;
-    int64:pos = strview_find_char(sv, delim);
-    *StrView:lo = left_out as *StrView;
-    *StrView:ro = right_out as *StrView;
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    int64:pos = raw strview_find_char(sv, delim);
+    StrView->:lo = @cast_unchecked<StrView->>(left_out);
+    StrView->:ro = @cast_unchecked<StrView->>(right_out);
 
-    if pos < 0i64 {
-        lo.ptr = s.ptr;
-        lo.len = s.len;
-        ro.ptr = s.ptr + s.len;
+    if (pos < 0i64) {
+        lo.ptr = s->ptr;
+        lo.len = s->len;
+        ro.ptr = s->ptr + s->len;
         ro.len = 0i64;
         pass false;
     }
 
-    lo.ptr = s.ptr;
+    lo.ptr = s->ptr;
     lo.len = pos;
-    ro.ptr = s.ptr + pos + 1i64;
-    ro.len = s.len - pos - 1i64;
+    ro.ptr = s->ptr + pos + 1i64;
+    ro.len = s->len - pos - 1i64;
     pass true;
-}
+};
 
 // strview_split_once — Split sv at the first occurrence of needle view.
 // left = bytes before needle, right = bytes after needle.
 // Returns true if needle was found, false otherwise.
 pub func:strview_split_once = bool(int64:sv, int64:needle,
                                     int64:left_out, int64:right_out) {
-    *StrView:s  = sv as *StrView;
-    *StrView:n  = needle as *StrView;
-    *StrView:lo = left_out as *StrView;
-    *StrView:ro = right_out as *StrView;
-    int64:pos = strview_find(sv, needle);
+    StrView->:s  = @cast_unchecked<StrView->>(sv);
+    StrView->:n  = @cast_unchecked<StrView->>(needle);
+    StrView->:lo = @cast_unchecked<StrView->>(left_out);
+    StrView->:ro = @cast_unchecked<StrView->>(right_out);
+    int64:pos = raw strview_find(sv, needle);
 
-    if pos < 0i64 {
-        lo.ptr = s.ptr;
-        lo.len = s.len;
-        ro.ptr = s.ptr + s.len;
+    if (pos < 0i64) {
+        lo.ptr = s->ptr;
+        lo.len = s->len;
+        ro.ptr = s->ptr + s->len;
         ro.len = 0i64;
         pass false;
     }
 
-    lo.ptr = s.ptr;
+    lo.ptr = s->ptr;
     lo.len = pos;
-    ro.ptr = s.ptr + pos + n.len;
-    ro.len = s.len - pos - n.len;
+    ro.ptr = s->ptr + pos + n->len;
+    ro.len = s->len - pos - n->len;
     pass true;
-}
+};
 
 // strview_next_token — Iterator-style tokenizer. Reads the next delim-separated
 // token from *sv_ptr, advances *sv_ptr past the delimiter.
@@ -528,61 +528,61 @@ pub func:strview_split_once = bool(int64:sv, int64:needle,
 //
 // Usage:
 //   stack StrView:cur;
-//   strview_of(some_str, &cur as int64);
+//   strview_of(some_str, @cast_unchecked<int64>(@cur));
 //   stack StrView:tok;
-//   while strview_next_token(&cur as int64, '\n', &tok as int64) { ... }
-pub func:strview_next_token = bool(int64:sv_ptr, byte:delim, int64:token_out) {
-    *StrView:sv = sv_ptr as *StrView;
-    if sv.len == 0i64 { pass false; }
+//   while strview_next_token(@cast_unchecked<int64>(@cur), '\n', @cast_unchecked<int64>(@tok)) { ... }
+pub func:strview_next_token = bool(int64:sv_ptr, uint8:delim, int64:token_out) {
+    StrView->:sv = @cast_unchecked<StrView->>(sv_ptr);
+    if (sv.len == 0i64) { pass false; }
 
     stack StrView:left;
     stack StrView:right;
-    bool:found = strview_split_once_char(sv_ptr, delim, &left as int64, &right as int64);
+    bool:found = raw strview_split_once_char(sv_ptr, delim, @cast_unchecked<int64>(@left), @cast_unchecked<int64>(@right));
 
-    *StrView:to = token_out as *StrView;
+    StrView->:to = @cast_unchecked<StrView->>(token_out);
     to.ptr = left.ptr;
     to.len = left.len;
 
-    if found {
+    if (found) {
         sv.ptr = right.ptr;
         sv.len = right.len;
     } else {
-        // No delimiter: consume everything, leave sv empty
+          // No delimiter: consume everything, leave sv empty
         sv.ptr = sv.ptr + sv.len;
         sv.len = 0i64;
     }
 
     pass true;
-}
+};
 
 // strview_next_line — Advance *sv_ptr to the next line, returning the current
 // line in line_out (without the trailing '\n' or '\r\n').
 // Returns true if a line was produced, false if sv is empty.
 pub func:strview_next_line = bool(int64:sv_ptr, int64:line_out) {
-    *StrView:sv = sv_ptr as *StrView;
-    if sv.len == 0i64 { pass false; }
+    StrView->:sv = @cast_unchecked<StrView->>(sv_ptr);
+    if (sv.len == 0i64) { pass false; }
 
-    *byte:p = sv.ptr as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(sv.ptr);
     int64:i = 0i64;
-    while i < sv.len {
-        if p[i] == 10u8 {  // '\n'
+    while (i < sv.len) {
+        if (p[i] == 10u8) {    // '\n'
             break;
         }
         i = i + 1i64;
     }
 
-    // i is now the index of '\n' (or sv.len if no newline)
-    *StrView:lo = line_out as *StrView;
+      // i is now the index of '\n' (or sv.len if no newline)
+    StrView->:lo = @cast_unchecked<StrView->>(line_out);
     lo.ptr = sv.ptr;
     lo.len = i;
 
-    // Strip trailing '\r' if present (CRLF → just CR)
-    if lo.len > 0i64 && p[lo.len - 1i64] == 13u8 {
+      // Strip trailing '\r' if present (CRLF → just CR)
+    if (lo.len > 0i64 && p[lo.len - 1i64] == 13u8) {
         lo.len = lo.len - 1i64;
     }
 
-    // Advance sv past '\n' (or to end)
-    if i < sv.len {
+      // Advance sv past '\n' (or to end)
+    if (i < sv.len) {
         sv.ptr = sv.ptr + i + 1i64;
         sv.len = sv.len - i - 1i64;
     } else {
@@ -591,62 +591,62 @@ pub func:strview_next_line = bool(int64:sv_ptr, int64:line_out) {
     }
 
     pass true;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Parsing — read numeric values directly from the view's content
 // ════════════════════════════════════════════════════════════════════════════
 
-// strview_parse_i64 — Parse the view's content as a signed decimal integer.
+// strview_parse_i64 — Parse the view's @cast_unchecked<a>(content) signed decimal integer.
 // Returns Result<int64>: Ok(value) or Err if the content is not a valid number.
 // Leading/trailing whitespace is NOT accepted (use strview_trim first).
-pub func:strview_parse_i64 = Result<int64>(int64:sv) {
-    if sv == 0i64 { fail EINVAL as tbb8; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { fail EINVAL as tbb8; }
+pub func:strview_parse_i64 = int64(int64:sv) {
+    if (sv == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
 
-    // str_parse_i64 expects a NUL-terminated string.
-    // For performance, make a stack copy if len is small.
-    // For large views, use heap.
-    if s.len < 64i64 {
-        stack byte:tmp[64];
-        drop mem_memcpy(&tmp[0] as int64, s.ptr, s.len);
-        tmp[s.len] = 0u8;
-        pass str_parse_i64(&tmp[0] as int64);
+      // str_parse_i64 expects a NUL-terminated string.
+      // For performance, make a stack copy if len is small.
+      // For large views, use heap.
+    if (s->len < 64i64) {
+        stack uint8[64]:tmp;
+        drop mem_memcpy(@cast_unchecked<int64>(@tmp[0]), s->ptr, s->len);
+        tmp[s->len] = 0u8;
+        pass str_parse_i64(@cast_unchecked<int64>(@tmp[0]));
     } else {
-        Result<int64>:alloc_r = mem_malloc(s.len + 1i64);
-        if alloc_r.is_error { fail ENOMEM as tbb8; }
+        Result<int64>:alloc_r = mem_malloc(s->len + 1i64);
+        if (alloc_r.is_error) { fail @cast_unchecked<tbb32>(ENOMEM); }
         int64:buf = alloc_r.value;
-        drop mem_memcpy(buf, s.ptr, s.len);
-        (buf as *byte)[s.len] = 0u8;
+        drop mem_memcpy(buf, s->ptr, s->len);
+        (@cast_unchecked<uint8->>(buf))[s->len] = 0u8;
         Result<int64>:r = str_parse_i64(buf);
         drop mem_free(buf);
-        pass r;
+        return r;
     }
-}
+};
 
-// strview_parse_u64 — Parse as unsigned decimal integer.
-pub func:strview_parse_u64 = Result<int64>(int64:sv) {
-    if sv == 0i64 { fail EINVAL as tbb8; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { fail EINVAL as tbb8; }
+// strview_parse_u64 — @cast_unchecked<unsigned>(Parse) decimal integer.
+pub func:strview_parse_u64 = int64(int64:sv) {
+    if (sv == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
 
-    if s.len < 64i64 {
-        stack byte:tmp[64];
-        drop mem_memcpy(&tmp[0] as int64, s.ptr, s.len);
-        tmp[s.len] = 0u8;
-        pass str_parse_u64(&tmp[0] as int64);
+    if (s->len < 64i64) {
+        stack uint8[64]:tmp;
+        drop mem_memcpy(@cast_unchecked<int64>(@tmp[0]), s->ptr, s->len);
+        tmp[s->len] = 0u8;
+        pass str_parse_u64(@cast_unchecked<int64>(@tmp[0]));
     } else {
-        Result<int64>:alloc_r = mem_malloc(s.len + 1i64);
-        if alloc_r.is_error { fail ENOMEM as tbb8; }
+        Result<int64>:alloc_r = mem_malloc(s->len + 1i64);
+        if (alloc_r.is_error) { fail @cast_unchecked<tbb32>(ENOMEM); }
         int64:buf = alloc_r.value;
-        drop mem_memcpy(buf, s.ptr, s.len);
-        (buf as *byte)[s.len] = 0u8;
+        drop mem_memcpy(buf, s->ptr, s->len);
+        (@cast_unchecked<uint8->>(buf))[s->len] = 0u8;
         Result<int64>:r = str_parse_u64(buf);
         drop mem_free(buf);
-        pass r;
+        return r;
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Output — converting views to owned strings or writing them to I/O
@@ -656,75 +656,75 @@ pub func:strview_parse_u64 = Result<int64>(int64:sv) {
 // Returns a pointer to a newly allocated string; caller must mem_free() it.
 // Returns 0 on allocation failure or empty view (returns zero-length heap string).
 pub func:strview_to_str = int64(int64:sv) {
-    *StrView:s = sv as *StrView;
-    Result<int64>:r = mem_malloc(s.len + 1i64);
-    if r.is_error { pass 0i64; }
-    if s.len > 0i64 {
-        drop mem_memcpy(r.value, s.ptr, s.len);
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    Result<int64>:r = mem_malloc(s->len + 1i64);
+    if (r.is_error) { pass 0i64; }
+    if (s->len > 0i64) {
+        drop mem_memcpy(r.value, s->ptr, s->len);
     }
-    (r.value as *byte)[s.len] = 0u8;
+    (@cast_unchecked<uint8->>(r.value))[s->len] = 0u8;
     pass r.value;
-}
+};
 
 // strview_to_strbuf — Create a new StrBuf initialized with the view's content.
 // Returns a StrBuf* (as int64) that the caller owns. Free with strbuf_free().
 pub func:strview_to_strbuf = int64(int64:sv) {
-    *StrView:s = sv as *StrView;
-    int64:sb = strbuf_new_cap(s.len + 1i64);
-    if sb == 0i64 { pass 0i64; }
-    if s.len > 0i64 {
-        drop strbuf_append_bytes(sb, s.ptr, s.len);
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    int64:sb = raw strbuf_new_cap(s->len + 1i64);
+    if (sb == 0i64) { pass 0i64; }
+    if (s->len > 0i64) {
+        drop strbuf_append_bytes(sb, s->ptr, s->len);
     }
     pass sb;
-}
+};
 
 // strview_copy_to — Copy at most buflen bytes of the view into buf.
 // Does NOT NUL-terminate. Returns number of bytes copied.
 pub func:strview_copy_to = int64(int64:sv, int64:buf, int64:buflen) {
-    if sv == 0i64 || buf == 0i64 || buflen <= 0i64 { pass 0i64; }
-    *StrView:s = sv as *StrView;
-    int64:n = s.len < buflen ? s.len : buflen;
-    if n > 0i64 { drop mem_memcpy(buf, s.ptr, n); }
+    if (sv == 0i64 || buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    int64:n = is (s->len < buflen) : s->len : buflen;
+    if (n > 0i64) { drop mem_memcpy(buf, s->ptr, n); }
     pass n;
-}
+};
 
 // strview_copy_to_z — Copy at most (buflen-1) bytes into buf, NUL-terminate.
 // Equivalent to strlcpy semantics. Returns number of bytes written (excl. NUL).
 pub func:strview_copy_to_z = int64(int64:sv, int64:buf, int64:buflen) {
-    if buf == 0i64 || buflen <= 0i64 { pass 0i64; }
-    if sv == 0i64 {
-        (buf as *byte)[0] = 0u8;
+    if (buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+    if (sv == 0i64) {
+        (@cast_unchecked<uint8->>(buf))[0] = 0u8;
         pass 0i64;
     }
-    *StrView:s = sv as *StrView;
+    StrView->:s = @cast_unchecked<StrView->>(sv);
     int64:max = buflen - 1i64;
-    int64:n = s.len < max ? s.len : max;
-    if n > 0i64 { drop mem_memcpy(buf, s.ptr, n); }
-    (buf as *byte)[n] = 0u8;
+    int64:n = is (s->len < max) : s->len : max;
+    if (n > 0i64) { drop mem_memcpy(buf, s->ptr, n); }
+    (@cast_unchecked<uint8->>(buf))[n] = 0u8;
     pass n;
-}
+};
 
 // strview_write_to_fd — Write the view's bytes directly to a file descriptor.
 // Returns number of bytes written, or -1 on error.
 pub func:strview_write_to_fd = int64(int64:sv, int64:fd) {
-    if sv == 0i64 { pass 0i64; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { pass 0i64; }
-    Result<int64>:r = libn_write_all(fd, s.ptr, s.len);
-    if r.is_error { pass -1i64; }
+    if (sv == 0i64) { pass 0i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { pass 0i64; }
+    Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+    if (r.is_error) { pass -1i64; }
     pass r.value;
-}
+};
 
 // strview_write_to_fp — Write the view's bytes to a FILE* stream.
 // Returns number of bytes written, or -1 on error.
 pub func:strview_write_to_fp = int64(int64:sv, int64:fp) {
-    if sv == 0i64 { pass 0i64; }
-    *StrView:s = sv as *StrView;
-    if s.len == 0i64 { pass 0i64; }
-    int64:n = fwrite(s.ptr, 1i64, s.len, fp);
-    if n < s.len { pass -1i64; }
+    if (sv == 0i64) { pass 0i64; }
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    if (s->len == 0i64) { pass 0i64; }
+    int64:n = raw fwrite(s->ptr, 1i64, s->len, fp);
+    if (n < s->len) { pass -1i64; }
     pass n;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // StrViewIter — simple stateful line/token iterator
@@ -735,55 +735,55 @@ pub func:strview_write_to_fp = int64(int64:sv, int64:fp) {
 // Usage pattern (lines):
 //
 //   stack StrViewIter:it;
-//   strviewiter_of_str(&it as int64, some_text);
+//   strviewiter_of_str(@cast_unchecked<int64>(@it), some_text);
 //   stack StrView:line;
-//   while strviewiter_next_line(&it as int64, &line as int64) {
+//   while strviewiter_next_line(@cast_unchecked<int64>(@it), @cast_unchecked<int64>(@line)) {
 //       // process line
 //   }
 // ════════════════════════════════════════════════════════════════════════════
 
-pub struct StrViewIter {
-    int64:ptr;    // pointer into remaining data (same semantics as StrView.ptr)
-    int64:len;    // remaining bytes
-}
+pub struct:StrViewIter = {
+    int64:ptr;      // pointer into remaining data (same @cast_unchecked<StrView>(semantics).ptr)
+    int64:len;      // remaining bytes
+};
 
 // strviewiter_of — Init an iterator from a StrView.
-pub func:strviewiter_of = void(int64:it, int64:sv) {
-    *StrViewIter:i = it as *StrViewIter;
-    *StrView:s = sv as *StrView;
-    i.ptr = s.ptr;
-    i.len = s.len;
-}
+pub func:strviewiter_of = NIL(int64:it, int64:sv) {
+    StrViewIter->:i = @cast_unchecked<StrViewIter->>(it);
+    StrView->:s = @cast_unchecked<StrView->>(sv);
+    i.ptr = s->ptr;
+    i.len = s->len;
+};
 
 // strviewiter_of_str — Init an iterator from a NUL-terminated string.
-pub func:strviewiter_of_str = void(int64:it, int64:s) {
-    *StrViewIter:i = it as *StrViewIter;
-    if s == 0i64 {
+pub func:strviewiter_of_str = NIL(int64:it, int64:s) {
+    StrViewIter->:i = @cast_unchecked<StrViewIter->>(it);
+    if (s == 0i64) {
         i.ptr = 0i64;
         i.len = 0i64;
-        pass;
+        pass NIL;
     }
     i.ptr = s;
     i.len = str_strlen(s);
-}
+};
 
 // strviewiter_next_line — Read the next '\n'-terminated line into line_out.
 // Strips trailing '\r' for CRLF compatibility.
 // Returns true while lines remain; false when exhausted.
 pub func:strviewiter_next_line = bool(int64:it, int64:line_out) {
-    // The StrViewIter struct is layout-compatible with StrView (ptr+len),
-    // so we can pass it directly to strview_next_line.
+      // The StrViewIter struct is layout-compatible with StrView (ptr+len),
+      // so we can pass it directly to strview_next_line.
     pass strview_next_line(it, line_out);
-}
+};
 
 // strviewiter_next_token — Read next delim-separated token into token_out.
 // Returns true while tokens remain; false when exhausted.
-pub func:strviewiter_next_token = bool(int64:it, byte:delim, int64:token_out) {
+pub func:strviewiter_next_token = bool(int64:it, uint8:delim, int64:token_out) {
     pass strview_next_token(it, delim, token_out);
-}
+};
 
 // strviewiter_remaining — How many bytes are left in the iterator.
 pub func:strviewiter_remaining = int64(int64:it) {
-    if it == 0i64 { pass 0i64; }
-    pass (it as *StrViewIter).len;
-}
+    if (it == 0i64) { pass 0i64; }
+    pass (@cast_unchecked<StrViewIter->>(it)).len;
+};

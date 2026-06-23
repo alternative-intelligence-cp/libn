@@ -1,0 +1,4 @@
+pub func:foo = int64() {
+    int64:s = @cast_unchecked<int64>("Hello");
+    pass 0i64;
+};

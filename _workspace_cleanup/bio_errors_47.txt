@@ -1,0 +1,154 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 261, column 19:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 261, column 19:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 261, column 19:
+  Expected condition expression in if statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 263, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: identifier 'byte'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 269, column 22:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 269, column 22:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 269, column 22:
+  Expected condition expression in while statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 270, column 21:
+  Expected expression
+  Found: token '43b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 270, column 21:
+  Expected expression after operator
+  Found: token '43b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 270, column 21:
+  Expected condition expression in if statement
+  Found: token '43b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 270, column 45:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 271, column 21:
+  Expected expression
+  Found: token '98b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 271, column 21:
+  Expected expression after operator
+  Found: token '98b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 271, column 21:
+  Expected condition expression in if statement
+  Found: token '98b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 271, column 45:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 273, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 282, column 18:
+  Expected expression
+  Found: token '114b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 282, column 18:
+  Expected expression after operator
+  Found: token '114b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 282, column 18:
+  Expected condition expression in if statement
+  Found: token '114b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 7:
+  NITPICK-IF-001: 'else' has no preceding 'if' — an 'else' (or 'else if') clause may only follow an 'if' body
+  Found: token 'else'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 25:
+  Expected expression
+  Found: token '119b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 25:
+  Expected expression after operator
+  Found: token '119b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 25:
+  Expected condition expression in if statement
+  Found: token '119b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 298, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 298, column 7:
+  NITPICK-IF-001: 'else' has no preceding 'if' — an 'else' (or 'else if') clause may only follow an 'if' body
+  Found: token 'else'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 298, column 25:
+  Expected expression
+  Found: token '97b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 298, column 25:
+  Expected expression after operator
+  Found: token '97b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 298, column 25:
+  Expected condition expression in if statement
+  Found: token '97b'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 306, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 306, column 7:
+  NITPICK-IF-001: 'else' has no preceding 'if' — an 'else' (or 'else if') clause may only follow an 'if' body
+  Found: token 'else'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 308, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 311, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m35 errors[0m

@@ -88,56 +88,56 @@ project:libn = {
     test:unit = {
         sources: [
             // v0.1.x tests (TODO: write these)
-            // "tests/unit/test_syscall.npk",
-            // "tests/unit/test_errno.npk",
+            "tests/unit/test_syscall.npk",
+            "tests/unit/test_errno.npk",
 
             // v0.2.x tests (TODO: write these)
-            // "tests/unit/test_mem_mmap.npk",
-            // "tests/unit/test_mem_memset.npk",
-            // "tests/unit/test_mem_memcpy.npk",
-            // "tests/unit/test_mem_memutil.npk",
-            // "tests/unit/test_mem_slab.npk",
+            "tests/unit/test_mem_mmap.npk",
+            "tests/unit/test_mem_memset.npk",
+            "tests/unit/test_mem_memcpy.npk",
+            "tests/unit/test_mem_memutil.npk",
+            "tests/unit/test_mem_slab.npk",
 
             // v0.3.x tests (TODO: write these)
-            // "tests/unit/test_str_strlen.npk",
-            // "tests/unit/test_str_strcpy.npk",
-            // "tests/unit/test_str_strcmp.npk",
-            // "tests/unit/test_str_strlcpy.npk",
-            // "tests/unit/test_str_strchr.npk",
-            // "tests/unit/test_str_strtok.npk",
-            // "tests/unit/test_str_strconv.npk",
-            // "tests/unit/test_str_strfmt.npk",
+            "tests/unit/test_str_strlen.npk",
+            "tests/unit/test_str_strcpy.npk",
+            "tests/unit/test_str_strcmp.npk",
+            "tests/unit/test_str_strlcpy.npk",
+            "tests/unit/test_str_strchr.npk",
+            "tests/unit/test_str_strtok.npk",
+            "tests/unit/test_str_strconv.npk",
+            "tests/unit/test_str_strfmt.npk",
 
             // v0.4.x tests (TODO: write these)
-            // "tests/unit/test_io_write.npk",
-            // "tests/unit/test_io_read.npk",
-            // "tests/unit/test_io_printf.npk",
-            // "tests/unit/test_io_open.npk",
-            // "tests/unit/test_io_seek.npk",
-            // "tests/unit/test_io_dup.npk",
-            // "tests/unit/test_io_pipe.npk",
-            // "tests/unit/test_io_fcntl.npk",
+            "tests/unit/test_io_write.npk",
+            "tests/unit/test_io_read.npk",
+            "tests/unit/test_io_printf.npk",
+            "tests/unit/test_io_open.npk",
+            "tests/unit/test_io_seek.npk",
+            "tests/unit/test_io_dup.npk",
+            "tests/unit/test_io_pipe.npk",
+            "tests/unit/test_io_fcntl.npk",
 
             // v0.5.x tests (TODO: write these)
-            // "tests/unit/test_bio_fopen.npk",
-            // "tests/unit/test_bio_fio.npk",
-            // "tests/unit/test_bio_fseek.npk",
-            // "tests/unit/test_bio_fchar.npk",
-            // "tests/unit/test_bio_fstr.npk",
-            // "tests/unit/test_bio_fstate.npk",
-            // "tests/unit/test_bio_stdfiles.npk",
+            "tests/unit/test_bio_fopen.npk",
+            "tests/unit/test_bio_fio.npk",
+            "tests/unit/test_bio_fseek.npk",
+            "tests/unit/test_bio_fchar.npk",
+            "tests/unit/test_bio_fstr.npk",
+            "tests/unit/test_bio_fstate.npk",
+            "tests/unit/test_bio_stdfiles.npk",
 
             // v0.6.x tests (TODO: write these)
-            // "tests/unit/test_bio_fprintf.npk",
+            "tests/unit/test_bio_fprintf.npk",
             "tests/unit/test_bio_strerror.npk",
-            // "tests/unit/test_bio_fscanf.npk",
+            "tests/unit/test_bio_fscanf.npk",
 
             // v0.7.x tests (TODO: write these)
             "tests/unit/test_str_strbuf.npk",
 
             // v0.8.x tests (TODO: write these)
             "tests/unit/test_bio_tmpfile.npk",
-            // "tests/unit/test_bio_mkstemp.npk",
+            "tests/unit/test_bio_mkstemp.npk",
 
             // v0.9.x tests (TODO: write these)
             "tests/unit/test_str_strview.npk",
@@ -146,10 +146,10 @@ project:libn = {
             "tests/unit/test_math.npk",
 
             // v0.11.x tests (TODO: write these)
-            // "tests/unit/test_proc_exit.npk",
-            // "tests/unit/test_proc_fork_exec.npk",
-            // "tests/unit/test_proc_env.npk",
-            // "tests/unit/test_proc_signal.npk",
+            "tests/unit/test_proc_exit.npk",
+            "tests/unit/test_proc_fork_exec.npk",
+            "tests/unit/test_proc_env.npk",
+            "tests/unit/test_proc_signal.npk",
         ];
     };
 

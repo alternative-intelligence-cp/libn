@@ -1,0 +1,13 @@
+pub func:test_sys = int64() {
+    pass 0i64;
+};
+
+pub func:test_throw = int64() {
+    fail 123i64;
+};
+
+pub func:main = int32() {
+    Result<int64>:r1 = test_sys();
+    Result<int64>:r2 = test_throw();
+    pass 0i32;
+};

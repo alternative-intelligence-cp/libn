@@ -4,15 +4,15 @@
 // and pattern matchers in libn.
 //
 // Performance notes:
-//   - strchr uses the word-at-a-time technique (same as memchr).
-//   - strstr uses a two-byte approach at v0.3.4: find first byte with strchr,
+//   - strchr uses the word-at-a-time technique (@cast_unchecked<memchr>(same)).
+//   - strstr uses a two-uint8 approach at v0.3.4: find first uint8 with strchr,
 //     then check full match. A proper BMHS/two-way algorithm is in v0.3.9.
 //   - strpbrk, strspn, strcspn use bitmask lookup tables (256-bit bitvector)
-//     to classify each character in O(1) per byte, O(m) setup for charset.
+//     to classify each character in O(1) per uint8, O(m) setup for charset.
 
-use "src/syscall/errno.npk".*;
-use "src/str/strlen.npk".*;
-use "src/str/strcmp.npk".*;
+use "../syscall/errno.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strcmp.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strchr — Find first occurrence of character c in string s.
@@ -22,27 +22,27 @@ use "src/str/strcmp.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strchr = int64(int64:s, int64:c) {
-    if s == 0i64 {
+    if (s == 0i64) {
         pass 0i64;
     }
 
-    *byte:p   = s as *byte;
-    byte:target = c as byte;
+    uint8->:p   = @cast_unchecked<uint8->>(s);
+    uint8:target = @cast_unchecked<uint8>(c);
     int64:i = 0i64;
 
-    // Prologue: byte-by-byte until 8-aligned
-    while (s + i) & 7i64 != 0i64 {
-        if p[i] == target {
+      // Prologue: uint8-by-uint8 until 8-aligned
+    while (((s + i) & 7i64) != 0i64) {
+        if (p[i] == target) {
             pass s + i;
         }
-        if p[i] == 0u8 {
-            pass 0i64;  // reached NUL before finding target
+        if (p[i] == 0u8) {
+            pass 0i64;    // reached NUL before finding target
         }
         i = i + 1i64;
     }
 
-    // Build replicated target word for word-at-a-time search
-    int64:tword = target as int64;
+      // Build replicated target word for word-at-a-time search
+    int64:tword = @cast_unchecked<int64>(target);
     tword = tword | (tword << 8i64);
     tword = tword | (tword << 16i64);
     tword = tword | (tword << 32i64);
@@ -50,36 +50,36 @@ pub func:str_strchr = int64(int64:s, int64:c) {
     fixed int64:ONES     = 0x0101010101010101i64;
     fixed int64:HIGHBITS = 0x8080808080808080i64;
 
-    // Word loop: check for NUL or target in each word
-    *int64:pw = (s + i) as *int64;
+      // Word loop: check for NUL or target in each word
+    int64->:pw = @cast_unchecked<int64->>((s + i));
     int64:wi = 0i64;
-    while true {
+    while (true) {
         int64:v = pw[wi];
-        // Check for NUL byte in word
+          // Check for NUL uint8 in word
         bool:has_nul = ((v - ONES) & (0i64 - 1i64 ^ v) & HIGHBITS) != 0i64;
-        // Check for target byte in word (XOR word with replicated target; check for zero)
+          // Check for target uint8 in word (XOR word with replicated target; check for zero)
         int64:x = v ^ tword;
         bool:has_tgt = ((x - ONES) & (0i64 - 1i64 ^ x) & HIGHBITS) != 0i64;
-        if has_nul || has_tgt {
+        if (has_nul || has_tgt) {
             break;
         }
         wi = wi + 1i64;
     }
     i = i + wi * 8i64;
 
-    // Tail: exact scan
-    while true {
-        if p[i] == target {
+      // Tail: exact scan
+    while (true) {
+        if (p[i] == target) {
             pass s + i;
         }
-        if p[i] == 0u8 {
+        if (p[i] == 0u8) {
             pass 0i64;
         }
         i = i + 1i64;
     }
 
-    pass 0i64;  // unreachable
-}
+    pass 0i64;    // unreachable
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strchrnul — Like strchr but returns pointer to NUL if c not found.
@@ -91,52 +91,52 @@ pub func:str_strchr = int64(int64:s, int64:c) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strchrnul = int64(int64:s, int64:c) {
-    if s == 0i64 {
+    if (s == 0i64) {
         pass s;
     }
 
-    *byte:p     = s as *byte;
-    byte:target = c as byte;
+    uint8->:p     = @cast_unchecked<uint8->>(s);
+    uint8:target = @cast_unchecked<uint8>(c);
     int64:i = 0i64;
 
-    while p[i] != 0u8 && p[i] != target {
+    while (p[i] != 0u8 && p[i] != target) {
         i = i + 1i64;
     }
 
     pass s + i;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strrchr — Find LAST occurrence of character c in string s.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strrchr = int64(int64:s, int64:c) {
-    if s == 0i64 {
+    if (s == 0i64) {
         pass 0i64;
     }
 
-    *byte:p     = s as *byte;
-    byte:target = c as byte;
-    int64:last  = 0i64;  // 0 means "not found"
+    uint8->:p     = @cast_unchecked<uint8->>(s);
+    uint8:target = @cast_unchecked<uint8>(c);
+    int64:last  = 0i64;    // 0 means "not found"
     bool:found  = false;
     int64:i = 0i64;
 
-    while true {
-        if p[i] == target {
+    while (true) {
+        if (p[i] == target) {
             last  = s + i;
             found = true;
         }
-        if p[i] == 0u8 {
+        if (p[i] == 0u8) {
             break;
         }
         i = i + 1i64;
     }
 
-    if !found {
+    if (!found) {
         pass 0i64;
     }
     pass last;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strstr — Find first occurrence of needle in haystack.
@@ -146,71 +146,71 @@ pub func:str_strrchr = int64(int64:s, int64:c) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strstr = int64(int64:haystack, int64:needle) {
-    if haystack == 0i64 {
+    if (haystack == 0i64) {
         pass 0i64;
     }
-    if needle == 0i64 {
+    if (needle == 0i64) {
         pass haystack;
     }
 
-    *byte:h = haystack as *byte;
-    *byte:n = needle as *byte;
+    uint8->:h = @cast_unchecked<uint8->>(haystack);
+    uint8->:n = @cast_unchecked<uint8->>(needle);
 
-    // Empty needle: match at start
-    if n[0] == 0u8 {
+      // Empty needle: match at start
+    if (n[0] == 0u8) {
         pass haystack;
     }
 
-    byte:first = n[0];
+    uint8:first = n[0];
     int64:i = 0i64;
 
-    while h[i] != 0u8 {
-        if h[i] == first {
-            // Found first byte — check full needle
+    while (h[i] != 0u8) {
+        if (h[i] == first) {
+              // Found first uint8 — check full needle
             int64:j = 1i64;
-            while n[j] != 0u8 && h[i + j] != 0u8 && h[i + j] == n[j] {
+            while (n[j] != 0u8 && h[i + j] != 0u8 && h[i + j] == n[j]) {
                 j = j + 1i64;
             }
-            if n[j] == 0u8 {
-                pass haystack + i;  // full match
+            if (n[j] == 0u8) {
+                pass haystack + i;    // full match
             }
         }
         i = i + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcasestr — Case-insensitive strstr (ASCII).
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcasestr = int64(int64:haystack, int64:needle) {
-    if haystack == 0i64 {
+    if (haystack == 0i64) {
         pass 0i64;
     }
-    if needle == 0i64 {
+    if (needle == 0i64) {
         pass haystack;
     }
 
-    *byte:h = haystack as *byte;
-    *byte:n = needle as *byte;
+    uint8->:h = @cast_unchecked<uint8->>(haystack);
+    uint8->:n = @cast_unchecked<uint8->>(needle);
 
-    if n[0] == 0u8 {
+    if (n[0] == 0u8) {
         pass haystack;
     }
 
-    byte:first_lo = raw to_lower_ascii(n[0]);
+    uint8:first_lo = to_lower_ascii(n[0]);
     int64:i = 0i64;
 
-    while h[i] != 0u8 {
-        if raw to_lower_ascii(h[i]) == first_lo {
+    while (h[i] != 0u8) {
+        if (to_lower_ascii(h[i]) == first_lo) {
             int64:j = 1i64;
-            while n[j] != 0u8 && h[i + j] != 0u8 &&
-                  raw to_lower_ascii(h[i + j]) == raw to_lower_ascii(n[j]) {
+            while (n[j] != 0u8 && h[i + j] != 0u8 &&
+                  to_lower_ascii(h[i + j]) == to_lower_ascii(n[j])) {
                 j = j + 1i64;
             }
-            if n[j] == 0u8 {
+            if (n[j] == 0u8) {
                 pass haystack + i;
             }
         }
@@ -218,38 +218,38 @@ pub func:str_strcasestr = int64(int64:haystack, int64:needle) {
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Charset lookup table (256-bit bitvector)
 //
-// A 256-bit (32-byte) bitvector indexed by ASCII byte value.
+// A 256-bit (32-uint8) bitvector indexed by ASCII uint8 value.
 // Setting bit c means "character c is in the set".
 // Testing: (table[c >> 3] >> (c & 7)) & 1
 //
-// Using a stack-allocated 32-byte array for the set.
+// Using a stack-allocated 32-uint8 array for the set.
 // This makes strpbrk/strspn/strcspn O(m + n) where m = charset length, n = string length.
 // ════════════════════════════════════════════════════════════════════════════
 
-// charset_build — Initialize a 32-byte bitvector from a charset string.
-func:charset_build = void(*byte:table, int64:charset) {
-    *byte:cs = charset as *byte;
-    // Zero the table
+// charset_build — Initialize a 32-uint8 bitvector from a charset string.
+pub func:charset_build = NIL(uint8->:table, int64:charset) {
+    uint8->:cs = @cast_unchecked<uint8->>(charset);
+      // Zero the table
     int64:ti = 0i64;
-    while ti < 32i64 { table[ti] = 0u8; ti = ti + 1i64; }
-    // Set bit for each byte in charset
+    while (ti < 32i64) { table[ti] = 0u8; ti = ti + 1i64; }
+      // Set bit for each uint8 in charset
     int64:ci = 0i64;
-    while cs[ci] != 0u8 {
-        byte:c = cs[ci];
+    while (cs[ci] != 0u8) {
+        uint8:c = cs[ci];
         table[c >> 3u8] = table[c >> 3u8] | (1u8 << (c & 7u8));
         ci = ci + 1i64;
     }
-}
+};
 
-// charset_test — True if byte c is in the 32-byte bitvector table.
-func:charset_test = bool(*byte:table, byte:c) {
+// charset_test — True if uint8 c is in the 32-uint8 bitvector table.
+pub func:charset_test = bool(uint8->:table, uint8:c) {
     pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strpbrk — Find first character in s that is also in accept.
@@ -258,26 +258,26 @@ func:charset_test = bool(*byte:table, byte:c) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strpbrk = int64(int64:s, int64:accept) {
-    if s == 0i64 || accept == 0i64 {
+    if (s == 0i64 || accept == 0i64) {
         pass 0i64;
     }
 
-    // Build charset bitvector on stack
-    stack byte:table[32];
-    charset_build(&table[0], accept);
+      // Build charset bitvector on stack
+    stack uint8[32]:table;
+    drop charset_build(@table[0], accept);
 
-    *byte:p = s as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while p[i] != 0u8 {
-        if raw charset_test(&table[0], p[i]) {
+    while (p[i] != 0u8) {
+        if (charset_test(@table[0], p[i])) {
             pass s + i;
         }
         i = i + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strspn — Return length of initial segment of s consisting of chars in accept.
@@ -289,25 +289,25 @@ pub func:str_strpbrk = int64(int64:s, int64:accept) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strspn = int64(int64:s, int64:accept) {
-    if s == 0i64 {
+    if (s == 0i64) {
         pass 0i64;
     }
-    if accept == 0i64 {
+    if (accept == 0i64) {
         pass 0i64;
     }
 
-    stack byte:table[32];
-    charset_build(&table[0], accept);
+    stack uint8[32]:table;
+    drop charset_build(@table[0], accept);
 
-    *byte:p = s as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while p[i] != 0u8 && raw charset_test(&table[0], p[i]) {
+    while (p[i] != 0u8 && charset_test(@table[0], p[i])) {
         i = i + 1i64;
     }
 
     pass i;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcspn — Return length of initial segment of s consisting of chars NOT in reject.
@@ -317,22 +317,22 @@ pub func:str_strspn = int64(int64:s, int64:accept) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcspn = int64(int64:s, int64:reject) {
-    if s == 0i64 {
+    if (s == 0i64) {
         pass 0i64;
     }
-    if reject == 0i64 {
-        pass raw str_strlen(s);
+    if (reject == 0i64) {
+        pass str_strlen(s);
     }
 
-    stack byte:table[32];
-    charset_build(&table[0], reject);
+    stack uint8[32]:table;
+    drop charset_build(@table[0], reject);
 
-    *byte:p = s as *byte;
+    uint8->:p = @cast_unchecked<uint8->>(s);
     int64:i = 0i64;
 
-    while p[i] != 0u8 && !raw charset_test(&table[0], p[i]) {
+    while (p[i] != 0u8 && !charset_test(@table[0], p[i])) {
         i = i + 1i64;
     }
 
     pass i;
-}
+};

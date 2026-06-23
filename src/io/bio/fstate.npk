@@ -15,9 +15,9 @@
 // setvbuf — set buffering mode and optionally supply a user buffer.
 // setbuf  — simplified interface (buf=NULL for unbuffered, else BUFSIZ-buffered).
 
-use "src/syscall/errno.npk".*;
-use "src/mem/slab.npk".*;
-use "src/io/bio/file.npk".*;
+use "../../syscall/errno.npk".*;
+use "../../mem/slab.npk".*;
+use "../../io/bio/file.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // feof — Test the end-of-file indicator.
@@ -26,15 +26,15 @@ use "src/io/bio/file.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:feof = int64(int64:fp) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass 0i64;
     }
-    *FILE:f = fp as *FILE;
-    if (f.flags & FILE_FLAG_EOF) != 0i64 {
+    FILE->:f = @cast_unchecked<FILE->>(fp);
+    if ((f->flags & FILE_FLAG_EOF) != 0i64) {
         pass 1i64;
     }
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // ferror — Test the error indicator.
@@ -43,15 +43,15 @@ pub func:feof = int64(int64:fp) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:ferror = int64(int64:fp) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass 0i64;
     }
-    *FILE:f = fp as *FILE;
-    if (f.flags & FILE_FLAG_ERROR) != 0i64 {
+    FILE->:f = @cast_unchecked<FILE->>(fp);
+    if ((f->flags & FILE_FLAG_ERROR) != 0i64) {
         pass 1i64;
     }
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // clearerr — Clear both the EOF and error indicators.
@@ -60,11 +60,11 @@ pub func:ferror = int64(int64:fp) {
 // The next read or write operation will re-try from the current position.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:clearerr = void(int64:fp) {
-    if fp == 0i64 { pass; }
-    *FILE:f = fp as *FILE;
-    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR);
-}
+pub func:clearerr = NIL(int64:fp) {
+    if (fp == 0i64) { pass NIL; }
+    FILE->:f = @cast_unchecked<FILE->>(fp);
+    f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR);
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // setvbuf — Set buffering mode and optionally supply a buffer.
@@ -82,56 +82,56 @@ pub func:clearerr = void(int64:fp) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
-    if fp == 0i64 {
+    if (fp == 0i64) {
         pass -1i64;
     }
-    if mode != _IOFBF && mode != _IOLBF && mode != _IONBF {
-        errno_set(EINVAL);
+    if (mode != _IOFBF && mode != _IOLBF && mode != _IONBF) {
+        drop drop(errno_set(EINVAL));
         pass -1i64;
     }
 
-    *FILE:f = fp as *FILE;
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    // Free any existing libn-owned buffer
-    if (f.flags & FILE_FLAG_BUF_OWN) != 0i64 && f.buf != 0i64 {
-        bio_free_buf(f.buf, f.buf_cap);
-        f.buf     = 0i64;
-        f.buf_cap = 0i64;
-        f.flags   = f.flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
+      // Free any existing libn-owned buffer
+    if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {
+        drop bio_free_buf(f->buf, f->buf_cap);
+        f->buf     = 0i64;
+        f->buf_cap = 0i64;
+        f->flags   = f->flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
     }
 
-    f.buf_pos  = 0i64;
-    f.buf_len  = 0i64;
-    f.buf_mode = mode;
+    f->buf_pos  = 0i64;
+    f->buf_len  = 0i64;
+    f->buf_mode = mode;
 
-    if mode == _IONBF {
-        // Unbuffered: no buffer needed
-        f.buf     = 0i64;
-        f.buf_cap = 0i64;
+    if (mode == _IONBF) {
+          // Unbuffered: no buffer needed
+        f->buf     = 0i64;
+        f->buf_cap = 0i64;
         pass 0i64;
     }
 
-    if buf != 0i64 {
-        // Caller supplies the buffer — libn does NOT own it (won't free on fclose)
-        int64:cap = size > 0i64 ? size : BUFSIZ;
-        f.buf     = buf;
-        f.buf_cap = cap;
-        // No FILE_FLAG_BUF_OWN — caller is responsible for the buffer lifetime
+    if (buf != 0i64) {
+          // Caller supplies the buffer — libn does NOT own it (won't free on fclose)
+        int64:cap = is (size > 0i64) : size : BUFSIZ;
+        f->buf     = buf;
+        f->buf_cap = cap;
+          // No FILE_FLAG_BUF_OWN — caller is responsible for the buffer lifetime
     } else {
-        // Allocate a new buffer
-        int64:cap = size > 0i64 ? size : BUFSIZ;
+          // Allocate a new buffer
+        int64:cap = is (size > 0i64) : size : BUFSIZ;
         int64:newbuf = bio_alloc_buf(cap);
-        if newbuf == 0i64 {
-            errno_set(ENOMEM);
+        if (newbuf == 0i64) {
+            drop drop(errno_set(ENOMEM));
             pass -1i64;
         }
-        f.buf     = newbuf;
-        f.buf_cap = cap;
-        f.flags   = f.flags | FILE_FLAG_BUF_OWN;
+        f->buf     = newbuf;
+        f->buf_cap = cap;
+        f->flags   = f->flags | FILE_FLAG_BUF_OWN;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // setbuf — Simplified buffer configuration.
@@ -144,13 +144,13 @@ pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
 //   buf ? setvbuf(fp, buf, _IOFBF, BUFSIZ) : setvbuf(fp, NULL, _IONBF, 0)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:setbuf = void(int64:fp, int64:buf) {
-    if buf != 0i64 {
+pub func:setbuf = NIL(int64:fp, int64:buf) {
+    if (buf != 0i64) {
         drop setvbuf(fp, buf, _IOFBF, BUFSIZ);
     } else {
         drop setvbuf(fp, 0i64, _IONBF, 0i64);
     }
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // setlinebuf — Set stream to line-buffered mode (BSD extension).
@@ -159,6 +159,6 @@ pub func:setbuf = void(int64:fp, int64:buf) {
 // Commonly used on stdout when output is piped.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:setlinebuf = void(int64:fp) {
+pub func:setlinebuf = NIL(int64:fp) {
     drop setvbuf(fp, 0i64, _IOLBF, 0i64);
-}
+};

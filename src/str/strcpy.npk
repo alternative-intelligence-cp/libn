@@ -17,12 +17,12 @@
 //   - strlcpy: always NUL-terminates, returns strlen(src)
 //   - strlcat: like strlcpy but appends
 
-use "src/syscall/errno.npk".*;
-use "src/str/strlen.npk".*;
-use "src/mem/memcpy.npk".*;
-use "src/mem/memset.npk".*;
-use "src/mem/mmap.npk".*;
-use "src/mem/slab.npk".*;
+use "../syscall/errno.npk".*;
+use "../str/strlen.npk".*;
+use "../mem/memcpy.npk".*;
+use "../mem/memset.npk".*;
+use "../mem/mmap.npk".*;
+use "../mem/slab.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcpy — Copy NUL-terminated string from src to dst.
@@ -32,47 +32,47 @@ use "src/mem/slab.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcpy = int64(int64:dst, int64:src) {
-    if dst == 0i64 || src == 0i64 {
+    if (dst == 0i64 || src == 0i64) {
         pass dst;
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
     int64:i = 0i64;
 
-    while s[i] != 0u8 {
+    while (s[i] != 0u8) {
         d[i] = s[i];
         i = i + 1i64;
     }
-    d[i] = 0u8;  // NUL terminator
+    d[i] = 0u8;    // NUL terminator
 
     pass dst;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_stpcpy — Like strcpy but returns pointer to the NUL in dst.
 //
-// Returns: dst + strlen(src) (points to the NUL byte written at end of dst).
+// Returns: dst + strlen(src) (points to the NUL uint8 written at end of dst).
 // Use for chaining: dst = stpcpy(dst, "hello"); dst = stpcpy(dst, " world");
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_stpcpy = int64(int64:dst, int64:src) {
-    if dst == 0i64 || src == 0i64 {
+    if (dst == 0i64 || src == 0i64) {
         pass dst;
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
     int64:i = 0i64;
 
-    while s[i] != 0u8 {
+    while (s[i] != 0u8) {
         d[i] = s[i];
         i = i + 1i64;
     }
     d[i] = 0u8;
 
-    pass dst + i;  // points to the NUL byte
-}
+    pass dst + i;    // points to the NUL uint8
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strncpy — Copy at most n bytes from src to dst, NUL-pad remainder.
@@ -86,97 +86,97 @@ pub func:str_stpcpy = int64(int64:dst, int64:src) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strncpy = int64(int64:dst, int64:src, int64:n) {
-    if dst == 0i64 || n <= 0i64 {
+    if (dst == 0i64 || n <= 0i64) {
         pass dst;
     }
-    if src == 0i64 {
-        // POSIX: strncpy(dst, NULL, n) → NUL-fill dst
-        mem_bzero(dst, n);
+    if (src == 0i64) {
+          // POSIX: strncpy(dst, NULL, n) → NUL-fill dst
+        drop mem_bzero(dst, n);
         pass dst;
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
     int64:i = 0i64;
 
-    // Copy src bytes until NUL or we reach n
-    while i < n && s[i] != 0u8 {
+      // Copy src bytes until NUL or we reach n
+    while (i < n && s[i] != 0u8) {
         d[i] = s[i];
         i = i + 1i64;
     }
 
-    // NUL-pad the remainder (POSIX requirement)
-    while i < n {
+      // NUL-pad the remainder (POSIX requirement)
+    while (i < n) {
         d[i] = 0u8;
         i = i + 1i64;
     }
 
     pass dst;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_stpncpy — Like strncpy but returns pointer to end of copied data in dst.
 //
 // Returns pointer to the NUL placed in dst, or dst+n if src was truncated
-// (no NUL in that case — same gotcha as strncpy).
+// (no NUL in that case — same @cast_unchecked<strncpy>(gotcha)).
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_stpncpy = int64(int64:dst, int64:src, int64:n) {
-    if dst == 0i64 || n <= 0i64 {
+    if (dst == 0i64 || n <= 0i64) {
         pass dst;
     }
-    if src == 0i64 {
-        mem_bzero(dst, n);
+    if (src == 0i64) {
+        drop mem_bzero(dst, n);
         pass dst;
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
     int64:i = 0i64;
 
-    while i < n && s[i] != 0u8 {
+    while (i < n && s[i] != 0u8) {
         d[i] = s[i];
         i = i + 1i64;
     }
 
-    int64:end = dst + i;
+    int64:end_idx = dst + i;
 
-    while i < n {
+    while (i < n) {
         d[i] = 0u8;
         i = i + 1i64;
     }
 
-    pass end;
-}
+    pass end_idx;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strdup — Allocate a copy of the NUL-terminated string at src.
 //
 // Equivalent to malloc(strlen(src)+1) + strcpy. Caller must free with
-// slab_free() or mem_free() depending on allocation size.
+// slab_free(0i64, ) or mem_free() depending on allocation size.
 //
 // Returns pointer to new string (or error on OOM).
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:str_strdup = Result<int64>(int64:src) {
-    if src == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:str_strdup = int64(int64:src) {
+    if (src == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    int64:n = raw str_strlen(src);
+    int64:n = str_strlen(src);
     int64:alloc_size = n + 1i64;
 
-    // Use slab for short strings, mmap for long ones
-    Result<int64>:r = slab_alloc(alloc_size);
-    if r.is_error {
-        fail r.err;
+      // Use slab for short strings, mmap for long ones
+    int64:r = slab_alloc(alloc_size);
+    if (r.is_error) {
+        fail r.error;
     }
 
-    // Copy including NUL terminator
+      // Copy including NUL terminator
     drop mem_memcpy(r.value, src, alloc_size);
 
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strndup — Allocate a copy of at most n bytes of src.
@@ -189,25 +189,25 @@ pub func:str_strdup = Result<int64>(int64:src) {
 // Returns pointer to new string.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:str_strndup = Result<int64>(int64:src, int64:n) {
-    if src == 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:str_strndup = int64(int64:src, int64:n) {
+    if (src == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n < 0i64 {
-        fail ERR_BADARG as tbb8;
+    if (n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    int64:actual_len = raw str_strnlen(src, n);  // min(strlen(src), n)
+    int64:actual_len = str_strnlen(src, n);    // min(strlen(src), n)
     int64:alloc_size = actual_len + 1i64;
 
-    Result<int64>:r = slab_alloc(alloc_size);
-    if r.is_error {
-        fail r.err;
+    int64:r = slab_alloc(alloc_size);
+    if (r.is_error) {
+        fail r.error;
     }
 
-    // Copy actual_len bytes, then NUL-terminate
+      // Copy actual_len bytes, then NUL-terminate
     drop mem_memcpy(r.value, src, actual_len);
-    (r.value as *byte)[actual_len] = 0u8;
+    (@cast_unchecked<uint8->>(r.value))[actual_len] = 0u8;
 
     pass r.value;
-}
+};

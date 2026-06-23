@@ -1,0 +1,9 @@
+(int32)()[32]:handlers;
+func:main = int32() {
+    handlers[0i64] = @my_func;
+    (int32)():fn = handlers[0i64];
+    fn();
+    exit 0i32;
+};
+func:my_func = int32() { pass 0i32; };
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

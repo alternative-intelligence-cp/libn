@@ -1,0 +1,7 @@
+pub const int64:TEST = 0i64;
+pub func:test = int64() {
+    pass TEST;
+};
+func:main = int32() {
+    exit 0;
+};

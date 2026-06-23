@@ -1,0 +1,12 @@
+func:main = int32() {
+    int64[32]:handlers;
+    handlers[0i64] = @cast_unchecked<int64>(@my_func);
+    
+    // B11 FIX says: "Allow function reference (@func_name) to match function pointer parameter. resolveTypeNode returns uint64 placeholder for FUNCTION_TYPE params, but @func_name has type PointerType(FunctionType) or FunctionType."
+    // What if we cast the int64 back to (int32)()?
+    // (int32)():fn = @cast_unchecked<(int32)()>(handlers[0i64]); // target is uint64
+    // fn();
+    exit 0i32;
+};
+func:my_func = int32() { pass 0i32; };
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

@@ -5,8 +5,8 @@
 // Verified against Linux 6.x.
 //
 // Usage:
-//   use "src/syscall/syscall_numbers.npk".*;
-//   int64:fd = raw sys(SYS_OPEN, path, flags, mode);
+//   use "../syscall/syscall_numbers.npk".*;
+//   int64:fd = sys(SYS_OPEN, path, flags, mode);
 //
 // Syscall tiers in Nitpick:
 //   sys(N, ...)    — safe tier (~55 whitelisted), returns Result<int64>

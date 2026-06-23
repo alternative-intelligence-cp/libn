@@ -1,0 +1,27 @@
+src/proc/signal.npk:268:pub func:killpg = int64(int64:pgrp, int64:signo) {
+src/proc/env.npk:268:            while (k < count - 1i64) {
+src/proc/exec.npk:268:                         int64:a3, int64:a4, int64:a5, int64:a6) {
+src/io/bio/fprintf.npk:268:};
+src/io/bio/fio.npk:268:// fflush(0 / NULL): at v0.5.3, this is a no-op (no global stream list yet).
+src/io/bio/tmpfile.npk:268:    int64:fp = fdopen(fd, @cast_unchecked<int64>(mode_w_plus_b));
+src/io/bio/fscanf.npk:268:        if (ch != 37u8) {  // not '%' — literal character match
+src/io/bio/fopen.npk:268:    FILE->:f = @cast_unchecked<FILE->>(fp);
+src/io/bio/file.npk:268:
+src/io/printf.npk:268://
+src/io/read.npk:268:    }
+src/fs/path.npk:268:
+src/mem/slab.npk:268:
+src/mem/memutil.npk:268://
+src/mem/mmap.npk:268:        fail new_r.error;
+src/str/strtok.npk:268:                    len = len - 1i64;
+src/str/strview.npk:268:        drop(strview_substr(sv, p.len, -1i64, out));
+src/str/strchr.npk:268:
+src/str/strfmt.npk:268:            if (precision >= 0i64 && slen > precision) {
+src/str/strconv.npk:268://   - Overflow/underflow.
+src/str/strcmp.npk:268:// str_casecmp_prefix — Case-insensitive prefix check.
+src/str/strbuf.npk:268:
+src/math/math.npk:268:// ════════════════════════════════════════════════════════════════════════════
+src/syscall/syscall.npk:268:pub func:libn_pwrite = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+src/syscall/syscall_numbers.npk:268:pub fixed int64:SYS_REQUEST_KEY     = 249i64;
+src/syscall/posix_constants.npk:268:// SOCKET DOMAINS  (sys/socket.h AF_*)
+src/syscall/errno.npk:268:// but each literal is immutable so concurrent reads are safe.

@@ -1,0 +1,2 @@
+use "src/fs/path.npk".*;
+pub func:main = int32() { pass 0i32; };

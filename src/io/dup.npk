@@ -22,10 +22,10 @@
 // Always use io_dup_cloexec() instead of io_dup() when the dup'd fd will
 // NOT be passed to a child process — it avoids O_CLOEXEC hygiene issues.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/syscall/syscall.npk".*;
-use "src/io/write.npk".*;   // STDIN_FD, STDOUT_FD, STDERR_FD
+use "../syscall/errno.npk".*;
+use "../syscall/posix_constants.npk".*;
+use "../syscall/syscall.npk".*;
+use "../io/write.npk".*;     // STDIN_FD, STDOUT_FD, STDERR_FD
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_dup — Duplicate fd to the lowest available fd number.
@@ -36,12 +36,12 @@ use "src/io/write.npk".*;   // STDIN_FD, STDOUT_FD, STDERR_FD
 // Returns the new fd on success.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_dup = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dup = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_dup(fd);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_dup_cloexec — Duplicate fd with O_CLOEXEC set on the new fd.
@@ -50,13 +50,13 @@ pub func:io_dup = Result<int64>(int64:fd) {
 // by a child process. This is implemented with F_DUPFD_CLOEXEC.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_dup_cloexec = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dup_cloexec = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    // F_DUPFD_CLOEXEC: find the lowest fd >= 0 and set O_CLOEXEC atomically
+      // F_DUPFD_CLOEXEC: find the lowest fd >= 0 and set O_CLOEXEC atomically
     pass libn_fcntl(fd, F_DUPFD_CLOEXEC, 0i64);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_dup2 — Duplicate fd onto newfd.
@@ -72,47 +72,47 @@ pub func:io_dup_cloexec = Result<int64>(int64:fd) {
 // Returns newfd on success.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_dup2 = Result<int64>(int64:fd, int64:newfd) {
-    if fd < 0i64 || newfd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dup2 = int64(int64:fd, int64:newfd) {
+    if (fd < 0i64 || newfd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if fd == newfd {
-        // Already the same fd — validate fd is open by probing with F_GETFD
+    if (fd == newfd) {
+          // Already the same fd — validate fd is open by probing with F_GETFD
         Result<int64>:chk = libn_fcntl(fd, F_GETFD, 0i64);
-        if chk.is_error {
-            fail chk.err;
+        if (chk.is_error) {
+            fail chk.error;
         }
         pass newfd;
     }
     pass libn_dup2(fd, newfd);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_dup3 — Duplicate fd onto newfd with explicit flags.
 //
 // flags: O_CLOEXEC (the only flag currently accepted by the Linux kernel).
-//        Pass 0 for no flags (same behavior as dup2, but fd must != newfd).
+//        Pass 0 for no flags (same @cast_unchecked<dup2>(behavior), but fd must != newfd).
 //
 // fd and newfd must be different — if fd == newfd, the kernel returns EINVAL.
 // (This differs from dup2 which silently returns newfd in that case.)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_dup3 = Result<int64>(int64:fd, int64:newfd, int64:flags) {
-    if fd < 0i64 || newfd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dup3 = int64(int64:fd, int64:newfd, int64:flags) {
+    if (fd < 0i64 || newfd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if fd == newfd {
-        fail EINVAL as tbb8;
+    if (fd == newfd) {
+        fail @cast_unchecked<tbb32>(EINVAL);
     }
     pass libn_dup3(fd, newfd, flags);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_redirect — Redirect src_fd onto target_fd (stdin/stdout/stderr pattern).
 //
 // This is the standard "open file, dup2 to std fd, close original" idiom.
 // After this call:
-//   - target_fd refers to the same file as src_fd
+//   - target_fd refers to the same @cast_unchecked<src_fd>(file)
 //   - src_fd is closed
 //   - target_fd does NOT have O_CLOEXEC (correct for std fd inheritance)
 //
@@ -124,27 +124,27 @@ pub func:io_dup3 = Result<int64>(int64:fd, int64:newfd, int64:flags) {
 // Returns Ok(target_fd) on success.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_redirect = Result<int64>(int64:src_fd, int64:target_fd) {
-    if src_fd < 0i64 || target_fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_redirect = int64(int64:src_fd, int64:target_fd) {
+    if (src_fd < 0i64 || target_fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    // If they're already the same, just clear O_CLOEXEC if it's set
-    // (so the fd survives exec), then we're done.
-    if src_fd == target_fd {
-        drop libn_fcntl(target_fd, F_SETFD, 0i64);  // clear FD_CLOEXEC
+      // If they're already the same, just clear O_CLOEXEC if it's set
+      // (so the fd survives exec), then we're done.
+    if (src_fd == target_fd) {
+        drop libn_fcntl(target_fd, F_SETFD, 0i64);    // clear FD_CLOEXEC
         pass target_fd;
     }
 
-    // dup2: atomically close target_fd (if open) and point it at src_fd
+      // dup2: atomically close target_fd (if open) and point it at src_fd
     Result<int64>:r = libn_dup2(src_fd, target_fd);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
 
-    // Close the original src_fd — target_fd is now the live handle
-    // Ignore close errors here — the dup2 succeeded, don't obscure that.
+      // Close the original src_fd — target_fd is now the live handle
+      // Ignore close errors here — the dup2 succeeded, don't obscure that.
     drop libn_close(src_fd);
 
     pass target_fd;
-}
+};

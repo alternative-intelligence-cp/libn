@@ -4,7 +4,7 @@
 // and option parser depends on these.
 //
 // Correctness requirements (POSIX):
-//   - strcmp(a, b) compares unsigned char (byte) values, NOT signed char.
+//   - strcmp(a, b) compares unsigned char (uint8) values, NOT signed char.
 //     The return value is < 0 if a < b, 0 if equal, > 0 if a > b.
 //     The sign/magnitude is implementation-defined — we return -1, 0, +1.
 //   - strncmp compares at most n bytes. If either string is shorter than n,
@@ -14,41 +14,41 @@
 //     Locale-aware comparison is in v0.40.x (locale/collation module).
 //
 // Performance:
-//   - Word-at-a-time for strcmp: XOR two 8-byte words; if the result contains
-//     a zero byte, one string has ended or bytes differ.
-//   - strncmp uses the simpler byte loop (word-at-a-time with bounds is complex
+//   - Word-at-a-time for strcmp: XOR two 8-uint8 words; if the result contains
+//     a zero uint8, one string has ended or bytes differ.
+//   - strncmp uses the simpler uint8 loop (word-at-a-time with bounds is complex
 //     and the performance benefit is modest for typical short comparisons).
-//   - strcasecmp: byte loop only (can't do word-at-a-time without case conversion).
+//   - strcasecmp: uint8 loop only (can't do word-at-a-time without case conversion).
 
-use "src/syscall/errno.npk".*;
+use "../syscall/errno.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // ASCII case conversion (internal helpers)
 // ════════════════════════════════════════════════════════════════════════════
 
-// to_lower_ascii — Convert an ASCII byte to lowercase. Non-alpha bytes unchanged.
-func:to_lower_ascii = byte(byte:c) {
-    if c >= 65u8 && c <= 90u8 {  // 'A' = 65, 'Z' = 90
-        pass c + 32u8;            // distance 'a'-'A' = 32
+// to_lower_ascii — Convert an ASCII uint8 to lowercase. Non-alpha bytes unchanged.
+pub func:to_lower_ascii = uint8(uint8:c) {
+    if (c >= 65u8 && c <= 90u8) {    // 'A' = 65, 'Z' = 90
+        pass c + 32u8;              // distance 'a'-'A' = 32
     }
     pass c;
-}
+};
 
-// to_upper_ascii — Convert an ASCII byte to uppercase. Non-alpha bytes unchanged.
-func:to_upper_ascii = byte(byte:c) {
-    if c >= 97u8 && c <= 122u8 {  // 'a' = 97, 'z' = 122
+// to_upper_ascii — Convert an ASCII uint8 to uppercase. Non-alpha bytes unchanged.
+func:to_upper_ascii = uint8(uint8:c) {
+    if (c >= 97u8 && c <= 122u8) {    // 'a' = 97, 'z' = 122
         pass c - 32u8;
     }
     pass c;
-}
+};
 
-// is_alpha_ascii — True if byte is an ASCII letter (a-z or A-Z).
-func:is_alpha_ascii = bool(byte:c) {
+// is_alpha_ascii — True if uint8 is an ASCII letter (a-z or A-Z).
+func:is_alpha_ascii = bool(uint8:c) {
     pass (c >= 65u8 && c <= 90u8) || (c >= 97u8 && c <= 122u8);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// Zero-byte detection word trick (same as strlen.npk)
+// Zero-uint8 detection word trick (@cast_unchecked<strlen>(same).npk)
 // ════════════════════════════════════════════════════════════════════════════
 
 fixed int64:STRCMP_ONES     = 0x0101010101010101i64;
@@ -56,7 +56,7 @@ fixed int64:STRCMP_HIGHBITS = 0x8080808080808080i64;
 
 func:strcmp_has_nul = bool(int64:v) {
     pass ((v - STRCMP_ONES) & (0i64 - 1i64 ^ v) & STRCMP_HIGHBITS) != 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcmp — Compare two NUL-terminated strings.
@@ -66,203 +66,203 @@ func:strcmp_has_nul = bool(int64:v) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcmp = int64(int64:a, int64:b) {
-    if a == b {
+    if (a == b) {
         pass 0i64;
     }
-    if a == 0i64 {
+    if (a == 0i64) {
         pass -1i64;
     }
-    if b == 0i64 {
+    if (b == 0i64) {
         pass 1i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    // ── Prologue: byte-by-byte until both aligned ────────────────────
-    while ((a + i) | (b + i)) & 7i64 != 0i64 {
-        byte:ca = pa[i];
-        byte:cb = pb[i];
-        if ca != cb {
-            if ca < cb { pass -1i64; }
+      // ── Prologue: uint8-by-uint8 until both aligned ────────────────────
+    while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+        uint8:ca = pa[i];
+        uint8:cb = pb[i];
+        if (ca != cb) {
+            if (ca < cb) { pass -1i64; }
             pass 1i64;
         }
-        if ca == 0u8 {
-            pass 0i64;  // Both hit NUL simultaneously (since ca==cb)
+        if (ca == 0u8) {
+            pass 0i64;    // Both hit NUL simultaneously (since ca==cb)
         }
         i = i + 1i64;
     }
 
-    // ── Word loop ────────────────────────────────────────────────────
-    *int64:wa = (a + i) as *int64;
-    *int64:wb = (b + i) as *int64;
+      // ── Word loop ────────────────────────────────────────────────────
+    int64->:wa = @cast_unchecked<int64->>((a + i));
+    int64->:wb = @cast_unchecked<int64->>((b + i));
     int64:wi = 0i64;
-    while true {
+    while (true) {
         int64:va = wa[wi];
         int64:vb = wb[wi];
-        // If either word has a NUL byte OR they differ, drop to byte loop
-        if va != vb || raw strcmp_has_nul(va) {
+          // If either word has a NUL uint8 OR they differ, drop to uint8 loop
+        if (va != vb || strcmp_has_nul(va)) {
             break;
         }
         wi = wi + 1i64;
     }
     i = i + wi * 8i64;
 
-    // ── Tail: find first differing byte or NUL ───────────────────────
-    while true {
-        byte:ca = pa[i];
-        byte:cb = pb[i];
-        if ca != cb {
-            if ca < cb { pass -1i64; }
+      // ── Tail: find first differing uint8 or NUL ───────────────────────
+    while (true) {
+        uint8:ca = pa[i];
+        uint8:cb = pb[i];
+        if (ca != cb) {
+            if (ca < cb) { pass -1i64; }
             pass 1i64;
         }
-        if ca == 0u8 {
+        if (ca == 0u8) {
             pass 0i64;
         }
         i = i + 1i64;
     }
 
-    pass 0i64;  // unreachable
-}
+    pass 0i64;    // unreachable
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strncmp — Compare at most n bytes of two NUL-terminated strings.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strncmp = int64(int64:a, int64:b, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
-    if a == b {
+    if (a == b) {
         pass 0i64;
     }
-    if a == 0i64 {
+    if (a == 0i64) {
         pass -1i64;
     }
-    if b == 0i64 {
+    if (b == 0i64) {
         pass 1i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    while i < n {
-        byte:ca = pa[i];
-        byte:cb = pb[i];
-        if ca != cb {
-            if ca < cb { pass -1i64; }
+    while (i < n) {
+        uint8:ca = pa[i];
+        uint8:cb = pb[i];
+        if (ca != cb) {
+            if (ca < cb) { pass -1i64; }
             pass 1i64;
         }
-        if ca == 0u8 {
-            pass 0i64;  // Both terminated
+        if (ca == 0u8) {
+            pass 0i64;    // Both terminated
         }
         i = i + 1i64;
     }
 
-    pass 0i64;  // n bytes compared, all equal
-}
+    pass 0i64;    // n bytes compared, all equal
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcmp_prefix — True if b is a prefix of a (a starts with b).
 //
 // E.g., strcmp_prefix("hello world", "hello") → true
 // This is equivalent to strncmp(a, b, strlen(b)) == 0.
-// Provided as a convenience because prefix testing is extremely common.
+// @cast_unchecked<a>(Provided) convenience because prefix testing is extremely common.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcmp_prefix = bool(int64:a, int64:b) {
-    if a == 0i64 || b == 0i64 {
+    if (a == 0i64 || b == 0i64) {
         pass false;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    while pb[i] != 0u8 {
-        if pa[i] == 0u8 || pa[i] != pb[i] {
+    while (pb[i] != 0u8) {
+        if (pa[i] == 0u8 || pa[i] != pb[i]) {
             pass false;
         }
         i = i + 1i64;
     }
 
     pass true;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strcasecmp — Case-insensitive string comparison (ASCII only).
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strcasecmp = int64(int64:a, int64:b) {
-    if a == b {
+    if (a == b) {
         pass 0i64;
     }
-    if a == 0i64 {
+    if (a == 0i64) {
         pass -1i64;
     }
-    if b == 0i64 {
+    if (b == 0i64) {
         pass 1i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    while true {
-        byte:ca = raw to_lower_ascii(pa[i]);
-        byte:cb = raw to_lower_ascii(pb[i]);
-        if ca != cb {
-            if ca < cb { pass -1i64; }
+    while (true) {
+        uint8:ca = to_lower_ascii(pa[i]);
+        uint8:cb = to_lower_ascii(pb[i]);
+        if (ca != cb) {
+            if (ca < cb) { pass -1i64; }
             pass 1i64;
         }
-        if ca == 0u8 {
+        if (ca == 0u8) {
             pass 0i64;
         }
         i = i + 1i64;
     }
 
-    pass 0i64;  // unreachable
-}
+    pass 0i64;    // unreachable
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_strncasecmp — Case-insensitive compare of at most n bytes.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_strncasecmp = int64(int64:a, int64:b, int64:n) {
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
-    if a == b {
+    if (a == b) {
         pass 0i64;
     }
-    if a == 0i64 {
+    if (a == 0i64) {
         pass -1i64;
     }
-    if b == 0i64 {
+    if (b == 0i64) {
         pass 1i64;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    while i < n {
-        byte:ca = raw to_lower_ascii(pa[i]);
-        byte:cb = raw to_lower_ascii(pb[i]);
-        if ca != cb {
-            if ca < cb { pass -1i64; }
+    while (i < n) {
+        uint8:ca = to_lower_ascii(pa[i]);
+        uint8:cb = to_lower_ascii(pb[i]);
+        if (ca != cb) {
+            if (ca < cb) { pass -1i64; }
             pass 1i64;
         }
-        if ca == 0u8 {
+        if (ca == 0u8) {
             pass 0i64;
         }
         i = i + 1i64;
     }
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // str_casecmp_prefix — Case-insensitive prefix check.
@@ -270,20 +270,20 @@ pub func:str_strncasecmp = int64(int64:a, int64:b, int64:n) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:str_casecmp_prefix = bool(int64:a, int64:b) {
-    if a == 0i64 || b == 0i64 {
+    if (a == 0i64 || b == 0i64) {
         pass false;
     }
 
-    *byte:pa = a as *byte;
-    *byte:pb = b as *byte;
+    uint8->:pa = @cast_unchecked<uint8->>(a);
+    uint8->:pb = @cast_unchecked<uint8->>(b);
     int64:i = 0i64;
 
-    while pb[i] != 0u8 {
-        if pa[i] == 0u8 || raw to_lower_ascii(pa[i]) != raw to_lower_ascii(pb[i]) {
+    while (pb[i] != 0u8) {
+        if (pa[i] == 0u8 || to_lower_ascii(pa[i]) != to_lower_ascii(pb[i])) {
             pass false;
         }
         i = i + 1i64;
     }
 
     pass true;
-}
+};

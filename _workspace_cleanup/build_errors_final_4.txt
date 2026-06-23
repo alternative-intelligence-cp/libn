@@ -1,0 +1,990 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 233, Column 9: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 379, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 391, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 25: Unknown syscall constant 'nr' in sys(). See stdlib/sys.npk for available syscall names.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 10: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 91, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 95, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 120, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 128, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 136, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 140, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 190, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 194, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 198, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 213, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 221, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 222, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 229, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 230, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 237, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 238, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 245, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 246, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 251, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 252, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 257, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 258, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 264, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 265, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 270, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 271, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 277, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 283, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 293, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 294, Column 10: Undefined identifier: 'r'. Did you mean 'arg'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 10: Undefined identifier: 'r'. Did you mean 'arg'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 310, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 311, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 324, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 325, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 330, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 10: Undefined identifier: 'r'. Did you mean 'prot'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 350, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 351, Column 10: Undefined identifier: 'r'. Did you mean 'prot'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 357, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 358, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 364, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 365, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 372, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 381, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 382, Column 10: Undefined identifier: 'r'. Did you mean 'tp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 387, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 388, Column 10: Undefined identifier: 'r'. Did you mean 'res'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 395, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 396, Column 10: Undefined identifier: 'r'. Did you mean 'rem'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 401, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 402, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 413, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 414, Column 10: Undefined identifier: 'r'. Did you mean 'val'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 420, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 421, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 429, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 436, Column 5: void return type only allowed in extern blocks. Use NIL for no-value returns in Nitpick code.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 444, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 445, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 452, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 453, Column 10: Undefined identifier: 'r'. Did you mean 'sig'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 460, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 461, Column 10: Undefined identifier: 'r'. Did you mean 'sig'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 471, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 472, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 482, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 483, Column 10: Undefined identifier: 'r'. Did you mean 'len'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 494, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 495, Column 10: Undefined identifier: 'r'. Did you mean 'buf'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 500, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 501, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 506, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 507, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 518, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 519, Column 10: Undefined identifier: 'r'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 530, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 531, Column 10: Undefined identifier: 'r'. Did you mean 'addr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 537, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 538, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 557, Column 9: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 558, Column 13: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 564, Column 19: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 565, Column 13: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 569, Column 25: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 570, Column 21: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 571, Column 33: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 573, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 584, Column 9: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 585, Column 13: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 591, Column 19: Undefined identifier: 'r'. Did you mean 'ptr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 592, Column 25: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 593, Column 21: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 594, Column 33: Undefined identifier: 'n'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 596, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 608, Column 5: Cannot silently unwrap Result<Result<int64>> into 'r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 609, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1: Failed to load module 'src/mem/memutil.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ')' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 300, column 11:
+  'limit' is a reserved keyword and cannot be used as a variable name. Consider: limit_val, max_count, or similar
+  Found: token 'limit'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected condition expression in while statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected condition expression in if statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 314, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'if'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 318, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 321, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1: Failed to load module 'src/mem/slab.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ')' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 300, column 11:
+  'limit' is a reserved keyword and cannot be used as a variable name. Consider: limit_val, max_count, or similar
+  Found: token 'limit'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected condition expression in while statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected condition expression in if statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 314, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'if'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 318, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 321, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected ',' or '}' in positional literal
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected expression after 'pass'
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token '2i64'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 182, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 183, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 184, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 185, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 186, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 187, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 83, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 84, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 123, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 124, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ')' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 176, column 30:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 300, column 11:
+  'limit' is a reserved keyword and cannot be used as a variable name. Consider: limit_val, max_count, or similar
+  Found: token 'limit'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 302, column 22:
+  Expected condition expression in while statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '<' after 'limit'
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected rules name inside limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '>' after rules name in limit<>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected '(' after limit<RulesName>
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression inside limit<>()
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected expression after operator
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 309, column 27:
+  Expected condition expression in if statement
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 314, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'if'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 318, column 5:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memutil.npk: Parse error at line 321, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/memutil.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected ',' or '}' in positional literal
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected expression after 'pass'
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token '2i64'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 182, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 183, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 184, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 185, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 186, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 187, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected ',' or '}' in positional literal
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 179, column 56:
+  Expected expression after 'pass'
+  Found: token ';'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 180, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 9:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token '2i64'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type annotation
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 17:
+  Expected type name after '=>'
+  Found: token '{'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 181, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 182, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 183, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 184, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 185, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 186, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 187, column 44:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 319, column 24:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m268 errors[0m

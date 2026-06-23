@@ -1,0 +1,5 @@
+pub fixed tbb8:ERR_BADARG = 22tbb8;
+pub func:my_func = int64(int64:n) {
+    if (n < 0i64) { fail ERR_BADARG; }
+    pass n;
+};

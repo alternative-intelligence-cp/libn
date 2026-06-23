@@ -1,6 +1,6 @@
 // stdfiles.npk — stdin, stdout, stderr global streams (v0.5.10)
 //
-// Provides the three standard stdio streams as globally accessible FILE structs.
+// Provides the three standard stdio @cast_unchecked<globally>(streams) accessible FILE structs.
 //
 // In a proper C runtime, these are initialized during __libc_start_main (v0.12.x).
 // At v0.5.10, they are lazily initialized on first access via bio_ensure_std_init().
@@ -19,13 +19,13 @@
 //   flushes but does NOT close fd 0/1/2 and does NOT free the struct.
 //   This matches glibc and musl behavior.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/io/bio/file.npk".*;
-use "src/io/bio/fopen.npk".*;
-use "src/io/bio/fio.npk".*;
-use "src/io/bio/fchar.npk".*;
-use "src/io/bio/fstr.npk".*;
+use "../../syscall/errno.npk".*;
+use "../../syscall/posix_constants.npk".*;
+use "../../io/bio/file.npk".*;
+use "../../io/bio/fopen.npk".*;
+use "../../io/bio/fio.npk".*;
+use "../../io/bio/fchar.npk".*;
+use "../../io/bio/fstr.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Static FILE struct storage for the three standard streams.
@@ -36,6 +36,7 @@ use "src/io/bio/fstr.npk".*;
 FILE:g_stdin_file;
 FILE:g_stdout_file;
 FILE:g_stderr_file;
+pub int64:g_open_files = 0i64;
 
 // Lazy-init guard (0 = not yet initialized)
 int64:g_std_init_done = 0i64;
@@ -46,7 +47,7 @@ int64:g_std_init_done = 0i64;
 // These are the pointers callers use. They point into the BSS structs above.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub int64:stdin_fp  = 0i64;  // set by bio_ensure_std_init()
+pub int64:stdin_fp  = 0i64;    // set by bio_ensure_std_init()
 pub int64:stdout_fp = 0i64;
 pub int64:stderr_fp = 0i64;
 
@@ -62,57 +63,61 @@ pub int64:stderr_fp = 0i64;
 //   stderr — fd 2, write-only, _IONBF (unbuffered, immediate output)
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:bio_ensure_std_init = void() {
-    if g_std_init_done != 0i64 {
-        pass;
+pub func:bio_ensure_std_init = NIL() {
+    if (g_std_init_done != 0i64) {
+        pass NIL;
     }
     g_std_init_done = 1i64;
 
-    // stdin — fd 0, read-only
-    *FILE:sin = &g_stdin_file as *FILE;
-    sin.fd       = 0i64;
-    sin.mode     = FILE_MODE_READ;
-    sin.buf_mode = _IOFBF;
-    sin.flags    = FILE_FLAG_INIT;
-    sin.unget    = FILE_UNGET_EMPTY;
+      // stdin — fd 0, read-only
+    FILE->:sin = @cast_unchecked<FILE->>(@g_stdin_file);
+    sin->fd       = 0i64;
+    sin->mode     = FILE_MODE_READ;
+    sin->buf_mode = _IOFBF;
+    sin->flags    = FILE_FLAG_INIT;
+    sin->unget    = FILE_UNGET_EMPTY;
     int64:stdin_buf = bio_alloc_buf(BUFSIZ);
-    if stdin_buf != 0i64 {
-        sin.buf     = stdin_buf;
-        sin.buf_cap = BUFSIZ;
-        sin.flags   = sin.flags | FILE_FLAG_BUF_OWN;
+    if (stdin_buf != 0i64) {
+        sin->buf     = stdin_buf;
+        sin->buf_cap = BUFSIZ;
+        sin->flags   = sin->flags | FILE_FLAG_BUF_OWN;
     } else {
-        sin.buf_mode = _IONBF;  // fallback: unbuffered if alloc fails
+        sin->buf_mode = _IONBF;    // fallback: unbuffered if alloc fails
     }
-    stdin_fp = &g_stdin_file as int64;
+    stdin_fp = @cast_unchecked<int64>(@g_stdin_file);
 
-    // stdout — fd 1, write-only, line-buffered
-    *FILE:sout = &g_stdout_file as *FILE;
-    sout.fd       = 1i64;
-    sout.mode     = FILE_MODE_WRITE;
-    sout.buf_mode = _IOLBF;
-    sout.flags    = FILE_FLAG_INIT;
-    sout.unget    = FILE_UNGET_EMPTY;
+      // stdout — fd 1, write-only, line-buffered
+    FILE->:sout = @cast_unchecked<FILE->>(@g_stdout_file);
+    sout->fd       = 1i64;
+    sout->mode     = FILE_MODE_WRITE;
+    sout->buf_mode = _IOLBF;
+    sout->flags    = FILE_FLAG_INIT;
+    sout->unget    = FILE_UNGET_EMPTY;
     int64:stdout_buf = bio_alloc_buf(BUFSIZ);
-    if stdout_buf != 0i64 {
-        sout.buf     = stdout_buf;
-        sout.buf_cap = BUFSIZ;
-        sout.flags   = sout.flags | FILE_FLAG_BUF_OWN;
+    if (stdout_buf != 0i64) {
+        sout->buf     = stdout_buf;
+        sout->buf_cap = BUFSIZ;
+        sout->flags   = sout->flags | FILE_FLAG_BUF_OWN;
     } else {
-        sout.buf_mode = _IONBF;
+        sout->buf_mode = _IONBF;
     }
-    stdout_fp = &g_stdout_file as int64;
+    stdout_fp = @cast_unchecked<int64>(@g_stdout_file);
 
-    // stderr — fd 2, write-only, unbuffered
-    *FILE:serr = &g_stderr_file as *FILE;
-    serr.fd       = 2i64;
-    serr.mode     = FILE_MODE_WRITE;
-    serr.buf_mode = _IONBF;
-    serr.flags    = FILE_FLAG_INIT;
-    serr.unget    = FILE_UNGET_EMPTY;
-    serr.buf      = 0i64;
-    serr.buf_cap  = 0i64;
-    stderr_fp = &g_stderr_file as int64;
-}
+      // stderr — fd 2, write-only, unbuffered
+    FILE->:serr = @cast_unchecked<FILE->>(@g_stderr_file);
+    serr->fd       = 2i64;
+    serr->mode     = FILE_MODE_WRITE;
+    serr->buf_mode = _IONBF;
+    serr->flags    = FILE_FLAG_INIT;
+    serr->unget    = FILE_UNGET_EMPTY;
+    serr->buf      = 0i64;
+    serr->buf_cap  = 0i64;
+    stderr_fp = @cast_unchecked<int64>(@g_stderr_file);
+    sin->next_global = stdout_fp;
+    sout->next_global = stderr_fp;
+    serr->next_global = g_open_files;
+    g_open_files = stdin_fp;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // getchar — Read one character from stdin.
@@ -121,26 +126,26 @@ pub func:bio_ensure_std_init = void() {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:getchar = int64() {
-    bio_ensure_std_init();
+    drop bio_ensure_std_init();
     pass fgetc(stdin_fp);
-}
+};
 
 pub func:putchar = int64(int64:c) {
-    bio_ensure_std_init();
+    drop bio_ensure_std_init();
     pass fputc(c, stdout_fp);
-}
+};
 
 pub func:puts = int64(int64:s) {
-    bio_ensure_std_init();
-    if s == 0i64 {
+    drop bio_ensure_std_init();
+    if (s == 0i64) {
         pass FILE_EOF;
     }
-    int64:r = fputs(s, stdout_fp);
-    if r == FILE_EOF {
+    int64:r = raw fputs(s, stdout_fp);
+    if (r == FILE_EOF) {
         pass FILE_EOF;
     }
-    pass fputc(10i64, stdout_fp);  // '\n'
-}
+    pass fputc(10i64, stdout_fp);    // '\n'
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // bio_flush_stdout — Flush stdout (called before process exit, prompt, etc.)
@@ -149,22 +154,22 @@ pub func:puts = int64(int64:s) {
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:bio_flush_stdout = int64() {
-    bio_ensure_std_init();
+    drop bio_ensure_std_init();
     pass fflush(stdout_fp);
-}
+};
 
 pub func:bio_flush_stderr = int64() {
-    bio_ensure_std_init();
-    pass fflush(stderr_fp);  // no-op for unbuffered; here for completeness
-}
+    drop bio_ensure_std_init();
+    pass fflush(stderr_fp);    // no-op for unbuffered; here for completeness
+};
 
 pub func:bio_flush_all = int64() {
-    bio_ensure_std_init();
-    int64:r1 = fflush(stdin_fp);
-    int64:r2 = fflush(stdout_fp);
-    int64:r3 = fflush(stderr_fp);
-    if r1 == FILE_EOF || r2 == FILE_EOF || r3 == FILE_EOF {
+    drop bio_ensure_std_init();
+    int64:r1 = raw fflush(stdin_fp);
+    int64:r2 = raw fflush(stdout_fp);
+    int64:r3 = raw fflush(stderr_fp);
+    if (r1 == FILE_EOF || r2 == FILE_EOF || r3 == FILE_EOF) {
         pass FILE_EOF;
     }
     pass 0i64;
-}
+};

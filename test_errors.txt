@@ -1,0 +1,826 @@
+[DEBUG parseFuncDecl] nameToken=bio_scan_getc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_skip_ws, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_scan_int, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_engine, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=scanf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+[DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=__intrinsic_memcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=puts, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fdopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=freopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fclose, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgets, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 5: Cannot silently unwrap Result<int64> into 'head' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 285, Column 9: Undefined identifier: 'head'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 22: Undefined identifier: 'head'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 49: Undefined identifier: 'user_ptr'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 18: Undefined identifier: 'next_ptr'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 306, Column 33: Undefined identifier: 'next'. Did you mean 'n'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 310, Column 5: Undefined identifier: 'next_ptr'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 312, Column 10: Undefined identifier: 'user_ptr'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 340, Column 9: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 341, Column 16: Undefined identifier: 'r'. Did you mean 'hdr'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 359, Column 5: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 360, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 363, Column 17: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 368, Column 5: Cannot silently unwrap Result<int64> into 'sz' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 369, Column 45: Undefined identifier: 'ptr'. Did you mean 'cls'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 17: Undefined identifier: 'sz'. Did you mean 'zi'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 376, Column 10: Undefined identifier: 'ptr'. Did you mean 'zi'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 10: Undefined identifier: 'compiler_fence'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 36: Undefined identifier: 'SYS_WRITE'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 175, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 181, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 35: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 33: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 44: Undefined identifier: 'SYS_READ'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 112, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 43: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 117, Column 36: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 118, Column 43: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 121, Column 35: Undefined identifier: 'bio_refill_read_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 40: Undefined identifier: 'SYS_WRITE'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 179, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 42: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 36: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 46: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 208, Column 41: Undefined identifier: 'SYS_WRITE'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 209, Column 17: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 42: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 36: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 217, Column 46: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 22: Undefined identifier: 'g_open_files'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 16: Undefined identifier: 'curr'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 40: Undefined identifier: 'SYS_READ'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 85, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 98, Column 27: Undefined identifier: 'bio_refill_read_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 27: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 40: Undefined identifier: 'SYS_WRITE'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 146, Column 17: Undefined identifier: 'r'. Did you mean 'b'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 107, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 16: Undefined identifier: 'bio_alloc_file'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 9: Undefined identifier: 'init_r'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 141, Column 5: Undefined identifier: 'f'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 142, Column 5: Undefined identifier: 'g_open_files'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 143, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 167, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 172, Column 16: Undefined identifier: 'bio_alloc_file'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 173, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 179, Column 9: Undefined identifier: 'init_r'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 5: Undefined identifier: 'f'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 5: Undefined identifier: 'g_open_files'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 210, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 211, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 231, Column 30: Undefined identifier: 'bio_free_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 251, Column 21: Undefined identifier: 'g_open_files'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 252, Column 5: Undefined identifier: 'g_open_files'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 14: Undefined identifier: 'bio_free_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 310, Column 14: Undefined identifier: 'bio_free_file'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 62, Column 20: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 35: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 63, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 65, Column 13: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 74, Column 45: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 13: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 13: Undefined identifier: 'c'. Did you mean 'p'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 23: Undefined identifier: 'bio_alloc_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 9: Undefined identifier: 'stdin_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 96, Column 24: Undefined identifier: 'bio_alloc_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 97, Column 9: Undefined identifier: 'stdout_buf'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 143, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 144, Column 9: Undefined identifier: 'r'. Did you mean 's'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 100, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 101, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 12: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 26: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 104, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 120, Column 5: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 121, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 128, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 139, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 157, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 164, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 193, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 5: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 221, Column 9: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 222, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 224, Column 13: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 224, Column 27: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 224, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 225, Column 12: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 225, Column 26: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 225, Column 40: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 230, Column 77: Undefined identifier: 'c'. Did you mean 'src'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 269, Column 17: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 271, Column 21: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 17: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 277, Column 21: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 282, Column 21: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 329, Column 13: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 330, Column 17: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 17: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 351, Column 13: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 352, Column 17: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 356, Column 77: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 363, Column 13: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 364, Column 17: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 366, Column 53: Argument 4 has type 'int64@', but function expects 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 366, Column 13: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 367, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 373, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 374, Column 13: Undefined identifier: 'c'. Did you mean 'ch'?[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 379, Column 10: Cannot assign 'bool' to 'int64'[0m
+
+[1msrc/io/bio/fscanf.npk:0:0: [0m[1;31merror[0m: [1mLine 391, Column 59: Argument 5 has type 'int64@', but function expects 'int64'[0m
+
+[1mSummary: [0m[1;31m141 errors[0m

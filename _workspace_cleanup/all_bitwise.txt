@@ -1,0 +1,502 @@
+src/proc/signal.npk:64:    if (signo < 1i64 || signo > 64i64) { pass mask; }
+src/proc/signal.npk:65:    pass mask | (1i64 << (signo - 1i64));
+src/proc/signal.npk:70:    if (signo < 1i64 || signo > 64i64) { pass mask; }
+src/proc/signal.npk:71:    pass mask & !(1i64 << (signo - 1i64));
+src/proc/signal.npk:76:    if (signo < 1i64 || signo > 64i64) { pass false; }
+src/proc/signal.npk:77:    pass (mask & (1i64 << (signo - 1i64))) != 0i64;
+src/proc/signal.npk:110:    p[1] = flags | SA_RESTORER;
+src/proc/env.npk:103:    if (name == 0i64 || environ == 0i64) { pass 0i64; }
+src/proc/env.npk:119:        // Compare key part: entry[0..nlen) == name && entry[nlen] == '='
+src/proc/env.npk:126:        if (match && es[nlen] == 61u8) {  // '='
+src/proc/env.npk:171:    if (name == 0i64 || value == 0i64) { libn_errno_set(EINVAL); pass -1i64; }
+src/proc/env.npk:186:    if (overwrite == 0i64 && getenv(name) != 0i64) { pass 0i64; }
+src/proc/env.npk:210:        if (match && es[nlen] == 61u8) {
+src/proc/env.npk:265:        if (match && es[nlen] == 61u8) {
+src/proc/env.npk:327:        if (match && es[eq_pos] == 61u8) {
+src/proc/wait.npk:25://   int64:w = waitpid(pid, &status, 0i64);
+src/proc/wait.npk:43:    pass (status & 0x7Fi64) == 0i64;
+src/proc/wait.npk:49:    pass (status >> 8i64) & 0xFFi64;
+src/proc/wait.npk:54:    int64:low7 = status & 0x7Fi64;
+src/proc/wait.npk:55:    pass low7 != 0i64 && low7 != 0x7Fi64;
+src/proc/wait.npk:61:    pass status & 0x7Fi64;
+src/proc/wait.npk:66:    pass (status & 0x80i64) != 0i64;
+src/proc/wait.npk:71:    pass (status & 0xFFi64) == 0x7Fi64;
+src/proc/wait.npk:77:    pass (status >> 8i64) & 0xFFi64;
+src/proc/wait.npk:173:    int64:w = waitpid(pid, &status, 0i64);
+src/proc/exec.npk:40://       drop execv("/bin/ls" as int64, &argv[0] as int64);
+src/proc/exec.npk:95:    if (name == 0i64 || argv == 0i64) {
+src/proc/exec.npk:133:        while p_end < p_len && pp[p_end] != 58u8 {  // ':'
+src/proc/exec.npk:165:            if (e != ENOENT && e != EACCES) {
+src/proc/exec.npk:188:    if (envp == 0i64 || key == 0i64) { pass 0i64; }
+src/proc/exec.npk:203:        if (match && ep_str[klen] == 61u8) {  // '='
+src/io/open.npk:18://   io_open(path, O_WRONLY | O_CREAT | O_TRUNC, 0o644) — write, create/truncate
+src/io/open.npk:20://   io_open(path, O_WRONLY | O_CREAT | O_APPEND, 0o644) — append
+src/io/open.npk:21://   io_open(path, O_RDONLY | O_DIRECTORY, 0)         — directory fd
+src/io/open.npk:44://   flags: O_RDONLY | O_WRONLY | O_RDWR | O_CREAT | O_TRUNC | O_APPEND ...
+src/io/open.npk:69:    int64:safe_flags = flags & (0i64 - 1i64 ^ O_CLOEXEC);  // flags without O_CLOEXEC
+src/io/open.npk:93:// Equivalent to: io_open(path, O_WRONLY | O_CREAT | O_TRUNC, mode)
+src/io/open.npk:98:    pass io_open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);
+src/io/open.npk:144:// Opens a new anonymous file in dir_path using O_TMPFILE | O_RDWR.
+src/io/open.npk:158:    Result<int64>:r = libn_openat(AT_FDCWD, dir_path, O_TMPFILE | O_RDWR, MODE_SECRET);
+src/io/dup.npk:76:    if (fd < 0i64 || newfd < 0i64) {
+src/io/dup.npk:101:    if (fd < 0i64 || newfd < 0i64) {
+src/io/dup.npk:128:    if (src_fd < 0i64 || target_fd < 0i64) {
+src/io/bio/fseek.npk:46:    if (whence < SEEK_SET || whence > SEEK_END) {
+src/io/bio/fseek.npk:59:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 && f.buf_pos > 0i64 ) {
+src/io/bio/fseek.npk:96:    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+src/io/bio/fseek.npk:98:    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/fseek.npk:155:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 ) {
+src/io/bio/fseek.npk:169:    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/fseek.npk:182:    if (fp == 0i64 || pos == 0i64) {
+src/io/bio/fseek.npk:204:    if (fp == 0i64 || pos == 0i64) {
+src/io/bio/stdfiles.npk:82:        sin.flags   = sin.flags | FILE_FLAG_BUF_OWN;
+src/io/bio/stdfiles.npk:99:        sout.flags   = sout.flags | FILE_FLAG_BUF_OWN;
+src/io/bio/stdfiles.npk:166:    if (r1 == FILE_EOF || r2 == FILE_EOF || r3 == FILE_EOF) {
+src/io/bio/fio.npk:46:    if (fp == 0i64 || buf == 0i64) {
+src/io/bio/fio.npk:49:    if (size == 0i64 || nmemb == 0i64) {
+src/io/bio/fio.npk:56:    if ((f.mode & FILE_MODE_READ) == 0i64 ) {
+src/io/bio/fio.npk:57:        f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:62:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 ) {
+src/io/bio/fio.npk:86:    while (bytes_read < size * nmemb && (f.flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64) {
+src/io/bio/fio.npk:103:            if (f.buf_mode == _IONBF || (f.buf != 0i64 && remaining >= f.buf_cap)) {
+src/io/bio/fio.npk:109:                    f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:113:                    f.flags = f.flags | FILE_FLAG_EOF;
+src/io/bio/fio.npk:149:    if (fp == 0i64 || buf == 0i64) {
+src/io/bio/fio.npk:152:    if (size == 0i64 || nmemb == 0i64) {
+src/io/bio/fio.npk:159:    if ((f.mode & FILE_MODE_WRITE) == 0i64 ) {
+src/io/bio/fio.npk:160:        f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:165:    if ((f.flags & FILE_FLAG_WRITE_MODE) == 0i64 && f.buf_len > f.buf_pos ) {
+src/io/bio/fio.npk:168:    f.flags = f.flags | FILE_FLAG_WRITE_MODE;
+src/io/bio/fio.npk:175:    if (f.buf_mode == _IONBF || f.buf == 0i64) {
+src/io/bio/fio.npk:182:                f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:193:    while (bytes_written < total_bytes && (f.flags & FILE_FLAG_ERROR) == 0i64) {
+src/io/bio/fio.npk:207:        if (remaining >= f.buf_cap && f.buf_pos == 0i64) {
+src/io/bio/fio.npk:212:                f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:287:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 ) {
+src/io/bio/tmpfile.npk:80:    int64:v = pid ^ nsec ^ (g_tmp_counter * 6364136223846793005i64);
+src/io/bio/tmpfile.npk:83:    v = v ^ (v >> 33i64);
+src/io/bio/tmpfile.npk:85:    v = v ^ (v >> 33i64);
+src/io/bio/tmpfile.npk:87:    v = v ^ (v >> 33i64);
+src/io/bio/tmpfile.npk:102:        p[i] = hex[(v >> (i * 4i64)) & 0xFi64];
+src/io/bio/tmpfile.npk:149:    // Open flags: O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | extra_flags
+src/io/bio/tmpfile.npk:150:    int64:flags = O_RDWR | O_CREAT | O_EXCL | O_CLOEXEC | extra_flags;
+src/io/bio/fchar.npk:44:    if ((f.flags & FILE_FLAG_EOF) != 0i64 ) {
+src/io/bio/fchar.npk:47:    if ((f.flags & FILE_FLAG_ERROR) != 0i64 ) {
+src/io/bio/fchar.npk:52:    if ((f.mode & FILE_MODE_READ) == 0i64 ) {
+src/io/bio/fchar.npk:53:        f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fchar.npk:59:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 ) {
+src/io/bio/fchar.npk:75:    if (f.buf_mode == _IONBF || f.buf == 0i64) {
+src/io/bio/fchar.npk:82:                f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fchar.npk:86:                f.flags = f.flags | FILE_FLAG_EOF;
+src/io/bio/fchar.npk:99:        if (r.is_error || r.value == 0i64) {
+src/io/bio/fchar.npk:126:    if ((f.mode & FILE_MODE_WRITE) == 0i64 ) {
+src/io/bio/fchar.npk:127:        f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fchar.npk:133:    if ((f.flags & FILE_FLAG_WRITE_MODE) == 0i64 && f.buf_len > f.buf_pos ) {
+src/io/bio/fchar.npk:136:    f.flags = f.flags | FILE_FLAG_WRITE_MODE;
+src/io/bio/fchar.npk:141:    if (f.buf_mode == _IONBF || f.buf == 0i64) {
+src/io/bio/fchar.npk:149:                f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fchar.npk:153:            pass c & 0xFFi64;
+src/io/bio/fchar.npk:173:    if (f.buf_mode == _IOLBF && b == 10u8) {
+src/io/bio/fchar.npk:180:    pass c & 0xFFi64;
+src/io/bio/fchar.npk:228:    if (c == FILE_EOF || c < 0i64) {
+src/io/bio/fchar.npk:234:    if ((f.mode & FILE_MODE_READ) == 0i64 ) {
+src/io/bio/fchar.npk:244:    f.unget = c & 0xFFi64;
+src/io/bio/fchar.npk:252:    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+src/io/bio/fchar.npk:254:    pass c & 0xFFi64;
+src/io/bio/fstr.npk:44:    if (buf == 0i64 || size <= 0i64 || fp == 0i64) {
+src/io/bio/fstr.npk:56:    if ((f.flags & FILE_FLAG_EOF) != 0i64 && f.unget == FILE_UNGET_EMPTY ) {
+src/io/bio/fstr.npk:100:    if (s == 0i64 || fp == 0i64) {
+src/io/bio/fstr.npk:106:    if ((f.mode & FILE_MODE_WRITE) == 0i64 ) {
+src/io/bio/fstr.npk:107:        f.flags = f.flags | FILE_FLAG_ERROR;
+src/io/bio/fscanf.npk:105:        if (c != 32i64 && c != 9i64 && c != 10i64 &&
+src/io/bio/fscanf.npk:106:           c != 13i64 && c != 12i64 && c != 11i64) {
+src/io/bio/fscanf.npk:131:    if (c == 45i64 && chars < max) {  // '-'
+src/io/bio/fscanf.npk:135:    } else if (c == 43i64 && chars < max) {  // '+'
+src/io/bio/fscanf.npk:142:        if (c == 48i64 && chars < max) {  // '0'
+src/io/bio/fscanf.npk:145:            if ((next == 120i64 || next == 88i64) && chars < max) {  // 'x' or 'X'
+src/io/bio/fscanf.npk:167:    while (chars < max && c >= 0i64) {
+src/io/bio/fscanf.npk:170:        if (c >= 48i64 && c <= 57i64) {   // '0'..'9'
+src/io/bio/fscanf.npk:173:            if (c >= 65i64 && c <= 70i64) {  // 'A'..'F'
+src/io/bio/fscanf.npk:175:            } else if (c >= 97i64 && c <= 102i64) {  // 'a'..'f'
+src/io/bio/fscanf.npk:180:        if (digit < 0i64 || digit >= base) {
+src/io/bio/fscanf.npk:228:        if (c == 32i64 || c == 9i64 || c == 10i64 ||
+src/io/bio/fscanf.npk:229:           c == 13i64 || c == 12i64 || c == 11i64) {
+src/io/bio/fscanf.npk:272:            if (ch == 32u8 || ch == 9u8 || ch == 10u8) {
+src/io/bio/fscanf.npk:305:        while (f[fi] >= 48u8 && f[fi] <= 57u8) {  // '0'..'9'
+src/io/bio/fscanf.npk:311:        if (f[fi] == 108u8 || f[fi] == 104u8 || f[fi] == 122u8 ||
+src/io/bio/fscanf.npk:312:           f[fi] == 106u8 || f[fi] == 116u8) {
+src/io/bio/fscanf.npk:314:            if (f[fi] == 108u8 || f[fi] == 104u8) {  // ll / hh
+src/io/bio/fscanf.npk:324:        if (!suppress && ai < nargs) {
+src/io/bio/fscanf.npk:382:        if (spec == 100u8 || spec == 105u8) {  // %d, %i
+src/io/bio/fscanf.npk:388:        } else if (spec == 120u8 || spec == 88u8) {  // %x, %X
+src/io/bio/strerror.npk:184:    if (buf == 0i64 || buflen <= 0i64) {
+src/io/bio/strerror.npk:215:    if (prefix != 0i64 && @cast_unchecked<uint8->>((prefix))[0] != 0u8) {
+src/io/bio/fstate.npk:33:    if ((f.flags & FILE_FLAG_EOF) != 0i64 ) {
+src/io/bio/fstate.npk:50:    if ((f.flags & FILE_FLAG_ERROR) != 0i64 ) {
+src/io/bio/fstate.npk:66:    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR);
+src/io/bio/fstate.npk:88:    if (mode != _IOFBF && mode != _IOLBF && mode != _IONBF) {
+src/io/bio/fstate.npk:96:    if ((f.flags & FILE_FLAG_BUF_OWN) != 0i64 && f.buf != 0i64 ) {
+src/io/bio/fstate.npk:100:        f.flags   = f.flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
+src/io/bio/fstate.npk:132:        f.flags   = f.flags | FILE_FLAG_BUF_OWN;
+src/io/bio/fopen.npk:80:    f.flags   = f.flags | FILE_FLAG_BUF_OWN;
+src/io/bio/fopen.npk:98:    if (path == 0i64 || mode == 0i64) {
+src/io/bio/fopen.npk:156:    if (fd < 0i64 || mode == 0i64) {
+src/io/bio/fopen.npk:195:    if (mode == 0i64 || fp == 0i64) {
+src/io/bio/fopen.npk:213:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 ) {
+src/io/bio/fopen.npk:218:    bool:buf_owned = (f.flags & FILE_FLAG_BUF_OWN) != 0i64;
+src/io/bio/fopen.npk:244:    f.flags    = (f.flags & FILE_FLAG_BUF_OWN) | FILE_FLAG_INIT;  // preserve buf ownership
+src/io/bio/fopen.npk:272:    if ((f.flags & FILE_FLAG_WRITE_MODE) != 0i64 && f.buf_pos > 0i64 ) {
+src/io/bio/fopen.npk:283:    bool:is_std = (fd == 0i64 || fd == 1i64 || fd == 2i64);
+src/io/bio/fopen.npk:284:    if (!is_std && fd >= 0i64) {
+src/io/bio/fopen.npk:286:        if (r.is_error && ret == 0i64) {
+src/io/bio/fopen.npk:295:    if ((f.flags & FILE_FLAG_BUF_OWN) != 0i64 && f.buf != 0i64 ) {
+src/io/bio/file.npk:176:            f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/file.npk:180:            f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/file.npk:190:    f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/file.npk:226:    if (f->buf_mode == _IONBF || f->buf == 0i64 || f->buf_cap == 0i64) {
+src/io/bio/file.npk:238:            f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/file.npk:243:            f->flags = f->flags | FILE_FLAG_EOF;
+src/io/bio/file.npk:281:        fmode[0] = fmode[0] | FILE_MODE_BINARY;
+src/io/bio/file.npk:284:        fmode[0] = fmode[0] | FILE_MODE_UPDATE;
+src/io/bio/file.npk:288:        fmode[0]  = fmode[0] | FILE_MODE_READ;
+src/io/bio/file.npk:290:        if (has_plus) { fmode[0] = fmode[0] | FILE_MODE_WRITE; }
+src/io/bio/file.npk:292:        fmode[0]  = fmode[0] | FILE_MODE_WRITE;
+src/io/bio/file.npk:293:        oflags[0] = O_WRONLY | O_CREAT | O_TRUNC;
+src/io/bio/file.npk:295:            fmode[0]  = fmode[0] | FILE_MODE_READ;
+src/io/bio/file.npk:296:            oflags[0] = O_RDWR | O_CREAT | O_TRUNC;
+src/io/bio/file.npk:299:        fmode[0]  = fmode[0] | FILE_MODE_WRITE | FILE_MODE_APPEND;
+src/io/bio/file.npk:300:        oflags[0] = O_WRONLY | O_CREAT | O_APPEND;
+src/io/bio/file.npk:302:            fmode[0]  = fmode[0] | FILE_MODE_READ;
+src/io/bio/file.npk:303:            oflags[0] = O_RDWR | O_CREAT | O_APPEND;
+src/io/seek.npk:142:    if (whence < SEEK_SET || whence > SEEK_HOLE) {
+src/io/write.npk:54:    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/write.npk:102:    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/pipe.npk:10://   io_pipe(&fds[0])?;
+src/io/pipe.npk:67:    pass libn_pipe2(fds, O_CLOEXEC | O_NONBLOCK);
+src/io/fcntl.npk:37:    pass (r.value & FD_CLOEXEC) != 0i64;
+src/io/fcntl.npk:54:        flags = flags | FD_CLOEXEC;
+src/io/fcntl.npk:56:        flags = flags & (0i64 - 1i64 ^ FD_CLOEXEC);
+src/io/fcntl.npk:103:    pass libn_fcntl(fd, F_SETFL, r.value | O_NONBLOCK);
+src/io/fcntl.npk:113:    pass libn_fcntl(fd, F_SETFL, r.value & (0i64 - 1i64 ^ O_NONBLOCK));
+src/io/fcntl.npk:123:    pass (r.value & O_NONBLOCK) != 0i64;
+src/io/fcntl.npk:137:    pass libn_fcntl(fd, F_SETFL, r.value | O_APPEND);
+src/io/fcntl.npk:147:    pass libn_fcntl(fd, F_SETFL, r.value & (0i64 - 1i64 ^ O_APPEND));
+src/io/fcntl.npk:162:    if (fd < 0i64 || min_fd < 0i64) {
+src/io/fcntl.npk:170:    if (fd < 0i64 || min_fd < 0i64) {
+src/io/read.npk:40:    if (fd < 0i64 || buf == 0i64 || n <= 0i64) {
+src/io/read.npk:69:    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/read.npk:137:    if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+src/io/read.npk:172:            if (count > 0i64 && dst[count - 1i64] == 13u8) {  // '\r'
+src/io/read.npk:203:    if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+src/fs/path.npk:49:    while (i < n && s[i] != 0u8) {
+src/fs/path.npk:103:    if (a == 0i64 || b == 0i64 || out == 0i64 || out_sz < 1i64) {
+src/fs/path.npk:135:    while a_end > 1i64 && ab[a_end - 1i64] == 47u8 {  // not root
+src/fs/path.npk:193:    if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:212:    while (end > 1i64 && p[end - 1i64] == 47u8) {
+src/fs/path.npk:243:    while (dir_end > 1i64 && p[dir_end - 1i64] == 47u8) {
+src/fs/path.npk:270:    if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:287:    if (len == 1i64 && p[0] == 47u8) {
+src/fs/path.npk:295:    while (end > 1i64 && p[end - 1i64] == 47u8) {
+src/fs/path.npk:479:    if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:494:    while (end > 1i64 && p[end - 1i64] == 47u8) {
+src/fs/path.npk:527:    if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:555:        while (in_pos < len && p[in_pos] == 47u8) {
+src/fs/path.npk:568:        if (ch == 47u8 || in_pos == len) {
+src/fs/path.npk:574:            } else if (comp_len == 1i64 && p[component_start] == 46u8) {
+src/fs/path.npk:578:                if (out_pos > 0i64 && ob[out_pos - 1i64] != 47u8) {
+src/fs/path.npk:599:            while (in_pos < len && p[in_pos] == 47u8) {
+src/mem/slab.npk:40://   ^slot_start   ^user pointer (returned to caller)
+src/mem/memcpy.npk:41:    if (dst == 0i64 || src == 0i64) {
+src/mem/memcpy.npk:53:    while (i < n && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:75:        word = word | (si[byte_off + @cast_unchecked<int64>(0i64)]);
+src/mem/memcpy.npk:76:        word = word | (si[byte_off + @cast_unchecked<int64>(1i64)] << 8i64);
+src/mem/memcpy.npk:77:        word = word | (si[byte_off + @cast_unchecked<int64>(2i64)] << 16i64);
+src/mem/memcpy.npk:78:        word = word | (si[byte_off + @cast_unchecked<int64>(3i64)] << 24i64);
+src/mem/memcpy.npk:79:        word = word | (si[byte_off + @cast_unchecked<int64>(4i64)] << 32i64);
+src/mem/memcpy.npk:80:        word = word | (si[byte_off + @cast_unchecked<int64>(5i64)] << 40i64);
+src/mem/memcpy.npk:81:        word = word | (si[byte_off + @cast_unchecked<int64>(6i64)] << 48i64);
+src/mem/memcpy.npk:82:        word = word | (si[byte_off + @cast_unchecked<int64>(7i64)] << 56i64);
+src/mem/memcpy.npk:137:    if (dst == 0i64 || src == 0i64) {
+src/mem/memcpy.npk:156:    bool:need_backward = dst > src && dst < (src + n);
+src/mem/memcpy.npk:163:        while (i < n && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:176:            word = word | (si[bo + @cast_unchecked<int64>(0i64)]);
+src/mem/memcpy.npk:177:            word = word | (si[bo + @cast_unchecked<int64>(1i64)] << 8i64);
+src/mem/memcpy.npk:178:            word = word | (si[bo + @cast_unchecked<int64>(2i64)] << 16i64);
+src/mem/memcpy.npk:179:            word = word | (si[bo + @cast_unchecked<int64>(3i64)] << 24i64);
+src/mem/memcpy.npk:180:            word = word | (si[bo + @cast_unchecked<int64>(4i64)] << 32i64);
+src/mem/memcpy.npk:181:            word = word | (si[bo + @cast_unchecked<int64>(5i64)] << 40i64);
+src/mem/memcpy.npk:182:            word = word | (si[bo + @cast_unchecked<int64>(6i64)] << 48i64);
+src/mem/memcpy.npk:183:            word = word | (si[bo + @cast_unchecked<int64>(7i64)] << 56i64);
+src/mem/memcpy.npk:201:        while (i > 0i64 && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:210:            word = word | (s[i + @cast_unchecked<int64>(0i64)]);
+src/mem/memcpy.npk:211:            word = word | (s[i + @cast_unchecked<int64>(1i64)] << 8i64);
+src/mem/memcpy.npk:212:            word = word | (s[i + @cast_unchecked<int64>(2i64)] << 16i64);
+src/mem/memcpy.npk:213:            word = word | (s[i + @cast_unchecked<int64>(3i64)] << 24i64);
+src/mem/memcpy.npk:214:            word = word | (s[i + @cast_unchecked<int64>(4i64)] << 32i64);
+src/mem/memcpy.npk:215:            word = word | (s[i + @cast_unchecked<int64>(5i64)] << 40i64);
+src/mem/memcpy.npk:216:            word = word | (s[i + @cast_unchecked<int64>(6i64)] << 48i64);
+src/mem/memcpy.npk:217:            word = word | (s[i + @cast_unchecked<int64>(7i64)] << 56i64);
+src/mem/memcpy.npk:243:    if (src == 0i64 || n <= 0i64) {
+src/mem/memutil.npk:20://     has_zero_byte(v) = (v - 0x0101010101010101) & ~v & 0x8080808080808080
+src/mem/memutil.npk:35:// Formula: ((v - 0x01010101...) & ~v & 0x80808080...)
+src/mem/memutil.npk:38:    int64:t = (v - WORD_ONES) & (0i64 - 1i64 ^ v) & WORD_HIGHBITS;
+src/mem/memutil.npk:45:    int64:r = c & 0xFFi64;
+src/mem/memutil.npk:46:    r = r | (r << 8i64);
+src/mem/memutil.npk:47:    r = r | (r << 16i64);
+src/mem/memutil.npk:48:    r = r | (r << 32i64);
+src/mem/memutil.npk:82:    while (i < n && (((a + i) | (b + i)) & 7i64) != 0i64) {
+src/mem/memutil.npk:103:            int64:diff = va ^ vb;
+src/mem/memutil.npk:108:                int64:ba = (va >> shift) & 0xFFi64;
+src/mem/memutil.npk:109:                int64:bb = (vb >> shift) & 0xFFi64;
+src/mem/memutil.npk:176:        diff = diff | @cast_unchecked<int64>((pa[i]) ^ @cast_unchecked<int64>(pb[i]));
+src/mem/memutil.npk:192:    if (n == 0i64 || ptr == 0i64) {
+src/mem/memutil.npk:202:    while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:215:        int64:v = pw[wi] ^ tword;
+src/mem/memutil.npk:250:    if (n == 0i64 || ptr == 0i64) {
+src/mem/memutil.npk:289:    if (haystack == 0i64 || needle == 0i64) {
+src/mem/memutil.npk:341:    while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:379:    if (a == b || n <= 0i64) {
+src/mem/memutil.npk:388:    while (i < n && ((a + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:423:    if (ptr == 0i64 || n <= 1i64) {
+src/mem/memutil.npk:446:    pass (ptr + mask) & (0i64 - align);
+src/mem/memutil.npk:451:    pass (ptr & (align - 1i64)) == 0i64;
+src/mem/memset.npk:52:    while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memset.npk:59:    fill64 = fill64 | (fill64 << 8i64);
+src/mem/memset.npk:60:    fill64 = fill64 | (fill64 << 16i64);
+src/mem/memset.npk:61:    fill64 = fill64 | (fill64 << 32i64);
+src/mem/memset.npk:94:    if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:116:    if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:155:    if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:160:    int64:p32 = pattern32 & 0xFFFFFFFFi64;
+src/mem/memset.npk:161:    int64:p64 = p32 | (p32 << 32i64);
+src/mem/memset.npk:167:    while (i < n && ((ptr + i) & 3i64) != 0i64) {
+src/mem/memset.npk:168:        pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+src/mem/memset.npk:182:        pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+src/mem/mmap.npk:13://     ^                                          ^
+src/mem/mmap.npk:74:    pass (n + PAGE_MASK) & (0i64 - PAGE_SIZE);  // (n + 4095) & ~4095
+src/mem/mmap.npk:79:    pass n & (0i64 - PAGE_SIZE);  // n & ~4095
+src/mem/mmap.npk:84:    pass (addr & PAGE_MASK) == 0i64;
+src/mem/mmap.npk:90:    pass (n + mask) & (0i64 - a);
+src/mem/mmap.npk:104:// prot: PROT_READ | PROT_WRITE (typical for data)
+src/mem/mmap.npk:105:// flags: MAP_PRIVATE | MAP_ANONYMOUS (typical for heap data)
+src/mem/mmap.npk:130:// prot: PROT_NONE, PROT_READ, PROT_READ|PROT_WRITE, etc.
+src/mem/mmap.npk:133:    if ((prot & PROT_EXEC) != 0i64) {
+src/mem/mmap.npk:176://   ^--- map_start (aligned to PAGE_SIZE)
+src/mem/mmap.npk:177://                             ^--- returned pointer to user
+src/mem/mmap.npk:217:    if (n <= 0i64 || size <= 0i64) {
+src/mem/mmap.npk:221:    if (size > 0i64 && n > (9223372036854775807i64 / size)) {
+src/mem/mmap.npk:358:    if (n_pages <= 0i64 || addr == 0i64) {
+src/mem/mmap.npk:408:    if (data_ptr == 0i64 || n_data_pages <= 0i64) {
+src/str/strtok.npk:60:    if (s == 0i64 || @cast_unchecked<uint8->>((s))[0] == 0u8) {
+src/str/strtok.npk:73:    while (p[i] != 0u8 && raw charset_test(table, p[i])) {
+src/str/strtok.npk:87:    while (p[i] != 0u8 && !raw charset_test(table, p[i])) {
+src/str/strtok.npk:133:    while (p[i] != 0u8 && !raw charset_test(table, p[i])) {
+src/str/strtok.npk:199:    if (input == 0i64 || max_fields <= 0i64) {
+src/str/strtok.npk:209:        bool:at_delim = (i < input_len && p[i] == delim);
+src/str/strtok.npk:212:        if (at_delim || at_end) {
+src/str/strtok.npk:213:            if (field_count < max_fields - 1i64 || at_end) {
+src/str/strtok.npk:250:    if (input == 0i64 || max_lines <= 0i64) {
+src/str/strtok.npk:260:        bool:at_lf  = (i < input_len && p[i] == 10u8);   // '\n'
+src/str/strtok.npk:263:        if (at_lf || at_end) {
+src/str/strtok.npk:267:                if (len > 0i64 && p[line_start + len - 1i64] == 13u8) {  // '\r'
+src/str/strtok.npk:275:            if (line_count >= max_lines && !at_end) {
+src/str/strview.npk:3:// StrView is Nitpick's equivalent of C++17 std::string_view, Rust's &str,
+src/str/strview.npk:122:    if (len < 0i64 || len > avail) { len = avail; }
+src/str/strview.npk:154:    if (i < 0i64 || i >= s.len) { pass -1i64; }
+src/str/strview.npk:216:    strview_of(s, @cast_unchecked<int64>(&bv));
+src/str/strview.npk:217:    pass strview_cmp(sv, @cast_unchecked<int64>(&bv));
+src/str/strview.npk:349:    if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+src/str/strview.npk:362:    if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+src/str/strview.npk:397:    if (end < 0i64 || end > s.len) { end = s.len; }
+src/str/strview.npk:431:        if c != 32u8 && c != 9u8 && c != 10u8 &&
+src/str/strview.npk:432:           c != 13u8 && c != 12u8 && c != 11u8 {
+src/str/strview.npk:449:        if c != 32u8 && c != 9u8 && c != 10u8 &&
+src/str/strview.npk:450:           c != 13u8 && c != 12u8 && c != 11u8 {
+src/str/strview.npk:462:    strview_trim_left(sv, @cast_unchecked<int64>(&tmp));
+src/str/strview.npk:463:    @cast_unchecked<int64>(strview_trim_right(&tmp), out);
+src/str/strview.npk:534://   strview_of(some_str, &cur as int64);
+src/str/strview.npk:536://   while strview_next_token(&cur as int64, '\n', &tok as int64) { ... }
+src/str/strview.npk:543:    bool:found = strview_split_once_char(sv_ptr, delim, @cast_unchecked<int64>(&left), @cast_unchecked<int64>(&right));
+src/str/strview.npk:583:    if (lo.len > 0i64 && p[lo.len - 1i64] == 13u8) {
+src/str/strview.npk:689:    if (sv == 0i64 || buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+src/str/strview.npk:700:    if (buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+src/str/strview.npk:745://   strviewiter_of_str(&it as int64, some_text);
+src/str/strview.npk:747://   while strviewiter_next_line(&it as int64, &line as int64) {
+src/str/strcpy.npk:35:    if (dst == 0i64 || src == 0i64) {
+src/str/strcpy.npk:60:    if (dst == 0i64 || src == 0i64) {
+src/str/strcpy.npk:89:    if (dst == 0i64 || n <= 0i64) {
+src/str/strcpy.npk:103:    while (i < n && s[i] != 0u8) {
+src/str/strcpy.npk:125:    if (dst == 0i64 || n <= 0i64) {
+src/str/strcpy.npk:137:    while (i < n && s[i] != 0u8) {
+src/str/strchr.npk:34:    while (s + i) & 7i64 != 0i64 {
+src/str/strchr.npk:46:    tword = tword | (tword << 8i64);
+src/str/strchr.npk:47:    tword = tword | (tword << 16i64);
+src/str/strchr.npk:48:    tword = tword | (tword << 32i64);
+src/str/strchr.npk:59:        bool:has_nul = ((v - ONES) & (0i64 - 1i64 ^ v) & HIGHBITS) != 0i64;
+src/str/strchr.npk:61:        int64:x = v ^ tword;
+src/str/strchr.npk:62:        bool:has_tgt = ((x - ONES) & (0i64 - 1i64 ^ x) & HIGHBITS) != 0i64;
+src/str/strchr.npk:63:        if (has_nul || has_tgt) {
+src/str/strchr.npk:102:    while (p[i] != 0u8 && p[i] != target) {
+src/str/strchr.npk:171:            while (n[j] != 0u8 && h[i + j] != 0u8 && h[i + j] == n[j]) {
+src/str/strchr.npk:209:            while n[j] != 0u8 && h[i + j] != 0u8 &&
+src/str/strchr.npk:228:// Testing: (table[c >> 3] >> (c & 7)) & 1
+src/str/strchr.npk:244:        table[c >> 3u8] = table[c >> 3u8] | (1u8 << (c & 7u8));
+src/str/strchr.npk:251:    pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
+src/str/strchr.npk:261:    if (s == 0i64 || accept == 0i64) {
+src/str/strchr.npk:305:    while (p[i] != 0u8 && raw charset_test(table, p[i])) {
+src/str/strchr.npk:333:    while (p[i] != 0u8 && !raw charset_test(table, p[i])) {
+src/str/strfmt.npk:113:            d = u & 0xFi64;
+src/str/strfmt.npk:114:            u = (u >> 4i64) & 0x0FFFFFFFFFFFFFFFi64;  // logical shift: mask off sign
+src/str/strfmt.npk:116:            d = u & 7i64;
+src/str/strfmt.npk:117:            u = (u >> 3i64) & 0x1FFFFFFFFFFFFFFFi64;
+src/str/strfmt.npk:119:            d = u & 1i64;
+src/str/strfmt.npk:120:            u = (u >> 1i64) & 0x7FFFFFFFFFFFFFFFi64;
+src/str/strfmt.npk:169:    if (buf == 0i64 || buf_size <= 0i64) {
+src/str/strfmt.npk:213:            while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+src/str/strfmt.npk:228:                while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+src/str/strfmt.npk:270:            if (precision >= 0i64 && slen > precision) {
+src/str/strfmt.npk:282:        bool:is_signed = spec == 100u8 || spec == 105u8;  // 'd' or 'i'
+src/str/strfmt.npk:285:        if (spec == 120u8 || spec == 88u8) { num_base = 16i64; }  // 'x' or 'X'
+src/str/strfmt.npk:297:        bool:is_neg = is_signed && arg_val < 0i64;
+src/str/strfmt.npk:313:        if (flag_alt && num_base == 16i64 && arg_val != 0i64) {
+src/str/strfmt.npk:317:        } else if (flag_alt && num_base == 8i64) {
+src/str/strfmt.npk:319:            if (nlen == 0i64 || nbuf[0] != 48u8) {
+src/str/strfmt.npk:330:        if (flag_zero && !flag_left) { pad_char = 48u8; }  // '0'
+src/str/strlcpy.npk:47:    if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:85:    if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:120:    if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:129:    while (i < max_bytes && s[i] != 0u8) {
+src/str/strlcpy.npk:152:    if (dst == 0i64 || dst_size == 0i64) {
+src/str/strconv.npk:34:    pass c == 32u8 || c == 9u8 || c == 10u8 || c == 13u8 || c == 12u8 || c == 11u8;
+src/str/strconv.npk:39:    pass c >= 48u8 && c <= 57u8;
+src/str/strconv.npk:44:    pass raw is_digit(c) || (c >= 65u8 && c <= 70u8) || (c >= 97u8 && c <= 102u8);
+src/str/strconv.npk:51:    if (c >= 48u8 && c <= 57u8) {         // '0'-'9'
+src/str/strconv.npk:53:    } else if (c >= 65u8 && c <= 90u8) {  // 'A'-'Z'
+src/str/strconv.npk:55:    } else if (c >= 97u8 && c <= 122u8) { // 'a'-'z'
+src/str/strconv.npk:102:        if (p[i] == 48u8 && (p[i + 1i64] == 120u8 || p[i + 1i64] == 88u8)) {  // "0x" or "0X"
+src/str/strconv.npk:110:    } else if (base == 16i64 && p[i] == 48u8 &&
+src/str/strconv.npk:111:              (p[i + 1i64] == 120u8 || p[i + 1i64] == 88u8)) {
+src/str/strconv.npk:125:        if (!negative && result > (INT64_MAX - dv) / base) {
+src/str/strconv.npk:129:        if (negative && result > (INT64_MAX + 1i64) / base) {  // INT64_MIN / base
+src/str/strconv.npk:186:        if (p[i] == 48u8 && (p[i + 1i64] == 120u8 || p[i + 1i64] == 88u8)) {
+src/str/strconv.npk:194:    } else if (base == 16i64 && p[i] == 48u8 &&
+src/str/strconv.npk:195:              (p[i + 1i64] == 120u8 || p[i + 1i64] == 88u8)) {
+src/str/strconv.npk:273:    if (s == 0i64 || @cast_unchecked<uint8->>((s))[0] == 0u8) {
+src/str/strconv.npk:290:    if (ep[0] != 0i64 && @cast_unchecked<uint8->>((ep[0]))[0] != 0u8) {
+src/str/strconv.npk:302:    if (s == 0i64 || @cast_unchecked<uint8->>((s))[0] == 0u8) {
+src/str/strconv.npk:316:    if (ep[0] != 0i64 && @cast_unchecked<uint8->>((ep[0]))[0] != 0u8) {
+src/str/strconv.npk:328:    if (s == 0i64 || @cast_unchecked<uint8->>((s))[0] == 0u8) {
+src/str/strconv.npk:331:    if (base < 2i64 || base > 36i64) {
+src/str/strconv.npk:345:    if (ep[0] != 0i64 && @cast_unchecked<uint8->>((ep[0]))[0] != 0u8) {
+src/str/strconv.npk:360:    if (buf == 0i64 || buf_size <= 0i64) {
+src/str/strconv.npk:422:    if (buf == 0i64 || buf_size <= 0i64) { pass 0i64; }
+src/str/strconv.npk:439:    // high = v >>> 32, low = v & 0xFFFFFFFF, combine.
+src/str/strconv.npk:442:    while (u > 0i64 || ti == 0i64) {
+src/str/strconv.npk:468:    if (buf == 0i64 || buf_size <= 0i64) { pass 0i64; }
+src/str/strconv.npk:481:            int64:digit = u & 0xFi64;
+src/str/strconv.npk:489:            // Use: u = (u as uint64) >> 4 → in Nitpick we use: u = (u & INT64_MAX) >> 4
+src/str/strlen.npk:39:    pass ((v - STRLEN_ONES) & (0i64 - 1i64 ^ v) & STRLEN_HIGHBITS) != 0i64;
+src/str/strlen.npk:62:    while (((s + i) & 7i64) != 0i64) {
+src/str/strlen.npk:97:    if (s == 0i64 || max_len <= 0i64) {
+src/str/strlen.npk:105:    while (i < max_len && (s + i) & 7i64 != 0i64) {
+src/str/strlen.npk:116:    while (wi < max_words && !raw has_nul_byte(pw[wi])) {
+src/str/strlen.npk:122:    while (i < max_len && p[i] != 0u8) {
+src/str/strcmp.npk:31:    if (c >= 65u8 && c <= 90u8) {  // 'A' = 65, 'Z' = 90
+src/str/strcmp.npk:39:    if (c >= 97u8 && c <= 122u8) {  // 'a' = 97, 'z' = 122
+src/str/strcmp.npk:47:    pass (c >= 65u8 && c <= 90u8) || (c >= 97u8 && c <= 122u8);
+src/str/strcmp.npk:58:    pass ((v - STRCMP_ONES) & (0i64 - 1i64 ^ v) & STRCMP_HIGHBITS) != 0i64;
+src/str/strcmp.npk:84:    while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+src/str/strcmp.npk:105:        if (va != vb || raw strcmp_has_nul(va)) {
+src/str/strcmp.npk:176:    if (a == 0i64 || b == 0i64) {
+src/str/strcmp.npk:185:        if (pa[i] == 0u8 || pa[i] != pb[i]) {
+src/str/strcmp.npk:273:    if (a == 0i64 || b == 0i64) {
+src/str/strcmp.npk:282:        if (pa[i] == 0u8 || raw to_lower_ascii(pa[i]) != raw to_lower_ascii(pb[i])) {
+src/str/strbuf.npk:243:    if (sb == 0i64 || ptr == 0i64 || n <= 0i64) { pass false; }
+src/str/strbuf.npk:256:    if (sb == 0i64 || str == 0i64) { pass false; }
+src/str/strbuf.npk:264:    if (sb == 0i64 || other == 0i64) { pass false; }
+src/str/strbuf.npk:272:    if (sb == 0i64 || n <= 0i64) { pass false; }
+src/str/strbuf.npk:420:    if (s.len > 0i64 && p[s.len - 1i64] == 10u8) {   // '\n'
+src/str/strbuf.npk:424:    if (s.len > 0i64 && p[s.len - 1i64] == 13u8) {   // '\r'
+src/math/math.npk:57://   math_lcm           — least common multiple (lcm = |a*b| / gcd(a,b))
+src/math/math.npk:98:    // We use the trick: (a ^ b) < 0 tells us which has the higher sign bit;
+src/math/math.npk:100:    if ((a ^ b) < 0i64) {
+src/math/math.npk:112:    if ((a ^ b) < 0i64) {
+src/math/math.npk:147:    // (a > 0 && b > 0 && r < 0) → overflow up → clamp to INT64_MAX
+src/math/math.npk:148:    // (a < 0 && b < 0 && r > 0) → underflow  → clamp to INT64_MIN
+src/math/math.npk:149:    if (a > 0i64 && b > 0i64 && r < 0i64) { pass INT64_MAX; }
+src/math/math.npk:150:    if (a < 0i64 && b < 0i64 && r > 0i64) { pass INT64_MIN; }
+src/math/math.npk:170:    if (a == 0i64 || b == 0i64) { pass 0i64; }
+src/math/math.npk:181:    // General case: check if |a * b| > INT64_MAX
+src/math/math.npk:182:    // Equivalent to: |a| > INT64_MAX / |b|
+src/math/math.npk:188:        bool:neg = (a < 0i64) ^ (b < 0i64);
+src/math/math.npk:218:    if (math_max_u64(b, a) == b && b != a) {
+src/math/math.npk:235:    if (r != 0i64 && (a > 0i64) == (b > 0i64)) {
+src/math/math.npk:247:    if (r != 0i64 && (a < 0i64) != (b < 0i64)) {
+src/math/math.npk:259:// Result is in [0, |b|-1], never negative.
+src/math/math.npk:276:    pass (v + mask) & (0i64 - align);
+src/math/math.npk:281:    pass v & (0i64 - align);
+src/math/math.npk:286:    pass (v & (align - 1i64)) == 0i64;
+src/math/math.npk:296:    pass (v & (v - 1i64)) == 0i64;
+src/math/math.npk:300:// Returns 1 for v <= 1. For v > 2^62, returns 2^63 (INT64_MIN, high bit set).
+src/math/math.npk:348:    x = x - ((x >> 1i64) & 0x5555555555555555i64);
+src/math/math.npk:350:    x = (x & 0x3333333333333333i64) + ((x >> 2i64) & 0x3333333333333333i64);
+src/math/math.npk:352:    x = (x + (x >> 4i64)) & 0x0F0F0F0F0F0F0F0Fi64;
+src/math/math.npk:355:    pass x & 0xFFi64;
+src/math/math.npk:364:    if ((v & 0xFFFFFFFF00000000i64) == 0i64 ) {
+src/math/math.npk:365:    if ((v & 0xFFFF000000000000i64) == 0i64 ) {
+src/math/math.npk:366:    if ((v & 0xFF00000000000000i64) == 0i64 ) {
+src/math/math.npk:367:    if ((v & 0xF000000000000000i64) == 0i64 ) {
+src/math/math.npk:368:    if ((v & 0xC000000000000000i64) == 0i64 ) {
+src/math/math.npk:369:    if ((v & 0x8000000000000000i64) == 0i64 ) {
+src/math/math.npk:377:    // Use popcount trick: ctz(v) = popcount((v & -v) - 1)
+src/math/math.npk:380:    if ((v & 0x00000000FFFFFFFFi64) == 0i64 ) {
+src/math/math.npk:381:    if ((v & 0x000000000000FFFFi64) == 0i64 ) {
+src/math/math.npk:382:    if ((v & 0x00000000000000FFi64) == 0i64 ) {
+src/math/math.npk:383:    if ((v & 0x000000000000000Fi64) == 0i64 ) {
+src/math/math.npk:384:    if ((v & 0x0000000000000003i64) == 0i64 ) {
+src/math/math.npk:385:    if ((v & 0x0000000000000001i64) == 0i64 ) {
+src/math/math.npk:393:    x = x ^ (x >> 32i64);
+src/math/math.npk:394:    x = x ^ (x >> 16i64);
+src/math/math.npk:395:    x = x ^ (x >> 8i64);
+src/math/math.npk:396:    x = x ^ (x >> 4i64);
+src/math/math.npk:397:    x = x ^ (x >> 2i64);
+src/math/math.npk:398:    x = x ^ (x >> 1i64);
+src/math/math.npk:399:    pass x & 1i64;
+src/math/math.npk:406:    x = ((x & 0x5555555555555555i64) << 1i64)  | ((x >> 1i64)  & 0x5555555555555555i64);
+src/math/math.npk:407:    x = ((x & 0x3333333333333333i64) << 2i64)  | ((x >> 2i64)  & 0x3333333333333333i64);
+src/math/math.npk:408:    x = ((x & 0x0F0F0F0F0F0F0F0Fi64) << 4i64)  | ((x >> 4i64)  & 0x0F0F0F0F0F0F0F0Fi64);
+src/math/math.npk:409:    x = ((x & 0x00FF00FF00FF00FFi64) << 8i64)  | ((x >> 8i64)  & 0x00FF00FF00FF00FFi64);
+src/math/math.npk:410:    x = ((x & 0x0000FFFF0000FFFFi64) << 16i64) | ((x >> 16i64) & 0x0000FFFF0000FFFFi64);
+src/math/math.npk:411:    x = ((x & 0x00000000FFFFFFFFi64) << 32i64) | ((x >> 32i64) & 0x00000000FFFFFFFFi64);
+src/math/math.npk:417:    n = n & 63i64;
+src/math/math.npk:419:    pass (v << n) | (v >> (64i64 - n));
+src/math/math.npk:424:    n = n & 63i64;
+src/math/math.npk:426:    pass (v >> n) | (v << (64i64 - n));
+src/math/math.npk:441:    // Initial estimate via clz: start near 2^(floor(log2(v)/2))
+src/math/math.npk:481:    int64:shift = math_ctz(a | b);
+src/math/math.npk:498:// math_lcm — Least common multiple: lcm(a, b) = |a * b| / gcd(a, b).
+src/math/math.npk:502:    if (a == 0i64 || b == 0i64) { pass 0i64; }
+src/syscall/syscall.npk:158:// flags: O_RDONLY | O_WRONLY | O_RDWR etc. (from posix_constants.npk)
+src/syscall/syscall.npk:159:// mode: S_IRUSR | S_IWUSR etc. — only meaningful when O_CREAT is in flags
+src/syscall/syscall.npk:165:    int64:safe_flags = flags | O_CLOEXEC;
+src/syscall/syscall.npk:174:    int64:safe_flags = flags | O_CLOEXEC;
+src/syscall/syscall.npk:273:// libn_pipe2 — Create a pipe pair. flags: O_CLOEXEC | O_NONBLOCK.
+src/syscall/syscall.npk:285:// prot: PROT_READ | PROT_WRITE etc.
+src/syscall/syscall.npk:286:// flags: MAP_PRIVATE | MAP_ANONYMOUS for anonymous memory
+src/syscall/syscall.npk:308:    if ((prot & PROT_EXEC) != 0i64) {
+src/syscall/syscall.npk:326:// flags: MREMAP_MAYMOVE | MREMAP_FIXED
+src/syscall/syscall.npk:450:// flags: AT_STATX_SYNC_AS_STAT | AT_EMPTY_PATH etc.
+src/syscall/syscall.npk:451:// mask: STATX_BASIC_STATS | STATX_SIZE | STATX_BTIME etc.
+src/syscall/posix_constants.npk:33:pub fixed int64:O_SYNC      = 1052672i64;   // Full data+metadata sync (O_DSYNC|O_RSYNC)
+src/syscall/posix_constants.npk:148:pub fixed int64:MAP_ANON_PRIV = 34i64;   // MAP_PRIVATE|MAP_ANONYMOUS — most common
+src/syscall/posix_constants.npk:486:pub fixed int64:FUTEX_WAIT_PRIVATE    = 128i64;  // FUTEX_WAIT | FUTEX_PRIVATE_FLAG
+src/syscall/posix_constants.npk:487:pub fixed int64:FUTEX_WAKE_PRIVATE    = 129i64;  // FUTEX_WAKE | FUTEX_PRIVATE_FLAG
+src/syscall/posix_constants.npk:518:// Standard pthread_create clone flags (CLONE_VM|FS|FILES|SIGHAND|THREAD|SYSVSEM|SETTLS|PARENT_SETTID|CHILD_CLEARTID)
+src/syscall/posix_constants.npk:647:pub fixed int64:IN_CLOSE         = 24i64;    // IN_CLOSE_WRITE | IN_CLOSE_NOWRITE
+src/syscall/posix_constants.npk:648:pub fixed int64:IN_MOVE          = 192i64;   // IN_MOVED_FROM | IN_MOVED_TO
+src/syscall/errno.npk:238:    if (e < 1i64 || e > ERRNO_MAX) {
+src/syscall/errno.npk:252:    pass e == EINTR || e == EAGAIN;
+src/syscall/errno.npk:258:    pass e == EBADF   ||
+src/syscall/errno.npk:259:         e == EINVAL  ||
+src/syscall/errno.npk:260:         e == ENOTSOCK ||
+src/syscall/errno.npk:261:         e == ENOMEM  ||

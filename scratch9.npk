@@ -1,0 +1,10 @@
+func:main = int32() {
+    int64:x = 0i64;
+    *byte:p = @cast_unchecked<*byte>(x);
+    uint8:b1 = @p[0];
+    uint8:b2 = *p;
+    uint8:b3 = p^;
+    uint8:b4 = @p;
+    exit 0i32;
+};
+func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };

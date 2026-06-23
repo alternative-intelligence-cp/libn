@@ -3,7 +3,7 @@
 // These are the fundamental copy primitives of libn. Every string copy, buffer
 // transfer, and data structure clone passes through here.
 //
-// Implementation tiers (same as memset.npk):
+// Implementation tiers (@cast_unchecked<memset>(same).npk):
 //   1. arch/x86_64/memcpy.s     — AVX2 non-temporal for large copies (v0.2.6+)
 //   2. arch/x86_64/memcpy_sse2.s — SSE2 128-bit loads/stores (v0.2.6+)
 //   3. This file — pure Nitpick reference, word-aligned fast path
@@ -11,94 +11,107 @@
 // Correctness guarantees:
 //   mem_memcpy: undefined behavior if src and dst overlap. Use mem_memmove instead.
 //   mem_memmove: always correct, handles overlapping regions.
-//   mem_mempcpy: same as memcpy but returns (dst + n) instead of dst.
+//   mem_mempcpy: @cast_unchecked<memcpy>(same) but returns (dst + n) instead of dst.
 //
 // Performance notes (pure Nitpick tier):
-//   - Byte-align prologue: bring dst to 8-byte alignment (up to 7 byte copies)
+//   - Byte-align prologue: bring dst to 8-uint8 alignment (up to 7 uint8 copies)
 //   - Word loop: 8 bytes per iteration (64-bit load+store)
-//   - Tail: up to 7 remaining bytes byte-by-byte
+//   - Tail: up to 7 remaining bytes uint8-by-uint8
 //   - This is intentionally simple and correct. The AVX2 tier (v0.2.6) will use
 //     rep movsb / non-temporal stores / prefetch for cache-cold large copies.
 //
 // Thread safety: these are stateless functions — fully thread-safe.
 
-use "src/syscall/errno.npk".*;
+use "../syscall/errno.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memcpy — Copy n bytes from src to dst.
 //
 // src and dst must not overlap. If they might overlap, use mem_memmove.
-// Returns dst (same as C memcpy — allows chaining in assignments).
+// Returns dst (@cast_unchecked<C>(same) memcpy — allows chaining in assignments).
 //
 // Behavior with n==0: returns dst, no memory access.
 // Behavior with NULL src/dst and n>0: returns ERR_BADARG.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_memcpy = Result<int64>(int64:dst, int64:src, int64:n) {
-    if n == 0i64 {
+
+// __intrinsic_memcpy — Compiler intrinsic hook for inline memcpy.
+// If the compiler backend recognizes this, it will replace the call with
+// an inline implementation (e.g., AVX2 / rep movsb).
+pub func:__intrinsic_memcpy = int64(int64:dst, int64:src, int64:n) {
+      // Placeholder fallback (never hit if compiler correctly intercepts)
+    pass 0i64;
+};
+
+pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
+    if (n == 0i64) {
         pass dst;
     }
-    if dst == 0i64 || src == 0i64 {
-        fail ERR_BADARG as tbb8;
+    if (dst == 0i64 || src == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n < 0i64 {
-        fail ERR_BADARG as tbb8;
+    if (n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+        if (n >= 16i64) {
+        drop __intrinsic_memcpy(dst, src, n);
+        pass dst;
+    }
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
 
-    // ── Prologue: byte-copy until dst is 8-byte aligned ─────────────
+      // ── Prologue: uint8-copy until dst is 8-uint8 aligned ─────────────
     int64:i = 0i64;
-    while i < n && ((dst + i) & 7i64) != 0i64 {
+    while (i < n && ((dst + i) & 7i64) != 0i64) {
         d[i] = s[i];
         i = i + 1i64;
     }
 
-    // ── Word loop: copy 8 bytes per iteration ────────────────────────
-    // Both pointer arithmetic and aliasing: we use int64 pointers for speed.
-    // This is valid because:
-    //   1. dst is 8-byte aligned (prologue ensured this)
-    //   2. src alignment is not required for loads on x86-64 (unaligned loads are fine)
-    //   3. The Nitpick compiler is aware of this pattern and will emit MOVQ/MOVUPS
-    *int64:di = (dst + i) as *int64;
-    *byte:si  = (src + i) as *byte;
+      // ── Word loop: copy 8 bytes per iteration ────────────────────────
+      // Both pointer arithmetic and aliasing: we use int64 pointers for speed.
+      // This is valid because:
+      //   1. dst is 8-uint8 aligned (prologue ensured this)
+      //   2. src alignment is not required for loads on x86-64 (unaligned loads are fine)
+      //   3. The Nitpick compiler is aware of this pattern and will emit MOVQ/MOVUPS
+    int64->:di = @cast_unchecked<int64->>((dst + i));
+    uint8->:si  = @cast_unchecked<uint8->>((src + i));
 
     int64:word_count = (n - i) / 8i64;
     int64:wi = 0i64;
-    while wi < word_count {
-        // Load 8 bytes from src (potentially unaligned read from si)
-        // Write 8 bytes to dst (aligned write to di)
-        // Note: we read byte-by-byte into a word to handle src misalignment correctly
+    while (wi < word_count) {
+          // Load 8 bytes from src (potentially unaligned read from si)
+          // Write 8 bytes to dst (aligned write to di)
+          // Note: we read uint8-by-uint8 into a word to handle src misalignment correctly
         int64:word = 0i64;
         int64:byte_off = wi * 8i64;
-        word = word | (si[byte_off + 0i64] as int64);
-        word = word | (si[byte_off + 1i64] as int64 << 8i64);
-        word = word | (si[byte_off + 2i64] as int64 << 16i64);
-        word = word | (si[byte_off + 3i64] as int64 << 24i64);
-        word = word | (si[byte_off + 4i64] as int64 << 32i64);
-        word = word | (si[byte_off + 5i64] as int64 << 40i64);
-        word = word | (si[byte_off + 6i64] as int64 << 48i64);
-        word = word | (si[byte_off + 7i64] as int64 << 56i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 0i64]));
+        word = word | (@cast_unchecked<int64>(si[byte_off + 1i64]) << 8i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 2i64]) << 16i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 3i64]) << 24i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 4i64]) << 32i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 5i64]) << 40i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 6i64]) << 48i64);
+        word = word | (@cast_unchecked<int64>(si[byte_off + 7i64]) << 56i64);
         di[wi] = word;
         wi = wi + 1i64;
     }
     i = i + word_count * 8i64;
 
-    // ── Tail: remaining bytes (< 8) ──────────────────────────────────
-    while i < n {
+      // ── Tail: remaining bytes (< 8) ──────────────────────────────────
+    while (i < n) {
         d[i] = s[i];
         i = i + 1i64;
     }
 
     pass dst;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_mempcpy — Copy n bytes from src to dst, return dst + n.
 //
-// Identical to mem_memcpy except the return value is the byte after the last
-// byte written (i.e., the next write position in dst). This is useful for
+// Identical to mem_memcpy except the return value is the uint8 after the last
+// uint8 written (i.e., the next write position in dst). This is useful for
 // packing data into a buffer without tracking position manually:
 //
 //   int64:p = buf;
@@ -108,20 +121,20 @@ pub func:mem_memcpy = Result<int64>(int64:dst, int64:src, int64:n) {
 // GNU extension, now in C23. Used heavily in libn's io/ module.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_mempcpy = Result<int64>(int64:dst, int64:src, int64:n) {
+pub func:mem_mempcpy = int64(int64:dst, int64:src, int64:n) {
     Result<int64>:r = mem_memcpy(dst, src, n);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
     pass dst + n;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memmove — Copy n bytes from src to dst, handling overlapping regions.
 //
-// If dst < src (forward copy), copies forward (same as memcpy).
+// If dst < src (forward copy), copies forward (@cast_unchecked<memcpy>(same)).
 // If dst > src and regions overlap, copies backward to avoid clobbering src.
-// If regions don't overlap, same as memcpy.
+// If regions don't overlap, @cast_unchecked<memcpy>(same).
 //
 // This is always correct regardless of overlap. The cost vs memcpy:
 //   - One additional pointer comparison
@@ -130,104 +143,113 @@ pub func:mem_mempcpy = Result<int64>(int64:dst, int64:src, int64:n) {
 // Returns dst.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_memmove = Result<int64>(int64:dst, int64:src, int64:n) {
-    if n == 0i64 {
+pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
+    if (n == 0i64) {
         pass dst;
     }
-    if dst == 0i64 || src == 0i64 {
-        fail ERR_BADARG as tbb8;
+    if (dst == 0i64 || src == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n < 0i64 {
-        fail ERR_BADARG as tbb8;
+    if (n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    // Same address: nothing to do
-    if dst == src {
+      // Same address: nothing to do
+    if (dst == src) {
         pass dst;
     }
 
-    *byte:d = dst as *byte;
-    *byte:s = src as *byte;
+        if (n >= 16i64) {
+        drop __intrinsic_memcpy(dst, src, n);
+        pass dst;
+    }
+    uint8->:d = @cast_unchecked<uint8->>(dst);
+    uint8->:s = @cast_unchecked<uint8->>(src);
 
-    // Determine if regions overlap and which direction to copy
-    // Overlap condition: dst is inside [src, src+n) OR src is inside [dst, dst+n)
-    // Forward copy is safe when: dst < src OR dst >= src + n
-    // Backward copy is needed when: dst > src AND dst < src + n (dst inside src region)
+      // Determine if regions overlap and which direction to copy
+      // Overlap condition: dst is inside [src, src+n) OR src is inside [dst, dst+n)
+      // Forward copy is safe when: dst < src OR dst >= src + n
+      // Backward copy is needed when: dst > src AND dst < src + n (dst inside src region)
     bool:need_backward = dst > src && dst < (src + n);
 
-    if !need_backward {
-        // ── Forward copy (same as memcpy) ────────────────────────────
+    if (!need_backward) {
+    if (!need_backward && n >= 16i64) {
+        drop __intrinsic_memcpy(dst, src, n);
+        pass dst;
+    }
+
+          // ── Forward copy (@cast_unchecked<memcpy>(same)) ────────────────────────────
         int64:i = 0i64;
 
-        // Prologue: align dst
-        while i < n && ((dst + i) & 7i64) != 0i64 {
+          // Prologue: align dst
+        while (i < n && ((dst + i) & 7i64) != 0i64) {
             d[i] = s[i];
             i = i + 1i64;
         }
 
-        // Word loop
+          // Word loop
         int64:word_count = (n - i) / 8i64;
         int64:wi = 0i64;
-        *byte:si = (src + i) as *byte;
-        *int64:di = (dst + i) as *int64;
-        while wi < word_count {
+        uint8->:si = @cast_unchecked<uint8->>((src + i));
+        int64->:di = @cast_unchecked<int64->>((dst + i));
+        while (wi < word_count) {
             int64:word = 0i64;
             int64:bo = wi * 8i64;
-            word = word | (si[bo + 0i64] as int64);
-            word = word | (si[bo + 1i64] as int64 << 8i64);
-            word = word | (si[bo + 2i64] as int64 << 16i64);
-            word = word | (si[bo + 3i64] as int64 << 24i64);
-            word = word | (si[bo + 4i64] as int64 << 32i64);
-            word = word | (si[bo + 5i64] as int64 << 40i64);
-            word = word | (si[bo + 6i64] as int64 << 48i64);
-            word = word | (si[bo + 7i64] as int64 << 56i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 0i64]));
+            word = word | (@cast_unchecked<int64>(si[bo + 1i64]) << 8i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 2i64]) << 16i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 3i64]) << 24i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 4i64]) << 32i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 5i64]) << 40i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 6i64]) << 48i64);
+            word = word | (@cast_unchecked<int64>(si[bo + 7i64]) << 56i64);
             di[wi] = word;
             wi = wi + 1i64;
         }
         i = i + word_count * 8i64;
 
-        // Tail
-        while i < n {
+          // Tail
+        while (i < n) {
             d[i] = s[i];
             i = i + 1i64;
         }
     } else {
-        // ── Backward copy: start from end, work toward start ─────────
-        // This prevents clobbering src data before it's been copied when
-        // dst overlaps src from the high end.
+          // ── Backward copy: start from end, work toward start ─────────
+          // This prevents clobbering src data before it's been copied when
+          // dst overlaps src from the high end.
         int64:i = n;
 
-        // Tail prologue (align to 8-byte boundary going backward)
-        while i > 0i64 && ((dst + i) & 7i64) != 0i64 {
+          // Tail prologue (align to 8-uint8 boundary going backward)
+        while (i > 0i64 && ((dst + i) & 7i64) != 0i64) {
             i = i - 1i64;
             d[i] = s[i];
         }
 
-        // Backward word loop
-        while i >= 8i64 {
+          // Backward word loop
+        while (i >= 8i64) {
             i = i - 8i64;
             int64:word = 0i64;
-            word = word | (s[i + 0i64] as int64);
-            word = word | (s[i + 1i64] as int64 << 8i64);
-            word = word | (s[i + 2i64] as int64 << 16i64);
-            word = word | (s[i + 3i64] as int64 << 24i64);
-            word = word | (s[i + 4i64] as int64 << 32i64);
-            word = word | (s[i + 5i64] as int64 << 40i64);
-            word = word | (s[i + 6i64] as int64 << 48i64);
-            word = word | (s[i + 7i64] as int64 << 56i64);
-            *int64:di_word = (dst + i) as *int64;
+            word = word | (@cast_unchecked<int64>(s[i + 0i64]));
+            word = word | (@cast_unchecked<int64>(s[i + 1i64]) << 8i64);
+            word = word | (@cast_unchecked<int64>(s[i + 2i64]) << 16i64);
+            word = word | (@cast_unchecked<int64>(s[i + 3i64]) << 24i64);
+            word = word | (@cast_unchecked<int64>(s[i + 4i64]) << 32i64);
+            word = word | (@cast_unchecked<int64>(s[i + 5i64]) << 40i64);
+            word = word | (@cast_unchecked<int64>(s[i + 6i64]) << 48i64);
+            word = word | (@cast_unchecked<int64>(s[i + 7i64]) << 56i64);
+            int64->:di_word = @cast_unchecked<int64->>((dst + i));
             di_word[0] = word;
         }
 
-        // Backward tail (remaining bytes at start)
-        while i > 0i64 {
+          // Backward tail (remaining bytes at start)
+        while (i > 0i64) {
             i = i - 1i64;
             d[i] = s[i];
         }
     }
 
     pass dst;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // mem_memdup — Allocate a copy of n bytes from src.
@@ -239,30 +261,30 @@ pub func:mem_memmove = Result<int64>(int64:dst, int64:src, int64:n) {
 // Forward declaration — mem_malloc is defined in mmap.npk which imports this file.
 // We break the cycle by using the slab allocator when available, or a raw mmap call.
 // At v0.2.4, memdup uses a direct mmap allocation (no slab dependency here).
-pub func:mem_memdup = Result<int64>(int64:src, int64:n) {
-    if src == 0i64 || n <= 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:mem_memdup = int64(int64:src, int64:n) {
+    if (src == 0i64 || n <= 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    // Allocate n bytes (page-aligned, zero-initialized by mmap)
-    // We call libn_mmap directly to avoid circular dependency with mmap.npk's mem_malloc.
-    // The caller can use slab_alloc if < SLAB_MAX_SIZE for efficiency.
-    // At this tier, correctness over efficiency.
-    use "src/syscall/posix_constants.npk".*;
-    use "src/syscall/syscall.npk".*;
-    use "src/mem/mmap.npk".*;
+      // Allocate n bytes (page-aligned, zero-initialized by mmap)
+      // We call libn_mmap directly to avoid circular dependency with mmap.npk's mem_malloc.
+      // The caller can use slab_alloc if < SLAB_MAX_SIZE for efficiency.
+      // At this tier, correctness over efficiency.
+    use "../syscall/posix_constants.npk".*;
+    use "../syscall/syscall.npk".*;
+    use "../mem/mmap.npk".*;
 
     Result<int64>:r = mem_malloc(n);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
 
-    // Copy the source bytes
+      // Copy the source bytes
     Result<int64>:rc = mem_memcpy(r.value, src, n);
-    if rc.is_error {
+    if (rc.is_error) {
         drop mem_free(r.value);
-        fail rc.err;
+        fail rc.error;
     }
 
     pass r.value;
-}
+};

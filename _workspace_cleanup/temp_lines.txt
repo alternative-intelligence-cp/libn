@@ -1,0 +1,177 @@
+src/proc/exit.npk:72:    while (i >= 0i64) {
+src/proc/exit.npk:100:
+src/proc/signal.npk:72:};
+src/proc/signal.npk:100:    //   mov eax, 15  (SYS_RT_SIGRETURN = 15)
+src/proc/signal.npk:226:
+src/proc/signal.npk:268:pub func:killpg = int64(int64:pgrp, int64:signo) {
+src/proc/env.npk:72:    int64:cap = n + ENV_INITIAL_CAP;
+src/proc/env.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/proc/env.npk:226:    _env_heap_count = _env_heap_count + 1i64;
+src/proc/env.npk:268:            while (k < count - 1i64) {
+src/proc/env.npk:283:
+src/proc/wait.npk:72:};
+src/proc/wait.npk:100:
+src/proc/exec.npk:72:    pass execve(path, argv, environ);
+src/proc/exec.npk:100:        drop(libn_errno_set(ENOENT));
+src/proc/exec.npk:226:pub func:execl1 = int64(int64:path, int64:a0) {
+src/proc/exec.npk:268:                         int64:a3, int64:a4, int64:a5, int64:a6) {
+src/proc/exec.npk:283:// execlp* — Like execl* but search PATH (use execvp semantics)
+src/proc/fork.npk:72:
+src/proc/fork.npk:100:
+src/io/open.npk:72:    Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode, 0i64, 0i64, 0i64);
+src/io/open.npk:100:
+src/io/dup.npk:72:// For redirecting stdin/stdout/stderr before exec() this is correct behavior
+src/io/dup.npk:100://        Pass 0 for no flags (same @cast_unchecked<dup2>(behavior), but fd must != newfd).
+src/io/bio/fprintf.npk:72:    drop(str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt));
+src/io/bio/fprintf.npk:100:    pass fprintf1(stdout_fp, fmt, a0);
+src/io/bio/fprintf.npk:226:};
+src/io/bio/fprintf.npk:268:};
+src/io/bio/fprintf.npk:283:
+src/io/bio/fseek.npk:72:        int64:buffered_ahead = f.buf_len - f.buf_pos;
+src/io/bio/fseek.npk:100:
+src/io/bio/stdfiles.npk:72:    FILE->:sin = @cast_unchecked<FILE->>(@g_stdin_file);
+src/io/bio/stdfiles.npk:100:    } else {
+src/io/bio/fio.npk:72:    int64:dst         = buf;
+src/io/bio/fio.npk:100:        } else {
+src/io/bio/fio.npk:226:        // For line-buffered: scan for '\n' within the copy range
+src/io/bio/fio.npk:268:// fflush(0 / NULL): at v0.5.3, this is a no-op (no global stream list yet).
+src/io/bio/fio.npk:283:    if (f.fd < 0i64) {
+src/io/bio/tmpfile.npk:72:    int64:pid = pid_r.value;
+src/io/bio/tmpfile.npk:100:    int64:i = 0i64;
+src/io/bio/tmpfile.npk:226:        }
+src/io/bio/tmpfile.npk:268:    int64:fp = fdopen(fd, @cast_unchecked<int64>(@"w+b"));
+src/io/bio/tmpfile.npk:283://
+src/io/bio/fchar.npk:72:        pass ch;
+src/io/bio/fchar.npk:100:        if (r.is_error || r.value == 0i64) {
+src/io/bio/fchar.npk:226:    }
+src/io/bio/bio.npk:72:use "src/io/bio/fscanf.npk".*;
+src/io/bio/fstr.npk:72:        }
+src/io/bio/fstr.npk:100:    }
+src/io/bio/fscanf.npk:72:            pass -1i64;  // EOF = end of string
+src/io/bio/fscanf.npk:100:        int64:c = bio_scan_getc(src);
+src/io/bio/fscanf.npk:226:        if (c == 32i64 || c == 9i64 || c == 10i64 ||
+src/io/bio/fscanf.npk:268:        if (ch != 37u8) {  // not '%' — literal character match
+src/io/bio/fscanf.npk:283:                first = false;
+src/io/bio/strerror.npk:72:    { 18i64,  @cast_unchecked<int64>(@"Invalid cross-device link") },         // EXDEV
+src/io/bio/strerror.npk:100:    { 67i64,  @cast_unchecked<int64>(@"Link has been severed") },             // ENOLINK
+src/io/bio/fstate.npk:72:// Must be called BEFORE any I/O on fp (typically right after fopen).
+src/io/bio/fstate.npk:100:        f.flags   = f.flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
+src/io/bio/fopen.npk:72:    // Allocate buffer
+src/io/bio/fopen.npk:100:        pass 0i64;
+src/io/bio/fopen.npk:226:            if (buf_owned) { bio_free_buf(f.buf, f.buf_cap); }
+src/io/bio/fopen.npk:268:    FILE->:f = @cast_unchecked<FILE->>(fp);
+src/io/bio/fopen.npk:283:    bool:is_std = (fd == 0i64 || fd == 1i64 || fd == 2i64);
+src/io/bio/file.npk:72:
+src/io/bio/file.npk:100:pub fixed int64:FILE_FLAG_ERROR     = 0x02i64;  // error indicator (cleared by clearerr)
+src/io/bio/file.npk:226:
+src/io/bio/file.npk:268:
+src/io/bio/file.npk:283:    if (has_b) {
+src/io/seek.npk:72:// Equivalent to lseek(fd, 0, SEEK_CUR).
+src/io/seek.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/io/write.npk:72:            }
+src/io/write.npk:100:
+src/io/pipe.npk:72:};
+src/io/pipe.npk:100:
+src/io/printf.npk:72:// ────────────────────────────────────────────────────────────────────────────
+src/io/printf.npk:100:pub func:io_printf2 = int64(int64:fmt, int64:a0, int64:a1) {
+src/io/printf.npk:226:    stack uint8[4096]:buf;
+src/io/printf.npk:268://
+src/io/printf.npk:283:};
+src/io/fcntl.npk:72:pub func:io_get_status_flags = int64(int64:fd) {
+src/io/fcntl.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/io/fcntl.npk:226:
+src/io/read.npk:72:    }
+src/io/read.npk:100:// io_read_exact — Alias for io_read_n (explicit naming convention).
+src/io/read.npk:226:        uint8:c = one[0];
+src/io/read.npk:268:    }
+src/fs/path.npk:72:        pass 0i64;   // empty string is relative
+src/fs/path.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/fs/path.npk:226:
+src/fs/path.npk:268:
+src/fs/path.npk:283:        pass 1i64;
+src/mem/slab.npk:72:fixed int64:SLAB_CLASS_SIZE_9  = 4096i64;
+src/mem/slab.npk:100://
+src/mem/slab.npk:226:        int64:slot_start = slab_base + j * slot_full;
+src/mem/slab.npk:268:
+src/mem/slab.npk:283:        head = slab_freelist_get(cls);
+src/mem/memcpy.npk:72:        int64:word = 0i64;
+src/mem/memcpy.npk:100:// uint8 written (i.e., the next write position in dst). This is useful for
+src/mem/memcpy.npk:226:    }
+src/mem/memutil.npk:72:
+src/mem/memutil.npk:100:        if (va != vb) {
+src/mem/memutil.npk:226:        wi = wi + 1i64;
+src/mem/memutil.npk:268:// mem_memmem — Find first occurrence of needle[0..nlen) in haystack[0..hlen).
+src/mem/memutil.npk:283:    // Vacuous needle: matches at the start (POSIX behavior)
+src/mem/memset.npk:72:
+src/mem/memset.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/mem/mmap.npk:72:// Examples: 0→0, 1→4096, 4096→4096, 4097→8192
+src/mem/mmap.npk:100:
+src/mem/mmap.npk:226:    if (r.is_error) { fail r.error; }
+src/mem/mmap.npk:268:        fail new_r.error;
+src/mem/mmap.npk:283:        si = si + 1i64;
+src/str/strtok.npk:72:    // Skip leading delimiters
+src/str/strtok.npk:100:};
+src/str/strtok.npk:226:        }
+src/str/strtok.npk:268:                    len = len - 1i64;
+src/str/strtok.npk:283:
+src/str/strview.npk:72:        sv.len = 0i64;
+src/str/strview.npk:100:};
+src/str/strview.npk:226:pub func:strview_starts_with = bool(int64:sv, int64:prefix) {
+src/str/strview.npk:268:        drop(strview_substr(sv, p.len, -1i64, out));
+src/str/strview.npk:283:        drop(strview_substr(sv, plen, -1i64, out));
+src/str/strcpy.npk:72:    d[i] = 0u8;
+src/str/strcpy.npk:100:    uint8->:s = @cast_unchecked<uint8->>(src);
+src/str/strchr.npk:72:        if (p[i] == target) {
+src/str/strchr.npk:100:    int64:i = 0i64;
+src/str/strchr.npk:226:// A 256-bit (32-uint8) bitvector indexed by ASCII uint8 value.
+src/str/strchr.npk:268:
+src/str/strchr.npk:283:// str_strspn — Return length of initial segment of s consisting of chars in accept.
+src/str/strfmt.npk:72:// fmt_pad — Write n copies of pad_char
+src/str/strfmt.npk:100:    }
+src/str/strfmt.npk:226:                while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+src/str/strfmt.npk:268:            if (precision >= 0i64 && slen > precision) {
+src/str/strfmt.npk:283:        if (spec == 120u8 || spec == 88u8) { num_base = 16i64; }  // 'x' or 'X'
+src/str/strlcpy.npk:72:// Returns:
+src/str/strlcpy.npk:100:    }
+src/str/strconv.npk:72:
+src/str/strconv.npk:100:    if (base == 0i64) {
+src/str/strconv.npk:226:        }
+src/str/strconv.npk:268://   - Overflow/underflow.
+src/str/strconv.npk:283:        drop(libn_errno_set(0i64));
+src/str/strlen.npk:72:    while (!(raw has_zero_uint8(pw[wi]))) {
+src/str/strlen.npk:100:
+src/str/strcmp.npk:72:    if (a == 0i64) {
+src/str/strcmp.npk:100:    int64:wi = 0i64;
+src/str/strcmp.npk:226:    pass 0i64;  // unreachable
+src/str/strcmp.npk:268:// str_casecmp_prefix — Case-insensitive prefix check.
+src/str/strcmp.npk:283:            pass false;
+src/str/strbuf.npk:72:    int64:required = s.len + need + 1i64;
+src/str/strbuf.npk:100:// ════════════════════════════════════════════════════════════════════════════
+src/str/strbuf.npk:226:// Returns true on success, false on OOM.
+src/str/strbuf.npk:268:
+src/str/strbuf.npk:283:// Renders a format string into a 4096-uint8 stack buffer via str_snprintfN,
+src/math/math.npk:72:// INT64_MIN case: abs(INT64_MIN) would overflow; we return @cast_unchecked<a>(INT64_MAX)
+src/math/math.npk:100:    if ((a ^ b) < 0i64) {
+src/math/math.npk:226:// ════════════════════════════════════════════════════════════════════════════
+src/math/math.npk:268:// ════════════════════════════════════════════════════════════════════════════
+src/math/math.npk:283:
+src/syscall/syscall.npk:72://   SYS_FUTEX (FUTEX_WAIT, FUTEX_WAKE, FUTEX_WAIT_PRIVATE, FUTEX_WAKE_PRIVATE),
+src/syscall/syscall.npk:100:
+src/syscall/syscall.npk:226:pub func:libn_openat = int64(int64:dirfd, int64:path, int64:flags, int64:mode) {
+src/syscall/syscall.npk:268:pub func:libn_pwrite = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+src/syscall/syscall.npk:283:pub func:libn_dup = int64(int64:fd) {
+src/syscall/syscall_numbers.npk:72:pub fixed int64:SYS_SOCKETPAIR      = 53i64;
+src/syscall/syscall_numbers.npk:100:pub fixed int64:SYS_FCHDIR          = 81i64;
+src/syscall/syscall_numbers.npk:226:pub fixed int64:SYS_IO_DESTROY      = 207i64;
+src/syscall/syscall_numbers.npk:268:pub fixed int64:SYS_REQUEST_KEY     = 249i64;
+src/syscall/syscall_numbers.npk:283:pub fixed int64:SYS_NEWFSTATAT      = 262i64;
+src/syscall/posix_constants.npk:72:
+src/syscall/posix_constants.npk:100:pub fixed int64:X_OK = 1i64;    // Test execute permission
+src/syscall/posix_constants.npk:226:
+src/syscall/posix_constants.npk:268:// SOCKET DOMAINS  (sys/socket.h AF_*)
+src/syscall/posix_constants.npk:283:pub fixed int64:AF_ROSE     = 11i64;
+src/syscall/errno.npk:72:pub fixed int64:EWOULDBLOCK = EAGAIN; // Operation would block (@cast_unchecked<EAGAIN>(same) on Linux)
+src/syscall/errno.npk:100:pub fixed int64:ENOPKG   = 65i64;   // Package not installed
+src/syscall/errno.npk:226:// Linux syscall ABI: on error, returns -errno (negative errno code).
+src/syscall/errno.npk:268:// but each literal is immutable so concurrent reads are safe.
+src/syscall/errno.npk:283:        else if (e == 9i64) { pass "Bad file descriptor"; }

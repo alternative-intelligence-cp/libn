@@ -1,0 +1,5 @@
+use "src/math/math.npk".*;
+use "src/mem/memset.npk".*;
+use "src/mem/slab.npk".*;
+use "src/proc/exit.npk".*;
+use "src/syscall/syscall.npk".*;

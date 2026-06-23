@@ -1,0 +1,6 @@
+pub func:main = int32() {
+    if (1i64 == 1i64) {
+        pass;
+    };
+    exit 0i32;
+};

@@ -1,0 +1,4 @@
+pub func:foo = int64() {
+    fixed string:s = "Hello";
+    pass 0i64;
+};

@@ -1,0 +1,17 @@
+pub func:test_sys = Result<int64>() {
+    pass 0i64;
+};
+
+pub func:test_wrapper_raw = Result<int64>() {
+    pass raw test_sys();
+};
+
+pub func:test_wrapper_no_raw = Result<int64>() {
+    pass test_sys();
+};
+
+pub func:main = int32() {
+    Result<int64>:r1 = test_wrapper_raw();
+    Result<int64>:r2 = test_wrapper_no_raw();
+    pass 0i32;
+};

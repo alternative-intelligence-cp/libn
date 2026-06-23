@@ -1,0 +1,8 @@
+pub func:foo = int64() {
+    pass 0i64;
+};
+
+pub func:main = int32() {
+    Result<int64>:r = foo();
+    exit 0;
+};

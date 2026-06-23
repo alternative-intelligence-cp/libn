@@ -1,0 +1,4 @@
+// Test stub
+pub func:test_main = int64() {
+    pass(0i64);
+}

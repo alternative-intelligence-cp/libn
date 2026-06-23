@@ -1,0 +1,8 @@
+pub func:test_sys = int64() {
+    pass 0i64;
+};
+
+pub func:main = int32() {
+    int64:x = test_sys();
+    exit 0i32;
+};

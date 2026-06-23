@@ -16,9 +16,9 @@
 //   - F_SEAL* / memfd sealing — see src/mem/ (v0.38.x)
 //   - F_ADD_SEALS / F_GET_SEALS — same
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/syscall/syscall.npk".*;
+use "../syscall/errno.npk".*;
+use "../syscall/posix_constants.npk".*;
+use "../syscall/syscall.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Descriptor flags (FD_* — per-fd, not per-open-file-description)
@@ -26,37 +26,37 @@ use "src/syscall/syscall.npk".*;
 // ════════════════════════════════════════════════════════════════════════════
 
 // io_get_cloexec — Return true if FD_CLOEXEC is set on fd.
-pub func:io_get_cloexec = Result<bool>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_get_cloexec = bool(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFD, 0i64);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
     pass (r.value & FD_CLOEXEC) != 0i64;
-}
+};
 
 // io_set_cloexec — Set or clear FD_CLOEXEC on fd.
 //
 // enable=true:  fd is closed when this process calls exec*()
 // enable=false: fd survives exec*() (inheritable — use deliberately)
-pub func:io_set_cloexec = Result<int64>(int64:fd, bool:enable) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_set_cloexec = int64(int64:fd, bool:enable) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFD, 0i64);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
     int64:flags = r.value;
-    if enable {
+    if (enable) {
         flags = flags | FD_CLOEXEC;
     } else {
         flags = flags & (0i64 - 1i64 ^ FD_CLOEXEC);
     }
     pass libn_fcntl(fd, F_SETFD, flags);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Status flags (O_* — per-open-file-description, shared between dup'd fds)
@@ -67,23 +67,23 @@ pub func:io_set_cloexec = Result<int64>(int64:fd, bool:enable) {
 //
 // Useful for querying: O_RDONLY/O_WRONLY/O_RDWR, O_NONBLOCK, O_APPEND,
 // O_ASYNC, O_DIRECT, O_SYNC, etc.
-pub func:io_get_status_flags = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_get_status_flags = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_GETFL, 0i64);
-}
+};
 
 // io_set_status_flags — Set the O_* status flags for fd.
 //
 // Note: O_RDONLY/O_WRONLY/O_RDWR, O_CREAT, O_TRUNC, O_EXCL cannot be changed
 // after open — only O_NONBLOCK, O_APPEND, O_ASYNC, O_DIRECT, O_NOATIME can.
-pub func:io_set_status_flags = Result<int64>(int64:fd, int64:flags) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_set_status_flags = int64(int64:fd, int64:flags) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_SETFL, flags);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Non-blocking I/O control
@@ -94,58 +94,58 @@ pub func:io_set_status_flags = Result<int64>(int64:fd, int64:flags) {
 // ════════════════════════════════════════════════════════════════════════════
 
 // io_set_nonblocking — Enable O_NONBLOCK on fd.
-pub func:io_set_nonblocking = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_set_nonblocking = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
-    if r.is_error { fail r.err; }
+    if (r.is_error) { fail r.error; }
     pass libn_fcntl(fd, F_SETFL, r.value | O_NONBLOCK);
-}
+};
 
 // io_set_blocking — Remove O_NONBLOCK from fd (restore blocking mode).
-pub func:io_set_blocking = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_set_blocking = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
-    if r.is_error { fail r.err; }
+    if (r.is_error) { fail r.error; }
     pass libn_fcntl(fd, F_SETFL, r.value & (0i64 - 1i64 ^ O_NONBLOCK));
-}
+};
 
 // io_is_nonblocking — Return true if fd is in non-blocking mode.
-pub func:io_is_nonblocking = Result<bool>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_is_nonblocking = bool(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
-    if r.is_error { fail r.err; }
+    if (r.is_error) { fail r.error; }
     pass (r.value & O_NONBLOCK) != 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Append mode control
 // ════════════════════════════════════════════════════════════════════════════
 
 // io_set_append — Enable O_APPEND on fd (all writes go to end of file atomically).
-pub func:io_set_append = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_set_append = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
-    if r.is_error { fail r.err; }
+    if (r.is_error) { fail r.error; }
     pass libn_fcntl(fd, F_SETFL, r.value | O_APPEND);
-}
+};
 
 // io_clear_append — Remove O_APPEND from fd.
-pub func:io_clear_append = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_clear_append = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
-    if r.is_error { fail r.err; }
+    if (r.is_error) { fail r.error; }
     pass libn_fcntl(fd, F_SETFL, r.value & (0i64 - 1i64 ^ O_APPEND));
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Fd duplication with minimum fd number
@@ -158,20 +158,20 @@ pub func:io_clear_append = Result<int64>(int64:fd) {
 //
 // The resulting fd does NOT have O_CLOEXEC.
 // Use io_dupfd_cloexec() to get a close-on-exec duplicate.
-pub func:io_dupfd = Result<int64>(int64:fd, int64:min_fd) {
-    if fd < 0i64 || min_fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dupfd = int64(int64:fd, int64:min_fd) {
+    if (fd < 0i64 || min_fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_DUPFD, min_fd);
-}
+};
 
 // io_dupfd_cloexec — Duplicate fd to lowest fd >= min_fd with O_CLOEXEC.
-pub func:io_dupfd_cloexec = Result<int64>(int64:fd, int64:min_fd) {
-    if fd < 0i64 || min_fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_dupfd_cloexec = int64(int64:fd, int64:min_fd) {
+    if (fd < 0i64 || min_fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_DUPFD_CLOEXEC, min_fd);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Signal-driven I/O
@@ -184,20 +184,20 @@ pub func:io_dupfd_cloexec = Result<int64>(int64:fd, int64:min_fd) {
 //
 // pid > 0: send SIGIO to process pid
 // pid < 0: send SIGIO to process group (-pid)
-pub func:io_fcntl_setown = Result<int64>(int64:fd, int64:pid) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_fcntl_setown = int64(int64:fd, int64:pid) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_SETOWN, pid);
-}
+};
 
 // io_fcntl_getown — Get the owner PID/PGID for SIGIO/SIGURG on fd.
-pub func:io_fcntl_getown = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_fcntl_getown = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, F_GETOWN, 0i64);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_fcntl — Raw fcntl escape hatch for operations not covered above.
@@ -206,9 +206,9 @@ pub func:io_fcntl_getown = Result<int64>(int64:fd) {
 // Examples: F_SEAL_*, F_ADD_SEALS, F_GET_PIPE_SZ, F_SET_PIPE_SZ.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_fcntl = Result<int64>(int64:fd, int64:cmd, int64:arg) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_fcntl = int64(int64:fd, int64:cmd, int64:arg) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
     pass libn_fcntl(fd, cmd, arg);
-}
+};

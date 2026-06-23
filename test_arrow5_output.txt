@@ -1,0 +1,22 @@
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: Foo@
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[DEBUG IR_GEN] Initializer generated for 'f', value = 0x5851abeea240
+[DEBUG IR_GEN] InitVal type: 0x5851abee2800
+[DEBUG IR_GEN] Default builder.CreateStore for f
+[DEBUG IR_GEN] Initializer generated for 'x', value = 0x5851abeeb9b0
+[DEBUG IR_GEN] InitVal type: 0x5851abec8628
+[DEBUG IR_GEN] Default builder.CreateStore for x
+[DEBUG IR_GEN] Initializer generated for 'y', value = 0x5851abeec460
+[DEBUG IR_GEN] InitVal type: 0x5851abec8628
+[DEBUG IR_GEN] Default builder.CreateStore for y
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[1m:2:5: [0m[1;33mwarning[0m: [1m[unused-parameter] parameter 'err' is unused in function 'failsafe'[0m
+
+[1m:6:5: [0m[1;33mwarning[0m: [1m[unused-variable] variable 'y' is declared but never used[0m
+
+[1m:5:5: [0m[1;33mwarning[0m: [1m[unused-variable] variable 'x' is declared but never used[0m
+
+[1mSummary: [0m[1;33m3 warnings[0m

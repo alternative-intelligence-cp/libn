@@ -1,0 +1,5 @@
+func:my_func = int64() { pass 5i64; };
+pub func:main = int32() {
+    Result<int64>:r = my_func();
+    exit 0i32;
+};

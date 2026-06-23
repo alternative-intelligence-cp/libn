@@ -1,0 +1,9 @@
+pub struct:FILE = {
+    int64:fd;
+};
+pub func:test = int64() {
+    pass 0i64;
+};
+func:failsafe = int32(tbb32:err) {
+    exit 1;
+};

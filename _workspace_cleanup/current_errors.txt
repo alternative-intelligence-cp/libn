@@ -1,0 +1,1301 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_uint8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_uint8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fdopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=freopen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fclose, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fseek, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ftell, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=rewind, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fsetpos, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putc, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fgets, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=has_nul_uint8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=feof, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=ferror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=clearerr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setvbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=setbuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=setlinebuf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=getchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=putchar, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=puts, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_putc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_puts_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_pad, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=render_uint, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_format_args, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_whitespace, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_hex_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=digit_val, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtol, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtoul, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_atoi, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_u64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64_base, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_utoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strndup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=to_lower_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=to_upper_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_alpha_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strcmp_has_nul, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_casecmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strerror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strerror_r, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=perror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_getc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_ungetc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_skip_ws, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_scan_int, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_scan_engine, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=sscanf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=scanf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=scanf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=tmpfile_get_entropy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=tmpfile_fill_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mkstemp, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mkostemp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mkdtemp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=tmpfile, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=tmpnam, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_open, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_open_inheritable, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_openat, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_creat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_close, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_close_nointr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_open_tmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: FILE@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 5: Cannot silently unwrap Result<int64> into 'ret' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 9: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 27: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 83, Column 14: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 5: Cannot silently unwrap Result<int64> into 'ret' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 9: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 27: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 14: Undefined identifier: 'ret'. Did you mean 'a5'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 77: Bitwise operators require same integer type on both sides. Got 'int64' and 'uint8'.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 196, Column 34: Argument 1 has type 'int64', but function expects 'uint8'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 196, Column 5: Cannot silently unwrap Result<int64> into 'tword' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 213, Column 28: Undefined identifier: 'tword'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 31: Undefined identifier: 'v'. Did you mean 'i'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 5: Cannot silently unwrap Result<int64> into 'new_total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 61: Undefined identifier: 'new_total'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 256, Column 10: Undefined identifier: 'rr'. Did you mean 'hdr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 267, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 270, Column 9: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 277, Column 36: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 280, Column 9: Undefined identifier: 'head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 296, Column 22: Undefined identifier: 'head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 297, Column 49: Undefined identifier: 'user_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 18: Undefined identifier: 'next_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 28: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 5: Undefined identifier: 'next_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 307, Column 10: Undefined identifier: 'user_ptr'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 5: Cannot silently unwrap Result<int64> into 'old_head' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 345, Column 19: Undefined identifier: 'old_head'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 355, Column 5: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 356, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 359, Column 17: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 363, Column 5: Cannot silently unwrap Result<int64> into 'cls' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 364, Column 34: Undefined identifier: 'cls'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 365, Column 45: Undefined identifier: 'ptr'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 367, Column 17: Undefined identifier: 'sz'. Did you mean 'zi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 372, Column 10: Undefined identifier: 'ptr'. Did you mean 'zi'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 10: Undefined identifier: 'compiler_fence'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 107, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 16: Undefined identifier: 'bio_alloc_file'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 132, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 9: Undefined identifier: 'init_r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 140, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 163, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 164, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 16: Undefined identifier: 'bio_alloc_file'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 170, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 175, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 176, Column 9: Undefined identifier: 'init_r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 205, Column 22: Undefined identifier: 'bio_parse_mode'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 206, Column 9: Undefined identifier: 'parse_ok'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 14: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 226, Column 30: Undefined identifier: 'bio_free_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 296, Column 14: Undefined identifier: 'bio_free_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 14: Undefined identifier: 'bio_free_file'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 63, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 64, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 44: Undefined identifier: 'SYS_READ'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 112, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 43: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 117, Column 36: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 118, Column 43: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 121, Column 35: Undefined identifier: 'bio_refill_read_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 122, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 21: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 40: Undefined identifier: 'SYS_WRITE'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 179, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 185, Column 42: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 36: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 46: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 199, Column 31: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 200, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 208, Column 41: Undefined identifier: 'SYS_WRITE'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 209, Column 17: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 42: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 36: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 217, Column 46: Undefined identifier: 'wr'. Did you mean 'src'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 245, Column 22: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 289, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 290, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 296, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 61, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 86, Column 32: Undefined identifier: 'SYS_LSEEK'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 9: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 93, Column 18: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 156, Column 14: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 19: Undefined identifier: 'SYS_LSEEK'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 5: Cannot silently unwrap Result<int64> into 'p' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 188, Column 9: Undefined identifier: 'p'. Did you mean 'fp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 192, Column 42: Undefined identifier: 'p'. Did you mean 'fp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 61, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 40: Undefined identifier: 'SYS_READ'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 85, Column 17: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 98, Column 27: Undefined identifier: 'bio_refill_read_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 13: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 27: Undefined identifier: 'r'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 14: Undefined identifier: 'bio_discard_read_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 145, Column 40: Undefined identifier: 'SYS_WRITE'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 146, Column 17: Undefined identifier: 'r'. Did you mean 'b'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 161, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 162, Column 13: Undefined identifier: 'r'. Did you mean 'b'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 27: Undefined identifier: 'bio_flush_write_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 175, Column 13: Undefined identifier: 'r'. Did you mean 'b'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 62, Column 20: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 72, Column 17: Undefined identifier: 'has_nul_byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 105, Column 35: Bitwise operators require same integer type on both sides. Got 'int64' and 'bool'.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 35: Undefined identifier: 'has_nul_byte'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 63, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 65, Column 13: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 74, Column 45: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 13: Undefined identifier: 'c'. Did you mean 'f'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 9: Cannot silently unwrap Result<int64> into 'c' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 13: Undefined identifier: 'c'. Did you mean 'p'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 97, Column 14: Undefined identifier: 'bio_free_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 24: Undefined identifier: 'bio_alloc_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 13: Undefined identifier: 'newbuf'. Did you mean 'buf'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 130, Column 21: Undefined identifier: 'newbuf'. Did you mean 'buf'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 72, Column 19: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'FILE@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 73, Column 5: Undefined identifier: 'sin'. Did you mean 'main'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 74, Column 5: Undefined identifier: 'sin'. Did you mean 'main'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 75, Column 5: Undefined identifier: 'sin'. Did you mean 'main'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 76, Column 5: Undefined identifier: 'sin'. Did you mean 'main'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 77, Column 5: Undefined identifier: 'sin'. Did you mean 'main'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 78, Column 23: Undefined identifier: 'bio_alloc_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 9: Undefined identifier: 'stdin_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 86, Column 17: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 89, Column 20: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'FILE@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 90, Column 5: Undefined identifier: 'sout'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 91, Column 5: Undefined identifier: 'sout'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 92, Column 5: Undefined identifier: 'sout'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 93, Column 5: Undefined identifier: 'sout'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 94, Column 5: Undefined identifier: 'sout'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 95, Column 24: Undefined identifier: 'bio_alloc_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 96, Column 9: Undefined identifier: 'stdout_buf'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 103, Column 18: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 106, Column 20: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'FILE@'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 107, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 109, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 110, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 111, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 112, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 113, Column 5: Undefined identifier: 'serr'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 114, Column 18: @cast supports numeric types and pointer types only. Cannot cast 'FILE' to 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 138, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 139, Column 9: Undefined identifier: 'r'. Did you mean 's'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 163, Column 5: Cannot silently unwrap Result<int64> into 'r1' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 164, Column 5: Cannot silently unwrap Result<int64> into 'r2' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 5: Cannot silently unwrap Result<int64> into 'r3' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 9: Undefined identifier: 'r1'. Did you mean 'sys1'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 27: Undefined identifier: 'r2'. Did you mean 'sys2'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 45: Undefined identifier: 'r3'. Did you mean 'sys3'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 171, Column 5: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 172, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 177, Column 21: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 179, Column 10: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 204, Column 5: Cannot initialize variable 'r' of type 'Result<int64>' with value of type 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 205, Column 9: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 210, Column 21: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 211, Column 31: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 213, Column 10: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 283, Column 14: Undefined identifier: 'errno_clear'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 14: Undefined identifier: 'errno_clear'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 337, Column 14: Undefined identifier: 'errno_clear'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 86, Column 70: Cannot index non-array type 'string'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 70: Cannot index non-array type 'string'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 263, Column 56: Cannot index non-array type 'string'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 10: Undefined identifier: 'str_snprintf5'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 236, Column 10: Undefined identifier: 'str_snprintf7'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 301, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 302, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 303, Column 10: Undefined identifier: 'mem_memcpy'. Did you mean 'mem_memchr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 313, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 315, Column 10: Undefined identifier: 'mem_memcpy'. Did you mean 'mem_memchr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 317, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 325, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 326, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 327, Column 10: Undefined identifier: 'mem_memcpy'. Did you mean 'mem_memchr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 329, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 338, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 339, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 340, Column 10: Undefined identifier: 'mem_memcpy'. Did you mean 'mem_memchr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 351, Column 19: Undefined identifier: 'mem_malloc'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 352, Column 9: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 353, Column 10: Undefined identifier: 'mem_memcpy'. Did you mean 'mem_memchr'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 355, Column 10: Undefined identifier: 'p'. Did you mean 'tmp'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 54, Column 15: Cannot cast between non-numeric types 'string' and 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 152, Column 12: Undefined identifier: 'errno_table'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 21: Undefined identifier: 'str_int64_to_dec'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 96: Undefined identifier: 'num_len'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 72, Column 31: Function expects 7 argument(s), but 4 provided[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 73, Column 9: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 74, Column 10: Undefined identifier: 'r'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 268, Column 27: Cannot cast between non-numeric types 'string' and 'int64'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 269, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+
+[1mSummary: [0m[1;31m208 errors[0m

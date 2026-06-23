@@ -1,0 +1,7 @@
+use "test9_a.npk".*;
+pub func:strcpy = int64() {
+    int64:alloc_size = 42i64;
+    Result<int64>:r = slab_alloc(alloc_size);
+    if (r.is_error) { fail r.error; }
+    pass r.value;
+};

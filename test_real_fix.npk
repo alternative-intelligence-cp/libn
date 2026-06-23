@@ -1,0 +1,8 @@
+struct:Foo = { int64:bar; };
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+func:main = int32() {
+    Foo->:f = @cast_unchecked<Foo->>(0i64);
+    f.bar = 10i64;
+    f->bar = 10i64;
+    pass 0i32;
+};

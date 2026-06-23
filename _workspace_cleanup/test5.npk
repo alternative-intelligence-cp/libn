@@ -1,0 +1,15 @@
+pub func:some_other = int64() { pass 0i64; };
+
+pub func:my_func = int64(int64:n) {
+    if (n < 0i64) { fail 1tbb8; }
+    Result<int64>:x = some_other();
+    if (x.is_error) { fail x.error; }
+    pass n;
+};
+
+pub func:my_caller = int64() {
+    Result<int64>:r = my_func(42i64);
+    if (r.is_error) { fail r.error; }
+    int64:n = r.value;
+    pass n;
+};

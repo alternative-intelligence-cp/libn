@@ -1,0 +1,28 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_ptr2.npk:6:16: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '@'[0m
+    6 |     int64:z = f@bar;
+                       [1;32m^[0m
+
+[1mtest_ptr2.npk:7:17: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '.'[0m
+    7 |     int64:w = f^.bar;
+                        [1;32m^[0m
+
+[1mtest_ptr2.npk:7:17: [0m[1;31merror[0m: [1m  Expected expression after operator
+  Found: token '.'[0m
+    7 |     int64:w = f^.bar;
+                        [1;32m^[0m
+
+[1mtest_ptr2.npk:7:17: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '.'[0m
+    7 |     int64:w = f^.bar;
+                        [1;32m^[0m
+
+[1mtest_ptr2.npk:7:17: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '.'[0m
+    7 |     int64:w = f^.bar;
+                        [1;32m^[0m
+
+[1mSummary: [0m[1;31m5 errors[0m

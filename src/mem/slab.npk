@@ -8,7 +8,7 @@
 //   Each size class maintains a singly-linked freelist of available slots.
 //   When the freelist is empty, a new slab page is mmap'd and carved into slots.
 //
-//   Slab page layout (one 4096-byte page per refill):
+//   Slab page layout (one 4096-uint8 page per refill):
 //     [slot_0][slot_1]...[slot_N-1]
 //   No per-slab metadata on the page itself — the slot_size and page_start
 //   are recoverable from the SLAB_GLOBAL table indexed by slot pointer.
@@ -21,17 +21,17 @@
 //   [next_ptr:8][canary:8][... user data ...]
 //    (canary is checked on free to detect overwrites)
 //
-//   Actually, to keep the header as small as possible, the canary is only
+//   Actually, to keep the header as @cast_unchecked<possible>(small), the canary is only
 //   present in debug builds. In release, the layout is:
 //   [user data ...]  (no header — the slot_class is recoverable from the global table)
 //
 // Wait — for free() to work correctly, we need to know which size class a
 // pointer belongs to. Options:
 //   1. Store class index in the pointer (low bits — only works if alignment is right)
-//   2. Store class index before the user data (1 byte header)
+//   2. Store class index before the user data (1 uint8 header)
 //   3. Use a global page → class lookup table
 //
-// We choose option 2 (1-byte header) for correctness and simplicity.
+// We choose option 2 (1-uint8 header) for correctness and simplicity.
 // This means each "user pointer" is actually (slot_start + 1) and we read
 // slot_start[0] to get the class index on free().
 //
@@ -39,7 +39,7 @@
 //   [class_idx:1][user data...]
 //   ^slot_start   ^user pointer (returned to caller)
 //
-// This wastes 1 byte per allocation. For the 8-byte class, effective payload = 7.
+// This wastes 1 uint8 per allocation. For the 8-uint8 class, effective payload = 7.
 // This is acceptable at v0.2.2. The tcmalloc-style allocator in v0.21.x will
 // use a smarter approach with thread-local caches and no per-slot header.
 //
@@ -47,9 +47,9 @@
 // Thread safety will be added in v0.21.x (per-thread cache + mutex on central list).
 // For now, libn is single-threaded through v0.13.x.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/mem/mmap.npk".*;
+use "../syscall/errno.npk".*;
+use "../syscall/posix_constants.npk".*;
+use "../mem/mmap.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // SIZE CLASS TABLE
@@ -58,7 +58,7 @@ use "src/mem/mmap.npk".*;
 // Number of size classes
 pub fixed int64:SLAB_CLASS_COUNT = 10i64;
 
-// Size of each class (in bytes — user payload excluding 1-byte header)
+// Size of each class (in bytes — user payload excluding 1-uint8 header)
 // Class 0: 8 bytes, class 1: 16, ..., class 9: 4096
 fixed int64:SLAB_CLASS_SIZE_0  = 8i64;
 fixed int64:SLAB_CLASS_SIZE_1  = 16i64;
@@ -83,17 +83,17 @@ fixed int64:SLAB_SLOTS_PER_PAGE_4 = 31i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_5 = 15i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_6 = 7i64;
 fixed int64:SLAB_SLOTS_PER_PAGE_7 = 3i64;
-fixed int64:SLAB_SLOTS_PER_PAGE_8 = 1i64;   // 2 pages needed (2048 + 1 header > page)
-fixed int64:SLAB_SLOTS_PER_PAGE_9 = 0i64;   // Handled by large-object path (direct mmap)
+fixed int64:SLAB_SLOTS_PER_PAGE_8 = 1i64;     // 2 pages needed (2048 + 1 header > page)
+fixed int64:SLAB_SLOTS_PER_PAGE_9 = 0i64;     // Handled by large-object path (direct mmap)
 
-// Header byte placed before each slot's user data.
+// Header uint8 placed before each slot's user data.
 // Stores the class index (0-9) so free() can identify the class.
 pub fixed int64:SLAB_HEADER_SIZE = 1i64;
 
 // Slab class 9 (4096 bytes) is above the 2-page threshold for inline slabs.
 // Allocations of exactly 4096 bytes go through the direct-mmap allocator instead.
-pub fixed int64:SLAB_MAX_CLASS = 8i64;      // inclusive upper class index for slab
-pub fixed int64:SLAB_MAX_SIZE  = 2048i64;   // max payload in bytes via slab path
+pub fixed int64:SLAB_MAX_CLASS = 8i64;        // inclusive upper class index for slab
+pub fixed int64:SLAB_MAX_SIZE  = 2048i64;     // max payload in bytes via slab path
 
 // ════════════════════════════════════════════════════════════════════════════
 // GLOBAL FREELIST TABLE
@@ -120,142 +120,142 @@ int64:g_slab_freelist_8  = 0i64;
 // slab_class_for_size — Return the size class index for a given user payload.
 // Returns SLAB_CLASS_COUNT (10) if n > SLAB_MAX_SIZE (use direct mmap instead).
 func:slab_class_for_size = int64(int64:n) {
-    if n <= 8i64    { pass 0i64; }
-    if n <= 16i64   { pass 1i64; }
-    if n <= 32i64   { pass 2i64; }
-    if n <= 64i64   { pass 3i64; }
-    if n <= 128i64  { pass 4i64; }
-    if n <= 256i64  { pass 5i64; }
-    if n <= 512i64  { pass 6i64; }
-    if n <= 1024i64 { pass 7i64; }
-    if n <= 2048i64 { pass 8i64; }
-    pass SLAB_CLASS_COUNT;  // → direct mmap
-}
+    if (n <= 8i64) { pass 0i64; }
+    if (n <= 16i64) { pass 1i64; }
+    if (n <= 32i64) { pass 2i64; }
+    if (n <= 64i64) { pass 3i64; }
+    if (n <= 128i64) { pass 4i64; }
+    if (n <= 256i64) { pass 5i64; }
+    if (n <= 512i64) { pass 6i64; }
+    if (n <= 1024i64) { pass 7i64; }
+    if (n <= 2048i64) { pass 8i64; }
+    pass SLAB_CLASS_COUNT;    // → direct mmap
+};
 
 // slab_class_size — Return the payload capacity for class i.
 func:slab_class_size = int64(int64:i) {
-    pick i {
-        0i64 => pass 8i64;
-        1i64 => pass 16i64;
-        2i64 => pass 32i64;
-        3i64 => pass 64i64;
-        4i64 => pass 128i64;
-        5i64 => pass 256i64;
-        6i64 => pass 512i64;
-        7i64 => pass 1024i64;
-        8i64 => pass 2048i64;
-        _    => pass 0i64;
+    pick (i) {
+        (0i64) { pass 8i64; },
+        (1i64) { pass 16i64; },
+        (2i64) { pass 32i64; },
+        (3i64) { pass 64i64; },
+        (4i64) { pass 128i64; },
+        (5i64) { pass 256i64; },
+        (6i64) { pass 512i64; },
+        (7i64) { pass 1024i64; },
+        (8i64) { pass 2048i64; },
+        (*) { pass 0i64; }
     }
-}
+};
 
 // slab_class_slots — Return slots per slab page for class i.
 func:slab_class_slots = int64(int64:i) {
-    pick i {
-        0i64 => pass SLAB_SLOTS_PER_PAGE_0;
-        1i64 => pass SLAB_SLOTS_PER_PAGE_1;
-        2i64 => pass SLAB_SLOTS_PER_PAGE_2;
-        3i64 => pass SLAB_SLOTS_PER_PAGE_3;
-        4i64 => pass SLAB_SLOTS_PER_PAGE_4;
-        5i64 => pass SLAB_SLOTS_PER_PAGE_5;
-        6i64 => pass SLAB_SLOTS_PER_PAGE_6;
-        7i64 => pass SLAB_SLOTS_PER_PAGE_7;
-        8i64 => pass SLAB_SLOTS_PER_PAGE_8;
-        _    => pass 0i64;
+    pick (i) {
+        (0i64) { pass SLAB_SLOTS_PER_PAGE_0; },
+        (1i64) { pass SLAB_SLOTS_PER_PAGE_1; },
+        (2i64) { pass SLAB_SLOTS_PER_PAGE_2; },
+        (3i64) { pass SLAB_SLOTS_PER_PAGE_3; },
+        (4i64) { pass SLAB_SLOTS_PER_PAGE_4; },
+        (5i64) { pass SLAB_SLOTS_PER_PAGE_5; },
+        (6i64) { pass SLAB_SLOTS_PER_PAGE_6; },
+        (7i64) { pass SLAB_SLOTS_PER_PAGE_7; },
+        (8i64) { pass SLAB_SLOTS_PER_PAGE_8; },
+        (*) { pass 0i64; }
     }
-}
+};
 
 // slab_freelist_get — Return the current freelist head for class i.
 func:slab_freelist_get = int64(int64:i) {
-    pick i {
-        0i64 => pass g_slab_freelist_0;
-        1i64 => pass g_slab_freelist_1;
-        2i64 => pass g_slab_freelist_2;
-        3i64 => pass g_slab_freelist_3;
-        4i64 => pass g_slab_freelist_4;
-        5i64 => pass g_slab_freelist_5;
-        6i64 => pass g_slab_freelist_6;
-        7i64 => pass g_slab_freelist_7;
-        8i64 => pass g_slab_freelist_8;
-        _    => pass 0i64;
+    pick (i) {
+        (0i64) { pass g_slab_freelist_0; },
+        (1i64) { pass g_slab_freelist_1; },
+        (2i64) { pass g_slab_freelist_2; },
+        (3i64) { pass g_slab_freelist_3; },
+        (4i64) { pass g_slab_freelist_4; },
+        (5i64) { pass g_slab_freelist_5; },
+        (6i64) { pass g_slab_freelist_6; },
+        (7i64) { pass g_slab_freelist_7; },
+        (8i64) { pass g_slab_freelist_8; },
+        (*) { pass 0i64; }
     }
-}
+};
 
 // slab_freelist_set — Set the freelist head for class i to val.
-func:slab_freelist_set = void(int64:i, int64:val) {
-    pick i {
-        0i64 => { g_slab_freelist_0 = val; }
-        1i64 => { g_slab_freelist_1 = val; }
-        2i64 => { g_slab_freelist_2 = val; }
-        3i64 => { g_slab_freelist_3 = val; }
-        4i64 => { g_slab_freelist_4 = val; }
-        5i64 => { g_slab_freelist_5 = val; }
-        6i64 => { g_slab_freelist_6 = val; }
-        7i64 => { g_slab_freelist_7 = val; }
-        8i64 => { g_slab_freelist_8 = val; }
-        _    => {}
+func:slab_freelist_set = NIL(int64:i, int64:val) {
+    pick (i) {
+        (0i64) { g_slab_freelist_0 = val; },
+        (1i64) { g_slab_freelist_1 = val; },
+        (2i64) { g_slab_freelist_2 = val; },
+        (3i64) { g_slab_freelist_3 = val; },
+        (4i64) { g_slab_freelist_4 = val; },
+        (5i64) { g_slab_freelist_5 = val; },
+        (6i64) { g_slab_freelist_6 = val; },
+        (7i64) { g_slab_freelist_7 = val; },
+        (8i64) { g_slab_freelist_8 = val; },
+        (*) {}
     }
-}
+};
 
 // slab_refill — Allocate a new slab page and carve it into slots.
 // Links all slots into the freelist for class i.
-// For class 8 (2048-byte slots), we need 2 pages (8192 bytes).
+// For class 8 (2048-uint8 slots), we need 2 pages (8192 bytes).
 // Returns 0 on success, non-zero on mmap failure.
-func:slab_refill = Result<int64>(int64:i) {
-    int64:slot_full = slab_class_size(i) + SLAB_HEADER_SIZE;  // header + payload
-    int64:slots     = slab_class_slots(i);
+func:slab_refill = int64(int64:i) {
+    int64:slot_full = slab_class_size(i) + SLAB_HEADER_SIZE;    // header + payload
+    int64:slots     = raw slab_class_slots(i);
 
-    if slots == 0i64 {
-        fail ERR_BADARG as tbb8;  // class 9+ should not reach here
+    if (slots == 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);    // class 9+ should not reach here
     }
 
-    // Pages needed: for class 8, slots=1 and slot_full=2049 → need 2 pages
+      // Pages needed: for class 8, slots=1 and slot_full=2049 → need 2 pages
     int64:n_pages = 1i64;
-    if slot_full > PAGE_SIZE {
+    if (slot_full > PAGE_SIZE) {
         n_pages = (slot_full + PAGE_SIZE - 1i64) / PAGE_SIZE;
     }
     int64:slab_size = n_pages * PAGE_SIZE;
 
     Result<int64>:r = libn_mmap(0i64, slab_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
-    if r.is_error {
-        fail r.err;
+    if (r.is_error) {
+        fail r.error;
     }
     int64:slab_base = r.value;
 
-    // Carve the slab into slots and link into freelist.
-    // Freelist is threaded through the first 8 bytes of each free slot
-    // (past the 1-byte header). The header byte stores the class index.
-    int64:prev_next_ptr = 0i64;  // 0 = list head (first slot)
+      // Carve the slab into slots and link into freelist.
+      // Freelist is threaded through the first 8 bytes of each free slot
+      // (past the 1-uint8 header). The header uint8 stores the class index.
+    int64:prev_next_ptr = 0i64;    // 0 = list head (first slot)
     int64:j = 0i64;
-    while j < slots {
+    while (j < slots) {
         int64:slot_start = slab_base + j * slot_full;
-        *byte:hdr_byte = slot_start as *byte;
-        hdr_byte[0] = i as byte;  // class index in header byte
+        uint8->:hdr_byte = @cast_unchecked<uint8->>(slot_start);
+        hdr_byte[0] = @cast_unchecked<uint8>(i);    // class index in header uint8
 
-        // The 8 bytes after the header are the freelist "next" pointer.
-        // On first carve, all slots are free, so we link them forward.
+          // The 8 bytes after the header are the freelist "next" pointer.
+          // On first carve, all slots are free, so we link them forward.
         int64:next_ptr_addr = slot_start + SLAB_HEADER_SIZE;
-        *int64:next_ptr = next_ptr_addr as *int64;
-        next_ptr[0] = 0i64;  // will be overwritten as we link
+        int64->:next_ptr = @cast_unchecked<int64->>(next_ptr_addr);
+        next_ptr[0] = 0i64;    // will be @cast_unchecked<we>(overwritten) link
 
-        if j == 0i64 {
-            // First slot: update the global freelist head to point here.
-            // (We'll fix up the chain after the loop, or do it inline)
-            slab_freelist_set(i, slot_start);
+        if (j == 0i64) {
+              // First slot: update the global freelist head to point here.
+              // (We'll fix up the chain after the loop, or do it inline)
+            drop slab_freelist_set(i, slot_start);
         }
 
-        // Link previous slot's "next" to this slot.
-        if prev_next_ptr != 0i64 {
-            *int64:prev = prev_next_ptr as *int64;
+          // Link previous slot's "next" to this slot.
+        if (prev_next_ptr != 0i64) {
+            int64->:prev = @cast_unchecked<int64->>(prev_next_ptr);
             prev[0] = slot_start;
         }
         prev_next_ptr = next_ptr_addr;
 
         j = j + 1i64;
     }
-    // Last slot's "next" pointer is already 0 (end of freelist).
+      // Last slot's "next" pointer is already 0 (end of freelist).
 
     pass 0i64;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // PUBLIC SLAB ALLOCATOR API
@@ -265,113 +265,113 @@ func:slab_refill = Result<int64>(int64:i) {
 // For n > SLAB_MAX_SIZE, falls back to mem_malloc (direct mmap with header).
 // Returns pointer to usable memory (zero-initialized because mmap).
 // Returns error on out-of-memory.
-pub func:slab_alloc = Result<int64>(int64:n) {
-    if n <= 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:slab_alloc = int64(int64:n) {
+    if (n <= 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    int64:cls = slab_class_for_size(n);
+    int64:cls = raw slab_class_for_size(n);
 
-    // Large allocation: direct mmap path
-    if cls >= SLAB_CLASS_COUNT {
+      // Large allocation: direct mmap path
+    if (cls >= SLAB_CLASS_COUNT) {
         Result<int64>:r = mem_malloc(n);
-        pass r;
+        return r;
     }
 
-    // Get freelist head for this class
-    int64:head = slab_freelist_get(cls);
+      // Get freelist head for this class
+    int64:head = raw slab_freelist_get(cls);
 
-    // Freelist empty → refill from a new slab page
-    if head == 0i64 {
+      // Freelist empty → refill from a new slab page
+    if (head == 0i64) {
         Result<int64>:rr = slab_refill(cls);
-        if rr.is_error {
-            fail rr.err;
+        if (rr.is_error) {
+            fail rr.error;
         }
-        head = slab_freelist_get(cls);
-        if head == 0i64 {
-            // Should not happen after successful refill, but guard anyway
-            fail ENOMEM as tbb8;
+        head = raw slab_freelist_get(cls);
+        if (head == 0i64) {
+              // Should not happen after successful refill, but guard anyway
+            fail @cast_unchecked<tbb32>(ENOMEM);
         }
     }
 
-    // Pop from freelist:
-    //   head = slot_start (the 1-byte-header slot)
-    //   user_ptr = head + SLAB_HEADER_SIZE
-    //   next = *int64(head + SLAB_HEADER_SIZE)  — the next freelist slot
+      // Pop from freelist:
+      //   head = slot_start (the 1-uint8-header slot)
+      //   user_ptr = head + SLAB_HEADER_SIZE
+      //   next = *int64(head + SLAB_HEADER_SIZE)  — the next freelist slot
     int64:user_ptr = head + SLAB_HEADER_SIZE;
-    *int64:next_ptr = user_ptr as *int64;
+    int64->:next_ptr = @cast_unchecked<int64->>(user_ptr);
     int64:next = next_ptr[0];
 
-    // Advance freelist head
-    slab_freelist_set(cls, next);
+      // Advance freelist head
+    drop slab_freelist_set(cls, next);
 
-    // Clear the "next" pointer field before handing to user
-    // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
+      // Clear the "next" pointer field before handing to user
+      // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
     next_ptr[0] = 0i64;
 
     pass user_ptr;
-}
+};
 
 // slab_free — Return a slab-allocated pointer to the freelist.
 // For large allocations (not from slab), delegates to mem_free().
 // Passing NULL (0) is a no-op. Passing an invalid pointer is undefined.
-pub func:slab_free = Result<int64>(int64:ptr) {
-    if ptr == 0i64 {
+pub func:slab_free = int64(int64:ptr) {
+    if (ptr == 0i64) {
         pass 0i64;
     }
 
-    // The class index is stored at (ptr - SLAB_HEADER_SIZE) [1 byte].
+      // The class index is stored at (ptr - SLAB_HEADER_SIZE) [1 uint8].
     int64:slot_start = ptr - SLAB_HEADER_SIZE;
-    *byte:hdr = slot_start as *byte;
-    int64:cls = hdr[0] as int64;
+    uint8->:hdr = @cast_unchecked<uint8->>(slot_start);
+    int64:cls = @cast_unchecked<int64>(hdr[0]);
 
-    // If cls >= SLAB_CLASS_COUNT, this was a direct-mmap allocation.
-    // The class byte would hold a garbage value — but the direct-mmap allocator
-    // uses a 16-byte header starting at (ptr - 16), so we'd read the wrong byte.
-    // The distinction: slab allocations have ptr % slot_full != 0 in general,
-    // while direct-mmap has a 16-byte aligned header.
-    //
-    // To avoid ambiguity, we adopt the rule: class index byte > 8 → not a slab slot.
-    // (Valid class indices are 0..8; direct-mmap header bytes will typically be large
-    // values from the map_size int64.)
-    if cls > SLAB_MAX_CLASS {
-        // Treat as direct-mmap allocation — use mem_free with the actual ptr.
-        // The direct-mmap header is 16 bytes before the user pointer.
+      // If cls >= SLAB_CLASS_COUNT, this was a direct-mmap allocation.
+      // The class uint8 would hold a garbage value — but the direct-mmap allocator
+      // uses a 16-uint8 header starting at (ptr - 16), so we'd read the wrong uint8.
+      // The distinction: slab allocations have ptr % slot_full != 0 in general,
+      // while direct-mmap has a 16-uint8 aligned header.
+      //
+      // To avoid ambiguity, we adopt the rule: class index uint8 > 8 → not a slab slot.
+      // (Valid class indices are 0..8; direct-mmap header bytes will typically be large
+      // values from the map_size int64.)
+    if ((ptr & 4095i64) == 16i64) {
+          // @cast_unchecked<direct>(Treat)-mmap allocation — use mem_free with the actual ptr.
+          // The direct-mmap header is 16 bytes before the user pointer.
         Result<int64>:r = mem_free(ptr);
-        pass r;
+        return r;
     }
 
-    // Push slot back onto freelist:
-    //   write old freelist head into the slot's "next" pointer field
-    //   update freelist head to point to this slot
-    int64:old_head = slab_freelist_get(cls);
-    *int64:next_ptr = ptr as *int64;
+      // Push slot back onto freelist:
+      //   write old freelist head into the slot's "next" pointer field
+      //   update freelist head to point to this slot
+    int64:old_head = raw slab_freelist_get(cls);
+    int64->:next_ptr = @cast_unchecked<int64->>(ptr);
     next_ptr[0] = old_head;
-    slab_freelist_set(cls, slot_start);
+    drop slab_freelist_set(cls, slot_start);
 
     pass 0i64;
-}
+};
 
 // slab_alloc_zero — Like slab_alloc but explicitly zeroes the returned memory.
 // For mmap-backed slabs, fresh allocations are already zero.
 // On reused slots, the data is NOT zeroed by default — this function does that.
-pub func:slab_alloc_zero = Result<int64>(int64:n) {
-    Result<int64>:r = slab_alloc(n);
-    if r.is_error {
-        fail r.err;
+pub func:slab_alloc_zero = int64(int64:n) {
+    int64:r = slab_alloc(n);
+    if (r == 0i64) {
+        pass 0i64;
     }
-    int64:ptr = r.value;
+    int64:ptr = r;
 
-    // Zero the memory. mem_memset is defined in memset.npk (v0.2.3).
-    // For now, use a byte loop as a temporary measure.
-    int64:cls  = slab_class_for_size(n);
-    int64:sz   = slab_class_size(cls);
-    *byte:p    = ptr as *byte;
+      // Zero the memory. mem_memset is defined in memset.npk (v0.2.3).
+      // For now, use a uint8 @cast_unchecked<a>(loop) temporary measure.
+    int64:cls  = raw slab_class_for_size(n);
+    int64:sz   = raw slab_class_size(cls);
+    uint8->:p    = @cast_unchecked<uint8->>(ptr);
     int64:zi   = 0i64;
-    while zi < sz {
+    while (zi < sz) {
         p[zi] = 0u8;
         zi = zi + 1i64;
     }
 
     pass ptr;
-}
+};

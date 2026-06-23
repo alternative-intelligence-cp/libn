@@ -1,0 +1,4 @@
+pub func:main = int32() {
+    int64:x = @cast_unchecked<int64>(@"Success");
+    exit 0i32;
+};

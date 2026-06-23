@@ -19,8 +19,8 @@
 //
 // All functions return Result<int64> where .value is bytes written.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/syscall.npk".*;
+use "../syscall/errno.npk".*;
+use "../syscall/syscall.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Standard fd constants
@@ -38,7 +38,7 @@ pub fixed int64:STDERR_FD = 2i64;
 //
 // Parameters:
 //   fd:  file descriptor to write to
-//   buf: pointer to byte data
+//   buf: pointer to uint8 data
 //   n:   number of bytes to write
 //
 // Returns:
@@ -50,40 +50,40 @@ pub fixed int64:STDERR_FD = 2i64;
 // For non-blocking fds, prefer io_write_nonblock which returns partial counts.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_n = Result<int64>(int64:fd, int64:buf, int64:n) {
-    if fd < 0i64 || buf == 0i64 || n < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_write_n = int64(int64:fd, int64:buf, int64:n) {
+    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
 
     int64:total = 0i64;
 
-    while total < n {
+    while (total < n) {
         int64:remaining = n - total;
-        Result<int64>:r = sys_write(fd, buf + total, remaining);
+        Result<int64>:r = libn_write(fd, buf + total, remaining);
 
-        if r.is_error {
-            int64:e = r.err as int64;
-            // EINTR: interrupted by signal — retry transparently
-            if e == EINTR {
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+              // EINTR: interrupted by signal — retry transparently
+            if (e == EINTR) {
                 continue;
             }
-            // Any other error: return what we've written so far plus the error
-            fail r.err;
+              // Any other error: return what we've written so far plus the error
+            fail r.error;
         }
 
-        if r.value == 0i64 {
-            // Wrote 0 bytes without error — treat as pipe/fd closed
-            fail ERR_EOF as tbb8;
+        if (r.value == 0i64) {
+              // Wrote 0 bytes without error — @cast_unchecked<pipe>(treat)/fd closed
+            fail @cast_unchecked<tbb32>(ERR_EOF);
         }
 
         total = total + r.value;
     }
 
     pass total;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_write_nonblock — Write up to n bytes, returning actual bytes written.
@@ -98,20 +98,20 @@ pub func:io_write_n = Result<int64>(int64:fd, int64:buf, int64:n) {
 //   Err(e)        — error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_nonblock = Result<int64>(int64:fd, int64:buf, int64:n) {
-    if fd < 0i64 || buf == 0i64 || n < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_write_nonblock = int64(int64:fd, int64:buf, int64:n) {
+    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
 
-    Result<int64>:r = sys_write(fd, buf, n);
-    if r.is_error {
-        fail r.err;
+    Result<int64>:r = libn_write(fd, buf, n);
+    if (r.is_error) {
+        fail r.error;
     }
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_write_str — Write a NUL-terminated string to fd.
@@ -122,30 +122,30 @@ pub func:io_write_nonblock = Result<int64>(int64:fd, int64:buf, int64:n) {
 // Returns Ok(bytes_written) or Err.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_str = Result<int64>(int64:fd, int64:s) {
-    if s == 0i64 {
+pub func:io_write_str = int64(int64:fd, int64:s) {
+    if (s == 0i64) {
         pass 0i64;
     }
 
-    // Inline strlen to avoid circular dependency
-    *byte:p = s as *byte;
+      // Inline strlen to avoid circular dependency
+    uint8->:p = @cast_unchecked<uint8->>(s);
     int64:len = 0i64;
-    while p[len] != 0u8 {
+    while (p[len] != 0u8) {
         len = len + 1i64;
     }
 
     pass io_write_n(fd, s, len);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// io_write_char — Write a single byte to fd.
+// io_write_char — Write a single uint8 to fd.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_char = Result<int64>(int64:fd, byte:c) {
-    stack byte:b[1];
+pub func:io_write_char = int64(int64:fd, uint8:c) {
+    stack uint8[1]:b;
     b[0] = c;
-    pass io_write_n(fd, &b[0] as int64, 1i64);
-}
+    pass io_write_n(fd, @cast_unchecked<int64>(@b[0]), 1i64);
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_write_cstr_n — Write exactly the first n bytes of a string (no strlen).
@@ -153,46 +153,46 @@ pub func:io_write_char = Result<int64>(int64:fd, byte:c) {
 // For fixed-length fields where the NUL terminator must not be emitted.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_cstr_n = Result<int64>(int64:fd, int64:s, int64:n) {
+pub func:io_write_cstr_n = int64(int64:fd, int64:s, int64:n) {
     pass io_write_n(fd, s, n);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_write_newline — Write a single LF to fd.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_newline = Result<int64>(int64:fd) {
-    pass io_write_char(fd, 10u8);  // '\n'
-}
+pub func:io_write_newline = int64(int64:fd) {
+    pass io_write_char(fd, 10u8);    // '\n'
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_write_strln — Write a NUL-terminated string followed by LF.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_write_strln = Result<int64>(int64:fd, int64:s) {
-    Result<int64>:r = io_write_str(fd, s);
-    if r.is_error { pass r; }
-    Result<int64>:r2 = io_write_newline(fd);
-    if r2.is_error { pass r2; }
-    pass r.value + 1i64;
-}
+pub func:io_write_strln = int64(int64:fd, int64:s) {
+    int64:r = io_write_str(fd, s);
+    if (r < 0i64) { pass r; }
+    int64:r2 = io_write_newline(fd);
+    if (r2 < 0i64) { pass r2; }
+    pass r + 1i64;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Convenience: stdout / stderr shorthands
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_print = Result<int64>(int64:s) {
+pub func:io_print = int64(int64:s) {
     pass io_write_str(STDOUT_FD, s);
-}
+};
 
-pub func:io_println = Result<int64>(int64:s) {
+pub func:io_println = int64(int64:s) {
     pass io_write_strln(STDOUT_FD, s);
-}
+};
 
-pub func:io_eprint = Result<int64>(int64:s) {
+pub func:io_eprint = int64(int64:s) {
     pass io_write_str(STDERR_FD, s);
-}
+};
 
-pub func:io_eprintln = Result<int64>(int64:s) {
+pub func:io_eprintln = int64(int64:s) {
     pass io_write_strln(STDERR_FD, s);
-}
+};

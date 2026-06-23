@@ -1,0 +1,4 @@
+pub func:test = int64() {
+    stack int64[1]:candidate;
+    pass @cast_unchecked<int64>(&candidate);
+};

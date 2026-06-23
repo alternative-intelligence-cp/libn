@@ -1,0 +1,3 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+AST:
+Program([Use("src/io/bio/bio.npk".*), FuncDecl(pub func:main = int32() { ... })])

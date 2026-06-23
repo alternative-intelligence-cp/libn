@@ -1,0 +1,5 @@
+use "../../src/io/bio/bio.npk".*;
+use "../../src/mem/slab.npk".*;
+
+pub func:test_bio_stub = int64() { pass 0i64; };
+pub func:main = int64() { pass 0i64; };

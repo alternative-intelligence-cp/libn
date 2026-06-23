@@ -1,12 +1,12 @@
 // file.npk — FILE struct definition, constants, and internal helpers (v0.5.0)
 //
 // This is the foundation of the buffered I/O subsystem. All stdio functions
-// operate on a *FILE (represented in libn as int64 — a pointer to a FILE struct).
+// operate on a *FILE (represented in @cast_unchecked<int64>(libn) — a pointer to a FILE struct).
 //
 // ── Design decisions ─────────────────────────────────────────────────────────
 //
 // All fields are int64 to avoid alignment surprises and simplify pointer arithmetic.
-// sizeof(FILE) = 10 * 8 = 80 bytes — fits in the 128-byte slab class.
+// sizeof(FILE) = 10 * 8 = 80 bytes — fits in the 128-uint8 slab class.
 //
 // Buffer model (two modes, never simultaneously active):
 //
@@ -23,15 +23,15 @@
 //     fwrite fills buf[buf_pos], increments buf_pos; flushes when buf_pos == buf_cap
 //
 // Switching direction (POSIX: must fflush or fseek between read→write or write→read)
-// is handled by bio_flush_if_dirty() / bio_discard_read_buf() in the internal helpers.
+// is handled by bio_flush_if_dirty() / drop bio_discard_read_buf() in the internal helpers.
 //
 // unget:
 //   One character of pushback via ungetc(). Stored in the FILE struct.
-//   Represented as int64: -1 means "no unget char", 0..255 means pending char.
+//   @cast_unchecked<int64>(Represented): -1 means "no unget char", 0..255 means pending char.
 //   ungetc pushes the char; the next fgetc/fread consumes it first.
 //
 // stdin/stdout/stderr:
-//   Declared as module-level FILE structs in stdfiles.npk.
+//   @cast_unchecked<module>(Declared)-level FILE structs in stdfiles.npk.
 //   Not heap-allocated — they live in the BSS segment.
 //   Lazy initialization is triggered by bio_ensure_init() on first access.
 //
@@ -43,39 +43,40 @@
 //   _IONBF = 2  Unbuffered: every fread/fwrite goes straight to the kernel.
 //               Default for stderr.
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/posix_constants.npk".*;
-use "src/syscall/syscall.npk".*;
-use "src/mem/slab.npk".*;
-use "src/mem/memset.npk".*;
+use "../../syscall/errno.npk".*;
+use "../../syscall/posix_constants.npk".*;
+use "../../syscall/syscall.npk".*;
+use "../../mem/slab.npk".*;
+use "../../mem/memset.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // FILE struct
 //
-// In libn, FILE* is represented as int64 (a pointer). Cast with `as *FILE`.
+// In libn, FILE* is @cast_unchecked<int64>(represented) (a pointer). Cast with `as FILE->`.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub struct FILE {
-    int64:fd;        // underlying file descriptor (-1 = not open / not initialized)
-    int64:buf;       // pointer to I/O buffer (heap or user-supplied; 0 = unbuffered)
-    int64:buf_cap;   // total buffer capacity in bytes
-    int64:buf_pos;   // read: index of next unread byte / write: bytes pending flush
-    int64:buf_len;   // read: valid bytes loaded from kernel / write: same as buf_pos
-    int64:file_pos;  // logical file position as seen by caller (bytes from file start)
-    int64:mode;      // FILE_MODE_* bitmask: r/w/a/update flags
-    int64:buf_mode;  // _IOFBF / _IOLBF / _IONBF
-    int64:flags;     // FILE_FLAG_* bitmask: EOF, ERROR, BUF_OWN, WRITE_MODE, INIT
-    int64:unget;     // ungetc storage: -1 = none, 0..255 = pending char
-}
+pub struct:FILE = {
+    int64:fd;          // underlying file descriptor (-1 = not open / not initialized)
+    int64:buf;         // pointer to I/O buffer (heap or user-supplied; 0 = unbuffered)
+    int64:buf_cap;     // total buffer capacity in bytes
+    int64:buf_pos;     // read: index of next unread uint8 / write: bytes pending flush
+    int64:buf_len;     // read: valid bytes loaded from kernel / write: @cast_unchecked<buf_pos>(same)
+    int64:file_pos;    // logical file @cast_unchecked<seen>(position) by caller (bytes from file start)
+    int64:mode;        // FILE_MODE_* bitmask: r/w/a/update flags
+    int64:buf_mode;    // _IOFBF / _IOLBF / _IONBF
+    int64:flags;       // FILE_FLAG_* bitmask: EOF, ERROR, BUF_OWN, WRITE_MODE, INIT
+    int64:unget;       // ungetc storage: -1 = none, 0..255 = pending char
+    int64:next_global;
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Constants
 // ════════════════════════════════════════════════════════════════════════════
 
 // Buffering mode constants (POSIX names)
-pub fixed int64:_IOFBF = 0i64;    // fully buffered
-pub fixed int64:_IOLBF = 1i64;    // line buffered
-pub fixed int64:_IONBF = 2i64;    // unbuffered
+pub fixed int64:_IOFBF = 0i64;      // fully buffered
+pub fixed int64:_IOLBF = 1i64;      // line buffered
+pub fixed int64:_IONBF = 2i64;      // unbuffered
 
 // Default buffer size — 8 KiB (matches glibc BUFSIZ default)
 pub fixed int64:BUFSIZ = 8192i64;
@@ -87,18 +88,18 @@ pub fixed int64:FOPEN_MAX = 64i64;
 pub fixed int64:L_tmpnam = 20i64;
 
 // FILE mode flags (what kind of I/O is permitted on the stream)
-pub fixed int64:FILE_MODE_READ   = 0x01i64;  // opened for reading
-pub fixed int64:FILE_MODE_WRITE  = 0x02i64;  // opened for writing
-pub fixed int64:FILE_MODE_APPEND = 0x04i64;  // opened in append mode (O_APPEND)
-pub fixed int64:FILE_MODE_UPDATE = 0x08i64;  // '+': both read and write permitted
-pub fixed int64:FILE_MODE_BINARY = 0x10i64;  // 'b': binary mode (no-op on Linux)
+pub fixed int64:FILE_MODE_READ   = 0x01i64;    // opened for reading
+pub fixed int64:FILE_MODE_WRITE  = 0x02i64;    // opened for writing
+pub fixed int64:FILE_MODE_APPEND = 0x04i64;    // opened in append mode (O_APPEND)
+pub fixed int64:FILE_MODE_UPDATE = 0x08i64;    // '+': both read and write permitted
+pub fixed int64:FILE_MODE_BINARY = 0x10i64;    // 'b': binary mode (no-op on Linux)
 
 // FILE internal state flags
-pub fixed int64:FILE_FLAG_EOF       = 0x01i64;  // end-of-file indicator
-pub fixed int64:FILE_FLAG_ERROR     = 0x02i64;  // error indicator (cleared by clearerr)
-pub fixed int64:FILE_FLAG_BUF_OWN   = 0x04i64;  // libn owns the buffer (free on fclose)
-pub fixed int64:FILE_FLAG_WRITE_MODE= 0x08i64;  // buffer is in write mode (dirty)
-pub fixed int64:FILE_FLAG_INIT      = 0x10i64;  // struct has been initialized
+pub fixed int64:FILE_FLAG_EOF       = 0x01i64;    // end-of-file indicator
+pub fixed int64:FILE_FLAG_ERROR     = 0x02i64;    // error indicator (cleared by clearerr)
+pub fixed int64:FILE_FLAG_BUF_OWN   = 0x04i64;    // libn owns the buffer (free on fclose)
+pub fixed int64:FILE_FLAG_WRITE_MODE= 0x08i64;    // buffer is in write mode (dirty)
+pub fixed int64:FILE_FLAG_INIT      = 0x10i64;    // struct has been initialized
 
 // Sentinel for "no ungetc char pending"
 pub fixed int64:FILE_UNGET_EMPTY = -1i64;
@@ -113,141 +114,144 @@ pub fixed int64:FILE_EOF = -1i64;
 
 // bio_alloc_file — Allocate a zeroed FILE struct from the slab allocator.
 // Returns pointer-as-int64 or 0 on allocation failure.
-func:bio_alloc_file = int64() {
-    int64:p = slab_alloc_zero(80i64);  // 80 bytes = sizeof(FILE), goes in 128-byte class
-    if p == 0i64 {
+pub func:bio_alloc_file = int64() {
+    Result<int64>:r_p = slab_alloc_zero(80i64);    // 80 bytes = sizeof(FILE), goes in 128-uint8 class
+    if (r_p.is_error) { pass 0i64; }
+    int64:p = r_p.value;
+    if (p == 0i64) {
         pass 0i64;
     }
-    // Initialize fd to -1 (unset), unget to empty
-    *FILE:f = p as *FILE;
-    f.fd    = -1i64;
-    f.unget = FILE_UNGET_EMPTY;
+      // Initialize fd to -1 (unset), unget to empty
+    FILE->:f = @cast_unchecked<FILE->>(p);
+    f->fd    = -1i64;
+    f->unget = FILE_UNGET_EMPTY;
+    f->next_global = 0i64;
     pass p;
-}
+};
 
 // bio_free_file — Return a FILE struct to the slab allocator.
 // Does NOT close the fd or free the buffer — callers must do that first.
-func:bio_free_file = void(int64:fp) {
-    if fp == 0i64 { pass; }
-    slab_free(fp);
-}
+pub func:bio_free_file = NIL(int64:fp) {
+    if (fp == 0i64) { pass NIL; }
+    drop slab_free(0i64, fp);
+};
 
 // bio_alloc_buf — Allocate an I/O buffer. Uses slab for BUFSIZ (8192 falls
 // outside slab max of 4096, so uses mem_malloc for the default size).
 // Returns allocated pointer or 0 on failure.
-func:bio_alloc_buf = int64(int64:size) {
-    if size <= 0i64 {
+pub func:bio_alloc_buf = int64(int64:size) {
+    if (size <= 0i64) {
         pass 0i64;
     }
-    if size <= 4096i64 {
+    if (size <= 4096i64) {
         pass slab_alloc_zero(size);
     }
-    // For BUFSIZ (8192) and larger, use the direct-mmap allocator
+      // For BUFSIZ (8192) and larger, use the direct-mmap allocator
     pass mem_malloc(size);
-}
+};
 
 // bio_free_buf — Free an I/O buffer allocated by bio_alloc_buf.
-func:bio_free_buf = void(int64:buf, int64:size) {
-    if buf == 0i64 { pass; }
-    if size <= 4096i64 {
-        slab_free(buf);
+pub func:bio_free_buf = NIL(int64:buf, int64:size) {
+    if (buf == 0i64) { pass NIL; }
+    if (size <= 4096i64) {
+        drop slab_free(0i64, buf);
     } else {
-        mem_free(buf);
+        drop mem_free(buf);
     }
-}
+};
 
 // bio_flush_write_buf — Flush the write buffer to the kernel.
 // Writes all buf[0..buf_pos] bytes to fd, retrying on short writes and EINTR.
 // Returns Ok(0) on success, or Err on I/O error.
-func:bio_flush_write_buf = Result<int64>(int64:fp) {
-    *FILE:f = fp as *FILE;
-    if f.buf_pos == 0i64 {
-        pass 0i64;  // nothing to flush
+pub func:bio_flush_write_buf = int64(int64:fp) {
+    FILE->:f = @cast_unchecked<FILE->>(fp);
+    if (f->buf_pos == 0i64) {
+        pass 0i64;    // nothing to flush
     }
 
-    int64:remaining = f.buf_pos;
-    int64:ptr = f.buf;
+    int64:remaining = f->buf_pos;
+    int64:ptr = f->buf;
 
-    while remaining > 0i64 {
-        Result<int64>:r = sys_safe(SYS_WRITE, f.fd, ptr, remaining, 0i64, 0i64, 0i64);
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR { continue; }
-            f.flags = f.flags | FILE_FLAG_ERROR;
-            fail r.err;
+    while (remaining > 0i64) {
+        Result<int64>:r = sys_safe(SYS_WRITE, f->fd, ptr, remaining, 0i64, 0i64, 0i64);
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) { continue; }
+            f->flags = f->flags | FILE_FLAG_ERROR;
+            fail r.error;
         }
-        if r.value == 0i64 {
-            f.flags = f.flags | FILE_FLAG_ERROR;
-            fail ERR_EOF as tbb8;
+        if (r.value == 0i64) {
+            f->flags = f->flags | FILE_FLAG_ERROR;
+            fail @cast_unchecked<tbb32>(ERR_EOF);
         }
         ptr = ptr + r.value;
-        f.file_pos = f.file_pos + r.value;
+        f->file_pos = f->file_pos + r.value;
         remaining = remaining - r.value;
     }
 
-    f.buf_pos = 0i64;
-    f.buf_len = 0i64;
-    f.flags = f.flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+    f->buf_pos = 0i64;
+    f->buf_len = 0i64;
+    f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
     pass 0i64;
-}
+};
 
 // bio_discard_read_buf — Discard unread bytes in the read buffer.
 // Adjusts the kernel file position backward so the logical position stays correct.
 // This is called when switching from read to write mode (fseek, fwrite after fread).
-func:bio_discard_read_buf = Result<int64>(int64:fp) {
-    *FILE:f = fp as *FILE;
-    int64:unread = f.buf_len - f.buf_pos;
-    if unread <= 0i64 {
-        f.buf_pos = 0i64;
-        f.buf_len = 0i64;
+pub func:bio_discard_read_buf = int64(int64:fp) {
+    FILE->:f = @cast_unchecked<FILE->>(fp);
+    int64:unread = f->buf_len - f->buf_pos;
+    if (unread <= 0i64) {
+        f->buf_pos = 0i64;
+        f->buf_len = 0i64;
         pass 0i64;
     }
 
-    // Seek backward by the number of buffered but unconsumed bytes
-    // (only possible on seekable fds — for pipes/sockets this will fail, which is OK)
-    Result<int64>:r = sys_safe(SYS_LSEEK, f.fd, 0i64 - unread, SEEK_CUR, 0i64, 0i64, 0i64);
-    if r.is_error {
-        // Non-seekable fd — just discard the buffer (may lose data if re-reading)
-        // This is correct behavior for pipes; POSIX leaves it undefined.
+      // Seek backward by the number of buffered but unconsumed bytes
+      // (only possible on seekable fds — for pipes/sockets this will fail, which is OK)
+    Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, 0i64 - unread, SEEK_CUR, 0i64, 0i64, 0i64);
+    if (r.is_error) {
+          // Non-seekable fd — just discard the buffer (may lose data if re-reading)
+          // This is correct behavior for pipes; POSIX leaves it undefined.
     }
 
-    f.buf_pos = 0i64;
-    f.buf_len = 0i64;
+    f->buf_pos = 0i64;
+    f->buf_len = 0i64;
     pass 0i64;
-}
+};
 
 // bio_refill_read_buf — Fill the read buffer from the kernel.
 // Called when buf_pos >= buf_len (buffer exhausted).
 // Returns number of bytes loaded (0 = EOF, negative = error via flags).
-func:bio_refill_read_buf = Result<int64>(int64:fp) {
-    *FILE:f = fp as *FILE;
+pub func:bio_refill_read_buf = int64(int64:fp) {
+    FILE->:f = @cast_unchecked<FILE->>(fp);
 
-    // If unbuffered, there's nothing to fill (callers handle _IONBF specially)
-    if f.buf_mode == _IONBF || f.buf == 0i64 || f.buf_cap == 0i64 {
+      // If unbuffered, there's nothing to fill (callers handle _IONBF specially)
+    if (f->buf_mode == _IONBF || f->buf == 0i64 || f->buf_cap == 0i64) {
         pass 0i64;
     }
 
-    f.buf_pos = 0i64;
-    f.buf_len = 0i64;
+    f->buf_pos = 0i64;
+    f->buf_len = 0i64;
 
-    while true {
-        Result<int64>:r = sys_safe(SYS_READ, f.fd, f.buf, f.buf_cap, 0i64, 0i64, 0i64);
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR { continue; }
-            f.flags = f.flags | FILE_FLAG_ERROR;
-            fail r.err;
+    while (true) {
+        Result<int64>:r = sys_safe(SYS_READ, f->fd, f->buf, f->buf_cap, 0i64, 0i64, 0i64);
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) { continue; }
+            f->flags = f->flags | FILE_FLAG_ERROR;
+            fail r.error;
         }
-        f.buf_len = r.value;
-        if r.value == 0i64 {
-            f.flags = f.flags | FILE_FLAG_EOF;
+        f->buf_len = r.value;
+        if (r.value == 0i64) {
+            f->flags = f->flags | FILE_FLAG_EOF;
         }
         pass r.value;
     }
 
-    // unreachable
-    fail ERR_BADARG as tbb8;
-}
+      // unreachable
+    fail @cast_unchecked<tbb32>(ERR_BADARG);
+};
 
 // bio_parse_mode — Parse an fopen mode string into FILE_MODE_* flags and O_* flags.
 // Returns FILE_MODE_* in the low 16 bits, O_* open flags in the high bits via
@@ -256,56 +260,60 @@ func:bio_refill_read_buf = Result<int64>(int64:fp) {
 // out_file_mode: pointer to int64 — receives FILE_MODE_* flags
 // out_open_flags: pointer to int64 — receives O_* flags for open()
 // Returns 0 on success, -1 on invalid mode string.
-func:bio_parse_mode = int64(int64:mode_str, int64:out_file_mode, int64:out_open_flags) {
-    *byte:m = mode_str as *byte;
-    *int64:fmode = out_file_mode as *int64;
-    *int64:oflags = out_open_flags as *int64;
+pub func:bio_parse_mode = int64(int64:mode_str, int64:out_file_mode, int64:out_open_flags) {
+    uint8->:m = @cast_unchecked<uint8->>(mode_str);
+    int64->:fmode = @cast_unchecked<int64->>(out_file_mode);
+    int64->:oflags = @cast_unchecked<int64->>(out_open_flags);
 
     fmode[0]  = 0i64;
     oflags[0] = 0i64;
 
-    if m[0] == 0u8 { pass -1i64; }  // empty string
+    if (m[0] == 0u8) { pass -1i64; }    // empty string
 
-    byte:first = m[0];
+    uint8:first = m[0];
     bool:has_plus = false;
     bool:has_b    = false;
     int64:i = 1i64;
 
-    // Scan for '+' and 'b' modifiers
-    while m[i] != 0u8 {
-        if m[i] == 43u8 { has_plus = true; }   // '+'
-        if m[i] == 98u8 { has_b    = true; }   // 'b'
+      // Scan for '+' and 'b' modifiers
+    while (m[i] != 0u8) {
+        if (m[i] == 43u8) { has_plus = true; }     // '+'
+        if (m[i] == 98u8) { has_b    = true; }     // 'b'
         i = i + 1i64;
     }
 
-    if has_b {
+    if (has_b) {
         fmode[0] = fmode[0] | FILE_MODE_BINARY;
     }
-    if has_plus {
+    if (has_plus) {
         fmode[0] = fmode[0] | FILE_MODE_UPDATE;
     }
 
-    if first == 114u8 {  // 'r'
+    if (first == 114u8) {    // 'r'
         fmode[0]  = fmode[0] | FILE_MODE_READ;
-        oflags[0] = has_plus ? O_RDWR : O_RDONLY;
-        if has_plus { fmode[0] = fmode[0] | FILE_MODE_WRITE; }
-    } else if first == 119u8 {  // 'w'
+if (has_plus) {
+            oflags[0] = O_RDWR;
+        } else {
+            oflags[0] = O_RDONLY;
+        }
+        if (has_plus) { fmode[0] = fmode[0] | FILE_MODE_WRITE; }
+    } else if (first == 119u8) {    // 'w'
         fmode[0]  = fmode[0] | FILE_MODE_WRITE;
         oflags[0] = O_WRONLY | O_CREAT | O_TRUNC;
-        if has_plus {
+        if (has_plus) {
             fmode[0]  = fmode[0] | FILE_MODE_READ;
             oflags[0] = O_RDWR | O_CREAT | O_TRUNC;
         }
-    } else if first == 97u8 {  // 'a'
+    } else if (first == 97u8) {    // 'a'
         fmode[0]  = fmode[0] | FILE_MODE_WRITE | FILE_MODE_APPEND;
         oflags[0] = O_WRONLY | O_CREAT | O_APPEND;
-        if has_plus {
+        if (has_plus) {
             fmode[0]  = fmode[0] | FILE_MODE_READ;
             oflags[0] = O_RDWR | O_CREAT | O_APPEND;
         }
     } else {
-        pass -1i64;  // unrecognized mode
+        pass -1i64;    // unrecognized mode
     }
 
     pass 0i64;
-}
+};

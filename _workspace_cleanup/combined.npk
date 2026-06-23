@@ -1,0 +1,2 @@
+use "src/io/bio/bio.npk".*;
+pub func:main = int32() { exit 0i32; };

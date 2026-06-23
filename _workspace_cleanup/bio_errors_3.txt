@@ -1,0 +1,102 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 122, column 17:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 122, column 17:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 163, column 18:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 163, column 18:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 174, column 29:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 174, column 29:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 181, column 26:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 181, column 26:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 198, column 18:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 198, column 18:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 222, column 43:
+  Expected '{' before function body. Syntax: func:name = RetType(params) { body; };
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 222, column 43:
+  Expected expression
+  Found: token ')'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 236, column 29:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 236, column 29:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 249, column 21:
+  Expected ';' after fail statement
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 249, column 21:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 260, column 24:
+  Expected ';' after variable declaration
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 260, column 24:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 261, column 5:
+  Expected expression
+  Found: token '*'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 262, column 5:
+  Expected expression
+  Found: token '*'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 39:
+  Expected ';' after expression
+  Found: token ':'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/file.npk: Parse error at line 290, column 39:
+  Expected expression
+  Found: token ':'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/file.npk'. Check for syntax errors.[0m
+
+[1mSummary: [0m[1;31m24 errors[0m

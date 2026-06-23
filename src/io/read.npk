@@ -10,7 +10,7 @@
 //                     Strips trailing CR (for CRLF streams). NUL-terminates.
 //   - io_read_exact:  alias for io_read_n (name matches POSIX convention for
 //                     "read exactly n bytes or fail").
-//   - io_read_until:  reads until a delimiter byte, buffer-fills return, or EOF.
+//   - io_read_until:  reads until a delimiter uint8, buffer-fills return, or EOF.
 //
 // Error codes:
 //   ERR_EOF     — clean EOF (0 bytes read when bytes expected)
@@ -18,8 +18,8 @@
 //   EAGAIN      — io_read_some on non-blocking fd with no data
 //   Other errno — kernel error propagated directly
 
-use "src/syscall/errno.npk".*;
-use "src/syscall/syscall.npk".*;
+use "../syscall/errno.npk".*;
+use "../syscall/syscall.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_read_some — Single read(2) call, returns however many bytes were read.
@@ -34,23 +34,23 @@ use "src/syscall/syscall.npk".*;
 //   Err(e)      — kernel error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_some = Result<int64>(int64:fd, int64:buf, int64:n) {
-    if fd < 0i64 || buf == 0i64 || n <= 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_read_some = int64(int64:fd, int64:buf, int64:n) {
+    if (fd < 0i64 || buf == 0i64 || n <= 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    Result<int64>:r = sys_read(fd, buf, n);
-    if r.is_error {
-        fail r.err;
+    Result<int64>:r = libn_read(fd, buf, n);
+    if (r.is_error) {
+        fail r.error;
     }
     pass r.value;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_read_n — Blocking: read exactly n bytes into buf.
 //
 // Retries on EINTR and partial reads until all n bytes are in buf or a
-// genuine error occurs. EOF mid-read is treated as an error (ERR_EOF).
+// genuine error occurs. EOF mid-read is @cast_unchecked<an>(treated) error (ERR_EOF).
 //
 // Parameters:
 //   fd:  file descriptor
@@ -63,57 +63,57 @@ pub func:io_read_some = Result<int64>(int64:fd, int64:buf, int64:n) {
 //   Err(e)      — I/O error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_n = Result<int64>(int64:fd, int64:buf, int64:n) {
-    if fd < 0i64 || buf == 0i64 || n < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_read_n = int64(int64:fd, int64:buf, int64:n) {
+    if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
-    if n == 0i64 {
+    if (n == 0i64) {
         pass 0i64;
     }
 
     int64:total = 0i64;
 
-    while total < n {
+    while (total < n) {
         int64:remaining = n - total;
-        Result<int64>:r = sys_read(fd, buf + total, remaining);
+        Result<int64>:r = libn_read(fd, buf + total, remaining);
 
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR {
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) {
                 continue;
             }
-            fail r.err;
+            fail r.error;
         }
 
-        if r.value == 0i64 {
-            // EOF before we got all n bytes
-            fail ERR_EOF as tbb8;
+        if (r.value == 0i64) {
+              // EOF before we got all n bytes
+            fail @cast_unchecked<tbb32>(ERR_EOF);
         }
 
         total = total + r.value;
     }
 
     pass total;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_read_exact — Alias for io_read_n (explicit naming convention).
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_exact = Result<int64>(int64:fd, int64:buf, int64:n) {
+pub func:io_read_exact = int64(int64:fd, int64:buf, int64:n) {
     pass io_read_n(fd, buf, n);
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // io_read_line — Read a line from fd into buf, up to buf_size-1 bytes.
 //
-// Reads one byte at a time until:
+// Reads one uint8 at a time until:
 //   - '\n' is encountered (LF consumed, not stored in buf)
 //   - buf_size-1 bytes have been read (line truncated)
 //   - EOF (returns what was read, even if no LF seen)
 //   - Read error
 //
-// CRLF handling: if the last stored byte before LF is CR ('\r'), the CR
+// CRLF handling: if the last stored uint8 before LF is CR ('\r'), the CR
 // is removed from the output. This makes the function transparent for both
 // Unix (LF-only) and Windows/Telnet (CRLF) line endings.
 //
@@ -131,43 +131,43 @@ pub func:io_read_exact = Result<int64>(int64:fd, int64:buf, int64:n) {
 //   Err(e)       — I/O error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_line = Result<int64>(int64:fd, int64:buf, int64:buf_size) {
-    if fd < 0i64 || buf == 0i64 || buf_size <= 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
+    if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    *byte:dst = buf as *byte;
+    uint8->:dst = @cast_unchecked<uint8->>(buf);
     int64:count = 0i64;
-    int64:max_store = buf_size - 1i64;  // leave room for NUL
-    stack byte:one[1];
+    int64:max_store = buf_size - 1i64;    // leave room for NUL
+    stack uint8[1]:one;
 
-    while count < max_store {
-        Result<int64>:r = sys_read(fd, &one[0] as int64, 1i64);
+    while (count < max_store) {
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one[0]), 1i64);
 
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR { continue; }
-            // Store NUL then propagate error
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) { continue; }
+              // Store NUL then propagate error
             dst[count] = 0u8;
-            fail r.err;
+            fail r.error;
         }
 
-        if r.value == 0i64 {
-            // EOF
+        if (r.value == 0i64) {
+              // EOF
             dst[count] = 0u8;
-            if count == 0i64 {
-                pass 0i64;   // clean EOF, nothing read
+            if (count == 0i64) {
+                pass 0i64;     // clean EOF, nothing read
             }
-            // Partial line at EOF — still useful, return count
-            // (caller distinguishes via checking for '\n' at end if they care)
-            fail ERR_EOF as tbb8;
+              // Partial line at EOF — still useful, return count
+              // (caller distinguishes via checking for '\n' at end if they care)
+            fail @cast_unchecked<tbb32>(ERR_EOF);
         }
 
-        byte:c = one[0];
+        uint8:c = one[0];
 
-        if c == 10u8 {  // '\n'
-            // Strip trailing CR if present (CRLF → LF)
-            if count > 0i64 && dst[count - 1i64] == 13u8 {  // '\r'
+        if (c == 10u8) {    // '\n'
+              // Strip trailing CR if present (CRLF → LF)
+            if (count > 0i64 && dst[count - 1i64] == 13u8) {    // '\r'
                 count = count - 1i64;
             }
             dst[count] = 0u8;
@@ -178,16 +178,16 @@ pub func:io_read_line = Result<int64>(int64:fd, int64:buf, int64:buf_size) {
         count = count + 1i64;
     }
 
-    // Buffer full — NUL-terminate and return truncated result
+      // Buffer full — NUL-terminate and return truncated result
     dst[count] = 0u8;
     pass count;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// io_read_until — Read until delimiter byte, buffer full, or EOF.
+// io_read_until — Read until delimiter uint8, buffer full, or EOF.
 //
 // Like io_read_line but for arbitrary delimiters (e.g., '\0', '>', '\t').
-// The delimiter byte is consumed but NOT stored in buf.
+// The delimiter uint8 is consumed but NOT stored in buf.
 // Always NUL-terminates buf.
 //
 // Returns:
@@ -197,35 +197,35 @@ pub func:io_read_line = Result<int64>(int64:fd, int64:buf, int64:buf_size) {
 //   Err(e)       — I/O error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_until = Result<int64>(int64:fd, int64:buf, int64:buf_size, byte:delim) {
-    if fd < 0i64 || buf == 0i64 || buf_size <= 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_read_until = int64(int64:fd, int64:buf, int64:buf_size, uint8:delim) {
+    if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    *byte:dst = buf as *byte;
+    uint8->:dst = @cast_unchecked<uint8->>(buf);
     int64:count = 0i64;
     int64:max_store = buf_size - 1i64;
-    stack byte:one[1];
+    stack uint8[1]:one;
 
-    while count < max_store {
-        Result<int64>:r = sys_read(fd, &one[0] as int64, 1i64);
+    while (count < max_store) {
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one[0]), 1i64);
 
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR { continue; }
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) { continue; }
             dst[count] = 0u8;
-            fail r.err;
+            fail r.error;
         }
 
-        if r.value == 0i64 {
+        if (r.value == 0i64) {
             dst[count] = 0u8;
-            if count == 0i64 { pass 0i64; }
-            fail ERR_EOF as tbb8;
+            if (count == 0i64) { pass 0i64; }
+            fail @cast_unchecked<tbb32>(ERR_EOF);
         }
 
-        byte:c = one[0];
+        uint8:c = one[0];
 
-        if c == delim {
+        if (c == delim) {
             dst[count] = 0u8;
             pass count;
         }
@@ -236,37 +236,37 @@ pub func:io_read_until = Result<int64>(int64:fd, int64:buf, int64:buf_size, byte
 
     dst[count] = 0u8;
     pass count;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
-// io_read_char — Read a single byte from fd.
+// io_read_char — Read a single uint8 from fd.
 //
 // Returns:
-//   Ok(byte_value_as_int64)  — byte read (0–255)
+//   Ok(byte_value_as_int64)  — uint8 read (0–255)
 //   Ok(-1)                   — EOF
 //   Err(e)                   — error
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:io_read_char = Result<int64>(int64:fd) {
-    if fd < 0i64 {
-        fail ERR_BADARG as tbb8;
+pub func:io_read_char = int64(int64:fd) {
+    if (fd < 0i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
     }
 
-    stack byte:b[1];
+    stack uint8[1]:b;
 
-    while true {
-        Result<int64>:r = sys_read(fd, &b[0] as int64, 1i64);
-        if r.is_error {
-            int64:e = r.err as int64;
-            if e == EINTR { continue; }
-            fail r.err;
+    while (true) {
+        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b[0]), 1i64);
+        if (r.is_error) {
+            int64:e = @cast_unchecked<int64>(r.error);
+            if (e == EINTR) { continue; }
+            fail r.error;
         }
-        if r.value == 0i64 {
-            pass -1i64;   // EOF sentinel, like getchar() returning EOF
+        if (r.value == 0i64) {
+            pass -1i64;     // EOF sentinel, like getchar() returning EOF
         }
-        pass b[0] as int64;
+        pass @cast_unchecked<int64>(b[0]);
     }
 
-    // unreachable
-    fail ERR_BADARG as tbb8;
-}
+      // unreachable
+    fail @cast_unchecked<tbb32>(ERR_BADARG);
+};

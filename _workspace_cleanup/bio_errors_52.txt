@@ -1,0 +1,8 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1: Failed to load module 'src/n.npk'[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   File path 'src/n.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn, /home/randy/Workspace/REPOS/libn, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1mtest_root.npk:0:0: [0m[1;31merror[0m: [1mLine 1, Column 1:   Could not resolve module 'src/n.npk'. Searched in: /home/randy/Workspace/REPOS/libn, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1mSummary: [0m[1;31m3 errors[0m

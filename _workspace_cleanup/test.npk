@@ -1,0 +1,10 @@
+pub func:infallible = int64() { pass 42i64; };
+pub func:fallible1 = int64() { fail 1tbb8; };
+pub func:fallible2 = Result<int64>() { fail 1tbb8; };
+
+pub func:main = int32() {
+    Result<int64>:r1 = infallible();
+    Result<int64>:r2 = fallible1();
+    Result<int64>:r3 = fallible2();
+    exit 0i32;
+};

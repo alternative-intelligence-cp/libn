@@ -1,0 +1,8 @@
+pub func:my_func = int64(int64:c) {
+    pass c << 8i64;
+};
+
+pub func:my_caller = int64() {
+    int64:tword = my_func(42i64);
+    pass tword;
+};

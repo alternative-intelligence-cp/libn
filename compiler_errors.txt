@@ -1,0 +1,2249 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_nonblock, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_char, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_cstr_n, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_newline, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_strln, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_print, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_println, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_eprint, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_eprintln, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=math_abs_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_min_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_max_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_min_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_max_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_clamp_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sign_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_add_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_sub_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_mul_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_add_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_sub_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_ceil_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_floor_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_round_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_mod_pos_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_is_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_next_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_prev_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_log2_floor, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_log2_ceil, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_popcount, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_clz, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_ctz, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_parity, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_reverse_bits, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_rol, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_ror, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_isqrt, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_isqrt_ceil, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_gcd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_lcm, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_equal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcmp_ct, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memrchr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memmem, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_swap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_reverse, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+Cast Succeeds! sourceIsPointer: 1 targetIsPointer: 1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=atexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=at_quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_proc_run_atexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_proc_run_atqexit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=_Exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=quick_exit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=abort, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_stpncpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strndup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_explicit, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_bzero_explicit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memset_pattern4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1: Failed to load module 'src/io/io.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1: Failed to load module 'src/io/bio/bio.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1: Failed to load module 'src/math/math.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 149, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 150, Column 10: Undefined identifier: 'r'. Did you mean 'n'?[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 197, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 198, Column 5: Cannot silently unwrap Result<int64> into 'tword' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 203, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 28: Undefined identifier: 'tword'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 27: Undefined identifier: 'v'. Did you mean 'i'?[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 234, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 19: Cannot cast between non-numeric types 'int64' and 'byte'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 260, Column 21: Undefined identifier: 'target'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 5: Cannot initialize variable 'first' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 304, Column 75: Undefined identifier: 'first'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 305, Column 13: Undefined identifier: 'candidate'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 24: Undefined identifier: 'candidate'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 309, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 24: Undefined identifier: 'candidate'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 317, Column 13: Undefined identifier: 'offset'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 389, Column 9: Cannot initialize variable 'tmp' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 391, Column 17: Undefined identifier: 'tmp'. Did you mean 'i'?[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 408, Column 9: Cannot initialize variable 'tmp' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 410, Column 17: Undefined identifier: 'tmp'. Did you mean 'wc'?[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 431, Column 9: Cannot initialize variable 'tmp' of type 'byte' with value of type 'uint8'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 433, Column 17: Undefined identifier: 'tmp'. Did you mean 'p'?[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1: Failed to load module 'src/mem/slab.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 6, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1: Failed to load module 'src/mem/mmap.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1: Failed to load module 'src/proc/proc.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 76, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 87, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 8, Column 1:   [/home/randy/Workspace/REPOS/libn/src/proc/exit.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/proc/exit.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1: Failed to load module 'src/str/string.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 76, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 87, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/proc/exit.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/proc/exit.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 126, column 18:
+  Expected ';' after expression
+  Found: identifier 'p'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 168, column 46:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 168, column 46:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 182, column 46:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 182, column 46:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 9, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/memset.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/memset.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1: Failed to load module 'src/syscall/syscall.npk'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression inside parentheses
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected expression after unary operator
+  Found: token '='
+  Hint: Use '==' for comparison, '=' is assignment[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 163, column 15:
+  Expected condition expression in if statement
+  Found: token '='[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 165, column 5:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pass'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/math/math.npk: Parse error at line 166, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/math/math.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/math/math.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 137, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 138, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 139, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 140, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 141, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 142, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 143, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 144, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 145, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 146, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 151, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 152, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 153, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 154, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 155, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 156, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 157, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 158, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 159, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 160, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 165, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 166, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 167, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 168, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 169, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 170, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 171, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 172, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 173, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type annotation
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/slab.npk: Parse error at line 174, column 25:
+  Expected type after '<' in @cast
+  Found: token 'pass'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/slab.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/slab.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 76, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/proc/exit.npk: Parse error at line 87, column 18:
+  Expected ';' after expression
+  Found: identifier 'fn'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/proc/exit.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/proc/exit.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 126, column 18:
+  Expected ';' after expression
+  Found: identifier 'p'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 168, column 46:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 168, column 46:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 182, column 46:
+  Expected ';' after expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/mem/memset.npk: Parse error at line 182, column 46:
+  Expected expression
+  Found: token 'as'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/mem/memset.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/mem/memset.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 36, column 27:
+  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk: Parse error at line 38, column 1:
+  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 1:   [/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/syscall/syscall.npk'. Check for syntax errors.[0m
+
+[1mtest_all.npk:0:0: [0m[1;31merror[0m: [1mLine 13, Column 5: 'exit' requires an int32 exit code, got 'int64'[0m
+
+[1mSummary: [0m[1;31m460 errors[0m

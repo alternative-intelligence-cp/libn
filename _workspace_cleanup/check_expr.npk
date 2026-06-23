@@ -1,0 +1,7 @@
+struct:ErrEntry = { int64:code; int64:msg; };
+fixed ErrEntry[2]:table = [
+    { 0i64, @cast_unchecked<int64>(@"Success") },
+    { -1i64, 0i64 }
+];
+func:failsafe = int32(tbb32:err) { exit 1i32; };
+func:main = int32() { exit 0i32; };

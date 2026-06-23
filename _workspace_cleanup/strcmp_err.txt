@@ -1,0 +1,47 @@
+[DEBUG parseFuncDecl] nameToken=to_lower_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=to_upper_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_alpha_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strcmp_has_nul, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_casecmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: int64@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+CHECK! isUnchecked: 1 src: int64 target: uint8@
+[1msrc/str/strcmp.npk:0:0: [0m[1;31merror[0m: [1mLine 23, Column 1: Failed to load module 'src/syscall/errno.npk'[0m
+
+[1msrc/str/strcmp.npk:0:0: [0m[1;31merror[0m: [1mLine 23, Column 1:   File path 'src/syscall/errno.npk' does not exist or is not a .npk file. Searched in: /home/randy/Workspace/REPOS/libn/src/str, /home/randy/Workspace/REPOS/libn/src/str, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/str/strcmp.npk:0:0: [0m[1;31merror[0m: [1mLine 23, Column 1:   Could not resolve module 'src/syscall/errno.npk'. Searched in: /home/randy/Workspace/REPOS/libn/src/str, /usr/lib/aria, /usr/local/lib/aria, /home/randy/Workspace/REPOS/nitpick, /home/randy/Workspace/REPOS/nitpick/stdlib, /home/randy/Workspace/REPOS/nitpick/lib[0m
+
+[1msrc/str/strcmp.npk:0:0: [0m[1;31merror[0m: [1mLogical operator requires 'bool' type on right side, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+
+[1mSummary: [0m[1;31m4 errors[0m

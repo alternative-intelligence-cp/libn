@@ -1,0 +1,12 @@
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:my_sys = int64() {
+    pass 42i64;
+};
+pub func:my_sys_wrap = int64() {
+    Result<int64>:r = my_sys();
+    pass r;
+};
+pub func:main = int32() {
+    Result<int64>:r = my_sys_wrap();
+    exit 0i32;
+};

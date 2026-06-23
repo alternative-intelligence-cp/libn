@@ -1,0 +1,699 @@
+[DEBUG parseFuncDecl] nameToken=execv, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execvp, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execvpe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=proc_getenv_from, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=execl0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execl8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execlp1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execlp2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execlp3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=execlp4, peek()==, type=168
+[1msrc/proc/exec.npk:50:8: [0m[1;31merror[0m: [1m  Expected library name string after 'extern'
+  Found: token 'int64'[0m
+   50 | extern int64:environ;   // NULL-terminated array of "KEY=VAL" strings
+               [1;32m^[0m
+
+[1msrc/proc/exec.npk:50:8: [0m[1;31merror[0m: [1m  Expected '{' after extern library name
+  Found: token 'int64'[0m
+   50 | extern int64:environ;   // NULL-terminated array of "KEY=VAL" strings
+               [1;32m^[0m
+
+[1msrc/proc/exec.npk:58:61: [0m[1;31merror[0m: [1m  Expected ';' after extern function signature
+  Found: token '{'[0m
+   58 | pub func:execve = int64(int64:path, int64:argv, int64:envp) {
+                                                                    [1;32m^[0m
+
+[1msrc/proc/exec.npk:58:61: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '{'[0m
+   58 | pub func:execve = int64(int64:path, int64:argv, int64:envp) {
+                                                                    [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:11: [0m[1;31merror[0m: [1m  Expected ':' after type
+  Found: token '<'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:11: [0m[1;31merror[0m: [1m  Expected variable name
+  Found: token '<'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:11: [0m[1;31merror[0m: [1m  Expected ';' after extern variable declaration
+  Found: token '<'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:11: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '<'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:17: [0m[1;31merror[0m: [1m  Expected ':' after type
+  Found: token '>'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:17: [0m[1;31merror[0m: [1m  Expected variable name
+  Found: token '>'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:17: [0m[1;31merror[0m: [1m  Expected ';' after extern variable declaration
+  Found: token '>'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:17: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '>'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:18: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ':'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                         [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:19: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'r'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:21: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '='[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:23: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'sys'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:26: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '!!'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                 [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:28: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '('[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                   [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:29: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'SYS_EXECVE'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                    [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:39: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:41: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'path'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:45: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                    [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:47: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'argv'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                      [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:51: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:53: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'envp'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:57: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:59: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '0i64'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:63: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                      [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:65: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '0i64'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:69: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ','[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:71: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '0i64'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:75: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ')'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:59:76: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ';'[0m
+   59 |     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+                                                                                   [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:5: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token 'if'[0m
+   60 |     if (r.is_error) {
+            [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:8: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '('[0m
+   60 |     if (r.is_error) {
+               [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:9: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'r'[0m
+   60 |     if (r.is_error) {
+                [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:10: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '.'[0m
+   60 |     if (r.is_error) {
+                 [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:11: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'is_error'[0m
+   60 |     if (r.is_error) {
+                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:19: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ')'[0m
+   60 |     if (r.is_error) {
+                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:60:21: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '{'[0m
+   60 |     if (r.is_error) {
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:9: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'errno_set'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:18: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '('[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                         [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:19: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '@cast_unchecked'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:34: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '<'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                         [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:40: [0m[1;31merror[0m: [1m  Expected ':' after type
+  Found: token '>'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                               [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:40: [0m[1;31merror[0m: [1m  Expected variable name
+  Found: token '>'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                               [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:40: [0m[1;31merror[0m: [1m  Expected ';' after extern variable declaration
+  Found: token '>'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                               [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:40: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '>'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                               [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:41: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '('[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:42: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'r'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                 [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:43: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '.'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                  [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:44: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: identifier 'err'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                   [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:47: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ')'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                      [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:48: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ')'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:61:49: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ';'[0m
+   61 |         errno_set(@cast_unchecked<int64>(r.err));
+                                                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:62:9: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token 'pass'[0m
+   62 |         pass -1i64;
+                [1;32m^[0m
+
+[1msrc/proc/exec.npk:62:14: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '-'[0m
+   62 |         pass -1i64;
+                     [1;32m^[0m
+
+[1msrc/proc/exec.npk:62:15: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token '1i64'[0m
+   62 |         pass -1i64;
+                      [1;32m^[0m
+
+[1msrc/proc/exec.npk:62:19: [0m[1;31merror[0m: [1m  Expected function or variable declaration in extern block
+  Found: token ';'[0m
+   62 |         pass -1i64;
+                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:65:1: [0m[1;31merror[0m: [1m  Expected expression, found '}'. Possible extra closing brace or empty block
+  Found: token '}'[0m
+   65 | };
+        [1;32m^[0m
+
+[1msrc/proc/exec.npk:115:52: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token 'as'[0m
+  115 |     int64:path_str = proc_getenv_from(envp, "PATH" as int64);
+                                                           [1;32m^[0m
+
+[1msrc/proc/exec.npk:115:52: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token 'as'[0m
+  115 |     int64:path_str = proc_getenv_from(envp, "PATH" as int64);
+                                                           [1;32m^[0m
+
+[1msrc/proc/exec.npk:115:52: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  115 |     int64:path_str = proc_getenv_from(envp, "PATH" as int64);
+                                                           [1;32m^[0m
+
+[1msrc/proc/exec.npk:118:51: [0m[1;31merror[0m: [1m  Expected ';' after expression
+  Found: token 'as'[0m
+  118 |         path_str = "/usr/local/bin:/usr/bin:/bin" as int64;
+                                                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:118:51: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  118 |         path_str = "/usr/local/bin:/usr/bin:/bin" as int64;
+                                                          [1;32m^[0m
+
+[1msrc/proc/exec.npk:122:25: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  122 |     stack byte:candidate[4096];
+                                [1;32m^[0m
+
+[1msrc/proc/exec.npk:219:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  219 |     stack int64:argv[1];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:221:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  221 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:221:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  221 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:221:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  221 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:221:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  221 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:225:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  225 |     stack int64:argv[2];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:228:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  228 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:228:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  228 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:228:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  228 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:228:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  228 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:232:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  232 |     stack int64:argv[3];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:234:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  234 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:234:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  234 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:234:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  234 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:234:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  234 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:238:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  238 |     stack int64:argv[4];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:240:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  240 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:240:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  240 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:240:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  240 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:240:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  240 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:244:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  244 |     stack int64:argv[5];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:246:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  246 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:246:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  246 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:246:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  246 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:246:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  246 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:250:45: [0m[1;31merror[0m: [1m  Expected ')' after parameters
+  Found: token '{'[0m
+  250 |                          int64:a3, int64:a4 {
+                                                    [1;32m^[0m
+
+[1msrc/proc/exec.npk:251:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  251 |     stack int64:argv[6];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:254:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  254 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:254:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  254 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:254:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  254 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:254:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  254 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:258:55: [0m[1;31merror[0m: [1m  Expected ')' after parameters
+  Found: token '{'[0m
+  258 |                          int64:a3, int64:a4, int64:a5 {
+                                                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:259:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  259 |     stack int64:argv[7];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:262:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  262 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:262:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  262 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:262:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  262 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:262:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  262 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:266:65: [0m[1;31merror[0m: [1m  Expected ')' after parameters
+  Found: token '{'[0m
+  266 |                          int64:a3, int64:a4, int64:a5, int64:a6 {
+                                                                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:267:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  267 |     stack int64:argv[8];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:270:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  270 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:270:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  270 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:270:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  270 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:270:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  270 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:274:65: [0m[1;31merror[0m: [1m  Expected ')' after parameters
+  Found: token '{'[0m
+  274 |                          int64:a4, int64:a5, int64:a6, int64:a7 {
+                                                                        [1;32m^[0m
+
+[1msrc/proc/exec.npk:275:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  275 |     stack int64:argv[9];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:278:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  278 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:278:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  278 |     pass execve(path, &argv[0] as int64, environ);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:278:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  278 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:278:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  278 |     pass execve(path, &argv[0] as int64, environ);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:283:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  283 |     stack int64:argv[2];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:285:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  285 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:285:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  285 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:285:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  285 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:285:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  285 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:289:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  289 |     stack int64:argv[3];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:291:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  291 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:291:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  291 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:291:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  291 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:291:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  291 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:295:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  295 |     stack int64:argv[4];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:297:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  297 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:297:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  297 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:297:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  297 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:297:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  297 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:301:21: [0m[1;31merror[0m: [1m  Expected ';' after variable declaration
+  Found: token '['[0m
+  301 |     stack int64:argv[5];
+                            [1;32m^[0m
+
+[1msrc/proc/exec.npk:303:23: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token '&'[0m
+  303 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:303:23: [0m[1;31merror[0m: [1m  Expected ')' after function arguments
+  Found: token '&'[0m
+  303 |     pass execvp(name, &argv[0] as int64);
+                              [1;32m^[0m
+
+[1msrc/proc/exec.npk:303:32: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token 'as'[0m
+  303 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1msrc/proc/exec.npk:303:32: [0m[1;31merror[0m: [1m  Expected expression
+  Found: token 'as'[0m
+  303 |     pass execvp(name, &argv[0] as int64);
+                                       [1;32m^[0m
+
+[1mSummary: [0m[1;31m135 errors[0m

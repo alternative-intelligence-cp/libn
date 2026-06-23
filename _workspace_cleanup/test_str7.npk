@@ -1,0 +1,4 @@
+pub func:bar = int64(int64:p) { pass p; };
+pub func:foo = int64() {
+    pass bar("Hello");
+};

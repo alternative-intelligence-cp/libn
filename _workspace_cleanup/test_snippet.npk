@@ -1,0 +1,10 @@
+extern int64:environ;
+pub func:execve = int64(int64:path, int64:argv, int64:envp) {
+    Result<int64>:r = sys!!(59i64, path, argv, envp, 0i64, 0i64, 0i64);
+    if (r.is_error) {
+        pass -1i64;
+    }
+    pass 0i64;
+};
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:main = int32() { exit 0i32; };
