@@ -1,5 +1,7 @@
 use "time_types.npk".*;
 use "../syscall/syscall.npk".*;
+use "../syscall/syscall_numbers.npk".*;
+use "../syscall/errno.npk".*;
 
 pub func:nanosleep = int64(timespec->:req, timespec->:rem) {
     if (@cast_unchecked<int64>(req) == 0i64) {
@@ -8,6 +10,8 @@ pub func:nanosleep = int64(timespec->:req, timespec->:rem) {
     
     stack int64[2]:creq;
     stack int64[2]:crem;
+    crem[0] = 0i64;
+    crem[1] = 0i64;
     int64->:req_arr = @cast_unchecked<int64->>(req);
     creq[0] = req_arr[0];
     creq[1] = req_arr[1];

@@ -99,6 +99,7 @@ func:render_uint = int64(uint64:v, int64:base, int64:buf, bool:upper) {
     }
 
     stack uint8[66]:tmp;
+    tmp[0] = 0u8;
     int64:ti = 0i64;
     uint64:u = v;
     uint64:ubase = @cast_unchecked<uint64>(base);
@@ -165,7 +166,9 @@ pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
     int64:fi = 0i64;     // format string position
     int64:ai = 0i64;     // args array index
     stack uint8[68]:nbuf;
+    nbuf[0] = 0u8;
     stack uint8[3]:prefix;
+    prefix[0] = 0u8;
 
     while (f[fi] != 0u8) {
         if (f[fi] != 37u8) {    // '%'

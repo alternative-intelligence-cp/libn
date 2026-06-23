@@ -43,6 +43,7 @@ use "../syscall/errno.npk".*;
 use "../mem/mmap.npk".*;
 use "../mem/memcpy.npk".*;
 use "../mem/memset.npk".*;
+use "../mem/slab.npk".*;
 use "../str/strlen.npk".*;
 use "../str/strfmt.npk".*;
 
@@ -75,22 +76,22 @@ func:strbuf_grow = bool(int64:sb, int64:need) {
         pass true;
     }
 
-      // Double until we fit
+      // Grow by 1.5x until we fit
     int64:new_cap = is (s.cap > 0i64) : s.cap : STRBUF_MIN_CAP;
     while (new_cap < required) {
-        new_cap = new_cap * 2i64;
+        new_cap = new_cap + (new_cap / 2i64);
           // Overflow guard (very unlikely to hit in practice)
         if (new_cap < 0i64) {
             pass false;
         }
     }
 
-    Result<int64>:r = mem_realloc(s->ptr, new_cap);
-    if (r.is_error) {
+    int64:r = slab_realloc(s->ptr, new_cap);
+    if (r == 0i64) {
         pass false;
     }
 
-    s->ptr = r.value;
+    s->ptr = r;
     s.cap = new_cap;
     pass true;
 };

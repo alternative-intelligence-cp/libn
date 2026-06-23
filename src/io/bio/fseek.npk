@@ -22,6 +22,9 @@
 //   fpos_t is just int64 (uint8 offset). Wide-character streams and locale-aware
 //   position state are deferred to v0.31.x.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../syscall/syscall.npk".*;

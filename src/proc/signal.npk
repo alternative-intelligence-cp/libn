@@ -105,7 +105,7 @@ func:_sigact_encode = NIL(int64:buf, int64:handler, int64:flags,
     int64->:p = @cast_unchecked<int64->>(buf);
     p[0] = handler;
     p[1] = flags | SA_RESTORER;
-    p[2] = @cast_unchecked<int64>(proc_sigreturn_tramp);
+    p[2] = @cast_unchecked<int64>(@proc_sigreturn_tramp);
     p[3] = mask;
 };
 
@@ -204,6 +204,7 @@ pub func:sigprocmask = int64(int64:how, int64:set, int64:old_ptr) {
     stack int64:set_val;
     set_val = set;
     stack int64:old_val;
+    old_val = 0i64;
     int64:old_p = is (old_ptr != 0i64) : @cast_unchecked<int64>(@old_val) : 0i64;
 
     Result<int64>:r = sys!!(SYS_RT_SIGPROCMASK,

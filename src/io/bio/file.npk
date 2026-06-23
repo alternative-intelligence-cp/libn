@@ -43,6 +43,9 @@
 //   _IONBF = 2  Unbuffered: every fread/fwrite goes straight to the kernel.
 //               Default for stderr.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../syscall/syscall.npk".*;

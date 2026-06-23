@@ -648,3 +648,10 @@ pub fixed int64:IN_CLOSE         = 24i64;      // IN_CLOSE_WRITE | IN_CLOSE_NOWR
 pub fixed int64:IN_MOVE          = 192i64;     // IN_MOVED_FROM | IN_MOVED_TO
 pub fixed int64:IN_CLOEXEC       = O_CLOEXEC;
 pub fixed int64:IN_NONBLOCK      = O_NONBLOCK;
+
+// ════════════════════════════════════════════════════════════════════════════
+// IOCTL COMMANDS  (sys/ioctl.h)
+// ════════════════════════════════════════════════════════════════════════════
+
+pub fixed int64:TCGETS = 21505i64;      // 0x5401
+

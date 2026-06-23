@@ -36,4 +36,5 @@ use "../io/seek.npk".*;
 use "../io/dup.npk".*;
 use "../io/pipe.npk".*;
 use "../io/fcntl.npk".*;
+use "../syscall/syscall_numbers.npk".*;
 

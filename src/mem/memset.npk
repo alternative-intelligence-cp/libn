@@ -132,7 +132,7 @@ pub func:mem_memset_explicit = NIL(int64:ptr, int64:c, int64:n) {
     // Compiler fence: prevents reordering of the volatile writes relative to
     // anything that follows (e.g., a free() of the same memory).
     // Nitpick inline assembly block with no instructions but a memory clobber
-    drop(asm!!<int64>("x86_64", "", "r", ptr));
+    drop(asm!!!<int64>("x86_64", "", "r,~{memory}", ptr));
 };
 
 // mem_bzero_explicit — Alias for mem_memset_explicit(ptr, 0, n).

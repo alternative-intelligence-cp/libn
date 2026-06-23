@@ -538,7 +538,9 @@ pub func:strview_next_token = bool(int64:sv_ptr, uint8:delim, int64:token_out) {
     if (sv->len == 0i64) { pass false; }
 
     stack StrView:left;
+    left.ptr = 0i64; left.len = 0i64;
     stack StrView:right;
+    right.ptr = 0i64; right.len = 0i64;
     bool:found = raw strview_split_once_char(sv_ptr, delim, @cast_unchecked<int64>(@left), @cast_unchecked<int64>(@right));
 
     StrView->:to = @cast_unchecked<StrView->>(token_out);

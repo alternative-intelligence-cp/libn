@@ -23,6 +23,7 @@
 use "../syscall/errno.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../syscall/syscall.npk".*;
+use "../syscall/syscall_numbers.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Default mode for O_CREAT — rw-r--r-- (0644)

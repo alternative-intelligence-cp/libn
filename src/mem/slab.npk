@@ -134,36 +134,20 @@ func:slab_class_for_size = int64(int64:n) {
     pass SLAB_CLASS_COUNT;    // → direct mmap
 };
 
+fixed int64[10]:SLAB_SIZES = [8i64, 16i64, 32i64, 64i64, 128i64, 256i64, 512i64, 1024i64, 2048i64, 4096i64];
+
 // slab_class_size — Return the payload capacity for class i.
 func:slab_class_size = int64(int64:i) {
-    pick (i) {
-        (0i64) { pass 8i64; },
-        (1i64) { pass 16i64; },
-        (2i64) { pass 32i64; },
-        (3i64) { pass 64i64; },
-        (4i64) { pass 128i64; },
-        (5i64) { pass 256i64; },
-        (6i64) { pass 512i64; },
-        (7i64) { pass 1024i64; },
-        (8i64) { pass 2048i64; },
-        (*) { pass 0i64; }
-    }
+    if (i < 0i64 || i >= 10i64) { pass 0i64; }
+    pass SLAB_SIZES[i];
 };
+
+fixed int64[10]:SLAB_SLOTS = [256i64, 170i64, 102i64, 56i64, 30i64, 15i64, 7i64, 3i64, 1i64, 0i64];
 
 // slab_class_slots — Return slots per slab page for class i.
 func:slab_class_slots = int64(int64:i) {
-    pick (i) {
-        (0i64) { pass SLAB_SLOTS_PER_PAGE_0; },
-        (1i64) { pass SLAB_SLOTS_PER_PAGE_1; },
-        (2i64) { pass SLAB_SLOTS_PER_PAGE_2; },
-        (3i64) { pass SLAB_SLOTS_PER_PAGE_3; },
-        (4i64) { pass SLAB_SLOTS_PER_PAGE_4; },
-        (5i64) { pass SLAB_SLOTS_PER_PAGE_5; },
-        (6i64) { pass SLAB_SLOTS_PER_PAGE_6; },
-        (7i64) { pass SLAB_SLOTS_PER_PAGE_7; },
-        (8i64) { pass SLAB_SLOTS_PER_PAGE_8; },
-        (*) { pass 0i64; }
-    }
+    if (i < 0i64 || i >= 10i64) { pass 0i64; }
+    pass SLAB_SLOTS[i];
 };
 
 // slab_freelist_get — Return the current freelist head for class i.
@@ -376,4 +360,59 @@ pub func:slab_alloc_zero = int64(int64:n) {
     }
 
     pass ptr;
+};
+
+// slab_realloc — Reallocate a slab-allocated pointer to a new size.
+// For small allocations, tries to stay within the slab allocator.
+// If new_size > SLAB_MAX_SIZE, falls back to direct mmap (mem_realloc).
+// Like standard realloc, if ptr is 0, it acts as slab_alloc.
+// If n is 0 and ptr is not 0, it acts as slab_free and returns 0.
+pub func:slab_realloc = int64(int64:ptr, int64:n) {
+    if (ptr == 0i64) {
+        pass slab_alloc(n);
+    }
+    if (n == 0i64) {
+        drop(slab_free(ptr));
+        pass 0i64;
+    }
+
+    // Direct mmap reallocation check
+    if ((ptr & 4095i64) == 16i64) {
+        Result<int64>:r = mem_realloc(ptr, n);
+        if (r.is_error) { pass 0i64; }
+        pass r.value;
+    }
+
+    int64:slot_start = ptr - SLAB_HEADER_SIZE;
+    uint8->:hdr = @cast_unchecked<uint8->>(slot_start);
+    int64:cls = @cast_unchecked<int64>(hdr[0]);
+
+    int64:old_size = raw slab_class_size(cls);
+    
+    // If the new size still fits in the same class, no-op
+    if (n <= old_size) {
+        // Wait, maybe the user wants to shrink significantly?
+        // To avoid fragmentation, we could realloc, but for slab it's better to just keep it.
+        // Actually, if it fits in a smaller class, we could shrink, but standard slab realloc
+        // just keeps it if it fits, unless it's way smaller. Let's just allocate new and copy
+        // to be strictly efficient on space, or just return ptr if it fits. 
+        // Let's allocate new and copy for now, or just return ptr if `slab_class_for_size(n) == cls`.
+        int64:new_cls = raw slab_class_for_size(n);
+        if (new_cls == cls) {
+            pass ptr;
+        }
+    }
+
+    // Allocate new, copy, free old
+    int64:new_ptr = slab_alloc(n);
+    if (new_ptr == 0i64) {
+        pass 0i64;
+    }
+
+    int64:copy_size = is (old_size < n) : old_size : n;
+    // We must use mem_memcpy here, but wait, mem_memcpy requires dst!=0 and src!=0.
+    drop(mem_memcpy(new_ptr, ptr, copy_size));
+    drop(slab_free(ptr));
+
+    pass new_ptr;
 };

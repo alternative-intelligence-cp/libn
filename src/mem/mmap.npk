@@ -32,6 +32,7 @@ use "../syscall/syscall_numbers.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../syscall/errno.npk".*;
 extern func:failsafe = int32(tbb32:err);
+extern func:slab_free = int64(int64:ptr);
 
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -187,9 +188,12 @@ pub func:mem_malloc = int64(int64:n) {
     if (n <= 0i64) {
         !!! 10i32;
     }
+    if (n > 549755813888i64) {
+        fail @cast_unchecked<tbb32>(ERR_BADARG);
+    }
 
       // Total mapping size: header + user data, rounded up to page boundary.
-    int64:total = raw page_align_up(ALLOC_HEADER_SIZE + n);
+    int64:total = page_align_up(ALLOC_HEADER_SIZE + n);
 
       // Map anonymous private memory.
     Result<int64>:r = libn_mmap(0i64, total, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
@@ -230,13 +234,59 @@ pub func:mem_calloc = int64(int64:n, int64:size) {
 pub func:mem_realloc = int64(int64:ptr, int64:new_size) {
       // NULL pointer → fresh allocation
     if (ptr == 0i64) {
-        pass raw mem_malloc(new_size);
+        pass mem_malloc(new_size);
     }
 
       // new_size == 0 → free and return NULL
     if (new_size == 0i64) {
-        drop(mem_free(ptr));
+        if ((ptr & 4095i64) != 16i64) {
+            drop(slab_free(ptr));
+        } else {
+            drop(mem_free(ptr));
+        }
         pass 0i64;
+    }
+
+    if ((ptr & 4095i64) != 16i64) {
+          // Slab pointer!
+        int64:slot_start = ptr - 8i64;
+        uint8->:hdr = @cast_unchecked<uint8->>(slot_start);
+        int64:cls = @cast_unchecked<int64>(hdr[0]);
+        int64:old_size = 0i64;
+        pick (cls) {
+            (0i64) { old_size = 8i64; },
+            (1i64) { old_size = 16i64; },
+            (2i64) { old_size = 32i64; },
+            (3i64) { old_size = 64i64; },
+            (4i64) { old_size = 128i64; },
+            (5i64) { old_size = 256i64; },
+            (6i64) { old_size = 512i64; },
+            (7i64) { old_size = 1024i64; },
+            (8i64) { old_size = 2048i64; },
+            (*) { old_size = 0i64; }
+        }
+        
+        Result<int64>:new_r = mem_malloc(new_size);
+        if (new_r.is_error) {
+            fail new_r.error;
+        }
+        int64:new_ptr = new_r.value;
+        
+        int64:copy_n = old_size;
+        if (new_size < copy_n) {
+            copy_n = new_size;
+        }
+        
+        int64:si = 0i64;
+        uint8->:src = @cast_unchecked<uint8->>(ptr);
+        uint8->:dst = @cast_unchecked<uint8->>(new_ptr);
+        while (si < copy_n) {
+            dst[si] = src[si];
+            si = si + 1i64;
+        }
+        
+        drop(slab_free(ptr));
+        pass new_ptr;
     }
 
       // Read old sizes from header
@@ -246,7 +296,7 @@ pub func:mem_realloc = int64(int64:ptr, int64:new_size) {
     int64:old_user_size = hdr[1];
 
       // Try mremap first (in-place growth avoids a copy)
-    int64:new_total = raw page_align_up(ALLOC_HEADER_SIZE + new_size);
+    int64:new_total = page_align_up(ALLOC_HEADER_SIZE + new_size);
     Result<int64>:rr = libn_mremap(map_start, old_map_size, new_total, MREMAP_MAYMOVE, 0i64);
     if (!rr.is_error) {
           // mremap succeeded — update header and return same region (possibly moved)

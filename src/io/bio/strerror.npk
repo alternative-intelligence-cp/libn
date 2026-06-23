@@ -17,6 +17,9 @@
 // strerror(0) returns "Success" (POSIX: undefined, but glibc returns "Success").
 // strerror(unknown) returns "Unknown error N".
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../str/strlen.npk".*;
 use "../../str/strconv.npk".*;
@@ -301,7 +304,6 @@ pub func:perror = NIL(int64:prefix) {
     drop(strerror_r(errnum, @cast_unchecked<int64>(@msg_buf), 256i64));
     
     drop(fputs(@cast_unchecked<int64>(@msg_buf), stderr_fp));
-    drop(fputc(10i64, stderr_fp));     // '
-'
+    drop(fputc(10i64, stderr_fp));     // '\n'
     drop(fflush(stderr_fp));
 };

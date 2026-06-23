@@ -15,6 +15,9 @@
 // setvbuf — set buffering mode and optionally supply a user buffer.
 // setbuf  — simplified interface (buf=NULL for unbuffered, else BUFSIZ-buffered).
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../mem/slab.npk".*;
 use "../../io/bio/file.npk".*;

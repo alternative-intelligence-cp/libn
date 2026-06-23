@@ -31,6 +31,7 @@ use "../syscall/syscall.npk".*;
 use "../syscall/syscall_numbers.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../syscall/errno.npk".*;
+use "../proc/env.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
 // Wait status decode functions (POSIX WIFEXITED @cast_unchecked<Nitpick>(etc.) functions)

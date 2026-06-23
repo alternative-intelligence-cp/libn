@@ -19,6 +19,9 @@
 //   flushes but does NOT close fd 0/1/2 and does NOT free the struct.
 //   This matches glibc and musl behavior.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../io/bio/file.npk".*;
@@ -52,6 +55,18 @@ pub int64:stdout_fp = 0i64;
 pub int64:stderr_fp = 0i64;
 
 // ════════════════════════════════════════════════════════════════════════════
+// isatty — Check if a file descriptor refers to a terminal.
+// Returns 1 if true, 0 if false.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:isatty = int64(int64:fd) {
+    stack uint8[60]:termios_buf;
+    Result<int64>:r = sys_safe(SYS_IOCTL, fd, TCGETS, @cast_unchecked<int64>(@termios_buf), 0i64, 0i64, 0i64);
+    if (r.is_error) { pass 0i64; }
+    pass 1i64;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
 // bio_ensure_std_init — Lazy initializer for standard streams.
 //
 // Called at the start of any function that uses stdin_fp/stdout_fp/stderr_fp.
@@ -59,7 +74,7 @@ pub int64:stderr_fp = 0i64;
 //
 // Initializes:
 //   stdin  — fd 0, read-only,  _IOFBF (8 KiB buffer)
-//   stdout — fd 1, write-only, _IOLBF (8 KiB buffer, flushes on '\n')
+//   stdout — fd 1, write-only, _IOLBF if tty else _IOFBF
 //   stderr — fd 2, write-only, _IONBF (unbuffered, immediate output)
 // ════════════════════════════════════════════════════════════════════════════
 
@@ -86,11 +101,11 @@ pub func:bio_ensure_std_init = NIL() {
     }
     stdin_fp = @cast_unchecked<int64>(@g_stdin_file);
 
-      // stdout — fd 1, write-only, line-buffered
+      // stdout — fd 1, write-only, line-buffered if tty else fully-buffered
     FILE->:sout = @cast_unchecked<FILE->>(@g_stdout_file);
     sout->fd       = 1i64;
     sout->mode     = FILE_MODE_WRITE;
-    sout->buf_mode = _IOLBF;
+    sout->buf_mode = is (isatty(1i64) != 0i64) : _IOLBF : _IOFBF;
     sout->flags    = FILE_FLAG_INIT;
     sout->unget    = FILE_UNGET_EMPTY;
     int64:stdout_buf = raw bio_alloc_buf(BUFSIZ);

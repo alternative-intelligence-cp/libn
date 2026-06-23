@@ -20,9 +20,15 @@
 // gets: INTENTIONALLY OMITTED — gets() is removed from C11 and is unsafe.
 //       Use fgets(buf, size, stdin) instead.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
+use "../../mem/memcpy.npk".*;
+use "../../mem/memutil.npk".*;
 use "../../str/strlen.npk".*;
 use "../../io/bio/file.npk".*;
+use "../../io/bio/fio.npk".*;
 use "../../io/bio/fchar.npk".*;
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -51,7 +57,7 @@ pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
     FILE->:f = @cast_unchecked<FILE->>(fp);
 
       // Already at EOF with nothing to give
-    if ((f->flags & FILE_FLAG_EOF) != 0i64 && f->unget == FILE_UNGET_EMPTY) {
+    if ((f->flags & FILE_FLAG_EOF) != 0i64 && f->unget == FILE_UNGET_EMPTY && f->buf_len <= f->buf_pos) {
         pass 0i64;
     }
 
@@ -59,23 +65,43 @@ pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
     int64:max = size - 1i64;    // leave room for NUL
     int64:count = 0i64;
 
-    while (count < max) {
-        int64:c = raw fgetc(fp);
-
-        if (c == FILE_EOF) {
-              // EOF or error
-            if (count == 0i64) {
-                  // Nothing read — return NULL per POSIX
-                pass 0i64;
-            }
-            break;
-        }
-
+    if (f->unget != FILE_UNGET_EMPTY) {
+        int64:c = f->unget;
+        f->unget = FILE_UNGET_EMPTY;
+        f->file_pos = f->file_pos + 1i64;
         dst[count] = @cast_unchecked<uint8>(c);
         count = count + 1i64;
+        if (c == 10i64) {
+            dst[count] = 0u8;
+            pass buf;
+        }
+    }
 
-          // Stop after newline (inclusive — newline IS stored in buf)
-        if (c == 10i64) {    // '\n'
+    while (count < max) {
+        int64:avail = f->buf_len - f->buf_pos;
+        if (avail <= 0i64) {
+            Result<int64>:rr = bio_refill_read_buf(fp);
+            if (rr.is_error || rr.value == 0i64) {
+                if (count == 0i64) { pass 0i64; }
+                break;
+            }
+            avail = f->buf_len - f->buf_pos;
+        }
+
+        int64:needed = max - count;
+        int64:chunk = is (avail < needed) : avail : needed;
+
+        int64:nl_ptr = raw mem_memchr(f->buf + f->buf_pos, 10i64, chunk);
+        if (nl_ptr != 0i64) {
+            chunk = nl_ptr - (f->buf + f->buf_pos) + 1i64;
+        }
+
+        drop(mem_memcpy(buf + count, f->buf + f->buf_pos, chunk));
+        f->buf_pos = f->buf_pos + chunk;
+        f->file_pos = f->file_pos + chunk;
+        count = count + chunk;
+
+        if (nl_ptr != 0i64) {
             break;
         }
     }
@@ -107,28 +133,16 @@ pub func:fputs = int64(int64:s, int64:fp) {
         pass FILE_EOF;
     }
 
-      // Use fwrite for bulk efficiency — fputc would work but is slow for strings
+      // Use fwrite for bulk efficiency
     int64:len = raw str_strlen(s);
     if (len == 0i64) {
         pass 0i64;
     }
 
-      // fwrite returns items written; for uint8-items size=1, nmemb=len
-      // We use the internal path here to avoid re-importing fio.npk (circular dep)
-      // Instead: just write char by char for correctness at v0.5.6.
-      // The bulk fwrite path will be wired in bio.npk.
-      //
-      // TODO: replace with fwrite(s, 1, len, fp) once dependency ordering allows.
-    int64:i = 0i64;
-    uint8->:p = @cast_unchecked<uint8->>(s);
-    while (i < len) {
-        int64:c = raw fputc(@cast_unchecked<int64>(p[i]), fp);
-        if (c == FILE_EOF) {
-            pass FILE_EOF;
-        }
-        i = i + 1i64;
+    int64:r = raw fwrite(s, 1i64, len, fp);
+    if (r < len) {
+        pass FILE_EOF;
     }
-
     pass len;
 };
 

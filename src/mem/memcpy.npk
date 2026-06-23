@@ -23,6 +23,9 @@
 // Thread safety: these are stateless functions — fully thread-safe.
 
 use "../syscall/errno.npk".*;
+use "../syscall/posix_constants.npk".*;
+use "../syscall/syscall.npk".*;
+use "../mem/mmap.npk".*;
 extern func:failsafe = int32(tbb32:err);
 
 
@@ -40,24 +43,21 @@ extern func:failsafe = int32(tbb32:err);
 // __intrinsic_memcpy — Compiler intrinsic hook for inline memcpy.
 // If the compiler backend recognizes this, it will replace the call with
 // an inline implementation (e.g., AVX2 / rep movsb).
-pub func:__intrinsic_memcpy = int64(int64:dst, int64:src, int64:n) {
+pub func:__intrinsic_memcpy = int64(int64:dst, int64:src, int64:num_bytes) {
       // Placeholder fallback (never hit if compiler correctly intercepts)
     pass 0i64;
 };
 
-pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
-    if (n == 0i64) {
+pub func:mem_memcpy = int64(int64:dst, int64:src, int64:num_bytes) requires dst != 0i64 requires src != 0i64 {
+    if (num_bytes == 0i64) {
         pass dst;
     }
-    if (dst == 0i64 || src == 0i64) {
-        !!! 10i32;
-    }
-    if (n < 0i64) {
+    if (num_bytes < 0i64) {
         !!! 10i32;
     }
 
-        if (n >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, n));
+        if (num_bytes >= 16i64) {
+        drop(__intrinsic_memcpy(dst, src, num_bytes));
         pass dst;
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
@@ -65,7 +65,7 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
 
       // ── Prologue: uint8-copy until dst is 8-uint8 aligned ─────────────
     int64:i = 0i64;
-    while (i < n && ((dst + i) & 7i64) != 0i64) {
+    while (i < num_bytes && ((dst + i) & 7i64) != 0i64) {
         d[i] = s[i];
         i = i + 1i64;
     }
@@ -79,7 +79,7 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
     int64->:di = @cast_unchecked<int64->>((dst + i));
     uint8->:si  = @cast_unchecked<uint8->>((src + i));
 
-    int64:word_count = (n - i) / 8i64;
+    int64:word_count = (num_bytes - i) / 8i64;
     int64:wi = 0i64;
     int64->:si64 = @cast_unchecked<int64->>((src + i));
     while (wi < word_count) {
@@ -89,7 +89,7 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
     i = i + word_count * 8i64;
 
       // ── Tail: remaining bytes (< 8) ──────────────────────────────────
-    while (i < n) {
+    while (i < num_bytes) {
         d[i] = s[i];
         i = i + 1i64;
     }
@@ -111,12 +111,12 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:n) {
 // GNU extension, now in C23. Used heavily in libn's io/ module.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_mempcpy = int64(int64:dst, int64:src, int64:n) {
-    Result<int64>:r = mem_memcpy(dst, src, n);
+pub func:mem_mempcpy = int64(int64:dst, int64:src, int64:num_bytes) {
+    Result<int64>:r = mem_memcpy(dst, src, num_bytes);
     if (r.is_error) {
         fail r.error;
     }
-    pass dst + n;
+    pass dst + num_bytes;
 };
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -133,14 +133,11 @@ pub func:mem_mempcpy = int64(int64:dst, int64:src, int64:n) {
 // Returns dst.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
-    if (n == 0i64) {
+pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) requires dst != 0i64 requires src != 0i64 {
+    if (num_bytes == 0i64) {
         pass dst;
     }
-    if (dst == 0i64 || src == 0i64) {
-        !!! 10i32;
-    }
-    if (n < 0i64) {
+    if (num_bytes < 0i64) {
         !!! 10i32;
     }
 
@@ -149,8 +146,8 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
         pass dst;
     }
 
-        if (n >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, n));
+        if (num_bytes >= 16i64) {
+        drop(__intrinsic_memcpy(dst, src, num_bytes));
         pass dst;
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
@@ -160,11 +157,11 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
       // Overlap condition: dst is inside [src, src+n) OR src is inside [dst, dst+n)
       // Forward copy is safe when: dst < src OR dst >= src + n
       // Backward copy is needed when: dst > src AND dst < src + n (dst inside src region)
-    bool:need_backward = dst > src && dst < (src + n);
+    bool:need_backward = dst > src && dst < (src + num_bytes);
 
     if (!need_backward) {
-    if (!need_backward && n >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, n));
+    if (!need_backward && num_bytes >= 16i64) {
+        drop(__intrinsic_memcpy(dst, src, num_bytes));
         pass dst;
     }
 
@@ -172,13 +169,13 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
         int64:i = 0i64;
 
           // Prologue: align dst
-        while (i < n && ((dst + i) & 7i64) != 0i64) {
+        while (i < num_bytes && ((dst + i) & 7i64) != 0i64) {
             d[i] = s[i];
             i = i + 1i64;
         }
 
           // Word loop
-        int64:word_count = (n - i) / 8i64;
+        int64:word_count = (num_bytes - i) / 8i64;
         int64:wi = 0i64;
         uint8->:si = @cast_unchecked<uint8->>((src + i));
         int64->:di = @cast_unchecked<int64->>((dst + i));
@@ -190,7 +187,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
         i = i + word_count * 8i64;
 
           // Tail
-        while (i < n) {
+        while (i < num_bytes) {
             d[i] = s[i];
             i = i + 1i64;
         }
@@ -198,7 +195,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
           // ── Backward copy: start from end, work toward start ─────────
           // This prevents clobbering src data before it's been copied when
           // dst overlaps src from the high end.
-        int64:i = n;
+        int64:i = num_bytes;
 
           // Tail prologue (align to 8-uint8 boundary going backward)
         while (i > 0i64 && ((dst + i) & 7i64) != 0i64) {
@@ -234,8 +231,8 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:n) {
 // Forward declaration — mem_malloc is defined in mmap.npk which imports this file.
 // We break the cycle by using the slab allocator when available, or a raw mmap call.
 // At v0.2.4, memdup uses a direct mmap allocation (no slab dependency here).
-pub func:mem_memdup = int64(int64:src, int64:n) {
-    if (src == 0i64 || n <= 0i64) {
+pub func:mem_memdup = int64(int64:src, int64:num_bytes) {
+    if (src == 0i64 || num_bytes <= 0i64) {
         !!! 10i32;
     }
 
@@ -243,17 +240,14 @@ pub func:mem_memdup = int64(int64:src, int64:n) {
       // We call libn_mmap directly to avoid circular dependency with mmap.npk's mem_malloc.
       // The caller can use slab_alloc if < SLAB_MAX_SIZE for efficiency.
       // At this tier, correctness over efficiency.
-    use "../syscall/posix_constants.npk".*;
-    use "../syscall/syscall.npk".*;
-    use "../mem/mmap.npk".*;
 
-    Result<int64>:r = mem_malloc(n);
+    Result<int64>:r = mem_malloc(num_bytes);
     if (r.is_error) {
         fail r.error;
     }
 
       // Copy the source bytes
-    Result<int64>:rc = mem_memcpy(r.value, src, n);
+    Result<int64>:rc = mem_memcpy(r.value, src, num_bytes);
     if (rc.is_error) {
         drop(mem_free(r.value));
         fail rc.error;

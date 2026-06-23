@@ -1,5 +1,7 @@
 use "time_types.npk".*;
 use "../syscall/syscall.npk".*;
+use "../syscall/syscall_numbers.npk".*;
+use "../syscall/errno.npk".*;
 
 pub func:gettimeofday = int64(timeval->:tv, int64:tz) {
     if (@cast_unchecked<int64>(tv) == 0i64) {

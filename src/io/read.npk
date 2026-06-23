@@ -140,6 +140,7 @@ pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
     int64:count = 0i64;
     int64:max_store = buf_size - 1i64;    // leave room for NUL
     stack uint8[1]:one;
+    one[0] = 0u8;
 
     while (count < max_store) {
         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
@@ -160,7 +161,7 @@ pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
             }
               // Partial line at EOF — still useful, return count
               // (caller distinguishes via checking for '\n' at end if they care)
-            fail @cast_unchecked<tbb32>(ERR_EOF);
+            pass count;
         }
 
         uint8:c = one[0];
@@ -206,6 +207,7 @@ pub func:io_read_until = int64(int64:fd, int64:buf, int64:buf_size, uint8:delim)
     int64:count = 0i64;
     int64:max_store = buf_size - 1i64;
     stack uint8[1]:one;
+    one[0] = 0u8;
 
     while (count < max_store) {
         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
@@ -220,7 +222,7 @@ pub func:io_read_until = int64(int64:fd, int64:buf, int64:buf_size, uint8:delim)
         if (r.value == 0i64) {
             dst[count] = 0u8;
             if (count == 0i64) { pass 0i64; }
-            fail @cast_unchecked<tbb32>(ERR_EOF);
+            pass count;
         }
 
         uint8:c = one[0];
@@ -253,6 +255,7 @@ pub func:io_read_char = int64(int64:fd) {
     }
 
     stack uint8[1]:b;
+    b[0] = 0u8;
 
     while (true) {
         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b), 1i64);

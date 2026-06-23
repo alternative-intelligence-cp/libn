@@ -17,6 +17,9 @@
 // requires external synchronization. Thread-safe wrappers (flockfile/funlockfile)
 // are planned for v0.14.x.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../syscall/syscall.npk".*;
@@ -68,10 +71,14 @@ func:bio_init_stream = int64(int64:fp, int64:fd, int64:file_mode, bool:is_static
         pass 0i64;
     }
 
-is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
+    if (fd == 1i64) {
+        f->buf_mode = _IOLBF;
+    } else {
+        f->buf_mode = _IOFBF;
+    }
 
       // Allocate buffer
-    int64:buf = raw bio_alloc_buf(BUFSIZ);
+    int64:buf = bio_alloc_buf(BUFSIZ);
     if (buf == 0i64) {
         fail @cast_unchecked<tbb32>(ENOMEM);
     }
@@ -103,8 +110,10 @@ pub func:fopen = int64(int64:path, int64:mode) {
 
       // Parse mode string
     stack int64[1]:file_mode_out;
+    file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    open_flags_out[0] = 0i64;
+    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
         drop(errno_set(EINVAL));
         pass 0i64;
@@ -122,7 +131,7 @@ pub func:fopen = int64(int64:path, int64:mode) {
     int64:fd = r.value;
 
       // Allocate FILE struct
-    int64:fp = raw bio_alloc_file();
+    int64:fp = bio_alloc_file();
     if (fp == 0i64) {
         drop(libn_close(fd));
         drop(errno_set(ENOMEM));
@@ -163,14 +172,16 @@ pub func:fdopen = int64(int64:fd, int64:mode) {
     }
 
     stack int64[1]:file_mode_out;
+    file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    open_flags_out[0] = 0i64;
+    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
         drop(errno_set(EINVAL));
         pass 0i64;
     }
 
-    int64:fp = raw bio_alloc_file();
+    int64:fp = bio_alloc_file();
     if (fp == 0i64) {
         drop(errno_set(ENOMEM));
         pass 0i64;
@@ -208,8 +219,10 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
 
       // Parse new mode
     stack int64[1]:file_mode_out;
+    file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
-    int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    open_flags_out[0] = 0i64;
+    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
     if (parse_ok != 0i64) {
         drop(fclose(fp));
         drop(errno_set(EINVAL));

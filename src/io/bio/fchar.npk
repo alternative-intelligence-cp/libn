@@ -17,6 +17,9 @@
 //   At v0.5.5, they are functions. The macro form is planned for v0.6.x when
 //   libn has a header/include system.
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../syscall/syscall.npk".*;

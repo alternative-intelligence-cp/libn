@@ -46,6 +46,9 @@
 //   Like printf, fscanf uses explicit-arity wrappers (0..8 output pointers).
 //   fscanf0..8, sscanf0..8, scanf0..8
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../io/bio/file.npk".*;
 use "../../io/bio/fchar.npk".*;
@@ -376,7 +379,11 @@ func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
 
         int64:base = 10i64;
         if (spec == 100u8 || spec == 105u8) {    // %d, %i
-is (base = (spec == 105u8)) : 0i64 : 10i64;    // %i auto-detects base
+            if (spec == 105u8) {
+                base = 0i64;
+            } else {
+                base = 10i64;
+            }
         } else if (spec == 117u8) {    // %u
             base = 10i64;
         } else if (spec == 111u8) {    // %o

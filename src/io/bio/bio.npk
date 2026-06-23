@@ -59,6 +59,9 @@
 //   v0.5.12 stdio test suite
 //   v0.6.x  fprintf, fscanf (formatted I/O to streams)
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../io/bio/file.npk".*;
 use "../../io/bio/fopen.npk".*;
 use "../../io/bio/fio.npk".*;

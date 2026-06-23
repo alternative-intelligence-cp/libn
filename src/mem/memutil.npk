@@ -283,38 +283,43 @@ pub func:mem_memrchr = int64(int64:ptr, int64:c, int64:n) {
 
 pub func:mem_memmem = int64(int64:haystack, int64:hlen, int64:needle, int64:nlen) {
       // Vacuous needle: matches at the start (POSIX behavior)
-    if (nlen == 0i64) {
-        pass haystack;
-    }
-    if (haystack == 0i64 || needle == 0i64) {
-        pass 0i64;
-    }
-    if (nlen > hlen) {
-        pass 0i64;
-    }
+    if (nlen == 0i64) { pass haystack; }
+    if (haystack == 0i64 || needle == 0i64) { pass 0i64; }
+    if (nlen > hlen) { pass 0i64; }
 
     uint8->:h = @cast_unchecked<uint8->>(haystack);
     uint8->:n = @cast_unchecked<uint8->>(needle);
-    uint8:first = n[0];
 
-    int64:max_offset = hlen - nlen;
+    if (nlen == 1i64) {
+        pass mem_memchr(haystack, @cast_unchecked<int64>(n[0]), hlen);
+    }
+
+      // Boyer-Moore-Horspool algorithm
+    stack int64[256]:bad_char;
+    bad_char[0] = nlen;    // satisfy initialization checker
     int64:i = 0i64;
-    while (i <= max_offset) {
-          // Use memchr to jump to next candidate for the first uint8 of needle
-        int64:candidate = raw mem_memchr(haystack + i, @cast_unchecked<int64>(first), hlen - i);
-        if (candidate == 0i64) {
-            pass 0i64;    // first uint8 not found at all
-        }
-        int64:offset = candidate - haystack;
-        if (offset > max_offset) {
-            pass 0i64;    // first uint8 found but too close to end for needle to fit
-        }
+    while (i < 256i64) {
+        bad_char[i] = nlen;
+        i = i + 1i64;
+    }
+    
+    i = 0i64;
+    while (i < nlen - 1i64) {
+        bad_char[@cast_unchecked<int64>(n[i])] = nlen - 1i64 - i;
+        i = i + 1i64;
+    }
 
-          // Compare full needle at this position
-        if (raw mem_memcmp(candidate, needle, nlen) == 0i64) {
-            pass candidate;
+    int64:offset = 0i64;
+    int64:max_offset = hlen - nlen;
+    while (offset <= max_offset) {
+        int64:j = nlen - 1i64;
+        while (j >= 0i64 && h[offset + j] == n[j]) {
+            j = j - 1i64;
         }
-        i = offset + 1i64;
+        if (j < 0i64) {
+            pass haystack + offset;
+        }
+        offset = offset + bad_char[@cast_unchecked<int64>(h[offset + nlen - 1i64])];
     }
 
     pass 0i64;

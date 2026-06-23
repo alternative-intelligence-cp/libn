@@ -44,6 +44,7 @@ use "../syscall/syscall.npk".*;
 use "../syscall/syscall_numbers.npk".*;
 use "../syscall/errno.npk".*;
 use "../str/strlen.npk".*;
+use "../proc/env.npk".*;
 
 // ── External environ pointer (defined in env.npk, resolved at link time) ──
 // Used by execvp when it needs the current environment.

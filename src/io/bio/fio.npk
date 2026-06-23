@@ -20,6 +20,9 @@
 //   For read-mode streams: seek back to discard prefetched bytes (POSIX-defined).
 //   fflush(NULL): flush all open streams (not yet tracked at v0.5.x; flushes nothing extra).
 
+use "../../mem/mmap.npk".*;
+use "../../syscall/syscall_numbers.npk".*;
+use "../../syscall/syscall.npk".*;
 use "../../syscall/errno.npk".*;
 use "../../syscall/posix_constants.npk".*;
 use "../../syscall/syscall.npk".*;

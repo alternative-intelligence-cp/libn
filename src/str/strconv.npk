@@ -481,7 +481,7 @@ pub func:str_itoa_hex = int64(int64:v, int64:buf, int64:buf_size, bool:include_p
             } else {
                 tmp[ti] = @cast_unchecked<uint8>((87i64 + digit));     // 'a'..'f' (87 = 'a'-10)
             }
-            u = u >> 4i64;    // logical right shift (unsigned)
+            u = (u >> 4i64) & 0x0FFFFFFFFFFFFFFFi64;    // logical right shift (unsigned)
               // Problem: int64 >> is arithmetic in Nitpick
               // Use: u = (@cast_unchecked<uint64>(u)) >> 4 → in Nitpick we use: u = (u & INT64_MAX) >> 4
               // For full 64-bit hex, handle sign bit separately if needed.
