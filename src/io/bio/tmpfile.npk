@@ -267,7 +267,7 @@ pub func:tmpfile = int64() {
 
       // Wrap in a FILE* for buffered I/O
     int64:wb_mode = @cast_unchecked<int64>(@"w+b");
-    int64:fp = fdopen(fd, wb_mode);
+    int64:fp = raw fdopen(fd, wb_mode);
     if (fp == 0i64) {
         drop(libn_close(fd));
     }

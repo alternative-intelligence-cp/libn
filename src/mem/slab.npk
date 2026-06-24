@@ -306,7 +306,7 @@ pub func:slab_alloc = int64(int64:n) {
 // slab_free — Return a slab-allocated pointer to the freelist.
 // For large allocations (not from slab), delegates to mem_free().
 // Passing NULL (0) is a no-op. Passing an invalid pointer is undefined.
-pub func:slab_free = int64(int64:ptr) {
+pub func:slab_free = int64(int64:handle, int64:ptr) {
     if (ptr == 0i64) {
         pass 0i64;
     }

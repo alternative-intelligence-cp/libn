@@ -228,8 +228,8 @@ pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
 
     if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
 
-    if (negate) { pass 0i64 - result; }    // Modular negation for unsigned
-    pass result;
+    if (negate) { pass @cast_unchecked<int64>(0u64 - result); }    // Modular negation for unsigned
+    pass @cast_unchecked<int64>(result);
 };
 
 // ════════════════════════════════════════════════════════════════════════════

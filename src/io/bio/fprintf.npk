@@ -323,7 +323,7 @@ pub func:asprintf0 = int64(int64:out_len, int64:fmt) {
     drop(str_snprintf0(p, len + 1i64, fmt));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-}
+};
 
 pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
     Result<int64>:len_res = str_snprintf1(0i64, 0i64, fmt, a0);
@@ -334,7 +334,7 @@ pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
     drop(str_snprintf1(p, len + 1i64, fmt, a0));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-}
+};
 
 pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
     Result<int64>:len_res = str_snprintf2(0i64, 0i64, fmt, a0, a1);
@@ -345,7 +345,7 @@ pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
     drop(str_snprintf2(p, len + 1i64, fmt, a0, a1));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-}
+};
 
 pub func:asprintf3 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1, int64:a2) {
     Result<int64>:len_res = str_snprintf3(0i64, 0i64, fmt, a0, a1, a2);
@@ -356,7 +356,7 @@ pub func:asprintf3 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1, int64:a
     drop(str_snprintf3(p, len + 1i64, fmt, a0, a1, a2));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-}
+};
 
 pub func:asprintf4 = int64(int64:out_len, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3) {
@@ -368,7 +368,7 @@ pub func:asprintf4 = int64(int64:out_len, int64:fmt,
     drop(str_snprintf4(p, len + 1i64, fmt, a0, a1, a2, a3));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // perror — Write "prefix: errno description\n" to stderr FILE* stream.

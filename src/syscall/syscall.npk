@@ -86,7 +86,8 @@ pub func:sys_safe = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int6
         nr == SYS_NEWFSTATAT || nr == SYS_UNLINKAT || nr == SYS_MKDIRAT ||
         nr == SYS_GETDENTS64 || nr == SYS_GETCWD || nr == SYS_READLINKAT ||
         nr == SYS_STATX || nr == SYS_GETRANDOM || nr == SYS_FUTEX ||
-        nr == SYS_SET_TID_ADDRESS || nr == SYS_SCHED_GETAFFINITY) {
+        nr == SYS_SET_TID_ADDRESS || nr == SYS_SCHED_GETAFFINITY ||
+        nr == SYS_PREAD64 || nr == SYS_PWRITE64 || nr == SYS_CHDIR || nr == SYS_FCHDIR) {
         ret = sys!!!(nr, a1, a2, a3, a4, a5, a6);
     } else {
         fail @cast_unchecked<tbb32>(EPERM); // Reject unauthorized syscalls
@@ -614,10 +615,25 @@ pub func:libn_write_all = int64(int64:fd, int64:buf, int64:nbytes) {
 // ts_req: pointer to timespec (cast to int64) — the desired sleep duration.
 // Returns 0 on success, or ETIMEDOUT / other errors.
 pub func:libn_nanosleep_retry = int64(int64:ts_req) {
-      // We need two timespec slots on the stack: req and rem.
-      // Stack layout: [tv_sec_req:8][tv_nsec_req:8][tv_sec_rem:8][tv_nsec_rem:8]
-      // For now (pre-v0.2.x), we simply call nanosleep once.
-      // v0.11.3 will implement the full retry loop using stack-allocated timespec.
-    Result<int64>:r = sys2(SYS_NANOSLEEP, ts_req, 0i64);
-    return r;
+    stack int64[4]:ts; // [sec_req, nsec_req, sec_rem, nsec_rem]
+    int64->:req_in = @cast_unchecked<int64->>(ts_req);
+    ts[0] = req_in[0];
+    ts[1] = req_in[1];
+    ts[2] = 0i64;
+    ts[3] = 0i64;
+
+    int64:req_ptr = @cast_unchecked<int64>(@ts);
+    int64:rem_ptr = req_ptr + 16i64;
+
+    while (true) {
+        Result<int64>:r = sys2(SYS_NANOSLEEP, req_ptr, rem_ptr);
+        if (!r.is_error) { break; }
+
+        int64:e = @cast_unchecked<int64>(r.error);
+        if (e != EINTR) { fail r.error; }
+
+        ts[0] = ts[2]; // Swap remaining time into requested time
+        ts[1] = ts[3];
+    }
+    pass 0i64;
 };

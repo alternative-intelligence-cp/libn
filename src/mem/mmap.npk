@@ -32,7 +32,7 @@ use "../syscall/syscall_numbers.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../syscall/errno.npk".*;
 extern func:failsafe = int32(tbb32:err);
-extern func:slab_free = int64(int64:ptr);
+extern func:slab_free = int64(int64:handle, int64:ptr);
 
 
 // ════════════════════════════════════════════════════════════════════════════

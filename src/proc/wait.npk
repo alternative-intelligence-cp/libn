@@ -175,7 +175,7 @@ pub func:proc_run = int64(int64:path, int64:argv, int64:envp) {
     while (true) {
         w = raw waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
         if (w >= 0i64) { break; }
-        if (libn_errno_get() != EINTR) { pass -1i64; }
+        if (raw libn_errno_get() != EINTR) { pass -1i64; }
     }
 
     if (raw wait_exited(status)) {

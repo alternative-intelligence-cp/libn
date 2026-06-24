@@ -81,7 +81,11 @@ pub func:fgets = int64(int64:buf, int64:size, int64:fp) {
         int64:avail = f->buf_len - f->buf_pos;
         if (avail <= 0i64) {
             Result<int64>:rr = bio_refill_read_buf(fp);
-            if (rr.is_error || rr.value == 0i64) {
+            if (rr.is_error) {
+                if (count == 0i64) { pass 0i64; }
+                break;
+            }
+            if (rr.value == 0i64) {
                 if (count == 0i64) { pass 0i64; }
                 break;
             }

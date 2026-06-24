@@ -298,7 +298,7 @@ pub func:strbuf_appendf0 = int64(int64:sb, int64:fmt) {
     drop(str_snprintf0(s->ptr + s->len, len + 1i64, fmt));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
     if (sb == 0i64) { pass -1i64; }
@@ -311,7 +311,7 @@ pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
     drop(str_snprintf1(s->ptr + s->len, len + 1i64, fmt, a0));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf2 = int64(int64:sb, int64:fmt, int64:a0, int64:a1) {
     if (sb == 0i64) { pass -1i64; }
@@ -324,7 +324,7 @@ pub func:strbuf_appendf2 = int64(int64:sb, int64:fmt, int64:a0, int64:a1) {
     drop(str_snprintf2(s->ptr + s->len, len + 1i64, fmt, a0, a1));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf3 = int64(int64:sb, int64:fmt, int64:a0, int64:a1, int64:a2) {
     if (sb == 0i64) { pass -1i64; }
@@ -337,7 +337,7 @@ pub func:strbuf_appendf3 = int64(int64:sb, int64:fmt, int64:a0, int64:a1, int64:
     drop(str_snprintf3(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf4 = int64(int64:sb, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3) {
@@ -351,7 +351,7 @@ pub func:strbuf_appendf4 = int64(int64:sb, int64:fmt,
     drop(str_snprintf4(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2, a3));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf5 = int64(int64:sb, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
@@ -365,7 +365,7 @@ pub func:strbuf_appendf5 = int64(int64:sb, int64:fmt,
     drop(str_snprintf5(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2, a3, a4));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf6 = int64(int64:sb, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
@@ -379,7 +379,7 @@ pub func:strbuf_appendf6 = int64(int64:sb, int64:fmt,
     drop(str_snprintf6(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2, a3, a4, a5));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6) {
@@ -393,7 +393,7 @@ pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
     drop(str_snprintf7(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2, a3, a4, a5, a6));
     s->len = s->len + len;
     pass len;
-}
+};
 
 pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
                            int64:a0, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5, int64:a6, int64:a7) {
@@ -407,7 +407,7 @@ pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
     drop(str_snprintf8(s->ptr + s->len, len + 1i64, fmt, a0, a1, a2, a3, a4, a5, a6, a7));
     s->len = s->len + len;
     pass len;
-}
+};
 
 // ════════════════════════════════════════════════════════════════════════════
 // Truncation and trimming

@@ -148,7 +148,7 @@ pub func:quick_exit = NIL(int64:code) {
 
 pub func:abort = NIL() {
       // Raise SIGABRT to ourselves
-    int64:pid = libn_getpid();
+    int64:pid = raw libn_getpid();
     drop sys!!(SYS_KILL, pid, SIGABRT, 0i64, 0i64, 0i64, 0i64);
       // If a handler caught it and returned, force exit with failure
     drop(_exit(134i64));

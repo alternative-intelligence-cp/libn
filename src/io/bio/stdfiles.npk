@@ -105,7 +105,7 @@ pub func:bio_ensure_std_init = NIL() {
     FILE->:sout = @cast_unchecked<FILE->>(@g_stdout_file);
     sout->fd       = 1i64;
     sout->mode     = FILE_MODE_WRITE;
-    sout->buf_mode = is (isatty(1i64) != 0i64) : _IOLBF : _IOFBF;
+    sout->buf_mode = is (raw isatty(1i64) != 0i64) : _IOLBF : _IOFBF;
     sout->flags    = FILE_FLAG_INIT;
     sout->unget    = FILE_UNGET_EMPTY;
     int64:stdout_buf = raw bio_alloc_buf(BUFSIZ);

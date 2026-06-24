@@ -293,7 +293,6 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
     f->unget    = FILE_UNGET_EMPTY;
     f->flags    = (f->flags & FILE_FLAG_BUF_OWN) | FILE_FLAG_INIT;    // preserve buf ownership
 
-    FILE->:f = @cast_unchecked<FILE->>(fp);
     f->next_global = g_open_files;
     g_open_files = fp;
     pass fp;

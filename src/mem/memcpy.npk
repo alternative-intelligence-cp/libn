@@ -57,7 +57,7 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:num_bytes) {
     }
 
         if (num_bytes >= 16i64) {
-        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+        if (raw __intrinsic_memcpy(dst, src, num_bytes)) {
             pass dst;
         }
     }
@@ -148,7 +148,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) {
     }
 
         if (num_bytes >= 16i64) {
-        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+        if (raw __intrinsic_memcpy(dst, src, num_bytes)) {
             pass dst;
         }
     }
@@ -163,7 +163,7 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) {
 
     if (!need_backward) {
     if (!need_backward && num_bytes >= 16i64) {
-        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+        if (raw __intrinsic_memcpy(dst, src, num_bytes)) {
             pass dst;
         }
     }

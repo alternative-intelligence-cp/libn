@@ -191,20 +191,11 @@ pub func:math_sat_mul_i64 = int64(int64:a, int64:b) {
 // math_sat_add_u64 — Saturating unsigned addition.
 // If a + b wraps, returns UINT64_MAX (all-bits-set).
 pub func:math_sat_add_u64 = int64(int64:a, int64:b) {
-    int64:r = a + b;
-      // Unsigned overflow: r <_u a (carry out of MSB)
-    if (raw math_max_u64(r, a) != r) {    // r <_u a means overflow
-          // Actually simpler: overflow iff r <_u a
-          // Since we need unsigned compare: use sign-bit trick
-          // r <_u a iff (r - a) has borrow, but we can just check:
-          // a + b overflows u64 iff b > UINT64_MAX - a, i.e. b > ~a
-          // In signed terms: ~a = 0i64 - 1i64 - a
-        int64:max_b = (0i64 - 1i64) - a;    // UINT64_MAX - a
-        if (raw math_max_u64(b, max_b) != max_b) {
-            pass 0i64 - 1i64;    // UINT64_MAX
-        }
+    int64:max_b = (0i64 - 1i64) - a;    // UINT64_MAX - a
+    if (raw math_max_u64(b, max_b) != max_b) {
+        pass 0i64 - 1i64;    // UINT64_MAX
     }
-    pass r;
+    pass a + b;
 };
 
 // math_sat_sub_u64 — Saturating unsigned subtraction.
