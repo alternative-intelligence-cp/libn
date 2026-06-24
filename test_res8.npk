@@ -1,0 +1,2 @@
+pub func:test = int64() { pass 0i64; };
+pub func:main = int64() { int64:p = test(); pass p; };

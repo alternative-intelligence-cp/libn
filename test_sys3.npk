@@ -1,0 +1,3 @@
+pub func:test = Result<int64>() {
+    return sys(READ, 0i64, 0i64, 0i64);
+};

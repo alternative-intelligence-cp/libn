@@ -101,6 +101,7 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=errno_clear, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
@@ -252,18 +253,16 @@ CHECKING ERR RETURN int64
 [DEBUG parseFuncDecl] nameToken=math_isqrt_ceil, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=math_gcd, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=math_lcm, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
@@ -271,29 +270,25 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
@@ -305,9 +300,8 @@ CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_memset, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -323,17 +317,9 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_poison, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=__intrinsic_memcpy, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -348,24 +334,7 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=has_zero_byte, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=replicate_byte, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_memcmp, peek()==, type=168
@@ -395,6 +364,8 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_is_zero, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -407,13 +378,13 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mem_align_ptr, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=mem_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_class_for_size, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_class_size, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_class_slots, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_freelist_get, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_freelist_set, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=slab_refill, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -426,7 +397,11 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=slab_alloc_zero, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=slab_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
@@ -462,9 +437,15 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=charset_test, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=str_strpbrk, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_strspn, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_strcspn, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=to_lower_ascii, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=to_upper_ascii, peek()==, type=168
@@ -504,7 +485,9 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_strdup, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_strndup, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -526,7 +509,12 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_strsep, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_field_equals, peek()==, type=168
@@ -710,6 +698,9 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_atoi, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_parse_i64, peek()==, type=168
@@ -732,6 +723,7 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_itoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -816,7 +808,13 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=render_uint, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_format_args, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -833,65 +831,145 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf0, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=str_snprintf7, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_write_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_grow, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_new, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_new_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_reset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_finish, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_to_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_len, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_ptr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_is_empty, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_char, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_bytes, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_append_strbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_repeat, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=io_write_nonblock, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf0, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=io_write_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf1, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=io_write_char, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf2, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=io_write_cstr_n, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_write_newline, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_write_strln, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_print, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_println, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_eprint, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=io_eprintln, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf3, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf4, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf5, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf6, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf7, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_truncate, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_strip_trailing_newline, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_write_to_fd, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_grow, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_new, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_new_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_reset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_finish, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_to_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_len, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_ptr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_is_empty, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_char, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_bytes, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_append_strbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_repeat, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf0, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_truncate, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_strip_trailing_newline, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_write_to_fd, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-CHECKING ERR RETURN int64
-CHECKING ERR RETURN int64
 [DEBUG parseFuncDecl] nameToken=path_strlen, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=path_copy_n, peek()==, type=168
@@ -964,6 +1042,12 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=proc_env_init, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1013,6 +1097,8 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=exit, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=quick_exit, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=abort, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=isatty, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=bio_ensure_std_init, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1026,7 +1112,27 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=bio_flush_stdout, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=bio_flush_stderr, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=bio_flush_all, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_file, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_free_file, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_alloc_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_free_buf, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_flush_write_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_discard_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_refill_read_buf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=bio_parse_mode, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=bio_init_stream, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=fopen, peek()==, type=168
@@ -1048,7 +1154,22 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=fileno, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fread, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fwrite, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fflush, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=fgetc, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1073,8 +1194,6 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=fputs, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=fork, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1149,14 +1268,13 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=wait3, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=proc_wait_all, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=proc_run, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=sigemptyset, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sigfillset, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sigaddset, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sigdelset, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=sigismember, peek()==, type=168
-[DEBUG parseFuncDecl] nameToken=proc_sigreturn_tramp, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=_sigact_encode, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=_sigact_handler, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1181,6 +1299,23 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=raise, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=killpg, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_nonblock, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_char, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=io_write_cstr_n, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_newline, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_write_strln, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_print, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_println, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_eprint, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=io_eprintln, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=io_read_some, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=io_read_n, peek()==, type=168
@@ -1193,9 +1328,7 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=io_read_until, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1343,6 +1476,7 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 CHECKING ERR RETURN int64
 CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1434,7 +1568,17 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=strerror_r, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=perror, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=feof, peek()==, type=168
@@ -1498,18 +1642,13 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
 [DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
-PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=bio_scan_getc, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1529,6 +1668,8 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=bio_scan_engine, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
@@ -1600,7 +1741,10 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=tmpfile_get_entropy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=tmpfile_fill_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 [DEBUG parseFuncDecl] nameToken=mkstemp, peek()==, type=168
@@ -1619,266 +1763,736 @@ PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[DEBUG parseFuncDecl] nameToken=tmpnam, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
 PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 72, Column 12: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mSymbol 'f' already defined in current scope at line 296, column 5[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 116, Column 30: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 31: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLogical operator requires 'bool' type on right side, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 31: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 214, Column 9: Cannot silently unwrap Result<uint8> into 'ca' of type 'uint8'. Declare as Result<uint8> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 166, Column 31: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 215, Column 9: Cannot silently unwrap Result<uint8> into 'cb' of type 'uint8'. Declare as Result<uint8> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1: Failed to load module 'str/strview.npk'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 13: Undefined identifier: 'ca'. Did you mean 'pa'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 216, Column 19: Undefined identifier: 'cb'. Did you mean 'pb'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 220, Column 13: Undefined identifier: 'ca'. Did you mean 'pa'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 252, Column 9: Cannot silently unwrap Result<uint8> into 'ca' of type 'uint8'. Declare as Result<uint8> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 9: Cannot silently unwrap Result<uint8> into 'cb' of type 'uint8'. Declare as Result<uint8> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 13: Undefined identifier: 'ca'. Did you mean 'pa'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 19: Undefined identifier: 'cb'. Did you mean 'pb'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 258, Column 13: Undefined identifier: 'ca'. Did you mean 'pa'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 203, Column 5: Cannot silently unwrap Result<uint8> into 'first_lo' of type 'uint8'. Declare as Result<uint8> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 207, Column 37: Undefined identifier: 'first_lo'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 18, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 251, Column 41: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1: Failed to load module 'str/string.npk'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 25: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLogical operator requires 'bool' type on right side, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 333, Column 27: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 171, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 176, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 11: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 204, Column 10: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 209, Column 22: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 210, Column 32: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 212, Column 11: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLogical operator requires 'bool' type on right side, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 27: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 27: Logical NOT requires 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 163, Column 15: Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 87, Column 25: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 171, Column 25: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 371, Column 34: Argument 1 has type 'string', but function expects 'int64'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 381, Column 18: Cannot assign value of type 'int64' to variable of type 'uint64'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 19, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 231, Column 19: Pass value type 'uint64' does not match function value type 'int64'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 336, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 232, Column 5: Pass value type 'uint64' does not match function value type 'int64'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 338, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1: Failed to load module 'str/strbuf.npk'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 173, Column 5: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 9: Undefined identifier: 'r'. Did you mean 's'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 175, Column 5: Cannot silently unwrap Result<int64> into 'r2' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 176, Column 9: Undefined identifier: 'r2'. Did you mean 's'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 177, Column 10: Undefined identifier: 'r'. Did you mean 's'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 22: Undefined identifier: 'g_open_files'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 276, Column 16: Undefined identifier: 'curr'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 84, Column 12: Cannot assign 'bool' to 'int64'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 279, Column 22: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 280, Column 33: Undefined identifier: 'plen'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 308, Column 22: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 310, Column 26: Undefined identifier: 'xlen'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 24, Column 1: Failed to load module 'time/clock.npk'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 24, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55:
-  Expected ')' after function arguments
-  Found: token ';'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 24, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55:
-  Expected ')' after function arguments
-  Found: token ';'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 24, Column 1:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1: Failed to load module 'time/sleep.npk'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55:
-  Expected ')' after function arguments
-  Found: token ';'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55:
-  Expected ')' after function arguments
-  Found: token ';'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/sleep.npk: Parse error at line 18, column 1:
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 21, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 84, Column 34: Cannot access .value without checking .is_error first (no checky no val).
+  Help: Add a check: if (!rr.is_error) { ... }
+  Or use unwrap operator: value = rr ? default_value;[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 39: Cannot compare Result<int64> to int64 directly. Use 'raw' to unwrap: raw expr op int64[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 5: Cannot silently unwrap Result<int64> into 'pid' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 152, Column 26: Undefined identifier: 'pid'. Did you mean 'EIO'?[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 178, Column 30: Cannot compare Result<int64> to int64 directly. Use 'raw' to unwrap: raw expr op int64[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1: Failed to load module 'io/bio/fprintf.npk'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 328, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 339, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 350, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 361, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 382, column 1:
   Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
   Found: end of file
   Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 26, Column 1:   [/home/randy/Workspace/REPOS/libn/src/time/sleep.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/sleep.npk'. Check for syntax errors.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 53, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 81, Column 26: Undefined identifier: 'r2'. Did you mean 'r'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 270, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 107, Column 5: Cannot silently unwrap Result<int64> into 'parse_ok' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 271, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 9: Undefined identifier: 'parse_ok'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 275, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 125, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1: Failed to load module 'io/bio/bio.npk'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 126, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 133, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 9: Undefined identifier: 'init_r'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 141, Column 40: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 142, Column 5: Undefined identifier: 'f'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 143, Column 5: Undefined identifier: 'g_open_files'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 144, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 167, Column 5: Cannot silently unwrap Result<int64> into 'parse_ok' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 9: Undefined identifier: 'parse_ok'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 173, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 174, Column 9: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 179, Column 44: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 180, Column 9: Undefined identifier: 'init_r'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 186, Column 40: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 187, Column 5: Undefined identifier: 'f'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 188, Column 5: Undefined identifier: 'g_open_files'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 189, Column 10: Undefined identifier: 'fp'. Did you mean 'fd'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 212, Column 5: Cannot silently unwrap Result<int64> into 'parse_ok' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 213, Column 9: Undefined identifier: 'parse_ok'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 22: Undefined identifier: 'g_open_files'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 255, Column 5: Undefined identifier: 'g_open_files'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 303, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 99, Column 28: Cannot access .value without checking .is_error first (no checky no val).
-  Help: Add a check: if (!r.is_error) { ... }
-  Or use unwrap operator: value = r ? default_value;[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 316, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 79, Column 5: Cannot silently unwrap Result<int64> into 'stdin_buf' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 329, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 9: Undefined identifier: 'stdin_buf'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 342, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 96, Column 5: Cannot silently unwrap Result<int64> into 'stdout_buf' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 356, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 97, Column 9: Undefined identifier: 'stdout_buf'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 370, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 149, Column 10: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 384, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 162, Column 13: Cannot silently unwrap Result<int64> into 'e' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 398, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 163, Column 17: Undefined identifier: 'e'. Did you mean 'i'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/str/strbuf.npk: Parse error at line 418, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 163, Column 32: Undefined identifier: 'e'. Did you mean 'i'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   [/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/str/strbuf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 167, Column 24: Undefined identifier: 'e'. Did you mean 'i'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 328, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 14: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 339, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 173, Column 32: Argument 2 has type 'int64@', but function expects 'int64'[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 350, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 181, Column 21: Cannot use Result<int64> as int64 in arithmetic
-  Help: Unwrap first with '?!' (e.g., expr ?! default_val) or 'raw' keyword[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 361, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 71, Column 17: Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 382, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: end of file
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 9: Cannot silently unwrap Result<int64> into 'r' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 13: Undefined identifier: 'r'. Did you mean 'fork'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 328, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 333, Column 9: Cannot silently unwrap Result<int64> into 'r2' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 339, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 334, Column 13: Undefined identifier: 'r2'. Did you mean 'fork'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 350, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 70, Column 31: Function expects 7 argument(s), but 4 provided[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 361, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 71, Column 12: Undefined identifier: 'r'. Did you mean 'fork'?[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   Parse error in /home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk: Parse error at line 382, column 1:
+  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: end of file
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 164, Column 5: Cannot silently unwrap Result<int64> into 'prefix_len' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 56, Column 1:   [/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/io/bio/fprintf.npk'. Check for syntax errors.[0m
 
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 165, Column 86: Undefined identifier: 'prefix_len'. Did you mean 'prefix'?[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 168, Column 21: Undefined identifier: 'str_int64_to_dec'[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 169, Column 49: Undefined identifier: 'prefix_len'. Did you mean 'prefix'?[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 123, Column 9: Cannot silently unwrap Result<int64> into 'newbuf' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 124, Column 13: Undefined identifier: 'newbuf'. Did you mean 'buf'?[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 128, Column 22: Undefined identifier: 'newbuf'. Did you mean 'buf'?[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 236, Column 5: Cannot silently unwrap Result<int64> into 'pfx_len' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 237, Column 84: Undefined identifier: 'pfx_len'[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 279, Column 5: Cannot silently unwrap Result<int64> into 'pfx_len' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 280, Column 55: Undefined identifier: 'pfx_len'[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 283, Column 33: Undefined identifier: 'pfx_len'[0m
-
-[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 284, Column 37: Undefined identifier: 'pfx_len'[0m
-
-[1mSummary: [0m[1;31m121 errors[0m
+[1mSummary: [0m[1;31m157 errors[0m

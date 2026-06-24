@@ -1,0 +1,1160 @@
+src/proc/exit.npk:150 - Undefined identifier: 'mem_malloc'
+  };
+src/proc/exit.npk:142 - Undefined identifier: 'g_open_files'
+  // simplified version: raise SIGABRT, then force-exit if it returns.
+src/proc/exit.npk:143 - Undefined identifier: 'g_open_files'
+  // ════════════════════════════════════════════════════════════════════════════
+src/proc/exit.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  // Equivalent to POSIX _exit(). Calls SYS_EXIT_GROUP.
+src/proc/exit.npk:149 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  _exit(134i64);    // 128 + SIGABRT(6) = 134, the shell exit code for SIGABRT
+src/proc/signal.npk:71 - Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness.
+  pass mask & !(1i64 << (signo - 1i64));
+src/proc/signal.npk:109 - @cast supports numeric types and pointer types only. Cannot cast 'func() -> Result<NIL>' to 'int64'
+  p[2] = @cast_unchecked<int64>(proc_sigreturn_tramp);
+src/proc/signal.npk:222 - Use of uninitialized variable 'old_val'
+  (@cast_unchecked<int64->>(old_ptr))[0] = old_val;
+src/proc/env.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  if (new_cap < ENV_INITIAL_CAP) { new_cap = ENV_INITIAL_CAP; }
+src/proc/env.npk:171 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  // overwrite: if 0 and the variable already exists, return 0 without changing it.
+src/proc/env.npk:176 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  pub func:setenv = int64(int64:name, int64:value, int64:overwrite) {
+src/proc/env.npk:178 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  int64:nlen = raw str_strlen(name);
+src/proc/env.npk:204 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  // Replace existing entry or append new one
+src/proc/env.npk:209 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  uint8->:es = @cast_unchecked<uint8->>(existing);
+src/proc/env.npk:210 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  int64:j = 0i64;
+src/proc/env.npk:212 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  while (j < nlen) {
+src/proc/env.npk:81 - Undefined identifier: 'r2'. Did you mean 'r'?
+  _env_heap_is_alloc = r2.value;
+src/proc/env.npk:159 - Cannot access .value without checking .is_error first (no checky no val).
+  _env_heap_envp = r.value;
+src/proc/env.npk:160 - Cannot access .value without checking .is_error first (no checky no val).
+  _env_heap_is_alloc = r2.value;
+src/proc/wait.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  use "../proc/exit.npk".*;
+src/proc/wait.npk:72 - Undefined identifier: 'environ'
+  };
+src/proc/wait.npk:85 - Undefined identifier: 'environ'
+  // ════════════════════════════════════════════════════════════════════════════
+src/proc/wait.npk:150 - Undefined identifier: 'mem_malloc'
+  // This is the equivalent of system() but without going through a shell.
+src/proc/wait.npk:159 - Undefined identifier: 'mem_free'
+  if (pid < 0i64) { pass -1i64; }
+src/proc/wait.npk:142 - Undefined identifier: 'g_open_files'
+  // proc_run — High-level fork+exec+wait helper.
+src/proc/wait.npk:143 - Undefined identifier: 'g_open_files'
+  //
+src/proc/wait.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  // ════════════════════════════════════════════════════════════════════════════
+src/proc/wait.npk:149 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  //
+src/proc/wait.npk:168 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  _exit(127i64);    // exec failed — 127 is shell's "command not found"
+src/proc/wait.npk:173 - Argument 2 has type 'int64@', but function expects 'int64'
+  int64:w = raw waitpid(pid, @status, 0i64);
+src/proc/wait.npk:181 - Cannot use Result<int64> as int64 in arithmetic
+  pass 128i64 + wait_termsig(status);
+src/proc/exec.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  ni = ni + 1i64;
+src/proc/exec.npk:72 - Undefined identifier: 'environ'
+  pass execve(path, argv, environ);
+src/proc/exec.npk:85 - Undefined identifier: 'environ'
+  pass execvpe(name, argv, environ);
+src/proc/exec.npk:221 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:228 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:234 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:240 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:246 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:254 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:262 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:270 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/proc/exec.npk:278 - Undefined identifier: 'environ'
+  pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+src/io/open.npk:70 - Function expects 7 argument(s), but 4 provided
+  Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
+src/io/open.npk:71 - Undefined identifier: 'r'. Did you mean 'EIO'?
+  return r;
+src/io/printf.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  drop str_snprintf5(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+src/io/printf.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  };
+src/io/printf.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  // ────────────────────────────────────────────────────────────────────────────
+src/io/printf.npk:252 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  };
+src/io/printf.npk:254 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  pub func:io_dprintf1 = int64(int64:fd, int64:fmt, int64:a0) {
+src/io/printf.npk:272 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  
+src/io/printf.npk:274 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  pass str_snprintf0(buf, buf_size, fmt);
+src/io/read.npk:166 - Use of uninitialized variable 'one'
+  uint8:c = one[0];
+src/io/read.npk:226 - Use of uninitialized variable 'one'
+  uint8:c = one[0];
+src/io/bio/fprintf.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  int64:a0, int64:a1, int64:a2, int64:a3) {
+src/io/bio/fprintf.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  
+src/io/bio/fprintf.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  };
+src/io/bio/fprintf.npk:252 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  };
+src/io/bio/fprintf.npk:254 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  // ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fprintf.npk:272 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  pass fprintf8(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+src/io/bio/fprintf.npk:274 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  
+src/io/bio/fprintf.npk:150 - Undefined identifier: 'mem_malloc'
+  // ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fprintf.npk:159 - Undefined identifier: 'mem_free'
+  drop str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+src/io/bio/fprintf.npk:176 - Undefined identifier: 'SYS_WRITE'
+  
+src/io/bio/fprintf.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:fprintf5 = int64(int64:fp, int64:fmt,
+src/io/bio/fprintf.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass bio_fprint_rendered(fp, buf_ptr);
+src/io/bio/fprintf.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+src/io/bio/fprintf.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop bio_ensure_std_init();
+src/io/bio/fprintf.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass fprintf5(stdout_fp, fmt, a0, a1, a2, a3, a4);
+src/io/bio/fprintf.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  pub func:printf6 = int64(int64:fmt,
+src/io/bio/fprintf.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:a0, int64:a1, int64:a2, int64:a3,
+src/io/bio/fprintf.npk:238 - Undefined identifier: 'SYS_READ'
+  };
+src/io/bio/fprintf.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fprintf.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  };
+src/io/bio/fprintf.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fprintf.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:a4, int64:a5, int64:a6) {
+src/io/bio/fprintf.npk:105 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/fprintf.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  // ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fprintf.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  stack uint8[4096]:buf;
+src/io/bio/fprintf.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  };
+src/io/bio/fprintf.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fprintf.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:printf2 = int64(int64:fmt, int64:a0, int64:a1) {
+src/io/bio/fprintf.npk:178 - Undefined identifier: 'SYS_WRITE'
+  int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+src/io/bio/fprintf.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop bio_ensure_std_init();
+src/io/bio/fprintf.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fprintf.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:printf5 = int64(int64:fmt,
+src/io/bio/fprintf.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+src/io/bio/fprintf.npk:208 - Undefined identifier: 'SYS_WRITE'
+  drop str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+src/io/bio/fprintf.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  pass bio_fprint_rendered(fp, buf_ptr);
+src/io/bio/fprintf.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  drop bio_ensure_std_init();
+src/io/bio/fprintf.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  pass fprintf6(stdout_fp, fmt, a0, a1, a2, a3, a4, a5);
+src/io/bio/fprintf.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  };
+src/io/bio/fprintf.npk:274 - Undefined identifier: 'g_open_files'
+  
+src/io/bio/fprintf.npk:276 - Undefined identifier: 'curr'
+  int64:a0, int64:a1, int64:a2, int64:a3,
+src/io/bio/fprintf.npk:142 - Undefined identifier: 'g_open_files'
+  pass fprintf3(stdout_fp, fmt, a0, a1, a2);
+src/io/bio/fprintf.npk:143 - Undefined identifier: 'g_open_files'
+  };
+src/io/bio/fprintf.npk:187 - Undefined identifier: 'g_open_files'
+  int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+src/io/bio/fprintf.npk:188 - Undefined identifier: 'g_open_files'
+  drop bio_ensure_std_init();
+src/io/bio/fprintf.npk:254 - Undefined identifier: 'g_open_files'
+  // ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fprintf.npk:255 - Undefined identifier: 'g_open_files'
+  // 8 format arguments
+src/io/bio/fprintf.npk:78 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/fprintf.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:eprintf0 = int64(int64:fmt) {
+src/io/bio/fprintf.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  // 1 format argument
+src/io/bio/fprintf.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  };
+src/io/bio/fprintf.npk:145 - Undefined identifier: 'SYS_WRITE'
+  pub func:eprintf3 = int64(int64:fmt, int64:a0, int64:a1, int64:a2) {
+src/io/bio/fprintf.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  drop bio_ensure_std_init();
+src/io/bio/fprintf.npk:301 - Undefined identifier: 'mem_malloc'
+  int64:p = raw mem_malloc(len + 1i64);
+src/io/bio/fprintf.npk:302 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:303 - Undefined identifier: 'mem_memcpy'
+  drop mem_memcpy(p, tmp_ptr, len + 1i64);
+src/io/bio/fprintf.npk:305 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  pass p;
+src/io/bio/fprintf.npk:313 - Undefined identifier: 'mem_malloc'
+  int64:p = raw mem_malloc(len + 1i64);
+src/io/bio/fprintf.npk:314 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:315 - Undefined identifier: 'mem_memcpy'
+  drop mem_memcpy(p, tmp_ptr, len + 1i64);
+src/io/bio/fprintf.npk:317 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  pass p;
+src/io/bio/fprintf.npk:325 - Undefined identifier: 'mem_malloc'
+  int64:p = raw mem_malloc(len + 1i64);
+src/io/bio/fprintf.npk:326 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:327 - Undefined identifier: 'mem_memcpy'
+  drop mem_memcpy(p, tmp_ptr, len + 1i64);
+src/io/bio/fprintf.npk:329 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  pass p;
+src/io/bio/fprintf.npk:338 - Undefined identifier: 'mem_malloc'
+  int64:p = raw mem_malloc(len + 1i64);
+src/io/bio/fprintf.npk:339 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:340 - Undefined identifier: 'mem_memcpy'
+  drop mem_memcpy(p, tmp_ptr, len + 1i64);
+src/io/bio/fprintf.npk:342 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  pass p;
+src/io/bio/fprintf.npk:351 - Undefined identifier: 'mem_malloc'
+  int64:p = raw mem_malloc(len + 1i64);
+src/io/bio/fprintf.npk:352 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:353 - Undefined identifier: 'mem_memcpy'
+  drop mem_memcpy(p, tmp_ptr, len + 1i64);
+src/io/bio/fprintf.npk:355 - Undefined identifier: 'p'. Did you mean 'tmp'?
+  pass p;
+src/io/bio/fseek.npk:150 - Undefined identifier: 'mem_malloc'
+  pub func:rewind = NIL(int64:fp) {
+src/io/bio/fseek.npk:159 - Undefined identifier: 'mem_free'
+  // Discard read buffer and unget
+src/io/bio/fseek.npk:176 - Undefined identifier: 'SYS_WRITE'
+  // pos: pointer to int64 — receives the current position.
+src/io/bio/fseek.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  //
+src/io/bio/fseek.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop drop(errno_set(EINVAL));
+src/io/bio/fseek.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:p = raw ftell(fp);
+src/io/bio/fseek.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (p < 0i64) {
+src/io/bio/fseek.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass -1i64;
+src/io/bio/fseek.npk:86 - Undefined identifier: 'SYS_LSEEK'
+  Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, real_offset, whence, 0i64, 0i64, 0i64);
+src/io/bio/fseek.npk:87 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/fseek.npk:93 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->file_pos = r.value;
+src/io/bio/fseek.npk:165 - Undefined identifier: 'SYS_LSEEK'
+  drop sys_safe(SYS_LSEEK, f->fd, 0i64, SEEK_SET, 0i64, 0i64, 0i64);
+src/io/bio/stdfiles.npk:150 - Undefined identifier: 'mem_malloc'
+  // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/stdfiles.npk:159 - Undefined identifier: 'mem_free'
+  };
+src/io/bio/stdfiles.npk:142 - Undefined identifier: 'g_open_files'
+  }
+src/io/bio/stdfiles.npk:143 - Undefined identifier: 'g_open_files'
+  int64:r = raw fputs(s, stdout_fp);
+src/io/bio/stdfiles.npk:105 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/stdfiles.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  // stderr — fd 2, write-only, unbuffered
+src/io/bio/stdfiles.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  serr->unget    = FILE_UNGET_EMPTY;
+src/io/bio/stdfiles.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  sin->next_global = stdout_fp;
+src/io/bio/stdfiles.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  sout->next_global = stderr_fp;
+src/io/bio/stdfiles.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  serr->next_global = g_open_files;
+src/io/bio/stdfiles.npk:78 - Undefined identifier: 'SYS_READ'
+  sin->unget    = FILE_UNGET_EMPTY;
+src/io/bio/stdfiles.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:stdin_buf = raw bio_alloc_buf(BUFSIZ);
+src/io/bio/stdfiles.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  sin->buf_mode = _IONBF;    // fallback: unbuffered if alloc fails
+src/io/bio/stdfiles.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  sout->buf_cap = BUFSIZ;
+src/io/bio/stdfiles.npk:145 - Undefined identifier: 'SYS_WRITE'
+  pass FILE_EOF;
+src/io/bio/stdfiles.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  }
+src/io/bio/stdfiles.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/io/bio/fio.npk:150 - Undefined identifier: 'mem_malloc'
+  pass 0i64;
+src/io/bio/fio.npk:159 - Undefined identifier: 'mem_free'
+  if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+src/io/bio/fio.npk:176 - Undefined identifier: 'SYS_WRITE'
+  while (bytes_written < total_bytes) {
+src/io/bio/fio.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:remaining = total_bytes - bytes_written;
+src/io/bio/fio.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  break;
+src/io/bio/fio.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  bytes_written  = bytes_written + r.value;
+src/io/bio/fio.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fio.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass bytes_written / size;
+src/io/bio/fio.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/fio.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  break;
+src/io/bio/fio.npk:238 - Undefined identifier: 'SYS_READ'
+  drop mem_memcpy(f->buf + f->buf_pos, src, copy_to_nl);
+src/io/bio/fio.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->buf_pos     = f->buf_pos + copy_to_nl;
+src/io/bio/fio.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  continue;
+src/io/bio/fio.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fio.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Normal copy into buffer
+src/io/bio/fio.npk:105 - Undefined identifier: 'SYS_READ'
+  Result<int64>:r = sys_safe(SYS_READ, f->fd, dst, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/fio.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.value == 0i64) {
+src/io/bio/fio.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->file_pos = f->file_pos + r.value;
+src/io/bio/fio.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  dst        = dst + r.value;
+src/io/bio/fio.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  bytes_read = bytes_read + r.value;
+src/io/bio/fio.npk:178 - Undefined identifier: 'SYS_WRITE'
+  Result<int64>:r = sys_safe(SYS_WRITE, f->fd, src, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/fio.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->file_pos    = f->file_pos + r.value;
+src/io/bio/fio.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  src            = src + r.value;
+src/io/bio/fio.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  bytes_written  = bytes_written + r.value;
+src/io/bio/fio.npk:208 - Undefined identifier: 'SYS_WRITE'
+  Result<int64>:wr = sys_safe(SYS_WRITE, f->fd, src, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  if (wr.is_error) {
+src/io/bio/fio.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  f->file_pos    = f->file_pos + wr.value;
+src/io/bio/fio.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  src            = src + wr.value;
+src/io/bio/fio.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  bytes_written  = bytes_written + wr.value;
+src/io/bio/fio.npk:274 - Undefined identifier: 'g_open_files'
+  int64:curr = g_open_files;
+src/io/bio/fio.npk:276 - Undefined identifier: 'curr'
+  while (curr != 0i64) {
+src/io/bio/tmpfile.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  }
+src/io/bio/tmpfile.npk:70 - Function expects 7 argument(s), but 4 provided
+  if (r.is_error) { pass 0i64; }
+src/io/bio/tmpfile.npk:71 - Undefined identifier: 'r'. Did you mean 'EIO'?
+  pass entropy;
+src/io/bio/tmpfile.npk:150 - Undefined identifier: 'mem_malloc'
+  pass -1i64;
+src/io/bio/tmpfile.npk:159 - Undefined identifier: 'mem_free'
+  pass -1i64;
+src/io/bio/tmpfile.npk:176 - Undefined identifier: 'SYS_WRITE'
+  
+src/io/bio/tmpfile.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:tmpl_len = raw str_strlen(tmpl);
+src/io/bio/tmpfile.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:x_start = tmpl_len - 6i64;
+src/io/bio/tmpfile.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (tp[x_start + i] != 88u8) {
+src/io/bio/tmpfile.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop drop(errno_set(EINVAL));
+src/io/bio/tmpfile.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass 0i64;
+src/io/bio/tmpfile.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  
+src/io/bio/tmpfile.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop drop(errno_set(EEXIST));
+src/io/bio/tmpfile.npk:238 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/tmpfile.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Open via mkstemp (fills in the Xs)
+src/io/bio/tmpfile.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Immediately unlink so the file disappears when the fd closes
+src/io/bio/tmpfile.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop sys_safe(SYS_UNLINK, @cast_unchecked<int64>(@tmpl[0]), 0i64, 0i64, 0i64, 0i64, 0i64);
+src/io/bio/tmpfile.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:fp = raw fdopen(fd, @cast_unchecked<int64>(@"w+b"));
+src/io/bio/tmpfile.npk:142 - Undefined identifier: 'g_open_files'
+  if (!r.is_error) {
+src/io/bio/tmpfile.npk:143 - Undefined identifier: 'g_open_files'
+  pass r.value;    // success — return fd
+src/io/bio/tmpfile.npk:187 - Undefined identifier: 'g_open_files'
+  if (tp[x_start + i] != 88u8) {
+src/io/bio/tmpfile.npk:188 - Undefined identifier: 'g_open_files'
+  drop drop(errno_set(EINVAL));
+src/io/bio/tmpfile.npk:254 - Undefined identifier: 'g_open_files'
+  pass fp;
+src/io/bio/tmpfile.npk:255 - Undefined identifier: 'g_open_files'
+  };
+src/io/bio/tmpfile.npk:105 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/tmpfile.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  // mkostemp — Like mkstemp but with additional open flags (e.g., O_NOFOLLOW).
+src/io/bio/tmpfile.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/tmpfile.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass -1i64;
+src/io/bio/tmpfile.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/tmpfile.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/tmpfile.npk:178 - Undefined identifier: 'SYS_WRITE'
+  if (tmpl_len < 6i64) {
+src/io/bio/tmpfile.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop drop(errno_set(EINVAL));
+src/io/bio/tmpfile.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:i = 0i64;
+src/io/bio/tmpfile.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  while (i < 6i64) {
+src/io/bio/tmpfile.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (tp[x_start + i] != 88u8) {
+src/io/bio/tmpfile.npk:208 - Undefined identifier: 'SYS_WRITE'
+  }
+src/io/bio/tmpfile.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  
+src/io/bio/tmpfile.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  };
+src/io/bio/tmpfile.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  
+src/io/bio/tmpfile.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/tmpfile.npk:274 - Undefined identifier: 'g_open_files'
+  pub func:tmpnam = int64(int64:buf) {
+src/io/bio/tmpfile.npk:276 - Undefined identifier: 'curr'
+  
+src/io/bio/tmpfile.npk:78 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/tmpfile.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  func:tmpfile_fill_hex = NIL(int64:ptr, int64:v, int64:n) {
+src/io/bio/tmpfile.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  i = i + 1i64;
+src/io/bio/tmpfile.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  // (well, with 6 X chars so "/tmp/myapp_a3f8b2").
+src/io/bio/tmpfile.npk:145 - Undefined identifier: 'SYS_WRITE'
+  
+src/io/bio/tmpfile.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/tmpfile.npk:68 - Undefined identifier: '__addrof'
+  int64:ptr = __addrof(entropy);
+src/io/bio/tmpfile.npk:69 - Undefined identifier: 'ptr'. Did you mean 'puts'?
+  Result<int64>:r = libn_getrandom(ptr, 8i64, 0i64);
+src/io/bio/tmpfile.npk:70 - Undefined identifier: 'r'. Did you mean 'EIO'?
+  if (r.is_error) { pass 0i64; }
+src/io/bio/tmpfile.npk:81 - Cannot initialize variable 'hex' of type 'int64' with value of type 'string@'
+  fixed int64:hex = @"0123456789abcdef";
+src/io/bio/tmpfile.npk:84 - Undefined identifier: 'hex'. Did you mean 'i'?
+  p[i] = (@cast_unchecked<uint8->>(hex))[(v >> (i * 4i64)) & 0xFi64];
+src/io/bio/tmpfile.npk:199 - Undefined identifier: 'SYS_MKDIR'
+  Result<int64>:r = sys_safe(SYS_MKDIR, tmpl, 0o700i64, 0i64, 0i64, 0i64, 0i64);
+src/io/bio/tmpfile.npk:200 - Undefined identifier: 'r'. Did you mean 'i'?
+  if (!r.is_error) {
+src/io/bio/tmpfile.npk:204 - Undefined identifier: 'r'. Did you mean 'i'?
+  int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/tmpfile.npk:205 - Undefined identifier: 'e'. Did you mean 'i'?
+  if (e != EEXIST) {
+src/io/bio/tmpfile.npk:246 - Undefined identifier: 'SYS_UNLINK'
+  drop sys_safe(SYS_UNLINK, @cast_unchecked<int64>(@tmpl[0]), 0i64, 0i64, 0i64, 0i64, 0i64);
+src/io/bio/fchar.npk:150 - Undefined identifier: 'mem_malloc'
+  pass FILE_EOF;
+src/io/bio/fchar.npk:159 - Undefined identifier: 'mem_free'
+  // Buffer full: flush first
+src/io/bio/fchar.npk:176 - Undefined identifier: 'SYS_WRITE'
+  pass FILE_EOF;
+src/io/bio/fchar.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fchar.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/fchar.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  // In libn at v0.5.5 they are function wrappers. The macro/inline optimization
+src/io/bio/fchar.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  // is deferred to v0.6.x.
+src/io/bio/fchar.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/fchar.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  //
+src/io/bio/fchar.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  // The pushed-back character will be returned by the NEXT call to fgetc/fread.
+src/io/bio/fchar.npk:238 - Undefined identifier: 'SYS_READ'
+  // Only one pushback slot available
+src/io/bio/fchar.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (f->unget != FILE_UNGET_EMPTY) {
+src/io/bio/fchar.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fchar.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Un-advance the logical file position (POSIX: ungetc moves position back one)
+src/io/bio/fchar.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fchar.npk:105 - Undefined identifier: 'SYS_READ'
+  uint8:ch = (@cast_unchecked<uint8->>(f->buf))[f->buf_pos];
+src/io/bio/fchar.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->buf_pos  = f->buf_pos + 1i64;
+src/io/bio/fchar.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  // fputc — Write one character c to fp.
+src/io/bio/fchar.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  // For line-buffered streams: triggers a flush if c is '\n'.
+src/io/bio/fchar.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/fchar.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fchar.npk:178 - Undefined identifier: 'SYS_WRITE'
+  }
+src/io/bio/fchar.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fchar.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  //
+src/io/bio/fchar.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  // In C, these are typically macros that inline the buffer fast path.
+src/io/bio/fchar.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  // In libn at v0.5.5 they are function wrappers. The macro/inline optimization
+src/io/bio/fchar.npk:208 - Undefined identifier: 'SYS_WRITE'
+  // See bio.npk for the wiring.
+src/io/bio/fchar.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  
+src/io/bio/fchar.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  //
+src/io/bio/fchar.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  // ungetc(EOF, fp) is a no-op and returns EOF.
+src/io/bio/fchar.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  // Calling fseek/fsetpos discards any pushed-back character.
+src/io/bio/fchar.npk:78 - Undefined identifier: 'SYS_READ'
+  Result<int64>:r = sys_safe(SYS_READ, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+src/io/bio/fchar.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/fchar.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.value == 0i64) {
+src/io/bio/fchar.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  if (r.is_error || r.value == 0i64) {
+src/io/bio/fchar.npk:145 - Undefined identifier: 'SYS_WRITE'
+  Result<int64>:r = sys_safe(SYS_WRITE, f->fd, @cast_unchecked<int64>(@one[0]), 1i64, 0i64, 0i64, 0i64);
+src/io/bio/fchar.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  if (r.is_error) {
+src/io/bio/bio.npk:70 - Function expects 7 argument(s), but 4 provided
+  use "../../io/bio/fprintf.npk".*;
+src/io/bio/bio.npk:71 - Undefined identifier: 'r'
+  use "../../io/bio/strerror.npk".*;
+src/io/bio/fstr.npk:105 - Undefined identifier: 'SYS_READ'
+  f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/fstr.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop drop(errno_set(EBADF));
+src/io/bio/fstr.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (len == 0i64) {
+src/io/bio/fstr.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  // fwrite returns items written; for uint8-items size=1, nmemb=len
+src/io/bio/fstr.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  // We use the internal path here to avoid re-importing fio.npk (circular dep)
+src/io/bio/fstr.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Instead: just write char by char for correctness at v0.5.6.
+src/io/bio/fstr.npk:78 - Undefined identifier: 'SYS_READ'
+  if (c == 10i64) {    // '\n'
+src/io/bio/fstr.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  break;
+src/io/bio/fstr.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  };
+src/io/bio/fstr.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  pass FILE_EOF;
+src/io/bio/fstr.npk:145 - Undefined identifier: 'SYS_WRITE'
+  // puts is defined in stdfiles.npk where stdout is available.
+src/io/bio/fstr.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  // See that module and bio.npk.
+src/io/bio/fscanf.npk:150 - Undefined identifier: 'mem_malloc'
+  }
+src/io/bio/fscanf.npk:159 - Undefined identifier: 'mem_free'
+  }
+src/io/bio/fscanf.npk:176 - Undefined identifier: 'SYS_WRITE'
+  
+src/io/bio/fscanf.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (digit < 0i64 || digit >= base) {
+src/io/bio/fscanf.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  got_digit = true;
+src/io/bio/fscanf.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fscanf.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (!got_digit) {
+src/io/bio/fscanf.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Undo sign character if no digits followed
+src/io/bio/fscanf.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  // Returns 1 on success, 0 on EOF before any character.
+src/io/bio/fscanf.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  func:bio_scan_str = int64(int64:src, int64:width, int64:buf, int64:consumed) {
+src/io/bio/fscanf.npk:238 - Undefined identifier: 'SYS_READ'
+  if (consumed != 0i64) {
+src/io/bio/fscanf.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  (@cast_unchecked<int64->>(consumed))[0] = (@cast_unchecked<int64->>(consumed))[0] + count;
+src/io/bio/fscanf.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  // bio_scan_engine — Core scanner: process a format string against a source.
+src/io/bio/fscanf.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  //
+src/io/bio/fscanf.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  //
+src/io/bio/fscanf.npk:105 - Undefined identifier: 'SYS_READ'
+  drop bio_scan_ungetc(c, src);
+src/io/bio/fscanf.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass c;
+src/io/bio/fscanf.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  // bio_scan_int — Parse a signed decimal/octal/hex integer from source.
+src/io/bio/fscanf.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  // consumed: pointer to int64 to accumulate bytes read
+src/io/bio/fscanf.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Returns 1 if a number was parsed, 0 otherwise.
+src/io/bio/fscanf.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  func:bio_scan_int = int64(int64:src, int64:base, int64:width,
+src/io/bio/fscanf.npk:178 - Undefined identifier: 'SYS_WRITE'
+  drop bio_scan_ungetc(c, src);
+src/io/bio/fscanf.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  break;
+src/io/bio/fscanf.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  c = bio_scan_getc(src);
+src/io/bio/fscanf.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fscanf.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fscanf.npk:208 - Undefined identifier: 'SYS_WRITE'
+  };
+src/io/bio/fscanf.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  
+src/io/bio/fscanf.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  if (c < 0i64) { pass 0i64; }
+src/io/bio/fscanf.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  
+src/io/bio/fscanf.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  int64:max = is (width > 0i64) : width : 4096i64;
+src/io/bio/fscanf.npk:274 - Undefined identifier: 'g_open_files'
+  } else {
+src/io/bio/fscanf.npk:276 - Undefined identifier: 'curr'
+  int64:c = raw bio_scan_getc(src);
+src/io/bio/fscanf.npk:78 - Undefined identifier: 'SYS_READ'
+  
+src/io/bio/fscanf.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  // bio_scan_ungetc — Push a character back into the source.
+src/io/bio/fscanf.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  } else {
+src/io/bio/fscanf.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  while (true) {
+src/io/bio/fscanf.npk:145 - Undefined identifier: 'SYS_WRITE'
+  c = bio_scan_getc(src);
+src/io/bio/fscanf.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  } else {
+src/io/bio/fscanf.npk:142 - Undefined identifier: 'g_open_files'
+  if ((next == 120i64 || next == 88i64) && chars < max) {    // 'x' or 'X'
+src/io/bio/fscanf.npk:143 - Undefined identifier: 'g_open_files'
+  chars = chars + 1i64;
+src/io/bio/fscanf.npk:187 - Undefined identifier: 'g_open_files'
+  
+src/io/bio/fscanf.npk:188 - Undefined identifier: 'g_open_files'
+  if (!got_digit) {
+src/io/bio/fscanf.npk:254 - Undefined identifier: 'g_open_files'
+  uint8->:f      = @cast_unchecked<uint8->>(fmt);
+src/io/bio/fscanf.npk:255 - Undefined identifier: 'g_open_files'
+  int64->:argv  = @cast_unchecked<int64->>(args);
+src/io/bio/fscanf.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/io/bio/fscanf.npk:125 - 'raw' argument must be Result<T> — got 'int64'.
+  int64:max = raw is (width > 0i64) : width : 4096i64;
+src/io/bio/fscanf.npk:128 - Undefined identifier: 'max'. Did you mean 'c'?
+  if (c == 45i64 && chars < max) {    // '-'
+src/io/bio/fscanf.npk:139 - Undefined identifier: 'max'. Did you mean 'c'?
+  if (c == 48i64 && chars < max) {    // '0'
+src/io/bio/fscanf.npk:164 - Undefined identifier: 'max'. Did you mean 'c'?
+  while (chars < max && c >= 0i64) {
+src/io/bio/fscanf.npk:366 - Argument 4 has type 'int64@', but function expects 'int64'
+  int64:r = raw bio_scan_str(src, width, out, @consumed);
+src/io/bio/fscanf.npk:379 - Cannot assign 'bool' to 'int64'
+  is (base = (spec == 105u8)) : 0i64 : 10i64;    // %i auto-detects base
+src/io/bio/fscanf.npk:391 - Argument 5 has type 'int64@', but function expects 'int64'
+  int64:r = raw bio_scan_int(src, base, width, out, @consumed);
+src/io/bio/strerror.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  }
+src/io/bio/strerror.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  { 33i64,  @cast_unchecked<int64>(@"Numerical argument out of domain") },    // EDOM
+src/io/bio/strerror.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  };
+src/io/bio/strerror.npk:150 - Undefined identifier: 'mem_malloc'
+  // Linear scan of the table
+src/io/bio/strerror.npk:159 - Undefined identifier: 'mem_free'
+  // Unknown errno: render "Unknown error N" into internal buffer
+src/io/bio/strerror.npk:176 - Undefined identifier: 'SYS_WRITE'
+  // buf:     destination buffer
+src/io/bio/strerror.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  // buflen:  buffer size in bytes (must be >= 1)
+src/io/bio/strerror.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:strerror_r = int64(int64:errnum, int64:buf, int64:buflen) {
+src/io/bio/strerror.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/strerror.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:msg = raw strerror(errnum);
+src/io/bio/strerror.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:msg_len = raw str_strlen(msg);
+src/io/bio/strerror.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  pub func:perror = NIL(int64:prefix) {
+src/io/bio/strerror.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  drop bio_ensure_std_init();
+src/io/bio/strerror.npk:105 - Undefined identifier: 'SYS_READ'
+  { 84i64,  @cast_unchecked<int64>(@"Invalid or incomplete multibyte or wide character") },   // EILSEQ
+src/io/bio/strerror.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 88i64,  @cast_unchecked<int64>(@"Socket operation on non-socket") },      // ENOTSOCK
+src/io/bio/strerror.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 95i64,  @cast_unchecked<int64>(@"Operation not supported") },             // EOPNOTSUPP
+src/io/bio/strerror.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 100i64, @cast_unchecked<int64>(@"Network is down") },                     // ENETDOWN
+src/io/bio/strerror.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 101i64, @cast_unchecked<int64>(@"Network is unreachable") },              // ENETUNREACH
+src/io/bio/strerror.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 102i64, @cast_unchecked<int64>(@"Network dropped connection on reset") },   // ENETRESET
+src/io/bio/strerror.npk:178 - Undefined identifier: 'SYS_WRITE'
+  //
+src/io/bio/strerror.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Returns 0 on success, ERANGE if buf is too small (message truncated with NUL),
+src/io/bio/strerror.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass EINVAL;
+src/io/bio/strerror.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/strerror.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/strerror.npk:208 - Undefined identifier: 'SYS_WRITE'
+  //
+src/io/bio/strerror.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  // This supersedes the placeholder in io_perror() in printf.npk.
+src/io/bio/strerror.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  if (prefix != 0i64 && (@cast_unchecked<uint8->>(prefix))[0] != 0u8) {
+src/io/bio/strerror.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  drop fputs(prefix, stderr_fp);
+src/io/bio/strerror.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  drop fputc(58i64, stderr_fp);     // ':'
+src/io/bio/strerror.npk:78 - Undefined identifier: 'SYS_READ'
+  { 24i64,  @cast_unchecked<int64>(@"Too many open files") },                 // EMFILE
+src/io/bio/strerror.npk:79 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 25i64,  @cast_unchecked<int64>(@"Inappropriate ioctl for device") },      // ENOTTY
+src/io/bio/strerror.npk:85 - Undefined identifier: 'r'. Did you mean 'f'?
+  { 31i64,  @cast_unchecked<int64>(@"Too many links") },                      // EMLINK
+src/io/bio/strerror.npk:99 - Cannot access .value without checking .is_error first (no checky no val).
+  { 63i64,  @cast_unchecked<int64>(@"Out of streams resources") },            // ENOSR
+src/io/bio/strerror.npk:145 - Undefined identifier: 'SYS_WRITE'
+  
+src/io/bio/strerror.npk:146 - Undefined identifier: 'r'. Did you mean 'b'?
+  // Internal buffer for "Unknown error N" fallback (not thread-safe)
+src/io/bio/strerror.npk:142 - Undefined identifier: 'g_open_files'
+  // For unknown errno values, the returned string is stored in a small internal
+src/io/bio/strerror.npk:143 - Undefined identifier: 'g_open_files'
+  // buffer (NOT thread-safe for concurrent unknown-errno calls — fixed in v0.21.x).
+src/io/bio/strerror.npk:187 - Undefined identifier: 'g_open_files'
+  
+src/io/bio/strerror.npk:188 - Undefined identifier: 'g_open_files'
+  int64:msg = raw strerror(errnum);
+src/io/bio/strerror.npk:168 - Undefined identifier: 'str_int64_to_dec'
+  int64:num_len = str_int64_to_dec(errnum, @cast_unchecked<int64>(@num[0]), 24i64);
+src/io/bio/strerror.npk:169 - Undefined identifier: 'num_len'
+  drop mem_memcpy(@cast_unchecked<int64>(@dst[prefix_len]), @cast_unchecked<int64>(@num[0]), num_len + 1i64);
+src/io/bio/fstate.npk:150 - Undefined identifier: 'mem_malloc'
+  } else {
+src/io/bio/fstate.npk:159 - Undefined identifier: 'mem_free'
+  // Commonly used on stdout when output is piped.
+src/io/bio/fopen.npk:150 - Undefined identifier: 'mem_malloc'
+  // The mode must be compatible with the fd's open flags:
+src/io/bio/fopen.npk:159 - Undefined identifier: 'mem_free'
+  pub func:fdopen = int64(int64:fd, int64:mode) {
+src/io/bio/fopen.npk:176 - Undefined identifier: 'SYS_WRITE'
+  pass 0i64;
+src/io/bio/fopen.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/io/bio/fopen.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass 0i64;
+src/io/bio/fopen.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->next_global = g_open_files;
+src/io/bio/fopen.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  g_open_files = fp;
+src/io/bio/fopen.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass fp;
+src/io/bio/fopen.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out[0]), @cast_unchecked<int64>(@open_flags_out[0]));
+src/io/bio/fopen.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (parse_ok != 0i64) {
+src/io/bio/fopen.npk:238 - Undefined identifier: 'SYS_READ'
+  }
+src/io/bio/fopen.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/io/bio/fopen.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  // Reset stream state
+src/io/bio/fopen.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->mode     = file_mode_out[0];
+src/io/bio/fopen.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->file_pos = 0i64;
+src/io/bio/fopen.npk:68 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  pass 0i64;
+src/io/bio/fopen.npk:71 - Cannot assign 'bool' to 'int64'
+  is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
+src/io/bio/fopen.npk:83 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  pass 0i64;
+src/io/bio/fopen.npk:142 - Undefined identifier: 'g_open_files'
+  f->next_global = g_open_files;
+src/io/bio/fopen.npk:143 - Undefined identifier: 'g_open_files'
+  g_open_files = fp;
+src/io/bio/fopen.npk:187 - Undefined identifier: 'g_open_files'
+  f->next_global = g_open_files;
+src/io/bio/fopen.npk:188 - Undefined identifier: 'g_open_files'
+  g_open_files = fp;
+src/io/bio/fopen.npk:254 - Undefined identifier: 'g_open_files'
+  f->next_global = g_open_files;
+src/io/bio/fopen.npk:255 - Undefined identifier: 'g_open_files'
+  g_open_files = fp;
+src/io/bio/fopen.npk:113 - Use of uninitialized variable 'file_mode_out'
+  int64:file_mode  = file_mode_out[0];
+src/io/bio/fopen.npk:114 - Use of uninitialized variable 'open_flags_out'
+  int64:open_flags = open_flags_out[0];
+src/io/bio/fopen.npk:179 - Use of uninitialized variable 'file_mode_out'
+  Result<int64>:init_r = raw bio_init_stream(fp, fd, file_mode_out[0], false);
+src/io/bio/fopen.npk:229 - Use of uninitialized variable 'open_flags_out'
+  Result<int64>:r = libn_open(path, open_flags_out[0], FOPEN_CREAT_MODE);
+src/io/bio/fopen.npk:246 - Use of uninitialized variable 'file_mode_out'
+  f->mode     = file_mode_out[0];
+src/io/bio/file.npk:150 - Undefined identifier: 'mem_malloc'
+  pass mem_malloc(size);
+src/io/bio/file.npk:159 - Undefined identifier: 'mem_free'
+  drop mem_free(buf);
+src/io/bio/file.npk:176 - Undefined identifier: 'SYS_WRITE'
+  Result<int64>:r = sys_safe(SYS_WRITE, f->fd, ptr, remaining, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/file.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.value == 0i64) {
+src/io/bio/file.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  ptr = ptr + r.value;
+src/io/bio/file.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->file_pos = f->file_pos + r.value;
+src/io/bio/file.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  remaining = remaining - r.value;
+src/io/bio/file.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, 0i64 - unread, SEEK_CUR, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/file.npk:238 - Undefined identifier: 'SYS_READ'
+  Result<int64>:r = sys_safe(SYS_READ, f->fd, f->buf, f->buf_cap, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.is_error) {
+src/io/bio/file.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  f->buf_len = r.value;
+src/io/bio/file.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (r.value == 0i64) {
+src/io/bio/file.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass r.value;
+src/time/timeofday.npk:6 - Undefined identifier: 'errno_set'
+  drop errno_set(14i64); pass -1i64;     // EFAULT
+src/time/timeofday.npk:8 - Undefined identifier: 'SYS_GETTIMEOFDAY'
+  Result<int64>:r = sys_safe(SYS_GETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+src/time/timeofday.npk:9 - Undefined identifier: 'r'. Did you mean 'tz'?
+  if (r.is_error) {
+src/time/timeofday.npk:16 - Undefined identifier: 'errno_set'
+  drop errno_set(14i64); pass -1i64;     // EFAULT
+src/time/timeofday.npk:18 - Undefined identifier: 'SYS_SETTIMEOFDAY'
+  Result<int64>:r = sys_safe(SYS_SETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+src/time/timeofday.npk:19 - Undefined identifier: 'r'. Did you mean 'tz'?
+  if (r.is_error) {
+src/mem/slab.npk:204 - Cannot use Result<int64> as int64 in arithmetic
+  int64:slot_full = slab_class_size(i) + SLAB_HEADER_SIZE;    // header + payload
+src/mem/slab.npk:213 - Undefined identifier: 'slot_full'
+  if (slot_full > PAGE_SIZE) {
+src/mem/slab.npk:218 - Undefined identifier: 'libn_mmap'
+  Result<int64>:r = libn_mmap(0i64, slab_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+src/mem/slab.npk:219 - Undefined identifier: 'r'. Did you mean 'i'?
+  if (r.is_error) {
+src/mem/slab.npk:222 - Undefined identifier: 'r'. Did you mean 'i'?
+  int64:slab_base = r.value;
+src/mem/slab.npk:230 - Undefined identifier: 'slab_base'. Did you mean 'slab_size'?
+  int64:slot_start = slab_base + j * slot_full;
+src/mem/slab.npk:230 - Undefined identifier: 'slot_full'
+  int64:slot_start = slab_base + j * slot_full;
+src/mem/slab.npk:231 - Undefined identifier: 'slot_start'
+  uint8->:hdr_byte = @cast_unchecked<uint8->>(slot_start);
+src/mem/slab.npk:232 - Undefined identifier: 'hdr_byte'
+  hdr_byte[0] = @cast_unchecked<uint8>(i);    // class index in header uint8
+src/mem/slab.npk:236 - Undefined identifier: 'slot_start'
+  int64:next_ptr_addr = slot_start + SLAB_HEADER_SIZE;
+src/mem/slab.npk:237 - Undefined identifier: 'next_ptr_addr'
+  int64->:next_ptr = @cast_unchecked<int64->>(next_ptr_addr);
+src/mem/slab.npk:238 - Undefined identifier: 'next_ptr'
+  next_ptr[0] = 0i64;    // will be @cast_unchecked<we>(overwritten) link
+src/mem/slab.npk:243 - Undefined identifier: 'slot_start'
+  drop slab_freelist_set(i, slot_start);
+src/mem/slab.npk:249 - Undefined identifier: 'slot_start'
+  prev[0] = slot_start;
+src/mem/slab.npk:251 - Undefined identifier: 'next_ptr_addr'
+  prev_next_ptr = next_ptr_addr;
+src/mem/memset.npk:37 - Undefined identifier: 'ERR_BADARG'
+  fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/mem/memset.npk:43 - Undefined identifier: 'ERR_BADARG'
+  fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/str/strtok.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/str/strtok.npk:207 - Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8
+  
+src/str/strtok.npk:251 - Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'.
+  pass 0i64;
+src/str/strtok.npk:273 - if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  }
+src/str/strtok.npk:163 - Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr
+  if (f.len != str_strlen(s)) {
+src/str/strtok.npk:67 - Use of uninitialized variable 'table'
+  drop charset_build(@table[0], delim);
+src/str/strtok.npk:73 - Use of uninitialized variable 'table'
+  while (p[i] != 0u8 && charset_test(@table[0], p[i])) {
+src/str/strtok.npk:87 - Use of uninitialized variable 'table'
+  while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+src/str/strtok.npk:130 - Use of uninitialized variable 'table'
+  drop charset_build(@table[0], delim);
+src/str/strtok.npk:133 - Use of uninitialized variable 'table'
+  while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+src/str/strview.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[i]));
+src/str/strview.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  // strview_of_strbuf — Create a view over a StrBuf's current content.
+src/str/strview.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  // Comparison
+src/str/strview.npk:371 - Argument 1 has type 'string', but function expects 'int64'
+  pass raw strview_find_char(sv, c) >= 0i64;
+src/str/strview.npk:373 - Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'?
+  
+src/str/strview.npk:381 - Cannot assign value of type 'int64' to variable of type 'uint64'
+  pass raw strview_find(sv, needle) >= 0i64;
+src/str/strview.npk:252 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  pub func:strview_ends_with_str = bool(int64:sv, int64:suffix) {
+src/str/strview.npk:254 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  StrView->:s = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:272 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  }
+src/str/strview.npk:274 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  
+src/str/strview.npk:439 - Undefined identifier: 'libn_write_all'
+  pub func:strview_trim_right = NIL(int64:sv, int64:out) {
+src/str/strview.npk:440 - Undefined identifier: 'r'. Did you mean 's'?
+  StrView->:s = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:441 - Undefined identifier: 'r'. Did you mean 's'?
+  StrView->:o = @cast_unchecked<StrView->>(out);
+src/str/strview.npk:176 - Undefined identifier: 'SYS_WRITE'
+  StrView->:sa = @cast_unchecked<StrView->>(a);
+src/str/strview.npk:177 - Undefined identifier: 'r'. Did you mean 'f'?
+  StrView->:sb = @cast_unchecked<StrView->>(b);
+src/str/strview.npk:183 - Undefined identifier: 'r'. Did you mean 'f'?
+  
+src/str/strview.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  StrView->:v = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:188 - Undefined identifier: 'r'. Did you mean 'f'?
+  int64:slen = raw str_strlen(s);
+src/str/strview.npk:189 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (v.len != slen) { pass false; }
+src/str/strview.npk:212 - Undefined identifier: 'SYS_LSEEK'
+  pass 1i64;
+src/str/strview.npk:213 - Undefined identifier: 'r'. Did you mean 'f'?
+  }
+src/str/strview.npk:238 - Undefined identifier: 'SYS_READ'
+  if (plen > s->len) { pass false; }
+src/str/strview.npk:239 - Undefined identifier: 'r'. Did you mean 'f'?
+  pass mem_equal(s->ptr, prefix, plen);
+src/str/strview.npk:245 - Undefined identifier: 'r'. Did you mean 'f'?
+  StrView->:x = @cast_unchecked<StrView->>(suffix);
+src/str/strview.npk:246 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (x.len == 0i64) { pass true; }
+src/str/strview.npk:249 - Undefined identifier: 'r'. Did you mean 'f'?
+  };
+src/str/strview.npk:105 - Undefined identifier: 'SYS_READ'
+  sv.len = 0i64;
+src/str/strview.npk:106 - Undefined identifier: 'r'. Did you mean 'f'?
+  };
+src/str/strview.npk:112 - Undefined identifier: 'r'. Did you mean 'f'?
+  StrView->:s  = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:116 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (start > s->len) {
+src/str/strview.npk:117 - Undefined identifier: 'r'. Did you mean 'f'?
+  o.ptr = s->ptr;
+src/str/strview.npk:118 - Undefined identifier: 'r'. Did you mean 'f'?
+  o.len = 0i64;
+src/str/strview.npk:178 - Undefined identifier: 'SYS_WRITE'
+  if (sa->len != sb->len) { pass false; }
+src/str/strview.npk:179 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (sa->len == 0i64) { pass true; }
+src/str/strview.npk:185 - Undefined identifier: 'r'. Did you mean 'f'?
+  pub func:strview_eq_str = bool(int64:sv, int64:s) {
+src/str/strview.npk:186 - Undefined identifier: 'r'. Did you mean 'f'?
+  if (s == 0i64) { pass strview_is_empty(sv); }
+src/str/strview.npk:187 - Undefined identifier: 'r'. Did you mean 'f'?
+  StrView->:v = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:208 - Undefined identifier: 'SYS_WRITE'
+  pub func:strview_cmp_str = int64(int64:sv, int64:s) {
+src/str/strview.npk:209 - Undefined identifier: 'wr'. Did you mean 'src'?
+  if (s == 0i64) {
+src/str/strview.npk:215 - Undefined identifier: 'wr'. Did you mean 'src'?
+  drop strview_of(s, @cast_unchecked<int64>(@bv));
+src/str/strview.npk:216 - Undefined identifier: 'wr'. Did you mean 'src'?
+  pass strview_cmp(sv, @cast_unchecked<int64>(@bv));
+src/str/strview.npk:217 - Undefined identifier: 'wr'. Did you mean 'src'?
+  };
+src/str/strview.npk:274 - Undefined identifier: 'g_open_files'
+  
+src/str/strview.npk:276 - Undefined identifier: 'curr'
+  //                            return sv with those bytes removed.
+src/str/strview.npk:84 - Cannot assign 'bool' to 'int64'
+  is (sv.len = len < 0i64) : 0i64 : len;
+src/str/strview.npk:279 - NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.
+  int64:plen = is (prefix != 0i64) : str_strlen(prefix) : 0i64;
+src/str/strview.npk:280 - Undefined identifier: 'plen'
+  drop strview_substr(sv, plen, -1i64, out);
+src/str/strview.npk:308 - NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.
+  int64:xlen = is (suffix != 0i64) : str_strlen(suffix) : 0i64;
+src/str/strview.npk:310 - Undefined identifier: 'xlen'
+  o.len = s->len - xlen;
+src/str/strview.npk:713 - Undefined identifier: 'libn_write_all'
+  Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+src/str/strview.npk:714 - Undefined identifier: 'r'. Did you mean 's'?
+  if (r.is_error) { pass -1i64; }
+src/str/strview.npk:715 - Undefined identifier: 'r'. Did you mean 's'?
+  pass r.value;
+src/str/strview.npk:543 - Use of uninitialized variable 'left'
+  to.ptr = left.ptr;
+src/str/strview.npk:544 - Use of uninitialized variable 'left'
+  to.len = left.len;
+src/str/strview.npk:547 - Use of uninitialized variable 'right'
+  sv.ptr = right.ptr;
+src/str/strview.npk:548 - Use of uninitialized variable 'right'
+  sv.len = right.len;
+src/str/strcpy.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  // Equivalent to malloc(strlen(src)+1) + strcpy. Caller must free with
+src/str/strcpy.npk:171 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  if (r.is_error) {
+src/str/strcpy.npk:176 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  drop mem_memcpy(r.value, src, alloc_size);
+src/str/strcpy.npk:178 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  pass r.value;
+src/str/strcpy.npk:204 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  if (r.is_error) {
+src/str/strcpy.npk:209 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  drop mem_memcpy(r.value, src, actual_len);
+src/str/strcpy.npk:210 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  (@cast_unchecked<uint8->>(r.value))[actual_len] = 0u8;
+src/str/strcpy.npk:212 - Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+  pass r.value;
+src/str/strchr.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/str/strchr.npk:207 - Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8
+  if (to_lower_ascii(h[i]) == first_lo) {
+src/str/strchr.npk:251 - Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'.
+  pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
+src/str/strchr.npk:273 - if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  if (charset_test(@table[0], p[i])) {
+src/str/strchr.npk:267 - Use of uninitialized variable 'table'
+  drop charset_build(@table[0], accept);
+src/str/strchr.npk:273 - Use of uninitialized variable 'table'
+  if (charset_test(@table[0], p[i])) {
+src/str/strchr.npk:300 - Use of uninitialized variable 'table'
+  drop charset_build(@table[0], accept);
+src/str/strchr.npk:305 - Use of uninitialized variable 'table'
+  while (p[i] != 0u8 && charset_test(@table[0], p[i])) {
+src/str/strchr.npk:328 - Use of uninitialized variable 'table'
+  drop charset_build(@table[0], reject);
+src/str/strchr.npk:333 - Use of uninitialized variable 'table'
+  while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+src/str/strfmt.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  //   buf_size: Size of buf (including space for NUL)
+src/str/strfmt.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
+src/str/strfmt.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  st->buf  = buf;
+src/str/strfmt.npk:371 - Argument 1 has type 'string', but function expects 'int64'
+  a[0] = a0;
+src/str/strfmt.npk:373 - Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'?
+  };
+src/str/strfmt.npk:381 - Cannot assign value of type 'int64' to variable of type 'uint64'
+  
+src/str/strfmt.npk:252 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  if (!flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+src/str/strfmt.npk:254 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  if (flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+src/str/strfmt.npk:272 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  if (!flag_left) { fmt_pad(stp, 32u8, pad); }
+src/str/strfmt.npk:274 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  if (flag_left) { fmt_pad(stp, 32u8, pad); }
+src/str/strfmt.npk:143 - Use of possibly uninitialized variable 'tmp'
+  b[bi] = tmp[ti];
+src/str/strfmt.npk:316 - Use of uninitialized variable 'nbuf'
+  if (nlen == 0i64 || nbuf[0] != 48u8) {
+src/str/strlcpy.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/str/strconv.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  
+src/str/strconv.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  while (is_whitespace(p[i])) { i = i + 1i64; }
+src/str/strconv.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  while (is_whitespace(p[i])) { i = i + 1i64; }
+src/str/strconv.npk:371 - Argument 1 has type 'string', but function expects 'int64'
+  int64:s = raw str_strlen("-9223372036854775808");
+src/str/strconv.npk:373 - Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'?
+  drop str_strcpy(buf, @cast_unchecked<int64>(@"-9223372036854775808"));
+src/str/strconv.npk:381 - Cannot assign value of type 'int64' to variable of type 'uint64'
+  if (neg) { u = 0i64 - v; }
+src/str/strconv.npk:404 - Use of possibly uninitialized variable 'tmp'
+  b[bi] = tmp[ti];
+src/str/strconv.npk:449 - Use of possibly uninitialized variable 'tmp'
+  b[bi] = tmp[ti];
+src/str/strconv.npk:504 - Use of possibly uninitialized variable 'tmp'
+  b[bi] = tmp[ti];
+src/str/strlen.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  pass n;
+src/str/strbuf.npk:155 - Pass value type 'int64' does not match function value type 'Result<int64>'
+  };
+src/str/strbuf.npk:87 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  
+src/str/strbuf.npk:171 - while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+  // strbuf_to_str — Copy content to a new heap buffer, free the StrBuf.
+src/str/strbuf.npk:371 - Argument 1 has type 'string', but function expects 'int64'
+  pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
+src/str/strbuf.npk:373 - Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'?
+  int64:a4, int64:a5, int64:a6) {
+src/str/strbuf.npk:381 - Cannot assign value of type 'int64' to variable of type 'uint64'
+  pass n;
+src/str/strbuf.npk:252 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  // Returns true on success, false on OOM or null input.
+src/str/strbuf.npk:254 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  if (sb == 0i64 || str == 0i64) { pass false; }
+src/str/strbuf.npk:272 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+src/str/strbuf.npk:274 - Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+  s->len = s->len + n;
+src/str/strbuf.npk:439 - Undefined identifier: 'libn_write_all'
+  Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+src/str/strbuf.npk:440 - Undefined identifier: 'r'. Did you mean 's'?
+  if (r.is_error) { pass -1i64; }
+src/str/strbuf.npk:441 - Undefined identifier: 'r'. Did you mean 's'?
+  pass r.value;

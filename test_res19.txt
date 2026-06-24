@@ -1,0 +1,267 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fmt_putc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_puts_n, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=fmt_pad, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=render_uint, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_format_args, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_snprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_snprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_clear, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=has_nul_byte, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strnlen, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strlen_safe, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=is_whitespace, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_hex_digit, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=digit_val, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtol, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strtoul, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_atoi, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_u64, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_parse_i64_base, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_utoa, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_itoa_hex, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=to_lower_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=to_upper_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_alpha_ascii, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strcmp_has_nul, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=str_strcmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strcasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_strncasecmp, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=str_casecmp_prefix, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 373, Column 14: Undefined identifier: 'str_strcpy'[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 182, Column 21: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 247, Column 21: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 252, Column 38: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 21: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 254, Column 37: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 272, Column 38: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 273, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 274, Column 37: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 298, Column 14: Cannot assign value of type 'Result<int64>' to variable of type 'int64'[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 331, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 332, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 333, Column 20: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 336, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 337, Column 20: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 338, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 341, Column 20: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 342, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mtest_res19.npk:0:0: [0m[1;31merror[0m: [1mLine 343, Column 23: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.[0m
+
+[1mSummary: [0m[1;31m19 errors[0m

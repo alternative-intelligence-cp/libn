@@ -1,0 +1,5 @@
+use "unsafe.npk".*;
+pub func:foo = int32(wild uint8->:p) {
+    wild uint8->:p2 = @ptr_add<uint8>(p, 5i64);
+    pass 0i32;
+};

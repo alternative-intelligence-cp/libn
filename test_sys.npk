@@ -1,4 +1,4 @@
-pub func:main = int32() {
-    Result<int64>:r = sys(39i64, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
-    pass 0i32;
+use "stdlib/sys.npk";
+pub func:test = Result<int64>() {
+    return sys(SYS_READ, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
 };

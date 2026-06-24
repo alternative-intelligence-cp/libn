@@ -217,6 +217,10 @@ func:bio_scan_str = int64(int64:src, int64:width, int64:buf, int64:consumed) {
     int64:c = raw bio_scan_skip_ws(src);
     if (c < 0i64) { pass 0i64; }
 
+    if (buf != 0i64 && width <= 0i64) {
+        drop(errno_set(EINVAL));
+        pass -1i64;
+    }
     int64:max = is (width > 0i64) : width : 4096i64;
     int64:count = 0i64;
 

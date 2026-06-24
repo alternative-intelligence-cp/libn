@@ -78,7 +78,9 @@ func:bio_init_stream = int64(int64:fp, int64:fd, int64:file_mode, bool:is_static
     }
 
       // Allocate buffer
-    int64:buf = bio_alloc_buf(BUFSIZ);
+    Result<int64>:buf_res = bio_alloc_buf(BUF_SIZE_DEFAULT);
+    if (buf_res.is_error) { pass @cast_unchecked<int64>(buf_res.error); }
+    int64:buf = buf_res.value;
     if (buf == 0i64) {
         fail @cast_unchecked<tbb32>(ENOMEM);
     }
@@ -113,7 +115,12 @@ pub func:fopen = int64(int64:path, int64:mode) {
     file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
     open_flags_out[0] = 0i64;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    Result<int64>:parse_res = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    if (parse_res.is_error) {
+        drop(errno_set(EINVAL));
+        pass 0i64;
+    }
+    int64:parse_ok = parse_res.value;
     if (parse_ok != 0i64) {
         drop(errno_set(EINVAL));
         pass 0i64;
@@ -131,7 +138,13 @@ pub func:fopen = int64(int64:path, int64:mode) {
     int64:fd = r.value;
 
       // Allocate FILE struct
-    int64:fp = bio_alloc_file();
+    Result<int64>:fp_res = bio_alloc_file();
+    if (fp_res.is_error) {
+        drop(libn_close(fd));
+        drop(errno_set(ENOMEM));
+        pass 0i64;
+    }
+    int64:fp = fp_res.value;
     if (fp == 0i64) {
         drop(libn_close(fd));
         drop(errno_set(ENOMEM));
@@ -175,13 +188,24 @@ pub func:fdopen = int64(int64:fd, int64:mode) {
     file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
     open_flags_out[0] = 0i64;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    Result<int64>:parse_res = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    if (parse_res.is_error) {
+        drop(errno_set(EINVAL));
+        pass 0i64;
+    }
+    int64:parse_ok = parse_res.value;
     if (parse_ok != 0i64) {
         drop(errno_set(EINVAL));
         pass 0i64;
     }
 
-    int64:fp = bio_alloc_file();
+    Result<int64>:fp_res = bio_alloc_file();
+    if (fp_res.is_error) {
+        drop(libn_close(fd));
+        drop(errno_set(ENOMEM));
+        pass 0i64;
+    }
+    int64:fp = fp_res.value;
     if (fp == 0i64) {
         drop(errno_set(ENOMEM));
         pass 0i64;
@@ -222,7 +246,13 @@ pub func:freopen = int64(int64:path, int64:mode, int64:fp) {
     file_mode_out[0] = 0i64;
     stack int64[1]:open_flags_out;
     open_flags_out[0] = 0i64;
-    int64:parse_ok = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    Result<int64>:parse_res = bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+    if (parse_res.is_error) {
+        drop(fclose(fp));
+        drop(errno_set(EINVAL));
+        pass 0i64;
+    }
+    int64:parse_ok = parse_res.value;
     if (parse_ok != 0i64) {
         drop(fclose(fp));
         drop(errno_set(EINVAL));
@@ -313,6 +343,22 @@ pub func:fclose = int64(int64:fp) {
     }
 
     f->fd = -1i64;
+
+      // Unlink from global open files list
+    if (g_open_files == fp) {
+        g_open_files = f->next_global;
+    } else {
+        int64:curr = g_open_files;
+        while (curr != 0i64) {
+            FILE->:curr_f = @cast_unchecked<FILE->>(curr);
+            if (curr_f->next_global == fp) {
+                curr_f->next_global = f->next_global;
+                curr = 0i64; // break
+            } else {
+                curr = curr_f->next_global;
+            }
+        }
+    }
 
       // Free I/O buffer if we own it
     if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {

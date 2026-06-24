@@ -71,7 +71,9 @@ func:tmpfile_get_entropy = int64() {
     int64:ptr = @cast_unchecked<int64>(@entropy);
     Result<int64>:r = libn_getrandom(ptr, 8i64, 0i64);
     if (r.is_error) {
-        !!! @cast_unchecked<tbb32>(ERR_INTERNAL);
+        stack int64[2]:ts;
+        drop(libn_clock_gettime(CLOCK_MONOTONIC, @cast_unchecked<int64>(@ts)));
+        entropy = libn_getpid() ^ ts[0] ^ ts[1] ^ g_tmp_counter;
     }
     g_tmp_counter = g_tmp_counter + 1i64;
     pass entropy;
@@ -84,7 +86,7 @@ func:tmpfile_get_entropy = int64() {
 
 func:tmpfile_fill_hex = NIL(int64:ptr, int64:v, int64:n) {
     uint8->:p = @cast_unchecked<uint8->>(ptr);
-    fixed int64:hex = @"0123456789abcdef";
+    fixed int64:hex = @cast_unchecked<int64>(@"0123456789abcdef");
     int64:i = 0i64;
     while (i < n) {
         p[i] = (@cast_unchecked<uint8->>(hex))[(v >> (i * 4i64)) & 0xFi64];
@@ -116,7 +118,9 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
         pass -1i64;
     }
 
-    int64:tmpl_len = str_strlen(tmpl);
+    Result<int64>:tmpl_res = str_strlen(tmpl);
+    if (tmpl_res.is_error) { pass -1i64; }
+    int64:tmpl_len = tmpl_res.value;
     if (tmpl_len < 6i64) {
         drop(errno_set(EINVAL));
         pass -1i64;
@@ -140,7 +144,9 @@ pub func:mkostemp = int64(int64:tmpl, int64:extra_flags) {
     int64:tries = 0i64;
     while (tries < MKSTEMP_MAX_TRIES) {
           // Generate 6 random hex chars
-        int64:entropy = tmpfile_get_entropy();
+        Result<int64>:ent_res = tmpfile_get_entropy();
+        if (ent_res.is_error) { pass -1i64; }
+        int64:entropy = ent_res.value;
         drop(tmpfile_fill_hex(tmpl + x_start, entropy, 6i64));
 
           // Try to open exclusively
@@ -180,7 +186,9 @@ pub func:mkdtemp = int64(int64:tmpl) {
         pass 0i64;
     }
 
-    int64:tmpl_len = str_strlen(tmpl);
+    Result<int64>:tmpl_res = str_strlen(tmpl);
+    if (tmpl_res.is_error) { pass 0i64; }
+    int64:tmpl_len = tmpl_res.value;
     if (tmpl_len < 6i64) {
         drop(errno_set(EINVAL));
         pass 0i64;
@@ -199,7 +207,9 @@ pub func:mkdtemp = int64(int64:tmpl) {
 
     int64:tries = 0i64;
     while (tries < MKSTEMP_MAX_TRIES) {
-        int64:entropy = tmpfile_get_entropy();
+        Result<int64>:ent_res = tmpfile_get_entropy();
+        if (ent_res.is_error) { pass 0i64; }
+        int64:entropy = ent_res.value;
         drop(tmpfile_fill_hex(tmpl + x_start, entropy, 6i64));
 
         Result<int64>:r = sys_safe(SYS_MKDIR, tmpl, 0o700i64, 0i64, 0i64, 0i64, 0i64);
@@ -239,11 +249,15 @@ pub func:tmpfile = int64() {
 
       // Copy "/tmp/npk_" into template
     fixed int64:pfx = @cast_unchecked<int64>(@"/tmp/npk_XXXXXX");
-    int64:pfx_len = str_strlen(@cast_unchecked<int64>(pfx));
+    Result<int64>:pfx_res = str_strlen(@cast_unchecked<int64>(pfx));
+    if (pfx_res.is_error) { pass 0i64; }
+    int64:pfx_len = pfx_res.value;
     drop(mem_memcpy(@cast_unchecked<int64>(@tmpl), @cast_unchecked<int64>(pfx), pfx_len + 1i64));
 
       // Open via mkstemp (fills in the Xs)
-    int64:fd = mkstemp(@cast_unchecked<int64>(@tmpl));
+    Result<int64>:fd_res = mkstemp(@cast_unchecked<int64>(@tmpl));
+    if (fd_res.is_error) { pass 0i64; }
+    int64:fd = fd_res.value;
     if (fd < 0i64) {
         pass 0i64;
     }

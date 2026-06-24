@@ -1,0 +1,6 @@
+pub func:test1 = Result<int64>() {
+    Result<int64>:r;
+    r.value = 5i64;
+    r.error = 0; // tbb32
+    pass r;
+};

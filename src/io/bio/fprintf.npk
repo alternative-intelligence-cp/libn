@@ -34,6 +34,7 @@ use "../../syscall/errno.npk".*;
 use "../../str/strfmt.npk".*;
 use "../../str/strlen.npk".*;
 use "../../mem/slab.npk".*;
+use "../../mem/memcpy.npk".*;
 use "../../io/bio/file.npk".*;
 use "../../io/bio/fio.npk".*;
 use "../../io/bio/stdfiles.npk".*;
@@ -69,7 +70,9 @@ pub func:fprintf0 = int64(int64:fp, int64:fmt) {
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt);
+    Result<int64>:len_res = str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -91,7 +94,9 @@ pub func:fprintf1 = int64(int64:fp, int64:fmt, int64:a0) {
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf1(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0);
+    Result<int64>:len_res = str_snprintf1(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -113,7 +118,9 @@ pub func:fprintf2 = int64(int64:fp, int64:fmt, int64:a0, int64:a1) {
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf2(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1);
+    Result<int64>:len_res = str_snprintf2(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -135,7 +142,9 @@ pub func:fprintf3 = int64(int64:fp, int64:fmt, int64:a0, int64:a1, int64:a2) {
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf3(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    Result<int64>:len_res = str_snprintf3(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -158,7 +167,9 @@ pub func:fprintf4 = int64(int64:fp, int64:fmt,
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    Result<int64>:len_res = str_snprintf4(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -181,7 +192,9 @@ pub func:fprintf5 = int64(int64:fp, int64:fmt,
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    Result<int64>:len_res = str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -207,7 +220,9 @@ pub func:fprintf6 = int64(int64:fp, int64:fmt,
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    Result<int64>:len_res = str_snprintf6(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -235,7 +250,9 @@ pub func:fprintf7 = int64(int64:fp, int64:fmt,
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf7(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    Result<int64>:len_res = str_snprintf7(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -263,7 +280,9 @@ pub func:fprintf8 = int64(int64:fp, int64:fmt,
     drop(bio_ensure_std_init());
     stack uint8[4096]:buf;
     int64:buf_ptr = @cast_unchecked<int64>(@buf);
-    int64:len = str_snprintf8(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    Result<int64>:len_res = str_snprintf8(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     pass bio_fprint_rendered(fp, buf_ptr, len);
 };
 
@@ -296,61 +315,60 @@ pub func:eprintf8 = int64(int64:fmt,
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:asprintf0 = int64(int64:out_len, int64:fmt) {
-    stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
-    int64:len = str_snprintf0(tmp_ptr, 4096i64, fmt);
+    Result<int64>:len_res = str_snprintf0(0i64, 0i64, fmt);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
+    drop(str_snprintf0(p, len + 1i64, fmt));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-};
+}
 
 pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
-    stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
-    int64:len = str_snprintf1(tmp_ptr, 4096i64, fmt, a0);
+    Result<int64>:len_res = str_snprintf1(0i64, 0i64, fmt, a0);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
+    drop(str_snprintf1(p, len + 1i64, fmt, a0));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-};
+}
 
 pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
-    stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
-    int64:len = str_snprintf2(tmp_ptr, 4096i64, fmt, a0, a1);
+    Result<int64>:len_res = str_snprintf2(0i64, 0i64, fmt, a0, a1);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
+    drop(str_snprintf2(p, len + 1i64, fmt, a0, a1));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-};
+}
 
-pub func:asprintf3 = int64(int64:out_len, int64:fmt,
-                            int64:a0, int64:a1, int64:a2) {
-    stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
-    int64:len = str_snprintf3(tmp_ptr, 4096i64, fmt, a0, a1, a2);
+pub func:asprintf3 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1, int64:a2) {
+    Result<int64>:len_res = str_snprintf3(0i64, 0i64, fmt, a0, a1, a2);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
+    drop(str_snprintf3(p, len + 1i64, fmt, a0, a1, a2));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-};
+}
 
 pub func:asprintf4 = int64(int64:out_len, int64:fmt,
-                            int64:a0, int64:a1, int64:a2, int64:a3) {
-    stack uint8[4096]:tmp;
-    int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
-    int64:len = str_snprintf4(tmp_ptr, 4096i64, fmt, a0, a1, a2, a3);
+                           int64:a0, int64:a1, int64:a2, int64:a3) {
+    Result<int64>:len_res = str_snprintf4(0i64, 0i64, fmt, a0, a1, a2, a3);
+    if (len_res.is_error) { pass -1i64; }
+    int64:len = len_res.value;
     int64:p = raw mem_malloc(len + 1i64);
     if (p == 0i64) { pass 0i64; }
-    drop(mem_memcpy(p, tmp_ptr, len + 1i64));
+    drop(str_snprintf4(p, len + 1i64, fmt, a0, a1, a2, a3));
     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
     pass p;
-};
+}
 
 // ════════════════════════════════════════════════════════════════════════════
 // perror — Write "prefix: errno description\n" to stderr FILE* stream.

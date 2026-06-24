@@ -1,0 +1,6 @@
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:mem_malloc = int64(int64:n) { pass 0i64; };
+pub func:main = int32() {
+    int64:p = raw mem_malloc(5i64);
+    exit 0i32;
+};

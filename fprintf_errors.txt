@@ -1,0 +1,76 @@
+[DEBUG parseFuncDecl] nameToken=bio_fprint_rendered, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf0, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf6, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf7, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=fprintf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=printf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=eprintf8, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=asprintf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=asprintf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1msrc/io/bio/fprintf.npk:328:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  328 | pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
+        [1;32m^[0m
+
+[1msrc/io/bio/fprintf.npk:339:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  339 | pub func:asprintf2 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1) {
+        [1;32m^[0m
+
+[1msrc/io/bio/fprintf.npk:350:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  350 | pub func:asprintf3 = int64(int64:out_len, int64:fmt, int64:a0, int64:a1, int64:a2) {
+        [1;32m^[0m
+
+[1msrc/io/bio/fprintf.npk:361:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  361 | pub func:asprintf4 = int64(int64:out_len, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/io/bio/fprintf.npk:382:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: end of file
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+
+[1mSummary: [0m[1;31m5 errors[0m

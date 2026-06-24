@@ -1,0 +1,9 @@
+[DEBUG parseFuncDecl] nameToken=test2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: test2
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[1m:7:5: [0m[1;33mwarning[0m: [1m[unused-parameter] parameter 'err' is unused in function 'failsafe'[0m
+

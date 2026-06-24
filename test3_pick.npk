@@ -1,0 +1,9 @@
+func:main = int32() {
+    int64:i = 0i64;
+    pick (i) {
+        (0i64): { exit 0i32; }
+        (1i64): { exit 1i32; }
+        (_): { exit 2i32; }
+    };
+    exit 0i32;
+};

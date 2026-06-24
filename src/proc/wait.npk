@@ -171,8 +171,12 @@ pub func:proc_run = int64(int64:path, int64:argv, int64:envp) {
 
       // Parent: wait for child
     int64:status = 0i64;
-    int64:w = raw waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
-    if (w < 0i64) { pass -1i64; }
+    int64:w = -1i64;
+    while (true) {
+        w = raw waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
+        if (w >= 0i64) { break; }
+        if (libn_errno_get() != EINTR) { pass -1i64; }
+    }
 
     if (raw wait_exited(status)) {
         pass wait_exit_code(status);

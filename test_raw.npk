@@ -1,5 +1,4 @@
-pub func:failsafe = int32(tbb32:err) { exit 1i32; };
-pub func:main = int32() {
-    int64:x = raw 5i64;
-    exit 0i32;
-};
+pub func:foo = int64() { pass 1i64; };
+pub func:bar = int64() { int64:x = raw foo(); pass x; };
+pub func:failsafe = int32(tbb32:err) { pass 0i32; };
+pub func:main = int32() { pass 0i32; };

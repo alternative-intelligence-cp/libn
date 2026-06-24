@@ -50,6 +50,7 @@
 use "../syscall/errno.npk".*;
 use "../syscall/posix_constants.npk".*;
 use "../mem/mmap.npk".*;
+use "../mem/memcpy.npk".*;
 extern func:failsafe = int32(tbb32:err);
 
 
@@ -216,6 +217,7 @@ func:slab_refill = int64(int64:i) {
         int64:slot_start = slab_base + j * slot_full;
         uint8->:hdr_byte = @cast_unchecked<uint8->>(slot_start);
         hdr_byte[0] = @cast_unchecked<uint8>(i);    // class index in header uint8
+        hdr_byte[1] = 0xDFu8;                       // 0xDF = free canary
 
           // The 8 bytes after the header are the freelist "next" pointer.
           // On first carve, all slots are free, so we link them forward.
@@ -294,6 +296,9 @@ pub func:slab_alloc = int64(int64:n) {
       // Clear the "next" pointer field before handing to user
       // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
     next_ptr[0] = 0i64;
+    
+    uint8->:alloc_hdr = @cast_unchecked<uint8->>(head);
+    alloc_hdr[1] = 0xAAu8; // 0xAA = allocated canary
 
     pass user_ptr;
 };
@@ -326,6 +331,12 @@ pub func:slab_free = int64(int64:ptr) {
         Result<int64>:r = mem_free(ptr);
         return r;
     }
+    
+    if (hdr[1] == 0xDFu8) {
+        // Double free detected!
+        fail @cast_unchecked<tbb32>(ERR_INTERNAL);
+    }
+    hdr[1] = 0xDFu8; // set to free canary
 
       // Push slot back onto freelist:
       //   write old freelist head into the slot's "next" pointer field
@@ -372,7 +383,7 @@ pub func:slab_realloc = int64(int64:ptr, int64:n) {
         pass slab_alloc(n);
     }
     if (n == 0i64) {
-        drop(slab_free(ptr));
+        drop(slab_free(0i64, ptr));
         pass 0i64;
     }
 
@@ -412,7 +423,7 @@ pub func:slab_realloc = int64(int64:ptr, int64:n) {
     int64:copy_size = is (old_size < n) : old_size : n;
     // We must use mem_memcpy here, but wait, mem_memcpy requires dst!=0 and src!=0.
     drop(mem_memcpy(new_ptr, ptr, copy_size));
-    drop(slab_free(ptr));
+    drop(slab_free(0i64, ptr));
 
     pass new_ptr;
 };

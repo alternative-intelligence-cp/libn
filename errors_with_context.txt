@@ -1,0 +1,1448 @@
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/signal.npk:155: int64->:cp = @cast_unchecked<int64->>(old_buf);
+  src/proc/env.npk:155: if (new_cap < ENV_INITIAL_CAP) { new_cap = ENV_INITIAL_CAP; }
+  src/proc/wait.npk:155: use "../proc/exit.npk".*;
+  src/proc/exec.npk:155: ni = ni + 1i64;
+  src/proc/fork.npk:155: };
+  src/io/printf.npk:155: drop str_snprintf5(buf_ptr, PRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+  src/io/read.npk:155: if (r.value == 0i64) {
+  src/io/bio/fprintf.npk:155: int64:a0, int64:a1, int64:a2, int64:a3) {
+  src/io/bio/fseek.npk:155: if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+  src/io/bio/tmpfile.npk:155: }
+  src/io/bio/strerror.npk:155: }
+  src/io/bio/file.npk:155: drop slab_free(0i64, buf);
+  src/mem/slab.npk:155: (1i64) { pass SLAB_SLOTS_PER_PAGE_1; },
+  src/mem/memcpy.npk:155: }
+  src/mem/memset.npk:155: if (ptr == 0i64 || n <= 0i64) {
+  src/str/strview.npk:155: pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[i]));
+  src/str/strlen.npk:155: pass n;
+  src/str/strcmp.npk:155: if (ca < cb) { pass -1i64; }
+  src/str/strbuf.npk:155: };
+  src/math/math.npk:155: pub func:math_sat_sub_i64 = int64(int64:a, int64:b) {
+  src/syscall/posix_constants.npk:155: pub fixed int64:MADV_DONTNEED    = 4i64;
+  src/syscall/errno.npk:155: pub fixed int64:ECONNREFUSED = 111i64;   // Connection refused
+--- Error: Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8 (Line 207)
+  src/proc/signal.npk:207: stack int64:old_val;
+  src/proc/env.npk:207: while (ep[i] != 0i64) {
+  src/proc/exec.npk:207: };
+  src/io/printf.npk:207: pub func:io_printf7 = int64(int64:fmt,
+  src/io/read.npk:207: int64:max_store = buf_size - 1i64;
+  src/io/bio/fprintf.npk:207: int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
+  src/io/bio/fseek.npk:207: }
+  src/io/bio/fio.npk:207: if (remaining >= f->buf_cap && f->buf_pos == 0i64) {
+  src/io/bio/tmpfile.npk:207: pass 0i64;
+  src/io/bio/fscanf.npk:207: pass 1i64;
+  src/io/bio/fopen.npk:207: FILE->:f = @cast_unchecked<FILE->>(fp);
+  src/fs/path.npk:207: }
+  src/mem/slab.npk:207: if (slots == 0i64) {
+  src/mem/memcpy.npk:207: wi = wi + 1i64;
+  src/mem/memutil.npk:207: }
+  src/str/strchr.npk:207: if (to_lower_ascii(h[i]) == first_lo) {
+  src/str/strfmt.npk:207: if (ai < nargs) { width = args[ai]; ai = ai + 1i64; }
+  src/str/strcmp.npk:207: }
+  src/math/math.npk:207: if (raw math_max_u64(b, max_b) != max_b) {
+  src/syscall/syscall_numbers.npk:207: pub fixed int64:SYS_FSETXATTR       = 190i64;
+  src/syscall/posix_constants.npk:207: pub fixed int64:SIGIO     = 29i64;     // I/O possible (async I/O)
+--- Error: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'. (Line 251)
+  src/proc/signal.npk:251: pub func:raise = int64(int64:signo) {
+  src/proc/env.npk:251: if (name == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+  src/proc/exec.npk:251: stack int64[6]:argv;
+  src/io/printf.npk:251: pass io_fprintf0(fd, fmt);
+  src/io/read.npk:251: if (fd < 0i64) {
+  src/io/bio/fprintf.npk:251: pass fprintf7(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6);
+  src/io/bio/fio.npk:251: f->buf_pos     = f->buf_pos + to_copy;
+  src/io/bio/tmpfile.npk:251: drop libn_close(fd);
+  src/io/bio/fopen.npk:251: f->flags    = (f->flags & FILE_FLAG_BUF_OWN) | FILE_FLAG_INIT;    // preserve buf ownership
+  src/io/bio/file.npk:251: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/fs/path.npk:251: drop path_copy_n(out, path, dir_end);
+  src/mem/slab.npk:251: prev_next_ptr = next_ptr_addr;
+  src/mem/memcpy.npk:251: pass dst;
+  src/mem/memutil.npk:251: pass 0i64;
+  src/mem/mmap.npk:251: int64:new_map = rr.value;
+  src/str/strtok.npk:251: pass 0i64;
+  src/str/strchr.npk:251: pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
+  src/str/strfmt.npk:251: if (spec == 99u8) {    // '%c'
+  src/str/strcmp.npk:251: while (i < n) {
+  src/math/math.npk:251: };
+  src/syscall/syscall_numbers.npk:251: pub fixed int64:SYS_EPOLL_WAIT      = 232i64;
+--- Error: Undefined identifier: 'ERR_NOMEM'. Did you mean 'ENOMEM'? (Line 172)
+  src/proc/signal.npk:172: if (r < 0i64) { pass SIG_ERR; }
+  src/proc/wait.npk:172: int64:status = 0i64;
+  src/proc/exec.npk:172: }
+  src/io/write.npk:172: pub func:io_write_strln = int64(int64:fd, int64:s) {
+  src/io/fcntl.npk:172: }
+  src/io/read.npk:172: }
+  src/io/bio/stdfiles.npk:172: pass FILE_EOF;
+  src/io/bio/fio.npk:172: int64:src           = buf;
+  src/io/bio/tmpfile.npk:172: if (tmpl == 0i64) {
+  src/io/bio/fscanf.npk:172: } else if (c >= 97i64 && c <= 102i64) {    // 'a'..'f'
+  src/mem/slab.npk:172: (2i64) { pass g_slab_freelist_2; },
+  src/mem/memutil.npk:172: int64:i = 0i64;
+  src/mem/memset.npk:172: int64->:pi64 = @cast_unchecked<int64->>((ptr + i));
+  src/str/strtok.npk:172: }
+  src/str/strcpy.npk:172: fail @cast_unchecked<tbb8>(ERR_NOMEM);
+  src/str/strchr.npk:172: j = j + 1i64;
+  src/str/strfmt.npk:172: st.size = buf_size;
+  src/str/strlcpy.npk:172: pass r;
+  src/math/math.npk:172: if (b == 1i64) { pass a; }
+  src/syscall/posix_constants.npk:172: pub fixed int64:MREMAP_FIXED     = 2i64;
+  src/syscall/errno.npk:172: pub fixed int64:ENOKEY       = 126i64;   // Required key not available
+--- Error: Undefined identifier: 'ERR_NOMEM'. Did you mean 'ENOMEM'? (Line 205)
+  src/proc/signal.npk:205: stack int64:set_val;
+  src/proc/env.npk:205: int64->:ep = @cast_unchecked<int64->>(_env_heap_envp);
+  src/proc/exec.npk:205: }
+  src/io/printf.npk:205: };
+  src/io/read.npk:205: uint8->:dst = @cast_unchecked<uint8->>(buf);
+  src/io/bio/fprintf.npk:205: drop bio_ensure_std_init();
+  src/io/bio/fseek.npk:205: drop drop(errno_set(EINVAL));
+  src/io/bio/tmpfile.npk:205: if (e != EEXIST) {
+  src/io/bio/fscanf.npk:205: }
+  src/io/bio/fopen.npk:205: }
+  src/io/bio/file.npk:205: pass 0i64;
+  src/fs/path.npk:205: ob[1] = 0u8;
+  src/mem/slab.npk:205: int64:slots     = raw slab_class_slots(i);
+  src/mem/memcpy.npk:205: word = word | (@cast_unchecked<int64>(si[bo + 7i64]) << 56i64);
+  src/mem/memutil.npk:205: }
+  src/mem/mmap.npk:205: pass map_start + ALLOC_HEADER_SIZE;
+  src/str/strtok.npk:205: int64:field_start = 0i64;
+  src/str/strview.npk:205: };
+  src/str/strcpy.npk:205: fail @cast_unchecked<tbb8>(ERR_NOMEM);
+  src/str/strfmt.npk:205: int64:width = 0i64;
+  src/str/strcmp.npk:205: if (b == 0i64) {
+  src/str/strbuf.npk:205: };
+  src/syscall/syscall_numbers.npk:205: pub fixed int64:SYS_SETXATTR        = 188i64;
+  src/syscall/posix_constants.npk:205: pub fixed int64:SIGPROF   = 27i64;     // Profiling timer signal
+--- Error: Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr (Line 163)
+  src/proc/signal.npk:163: };
+  src/proc/env.npk:163: pass true;
+  src/proc/wait.npk:163: if (envp != 0i64) {
+  src/proc/exec.npk:163: if (e != ENOENT && e != EACCES) {
+  src/proc/fork.npk:163: }
+  src/io/fcntl.npk:163: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/read.npk:163: fail @cast_unchecked<tbb32>(ERR_EOF);
+  src/io/bio/fprintf.npk:163: pub func:printf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+  src/io/bio/stdfiles.npk:163: pass fflush(stderr_fp);    // no-op for unbuffered; here for completeness
+  src/io/bio/fchar.npk:163: pass FILE_EOF;
+  src/io/bio/strerror.npk:163: fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
+  src/io/bio/fstate.npk:163: drop setvbuf(fp, 0i64, _IOLBF, 0i64);
+  src/io/bio/fopen.npk:163: }
+  src/fs/path.npk:163: int64:j = 0i64;
+  src/mem/slab.npk:163: (*) { pass 0i64; }
+  src/mem/memcpy.npk:163: drop __intrinsic_memcpy(dst, src, n);
+  src/str/strtok.npk:163: if (f.len != str_strlen(s)) {
+  src/str/strview.npk:163: pub func:strview_last = int64(int64:sv) {
+  src/str/strcpy.npk:163: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/str/strconv.npk:163: if (s == 0i64) {
+  src/str/strbuf.npk:163: if (sb == 0i64) { pass 0i64; }
+  src/math/math.npk:163: }
+  src/syscall/syscall_numbers.npk:163: pub fixed int64:SYS_SCHED_SETPARAM  = 142i64;
+  src/syscall/posix_constants.npk:163: pub fixed int64:MADV_WIPEONFORK  = 18i64;
+  src/syscall/errno.npk:163: pub fixed int64:ENAVAIL      = 119i64;
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/proc/exit.npk:87: int64:fn = _atqexit_handlers[i];
+  src/proc/env.npk:87: while (i < n) {
+  src/io/open.npk:87: };
+  src/io/dup.npk:87: pass libn_dup2(fd, newfd);
+  src/io/seek.npk:87: pass libn_lseek(fd, 0i64, SEEK_SET);
+  src/io/printf.npk:87: };
+  src/io/bio/fseek.npk:87: if (r.is_error) {
+  src/io/bio/stdfiles.npk:87: stdin_fp = @cast_unchecked<int64>(@g_stdin_file);
+  src/io/bio/fio.npk:87: while (bytes_read < size * nmemb && (f->flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64) {
+  src/io/bio/tmpfile.npk:87: };
+  src/io/bio/fchar.npk:87: pass FILE_EOF;
+  src/io/bio/fscanf.npk:87: s[2] = s[2] - 1i64;
+  src/io/bio/strerror.npk:87: { 33i64,  @cast_unchecked<int64>(@"Numerical argument out of domain") },    // EDOM
+  src/io/bio/fstate.npk:87: }
+  src/mem/slab.npk:87: fixed int64:SLAB_SLOTS_PER_PAGE_9 = 0i64;     // Handled by large-object path (direct mmap)
+  src/mem/memcpy.npk:87: int64:byte_off = wi * 8i64;
+  src/mem/memutil.npk:87: pass 1i64;
+  src/str/strtok.npk:87: while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+  src/str/strfmt.npk:87: fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
+  src/str/strlcpy.npk:87: }
+  src/str/strconv.npk:87: while (is_whitespace(p[i])) { i = i + 1i64; }
+  src/str/strcmp.npk:87: if (ca != cb) {
+  src/math/math.npk:87: pub func:math_max_i64 = int64(int64:a, int64:b) {
+  src/syscall/syscall.npk:87: pub func:sys2 = int64(int64:nr, int64:a1, int64:a2) {
+  src/syscall/syscall_numbers.npk:87: pub fixed int64:SYS_MSGGET          = 68i64;
+  src/syscall/posix_constants.npk:87: pub fixed int64:MODE_755 = 493i64;       // rwxr-xr-x  (user rwx, group rx, other rx)
+  src/syscall/errno.npk:87: pub fixed int64:EXFULL   = 54i64;
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/proc/signal.npk:171: int64:r = raw sigaction(signo, handler, flags, sigemptyset(), @cast_unchecked<int64>(@old_act[0]));
+  src/proc/exec.npk:171: p_start = p_end + 1i64;
+  src/io/fcntl.npk:171: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/read.npk:171: count = count - 1i64;
+  src/io/bio/fprintf.npk:171: };
+  src/io/bio/stdfiles.npk:171: if (r1 == FILE_EOF || r2 == FILE_EOF || r3 == FILE_EOF) {
+  src/io/bio/fio.npk:171: int64:bytes_written = 0i64;
+  src/io/bio/tmpfile.npk:171: pub func:mkdtemp = int64(int64:tmpl) {
+  src/io/bio/fscanf.npk:171: digit = c - 55i64;
+  src/io/bio/strerror.npk:171: };
+  src/io/bio/fopen.npk:171: }
+  src/io/bio/file.npk:171: int64:ptr = f->buf;
+  src/fs/path.npk:171: };
+  src/mem/slab.npk:171: (1i64) { pass g_slab_freelist_1; },
+  src/mem/memutil.npk:171: int64:diff = 0i64;
+  src/str/strtok.npk:171: i = i + 1i64;
+  src/str/strcpy.npk:171: if (r == 0i64) {
+  src/str/strchr.npk:171: while (n[j] != 0u8 && h[i + j] != 0u8 && h[i + j] == n[j]) {
+  src/str/strfmt.npk:171: st->buf  = buf;
+  src/str/strconv.npk:171: while (is_whitespace(p[i])) { i = i + 1i64; }
+  src/math/math.npk:171: if (a == 1i64) { pass b; }
+  src/syscall/syscall.npk:171: };
+  src/syscall/posix_constants.npk:171: pub fixed int64:MREMAP_MAYMOVE   = 1i64;
+  src/syscall/errno.npk:171: pub fixed int64:ECANCELED    = 125i64;   // Operation canceled
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/proc/env.npk:371: pub func:clearenv = int64() {
+  src/fs/path.npk:371: i = i - 1i64;
+  src/mem/slab.npk:371: while (zi < sz) {
+  src/mem/mmap.npk:371: if (r.is_error) {
+  src/str/strview.npk:371: pass raw strview_find_char(sv, c) >= 0i64;
+  src/str/strfmt.npk:371: a[0] = a0;
+  src/str/strconv.npk:371: int64:s = raw str_strlen("-9223372036854775808");
+  src/str/strbuf.npk:371: pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
+  src/math/math.npk:371: };
+  src/syscall/syscall_numbers.npk:371: pub fixed int64:SYS_PIDFD_GETFD     = 438i64;
+  src/syscall/posix_constants.npk:371: pub fixed int64:MSG_TRYHARD      = 4i64;
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/proc/env.npk:381: i = i + 1i64;
+  src/io/bio/fscanf.npk:381: base = 10i64;
+  src/fs/path.npk:381: }
+  src/mem/memutil.npk:381: }
+  src/mem/mmap.npk:381: }
+  src/str/strview.npk:381: pass raw strview_find(sv, needle) >= 0i64;
+  src/str/strconv.npk:381: if (neg) { u = 0i64 - v; }
+  src/str/strbuf.npk:381: pass n;
+  src/math/math.npk:381: if ((v & 0x000000000000FFFFi64) == 0i64) { n = n + 16i64; v = v >> 16i64; }
+  src/syscall/syscall_numbers.npk:381: pub fixed int64:SYS_PROCESS_MRELEASE = 448i64;
+  src/syscall/posix_constants.npk:381: pub fixed int64:MSG_RST          = 4096i64;
+  src/syscall/errno.npk:381: pub int64:libn_errno = 0i64;
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 182)
+  src/proc/env.npk:182: uint8->:np = @cast_unchecked<uint8->>(name);
+  src/proc/wait.npk:182: }
+  src/io/printf.npk:182: pub func:io_printf6 = int64(int64:fmt,
+  src/io/read.npk:182: dst[count] = 0u8;
+  src/io/bio/fprintf.npk:182: drop str_snprintf5(buf_ptr, FPRINTF_BUF_SIZE, fmt, a0, a1, a2, a3, a4);
+  src/io/bio/fseek.npk:182: if (fp == 0i64 || pos == 0i64) {
+  src/io/bio/fio.npk:182: f->flags = f->flags | FILE_FLAG_ERROR;
+  src/io/bio/fscanf.npk:182: value = value * base + digit;
+  src/io/bio/fopen.npk:182: drop drop(errno_set(ENOMEM));
+  src/io/bio/file.npk:182: f->flags = f->flags | FILE_FLAG_ERROR;
+  src/mem/memcpy.npk:182: int64:i = 0i64;
+  src/mem/memutil.npk:182: };
+  src/mem/memset.npk:182: pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+  src/str/strview.npk:182: };
+  src/str/strchr.npk:182: };
+  src/str/strfmt.npk:182: fmt_putc(stp, f[fi]);
+  src/str/strcmp.npk:182: int64:i = 0i64;
+  src/str/strbuf.npk:182: drop strbuf_free(sb);
+  src/syscall/syscall.npk:182: pass raw sys1(SYS_GETUID, 0i64);
+  src/syscall/syscall_numbers.npk:182: pub fixed int64:SYS_ADJTIMEX        = 159i64;
+  src/syscall/posix_constants.npk:182: pub fixed int64:SIGILL    = 4i64;      // Illegal instruction
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 247)
+  src/proc/signal.npk:247: };
+  src/proc/exec.npk:247: };
+  src/io/bio/fprintf.npk:247: pub func:eprintf7 = int64(int64:fmt,
+  src/io/bio/fio.npk:247: }
+  src/io/bio/fchar.npk:247: if (f->file_pos > 0i64) {
+  src/io/bio/fopen.npk:247: f->buf_pos  = 0i64;
+  src/io/bio/file.npk:247: pass r.value;
+  src/fs/path.npk:247: if (dir_end >= out_sz) {
+  src/mem/slab.npk:247: if (prev_next_ptr != 0i64) {
+  src/mem/memcpy.npk:247: d[i] = s[i];
+  src/mem/mmap.npk:247: int64:new_total = raw page_align_up(ALLOC_HEADER_SIZE + new_size);
+  src/str/strview.npk:247: if (x.len > s->len) { pass false; }
+  src/str/strchr.npk:247: };
+  src/str/strfmt.npk:247: fmt_putc(stp, 37u8);
+  src/str/strcmp.npk:247: uint8->:pa = @cast_unchecked<uint8->>(a);
+  src/str/strbuf.npk:247: (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;    // NUL-terminate
+  src/math/math.npk:247: if (r != 0i64 && (a < 0i64) != (b < 0i64)) {
+  src/syscall/syscall.npk:247: Result<int64>:r = sys4(SYS_PREAD64, fd, buf, nbytes, offset);
+  src/syscall/syscall_numbers.npk:247: pub fixed int64:SYS_CLOCK_GETTIME   = 228i64;
+  src/syscall/posix_constants.npk:247: pub fixed int64:DT_LNK     = 10i64;
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/proc/env.npk:252: int64:nlen = raw str_strlen(name);
+  src/proc/exec.npk:252: argv[0] = a0; argv[1] = a1; argv[2] = a2;
+  src/io/printf.npk:252: };
+  src/io/read.npk:252: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/bio/fprintf.npk:252: };
+  src/io/bio/fio.npk:252: f->buf_len     = f->buf_pos;
+  src/io/bio/tmpfile.npk:252: }
+  src/io/bio/fchar.npk:252: f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+  src/io/bio/file.npk:252: };
+  src/fs/path.npk:252: ob[dir_end] = 0u8;
+  src/mem/memcpy.npk:252: };
+  src/mem/memutil.npk:252: }
+  src/mem/mmap.npk:252: int64->:new_hdr = @cast_unchecked<int64->>(new_map);
+  src/str/strtok.npk:252: }
+  src/str/strview.npk:252: pub func:strview_ends_with_str = bool(int64:sv, int64:suffix) {
+  src/str/strchr.npk:252: };
+  src/str/strfmt.npk:252: if (!flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+  src/str/strcmp.npk:252: uint8:ca = raw to_lower_ascii(pa[i]);
+  src/syscall/syscall.npk:252: pub func:libn_pwrite = int64(int64:fd, int64:buf, int64:nbytes, int64:offset) {
+  src/syscall/syscall_numbers.npk:252: pub fixed int64:SYS_EPOLL_CTL       = 233i64;
+  src/syscall/errno.npk:252: pub func:errno_is_retriable = bool(int64:e) {
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 253)
+  src/proc/env.npk:253: if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+  src/proc/exec.npk:253: argv[3] = a3; argv[4] = a4; argv[5] = 0i64;
+  src/io/read.npk:253: }
+  src/io/bio/fio.npk:253: src           = src + to_copy;
+  src/io/bio/fscanf.npk:253: func:bio_scan_engine = int64(int64:src, int64:fmt, int64:args, int64:nargs) {
+  src/io/bio/fopen.npk:253: FILE->:f = @cast_unchecked<FILE->>(fp);
+  src/fs/path.npk:253: pass dir_end;
+  src/mem/slab.npk:253: j = j + 1i64;
+  src/mem/mmap.npk:253: new_hdr[0] = new_total;
+  src/str/strview.npk:253: if (suffix == 0i64) { pass true; }
+  src/str/strfmt.npk:253: fmt_putc(stp, @cast_unchecked<uint8>(arg_val));
+  src/str/strcmp.npk:253: uint8:cb = raw to_lower_ascii(pb[i]);
+  src/str/strbuf.npk:253: pub func:strbuf_append_str = bool(int64:sb, int64:str) {
+  src/syscall/syscall.npk:253: Result<int64>:r = sys4(SYS_PWRITE64, fd, buf, nbytes, offset);
+  src/syscall/syscall_numbers.npk:253: pub fixed int64:SYS_TGKILL          = 234i64;
+  src/syscall/errno.npk:253: pass e == EINTR || e == EAGAIN;
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/proc/signal.npk:254: Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+  src/proc/env.npk:254: uint8->:np = @cast_unchecked<uint8->>(name);
+  src/proc/exec.npk:254: pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+  src/io/printf.npk:254: pub func:io_dprintf1 = int64(int64:fd, int64:fmt, int64:a0) {
+  src/io/bio/fio.npk:254: bytes_written = bytes_written + to_copy;
+  src/io/bio/tmpfile.npk:254: pass fp;
+  src/io/bio/fchar.npk:254: pass c & 0xFFi64;
+  src/io/bio/fscanf.npk:254: uint8->:f      = @cast_unchecked<uint8->>(fmt);
+  src/io/bio/fopen.npk:254: f->next_global = g_open_files;
+  src/fs/path.npk:254: };
+  src/mem/slab.npk:254: }
+  src/mem/memutil.npk:254: uint8->:p  = @cast_unchecked<uint8->>(ptr);
+  src/mem/mmap.npk:254: new_hdr[1] = new_size;
+  src/str/strtok.npk:254: uint8->:p = @cast_unchecked<uint8->>(input);
+  src/str/strview.npk:254: StrView->:s = @cast_unchecked<StrView->>(sv);
+  src/str/strfmt.npk:254: if (flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+  src/str/strcmp.npk:254: if (ca != cb) {
+  src/str/strbuf.npk:254: if (sb == 0i64 || str == 0i64) { pass false; }
+  src/math/math.npk:254: pub func:math_div_round_i64 = int64(int64:a, int64:b) {
+  src/syscall/syscall.npk:254: return r;
+  src/syscall/syscall_numbers.npk:254: pub fixed int64:SYS_UTIMES          = 235i64;
+  src/syscall/errno.npk:254: };
+--- Error: Cannot assign value of type 'Result<int64>' to variable of type 'int64' (Line 265)
+  src/proc/signal.npk:265: pub func:killpg = int64(int64:pgrp, int64:signo) {
+  src/proc/env.npk:265: while (ep[count] != 0i64) { count = count + 1i64; }
+  src/proc/exec.npk:265: pub func:execl7 = int64(int64:path, int64:a0, int64:a1, int64:a2,
+  src/io/read.npk:265: pass -1i64;     // EOF sentinel, like getchar() returning EOF
+  src/io/bio/fprintf.npk:265: pass bio_fprint_rendered(fp, buf_ptr);
+  src/mem/memcpy.npk:265: if (src == 0i64 || n <= 0i64) {
+  src/str/strtok.npk:265: int64:len = i - line_start;
+  src/str/strview.npk:265: StrView->:p = @cast_unchecked<StrView->>(prefix);
+  src/str/strfmt.npk:265: slen = str_strlen(sptr);
+  src/str/strcmp.npk:265: };
+  src/str/strbuf.npk:265: pass strbuf_append_bytes(sb, o.ptr, o.len);
+  src/math/math.npk:265: pass r;
+  src/syscall/syscall.npk:265: pub func:libn_dup = int64(int64:fd) {
+  src/syscall/syscall_numbers.npk:265: pub fixed int64:SYS_KEXEC_LOAD      = 246i64;
+  src/syscall/posix_constants.npk:265: pub fixed int64:CLOCK_TAI               = 11i64;
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/proc/env.npk:272: bool:match = true;
+  src/io/read.npk:272: };
+  src/io/bio/fprintf.npk:272: pass fprintf8(stdout_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+  src/io/bio/fio.npk:272: pub func:fflush = int64(int64:fp) {
+  src/io/bio/tmpfile.npk:272: uint8[256]:g_tmpnam_buf;
+  src/io/bio/fscanf.npk:272: first = false;
+  src/io/bio/fopen.npk:272: pub func:fclose = int64(int64:fp) {
+  src/io/bio/file.npk:272: bool:has_plus = false;
+  src/fs/path.npk:272: }
+  src/mem/mmap.npk:272: uint8->:src = @cast_unchecked<uint8->>(ptr);
+  src/str/strtok.npk:272: line_count = line_count + 1i64;
+  src/str/strview.npk:272: }
+  src/str/strchr.npk:272: while (p[i] != 0u8) {
+  src/str/strfmt.npk:272: if (!flag_left) { fmt_pad(stp, 32u8, pad); }
+  src/str/strconv.npk:272: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/str/strcmp.npk:272: pub func:str_casecmp_prefix = bool(int64:a, int64:b) {
+  src/str/strbuf.npk:272: StrBuf->:s = @cast_unchecked<StrBuf->>(sb);
+  src/syscall/syscall.npk:272: Result<int64>:r = sys2(SYS_DUP2, fd, newfd);
+  src/syscall/syscall_numbers.npk:272: pub fixed int64:SYS_IOPRIO_SET      = 251i64;
+  src/syscall/posix_constants.npk:272: pub fixed int64:AF_UNIX     = 1i64;      // Unix domain sockets
+  src/syscall/errno.npk:272: pub func:err_str = int64(int64:e) {
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 273)
+  src/proc/env.npk:273: while (j < nlen) {
+  src/proc/exec.npk:273: pub func:execl8 = int64(int64:path, int64:a0, int64:a1, int64:a2, int64:a3,
+  src/io/printf.npk:273: pub func:io_sprintf0 = int64(int64:buf, int64:buf_size, int64:fmt) {
+  src/io/bio/fprintf.npk:273: };
+  src/io/bio/fio.npk:273: if (fp == 0i64) {
+  src/io/bio/fscanf.npk:273: }
+  src/io/bio/fopen.npk:273: if (fp == 0i64) {
+  src/io/bio/file.npk:273: bool:has_b    = false;
+  src/mem/slab.npk:273: int64:cls = raw slab_class_for_size(n);
+  src/mem/memcpy.npk:273: use "../syscall/posix_constants.npk".*;
+  src/mem/mmap.npk:273: uint8->:dst = @cast_unchecked<uint8->>(new_ptr);
+  src/str/strtok.npk:273: }
+  src/str/strview.npk:273: };
+  src/str/strchr.npk:273: if (raw charset_test(@table[0], p[i]) == true) {
+  src/str/strfmt.npk:273: fmt_puts_n(stp, sptr, slen);
+  src/str/strconv.npk:273: }
+  src/str/strcmp.npk:273: if (a == 0i64 || b == 0i64) {
+  src/str/strbuf.npk:273: drop mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n);
+  src/syscall/syscall.npk:273: return r;
+  src/syscall/syscall_numbers.npk:273: pub fixed int64:SYS_IOPRIO_GET      = 252i64;
+  src/syscall/posix_constants.npk:273: pub fixed int64:AF_LOCAL    = 1i64;      // Alias for AF_UNIX
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/proc/env.npk:274: if (es[j] != np[j]) { match = false; break; }
+  src/proc/exec.npk:274: int64:a4, int64:a5, int64:a6, int64:a7) {
+  src/io/printf.npk:274: pass str_snprintf0(buf, buf_size, fmt);
+  src/io/bio/fio.npk:274: int64:curr = g_open_files;
+  src/io/bio/tmpfile.npk:274: pub func:tmpnam = int64(int64:buf) {
+  src/io/bio/fscanf.npk:274: } else {
+  src/io/bio/fopen.npk:274: drop drop(errno_set(EINVAL));
+  src/io/bio/file.npk:274: int64:i = 1i64;
+  src/fs/path.npk:274: uint8->:p  = @cast_unchecked<uint8->>(path);
+  src/mem/memcpy.npk:274: use "../syscall/syscall.npk".*;
+  src/mem/mmap.npk:274: while (si < copy_n) {
+  src/str/strtok.npk:274: line_start = i + 1i64;
+  src/str/strchr.npk:274: pass s + i;
+  src/str/strfmt.npk:274: if (flag_left) { fmt_pad(stp, 32u8, pad); }
+  src/str/strcmp.npk:274: pass false;
+  src/str/strbuf.npk:274: s->len = s->len + n;
+  src/math/math.npk:274: pub func:math_align_up = int64(int64:v, int64:align) {
+  src/syscall/syscall.npk:274: };
+  src/syscall/syscall_numbers.npk:274: pub fixed int64:SYS_INOTIFY_INIT    = 253i64;
+  src/syscall/posix_constants.npk:274: pub fixed int64:AF_INET     = 2i64;      // IPv4
+  src/syscall/errno.npk:274: pick (e) {
+--- Error: Cannot assign value of type 'Result<int64>' to variable of type 'int64' (Line 298)
+  src/proc/exec.npk:298: };
+  src/io/printf.npk:298: };
+  src/io/bio/fprintf.npk:298: int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
+  src/io/bio/fio.npk:298: drop errno_set(@cast_unchecked<int64>(r.error));
+  src/io/bio/fopen.npk:298: ret = FILE_EOF;
+  src/io/bio/file.npk:298: } else if (first == 119u8) {    // 'w'
+  src/mem/memutil.npk:298: uint8:first = n[0];
+  src/mem/mmap.npk:298: if (map_size <= 0i64) {
+  src/str/strview.npk:298: o.ptr = s->ptr;
+  src/str/strfmt.npk:298: nlen = render_uint(uval, num_base, @cast_unchecked<int64>(@nbuf[0]), is_upper);
+  src/str/strconv.npk:298: pub func:str_parse_u64 = int64(int64:s) {
+  src/str/strbuf.npk:298: };
+  src/syscall/syscall.npk:298: return r;
+  src/syscall/syscall_numbers.npk:298: pub fixed int64:SYS_SYNC_FILE_RANGE = 277i64;
+  src/syscall/posix_constants.npk:298: pub fixed int64:SOCK_STREAM    = 1i64;         // TCP-style
+  src/syscall/errno.npk:298: (23i64) { pass @cast_unchecked<int64>(@"Too many open files in system"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 331)
+  src/proc/env.npk:331: int64:j = 0i64;
+  src/io/printf.npk:331: int64:r = raw io_write_str(STDERR_FD, prefix);
+  src/io/bio/fscanf.npk:331: first = false;
+  src/fs/path.npk:331: }
+  src/mem/memutil.npk:331: pass true;
+  src/str/strchr.npk:331: int64:i = 0i64;
+  src/str/strfmt.npk:331: fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+  src/str/strconv.npk:331: int64:endptr_val = s;
+  src/str/strbuf.npk:331: pass n;
+  src/math/math.npk:331: if (v == 1i64) { pass 0i64; }
+  src/syscall/syscall_numbers.npk:331: pub fixed int64:SYS_SETNS           = 308i64;
+  src/syscall/posix_constants.npk:331: pub fixed int64:SO_OOBINLINE   = 10i64;
+  src/syscall/errno.npk:331: (93i64) { pass @cast_unchecked<int64>(@"Protocol not supported"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 332)
+  src/proc/env.npk:332: while (j < count) {
+  src/io/printf.npk:332: if (r < 0i64) { pass r; }
+  src/io/bio/fprintf.npk:332: pub func:asprintf3 = int64(int64:out_len, int64:fmt,
+  src/io/bio/fscanf.npk:332: if (c != 37i64) {
+  src/io/bio/fopen.npk:332: pub func:fileno = int64(int64:fp) {
+  src/fs/path.npk:332: ob[j] = 0u8;
+  src/mem/memutil.npk:332: }
+  src/str/strfmt.npk:332: fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+  src/str/strconv.npk:332: int64->:ep = @endptr_val;
+  src/str/strbuf.npk:332: };
+  src/syscall/syscall_numbers.npk:332: pub fixed int64:SYS_GETCPU          = 309i64;
+  src/syscall/posix_constants.npk:332: pub fixed int64:SO_NO_CHECK    = 11i64;
+  src/syscall/errno.npk:332: (94i64) { pass @cast_unchecked<int64>(@"Socket type not supported"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 333)
+  src/proc/env.npk:333: int64:existing = hp[j];
+  src/io/printf.npk:333: int64:r2 = raw io_write_str(STDERR_FD, @cast_unchecked<int64>(@": "));
+  src/io/bio/fprintf.npk:333: int64:a0, int64:a1, int64:a2) {
+  src/io/bio/fscanf.npk:333: drop bio_scan_ungetc(c, src);
+  src/io/bio/fopen.npk:333: if (fp == 0i64) {
+  src/fs/path.npk:333: pass blen;
+  src/mem/memutil.npk:333: if (ptr == 0i64) {
+  src/str/strchr.npk:333: while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+  src/str/strfmt.npk:333: fmt_pad(stp, 32u8, pad_total);
+  src/str/strconv.npk:333: int64:v = raw str_strtol(s, ep, base);
+  src/math/math.npk:333: int64:f = raw math_log2_floor(v);
+  src/syscall/syscall.npk:333: pub func:libn_mprotect = int64(int64:addr, int64:length, int64:prot) {
+  src/syscall/syscall_numbers.npk:333: pub fixed int64:SYS_PROCESS_VM_READV  = 310i64;
+  src/syscall/posix_constants.npk:333: pub fixed int64:SO_PRIORITY    = 12i64;
+  src/syscall/errno.npk:333: (95i64) { pass @cast_unchecked<int64>(@"Operation not supported"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 336)
+  src/proc/env.npk:336: bool:match = true;
+  src/io/bio/fprintf.npk:336: drop str_snprintf3(tmp_ptr, 4096i64, fmt, a0, a1, a2);
+  src/io/bio/fscanf.npk:336: consumed = consumed + 1i64;
+  src/io/bio/fopen.npk:336: }
+  src/str/strview.npk:336: StrView->:s = @cast_unchecked<StrView->>(sv);
+  src/str/strfmt.npk:336: fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+  src/str/strconv.npk:336: drop errno_clear();
+  src/str/strbuf.npk:336: if (sb == 0i64) { pass -1i64; }
+  src/math/math.npk:336: };
+  src/syscall/syscall.npk:336: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/syscall/syscall_numbers.npk:336: pub fixed int64:SYS_FINIT_MODULE    = 313i64;
+  src/syscall/posix_constants.npk:336: pub fixed int64:SO_REUSEPORT   = 15i64;
+  src/syscall/errno.npk:336: (98i64) { pass @cast_unchecked<int64>(@"Address already in use"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 337)
+  src/proc/env.npk:337: while (k < eq_pos) {
+  src/io/bio/fprintf.npk:337: int64:len = raw str_strlen(tmp_ptr);
+  src/io/bio/fopen.npk:337: FILE->:f = @cast_unchecked<FILE->>(fp);
+  src/mem/slab.npk:337: if ((ptr & 4095i64) == 16i64) {
+  src/mem/memutil.npk:337: uint8->:p = @cast_unchecked<uint8->>(ptr);
+  src/str/strview.npk:337: if (s->len == 0i64) { pass -1i64; }
+  src/str/strchr.npk:337: pass i;
+  src/str/strfmt.npk:337: fmt_pad(stp, 48u8, pad_total);
+  src/str/strconv.npk:337: fail @cast_unchecked<tbb32>(ERANGE);
+  src/str/strbuf.npk:337: stack uint8[4096]:tmp;
+  src/syscall/syscall.npk:337: }
+  src/syscall/syscall_numbers.npk:337: pub fixed int64:SYS_SCHED_SETATTR   = 314i64;
+  src/syscall/posix_constants.npk:337: pub fixed int64:SO_PASSCRED    = 16i64;
+  src/syscall/errno.npk:337: (99i64) { pass @cast_unchecked<int64>(@"Cannot assign requested address"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 338)
+  src/proc/env.npk:338: if (es[k] != ep[k]) { match = false; break; }
+  src/io/bio/fprintf.npk:338: int64:p = raw mem_malloc(len + 1i64);
+  src/io/bio/fscanf.npk:338: if (!suppress) { ai = ai - 1i64; }    // undo arg advance
+  src/io/bio/fopen.npk:338: if (f->fd < 0i64) {
+  src/mem/memutil.npk:338: int64:i = 0i64;
+  src/mem/mmap.npk:338: pub func:mem_alloc_pages = int64(int64:n_pages) {
+  src/str/strview.npk:338: int64:found = raw mem_memrchr(s->ptr, @cast_unchecked<int64>(c), s->len);
+  src/str/strchr.npk:338: };
+  src/str/strfmt.npk:338: fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+  src/str/strconv.npk:338: }
+  src/str/strbuf.npk:338: int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
+  src/syscall/syscall.npk:338: Result<int64>:r = sys3(SYS_MPROTECT, addr, length, prot);
+  src/syscall/syscall_numbers.npk:338: pub fixed int64:SYS_SCHED_GETATTR   = 315i64;
+  src/syscall/posix_constants.npk:338: pub fixed int64:SO_PEERCRED    = 17i64;
+  src/syscall/errno.npk:338: (100i64) { pass @cast_unchecked<int64>(@"Network is down"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 341)
+  src/proc/env.npk:341: if (match && es[eq_pos] == 61u8) {
+  src/io/printf.npk:341: int64:e = @cast_unchecked<int64>(libn_errno);
+  src/io/bio/fprintf.npk:341: if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+  src/io/bio/fopen.npk:341: }
+  src/mem/slab.npk:341: return r;
+  src/mem/memutil.npk:341: while (i < n && ((ptr + i) & 7i64) != 0i64) {
+  src/mem/mmap.npk:341: }
+  src/str/strview.npk:341: };
+  src/str/strfmt.npk:341: fmt_pad(stp, 32u8, pad_total);
+  src/str/strconv.npk:341: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/str/strbuf.npk:341: if (n == 0i64) { pass 0i64; }
+  src/syscall/syscall_numbers.npk:341: pub fixed int64:SYS_GETRANDOM       = 318i64;
+  src/syscall/posix_constants.npk:341: pub fixed int64:SO_RCVTIMEO    = 20i64;
+  src/syscall/errno.npk:341: (103i64) { pass @cast_unchecked<int64>(@"Software caused connection abort"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 342)
+  src/proc/env.npk:342: if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[j] == 1i64) { drop mem_free(hp[j]); }
+  src/io/bio/fprintf.npk:342: pass p;
+  src/io/bio/fscanf.npk:342: if (spec == 110u8) {    // '%n' — store consumed count
+  src/io/bio/fopen.npk:342: pass f->fd;
+  src/mem/slab.npk:342: }
+  src/mem/memutil.npk:342: if (p[i] != 0u8) {
+  src/mem/mmap.npk:342: int64:size = n_pages * PAGE_SIZE;
+  src/str/strfmt.npk:342: fmt_puts_n(stp, @cast_unchecked<int64>(@prefix[0]), prefix_len);
+  src/str/strconv.npk:342: }
+  src/str/strbuf.npk:342: if (!raw strbuf_append_bytes(sb, tmp_ptr, n)) { pass -1i64; }
+  src/syscall/syscall_numbers.npk:342: pub fixed int64:SYS_MEMFD_CREATE    = 319i64;
+  src/syscall/posix_constants.npk:342: pub fixed int64:SO_SNDTIMEO    = 21i64;
+  src/syscall/errno.npk:342: (104i64) { pass @cast_unchecked<int64>(@"Connection reset by peer"); },
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 343)
+  src/proc/env.npk:343: hp[j] = entry;
+  src/io/printf.npk:343: int64:i = 31i64;
+  src/io/bio/fprintf.npk:343: };
+  src/io/bio/fscanf.npk:343: if (out != 0i64) {
+  src/io/bio/fopen.npk:343: };
+  src/mem/memutil.npk:343: pass false;
+  src/mem/mmap.npk:343: Result<int64>:r = libn_mmap(0i64, size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+  src/str/strfmt.npk:343: fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf[0]), nlen);
+  src/str/strbuf.npk:343: pass n;
+  src/syscall/syscall_numbers.npk:343: pub fixed int64:SYS_KEXEC_FILE_LOAD = 320i64;
+  src/syscall/posix_constants.npk:343: pub fixed int64:SO_ACCEPTCONN  = 30i64;
+  src/syscall/errno.npk:343: (105i64) { pass @cast_unchecked<int64>(@"No buffer space available"); },
+--- Error: Undefined identifier: 'g_open_files' (Line 274)
+  src/proc/env.npk:274: if (es[j] != np[j]) { match = false; break; }
+  src/proc/exec.npk:274: int64:a4, int64:a5, int64:a6, int64:a7) {
+  src/io/printf.npk:274: pass str_snprintf0(buf, buf_size, fmt);
+  src/io/bio/fio.npk:274: int64:curr = g_open_files;
+  src/io/bio/tmpfile.npk:274: pub func:tmpnam = int64(int64:buf) {
+  src/io/bio/fscanf.npk:274: } else {
+  src/io/bio/fopen.npk:274: drop drop(errno_set(EINVAL));
+  src/io/bio/file.npk:274: int64:i = 1i64;
+  src/fs/path.npk:274: uint8->:p  = @cast_unchecked<uint8->>(path);
+  src/mem/memcpy.npk:274: use "../syscall/syscall.npk".*;
+  src/mem/mmap.npk:274: while (si < copy_n) {
+  src/str/strtok.npk:274: line_start = i + 1i64;
+  src/str/strchr.npk:274: pass s + i;
+  src/str/strfmt.npk:274: if (flag_left) { fmt_pad(stp, 32u8, pad); }
+  src/str/strcmp.npk:274: pass false;
+  src/str/strbuf.npk:274: s->len = s->len + n;
+  src/math/math.npk:274: pub func:math_align_up = int64(int64:v, int64:align) {
+  src/syscall/syscall.npk:274: };
+  src/syscall/syscall_numbers.npk:274: pub fixed int64:SYS_INOTIFY_INIT    = 253i64;
+  src/syscall/posix_constants.npk:274: pub fixed int64:AF_INET     = 2i64;      // IPv4
+  src/syscall/errno.npk:274: pick (e) {
+--- Error: Undefined identifier: 'curr' (Line 276)
+  src/proc/env.npk:276: }
+  src/proc/exec.npk:276: argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+  src/io/bio/fprintf.npk:276: int64:a0, int64:a1, int64:a2, int64:a3,
+  src/io/bio/fio.npk:276: while (curr != 0i64) {
+  src/io/bio/fscanf.npk:276: int64:c = raw bio_scan_getc(src);
+  src/io/bio/fopen.npk:276: }
+  src/mem/slab.npk:276: if (cls >= SLAB_CLASS_COUNT) {
+  src/mem/mmap.npk:276: si = si + 1i64;
+  src/str/strtok.npk:276: pass line_count;    // Output full, stop
+  src/str/strchr.npk:276: i = i + 1i64;
+  src/str/strfmt.npk:276: }
+  src/str/strconv.npk:276: int64:endptr_val = s;
+  src/str/strbuf.npk:276: pass true;
+  src/math/math.npk:276: pass (v + mask) & (0i64 - align);
+  src/syscall/syscall_numbers.npk:276: pub fixed int64:SYS_INOTIFY_RM_WATCH = 255i64;
+  src/syscall/posix_constants.npk:276: pub fixed int64:AF_IPX      = 4i64;
+  src/syscall/errno.npk:276: (1i64) { pass @cast_unchecked<int64>(@"Operation not permitted"); },
+--- Error: Cannot assign value of type 'Result<int64>' to variable of type 'int64' (Line 76)
+  src/proc/exit.npk:76: (NIL)():handler = fn => (NIL)();
+  src/proc/signal.npk:76: if (signo < 1i64 || signo > 64i64) { pass false; }
+  src/proc/env.npk:76: environ = envp;    // fallback: use original (immutable) envp
+  src/proc/wait.npk:76: pub func:wait_stopsig = int64(int64:status) {
+  src/proc/fork.npk:76: if (r.is_error) { pass -1i64; }
+  src/io/dup.npk:76: if (fd < 0i64 || newfd < 0i64) {
+  src/io/printf.npk:76: int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
+  src/io/read.npk:76: while (total < n) {
+  src/io/bio/fprintf.npk:76: pass fprintf0(stdout_fp, fmt);
+  src/io/bio/fseek.npk:76: }
+  src/io/bio/stdfiles.npk:76: sin->buf_mode = _IOFBF;
+  src/io/bio/fio.npk:76: if (total_bytes > 0i64) {
+  src/io/bio/fchar.npk:76: stack uint8[1]:one;
+  src/io/bio/fscanf.npk:76: }
+  src/io/bio/strerror.npk:76: { 22i64,  @cast_unchecked<int64>(@"Invalid argument") },                    // EINVAL
+  src/io/bio/fopen.npk:76: fail @cast_unchecked<tbb32>(ENOMEM);
+  src/fs/path.npk:76: }
+  src/mem/memset.npk:76: i = i + 1i64;
+  src/str/strview.npk:76: sv.len = str_strlen(s);
+  src/str/strchr.npk:76: pass 0i64;
+  src/str/strfmt.npk:76: fmt_putc(st, pad_char);
+  src/str/strcmp.npk:76: pass 1i64;
+  src/str/strbuf.npk:76: }
+  src/math/math.npk:76: if (v < 0i64) { pass 0i64 - v; }
+  src/syscall/syscall.npk:76: int64:ret = sys!!!(nr, a1, a2, a3, a4, a5, a6);
+  src/syscall/syscall_numbers.npk:76: pub fixed int64:SYS_FORK            = 57i64;
+  src/syscall/posix_constants.npk:76: pub fixed int64:S_IWGRP  = 16i64;        // 020  — group: write
+  src/syscall/errno.npk:76: pub fixed int64:EL2NSYNC = 45i64;     // Level 2 not synchronized
+--- Error: Cannot assign 'bool' to 'int64' (Line 84)
+  src/proc/exit.npk:84: func:_proc_run_atqexit = NIL() {
+  src/proc/exec.npk:84: pub func:execvp = int64(int64:name, int64:argv) {
+  src/proc/fork.npk:84: pass r.value;
+  src/io/open.npk:84: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/dup.npk:84: }
+  src/io/seek.npk:84: if (fd < 0i64) {
+  src/io/fcntl.npk:84: }
+  src/io/read.npk:84: }
+  src/io/bio/stdfiles.npk:84: } else {
+  src/io/bio/fio.npk:84: }
+  src/io/bio/tmpfile.npk:84: p[i] = (@cast_unchecked<uint8->>(hex))[(v >> (i * 4i64)) & 0xFi64];
+  src/io/bio/fchar.npk:84: }
+  src/io/bio/fstr.npk:84: pass buf;
+  src/io/bio/fscanf.npk:84: drop ungetc(c, s[1]);
+  src/io/bio/strerror.npk:84: { 30i64,  @cast_unchecked<int64>(@"Read-only file system") },               // EROFS
+  src/io/bio/fstate.npk:84: pub func:setvbuf = int64(int64:fp, int64:buf, int64:mode, int64:size) {
+  src/io/bio/fopen.npk:84: };
+  src/mem/slab.npk:84: fixed int64:SLAB_SLOTS_PER_PAGE_6 = 7i64;
+  src/mem/memutil.npk:84: int64:bb = @cast_unchecked<int64>(pb[i]);
+  src/mem/mmap.npk:84: pass (addr & PAGE_MASK) == 0i64;
+  src/str/strtok.npk:84: int64:token_start = s + i;
+  src/str/strview.npk:84: is (sv.len = len < 0i64) : 0i64 : len;
+  src/str/strconv.npk:84: int64:i = 0i64;
+  src/str/strcmp.npk:84: while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+  src/str/strbuf.npk:84: pass false;
+  src/math/math.npk:84: };
+  src/syscall/syscall.npk:84: return sys_safe(nr, a1, 0i64, 0i64, 0i64, 0i64, 0i64);
+  src/syscall/syscall_numbers.npk:84: pub fixed int64:SYS_SEMOP           = 65i64;
+  src/syscall/errno.npk:84: pub fixed int64:EL2HLT   = 51i64;
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 279)
+  src/proc/env.npk:279: if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) { drop mem_free(ep[i]); }
+  src/proc/exec.npk:279: };
+  src/io/printf.npk:279: };
+  src/io/bio/fprintf.npk:279: pass fprintf8(stderr_fp, fmt, a0, a1, a2, a3, a4, a5, a6, a7);
+  src/io/bio/fio.npk:279: Result<int64>:r = bio_flush_write_buf(curr);
+  src/io/bio/tmpfile.npk:279: int64:pfx_len = raw str_strlen(@cast_unchecked<int64>(pfx));
+  src/io/bio/fscanf.npk:279: pass matched;
+  src/io/bio/fopen.npk:279: int64:ret = 0i64;
+  src/io/bio/file.npk:279: if (m[i] == 98u8) { has_b    = true; }     // 'b'
+  src/mem/slab.npk:279: }
+  src/mem/memcpy.npk:279: fail r.error;
+  src/str/strview.npk:279: int64:plen = is (prefix != 0i64) : str_strlen(prefix) : 0i64;
+  src/str/strchr.npk:279: pass 0i64;
+  src/str/strfmt.npk:279: bool:is_signed = spec == 100u8 || spec == 105u8;    // 'd' or 'i'
+  src/str/strcmp.npk:279: int64:i = 0i64;
+  src/syscall/syscall.npk:279: return r;
+  src/syscall/syscall_numbers.npk:279: pub fixed int64:SYS_MKDIRAT         = 258i64;
+  src/syscall/posix_constants.npk:279: pub fixed int64:AF_BRIDGE   = 7i64;
+  src/syscall/errno.npk:279: (4i64) { pass @cast_unchecked<int64>(@"Interrupted system call"); },
+--- Error: Undefined identifier: 'plen' (Line 280)
+  src/proc/env.npk:280: int64:k = i;
+  src/io/bio/fprintf.npk:280: };
+  src/io/bio/fio.npk:280: if (r.is_error) { err_ret = FILE_EOF; }
+  src/io/bio/tmpfile.npk:280: drop mem_memcpy(dst, @cast_unchecked<int64>(pfx), pfx_len);
+  src/io/bio/fscanf.npk:280: }
+  src/io/bio/file.npk:280: i = i + 1i64;
+  src/fs/path.npk:280: if (len == 0i64) {
+  src/mem/memcpy.npk:280: }
+  src/mem/mmap.npk:280: drop mem_free(ptr);
+  src/str/strtok.npk:280: if (at_end) { break; }
+  src/str/strview.npk:280: drop strview_substr(sv, plen, -1i64, out);
+  src/str/strchr.npk:280: };
+  src/str/strfmt.npk:280: bool:is_upper   = spec == 88u8;     // 'X'
+  src/math/math.npk:280: pub func:math_align_down = int64(int64:v, int64:align) {
+  src/syscall/syscall.npk:280: };
+  src/syscall/syscall_numbers.npk:280: pub fixed int64:SYS_MKNODAT         = 259i64;
+  src/syscall/posix_constants.npk:280: pub fixed int64:AF_ATMPVC   = 8i64;
+  src/syscall/errno.npk:280: (5i64) { pass @cast_unchecked<int64>(@"Input/output error"); },
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 308)
+  src/proc/env.npk:308: pub func:putenv = int64(int64:entry) {
+  src/io/printf.npk:308: pass str_snprintf7(buf, buf_size, fmt, a0, a1, a2, a3, a4, a5, a6);
+  src/io/bio/fprintf.npk:308: pub func:asprintf1 = int64(int64:out_len, int64:fmt, int64:a0) {
+  src/io/bio/fscanf.npk:308: f[fi] == 106u8 || f[fi] == 116u8) {
+  src/io/bio/fopen.npk:308: f->buf_cap = 0i64;
+  src/io/bio/file.npk:308: if (has_plus) {
+  src/fs/path.npk:308: }
+  src/mem/memutil.npk:308: int64:offset = candidate - haystack;
+  src/mem/mmap.npk:308: Result<int64>:r = libn_munmap(map_start, map_size);
+  src/str/strview.npk:308: int64:xlen = is (suffix != 0i64) : str_strlen(suffix) : 0i64;
+  src/str/strfmt.npk:308: prefix[0] = 32u8; prefix_len = 1i64;     // ' '
+  src/str/strconv.npk:308: drop errno_clear();
+  src/str/strbuf.npk:308: pass n;
+  src/math/math.npk:308: };
+  src/syscall/syscall.npk:308: };
+  src/syscall/syscall_numbers.npk:308: pub fixed int64:SYS_TIMERFD_GETTIME = 287i64;
+  src/syscall/errno.npk:308: (33i64) { pass @cast_unchecked<int64>(@"Numerical argument out of domain"); },
+--- Error: Undefined identifier: 'xlen' (Line 310)
+  src/io/bio/fprintf.npk:310: int64:tmp_ptr = @cast_unchecked<int64>(@tmp[0]);
+  src/io/bio/fscanf.npk:310: if (f[fi] == 108u8 || f[fi] == 104u8) {    // ll / hh
+  src/io/bio/file.npk:310: oflags[0] = O_RDWR | O_CREAT | O_APPEND;
+  src/fs/path.npk:310: int64:start = 0i64;
+  src/mem/slab.npk:310: next_ptr[0] = 0i64;
+  src/mem/memutil.npk:310: pass 0i64;    // first uint8 found but too close to end for needle to fit
+  src/mem/mmap.npk:310: };
+  src/str/strview.npk:310: o.len = s->len - xlen;
+  src/str/strchr.npk:310: };
+  src/str/strfmt.npk:310: if (flag_alt && num_base == 16i64 && arg_val != 0i64) {
+  src/str/strconv.npk:310: }
+  src/syscall/syscall_numbers.npk:310: pub fixed int64:SYS_SIGNALFD4       = 289i64;
+  src/syscall/errno.npk:310: (35i64) { pass @cast_unchecked<int64>(@"Resource deadlock avoided"); },
+--- Error: Cannot assign value of type 'Result<int64>' to variable of type 'int64' (Line 767)
+  src/str/strview.npk:767: i.len = str_strlen(s);
+--- Error: Failed to load module 'time/clock.npk' (Line 24)
+  src/all.npk:24: use "time/clock.npk".*;
+  src/proc/proc.npk:24: use "../proc/signal.npk".*;
+  src/io/open.npk:24: use "../syscall/posix_constants.npk".*;
+  src/io/pipe.npk:24: use "../syscall/errno.npk".*;
+  src/io/bio/stdfiles.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fio.npk:24: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/fchar.npk:24: use "../../io/bio/fio.npk".*;
+  src/io/bio/fstr.npk:24: use "../../str/strlen.npk".*;
+  src/io/bio/strerror.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fopen.npk:24: use "../../io/bio/file.npk".*;
+  src/fs/path.npk:24: use "../syscall/errno.npk".*;
+  src/time/clock.npk:24: pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
+  src/str/strcpy.npk:24: use "../mem/mmap.npk".*;
+  src/str/strchr.npk:24: pub func:str_strchr = int64(int64:s, int64:c) {
+  src/str/strlcpy.npk:24: use "../mem/memset.npk".*;
+  src/str/strconv.npk:24: use "../str/strlen.npk".*;
+  src/str/string.npk:24: use "../str/strcpy.npk".*;
+  src/syscall/syscall_numbers.npk:24: pub fixed int64:SYS_POLL            = 7i64;
+  src/syscall/posix_constants.npk:24: pub fixed int64:O_NONBLOCK  = 2048i64;        // Non-blocking I/O
+--- Error:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55: (Line 24)
+  src/all.npk:24: use "time/clock.npk".*;
+  src/proc/proc.npk:24: use "../proc/signal.npk".*;
+  src/io/open.npk:24: use "../syscall/posix_constants.npk".*;
+  src/io/pipe.npk:24: use "../syscall/errno.npk".*;
+  src/io/bio/stdfiles.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fio.npk:24: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/fchar.npk:24: use "../../io/bio/fio.npk".*;
+  src/io/bio/fstr.npk:24: use "../../str/strlen.npk".*;
+  src/io/bio/strerror.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fopen.npk:24: use "../../io/bio/file.npk".*;
+  src/fs/path.npk:24: use "../syscall/errno.npk".*;
+  src/time/clock.npk:24: pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
+  src/str/strcpy.npk:24: use "../mem/mmap.npk".*;
+  src/str/strchr.npk:24: pub func:str_strchr = int64(int64:s, int64:c) {
+  src/str/strlcpy.npk:24: use "../mem/memset.npk".*;
+  src/str/strconv.npk:24: use "../str/strlen.npk".*;
+  src/str/string.npk:24: use "../str/strcpy.npk".*;
+  src/syscall/syscall_numbers.npk:24: pub fixed int64:SYS_POLL            = 7i64;
+  src/syscall/posix_constants.npk:24: pub fixed int64:O_NONBLOCK  = 2048i64;        // Non-blocking I/O
+--- Error:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55: (Line 24)
+  src/all.npk:24: use "time/clock.npk".*;
+  src/proc/proc.npk:24: use "../proc/signal.npk".*;
+  src/io/open.npk:24: use "../syscall/posix_constants.npk".*;
+  src/io/pipe.npk:24: use "../syscall/errno.npk".*;
+  src/io/bio/stdfiles.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fio.npk:24: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/fchar.npk:24: use "../../io/bio/fio.npk".*;
+  src/io/bio/fstr.npk:24: use "../../str/strlen.npk".*;
+  src/io/bio/strerror.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fopen.npk:24: use "../../io/bio/file.npk".*;
+  src/fs/path.npk:24: use "../syscall/errno.npk".*;
+  src/time/clock.npk:24: pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
+  src/str/strcpy.npk:24: use "../mem/mmap.npk".*;
+  src/str/strchr.npk:24: pub func:str_strchr = int64(int64:s, int64:c) {
+  src/str/strlcpy.npk:24: use "../mem/memset.npk".*;
+  src/str/strconv.npk:24: use "../str/strlen.npk".*;
+  src/str/string.npk:24: use "../str/strcpy.npk".*;
+  src/syscall/syscall_numbers.npk:24: pub fixed int64:SYS_POLL            = 7i64;
+  src/syscall/posix_constants.npk:24: pub fixed int64:O_NONBLOCK  = 2048i64;        // Non-blocking I/O
+--- Error:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors. (Line 24)
+  src/all.npk:24: use "time/clock.npk".*;
+  src/proc/proc.npk:24: use "../proc/signal.npk".*;
+  src/io/open.npk:24: use "../syscall/posix_constants.npk".*;
+  src/io/pipe.npk:24: use "../syscall/errno.npk".*;
+  src/io/bio/stdfiles.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fio.npk:24: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/fchar.npk:24: use "../../io/bio/fio.npk".*;
+  src/io/bio/fstr.npk:24: use "../../str/strlen.npk".*;
+  src/io/bio/strerror.npk:24: use "../../io/bio/file.npk".*;
+  src/io/bio/fopen.npk:24: use "../../io/bio/file.npk".*;
+  src/fs/path.npk:24: use "../syscall/errno.npk".*;
+  src/time/clock.npk:24: pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
+  src/str/strcpy.npk:24: use "../mem/mmap.npk".*;
+  src/str/strchr.npk:24: pub func:str_strchr = int64(int64:s, int64:c) {
+  src/str/strlcpy.npk:24: use "../mem/memset.npk".*;
+  src/str/strconv.npk:24: use "../str/strlen.npk".*;
+  src/str/string.npk:24: use "../str/strcpy.npk".*;
+  src/syscall/syscall_numbers.npk:24: pub fixed int64:SYS_POLL            = 7i64;
+  src/syscall/posix_constants.npk:24: pub fixed int64:O_NONBLOCK  = 2048i64;        // Non-blocking I/O
+--- Error: Failed to load module 'time/sleep.npk' (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55: (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55: (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors. (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/sleep.npk: Parse error at line 18, column 1: (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error:   [/home/randy/Workspace/REPOS/libn/src/time/sleep.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/sleep.npk'. Check for syntax errors. (Line 26)
+  src/all.npk:26: use "time/sleep.npk".*;
+  src/proc/exit.npk:26: use "../syscall/syscall_numbers.npk".*;
+  src/io/dup.npk:26: use "../syscall/posix_constants.npk".*;
+  src/io/seek.npk:26: pub func:io_seek = int64(int64:fd, int64:offset) {
+  src/io/pipe.npk:26: use "../syscall/syscall.npk".*;
+  src/io/bio/fseek.npk:26: use "../../syscall/posix_constants.npk".*;
+  src/io/bio/stdfiles.npk:26: use "../../io/bio/fio.npk".*;
+  src/io/bio/fio.npk:26: use "../../mem/memcpy.npk".*;
+  src/io/bio/fstr.npk:26: use "../../io/bio/fchar.npk".*;
+  src/io/bio/strerror.npk:26: use "../../io/bio/fchar.npk".*;
+  src/time/clock.npk:26: drop errno_set(14i64); pass -1i64;     // EFAULT
+  src/str/strtok.npk:26: use "../syscall/errno.npk".*;
+  src/str/strchr.npk:26: pass 0i64;
+  src/str/string.npk:26: use "../str/strlcpy.npk".*;
+  src/syscall/syscall_numbers.npk:26: pub fixed int64:SYS_MMAP            = 9i64;
+  src/syscall/posix_constants.npk:26: pub fixed int64:O_FASYNC    = 8192i64;        // Enable SIGIO on I/O
+--- Error: Undefined identifier: 'r2'. Did you mean 'r'? (Line 81)
+  src/proc/exit.npk:81: }
+  src/proc/env.npk:81: _env_heap_is_alloc = r2.value;
+  src/proc/wait.npk:81: pub func:wait_continued = bool(int64:status) {
+  src/proc/fork.npk:81: pub func:getppid = int64() {
+  src/io/dup.npk:81: Result<int64>:chk = libn_fcntl(fd, F_GETFD, 0i64);
+  src/io/pipe.npk:81: pass libn_pipe2(fds, 0i64);
+  src/io/printf.npk:81: pub func:io_printf1 = int64(int64:fmt, int64:a0) {
+  src/io/fcntl.npk:81: pub func:io_set_status_flags = int64(int64:fd, int64:flags) {
+  src/io/read.npk:81: int64:e = @cast_unchecked<int64>(r.error);
+  src/io/bio/fprintf.npk:81: pass fprintf0(stderr_fp, fmt);
+  src/io/bio/stdfiles.npk:81: sin->buf     = stdin_buf;
+  src/io/bio/fio.npk:81: f->unget = FILE_UNGET_EMPTY;
+  src/io/bio/tmpfile.npk:81: fixed int64:hex = @"0123456789abcdef";
+  src/io/bio/fchar.npk:81: if (e == EINTR) { continue; }
+  src/io/bio/fstr.npk:81: }
+  src/io/bio/fscanf.npk:81: if (c < 0i64) { pass NIL; }    // don't push back EOF
+  src/io/bio/strerror.npk:81: { 27i64,  @cast_unchecked<int64>(@"File too large") },                      // EFBIG
+  src/io/bio/fopen.npk:81: f->flags   = f->flags | FILE_FLAG_BUF_OWN;
+  src/mem/slab.npk:81: fixed int64:SLAB_SLOTS_PER_PAGE_3 = 63i64;
+  src/mem/memcpy.npk:81: int64:wi = 0i64;
+  src/str/strtok.npk:81: }
+  src/str/strview.npk:81: pub func:strview_of_bytes = NIL(int64:ptr, int64:len, int64:out) {
+  src/str/strchr.npk:81: pass 0i64;    // unreachable
+  src/str/strlcpy.npk:81: pub func:str_strlcat = int64(int64:dst, int64:src, int64:dst_size) {
+  src/str/strconv.npk:81: }
+  src/str/strcmp.npk:81: int64:i = 0i64;
+  src/str/strbuf.npk:81: new_cap = new_cap * 2i64;
+  src/math/math.npk:81: pub func:math_min_i64 = int64(int64:a, int64:b) {
+  src/syscall/syscall_numbers.npk:81: pub fixed int64:SYS_KILL            = 62i64;
+  src/syscall/posix_constants.npk:81: pub fixed int64:S_IROTH  = 4i64;         // 04   — other: read
+  src/syscall/errno.npk:81: pub fixed int64:ELNRNG   = 48i64;
+--- Error: Cannot silently unwrap Result<Result<int64>> into 'init_r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail. (Line 133)
+  src/proc/exit.npk:133: };
+  src/proc/signal.npk:133: drop _sigact_encode(@cast_unchecked<int64>(@new_act[0]), new_handler, new_flags, new_mask);
+  src/proc/env.npk:133: i = i - 1i64;
+  src/proc/wait.npk:133: while (true) {
+  src/proc/exec.npk:133: }
+  src/proc/fork.npk:133: Result<int64>:r = sys!!(SYS_GETPGID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
+  src/io/open.npk:133: pass 0i64;
+  src/io/write.npk:133: while (p[len] != 0u8) {
+  src/io/printf.npk:133: stack uint8[4096]:buf;
+  src/io/fcntl.npk:133: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/bio/fprintf.npk:133: drop bio_ensure_std_init();
+  src/io/bio/fseek.npk:133: pos = pos - 1i64;
+  src/io/bio/stdfiles.npk:133: pub func:putchar = int64(int64:c) {
+  src/io/bio/fchar.npk:133: if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
+  src/io/bio/fstr.npk:133: };
+  src/io/bio/fscanf.npk:133: chars = chars + 1i64;
+  src/io/bio/strerror.npk:133: { -1i64,  0i64 }
+  src/io/bio/fstate.npk:133: pass 0i64;
+  src/io/bio/fopen.npk:133: Result<int64>:init_r = bio_init_stream(fp, fd, file_mode, false);
+  src/io/bio/file.npk:133: if (fp == 0i64) { pass NIL; }
+  src/mem/slab.npk:133: };
+  src/mem/memutil.npk:133: };
+  src/mem/memset.npk:133: };
+  src/mem/mmap.npk:133: }
+  src/str/strtok.npk:133: while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+  src/str/strview.npk:133: if (sv == 0i64) { pass 0i64; }
+  src/str/strcpy.npk:133: uint8->:d = @cast_unchecked<uint8->>(dst);
+  src/str/strchr.npk:133: }
+  src/str/strfmt.npk:133: tmp[ti] = digits[d];
+  src/str/strlcpy.npk:133: d[i] = 0u8;
+  src/str/strconv.npk:133: i = i + 1i64;
+  src/str/strcmp.npk:133: pub func:str_strncmp = int64(int64:a, int64:b, int64:n) {
+  src/str/strbuf.npk:133: };
+  src/math/math.npk:133: };
+  src/syscall/syscall.npk:133: };
+  src/syscall/syscall_numbers.npk:133: pub fixed int64:SYS_SETSID          = 112i64;
+  src/syscall/posix_constants.npk:133: pub fixed int64:MAP_ANON            = 32i64;        // Alias for MAP_ANONYMOUS
+  src/syscall/errno.npk:133: pub fixed int64:ENOPROTOOPT  = 92i64;    // Protocol not available
+--- Error: Undefined identifier: 'init_r' (Line 134)
+  src/proc/env.npk:134: }
+  src/proc/wait.npk:134: int64:r = raw waitpid(-1i64, 0i64, WNOHANG);
+  src/proc/fork.npk:134: if (r.is_error) {
+  src/io/open.npk:134: }
+  src/io/dup.npk:134: if (src_fd == target_fd) {
+  src/io/write.npk:134: len = len + 1i64;
+  src/io/printf.npk:134: int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
+  src/io/fcntl.npk:134: }
+  src/io/read.npk:134: pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
+  src/io/bio/fprintf.npk:134: stack uint8[4096]:buf;
+  src/io/bio/fseek.npk:134: }
+  src/io/bio/stdfiles.npk:134: drop bio_ensure_std_init();
+  src/io/bio/fio.npk:134: pass bytes_read / size;
+  src/io/bio/tmpfile.npk:134: int64:tries = 0i64;
+  src/io/bio/fchar.npk:134: drop bio_discard_read_buf(fp);
+  src/io/bio/fscanf.npk:134: c = bio_scan_getc(src);
+  src/io/bio/strerror.npk:134: ];
+  src/io/bio/fstate.npk:134: };
+  src/io/bio/fopen.npk:134: if (init_r.is_error) {
+  src/io/bio/file.npk:134: drop slab_free(0i64, fp);
+  src/fs/path.npk:134: int64:a_end = alen;
+  src/mem/mmap.npk:134: Result<int64>:r = libn_mprotect(addr, length, prot);
+  src/str/strtok.npk:134: i = i + 1i64;
+  src/str/strview.npk:134: pass (@cast_unchecked<StrView->>(sv)).len;
+  src/str/strcpy.npk:134: uint8->:s = @cast_unchecked<uint8->>(src);
+  src/str/strfmt.npk:134: ti = ti + 1i64;
+  src/str/strconv.npk:134: }
+  src/str/strcmp.npk:134: if (n == 0i64) {
+  src/syscall/syscall_numbers.npk:134: pub fixed int64:SYS_SETREUID        = 113i64;
+  src/syscall/posix_constants.npk:134: pub fixed int64:MAP_GROWSDOWN       = 256i64;       // Stack-like segment
+  src/syscall/errno.npk:134: pub fixed int64:EPROTONOSUPPORT = 93i64;   // Protocol not supported
+--- Error: Undefined identifier: 'g_open_files' (Line 142)
+  src/proc/signal.npk:142: signo,
+  src/proc/exec.npk:142: candidate[ci] = pp[p_start + ci];
+  src/proc/fork.npk:142: pub func:getpgrp = int64() {
+  src/io/dup.npk:142: fail r.error;
+  src/io/seek.npk:142: if (whence < SEEK_SET || whence > SEEK_HOLE) {
+  src/io/fcntl.npk:142: if (fd < 0i64) {
+  src/io/read.npk:142: stack uint8[1]:one;
+  src/io/bio/fprintf.npk:142: pass fprintf3(stdout_fp, fmt, a0, a1, a2);
+  src/io/bio/stdfiles.npk:142: }
+  src/io/bio/tmpfile.npk:142: if (!r.is_error) {
+  src/io/bio/fchar.npk:142: stack uint8[1]:one;
+  src/io/bio/fscanf.npk:142: if ((next == 120i64 || next == 88i64) && chars < max) {    // 'x' or 'X'
+  src/io/bio/fopen.npk:142: f->next_global = g_open_files;
+  src/io/bio/file.npk:142: pass 0i64;
+  src/fs/path.npk:142: fail @cast_unchecked<tbb32>(ENAMETOOLONG);
+  src/mem/slab.npk:142: (4i64) { pass 128i64; },
+  src/mem/memutil.npk:142: pub func:mem_equal = bool(int64:a, int64:b, int64:n) {
+  src/mem/mmap.npk:142: if (new_size <= 0i64) {
+  src/str/strtok.npk:142: p[i] = 0u8;
+  src/str/strcpy.npk:142: int64:end_idx = dst + i;
+  src/str/strfmt.npk:142: ti = ti - 1i64;
+  src/str/strcmp.npk:142: }
+  src/str/strbuf.npk:142: }
+  src/syscall/syscall_numbers.npk:142: pub fixed int64:SYS_GETPGID         = 121i64;
+  src/syscall/posix_constants.npk:142: pub fixed int64:MAP_HUGETLB         = 262144i64;    // Use huge pages
+  src/syscall/errno.npk:142: pub fixed int64:ENETDOWN     = 100i64;   // Network is down
+--- Error: Undefined identifier: 'g_open_files' (Line 143)
+  src/proc/signal.npk:143: @cast_unchecked<int64>(@new_act[0]),
+  src/proc/exec.npk:143: ci = ci + 1i64;
+  src/proc/fork.npk:143: pass getpgid(0i64);
+  src/io/dup.npk:143: }
+  src/io/seek.npk:143: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/printf.npk:143: pub func:io_eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+  src/io/fcntl.npk:143: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/bio/fprintf.npk:143: };
+  src/io/bio/stdfiles.npk:143: int64:r = raw fputs(s, stdout_fp);
+  src/io/bio/tmpfile.npk:143: pass r.value;    // success — return fd
+  src/io/bio/fchar.npk:143: one[0] = b;
+  src/io/bio/fscanf.npk:143: chars = chars + 1i64;
+  src/io/bio/fopen.npk:143: g_open_files = fp;
+  src/io/bio/file.npk:143: }
+  src/fs/path.npk:143: }
+  src/mem/slab.npk:143: (5i64) { pass 256i64; },
+  src/mem/memutil.npk:143: if (n == 0i64) {
+  src/mem/mmap.npk:143: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/str/strtok.npk:143: stringp[0] = s + i + 1i64;
+  src/str/strfmt.npk:143: b[bi] = tmp[ti];
+  src/str/strconv.npk:143: if (overflow) {
+  src/str/strcmp.npk:143: if (b == 0i64) {
+  src/str/strbuf.npk:143: drop mem_free(sb);
+  src/syscall/syscall_numbers.npk:143: pub fixed int64:SYS_SETFSUID        = 122i64;
+  src/syscall/posix_constants.npk:143: pub fixed int64:MAP_SYNC            = 524288i64;    // Sync mapping (DAX)
+  src/syscall/errno.npk:143: pub fixed int64:ENETUNREACH  = 101i64;   // Network is unreachable
+--- Error: Cannot silently unwrap Result<Result<int64>> into 'init_r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail. (Line 179)
+  src/proc/signal.npk:179: pub func:sig_ignore = int64(int64:signo) {
+  src/proc/env.npk:179: if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+  src/proc/wait.npk:179: if (raw wait_signaled(status)) {
+  src/io/printf.npk:179: pass io_write_str(fd, buf_ptr);
+  src/io/read.npk:179: }
+  src/io/bio/fprintf.npk:179: drop bio_ensure_std_init();
+  src/io/bio/fio.npk:179: if (r.is_error) {
+  src/io/bio/tmpfile.npk:179: drop drop(errno_set(EINVAL));
+  src/io/bio/fscanf.npk:179: break;
+  src/io/bio/fopen.npk:179: Result<int64>:init_r = bio_init_stream(fp, fd, file_mode_out[0], false);
+  src/io/bio/file.npk:179: fail r.error;
+  src/mem/slab.npk:179: (*) { pass 0i64; }
+  src/mem/memcpy.npk:179: }
+  src/mem/memset.npk:179: i = i + wn * 8i64;
+  src/str/strview.npk:179: if (sa->len == 0i64) { pass true; }
+  src/str/strcpy.npk:179: };
+  src/str/strchr.npk:179: }
+  src/str/strconv.npk:179: negate = true;
+  src/str/strbuf.npk:179: int64:n = s->len;
+  src/math/math.npk:179: pass 0i64 - a;
+  src/syscall/syscall.npk:179: };
+  src/syscall/posix_constants.npk:179: pub fixed int64:SIGHUP    = 1i64;      // Hangup
+  src/syscall/errno.npk:179: pub fixed int64:ENOTRECOVERABLE = 131i64;   // State not recoverable (robust mutex)
+--- Error: Undefined identifier: 'init_r' (Line 180)
+  src/proc/signal.npk:180: pass signal(signo, SIG_IGN);
+  src/io/printf.npk:180: };
+  src/io/bio/fprintf.npk:180: stack uint8[4096]:buf;
+  src/io/bio/fio.npk:180: int64:e = @cast_unchecked<int64>(r.error);
+  src/io/bio/tmpfile.npk:180: pass 0i64;
+  src/io/bio/fchar.npk:180: pass c & 0xFFi64;
+  src/io/bio/fscanf.npk:180: }
+  src/io/bio/fopen.npk:180: if (init_r.is_error) {
+  src/io/bio/file.npk:180: }
+  src/mem/slab.npk:180: }
+  src/str/strview.npk:180: if (sa->ptr == sb->ptr) { pass true; }    // same buffer, same range
+  src/str/strfmt.npk:180: while (f[fi] != 0u8) {
+  src/str/strconv.npk:180: i = i + 1i64;
+  src/str/strcmp.npk:180: uint8->:pa = @cast_unchecked<uint8->>(a);
+  src/str/strbuf.npk:180: Result<int64>:r = mem_malloc(n + 1i64);
+  src/math/math.npk:180: }
+  src/syscall/syscall_numbers.npk:180: pub fixed int64:SYS_PRCTL           = 157i64;
+  src/syscall/posix_constants.npk:180: pub fixed int64:SIGINT    = 2i64;      // Terminal interrupt (Ctrl+C)
+  src/syscall/errno.npk:180: pub fixed int64:ERFKILL         = 132i64;   // RF kill switch
+--- Error: Undefined identifier: 'g_open_files' (Line 187)
+  src/proc/env.npk:187: }
+  src/proc/exec.npk:187: int64:klen = raw str_strlen(key);
+  src/io/fcntl.npk:187: pub func:io_fcntl_setown = int64(int64:fd, int64:pid) {
+  src/io/bio/fprintf.npk:187: int64:a0, int64:a1, int64:a2, int64:a3, int64:a4) {
+  src/io/bio/fseek.npk:187: int64:p = raw ftell(fp);
+  src/io/bio/fio.npk:187: bytes_written  = bytes_written + r.value;
+  src/io/bio/tmpfile.npk:187: if (tp[x_start + i] != 88u8) {
+  src/io/bio/fopen.npk:187: f->next_global = g_open_files;
+  src/io/bio/file.npk:187: remaining = remaining - r.value;
+  src/mem/slab.npk:187: (1i64) { g_slab_freelist_1 = val; },
+  src/mem/memcpy.npk:187: i = i + 1i64;
+  src/mem/mmap.npk:187: }
+  src/str/strview.npk:187: StrView->:v = @cast_unchecked<StrView->>(sv);
+  src/str/strconv.npk:187: } else if (p[i] == 48u8) {
+  src/str/strcmp.npk:187: }
+  src/str/strbuf.npk:187: drop strbuf_free(sb);
+  src/syscall/syscall.npk:187: };
+  src/syscall/syscall_numbers.npk:187: pub fixed int64:SYS_SETTIMEOFDAY    = 164i64;
+  src/syscall/posix_constants.npk:187: pub fixed int64:SIGKILL   = 9i64;      // Kill signal (cannot be caught)
+--- Error: Undefined identifier: 'g_open_files' (Line 188)
+  src/proc/exec.npk:188: int64->:ep = @cast_unchecked<int64->>(envp);
+  src/io/write.npk:188: pub func:io_println = int64(int64:s) {
+  src/io/printf.npk:188: pub func:io_eprintf6 = int64(int64:fmt,
+  src/io/fcntl.npk:188: if (fd < 0i64) {
+  src/io/bio/fprintf.npk:188: drop bio_ensure_std_init();
+  src/io/bio/fseek.npk:188: if (p < 0i64) {
+  src/io/bio/fio.npk:188: }
+  src/io/bio/tmpfile.npk:188: drop drop(errno_set(EINVAL));
+  src/io/bio/fscanf.npk:188: if (!got_digit) {
+  src/io/bio/strerror.npk:188: int64:msg = raw strerror(errnum);
+  src/io/bio/fopen.npk:188: g_open_files = fp;
+  src/io/bio/file.npk:188: }
+  src/mem/slab.npk:188: (2i64) { g_slab_freelist_2 = val; },
+  src/mem/memcpy.npk:188: }
+  src/mem/memset.npk:188: pub func:mem_poison = NIL(int64:ptr, int64:n) {
+  src/str/strview.npk:188: int64:slen = raw str_strlen(s);
+  src/str/strchr.npk:188: pub func:str_strcasestr = int64(int64:haystack, int64:needle) {
+  src/str/strconv.npk:188: base = 8i64;
+  src/str/strcmp.npk:188: i = i + 1i64;
+  src/str/strbuf.npk:188: pass r.value;
+  src/math/math.npk:188: bool:neg = (a < 0i64) ^ (b < 0i64);
+  src/syscall/syscall_numbers.npk:188: pub fixed int64:SYS_MOUNT           = 165i64;
+  src/syscall/posix_constants.npk:188: pub fixed int64:SIGUSR1   = 10i64;     // User-defined signal 1
+--- Error: Undefined identifier: 'g_open_files' (Line 254)
+  src/proc/signal.npk:254: Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+  src/proc/env.npk:254: uint8->:np = @cast_unchecked<uint8->>(name);
+  src/proc/exec.npk:254: pass execve(path, @cast_unchecked<int64>(@argv[0]), environ);
+  src/io/printf.npk:254: pub func:io_dprintf1 = int64(int64:fd, int64:fmt, int64:a0) {
+  src/io/bio/fio.npk:254: bytes_written = bytes_written + to_copy;
+  src/io/bio/tmpfile.npk:254: pass fp;
+  src/io/bio/fchar.npk:254: pass c & 0xFFi64;
+  src/io/bio/fscanf.npk:254: uint8->:f      = @cast_unchecked<uint8->>(fmt);
+  src/io/bio/fopen.npk:254: f->next_global = g_open_files;
+  src/fs/path.npk:254: };
+  src/mem/slab.npk:254: }
+  src/mem/memutil.npk:254: uint8->:p  = @cast_unchecked<uint8->>(ptr);
+  src/mem/mmap.npk:254: new_hdr[1] = new_size;
+  src/str/strtok.npk:254: uint8->:p = @cast_unchecked<uint8->>(input);
+  src/str/strview.npk:254: StrView->:s = @cast_unchecked<StrView->>(sv);
+  src/str/strfmt.npk:254: if (flag_left) { fmt_pad(stp, 32u8, width - 1i64); }
+  src/str/strcmp.npk:254: if (ca != cb) {
+  src/str/strbuf.npk:254: if (sb == 0i64 || str == 0i64) { pass false; }
+  src/math/math.npk:254: pub func:math_div_round_i64 = int64(int64:a, int64:b) {
+  src/syscall/syscall.npk:254: return r;
+  src/syscall/syscall_numbers.npk:254: pub fixed int64:SYS_UTIMES          = 235i64;
+  src/syscall/errno.npk:254: };
+--- Error: Undefined identifier: 'g_open_files' (Line 255)
+  src/proc/signal.npk:255: int64:tid = pid_r ?! 1i64;
+  src/proc/env.npk:255: int64:ci = 0i64;
+  src/proc/exec.npk:255: };
+  src/io/printf.npk:255: pass io_fprintf1(fd, fmt, a0);
+  src/io/read.npk:255: stack uint8[1]:b;
+  src/io/bio/fio.npk:255: }
+  src/io/bio/tmpfile.npk:255: };
+  src/io/bio/fchar.npk:255: };
+  src/io/bio/fscanf.npk:255: int64->:argv  = @cast_unchecked<int64->>(args);
+  src/io/bio/fopen.npk:255: g_open_files = fp;
+  src/mem/memutil.npk:255: uint8:target = @cast_unchecked<uint8>(c);
+  src/mem/mmap.npk:255: pass new_map + ALLOC_HEADER_SIZE;
+  src/str/strtok.npk:255: int64:line_count = 0i64;
+  src/str/strview.npk:255: int64:xlen = raw str_strlen(suffix);
+  src/str/strfmt.npk:255: continue;
+  src/str/strcmp.npk:255: if (ca < cb) { pass -1i64; }
+  src/str/strbuf.npk:255: int64:n = raw str_strlen(str);
+  src/math/math.npk:255: pass raw math_div_floor_i64(2i64 * a + b, 2i64 * b);
+  src/syscall/syscall.npk:255: };
+  src/syscall/posix_constants.npk:255: pub fixed int64:CLOCK_REALTIME           = 0i64;
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/proc/signal.npk:99: syscall", "");
+  src/proc/exec.npk:99: if (name_len == 0i64) {
+  src/proc/fork.npk:99: };
+  src/io/fcntl.npk:99: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/io/bio/fprintf.npk:99: };
+  src/io/bio/stdfiles.npk:99: sout->buf_cap = BUFSIZ;
+  src/io/bio/fio.npk:99: } else {
+  src/io/bio/fchar.npk:99: if (r.is_error || r.value == 0i64) {
+  src/io/bio/fstr.npk:99: pass FILE_EOF;
+  src/io/bio/fscanf.npk:99: while (true) {
+  src/io/bio/strerror.npk:99: { 63i64,  @cast_unchecked<int64>(@"Out of streams resources") },            // ENOSR
+  src/io/bio/fstate.npk:99: f->buf_cap = 0i64;
+  src/io/bio/fopen.npk:99: if (path == 0i64 || mode == 0i64) {
+  src/io/bio/file.npk:99: pub fixed int64:FILE_FLAG_ERROR     = 0x02i64;    // error indicator (cleared by clearerr)
+  src/mem/memcpy.npk:99: i = i + word_count * 8i64;
+  src/mem/memutil.npk:99: int64:vb = wb[wi];
+  src/str/strtok.npk:99: pass token_start;
+  src/str/strview.npk:99: };
+  src/str/strcpy.npk:99: uint8->:s = @cast_unchecked<uint8->>(src);
+  src/str/strchr.npk:99: uint8:target = @cast_unchecked<uint8>(c);
+  src/str/strfmt.npk:99: }
+  src/str/strlcpy.npk:99: append_len = remaining;
+  src/str/strconv.npk:99: if (base == 0i64) {
+  src/str/strlen.npk:99: }
+  src/str/strcmp.npk:99: int64->:wb = @cast_unchecked<int64->>((b + i));
+  src/syscall/syscall.npk:99: pub func:sys5 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
+  src/syscall/syscall_numbers.npk:99: pub fixed int64:SYS_CHDIR           = 80i64;
+  src/syscall/posix_constants.npk:99: pub fixed int64:W_OK = 2i64;      // Test write permission
+  src/syscall/errno.npk:99: pub fixed int64:ENONET   = 64i64;     // Machine is not on the network
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 149)
+  src/proc/exit.npk:149: _exit(134i64);    // 128 + SIGABRT(6) = 134, the shell exit code for SIGABRT
+  src/proc/signal.npk:149: pass -1i64;
+  src/proc/env.npk:149: };
+  src/proc/exec.npk:149: candidate[1] = 47u8;    // '/'
+  src/proc/fork.npk:149: Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+  src/io/dup.npk:149: pass target_fd;
+  src/io/read.npk:149: if (e == EINTR) { continue; }
+  src/io/bio/fio.npk:149: if (fp == 0i64 || buf == 0i64) {
+  src/io/bio/tmpfile.npk:149: drop drop(errno_set(e));
+  src/io/bio/fchar.npk:149: f->flags = f->flags | FILE_FLAG_ERROR;
+  src/io/bio/strerror.npk:149: pub func:strerror = int64(int64:errnum) {
+  src/io/bio/fstate.npk:149: drop setvbuf(fp, buf, _IOFBF, BUFSIZ);
+  src/io/bio/file.npk:149: };
+  src/mem/slab.npk:149: };
+  src/mem/memcpy.npk:149: }
+  src/mem/memutil.npk:149: int64:r = raw mem_memcmp(a, b, n);
+  src/str/strcpy.npk:149: pass end_idx;
+  src/str/strchr.npk:149: if (haystack == 0i64) {
+  src/str/strlen.npk:149: fail @cast_unchecked<tbb32>(ERR_BADARG);
+  src/str/strcmp.npk:149: int64:i = 0i64;
+  src/str/strbuf.npk:149: if (sb == 0i64) { pass NIL; }
+  src/math/math.npk:149: if (a > 0i64 && b > 0i64 && r < 0i64) { pass INT64_MAX; }
+  src/syscall/syscall_numbers.npk:149: pub fixed int64:SYS_RT_SIGTIMEDWAIT = 128i64;
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 168)
+  src/proc/signal.npk:168: pub func:signal = int64(int64:signo, int64:handler) {
+  src/proc/wait.npk:168: _exit(127i64);    // exec failed — 127 is shell's "command not found"
+  src/proc/exec.npk:168: }
+  src/io/read.npk:168: if (c == 10u8) {    // '\n'
+  src/io/bio/fprintf.npk:168: pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+  src/io/bio/stdfiles.npk:168: int64:r1 = raw fflush(stdin_fp);
+  src/io/bio/fio.npk:168: f->flags = f->flags | FILE_FLAG_WRITE_MODE;
+  src/io/bio/fchar.npk:168: (@cast_unchecked<uint8->>(f->buf))[f->buf_pos] = b;
+  src/io/bio/fscanf.npk:168: digit = c - 48i64;
+  src/io/bio/strerror.npk:168: int64:num_len = str_int64_to_dec(errnum, @cast_unchecked<int64>(@num[0]), 24i64);
+  src/io/bio/fopen.npk:168: if (parse_ok != 0i64) {
+  src/io/bio/file.npk:168: }
+  src/fs/path.npk:168: }
+  src/mem/slab.npk:168: func:slab_freelist_get = int64(int64:i) {
+  src/mem/memset.npk:168: pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+  src/str/strtok.npk:168: int64:i = 0i64;
+  src/str/strview.npk:168: };
+  src/str/strchr.npk:168: if (h[i] == first) {
+  src/str/strfmt.npk:168: }
+  src/str/strlcpy.npk:168: if (nul_pos < dst_size) {
+  src/str/strconv.npk:168: uint8->:p = @cast_unchecked<uint8->>(s);
+  src/str/strbuf.npk:168: pass ptr;
+  src/syscall/syscall_numbers.npk:168: pub fixed int64:SYS_SCHED_GET_PRIORITY_MIN = 147i64;
+  src/syscall/posix_constants.npk:168: pub fixed int64:MADV_POPULATE_WRITE = 23i64;
+--- Error: Argument 2 has type 'int64@', but function expects 'int64' (Line 173)
+  src/proc/signal.npk:173: pass _sigact_handler(@cast_unchecked<int64>(@old_act[0]));
+  src/proc/wait.npk:173: int64:w = raw waitpid(pid, @status, 0i64);
+  src/io/write.npk:173: int64:r = raw io_write_str(fd, s);
+  src/io/printf.npk:173: pub func:io_fprintf6 = int64(int64:fd, int64:fmt,
+  src/io/fcntl.npk:173: pass libn_fcntl(fd, F_DUPFD_CLOEXEC, min_fd);
+  src/io/read.npk:173: dst[count] = 0u8;
+  src/io/bio/stdfiles.npk:173: }
+  src/io/bio/tmpfile.npk:173: drop drop(errno_set(EINVAL));
+  src/io/bio/fchar.npk:173: if (f->buf_mode == _IOLBF && b == 10u8) {
+  src/io/bio/fscanf.npk:173: digit = c - 87i64;
+  src/io/bio/fopen.npk:173: int64:fp = raw bio_alloc_file();
+  src/io/bio/file.npk:173: while (remaining > 0i64) {
+  src/mem/slab.npk:173: (3i64) { pass g_slab_freelist_3; },
+  src/mem/memcpy.npk:173: bool:need_backward = dst > src && dst < (src + n);
+  src/mem/memset.npk:173: int64:wi = 0i64;
+  src/str/strtok.npk:173: pass true;
+  src/str/strcpy.npk:173: }
+  src/str/strchr.npk:173: }
+  src/str/strfmt.npk:173: st.pos  = 0i64;
+  src/str/strlcpy.npk:173: };
+  src/math/math.npk:173: if (a == -1i64) {
+  src/syscall/syscall.npk:173: pub func:libn_getppid = int64() {
+  src/syscall/syscall_numbers.npk:173: pub fixed int64:SYS_MUNLOCK         = 150i64;
+  src/syscall/posix_constants.npk:173: pub fixed int64:MREMAP_DONTUNMAP = 4i64;
+  src/syscall/errno.npk:173: pub fixed int64:EKEYEXPIRED  = 127i64;   // Key has expired
+--- Error: Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness. (Line 71)
+  src/proc/exit.npk:71: int64:i = _atexit_count - 1i64;
+  src/proc/signal.npk:71: pass mask & !(1i64 << (signo - 1i64));
+  src/proc/wait.npk:71: pass (status & 0xFFi64) == 0x7Fi64;
+  src/proc/exec.npk:71: pub func:execv = int64(int64:path, int64:argv) {
+  src/io/open.npk:71: return r;
+  src/io/seek.npk:71: if (fd < 0i64) {
+  src/io/write.npk:71: continue;
+  src/io/fcntl.npk:71: if (fd < 0i64) {
+  src/io/read.npk:71: pass 0i64;
+  src/io/bio/fprintf.npk:71: pass bio_fprint_rendered(fp, buf_ptr);
+  src/io/bio/fseek.npk:71: int64:buffered_ahead = f->buf_len - f->buf_pos;
+  src/io/bio/fio.npk:71: int64:bytes_read  = 0i64;
+  src/io/bio/tmpfile.npk:71: pass entropy;
+  src/io/bio/fchar.npk:71: pass ch;
+  src/io/bio/bio.npk:71: use "../../io/bio/strerror.npk".*;
+  src/io/bio/fstr.npk:71: break;
+  src/io/bio/fscanf.npk:71: if (c == 0u8) {
+  src/io/bio/strerror.npk:71: { 17i64,  @cast_unchecked<int64>(@"File exists") },                         // EEXIST
+  src/io/bio/fopen.npk:71: is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
+  src/fs/path.npk:71: if (p[0] == 0u8) {
+  src/mem/slab.npk:71: fixed int64:SLAB_CLASS_SIZE_8  = 2048i64;
+  src/mem/memutil.npk:71: }
+  src/mem/memset.npk:71: i = i + word_count * 8i64;
+  src/str/strview.npk:71: sv.ptr = 0i64;
+  src/str/strcpy.npk:71: }
+  src/str/strchr.npk:71: while (true) {
+  src/str/strlen.npk:71: int64:wi = 0i64;
+  src/str/strcmp.npk:71: }
+  src/str/strbuf.npk:71: func:strbuf_grow = bool(int64:sb, int64:need) {
+  src/syscall/syscall_numbers.npk:71: pub fixed int64:SYS_GETPEERNAME     = 52i64;
+  src/syscall/posix_constants.npk:71: pub fixed int64:S_IXUSR  = 64i64;        // 0100 — owner: execute
+  src/syscall/errno.npk:71: pub fixed int64:ELOOP    = 40i64;     // Too many levels of symbolic links
+--- Error: Function expects 7 argument(s), but 4 provided (Line 70)
+  src/proc/exit.npk:70: func:_proc_run_atexit = NIL() {
+  src/proc/signal.npk:70: if (signo < 1i64 || signo > 64i64) { pass mask; }
+  src/proc/env.npk:70: while (ep[n] != 0i64) { n = n + 1i64; }
+  src/proc/wait.npk:70: pub func:wait_stopped = bool(int64:status) {
+  src/io/open.npk:70: Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
+  src/io/seek.npk:70: pub func:io_tell = int64(int64:fd) {
+  src/io/write.npk:70: if (e == EINTR) {
+  src/io/fcntl.npk:70: pub func:io_get_status_flags = int64(int64:fd) {
+  src/io/read.npk:70: if (n == 0i64) {
+  src/io/bio/fprintf.npk:70: drop str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt);
+  src/io/bio/stdfiles.npk:70: g_std_init_done = 1i64;
+  src/io/bio/fio.npk:70: int64:total_bytes = size * nmemb;
+  src/io/bio/tmpfile.npk:70: if (r.is_error) { pass 0i64; }
+  src/io/bio/fchar.npk:70: f->file_pos = f->file_pos + 1i64;
+  src/io/bio/bio.npk:70: use "../../io/bio/fprintf.npk".*;
+  src/io/bio/fstr.npk:70: }
+  src/io/bio/fscanf.npk:70: uint8:c = str[s[2]];
+  src/io/bio/strerror.npk:70: { 16i64,  @cast_unchecked<int64>(@"Device or resource busy") },             // EBUSY
+  src/io/bio/file.npk:70: };
+  src/fs/path.npk:70: uint8->:p = @cast_unchecked<uint8->>(path);
+  src/mem/slab.npk:70: fixed int64:SLAB_CLASS_SIZE_7  = 1024i64;
+  src/mem/memutil.npk:70: pass 0i64;
+  src/mem/memset.npk:70: }
+  src/str/strtok.npk:70: int64:i = 0i64;
+  src/str/strview.npk:70: if (s == 0i64) {
+  src/str/strcpy.npk:70: i = i + 1i64;
+  src/str/strfmt.npk:70: };
+  src/str/strlen.npk:70: int64->:pw = @cast_unchecked<int64->>((s + i));
+  src/str/strcmp.npk:70: pass 0i64;
+  src/syscall/syscall_numbers.npk:70: pub fixed int64:SYS_GETSOCKNAME     = 51i64;
+  src/syscall/posix_constants.npk:70: pub fixed int64:S_IWUSR  = 128i64;       // 0200 — owner: write
+  src/syscall/errno.npk:70: pub fixed int64:ENOTEMPTY = 39i64;    // Directory not empty
+--- Error: Undefined identifier: 'r'. Did you mean 'fork'? (Line 71)
+  src/proc/exit.npk:71: int64:i = _atexit_count - 1i64;
+  src/proc/signal.npk:71: pass mask & !(1i64 << (signo - 1i64));
+  src/proc/wait.npk:71: pass (status & 0xFFi64) == 0x7Fi64;
+  src/proc/exec.npk:71: pub func:execv = int64(int64:path, int64:argv) {
+  src/io/open.npk:71: return r;
+  src/io/seek.npk:71: if (fd < 0i64) {
+  src/io/write.npk:71: continue;
+  src/io/fcntl.npk:71: if (fd < 0i64) {
+  src/io/read.npk:71: pass 0i64;
+  src/io/bio/fprintf.npk:71: pass bio_fprint_rendered(fp, buf_ptr);
+  src/io/bio/fseek.npk:71: int64:buffered_ahead = f->buf_len - f->buf_pos;
+  src/io/bio/fio.npk:71: int64:bytes_read  = 0i64;
+  src/io/bio/tmpfile.npk:71: pass entropy;
+  src/io/bio/fchar.npk:71: pass ch;
+  src/io/bio/bio.npk:71: use "../../io/bio/strerror.npk".*;
+  src/io/bio/fstr.npk:71: break;
+  src/io/bio/fscanf.npk:71: if (c == 0u8) {
+  src/io/bio/strerror.npk:71: { 17i64,  @cast_unchecked<int64>(@"File exists") },                         // EEXIST
+  src/io/bio/fopen.npk:71: is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
+  src/fs/path.npk:71: if (p[0] == 0u8) {
+  src/mem/slab.npk:71: fixed int64:SLAB_CLASS_SIZE_8  = 2048i64;
+  src/mem/memutil.npk:71: }
+  src/mem/memset.npk:71: i = i + word_count * 8i64;
+  src/str/strview.npk:71: sv.ptr = 0i64;
+  src/str/strcpy.npk:71: }
+  src/str/strchr.npk:71: while (true) {
+  src/str/strlen.npk:71: int64:wi = 0i64;
+  src/str/strcmp.npk:71: }
+  src/str/strbuf.npk:71: func:strbuf_grow = bool(int64:sb, int64:need) {
+  src/syscall/syscall_numbers.npk:71: pub fixed int64:SYS_GETPEERNAME     = 52i64;
+  src/syscall/posix_constants.npk:71: pub fixed int64:S_IXUSR  = 64i64;        // 0100 — owner: execute
+  src/syscall/errno.npk:71: pub fixed int64:ELOOP    = 40i64;     // Too many levels of symbolic links
+--- Error: Undefined identifier: 'str_int64_to_dec' (Line 168)
+  src/proc/signal.npk:168: pub func:signal = int64(int64:signo, int64:handler) {
+  src/proc/wait.npk:168: _exit(127i64);    // exec failed — 127 is shell's "command not found"
+  src/proc/exec.npk:168: }
+  src/io/read.npk:168: if (c == 10u8) {    // '\n'
+  src/io/bio/fprintf.npk:168: pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+  src/io/bio/stdfiles.npk:168: int64:r1 = raw fflush(stdin_fp);
+  src/io/bio/fio.npk:168: f->flags = f->flags | FILE_FLAG_WRITE_MODE;
+  src/io/bio/fchar.npk:168: (@cast_unchecked<uint8->>(f->buf))[f->buf_pos] = b;
+  src/io/bio/fscanf.npk:168: digit = c - 48i64;
+  src/io/bio/strerror.npk:168: int64:num_len = str_int64_to_dec(errnum, @cast_unchecked<int64>(@num[0]), 24i64);
+  src/io/bio/fopen.npk:168: if (parse_ok != 0i64) {
+  src/io/bio/file.npk:168: }
+  src/fs/path.npk:168: }
+  src/mem/slab.npk:168: func:slab_freelist_get = int64(int64:i) {
+  src/mem/memset.npk:168: pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+  src/str/strtok.npk:168: int64:i = 0i64;
+  src/str/strview.npk:168: };
+  src/str/strchr.npk:168: if (h[i] == first) {
+  src/str/strfmt.npk:168: }
+  src/str/strlcpy.npk:168: if (nul_pos < dst_size) {
+  src/str/strconv.npk:168: uint8->:p = @cast_unchecked<uint8->>(s);
+  src/str/strbuf.npk:168: pass ptr;
+  src/syscall/syscall_numbers.npk:168: pub fixed int64:SYS_SCHED_GET_PRIORITY_MIN = 147i64;
+  src/syscall/posix_constants.npk:168: pub fixed int64:MADV_POPULATE_WRITE = 23i64;
+--- Error: Undefined identifier: 'num_len' (Line 169)
+  src/proc/signal.npk:169: stack uint8[32]:old_act;
+  src/proc/wait.npk:169: }
+  src/io/fcntl.npk:169: pub func:io_dupfd_cloexec = int64(int64:fd, int64:min_fd) {
+  src/io/bio/fprintf.npk:169: drop bio_ensure_std_init();
+  src/io/bio/fseek.npk:169: f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR ^ FILE_FLAG_WRITE_MODE);
+  src/io/bio/stdfiles.npk:169: int64:r2 = raw fflush(stdout_fp);
+  src/io/bio/fchar.npk:169: f->buf_pos = f->buf_pos + 1i64;
+  src/io/bio/fscanf.npk:169: } else if (base == 16i64) {
+  src/io/bio/strerror.npk:169: drop mem_memcpy(@cast_unchecked<int64>(@dst[prefix_len]), @cast_unchecked<int64>(@num[0]), num_len + 1i64);
+  src/io/bio/fopen.npk:169: drop drop(errno_set(EINVAL));
+  src/fs/path.npk:169: ob[i] = 0u8;
+  src/mem/slab.npk:169: pick (i) {
+  src/mem/memutil.npk:169: uint8->:pa = @cast_unchecked<uint8->>(a);
+  src/mem/memset.npk:169: i = i + 1i64;
+  src/str/strtok.npk:169: while (i < f.len) {
+  src/str/strlcpy.npk:169: drop mem_bzero(dst + nul_pos, dst_size - nul_pos);
+  src/str/strconv.npk:169: int64:i = 0i64;
+  src/str/strbuf.npk:169: };
+  src/math/math.npk:169: pub func:math_sat_mul_i64 = int64(int64:a, int64:b) {
+  src/syscall/syscall.npk:169: pub func:libn_getpid = int64() {
+  src/syscall/syscall_numbers.npk:169: pub fixed int64:SYS_SCHED_RR_GET_INTERVAL = 148i64;
+  src/syscall/errno.npk:169: pub fixed int64:ENOMEDIUM    = 123i64;   // No medium found

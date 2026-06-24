@@ -1,0 +1,16 @@
+pub func:test1 = int64() {
+    int64:total = 0i64;
+    while (true) {
+        Result<int64>:r = pass 1i64;
+        if (r.is_error) {
+            if (@cast_unchecked<int64>(r.error) == 4i64) {
+                continue;
+            }
+            fail r.error;
+        }
+        total = total + r.value;
+    }
+    pass total;
+};
+pub func:main = int32() { drop(test1()); exit 0; };
+pub func:failsafe = int32(tbb32:err) { exit 1; };

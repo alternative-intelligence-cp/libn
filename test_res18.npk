@@ -1,0 +1,12 @@
+pub func:test2 = int64() { pass 0i64; };
+
+pub func:my_func = int64() {
+    drop(test2());
+    pass 0i64;
+};
+
+pub func:main = int32() {
+    drop(my_func());
+    exit 0;
+};
+pub func:failsafe = int32(tbb32:err) { exit 1; };

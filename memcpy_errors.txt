@@ -1,0 +1,289 @@
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=__intrinsic_memcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memcpy, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_mempcpy, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_memmove, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_memdup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_from_syscall, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=errno_is_retriable, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_is_fatal, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=err_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_set, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_errno_get, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=void_result, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=errno_clear, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_safe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full4, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_full5, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=sys_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getpid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getppid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_gettid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getgid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_geteuid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getegid, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_open, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_openat, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_close, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_write, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pwrite, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_lseek, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_dup3, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fcntl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_ioctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_pipe2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_munmap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mprotect, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_mprotect_exec, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_mremap, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_madvise, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_msync, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_gettime, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_clock_getres, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_sched_yield, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wait, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_futex_wake, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_group, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_exit_thread, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fork, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_kill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_tgkill, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_statx, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getrandom, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getcwd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_chdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_fchdir, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_getdents64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_arch_prctl, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_set_tid_address, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=libn_read_retry, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_write_all, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=libn_nanosleep_retry, peek()==, type=168
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=slab_free, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=page_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=is_page_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=size_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_munmap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mprotect_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_mremap_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_madvise_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_msync_raw, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_malloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_calloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_realloc, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_user_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_malloc_map_size, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=mem_alloc_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_alloc_guard_pages, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=mem_free_guard_pages, peek()==, type=168
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+CHECKING ERR RETURN int64
+[1msrc/mem/memcpy.npk:0:0: [0m[1;31merror[0m: [1mLine 60, Column 31: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+
+[1msrc/mem/memcpy.npk:0:0: [0m[1;31merror[0m: [1mLine 151, Column 31: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.[0m
+
+[1mSummary: [0m[1;31m2 errors[0m

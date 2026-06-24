@@ -1,0 +1,6 @@
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:libn_slab_alloc = int64(int64:n) { pass 0i64; };
+pub func:main = int32() {
+    int64:p = raw libn_slab_alloc(5i64);
+    exit 0i32;
+};

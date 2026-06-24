@@ -1,0 +1,386 @@
+// env.npk — getenv, setenv, unsetenv, clearenv, putenv, environ (v0.11.4)
+//
+// Environment variable access and manipulation.
+//
+// ── environ — the global environment ──────────────────────────────────────
+// On Linux, the process starts with a pointer to the environment in the
+// auxiliary vector area. The C runtime (_start) typically sets:
+//   extern char **environ;
+// to point at the envp array passed to main().
+//
+// In Nitpick, environ is an int64 pointing to a NULL-terminated array of
+// int64 pointers, each pointing to a NUL-terminated "KEY=VALUE" string.
+//
+// libn's _start (v0.12.x) will initialize this. For now, setenv/unsetenv
+// maintain a SEPARATE heap-allocated environment that shadows the original.
+//
+// ── getenv semantics ──────────────────────────────────────────────────────
+// getenv() scans environ from the end backward (last definition wins,
+// matching glibc). Returns pointer into the environ string — do NOT modify.
+//
+// ── setenv / unsetenv ─────────────────────────────────────────────────────
+// These rebuild the environ array on the heap. The original envp passed
+// to main() is never mutated. The heap-built array is pointed to by
+// _env_heap_envp; environ is updated to point there.
+//
+// Capacity: starts at ENV_INITIAL_CAP (64) entries, @cast_unchecked<needed>(grows).
+//
+// ── Thread safety ─────────────────────────────────────────────────────────
+// Not thread-safe. Concurrent getenv/setenv requires external locking.
+
+use "../syscall/errno.npk".*;
+use "../mem/mmap.npk".*;
+use "../mem/memcpy.npk".*;
+use "../str/strlen.npk".*;
+use "../str/strcpy.npk".*;
+
+// ════════════════════════════════════════════════════════════════════════════
+// Global environ pointer
+//
+// Initialized to 0 (NULL) until proc_env_init() is called (from _start).
+// After init, points to the process's environment.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub int64:environ = 0i64;
+
+// ── Internal heap environ management ──────────────────────────────────────
+fixed int64:ENV_INITIAL_CAP = 64i64;
+
+int64:_env_heap_envp  = 0i64;
+int64:_env_heap_is_alloc = 0i64;    // pointer to heap-allocated int64[] array
+int64:_env_heap_count = 0i64;    // number of live entries (excludes NULL terminator)
+int64:_env_heap_cap   = 0i64;    // allocated capacity (in entries, excludes terminator)
+
+// ════════════════════════════════════════════════════════════════════════════
+// proc_env_init — Called by _start to snapshot the initial envp.
+//
+// Copies the envp pointer array (not the strings) into the heap environ.
+// The string pointers are references into the original envp region.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:proc_env_init = NIL(int64:envp) {
+    if (envp == 0i64) {
+        environ = 0i64;
+        pass NIL;
+    }
+
+      // Count entries
+    int64->:ep = @cast_unchecked<int64->>(envp);
+    int64:n = 0i64;
+    while (ep[n] != 0i64) { n = n + 1i64; }
+
+      // Allocate heap array with extra headroom
+    int64:cap = n + ENV_INITIAL_CAP;
+    Result<int64>:r = mem_malloc((cap + 1i64) * 8i64);    // +1 for NULL terminator
+    if (r.is_error) {
+        environ = envp;    // fallback: use original (immutable) envp
+        pass NIL;
+    }
+
+    _env_heap_envp  = r.value;
+    _env_heap_is_alloc = r2.value;
+    _env_heap_count = n;
+    _env_heap_cap   = cap;
+
+    int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+    int64:i = 0i64;
+    while (i < n) {
+        hp[i] = ep[i];
+        (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 0i64;
+        i = i + 1i64;
+    }
+    hp[n] = 0i64;
+    (@cast_unchecked<int64->>(_env_heap_is_alloc))[n] = 0i64;
+
+    environ = _env_heap_envp;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// getenv — Return the value of environment variable name, or 0 if not set.
+//
+// Returns a pointer INTO the environment string (after the '=').
+// The returned pointer is valid until the next setenv/unsetenv/clearenv call.
+// Do NOT modify or free the returned pointer.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:getenv = int64(int64:name) {
+    if (name == 0i64 || environ == 0i64) { pass 0i64; }
+
+    int64:nlen = raw str_strlen(name);
+    if (nlen == 0i64) { pass 0i64; }
+
+    int64->:ep = @cast_unchecked<int64->>(environ);
+    uint8->:np = @cast_unchecked<uint8->>(name);
+
+      // Scan forward to find count, then scan backward (last definition wins)
+    int64:count = 0i64;
+    while (ep[count] != 0i64) { count = count + 1i64; }
+
+    int64:i = count - 1i64;
+    while (i >= 0i64) {
+        int64:entry = ep[i];
+        uint8->:es = @cast_unchecked<uint8->>(entry);
+          // Compare key part: entry[0..nlen) == name && entry[nlen] == '='
+        int64:j = 0i64;
+        bool:match = true;
+        while (j < nlen) {
+            if (es[j] != np[j]) { match = false; break; }
+            j = j + 1i64;
+        }
+        if (match && es[nlen] == 61u8) {    // '='
+            pass entry + nlen + 1i64;
+        }
+        i = i - 1i64;
+    }
+
+    pass 0i64;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// _env_ensure_heap — Ensure we have a writable heap environ to modify.
+// If environ still points to the original (non-heap) envp, snapshot it.
+// ════════════════════════════════════════════════════════════════════════════
+
+func:_env_ensure_heap = bool() {
+    if (_env_heap_envp != 0i64) { pass true; }
+      // Not initialized via proc_env_init — snapshot current environ now
+    drop proc_env_init(environ);
+    pass _env_heap_envp != 0i64;
+};
+
+// ── Grow the heap envp array if needed ────────────────────────────────────
+func:_env_grow = bool() {
+    if (_env_heap_count < _env_heap_cap) { pass true; }
+    int64:new_cap = _env_heap_cap * 2i64;
+    if (new_cap < ENV_INITIAL_CAP) { new_cap = ENV_INITIAL_CAP; }
+    int64:r = mem_realloc(_env_heap_envp, (new_cap + 1i64) * 8i64);
+    int64:r2 = mem_realloc(_env_heap_is_alloc, (new_cap + 1i64) * 8i64);
+    if (r == 0i64 || r2 == 0i64) { pass false; }
+    _env_heap_envp = r;
+    _env_heap_is_alloc = r2;
+    _env_heap_cap  = new_cap;
+    environ = _env_heap_envp;
+    pass true;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// setenv — Set or overwrite an environment variable.
+//
+// name:      variable name (must not contain '=')
+// value:     new value string
+// overwrite: if 0 and the variable already exists, return 0 without changing it.
+//
+// Returns 0 on success, -1 on error (EINVAL for bad name, ENOMEM for OOM).
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:setenv = int64(int64:name, int64:value, int64:overwrite) {
+    if (name == 0i64 || value == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+    int64:nlen = raw str_strlen(name);
+    if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+
+      // Validate: name must not contain '=' or NUL (already enforced by strlen, '=' check)
+    uint8->:np = @cast_unchecked<uint8->>(name);
+    int64:ci = 0i64;
+    while (ci < nlen) {
+        if (np[ci] == 61u8) { drop(errno_set(EINVAL)); pass -1i64; }    // '='
+        ci = ci + 1i64;
+    }
+
+    if (!raw _env_ensure_heap()) { drop(errno_set(ENOMEM)); pass -1i64; }
+
+      // If variable exists and overwrite==0, return success (no change)
+    if (overwrite == 0i64 && raw getenv(name) != 0i64) { pass 0i64; }
+
+      // Build "NAME=VALUE" string on heap
+    int64:vlen = raw str_strlen(value);
+    int64:total = nlen + 1i64 + vlen + 1i64;    // "NAME" + "=" + "VALUE" + NUL
+    int64:entry = mem_malloc(total);
+    if (entry == 0i64) { drop(errno_set(ENOMEM)); pass -1i64; }
+    drop mem_memcpy(entry, name, nlen);
+    (@cast_unchecked<uint8->>(entry))[nlen] = 61u8;    // '='
+    drop mem_memcpy(entry + nlen + 1i64, value, vlen + 1i64);    // includes NUL
+
+      // Replace existing entry or append new one
+    int64->:ep = @cast_unchecked<int64->>(_env_heap_envp);
+    int64:i = 0i64;
+    while (ep[i] != 0i64) {
+        int64:existing = ep[i];
+        uint8->:es = @cast_unchecked<uint8->>(existing);
+        int64:j = 0i64;
+        bool:match = true;
+        while (j < nlen) {
+            if (es[j] != np[j]) { match = false; break; }
+            j = j + 1i64;
+        }
+        if (match && es[nlen] == 61u8) {
+              // Found: replace the pointer and free if allocated
+            if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) {
+                drop mem_free(ep[i]);
+            }
+            ep[i] = entry;
+            (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 1i64;
+            pass 0i64;
+        }
+        i = i + 1i64;
+    }
+
+      // Not found: append
+    if (!raw _env_grow()) { drop(errno_set(ENOMEM)); pass -1i64; }
+    ep = @cast_unchecked<int64->>(_env_heap_envp);    // re-fetch after possible realloc
+      // re-scan to find the end
+    i = 0i64;
+    while (ep[i] != 0i64) { i = i + 1i64; }
+    ep[i] = entry;
+    (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 1i64;
+    ep[i + 1i64] = 0i64;
+    (@cast_unchecked<int64->>(_env_heap_is_alloc))[i + 1i64] = 0i64;
+    _env_heap_count = _env_heap_count + 1i64;
+
+    pass 0i64;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// unsetenv — Remove an environment variable by name.
+//
+// Returns 0 on success, -1 on error (EINVAL for empty or '='-containing name).
+// It is not an error if the variable is not set.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:unsetenv = int64(int64:name) {
+    if (name == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+    int64:nlen = raw str_strlen(name);
+    if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+    uint8->:np = @cast_unchecked<uint8->>(name);
+    int64:ci = 0i64;
+    while (ci < nlen) {
+        if (np[ci] == 61u8) { drop(errno_set(EINVAL)); pass -1i64; }
+        ci = ci + 1i64;
+    }
+
+    if (!raw _env_ensure_heap()) { pass 0i64; }    // no heap → nothing to remove
+
+    int64->:ep = @cast_unchecked<int64->>(_env_heap_envp);
+    int64:count = 0i64;
+    while (ep[count] != 0i64) { count = count + 1i64; }
+
+    int64:i = 0i64;
+    while (i < count) {
+        int64:existing = ep[i];
+        uint8->:es = @cast_unchecked<uint8->>(existing);
+        int64:j = 0i64;
+        bool:match = true;
+        while (j < nlen) {
+            if (es[j] != np[j]) { match = false; break; }
+            j = j + 1i64;
+        }
+        if (match && es[nlen] == 61u8) {
+              // Compact: free if alloc'd, then shift entries down
+            if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) { drop mem_free(ep[i]); }
+            int64:k = i;
+            while (k < count - 1i64) {
+                ep[k] = ep[k + 1i64];
+                (@cast_unchecked<int64->>(_env_heap_is_alloc))[k] = (@cast_unchecked<int64->>(_env_heap_is_alloc))[k + 1i64];
+                k = k + 1i64;
+            }
+            ep[count - 1i64] = 0i64;
+            _env_heap_count = _env_heap_count - 1i64;
+            count = count - 1i64;
+              // Don't increment i — re-check position i (now holds next entry)
+        } else {
+            i = i + 1i64;
+        }
+    }
+
+    pass 0i64;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// putenv — Add or change an environment variable.
+//
+// Takes a "NAME=VALUE" string directly. The string itself is stored in environ
+// — do NOT pass a stack-allocated string. putenv does NOT copy the string.
+// POSIX: modifying the string after putenv has undefined effects.
+//
+// Returns 0 on success, -1 on error.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:putenv = int64(int64:entry) {
+    if (entry == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+
+      // Find '=' to separate name from value
+    uint8->:ep = @cast_unchecked<uint8->>(entry);
+    int64:eq_pos = -1i64;
+    int64:i = 0i64;
+    while (ep[i] != 0u8) {
+        if (ep[i] == 61u8) { eq_pos = i; break; }
+        i = i + 1i64;
+    }
+    if (eq_pos < 0i64) {
+          // No '=': @cast_unchecked<unsetenv>(treat)(entry)
+        pass unsetenv(entry);
+    }
+
+    if (!raw _env_ensure_heap()) { drop(errno_set(ENOMEM)); pass -1i64; }
+
+    int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+    int64:count = 0i64;
+    while (hp[count] != 0i64) { count = count + 1i64; }
+
+      // Check for existing key
+    int64:j = 0i64;
+    while (j < count) {
+        int64:existing = hp[j];
+        uint8->:es = @cast_unchecked<uint8->>(existing);
+        int64:k = 0i64;
+        bool:match = true;
+        while (k < eq_pos) {
+            if (es[k] != ep[k]) { match = false; break; }
+            k = k + 1i64;
+        }
+        if (match && es[eq_pos] == 61u8) {
+            if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[j] == 1i64) { drop mem_free(hp[j]); }
+            hp[j] = entry;
+            (@cast_unchecked<int64->>(_env_heap_is_alloc))[j] = 0i64;   // putenv string is NOT owned by us
+            pass 0i64;
+        }
+        j = j + 1i64;
+    }
+
+      // Append
+    if (!raw _env_grow()) { drop(errno_set(ENOMEM)); pass -1i64; }
+    hp = @cast_unchecked<int64->>(_env_heap_envp);
+    count = 0i64;
+    while (hp[count] != 0i64) { count = count + 1i64; }
+    hp[count] = entry;
+    (@cast_unchecked<int64->>(_env_heap_is_alloc))[count] = 0i64;
+    hp[count + 1i64] = 0i64;
+    (@cast_unchecked<int64->>(_env_heap_is_alloc))[count + 1i64] = 0i64;
+    _env_heap_count = _env_heap_count + 1i64;
+
+    pass 0i64;
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// clearenv — Remove all environment variables.
+//
+// Resets the environ array to a single NULL entry.
+// POSIX: After clearenv(), environ points to an empty array, not NULL itself.
+// ════════════════════════════════════════════════════════════════════════════
+
+pub func:clearenv = int64() {
+    if (_env_heap_envp == 0i64) {
+        if (!raw _env_ensure_heap()) { drop(errno_set(ENOMEM)); pass -1i64; }
+    }
+    int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+    int64:i = 0i64;
+    while (i < _env_heap_count) {
+        if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) {
+            drop mem_free(hp[i]);
+        }
+        i = i + 1i64;
+    }
+    hp[0] = 0i64;
+    _env_heap_count = 0i64;
+    environ = _env_heap_envp;
+    pass 0i64;
+};

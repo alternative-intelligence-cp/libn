@@ -1,0 +1,8 @@
+use "src/str/strfmt.npk".*;
+
+pub func:main = int32() {
+    int64:buf = 0i64;
+    drop(str_snprintf5(buf, 100i64, buf, buf, buf, buf, buf, buf));
+    exit 0;
+};
+pub func:failsafe = int32(tbb32:err) { exit 1; };

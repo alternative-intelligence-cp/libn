@@ -1,0 +1,71 @@
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 65, Column 46: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 108, Column 38: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 97, Column 29: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 97, Column 41: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 241, Column 40: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 241, Column 54: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 32: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 253, Column 46: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 80, Column 30: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 192, Column 33: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 240, Column 33: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 259, Column 33: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 284, Column 53: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 314, Column 53: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 354, Column 33: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 621, Column 25: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 621, Column 56: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 623, Column 28: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 628, Column 25: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 628, Column 31: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 630, Column 41: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 644, Column 25: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 644, Column 56: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 646, Column 28: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 651, Column 25: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 651, Column 31: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 653, Column 41: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 671, Column 26: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 671, Column 35: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 695, Column 37: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 695, Column 43: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 710, Column 37: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 710, Column 43: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 721, Column 43: Argument 2 has type 'int64', but function expects 'any->'[0m
+
+[1msrc/str/strview.npk:0:0: [0m[1;31merror[0m: [1mLine 775, Column 28: Argument 1 has type 'int64', but function expects 'any->'[0m
+
+[1mSummary: [0m[1;31m35 errors[0m

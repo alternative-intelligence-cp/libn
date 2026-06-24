@@ -79,7 +79,7 @@ pub func:mem_memcmp = int64(int64:a, int64:b, int64:n) {
     int64:i = 0i64;
 
       // Byte-by-uint8 until both are 8-aligned (or we exhaust n)
-    while (i < n && (((a + i) | (b + i)) & 7i64) != 0i64) {
+    while (i < n && ((a + i) & 7i64) != 0i64) {
         int64:ba = @cast_unchecked<int64>(pa[i]);
         int64:bb = @cast_unchecked<int64>(pb[i]);
         if (ba != bb) {
@@ -292,6 +292,28 @@ pub func:mem_memmem = int64(int64:haystack, int64:hlen, int64:needle, int64:nlen
 
     if (nlen == 1i64) {
         pass mem_memchr(haystack, @cast_unchecked<int64>(n[0]), hlen);
+    }
+
+      // Fast-path naive search for small needles (avoids 2KB stack init overhead)
+    if (nlen <= 8i64) {
+        int64:last = hlen - nlen;
+        int64:hi = 0i64;
+        while (hi <= last) {
+            bool:match = true;
+            int64:ni = 0i64;
+            while (ni < nlen) {
+                if (h[hi + ni] != n[ni]) {
+                    match = false;
+                    break;
+                }
+                ni = ni + 1i64;
+            }
+            if (match) {
+                pass haystack + hi;
+            }
+            hi = hi + 1i64;
+        }
+        pass 0i64;
     }
 
       // Boyer-Moore-Horspool algorithm

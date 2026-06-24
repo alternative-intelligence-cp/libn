@@ -142,13 +142,9 @@ pub func:math_sign_i64 = int64(int64:v) {
 // If a + b would overflow INT64_MAX, returns INT64_MAX.
 // If a + b would underflow INT64_MIN, returns INT64_MIN.
 pub func:math_sat_add_i64 = int64(int64:a, int64:b) {
-    int64:r = a + b;
-      // Overflow if both operands have same sign and result has different sign
-      // (a > 0 && b > 0 && r < 0) → overflow up → clamp to INT64_MAX
-      // (a < 0 && b < 0 && r > 0) → underflow  → clamp to INT64_MIN
-    if (a > 0i64 && b > 0i64 && r < 0i64) { pass INT64_MAX; }
-    if (a < 0i64 && b < 0i64 && r > 0i64) { pass INT64_MIN; }
-    pass r;
+    if (b > 0i64 && a > INT64_MAX - b) { pass INT64_MAX; }
+    if (b < 0i64 && a < INT64_MIN - b) { pass INT64_MIN; }
+    pass a + b;
 };
 
 // math_sat_sub_i64 — Saturating signed subtraction (a - b).
@@ -416,14 +412,14 @@ pub func:math_reverse_bits = int64(int64:v) {
 pub func:math_rol = int64(int64:v, int64:n) {
     n = n & 63i64;
     if (n == 0i64) { pass v; }
-    pass (v << n) | (v >> (64i64 - n));
+    pass (v << n) | ((v >> (64i64 - n)) & ((1i64 << n) - 1i64));
 };
 
 // math_ror — Rotate right by n bits (0 <= n < 64).
 pub func:math_ror = int64(int64:v, int64:n) {
     n = n & 63i64;
     if (n == 0i64) { pass v; }
-    pass (v >> n) | (v << (64i64 - n));
+    pass ((v >> n) & ((1i64 << (64i64 - n)) - 1i64)) | (v << (64i64 - n));
 };
 
 // ════════════════════════════════════════════════════════════════════════════

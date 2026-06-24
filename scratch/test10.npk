@@ -1,0 +1,4 @@
+pub func:foo = int32(any->:s) {
+    if (s == NULL) { pass 1i32; }
+    pass 0i32;
+};

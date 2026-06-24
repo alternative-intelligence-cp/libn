@@ -1,0 +1,6 @@
+extern func:str_strlen = int64(int64:s);
+pub func:failsafe = int32(tbb32:err) { exit @cast_unchecked<int32>(err); };
+pub func:main = int32() {
+    int64:s = str_strlen(@cast_unchecked<int64>(@"-9223372036854775808"));
+    exit 0;
+};

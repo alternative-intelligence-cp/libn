@@ -1,0 +1,51 @@
+        } else {
+            base = 10i64;
+        }
+    } else if (base == 16i64 && p[i] == 48u8 &&
+              (p[i + 1i64] == 120u8 || p[i + 1i64] == 88u8)) {
+        i = i + 2i64;
+    }
+
+    int64:digit_start = i;
+    int64:result = 0i64;
+    bool:overflow = false;
+
+    while (true) {
+        int64:dv = raw digit_val(p[i], base);
+        if (dv < 0i64) { break; }
+          // Unsigned overflow: result > (UINT64_MAX - dv) / base
+          // In two's complement int64: UINT64_MAX = -1 (all bits set)
+          // We detect overflow by checking if (result * base + dv) would exceed UINT64_MAX.
+          // Using: result > (UINT64_MAX - dv) / base
+          // Since UINT64_MAX = (int64)−1 @cast_unchecked<unsigned>(but), use bit tricks:
+          // Safe: if result > (-1i64 / @cast_unchecked<uint>(base) - dv / @cast_unchecked<uint>(base)) overflow
+          // This is subtle. Simple approach: compare directly.
+          // result * base + dv > UINT64_MAX
+          // ↔ result > (UINT64_MAX - dv) / base
+          // In Nitpick int64 arithmetic, UINT64_MAX = -1i64 treated unsigned.
+          // We use: raw unsigned compare. For now, use signed approximation:
+        if (result < 0i64) {
+              // result already has top bit set → any more makes it overflow
+            overflow = true;
+            break;
+        }
+          // result ≤ INT64_MAX here
+          // Overflow if result > (INT64_MAX - dv) / base (conservative)
+        if (result > (INT64_MAX - dv) / base) {
+            overflow = true;
+            break;
+        }
+        result = result * base + dv;
+        i = i + 1i64;
+    }
+
+    if (i == digit_start) {
+        drop(errno_set(ERR_BADARG));
+        if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s; }
+        pass 0i64;
+    }
+
+    if (overflow) {
+        drop(errno_set(ERANGE));
+        if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
+        pass UINT64_MAX;

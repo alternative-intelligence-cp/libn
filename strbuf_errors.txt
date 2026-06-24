@@ -1,0 +1,117 @@
+[DEBUG parseFuncDecl] nameToken=strbuf_grow, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_new, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_new_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_free, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_reset, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_finish, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_to_str, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_len, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_cap, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_ptr, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_is_empty, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_char, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_bytes, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_str, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=strbuf_append_strbuf, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_append_repeat, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf0, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf2, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf3, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf4, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf5, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf6, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf7, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_appendf8, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_truncate, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_strip_trailing_newline, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=strbuf_write_to_fd, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[1msrc/str/strbuf.npk:303:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  303 | pub func:strbuf_appendf1 = int64(int64:sb, int64:fmt, int64:a0) {
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:316:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  316 | pub func:strbuf_appendf2 = int64(int64:sb, int64:fmt, int64:a0, int64:a1) {
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:329:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  329 | pub func:strbuf_appendf3 = int64(int64:sb, int64:fmt, int64:a0, int64:a1, int64:a2) {
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:342:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  342 | pub func:strbuf_appendf4 = int64(int64:sb, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:356:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  356 | pub func:strbuf_appendf5 = int64(int64:sb, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:370:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  370 | pub func:strbuf_appendf6 = int64(int64:sb, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:384:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  384 | pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:398:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  398 | pub func:strbuf_appendf8 = int64(int64:sb, int64:fmt,
+        [1;32m^[0m
+
+[1msrc/str/strbuf.npk:418:1: [0m[1;31merror[0m: [1m  Expected ';' after function declaration. Functions end with '};' — the closing brace needs a semicolon
+  Found: token 'pub'
+  Hint: In Nitpick, declarations (like functions, structs, or traits) need a semicolon after their closing brace: '};'[0m
+  418 | pub func:strbuf_truncate = NIL(int64:sb, int64:n) {
+        [1;32m^[0m
+
+[1mSummary: [0m[1;31m9 errors[0m

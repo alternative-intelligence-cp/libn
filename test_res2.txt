@@ -1,0 +1,11 @@
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+[1mtest_res2.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 6: Cannot access .value without checking .is_error first (no checky no val).
+  Help: Add a check: if (!r.is_error) { ... }
+  Or use unwrap operator: value = r ? default_value;[0m
+
+[1mtest_res2.npk:0:0: [0m[1;31merror[0m: [1mLine 4, Column 6: Cannot access .error without checking .is_error first (no checky no val).
+  Help: Add a check: if (r.is_error) { ... }[0m
+
+[1mtest_res2.npk:0:0: [0m[1;31merror[0m: [1mLine 5, Column 5: Pass value type 'Result<int64>' does not match function value type 'Result<int64>'[0m
+
+[1mSummary: [0m[1;31m3 errors[0m

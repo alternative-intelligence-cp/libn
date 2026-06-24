@@ -90,22 +90,13 @@ pub func:sigismember = bool(int64:mask, int64:signo) {
 
 pub fixed int64:SIGACTION_SIZE = 32i64;
 
-// proc_sigreturn_tramp — Minimal signal return trampoline for x86-64.
-// After the kernel invokes our handler, it uses this to call rt_sigreturn.
-// Must be pure machine code: mov rax, SYS_RT_SIGRETURN; syscall.
-// We embed @cast_unchecked<a>(it) Nitpick raw stub.
-pub func:proc_sigreturn_tramp = NIL() {
-    drop(asm!!!<int64>("x86_64", "mov rax, 15\nsyscall", ""));
-    pass NIL;
-};
-
 // ── Encode a KernelSigAction into a 32-uint8 stack buffer ──────────────────
 func:_sigact_encode = NIL(int64:buf, int64:handler, int64:flags,
                             int64:mask) {
     int64->:p = @cast_unchecked<int64->>(buf);
     p[0] = handler;
-    p[1] = flags | SA_RESTORER;
-    p[2] = @cast_unchecked<int64>(@proc_sigreturn_tramp);
+    p[1] = flags;
+    p[2] = 0i64;
     p[3] = mask;
 };
 

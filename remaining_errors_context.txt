@@ -1,0 +1,253 @@
+--- Line 151: Cannot silently unwrap Result<int64> into 'n' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.
+src/io/open.npk:151 -> pub func:io_open_tmp = int64(int64:dir_path) {
+src/io/printf.npk:151 -> pub func:io_fprintf5 = int64(int64:fd, int64:fmt,
+src/io/read.npk:151 -> dst[count] = 0u8;
+src/io/bio/strerror.npk:151 -> int64:i = 0i64;
+src/mem/memset.npk:151 -> pub fixed int64:LIBN_POISON_PATTERN = 0xDEADBEEFDEADBEEFi64;
+src/mem/mmap.npk:151 -> Result<int64>:r = libn_madvise(addr, length, advice);
+src/str/strview.npk:151 -> pub func:strview_byte_at = int64(int64:sv, int64:i) {
+src/str/strlcpy.npk:151 -> pub func:str_strscpy_pad = int64(int64:dst, int64:src, int64:dst_size) {
+src/str/strlen.npk:151 -> int64:n = str_strnlen(s, max_len + 1i64);    // scan up to max_len+1 to detect overrun
+src/str/strbuf.npk:151 -> s->len = 0i64;
+src/syscall/syscall_numbers.npk:151 -> pub fixed int64:SYS_RT_SIGSUSPEND   = 130i64;
+src/syscall/posix_constants.npk:151 -> pub fixed int64:MADV_NORMAL      = 0i64;
+src/syscall/errno.npk:151 -> pub fixed int64:ENOTCONN     = 107i64;   // Transport endpoint not connected
+--- Line 152: Undefined identifier: 'n'. Did you mean 's'?
+--- Line 155: Undefined identifier: 'n'. Did you mean 's'?
+--- Line 207: Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8
+src/proc/env.npk:207 -> while (ep[i] != 0i64) {
+src/io/bio/fprintf.npk:207 -> int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
+src/io/bio/fio.npk:207 -> if (remaining >= f->buf_cap && f->buf_pos == 0i64) {
+src/io/bio/fopen.npk:207 -> FILE->:f = @cast_unchecked<FILE->>(fp);
+src/mem/slab.npk:207 -> if (slots == 0i64) {
+src/str/strchr.npk:207 -> if (to_lower_ascii(h[i]) == first_lo) {
+src/str/strfmt.npk:207 -> if (ai < nargs) { width = args[ai]; ai = ai + 1i64; }
+src/str/strconv.npk:207 -> // Using: result > (UINT64_MAX - dv) / base
+src/math/math.npk:207 -> if (raw math_max_u64(b, max_b) != max_b) {
+--- Line 251: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'.
+src/proc/env.npk:251 -> if (name == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/io/read.npk:251 -> if (fd < 0i64) {
+src/io/bio/fio.npk:251 -> f->buf_pos     = f->buf_pos + to_copy;
+src/io/bio/fopen.npk:251 -> f->flags    = (f->flags & FILE_FLAG_BUF_OWN) | FILE_FLAG_INIT;    // preserve buf ownership
+src/str/strview.npk:251 -> // strview_ends_with_str — True if sv ends with the NUL-terminated string.
+src/str/strchr.npk:251 -> pass (table[c >> 3u8] >> (c & 7u8)) & 1u8 != 0u8;
+src/str/strfmt.npk:251 -> if (spec == 99u8) {    // '%c'
+src/str/strcmp.npk:251 -> while (i < n) {
+--- Line 273: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+src/proc/env.npk:273 -> while (j < nlen) {
+src/io/bio/fio.npk:273 -> if (fp == 0i64) {
+src/io/bio/fopen.npk:273 -> if (fp == 0i64) {
+src/mem/mmap.npk:273 -> uint8->:dst = @cast_unchecked<uint8->>(new_ptr);
+src/str/strchr.npk:273 -> if (charset_test(@table[0], p[i])) {
+src/str/strcmp.npk:273 -> if (a == 0i64 || b == 0i64) {
+src/str/strbuf.npk:273 -> drop mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n);
+--- Line 171: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/proc/env.npk:171 -> // overwrite: if 0 and the variable already exists, return 0 without changing it.
+src/str/strcpy.npk:171 -> if (r.is_error) {
+src/str/strcmp.npk:171 -> // This is equivalent to strncmp(a, b, strlen(b)) == 0.
+src/str/strbuf.npk:171 -> // strbuf_to_str — Copy content to a new heap buffer, free the StrBuf.
+--- Line 176: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/io/bio/fseek.npk:176 -> // pos: pointer to int64 — receives the current position.
+src/str/strcpy.npk:176 -> drop mem_memcpy(r.value, src, alloc_size);
+src/str/strlcpy.npk:176 -> // str_strlcpy_chk — strlcpy with compile-time-detectable bounds check.
+src/syscall/posix_constants.npk:176 -> // SIGNAL NUMBERS  (signal.h — x86-64 Linux, @cast_unchecked<POSIX>(same))
+--- Line 178: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/proc/signal.npk:178 -> // sig_ignore — Ignore signal signo (SIG_IGN).
+src/io/bio/fseek.npk:178 -> // Returns 0 on success, -1 on error.
+src/io/bio/file.npk:178 -> int64:e = @cast_unchecked<int64>(r.error);
+src/mem/mmap.npk:178 -> // mem_malloc — Allocate n bytes. Returns pointer (as int64) to usable memory.
+src/str/strcpy.npk:178 -> pass r.value;
+--- Line 204: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/io/bio/tmpfile.npk:204 -> int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fchar.npk:204 -> // here we forward-reference via the extern pattern common in libn.
+src/fs/path.npk:204 -> ob[0] = 46u8;    // '.'
+src/mem/mmap.npk:204 -> // Return pointer past the header.
+src/str/strcpy.npk:204 -> if (r.is_error) {
+src/str/strbuf.npk:204 -> pass (@cast_unchecked<StrBuf->>(sb)).cap;
+src/math/math.npk:204 -> // a + b overflows u64 iff b > UINT64_MAX - a, i.e. b > ~a
+src/syscall/errno.npk:204 -> //   ERR_BADARG     — bad argument (NULL pointer, zero length, etc.)
+--- Line 209: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/io/bio/fio.npk:209 -> if (wr.is_error) {
+src/io/bio/strerror.npk:209 -> // This supersedes the placeholder in io_perror() in printf.npk.
+src/fs/path.npk:209 -> // Find the rightmost non-trailing slash.
+src/mem/mmap.npk:209 -> // Since mmap already zero-initializes, this is just a bounds check + mem_malloc.
+src/str/strcpy.npk:209 -> drop mem_memcpy(r.value, src, actual_len);
+--- Line 210: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/io/bio/fio.npk:210 -> int64:e = @cast_unchecked<int64>(wr.error);
+src/io/bio/fscanf.npk:210 -> // bio_scan_str — Parse a whitespace-delimited string from source into buf.
+src/mem/memutil.npk:210 -> // then check if any uint8 is zero (= match).
+src/str/strcpy.npk:210 -> (@cast_unchecked<uint8->>(r.value))[actual_len] = 0u8;
+src/str/strconv.npk:210 -> // This is subtle. Simple approach: compare directly.
+--- Line 212: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access.
+src/proc/exec.npk:212 -> // Convention: execlN(path, arg0, arg1, ..., argN-1)
+src/io/bio/fscanf.npk:212 -> // Returns 1 on success, 0 on EOF before any character.
+src/str/strcpy.npk:212 -> pass r.value;
+--- Line 163: Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr
+src/proc/wait.npk:163 -> if (envp != 0i64) {
+src/proc/exec.npk:163 -> if (e != ENOENT && e != EACCES) {
+src/io/fcntl.npk:163 -> fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/io/read.npk:163 -> fail @cast_unchecked<tbb32>(ERR_EOF);
+src/io/bio/strerror.npk:163 -> fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
+src/str/strtok.npk:163 -> if (f.len != str_strlen(s)) {
+src/str/strcpy.npk:163 -> fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/str/strconv.npk:163 -> if (s == 0i64) {
+src/str/strbuf.npk:163 -> if (sb == 0i64) { pass 0i64; }
+--- Line 87: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+src/proc/env.npk:87 -> while (i < n) {
+src/io/bio/fseek.npk:87 -> if (r.is_error) {
+src/io/bio/stdfiles.npk:87 -> stdin_fp = @cast_unchecked<int64>(@g_stdin_file);
+src/io/bio/fio.npk:87 -> while (bytes_read < size * nmemb && (f->flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64) {
+src/io/bio/strerror.npk:87 -> { 33i64,  @cast_unchecked<int64>(@"Numerical argument out of domain") },    // EDOM
+src/io/bio/fopen.npk:87 -> // fopen — Open a @cast_unchecked<a>(file) buffered stdio stream.
+src/fs/path.npk:87 -> //   - Otherwise: strip trailing '/' from a, prepend '/' if a doesn't end_idx in
+src/str/strtok.npk:87 -> while (p[i] != 0u8 && (raw charset_test(@table[0], p[i]) == false)) {
+src/str/strfmt.npk:87 -> fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
+src/str/strconv.npk:87 -> while (is_whitespace(p[i])) { i = i + 1i64; }
+src/str/strcmp.npk:87 -> if (ca != cb) {
+--- Line 171: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness.
+src/proc/signal.npk:171 -> int64:r = raw sigaction(signo, handler, flags, sigemptyset(), @cast_unchecked<int64>(@old_act[0]));
+src/proc/env.npk:171 -> // overwrite: if 0 and the variable already exists, return 0 without changing it.
+src/io/fcntl.npk:171 -> fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/io/bio/stdfiles.npk:171 -> if (r1 == FILE_EOF || r2 == FILE_EOF || r3 == FILE_EOF) {
+src/mem/memcpy.npk:171 -> // Forward copy is safe when: dst < src OR dst >= src + n
+src/mem/memutil.npk:171 -> int64:diff = 0i64;
+src/str/strcpy.npk:171 -> if (r.is_error) {
+src/str/strchr.npk:171 -> while (n[j] != 0u8 && h[i + j] != 0u8 && h[i + j] == n[j]) {
+src/str/strfmt.npk:171 -> st->buf  = buf;
+src/str/strconv.npk:171 -> while (is_whitespace(p[i])) { i = i + 1i64; }
+src/str/strcmp.npk:171 -> // This is equivalent to strncmp(a, b, strlen(b)) == 0.
+src/math/math.npk:171 -> if (a == 1i64) { pass b; }
+--- Line 371: Argument 1 has type 'string', but function expects 'int64'
+src/proc/env.npk:371 -> pub func:clearenv = int64() {
+src/io/bio/fscanf.npk:371 -> 
+src/fs/path.npk:371 -> i = i - 1i64;
+src/mem/slab.npk:371 -> while (zi < sz) {
+src/mem/memutil.npk:371 -> // ════════════════════════════════════════════════════════════════════════════
+src/mem/mmap.npk:371 -> if (r.is_error) {
+src/str/strview.npk:371 -> pass raw strview_find_char(sv, c) >= 0i64;
+src/str/strfmt.npk:371 -> a[0] = a0;
+src/str/strconv.npk:371 -> int64:s = raw str_strlen("-9223372036854775808");
+src/str/strbuf.npk:371 -> pub func:strbuf_appendf7 = int64(int64:sb, int64:fmt,
+src/math/math.npk:371 -> };
+src/syscall/syscall.npk:371 -> // ── Clock / time ─────────────────────────────────────────────────────
+src/syscall/syscall_numbers.npk:371 -> pub fixed int64:SYS_PIDFD_GETFD     = 438i64;
+src/syscall/posix_constants.npk:371 -> pub fixed int64:MSG_TRYHARD      = 4i64;
+src/syscall/errno.npk:371 -> // LIBN_ERRNO — Process-global errno store (pre-TLS placeholder)
+--- Line 381: Cannot assign value of type 'int64' to variable of type 'uint64'
+--- Line 182: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 247: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 252: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 253: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 254: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 265: Cannot assign value of type 'Result<int64>' to variable of type 'int64'
+--- Line 272: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 273: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 274: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 298: Cannot assign value of type 'Result<int64>' to variable of type 'int64'
+--- Line 331: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 332: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 333: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 336: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 337: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 338: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 341: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 342: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 343: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 274: Undefined identifier: 'g_open_files'
+--- Line 276: Undefined identifier: 'curr'
+--- Line 76: Cannot assign value of type 'Result<int64>' to variable of type 'int64'
+--- Line 84: Cannot assign 'bool' to 'int64'
+src/io/open.npk:84 -> fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/io/seek.npk:84 -> if (fd < 0i64) {
+src/io/bio/tmpfile.npk:84 -> p[i] = (@cast_unchecked<uint8->>(hex))[(v >> (i * 4i64)) & 0xFi64];
+src/io/bio/strerror.npk:84 -> { 30i64,  @cast_unchecked<int64>(@"Read-only file system") },               // EROFS
+src/mem/memutil.npk:84 -> int64:bb = @cast_unchecked<int64>(pb[i]);
+src/mem/mmap.npk:84 -> pass (addr & PAGE_MASK) == 0i64;
+src/str/strview.npk:84 -> is (sv.len = len < 0i64) : 0i64 : len;
+src/str/strcmp.npk:84 -> while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+--- Line 279: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.
+--- Line 280: Undefined identifier: 'plen'
+--- Line 308: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement.
+--- Line 310: Undefined identifier: 'xlen'
+--- Line 767: Cannot assign value of type 'Result<int64>' to variable of type 'int64'
+--- Line 24: Failed to load module 'time/clock.npk'
+--- Line 24:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55:
+--- Line 24:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55:
+--- Line 24:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors.
+--- Line 26: Failed to load module 'time/sleep.npk'
+--- Line 26:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 10, column 55:
+--- Line 26:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/clock.npk: Parse error at line 20, column 55:
+--- Line 26:   [/home/randy/Workspace/REPOS/libn/src/time/clock.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/clock.npk'. Check for syntax errors.
+--- Line 26:   Parse error in /home/randy/Workspace/REPOS/libn/src/time/sleep.npk: Parse error at line 18, column 1:
+--- Line 26:   [/home/randy/Workspace/REPOS/libn/src/time/sleep.npk] Failed to parse module '/home/randy/Workspace/REPOS/libn/src/time/sleep.npk'. Check for syntax errors.
+--- Line 81: Undefined identifier: 'r2'. Did you mean 'r'?
+--- Line 133: Cannot silently unwrap Result<Result<int64>> into 'init_r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.
+src/io/bio/fopen.npk:133 -> Result<int64>:init_r = bio_init_stream(fp, fd, file_mode, false);
+--- Line 134: Undefined identifier: 'init_r'
+--- Line 142: Undefined identifier: 'g_open_files'
+--- Line 143: Undefined identifier: 'g_open_files'
+--- Line 179: Cannot silently unwrap Result<Result<int64>> into 'init_r' of type 'Result<int64>'. Declare as Result<Result<int64>> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.
+src/io/bio/fopen.npk:179 -> Result<int64>:init_r = bio_init_stream(fp, fd, file_mode_out[0], false);
+--- Line 180: Undefined identifier: 'init_r'
+--- Line 187: Undefined identifier: 'g_open_files'
+--- Line 188: Undefined identifier: 'g_open_files'
+--- Line 254: Undefined identifier: 'g_open_files'
+--- Line 255: Undefined identifier: 'g_open_files'
+--- Line 99: Cannot access .value without checking .is_error first (no checky no val).
+--- Line 149: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 168: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures.
+--- Line 173: Argument 2 has type 'int64@', but function expects 'int64'
+src/proc/signal.npk:173 -> pass _sigact_handler(@cast_unchecked<int64>(@old_act[0]));
+src/proc/env.npk:173 -> // Returns 0 on success, -1 on error (EINVAL for bad name, ENOMEM for OOM).
+src/proc/wait.npk:173 -> int64:w = raw waitpid(pid, @status, 0i64);
+src/proc/exec.npk:173 -> 
+src/io/write.npk:173 -> int64:r = raw io_write_str(fd, s);
+src/io/printf.npk:173 -> pub func:io_fprintf6 = int64(int64:fd, int64:fmt,
+src/io/fcntl.npk:173 -> pass libn_fcntl(fd, F_DUPFD_CLOEXEC, min_fd);
+src/io/read.npk:173 -> dst[count] = 0u8;
+src/io/bio/fprintf.npk:173 -> // ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fseek.npk:173 -> // fgetpos — Store the current position in *pos.
+src/io/bio/stdfiles.npk:173 -> }
+src/io/bio/fio.npk:173 -> 
+src/io/bio/tmpfile.npk:173 -> drop drop(errno_set(EINVAL));
+src/io/bio/fchar.npk:173 -> if (f->buf_mode == _IOLBF && b == 10u8) {
+src/io/bio/fscanf.npk:173 -> digit = c - 87i64;
+src/io/bio/strerror.npk:173 -> // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/fopen.npk:173 -> int64:fp = raw bio_alloc_file();
+src/io/bio/file.npk:173 -> int64:ptr = f->buf;
+src/fs/path.npk:173 -> // ════════════════════════════════════════════════════════════════════════════
+src/mem/slab.npk:173 -> (3i64) { pass g_slab_freelist_3; },
+src/mem/memcpy.npk:173 -> bool:need_backward = dst > src && dst < (src + n);
+src/mem/memutil.npk:173 -> 
+src/mem/memset.npk:173 -> int64:wi = 0i64;
+src/mem/mmap.npk:173 -> // This allocator is correct and safe for all allocation sizes. It has
+src/str/strtok.npk:173 -> pass true;
+src/str/strview.npk:173 -> 
+src/str/strcpy.npk:173 -> }
+src/str/strchr.npk:173 -> }
+src/str/strfmt.npk:173 -> st.pos  = 0i64;
+src/str/strlcpy.npk:173 -> };
+src/str/strconv.npk:173 -> // strtoul: POSIX says '+' is accepted, '-' causes value to be negated modulo
+src/str/strcmp.npk:173 -> // ════════════════════════════════════════════════════════════════════════════
+src/str/strbuf.npk:173 -> // Unlike strbuf_finish, the returned pointer is a fresh minimum-size allocation.
+src/math/math.npk:173 -> if (a == -1i64) {
+src/syscall/syscall.npk:173 -> pub func:libn_getppid = int64() {
+src/syscall/syscall_numbers.npk:173 -> pub fixed int64:SYS_MUNLOCK         = 150i64;
+src/syscall/posix_constants.npk:173 -> pub fixed int64:MREMAP_DONTUNMAP = 4i64;
+src/syscall/errno.npk:173 -> pub fixed int64:EKEYEXPIRED  = 127i64;   // Key has expired
+--- Line 181: Cannot use Result<int64> as int64 in arithmetic
+--- Line 71: Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness.
+src/proc/signal.npk:71 -> pass mask & !(1i64 << (signo - 1i64));
+src/proc/wait.npk:71 -> pass (status & 0xFFi64) == 0x7Fi64;
+src/io/seek.npk:71 -> if (fd < 0i64) {
+src/io/fcntl.npk:71 -> if (fd < 0i64) {
+src/io/bio/fseek.npk:71 -> int64:buffered_ahead = f->buf_len - f->buf_pos;
+src/io/bio/fscanf.npk:71 -> if (c == 0u8) {
+src/io/bio/strerror.npk:71 -> { 17i64,  @cast_unchecked<int64>(@"File exists") },                         // EEXIST
+src/io/bio/fopen.npk:71 -> is (f->buf_mode = (fd == 1i64)) : _IOLBF : _IOFBF;
+src/fs/path.npk:71 -> if (p[0] == 0u8) {
+src/str/strchr.npk:71 -> while (true) {
+--- Line 70: Function expects 7 argument(s), but 4 provided
+--- Line 71: Undefined identifier: 'r'. Did you mean 'fork'?
+--- Line 168: Undefined identifier: 'str_int64_to_dec'
+--- Line 169: Undefined identifier: 'num_len'

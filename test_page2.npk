@@ -1,0 +1,8 @@
+pub func:page_align_up = int64(int64:n) {
+    pass (n + 4095i64) & (0i64 - 4096i64);
+};
+
+pub func:test = int64() {
+    int64:total = page_align_up(100i64);
+    pass total;
+};

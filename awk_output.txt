@@ -1,0 +1,411 @@
+src/proc/exit.npk:146:pub func:abort = NIL() {
+src/proc/signal.npk:146:                             0i64, 0i64);
+src/proc/signal.npk:213:                             @set_val,
+src/proc/signal.npk:217:    if (r.is_error) {
+src/proc/signal.npk:218:        drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/signal.npk:220:    }
+src/proc/signal.npk:221:
+src/proc/signal.npk:242:    Result<int64>:r = sys!!(SYS_KILL, pid, signo, 0i64, 0i64, 0i64, 0i64);
+src/proc/signal.npk:243:    if (r.is_error) {
+src/proc/signal.npk:258:    if (r.is_error) {
+src/proc/signal.npk:261:    }
+src/proc/signal.npk:268:};
+src/proc/env.npk:146:      // Not initialized via proc_env_init — snapshot current environ now
+src/proc/env.npk:213:        bool:match = true;
+src/proc/env.npk:217:        }
+src/proc/env.npk:218:        if (match && es[nlen] == 61u8) {
+src/proc/env.npk:220:            if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) {
+src/proc/env.npk:221:                drop(mem_free(ep[i]));
+src/proc/env.npk:242:    ep[i + 1i64] = 0i64;
+src/proc/env.npk:243:    (@cast_unchecked<int64->>(_env_heap_is_alloc))[i + 1i64] = 0i64;
+src/proc/env.npk:258:    int64:nlen = raw str_strlen(@cast_unchecked<any->>(name));
+src/proc/env.npk:261:    int64:ci = 0i64;
+src/proc/env.npk:268:
+src/proc/env.npk:272:
+src/proc/env.npk:278:        bool:match = true;
+src/proc/env.npk:279:        while (j < nlen) {
+src/proc/wait.npk:146:// Returns the child's exit code (0-255), or -1 on fork/exec failure.
+src/proc/exec.npk:146:                    ci = ci + 1i64;
+src/proc/exec.npk:213:// execl* — Inline argument list variants (explicit arity 0-8)
+src/proc/exec.npk:217://   path is always the executable.
+src/proc/exec.npk:218://   The first argument is conventionally the executable name (arg0 = path).
+src/proc/exec.npk:220:
+src/proc/exec.npk:221:pub func:execl0 = int64(int64:path) {
+src/proc/exec.npk:242:    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = 0i64;
+src/proc/exec.npk:243:    pass execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:258:};
+src/proc/exec.npk:261:                         int64:a3, int64:a4, int64:a5) {
+src/proc/exec.npk:268:pub func:execl7 = int64(int64:path, int64:a0, int64:a1, int64:a2,
+src/proc/exec.npk:272:    argv[4] = a4; argv[5] = a5; argv[6] = a6; argv[7] = 0i64;
+src/proc/exec.npk:278:    stack int64[9]:argv;
+src/proc/exec.npk:279:    argv[0] = a0; argv[1] = a1; argv[2] = a2; argv[3] = a3;
+src/proc/fork.npk:146:// setsid — Create a new session and set the calling @cast_unchecked<session>(process) leader.
+src/io/open.npk:146:// If O_TMPFILE is not supported by the filesystem, falls back to mkstemp-style
+src/io/dup.npk:146:      // Ignore close errors here — the dup2 succeeded, don't obscure that.
+src/io/bio/fprintf.npk:146:
+src/io/bio/fprintf.npk:213:
+src/io/bio/fprintf.npk:217:    drop(bio_ensure_std_init());
+src/io/bio/fprintf.npk:218:    pass fprintf6(stdout_fp, fmt, a0, a1, a2, a3, a4, a5);
+src/io/bio/fprintf.npk:220:
+src/io/bio/fprintf.npk:221:pub func:eprintf6 = int64(int64:fmt,
+src/io/bio/fprintf.npk:242:pub func:printf7 = int64(int64:fmt,
+src/io/bio/fprintf.npk:243:                          int64:a0, int64:a1, int64:a2, int64:a3,
+src/io/bio/fprintf.npk:258:// ────────────────────────────────────────────────────────────────────────────
+src/io/bio/fprintf.npk:261:                           int64:a0, int64:a1, int64:a2, int64:a3,
+src/io/bio/fprintf.npk:268:};
+src/io/bio/fprintf.npk:272:                          int64:a4, int64:a5, int64:a6, int64:a7) {
+src/io/bio/fprintf.npk:278:                           int64:a0, int64:a1, int64:a2, int64:a3,
+src/io/bio/fprintf.npk:279:                           int64:a4, int64:a5, int64:a6, int64:a7) {
+src/io/bio/fseek.npk:146:// ════════════════════════════════════════════════════════════════════════════
+src/io/bio/fseek.npk:213:    pass fseek(fp, target, SEEK_SET);
+src/io/bio/stdfiles.npk:146:};
+src/io/bio/fio.npk:146:// For line-buffered streams: flushes the buffer on every '\n' encountered.
+src/io/bio/fio.npk:213:                int64:e = @cast_unchecked<int64>(wr.error);
+src/io/bio/fio.npk:217:            }
+src/io/bio/fio.npk:218:            f->file_pos    = f->file_pos + wr.value;
+src/io/bio/fio.npk:220:            bytes_written  = bytes_written + wr.value;
+src/io/bio/fio.npk:221:            continue;
+src/io/bio/fio.npk:242:                f->buf_pos     = f->buf_pos + copy_to_nl;
+src/io/bio/fio.npk:243:                f->buf_len     = f->buf_pos;
+src/io/bio/fio.npk:258:    }
+src/io/bio/fio.npk:261:};
+src/io/bio/fio.npk:268://                        fails silently on non-seekable fds).
+src/io/bio/fio.npk:272:// Returns 0 on success, EOF on error.
+src/io/bio/fio.npk:278:        int64:err_ret = 0i64;
+src/io/bio/fio.npk:279:        while (curr != 0i64) {
+src/io/bio/tmpfile.npk:146:          // Try to open exclusively
+src/io/bio/tmpfile.npk:213:            pass 0i64;
+src/io/bio/tmpfile.npk:217:    }
+src/io/bio/tmpfile.npk:218:
+src/io/bio/tmpfile.npk:220:    pass 0i64;
+src/io/bio/tmpfile.npk:221:};
+src/io/bio/tmpfile.npk:242:    int64:pfx_len = raw str_strlen(@cast_unchecked<int64>(pfx));
+src/io/bio/tmpfile.npk:243:    drop(mem_memcpy(@cast_unchecked<int64>(@tmpl), @cast_unchecked<int64>(pfx), pfx_len + 1i64));
+src/io/bio/tmpfile.npk:258:        drop(libn_close(fd));
+src/io/bio/tmpfile.npk:261:    pass fp;
+src/io/bio/fchar.npk:146:        stack uint8[1]:one;
+src/io/bio/fchar.npk:213:
+src/io/bio/fchar.npk:217:// The pushed-back character will be returned by the NEXT call to fgetc/fread.
+src/io/bio/fchar.npk:218:// Only one character of pushback is guaranteed (POSIX minimum).
+src/io/bio/fchar.npk:220:// ungetc(EOF, fp) is a no-op and returns EOF.
+src/io/bio/fchar.npk:221:// Calling fseek/fsetpos discards any pushed-back character.
+src/io/bio/fchar.npk:242:      // Only one pushback slot available
+src/io/bio/fchar.npk:243:    if (f->unget != FILE_UNGET_EMPTY) {
+src/io/bio/fchar.npk:258:    pass c & 0xFFi64;
+src/io/bio/fstr.npk:146:    int64:r = raw fwrite(s, 1i64, len, fp);
+src/io/bio/fscanf.npk:146:                chars = chars + 1i64;
+src/io/bio/fscanf.npk:213:// bio_scan_str — Parse a whitespace-delimited string from source into buf.
+src/io/bio/fscanf.npk:217:    int64:c = raw bio_scan_skip_ws(src);
+src/io/bio/fscanf.npk:218:    if (c < 0i64) { pass 0i64; }
+src/io/bio/fscanf.npk:220:    int64:max = is (width > 0i64) : width : 4096i64;
+src/io/bio/fscanf.npk:221:    int64:count = 0i64;
+src/io/bio/fscanf.npk:242:        (@cast_unchecked<int64->>(consumed))[0] = (@cast_unchecked<int64->>(consumed))[0] + count;
+src/io/bio/fscanf.npk:243:    }
+src/io/bio/fscanf.npk:258:    int64->:argv  = @cast_unchecked<int64->>(args);
+src/io/bio/fscanf.npk:261:    int64:matched = 0i64;     // items successfully stored
+src/io/bio/fscanf.npk:268:
+src/io/bio/fscanf.npk:272:                int64:c = raw bio_scan_skip_ws(src);
+src/io/bio/fscanf.npk:278:                  // Literal: must match exactly
+src/io/bio/fscanf.npk:279:                int64:c = raw bio_scan_getc(src);
+src/io/bio/strerror.npk:146:    @cast_unchecked<int64>(@"Destination address required"),
+src/io/bio/strerror.npk:213:        }
+src/io/bio/strerror.npk:217:    int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+src/io/bio/strerror.npk:218:    drop(mem_memcpy(@cast_unchecked<int64>(@dst), @cast_unchecked<int64>(prefix), prefix_len));
+src/io/bio/strerror.npk:220:    int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+src/io/bio/strerror.npk:221:    drop(mem_memcpy(@cast_unchecked<any->>((@cast_unchecked<int64>(dst)) + prefix_len), @cast_unchecked<int64>(@num), num_len + 1i64));
+src/io/bio/strerror.npk:242:        msg = errno_table[errnum];
+src/io/bio/strerror.npk:243:    }
+src/io/bio/strerror.npk:258:    int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+src/io/bio/strerror.npk:261:    int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+src/io/bio/strerror.npk:268:        drop(mem_memcpy(@cast_unchecked<any->>(buf), @cast_unchecked<int64>(prefix), copy1));
+src/io/bio/strerror.npk:272:            drop(mem_memcpy(@cast_unchecked<any->>(buf + copy1), @cast_unchecked<int64>(@num), copy2));
+src/io/bio/strerror.npk:278:    drop(mem_memcpy(@cast_unchecked<any->>(buf), @cast_unchecked<int64>(prefix), prefix_len));
+src/io/bio/strerror.npk:279:    drop(mem_memcpy(@cast_unchecked<any->>(buf + prefix_len), @cast_unchecked<int64>(@num), num_len + 1i64));
+src/io/bio/fstate.npk:146:// Equivalent to:
+src/io/bio/fopen.npk:146:        drop(errno_set(ENOMEM));
+src/io/bio/fopen.npk:213:    if (mode == 0i64 || fp == 0i64) {
+src/io/bio/fopen.npk:217:
+src/io/bio/fopen.npk:218:    FILE->:f = @cast_unchecked<FILE->>(fp);
+src/io/bio/fopen.npk:220:      // Parse new mode
+src/io/bio/fopen.npk:221:    stack int64[1]:file_mode_out;
+src/io/bio/fopen.npk:242:        Result<int64>:r = libn_open(@cast_unchecked<any->>(path), open_flags_out[0], FOPEN_CREAT_MODE);
+src/io/bio/fopen.npk:243:        if (r.is_error) {
+src/io/bio/fopen.npk:258:    }
+src/io/bio/fopen.npk:261:    f->mode     = file_mode_out[0];
+src/io/bio/fopen.npk:268:    pass fp;
+src/io/bio/fopen.npk:272:// fclose — Flush and close a FILE stream.
+src/io/bio/fopen.npk:278://
+src/io/bio/fopen.npk:279:// After fclose(), fp is invalid — do not use it.
+src/io/bio/file.npk:146:    if (size <= 0i64) {
+src/io/bio/file.npk:213:      // Seek backward by the number of buffered but unconsumed bytes
+src/io/bio/file.npk:217:          // Non-seekable fd — just discard the buffer (may lose data if re-reading)
+src/io/bio/file.npk:218:          // This is correct behavior for pipes; POSIX leaves it undefined.
+src/io/bio/file.npk:220:
+src/io/bio/file.npk:221:    f->buf_pos = 0i64;
+src/io/bio/file.npk:242:        if (r.is_error) {
+src/io/bio/file.npk:243:            int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/file.npk:258:
+src/io/bio/file.npk:261:// two output parameters.
+src/io/bio/file.npk:268:    int64->:fmode = @cast_unchecked<int64->>(out_file_mode);
+src/io/bio/file.npk:272:    oflags[0] = 0i64;
+src/io/bio/file.npk:278:    bool:has_b    = false;
+src/io/bio/file.npk:279:    int64:i = 1i64;
+src/io/seek.npk:146:};
+src/io/write.npk:146:    pass io_write_n(fd, @cast_unchecked<int64>(@b), 1i64);
+src/io/printf.npk:146:
+src/io/printf.npk:213:pub func:io_eprintf7 = int64(int64:fmt,
+src/io/printf.npk:217:};
+src/io/printf.npk:218:
+src/io/printf.npk:220:// 8 format arguments
+src/io/printf.npk:221:// ────────────────────────────────────────────────────────────────────────────
+src/io/printf.npk:242:};
+src/io/printf.npk:243:
+src/io/printf.npk:258:pub func:io_dprintf2 = int64(int64:fd, int64:fmt, int64:a0, int64:a1) {
+src/io/printf.npk:261:
+src/io/printf.npk:268://
+src/io/printf.npk:272:
+src/io/printf.npk:278:    pass raw str_snprintf1(@cast_unchecked<any->>(buf), buf_size, @cast_unchecked<any->>(fmt), a0);
+src/io/printf.npk:279:};
+src/io/fcntl.npk:146:    if (r.is_error) { fail r.error; }
+src/io/fcntl.npk:213:    pass libn_fcntl(fd, cmd, arg);
+src/io/read.npk:146:        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
+src/io/read.npk:213:        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
+src/io/read.npk:217:            if (e == EINTR) { continue; }
+src/io/read.npk:218:            dst[count] = 0u8;
+src/io/read.npk:220:        }
+src/io/read.npk:221:
+src/io/read.npk:242:
+src/io/read.npk:243:// ════════════════════════════════════════════════════════════════════════════
+src/io/read.npk:258:    b[0] = 0u8;
+src/io/read.npk:261:        Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b), 1i64);
+src/io/read.npk:268:            pass -1i64;     // EOF sentinel, like getchar() returning EOF
+src/io/read.npk:272:
+src/fs/path.npk:146:        pass a_end;
+src/fs/path.npk:213:        end_idx = end_idx - 1i64;
+src/fs/path.npk:217:    int64:last_slash = -1i64;
+src/fs/path.npk:218:    int64:i = end_idx - 1i64;
+src/fs/path.npk:220:        if (p[i] == 47u8) {
+src/fs/path.npk:221:            last_slash = i;
+src/fs/path.npk:242:    int64:dir_end = last_slash;
+src/fs/path.npk:243:    while (dir_end > 1i64 && p[dir_end - 1i64] == 47u8) {
+src/fs/path.npk:258://
+src/fs/path.npk:261://   "/usr/lib/"        → "lib"
+src/fs/path.npk:268:
+src/fs/path.npk:272:    }
+src/fs/path.npk:278:
+src/fs/path.npk:279:      // Empty → "."
+src/mem/slab.npk:146:    if (i == 3i64) { pass 64i64; }
+src/mem/slab.npk:213:    if (slots == 0i64) {
+src/mem/slab.npk:217:      // Pages needed: for class 8, slots=1 and slot_full=2049 → need 2 pages
+src/mem/slab.npk:218:    int64:n_pages = 1i64;
+src/mem/slab.npk:220:        n_pages = (slot_full + PAGE_SIZE - 1i64) / PAGE_SIZE;
+src/mem/slab.npk:221:    }
+src/mem/slab.npk:242:        int64:next_ptr_addr = slot_start + SLAB_HEADER_SIZE;
+src/mem/slab.npk:243:        int64->:next_ptr = @cast_unchecked<int64->>(next_ptr_addr);
+src/mem/slab.npk:258:
+src/mem/slab.npk:261:      // Last slot's "next" pointer is already 0 (end of freelist).
+src/mem/slab.npk:268:// ════════════════════════════════════════════════════════════════════════════
+src/mem/slab.npk:272:// Returns pointer to usable memory (zero-initialized because mmap).
+src/mem/slab.npk:278:
+src/mem/slab.npk:279:    int64:cls = raw slab_class_for_size(n);
+src/mem/memutil.npk:146:    if (a == b) {
+src/mem/memutil.npk:213:    int64:wi = 0i64;
+src/mem/memutil.npk:217:              // Match is somewhere in this word — find exact uint8
+src/mem/memutil.npk:218:            int64:word_base = ptr + i + wi * 8i64;
+src/mem/memutil.npk:220:            int64:j = 0i64;
+src/mem/memutil.npk:221:            while (j < 8i64) {
+src/mem/memutil.npk:242:
+src/mem/memutil.npk:243:// ════════════════════════════════════════════════════════════════════════════
+src/mem/memutil.npk:258:      // Simple backward scan (no word trick for reverse — adds complexity, little gain)
+src/mem/memutil.npk:261:            pass ptr + i;
+src/mem/memutil.npk:268:
+src/mem/memutil.npk:272:// Equivalent to glibc's memmem(). Returns pointer to start of match, or 0.
+src/mem/memutil.npk:278:// Edge cases:
+src/mem/memutil.npk:279://   nlen == 0: returns haystack (vacuous match — matches POSIX/glibc behavior)
+src/mem/memset.npk:146://
+src/mem/mmap.npk:146:        !!! 10i32;
+src/mem/mmap.npk:213:
+src/mem/mmap.npk:217:    if (n <= 0i64 || size <= 0i64) {
+src/mem/mmap.npk:218:        !!! 10i32;
+src/mem/mmap.npk:220:      // Check for overflow before multiplying
+src/mem/mmap.npk:221:    if (size > 0i64 && n > (9223372036854775807i64 / size)) {
+src/mem/mmap.npk:242:        if ((ptr & 4095i64) != 16i64) {
+src/mem/mmap.npk:243:            drop(libn_slab_free(@cast_unchecked<any->>(ptr)));
+src/mem/mmap.npk:258:            (1i64) { old_size = 16i64; },
+src/mem/mmap.npk:261:            (4i64) { old_size = 128i64; },
+src/mem/mmap.npk:268:        
+src/mem/mmap.npk:272:        }
+src/mem/mmap.npk:278:        }
+src/mem/mmap.npk:279:        
+src/str/strtok.npk:146:    pass s;    // Original start of token (may be empty string if delimiter was at start)
+src/str/strtok.npk:213:            if (field_count < max_fields - 1i64 || at_end) {
+src/str/strtok.npk:217:                field_count = field_count + 1i64;
+src/str/strtok.npk:218:                field_start = i + 1i64;
+src/str/strtok.npk:220:                  // Last slot: store @cast_unchecked<unsplit>(remainder) tail
+src/str/strtok.npk:221:                fields[field_count].ptr = input + field_start;
+src/str/strtok.npk:242:// Empty lines produce zero-length fields.
+src/str/strtok.npk:243:// Last line without terminal \n is still returned.
+src/str/strtok.npk:258:
+src/str/strtok.npk:261:        bool:at_end = (i == input_len);
+src/str/strtok.npk:268:                    len = len - 1i64;
+src/str/strtok.npk:272:                line_count = line_count + 1i64;
+src/str/strtok.npk:278:        }
+src/str/strtok.npk:279:
+src/str/strview.npk:146:
+src/str/strview.npk:213:    if (s == 0i64) {
+src/str/strview.npk:217:    }
+src/str/strview.npk:218:    stack StrView:bv;
+src/str/strview.npk:220:    pass strview_cmp(sv, @cast_unchecked<int64>(@bv));
+src/str/strview.npk:221:};
+src/str/strview.npk:242:    if (plen > s->len) { pass false; }
+src/str/strview.npk:243:    pass mem_equal(s->ptr, prefix, plen);
+src/str/strview.npk:258:    StrView->:s = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:261:    if (xlen > s->len) { pass false; }
+src/str/strview.npk:268:    if (raw strview_starts_with(sv, prefix)) {
+src/str/strview.npk:272:        StrView->:s = @cast_unchecked<StrView->>(sv);
+src/str/strview.npk:278:
+src/str/strview.npk:279:// strview_strip_prefix_str — If sv starts with the NUL-terminated prefix,
+src/str/strcpy.npk:146:        i = i + 1i64;
+src/str/strcpy.npk:213:
+src/str/strchr.npk:146://
+src/str/strchr.npk:213:    while (h[i] != 0u8) {
+src/str/strchr.npk:217:                  raw to_lower_ascii(h[i + j]) == raw to_lower_ascii(n[j])) {
+src/str/strchr.npk:218:                j = j + 1i64;
+src/str/strchr.npk:220:            if (n[j] == 0u8) {
+src/str/strchr.npk:221:                pass @cast_unchecked<any->>(haystack + i);
+src/str/strchr.npk:242:pub func:charset_build = NIL(uint8->:table, int64:charset) {
+src/str/strchr.npk:243:    uint8->:cs = @cast_unchecked<uint8->>(charset);
+src/str/strchr.npk:258:    pass ((table[c >> 3u8] >> (c & 7u8)) & 1u8) != 0u8;
+src/str/strchr.npk:261:// ════════════════════════════════════════════════════════════════════════════
+src/str/strchr.npk:268:    int64:s = @cast_unchecked<int64>(s_any);
+src/str/strchr.npk:272:    }
+src/str/strchr.npk:278:    uint8->:p = @cast_unchecked<uint8->>(s);
+src/str/strchr.npk:279:    int64:i = 0i64;
+src/str/strfmt.npk:146://   args:     Array of int64 arguments (cast pointers to int64 for %s)
+src/str/strfmt.npk:213:        if (f[fi] == 46u8) {    // '.'
+src/str/strfmt.npk:217:                if (ai < nargs) { precision = args[ai]; ai = ai + 1i64; }
+src/str/strfmt.npk:218:                fi = fi + 1i64;
+src/str/strfmt.npk:220:                while (f[fi] >= 48u8 && f[fi] <= 57u8) {
+src/str/strfmt.npk:221:                    precision = precision * 10i64 + @cast_unchecked<int64>((f[fi] - 48u8));
+src/str/strfmt.npk:242:            drop(fmt_putc(stp, 37u8));
+src/str/strfmt.npk:243:            continue;
+src/str/strfmt.npk:258:                slen = 6i64;
+src/str/strfmt.npk:261:            }
+src/str/strfmt.npk:268:            drop(fmt_puts_n(stp, sptr, slen));
+src/str/strfmt.npk:272:
+src/str/strfmt.npk:278:        else if (spec == 111u8) { num_base = 8i64; }                 // 'o'
+src/str/strfmt.npk:279:        else if (spec == 98u8)  { num_base = 2i64; }                 // 'b' (extension)
+src/str/strlcpy.npk:146:    pass i;    // number of bytes written (not counting NUL)
+src/str/strconv.npk:146:    if (overflow) {
+src/str/strconv.npk:213:        if (result > (u_max - dv) / ubase) {
+src/str/strconv.npk:217:        result = result * ubase + dv;
+src/str/strconv.npk:218:        i = i + 1i64;
+src/str/strconv.npk:220:
+src/str/strconv.npk:221:    if (i == digit_start) {
+src/str/strconv.npk:242:// Skips leading whitespace, parses decimal digits.
+src/str/strconv.npk:243:// Returns 0 on empty or non-numeric input.
+src/str/strconv.npk:258://   - Non-digit characters remain after the number (trailing junk).
+src/str/strconv.npk:261:
+src/str/strconv.npk:268:    int64:endptr = 0i64;
+src/str/strconv.npk:272:
+src/str/strconv.npk:278:
+src/str/strconv.npk:279:      // Check for trailing non-whitespace junk
+src/str/strlen.npk:146:
+src/str/strcmp.npk:146:    }
+src/str/strcmp.npk:213:    if (b == 0i64) {
+src/str/strcmp.npk:217:    uint8->:pa = @cast_unchecked<uint8->>(a);
+src/str/strcmp.npk:218:    uint8->:pb = @cast_unchecked<uint8->>(b);
+src/str/strcmp.npk:220:
+src/str/strcmp.npk:221:    while (true) {
+src/str/strcmp.npk:242:    int64:a = @cast_unchecked<int64>(a_any);
+src/str/strcmp.npk:243:    int64:b = @cast_unchecked<int64>(b_any);
+src/str/strcmp.npk:258:    uint8->:pb = @cast_unchecked<uint8->>(b);
+src/str/strcmp.npk:261:    while (i < n) {
+src/str/strcmp.npk:268:        if (ca == 0u8) {
+src/str/strcmp.npk:272:    }
+src/str/strcmp.npk:278:// str_casecmp_prefix — Case-insensitive prefix check.
+src/str/strcmp.npk:279:// True if a starts with b (ASCII case-insensitive).
+src/str/strbuf.npk:146:    drop(mem_free(sb));
+src/str/strbuf.npk:213:    if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:217:// strbuf_is_empty — True if the buffer has no content (len == 0).
+src/str/strbuf.npk:218:pub func:strbuf_is_empty = bool(int64:sb) {
+src/str/strbuf.npk:220:    pass (@cast_unchecked<StrBuf->>(sb)).len == 0i64;
+src/str/strbuf.npk:221:};
+src/str/strbuf.npk:242:// Returns true on success, false on OOM or invalid args.
+src/str/strbuf.npk:243:pub func:strbuf_append_bytes = bool(int64:sb, int64:ptr, int64:n) {
+src/str/strbuf.npk:258:    int64:n = raw str_strlen(@cast_unchecked<any->>(str));
+src/str/strbuf.npk:261:};
+src/str/strbuf.npk:268:    pass strbuf_append_bytes(sb, o.ptr, o.len);
+src/str/strbuf.npk:272:pub func:strbuf_append_repeat = bool(int64:sb, uint8:c, int64:n) {
+src/str/strbuf.npk:278:    (@cast_unchecked<uint8->>(s->ptr))[s->len] = 0u8;
+src/str/strbuf.npk:279:    pass true;
+src/math/math.npk:146:      // Overflow if both operands have same sign and result has different sign
+src/math/math.npk:213:// If a - b would go below 0 (unsigned), returns 0.
+src/math/math.npk:217:        pass 0i64;
+src/math/math.npk:218:    }
+src/math/math.npk:220:};
+src/math/math.npk:221:
+src/math/math.npk:242:    int64:q = a / b;
+src/math/math.npk:243:    int64:r = a % b;
+src/math/math.npk:258:pub func:math_mod_pos_i64 = int64(int64:a, int64:b) {
+src/math/math.npk:261:        r = r + raw math_abs_i64(b);
+src/math/math.npk:268:// ════════════════════════════════════════════════════════════════════════════
+src/math/math.npk:272:pub func:math_align_up = int64(int64:v, int64:align) {
+src/math/math.npk:278:pub func:math_align_down = int64(int64:v, int64:align) {
+src/math/math.npk:279:    pass v & (0i64 - align);
+src/syscall/syscall.npk:146:    return sys_safe(nr, a1, a2, a3, a4, 0i64, 0i64);
+src/syscall/syscall.npk:213://   - EINTR retry where appropriate
+src/syscall/syscall.npk:217:// ── Process identity ────────────────────────────────────────────────
+src/syscall/syscall.npk:218:
+src/syscall/syscall.npk:220:    pass raw sys1(SYS_GETPID, 0i64);
+src/syscall/syscall.npk:221:};
+src/syscall/syscall.npk:242:
+src/syscall/syscall.npk:243:pub func:libn_getegid = int64() {
+src/syscall/syscall.npk:258:    int64:safe_flags = flags | O_CLOEXEC;
+src/syscall/syscall.npk:261:};
+src/syscall/syscall.npk:268:    return r;
+src/syscall/syscall.npk:272:// IMPORTANT: Always check the return value. close() can fail with EIO on NFS,
+src/syscall/syscall.npk:278:
+src/syscall/syscall.npk:279:// libn_read — Read up to nbytes bytes from fd into buf.
+src/syscall/syscall_numbers.npk:146:pub fixed int64:SYS_CAPGET          = 125i64;
+src/syscall/syscall_numbers.npk:213:pub fixed int64:SYS_FLISTXATTR      = 196i64;
+src/syscall/syscall_numbers.npk:217:
+src/syscall/syscall_numbers.npk:218:// ── 200-249: Signals, futex, threading ───────────────────────────────
+src/syscall/syscall_numbers.npk:220:pub fixed int64:SYS_TIME            = 201i64;
+src/syscall/syscall_numbers.npk:221:pub fixed int64:SYS_FUTEX           = 202i64;
+src/syscall/syscall_numbers.npk:242:pub fixed int64:SYS_TIMER_SETTIME   = 223i64;
+src/syscall/syscall_numbers.npk:243:pub fixed int64:SYS_TIMER_GETTIME   = 224i64;
+src/syscall/syscall_numbers.npk:258:pub fixed int64:SYS_GET_MEMPOLICY   = 239i64;
+src/syscall/syscall_numbers.npk:261:pub fixed int64:SYS_MQ_TIMEDSEND    = 242i64;
+src/syscall/syscall_numbers.npk:268:pub fixed int64:SYS_REQUEST_KEY     = 249i64;
+src/syscall/syscall_numbers.npk:272:pub fixed int64:SYS_IOPRIO_SET      = 251i64;
+src/syscall/syscall_numbers.npk:278:pub fixed int64:SYS_OPENAT          = 257i64;
+src/syscall/syscall_numbers.npk:279:pub fixed int64:SYS_MKDIRAT         = 258i64;
+src/syscall/posix_constants.npk:146:
+src/syscall/posix_constants.npk:213:// Real-time signals (POSIX 1003.1b)
+src/syscall/posix_constants.npk:217:// sigaction SA_* flags
+src/syscall/posix_constants.npk:218:pub fixed int64:SA_NOCLDSTOP = 1i64;
+src/syscall/posix_constants.npk:220:pub fixed int64:SA_SIGINFO   = 4i64;         // Handler receives siginfo_t
+src/syscall/posix_constants.npk:221:pub fixed int64:SA_RESTORER  = 67108864i64;   // 0x4000000 — required on x86-64
+src/syscall/posix_constants.npk:242:pub fixed int64:DT_FIFO    = 1i64;
+src/syscall/posix_constants.npk:243:pub fixed int64:DT_CHR     = 2i64;
+src/syscall/posix_constants.npk:258:pub fixed int64:CLOCK_THREAD_CPUTIME_ID  = 3i64;
+src/syscall/posix_constants.npk:261:pub fixed int64:CLOCK_MONOTONIC_COARSE   = 6i64;
+src/syscall/posix_constants.npk:268:// SOCKET DOMAINS  (sys/socket.h AF_*)
+src/syscall/posix_constants.npk:272:pub fixed int64:AF_UNIX     = 1i64;      // Unix domain sockets
+src/syscall/posix_constants.npk:278:pub fixed int64:AF_NETROM   = 6i64;
+src/syscall/posix_constants.npk:279:pub fixed int64:AF_BRIDGE   = 7i64;
+src/syscall/errno.npk:146:pub fixed int64:ECONNRESET   = 104i64;   // Connection reset by peer
+src/syscall/errno.npk:213:pub fixed int64:ERR_UNSUPPORTED = -14i64;    // libn: unsupported on this arch
+src/syscall/errno.npk:217:
+src/syscall/errno.npk:218:// ════════════════════════════════════════════════════════════════════════════
+src/syscall/errno.npk:220://
+src/syscall/errno.npk:221:// These are the building blocks of libn error propagation.
+src/syscall/errno.npk:242:    fail @cast_unchecked<tbb32>(e);
+src/syscall/errno.npk:243:};
+src/syscall/errno.npk:258:pub func:errno_is_fatal = bool(int64:e) {
+src/syscall/errno.npk:261:         e == ENOTSOCK ||
+src/syscall/errno.npk:268:// NOT thread-safe in the sense that different errno values return different literals,
+src/syscall/errno.npk:272:pub func:err_str = int64(int64:e) {
+src/syscall/errno.npk:278:        (3i64) { pass @cast_unchecked<int64>(@"No such process"); },
+src/syscall/errno.npk:279:        (4i64) { pass @cast_unchecked<int64>(@"Interrupted system call"); },

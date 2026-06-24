@@ -1,0 +1,5 @@
+pub func:foo = int32(any->:p) { pass 0i32; };
+pub func:main = int32() {
+    int64:addr = 0x1000i64;
+    return foo(addr);
+};

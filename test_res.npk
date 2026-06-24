@@ -1,0 +1,10 @@
+pub func:test1 = Result<int64>() {
+    pass 0i64;
+};
+
+pub func:test2 = Result<int64>() {
+    int64:x = 5i64;
+    pass x;
+};
+
+pub func:main = int64() { pass 0i64; };

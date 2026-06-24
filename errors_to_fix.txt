@@ -1,0 +1,2424 @@
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/proc/exit.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/proc/exit.npk:159: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/proc/exit.npk:99: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/exit.npk:155: dummy
+
+--- Error: Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness. (Line 71)
+  src/proc/signal.npk:71: dummy
+
+--- Error: @cast supports numeric types and pointer types only. Cannot cast 'func() -> Result<NIL>' to 'int64' (Line 109)
+  src/proc/signal.npk:109: dummy
+
+--- Error: Use of uninitialized variable 'old_val' (Line 222)
+  src/proc/signal.npk:222: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/env.npk:155: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 171)
+  src/proc/env.npk:171: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 176)
+  src/proc/env.npk:176: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 178)
+  src/proc/env.npk:178: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 204)
+  src/proc/env.npk:204: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 209)
+  src/proc/env.npk:209: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 210)
+  src/proc/env.npk:210: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 212)
+  src/proc/env.npk:212: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 82)
+  src/proc/env.npk:82: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 83)
+  src/proc/env.npk:83: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 161)
+  src/proc/env.npk:161: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 162)
+  src/proc/env.npk:162: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/wait.npk:155: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 72)
+  src/proc/wait.npk:72: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 85)
+  src/proc/wait.npk:85: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 221)
+  src/proc/wait.npk:221: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 228)
+  src/proc/wait.npk:228: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 234)
+  src/proc/wait.npk:234: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 240)
+  src/proc/wait.npk:240: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 246)
+  src/proc/wait.npk:246: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 254)
+  src/proc/wait.npk:254: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 262)
+  src/proc/wait.npk:262: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 270)
+  src/proc/wait.npk:270: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 278)
+  src/proc/wait.npk:278: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/proc/wait.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/proc/wait.npk:159: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/proc/wait.npk:99: dummy
+
+--- Error: Argument 2 has type 'int64@', but function expects 'int64' (Line 173)
+  src/proc/wait.npk:173: dummy
+
+--- Error: Cannot use Result<int64> as int64 in arithmetic (Line 181)
+  src/proc/wait.npk:181: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/proc/proc.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/proc/proc.npk:159: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/proc/proc.npk:99: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/proc.npk:155: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 72)
+  src/proc/proc.npk:72: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 85)
+  src/proc/proc.npk:85: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 221)
+  src/proc/proc.npk:221: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 228)
+  src/proc/proc.npk:228: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 234)
+  src/proc/proc.npk:234: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 240)
+  src/proc/proc.npk:240: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 246)
+  src/proc/proc.npk:246: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 254)
+  src/proc/proc.npk:254: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 262)
+  src/proc/proc.npk:262: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 270)
+  src/proc/proc.npk:270: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 278)
+  src/proc/proc.npk:278: dummy
+
+--- Error: Argument 2 has type 'int64@', but function expects 'int64' (Line 173)
+  src/proc/proc.npk:173: dummy
+
+--- Error: Cannot use Result<int64> as int64 in arithmetic (Line 181)
+  src/proc/proc.npk:181: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 171)
+  src/proc/proc.npk:171: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 176)
+  src/proc/proc.npk:176: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 178)
+  src/proc/proc.npk:178: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 204)
+  src/proc/proc.npk:204: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 209)
+  src/proc/proc.npk:209: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 210)
+  src/proc/proc.npk:210: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 212)
+  src/proc/proc.npk:212: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 82)
+  src/proc/proc.npk:82: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 83)
+  src/proc/proc.npk:83: dummy
+
+--- Error: Logical NOT requires 'bool' type, got 'int64'. Use explicit comparison (e.g., x == 0) instead of truthiness. (Line 71)
+  src/proc/proc.npk:71: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/proc/exec.npk:155: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 72)
+  src/proc/exec.npk:72: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 85)
+  src/proc/exec.npk:85: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 221)
+  src/proc/exec.npk:221: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 228)
+  src/proc/exec.npk:228: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 234)
+  src/proc/exec.npk:234: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 240)
+  src/proc/exec.npk:240: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 246)
+  src/proc/exec.npk:246: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 254)
+  src/proc/exec.npk:254: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 262)
+  src/proc/exec.npk:262: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 270)
+  src/proc/exec.npk:270: dummy
+
+--- Error: Undefined identifier: 'environ' (Line 278)
+  src/proc/exec.npk:278: dummy
+
+--- Error: Undefined identifier: 'SYS_OPEN'. Did you mean 'IN_OPEN'? (Line 70)
+  src/io/open.npk:70: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'EIO'? (Line 71)
+  src/io/open.npk:71: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/io.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/io/io.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/io/io.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/io/io.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy' (Line 373)
+  src/io/io.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/io/io.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/io/io.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/io/io.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/io/io.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/io/io.npk:274: dummy
+
+--- Error: Undefined identifier: 'SYS_OPEN' (Line 70)
+  src/io/io.npk:70: dummy
+
+--- Error: Undefined identifier: 'r' (Line 71)
+  src/io/io.npk:71: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/printf.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/io/printf.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/io/printf.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/io/printf.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy' (Line 373)
+  src/io/printf.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/io/printf.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/io/printf.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/io/printf.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/io/printf.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/io/printf.npk:274: dummy
+
+--- Error: Use of uninitialized variable 'one' (Line 166)
+  src/io/read.npk:166: dummy
+
+--- Error: Use of uninitialized variable 'one' (Line 226)
+  src/io/read.npk:226: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/fprintf.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/io/bio/fprintf.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/io/bio/fprintf.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/io/bio/fprintf.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy' (Line 373)
+  src/io/bio/fprintf.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/io/bio/fprintf.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/io/bio/fprintf.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/io/bio/fprintf.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/io/bio/fprintf.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/io/bio/fprintf.npk:274: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fprintf.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fprintf.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fprintf.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fprintf.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fprintf.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fprintf.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fprintf.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fprintf.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fprintf.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fprintf.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fprintf.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fprintf.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fprintf.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fprintf.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fprintf.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/fprintf.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/fprintf.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/fprintf.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/fprintf.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/fprintf.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/fprintf.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/fprintf.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/fprintf.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/fprintf.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/fprintf.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fprintf.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/fprintf.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/fprintf.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/fprintf.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/fprintf.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/fprintf.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/fprintf.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/fprintf.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/fprintf.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/fprintf.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/fprintf.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/fprintf.npk:146: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 301)
+  src/io/bio/fprintf.npk:301: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 302)
+  src/io/bio/fprintf.npk:302: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 303)
+  src/io/bio/fprintf.npk:303: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 305)
+  src/io/bio/fprintf.npk:305: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 313)
+  src/io/bio/fprintf.npk:313: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 314)
+  src/io/bio/fprintf.npk:314: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 315)
+  src/io/bio/fprintf.npk:315: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 317)
+  src/io/bio/fprintf.npk:317: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 325)
+  src/io/bio/fprintf.npk:325: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 326)
+  src/io/bio/fprintf.npk:326: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 327)
+  src/io/bio/fprintf.npk:327: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 329)
+  src/io/bio/fprintf.npk:329: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 338)
+  src/io/bio/fprintf.npk:338: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 339)
+  src/io/bio/fprintf.npk:339: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 340)
+  src/io/bio/fprintf.npk:340: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 342)
+  src/io/bio/fprintf.npk:342: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 351)
+  src/io/bio/fprintf.npk:351: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 352)
+  src/io/bio/fprintf.npk:352: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 353)
+  src/io/bio/fprintf.npk:353: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 355)
+  src/io/bio/fprintf.npk:355: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fseek.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fseek.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fseek.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fseek.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fseek.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fseek.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fseek.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fseek.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fseek.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fseek.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fseek.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fseek.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fseek.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fseek.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fseek.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 86)
+  src/io/bio/fseek.npk:86: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 87)
+  src/io/bio/fseek.npk:87: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 93)
+  src/io/bio/fseek.npk:93: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 165)
+  src/io/bio/fseek.npk:165: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/stdfiles.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/stdfiles.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/stdfiles.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/stdfiles.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/stdfiles.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/stdfiles.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/stdfiles.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/stdfiles.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/stdfiles.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/stdfiles.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/stdfiles.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/stdfiles.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/stdfiles.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/stdfiles.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/stdfiles.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/stdfiles.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/stdfiles.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/stdfiles.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/stdfiles.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/stdfiles.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/stdfiles.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/stdfiles.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/stdfiles.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/stdfiles.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/stdfiles.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/stdfiles.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/stdfiles.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/stdfiles.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/stdfiles.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/stdfiles.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/stdfiles.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/stdfiles.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/stdfiles.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/stdfiles.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/stdfiles.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/stdfiles.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/stdfiles.npk:146: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/stdfiles.npk:155: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fio.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fio.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fio.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fio.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fio.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fio.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fio.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fio.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fio.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fio.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fio.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fio.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fio.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fio.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fio.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/fio.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/fio.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/fio.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/fio.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/fio.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/fio.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/fio.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/fio.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/fio.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/fio.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fio.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/fio.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/fio.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/fio.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/fio.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/fio.npk:217: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/tmpfile.npk:155: dummy
+
+--- Error: Undefined identifier: 'SYS_OPEN'. Did you mean 'IN_OPEN'? (Line 70)
+  src/io/bio/tmpfile.npk:70: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'EIO'? (Line 71)
+  src/io/bio/tmpfile.npk:71: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/tmpfile.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/tmpfile.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/tmpfile.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/tmpfile.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/tmpfile.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/tmpfile.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/tmpfile.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/tmpfile.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/tmpfile.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/tmpfile.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/tmpfile.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/tmpfile.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/tmpfile.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/tmpfile.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/tmpfile.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/tmpfile.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/tmpfile.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/tmpfile.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/tmpfile.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/tmpfile.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/tmpfile.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/tmpfile.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/tmpfile.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/tmpfile.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/tmpfile.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/tmpfile.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/tmpfile.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/tmpfile.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/tmpfile.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/tmpfile.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/tmpfile.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/tmpfile.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/tmpfile.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/tmpfile.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/tmpfile.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/tmpfile.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/tmpfile.npk:146: dummy
+
+--- Error: Undefined identifier: '__addrof' (Line 68)
+  src/io/bio/tmpfile.npk:68: dummy
+
+--- Error: Undefined identifier: 'ptr'. Did you mean 'puts'? (Line 69)
+  src/io/bio/tmpfile.npk:69: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'EIO'? (Line 70)
+  src/io/bio/tmpfile.npk:70: dummy
+
+--- Error: Cannot initialize variable 'hex' of type 'int64' with value of type 'string@' (Line 81)
+  src/io/bio/tmpfile.npk:81: dummy
+
+--- Error: Undefined identifier: 'hex'. Did you mean 'i'? (Line 84)
+  src/io/bio/tmpfile.npk:84: dummy
+
+--- Error: Undefined identifier: 'SYS_MKDIR' (Line 199)
+  src/io/bio/tmpfile.npk:199: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 200)
+  src/io/bio/tmpfile.npk:200: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 204)
+  src/io/bio/tmpfile.npk:204: dummy
+
+--- Error: Undefined identifier: 'e'. Did you mean 'i'? (Line 205)
+  src/io/bio/tmpfile.npk:205: dummy
+
+--- Error: Undefined identifier: 'SYS_UNLINK' (Line 246)
+  src/io/bio/tmpfile.npk:246: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fchar.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fchar.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fchar.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fchar.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fchar.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fchar.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fchar.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fchar.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fchar.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fchar.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fchar.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fchar.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fchar.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fchar.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fchar.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/fchar.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/fchar.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/fchar.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/fchar.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/fchar.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/fchar.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/fchar.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/fchar.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/fchar.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/fchar.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fchar.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/fchar.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/fchar.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/fchar.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/fchar.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/fchar.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/fchar.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/fchar.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/fchar.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/fchar.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/fchar.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/fchar.npk:146: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/bio.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/bio.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/bio.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/bio.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/bio.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/bio.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/bio.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/bio.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/bio.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/bio.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/bio.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/bio.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/bio.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/bio.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/bio.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/bio.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/bio.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/bio.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/bio.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/bio.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/bio.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/bio.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/bio.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/bio.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/bio.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/bio.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/bio.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/bio.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/bio.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/bio.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/bio.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 86)
+  src/io/bio/bio.npk:86: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 87)
+  src/io/bio/bio.npk:87: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 93)
+  src/io/bio/bio.npk:93: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 165)
+  src/io/bio/bio.npk:165: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/bio.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/bio.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/bio.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/bio.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/bio.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/bio.npk:146: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/bio.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/io/bio/bio.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/io/bio/bio.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/io/bio/bio.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy' (Line 373)
+  src/io/bio/bio.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/io/bio/bio.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/io/bio/bio.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/io/bio/bio.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/io/bio/bio.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/io/bio/bio.npk:274: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 301)
+  src/io/bio/bio.npk:301: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 302)
+  src/io/bio/bio.npk:302: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 303)
+  src/io/bio/bio.npk:303: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 305)
+  src/io/bio/bio.npk:305: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 313)
+  src/io/bio/bio.npk:313: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 314)
+  src/io/bio/bio.npk:314: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 315)
+  src/io/bio/bio.npk:315: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 317)
+  src/io/bio/bio.npk:317: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 325)
+  src/io/bio/bio.npk:325: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 326)
+  src/io/bio/bio.npk:326: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 327)
+  src/io/bio/bio.npk:327: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 329)
+  src/io/bio/bio.npk:329: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 338)
+  src/io/bio/bio.npk:338: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 339)
+  src/io/bio/bio.npk:339: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 340)
+  src/io/bio/bio.npk:340: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 342)
+  src/io/bio/bio.npk:342: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 351)
+  src/io/bio/bio.npk:351: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 352)
+  src/io/bio/bio.npk:352: dummy
+
+--- Error: Undefined identifier: 'mem_memcpy' (Line 353)
+  src/io/bio/bio.npk:353: dummy
+
+--- Error: Undefined identifier: 'p'. Did you mean 'tmp'? (Line 355)
+  src/io/bio/bio.npk:355: dummy
+
+--- Error: Undefined identifier: 'SYS_OPEN' (Line 70)
+  src/io/bio/bio.npk:70: dummy
+
+--- Error: Undefined identifier: 'r' (Line 71)
+  src/io/bio/bio.npk:71: dummy
+
+--- Error: Undefined identifier: 'SYS_MKDIR' (Line 199)
+  src/io/bio/bio.npk:199: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 200)
+  src/io/bio/bio.npk:200: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 204)
+  src/io/bio/bio.npk:204: dummy
+
+--- Error: Undefined identifier: 'e'. Did you mean 'i'? (Line 205)
+  src/io/bio/bio.npk:205: dummy
+
+--- Error: Undefined identifier: 'SYS_UNLINK' (Line 246)
+  src/io/bio/bio.npk:246: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/fstr.npk:155: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fstr.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fstr.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fstr.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fstr.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fstr.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fstr.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fstr.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fstr.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fstr.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fstr.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fstr.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fstr.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fstr.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fstr.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fstr.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/fstr.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/fstr.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/fstr.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/fstr.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/fstr.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/fstr.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/fstr.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/fstr.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/fstr.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/fstr.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fstr.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/fstr.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/fstr.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/fstr.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/fstr.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/fstr.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/fstr.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/fstr.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/fstr.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/fstr.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/fstr.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/fstr.npk:146: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fscanf.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fscanf.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fscanf.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fscanf.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fscanf.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fscanf.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fscanf.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fscanf.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fscanf.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fscanf.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fscanf.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fscanf.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fscanf.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fscanf.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fscanf.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/fscanf.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/fscanf.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/fscanf.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/fscanf.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/fscanf.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/fscanf.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/fscanf.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/fscanf.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/fscanf.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/fscanf.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fscanf.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/fscanf.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/fscanf.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/fscanf.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/fscanf.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/fscanf.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/fscanf.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/fscanf.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/fscanf.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/fscanf.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/fscanf.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/fscanf.npk:146: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/fscanf.npk:155: dummy
+
+--- Error: 'raw' argument must be Result<T> — got 'int64'. (Line 125)
+  src/io/bio/fscanf.npk:125: dummy
+
+--- Error: Undefined identifier: 'max'. Did you mean 'c'? (Line 128)
+  src/io/bio/fscanf.npk:128: dummy
+
+--- Error: Undefined identifier: 'max'. Did you mean 'c'? (Line 139)
+  src/io/bio/fscanf.npk:139: dummy
+
+--- Error: Undefined identifier: 'max'. Did you mean 'c'? (Line 164)
+  src/io/bio/fscanf.npk:164: dummy
+
+--- Error: Argument 4 has type 'int64@', but function expects 'int64' (Line 366)
+  src/io/bio/fscanf.npk:366: dummy
+
+--- Error: Cannot assign 'bool' to 'int64' (Line 379)
+  src/io/bio/fscanf.npk:379: dummy
+
+--- Error: Argument 5 has type 'int64@', but function expects 'int64' (Line 391)
+  src/io/bio/fscanf.npk:391: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/io/bio/strerror.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/io/bio/strerror.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/io/bio/strerror.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/io/bio/strerror.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'? (Line 373)
+  src/io/bio/strerror.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/io/bio/strerror.npk:381: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/strerror.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/strerror.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/strerror.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/strerror.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/strerror.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/strerror.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/strerror.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/strerror.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/strerror.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/strerror.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/strerror.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/strerror.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/strerror.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/strerror.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/strerror.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/io/bio/strerror.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/io/bio/strerror.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/io/bio/strerror.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/io/bio/strerror.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/io/bio/strerror.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/io/bio/strerror.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/io/bio/strerror.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/io/bio/strerror.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/io/bio/strerror.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/io/bio/strerror.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/strerror.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/io/bio/strerror.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/io/bio/strerror.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/io/bio/strerror.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/io/bio/strerror.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/io/bio/strerror.npk:217: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 78)
+  src/io/bio/strerror.npk:78: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 79)
+  src/io/bio/strerror.npk:79: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 85)
+  src/io/bio/strerror.npk:85: dummy
+
+--- Error: Cannot access .value without checking .is_error first (no checky no val). (Line 99)
+  src/io/bio/strerror.npk:99: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 145)
+  src/io/bio/strerror.npk:145: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'b'? (Line 146)
+  src/io/bio/strerror.npk:146: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fstate.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fstate.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fstate.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fstate.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fstate.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fstate.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fstate.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fstate.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fstate.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fstate.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fstate.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fstate.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fstate.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fstate.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fstate.npk:249: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/fopen.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/fopen.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/fopen.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/fopen.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/fopen.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/fopen.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/fopen.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/fopen.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/fopen.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/fopen.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/fopen.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/fopen.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/fopen.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/fopen.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/fopen.npk:249: dummy
+
+--- Error: Cannot assign 'bool' to 'int64' (Line 71)
+  src/io/bio/fopen.npk:71: dummy
+
+--- Error: Use of uninitialized variable 'file_mode_out' (Line 113)
+  src/io/bio/fopen.npk:113: dummy
+
+--- Error: Use of uninitialized variable 'open_flags_out' (Line 114)
+  src/io/bio/fopen.npk:114: dummy
+
+--- Error: Use of uninitialized variable 'file_mode_out' (Line 179)
+  src/io/bio/fopen.npk:179: dummy
+
+--- Error: Use of uninitialized variable 'open_flags_out' (Line 229)
+  src/io/bio/fopen.npk:229: dummy
+
+--- Error: Use of uninitialized variable 'file_mode_out' (Line 246)
+  src/io/bio/fopen.npk:246: dummy
+
+--- Error: Undefined identifier: 'mem_malloc' (Line 150)
+  src/io/bio/file.npk:150: dummy
+
+--- Error: Undefined identifier: 'mem_free' (Line 159)
+  src/io/bio/file.npk:159: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/io/bio/file.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/io/bio/file.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/io/bio/file.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/io/bio/file.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/io/bio/file.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/io/bio/file.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/io/bio/file.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/io/bio/file.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/io/bio/file.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/io/bio/file.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/io/bio/file.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/io/bio/file.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/io/bio/file.npk:249: dummy
+
+--- Error: Undefined identifier: 'errno_set' (Line 6)
+  src/time/clock.npk:6: dummy
+
+--- Error: Undefined identifier: 'SYS_CLOCK_GETTIME' (Line 8)
+  src/time/clock.npk:8: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'tp'? (Line 9)
+  src/time/clock.npk:9: dummy
+
+--- Error: Undefined identifier: 'errno_set' (Line 16)
+  src/time/clock.npk:16: dummy
+
+--- Error: Undefined identifier: 'SYS_CLOCK_GETRES' (Line 18)
+  src/time/clock.npk:18: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'res'? (Line 19)
+  src/time/clock.npk:19: dummy
+
+--- Error: Undefined identifier: 'errno_set' (Line 26)
+  src/time/clock.npk:26: dummy
+
+--- Error: Undefined identifier: 'SYS_CLOCK_SETTIME' (Line 28)
+  src/time/clock.npk:28: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'tp'? (Line 29)
+  src/time/clock.npk:29: dummy
+
+--- Error: Undefined identifier: 'errno_set' (Line 6)
+  src/time/timeofday.npk:6: dummy
+
+--- Error: Undefined identifier: 'SYS_GETTIMEOFDAY' (Line 8)
+  src/time/timeofday.npk:8: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'tz'? (Line 9)
+  src/time/timeofday.npk:9: dummy
+
+--- Error: Undefined identifier: 'errno_set' (Line 16)
+  src/time/timeofday.npk:16: dummy
+
+--- Error: Undefined identifier: 'SYS_SETTIMEOFDAY' (Line 18)
+  src/time/timeofday.npk:18: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'tz'? (Line 19)
+  src/time/timeofday.npk:19: dummy
+
+--- Error: Cannot use Result<int64> as int64 in arithmetic (Line 204)
+  src/mem/slab.npk:204: dummy
+
+--- Error: Undefined identifier: 'slot_full' (Line 213)
+  src/mem/slab.npk:213: dummy
+
+--- Error: Undefined identifier: 'libn_mmap' (Line 218)
+  src/mem/slab.npk:218: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 219)
+  src/mem/slab.npk:219: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'i'? (Line 222)
+  src/mem/slab.npk:222: dummy
+
+--- Error: Undefined identifier: 'slab_base'. Did you mean 'slab_size'? (Line 230)
+  src/mem/slab.npk:230: dummy
+
+--- Error: Undefined identifier: 'slot_full' (Line 230)
+  src/mem/slab.npk:230: dummy
+
+--- Error: Undefined identifier: 'slot_start' (Line 231)
+  src/mem/slab.npk:231: dummy
+
+--- Error: Undefined identifier: 'hdr_byte' (Line 232)
+  src/mem/slab.npk:232: dummy
+
+--- Error: Undefined identifier: 'slot_start' (Line 236)
+  src/mem/slab.npk:236: dummy
+
+--- Error: Undefined identifier: 'next_ptr_addr' (Line 237)
+  src/mem/slab.npk:237: dummy
+
+--- Error: Undefined identifier: 'next_ptr' (Line 238)
+  src/mem/slab.npk:238: dummy
+
+--- Error: Undefined identifier: 'slot_start' (Line 243)
+  src/mem/slab.npk:243: dummy
+
+--- Error: Undefined identifier: 'slot_start' (Line 249)
+  src/mem/slab.npk:249: dummy
+
+--- Error: Undefined identifier: 'next_ptr_addr' (Line 251)
+  src/mem/slab.npk:251: dummy
+
+--- Error: Undefined identifier: 'ERR_BADARG' (Line 37)
+  src/mem/memset.npk:37: dummy
+
+--- Error: Undefined identifier: 'ERR_BADARG' (Line 43)
+  src/mem/memset.npk:43: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strtok.npk:155: dummy
+
+--- Error: Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8 (Line 207)
+  src/str/strtok.npk:207: dummy
+
+--- Error: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'. (Line 251)
+  src/str/strtok.npk:251: dummy
+
+--- Error: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 273)
+  src/str/strtok.npk:273: dummy
+
+--- Error: Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr (Line 163)
+  src/str/strtok.npk:163: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 67)
+  src/str/strtok.npk:67: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 73)
+  src/str/strtok.npk:73: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 87)
+  src/str/strtok.npk:87: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 130)
+  src/str/strtok.npk:130: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 133)
+  src/str/strtok.npk:133: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strview.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/str/strview.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/str/strview.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/str/strview.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'? (Line 373)
+  src/str/strview.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/str/strview.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/str/strview.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/str/strview.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/str/strview.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/str/strview.npk:274: dummy
+
+--- Error: Undefined identifier: 'libn_write_all' (Line 439)
+  src/str/strview.npk:439: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 440)
+  src/str/strview.npk:440: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 441)
+  src/str/strview.npk:441: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/str/strview.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/str/strview.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/str/strview.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/str/strview.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/str/strview.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/str/strview.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/str/strview.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/str/strview.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/str/strview.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/str/strview.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/str/strview.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/str/strview.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/str/strview.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/str/strview.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/str/strview.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/str/strview.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/str/strview.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/str/strview.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/str/strview.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/str/strview.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/str/strview.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/str/strview.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/str/strview.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/str/strview.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/str/strview.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/str/strview.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/str/strview.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/str/strview.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/str/strview.npk:217: dummy
+
+--- Error: Cannot assign 'bool' to 'int64' (Line 84)
+  src/str/strview.npk:84: dummy
+
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 279)
+  src/str/strview.npk:279: dummy
+
+--- Error: Undefined identifier: 'plen' (Line 280)
+  src/str/strview.npk:280: dummy
+
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 308)
+  src/str/strview.npk:308: dummy
+
+--- Error: Undefined identifier: 'xlen' (Line 310)
+  src/str/strview.npk:310: dummy
+
+--- Error: Undefined identifier: 'libn_write_all' (Line 713)
+  src/str/strview.npk:713: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 714)
+  src/str/strview.npk:714: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 715)
+  src/str/strview.npk:715: dummy
+
+--- Error: Use of uninitialized variable 'left' (Line 543)
+  src/str/strview.npk:543: dummy
+
+--- Error: Use of uninitialized variable 'left' (Line 544)
+  src/str/strview.npk:544: dummy
+
+--- Error: Use of uninitialized variable 'right' (Line 547)
+  src/str/strview.npk:547: dummy
+
+--- Error: Use of uninitialized variable 'right' (Line 548)
+  src/str/strview.npk:548: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strcpy.npk:155: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 171)
+  src/str/strcpy.npk:171: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 176)
+  src/str/strcpy.npk:176: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 178)
+  src/str/strcpy.npk:178: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 204)
+  src/str/strcpy.npk:204: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 209)
+  src/str/strcpy.npk:209: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 210)
+  src/str/strcpy.npk:210: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 212)
+  src/str/strcpy.npk:212: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strchr.npk:155: dummy
+
+--- Error: Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8 (Line 207)
+  src/str/strchr.npk:207: dummy
+
+--- Error: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'. (Line 251)
+  src/str/strchr.npk:251: dummy
+
+--- Error: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 273)
+  src/str/strchr.npk:273: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 267)
+  src/str/strchr.npk:267: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 273)
+  src/str/strchr.npk:273: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 300)
+  src/str/strchr.npk:300: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 305)
+  src/str/strchr.npk:305: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 328)
+  src/str/strchr.npk:328: dummy
+
+--- Error: Use of uninitialized variable 'table' (Line 333)
+  src/str/strchr.npk:333: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strfmt.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/str/strfmt.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/str/strfmt.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/str/strfmt.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'? (Line 373)
+  src/str/strfmt.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/str/strfmt.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/str/strfmt.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/str/strfmt.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/str/strfmt.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/str/strfmt.npk:274: dummy
+
+--- Error: Use of possibly uninitialized variable 'tmp' (Line 143)
+  src/str/strfmt.npk:143: dummy
+
+--- Error: Use of uninitialized variable 'nbuf' (Line 316)
+  src/str/strfmt.npk:316: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strlcpy.npk:155: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strconv.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/str/strconv.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/str/strconv.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/str/strconv.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'? (Line 373)
+  src/str/strconv.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/str/strconv.npk:381: dummy
+
+--- Error: Use of possibly uninitialized variable 'tmp' (Line 404)
+  src/str/strconv.npk:404: dummy
+
+--- Error: Use of possibly uninitialized variable 'tmp' (Line 449)
+  src/str/strconv.npk:449: dummy
+
+--- Error: Use of possibly uninitialized variable 'tmp' (Line 504)
+  src/str/strconv.npk:504: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strlen.npk:155: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/strbuf.npk:155: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/str/strbuf.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/str/strbuf.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/str/strbuf.npk:371: dummy
+
+--- Error: Undefined identifier: 'str_strcpy'. Did you mean 'str_strlen'? (Line 373)
+  src/str/strbuf.npk:373: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/str/strbuf.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/str/strbuf.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/str/strbuf.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/str/strbuf.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/str/strbuf.npk:274: dummy
+
+--- Error: Undefined identifier: 'libn_write_all' (Line 439)
+  src/str/strbuf.npk:439: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 440)
+  src/str/strbuf.npk:440: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 441)
+  src/str/strbuf.npk:441: dummy
+
+--- Error: Pass value type 'int64' does not match function value type 'Result<int64>' (Line 155)
+  src/str/string.npk:155: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 171)
+  src/str/string.npk:171: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 176)
+  src/str/string.npk:176: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 178)
+  src/str/string.npk:178: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 204)
+  src/str/string.npk:204: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 209)
+  src/str/string.npk:209: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 210)
+  src/str/string.npk:210: dummy
+
+--- Error: Member access (.) requires struct, object, or union type, got 'int64'. Use -> for pointer member access. (Line 212)
+  src/str/string.npk:212: dummy
+
+--- Error: Cannot compare Result<uint8> to uint8 directly. Use 'raw' to unwrap: raw expr op uint8 (Line 207)
+  src/str/string.npk:207: dummy
+
+--- Error: Bitwise operators require same integer type on both sides. Got 'uint8' and 'bool'. (Line 251)
+  src/str/string.npk:251: dummy
+
+--- Error: if condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 273)
+  src/str/string.npk:273: dummy
+
+--- Error: Cannot compare int64 to Result<int64> directly. Use 'raw' to unwrap: int64 op raw expr (Line 163)
+  src/str/string.npk:163: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 87)
+  src/str/string.npk:87: dummy
+
+--- Error: while condition must be 'bool' type, got 'Result<bool>'. Use explicit comparison (e.g., x != 0) instead of truthiness. (Line 171)
+  src/str/string.npk:171: dummy
+
+--- Error: Argument 1 has type 'string', but function expects 'int64' (Line 371)
+  src/str/string.npk:371: dummy
+
+--- Error: Cannot assign value of type 'int64' to variable of type 'uint64' (Line 381)
+  src/str/string.npk:381: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 252)
+  src/str/string.npk:252: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 254)
+  src/str/string.npk:254: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 272)
+  src/str/string.npk:272: dummy
+
+--- Error: Unused result from NIL-returning function. Even NIL functions can fail (bad args, internal error), so the Result<NIL> must be handled. Use drop(func(...)) to discard, or check .is_error to handle failures. (Line 274)
+  src/str/string.npk:274: dummy
+
+--- Error: Undefined identifier: 'libn_write_all' (Line 439)
+  src/str/string.npk:439: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 440)
+  src/str/string.npk:440: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 441)
+  src/str/string.npk:441: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 176)
+  src/str/string.npk:176: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 177)
+  src/str/string.npk:177: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 183)
+  src/str/string.npk:183: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/str/string.npk:187: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 188)
+  src/str/string.npk:188: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 189)
+  src/str/string.npk:189: dummy
+
+--- Error: Undefined identifier: 'SYS_LSEEK' (Line 212)
+  src/str/string.npk:212: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 213)
+  src/str/string.npk:213: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 238)
+  src/str/string.npk:238: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 239)
+  src/str/string.npk:239: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 245)
+  src/str/string.npk:245: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 246)
+  src/str/string.npk:246: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 249)
+  src/str/string.npk:249: dummy
+
+--- Error: Undefined identifier: 'SYS_READ' (Line 105)
+  src/str/string.npk:105: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 106)
+  src/str/string.npk:106: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 112)
+  src/str/string.npk:112: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 116)
+  src/str/string.npk:116: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 117)
+  src/str/string.npk:117: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 118)
+  src/str/string.npk:118: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 178)
+  src/str/string.npk:178: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 179)
+  src/str/string.npk:179: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 185)
+  src/str/string.npk:185: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 186)
+  src/str/string.npk:186: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 'f'? (Line 187)
+  src/str/string.npk:187: dummy
+
+--- Error: Undefined identifier: 'SYS_WRITE' (Line 208)
+  src/str/string.npk:208: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 209)
+  src/str/string.npk:209: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 215)
+  src/str/string.npk:215: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 216)
+  src/str/string.npk:216: dummy
+
+--- Error: Undefined identifier: 'wr'. Did you mean 'src'? (Line 217)
+  src/str/string.npk:217: dummy
+
+--- Error: Cannot assign 'bool' to 'int64' (Line 84)
+  src/str/string.npk:84: dummy
+
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 279)
+  src/str/string.npk:279: dummy
+
+--- Error: Undefined identifier: 'plen' (Line 280)
+  src/str/string.npk:280: dummy
+
+--- Error: NITPICK-IS-001: 'is' ternary branches have incompatible types: 'Result<int64>' and 'int64'. Both branches must have exactly the same type — convert one branch or split into an 'if'/'else' statement. (Line 308)
+  src/str/string.npk:308: dummy
+
+--- Error: Undefined identifier: 'xlen' (Line 310)
+  src/str/string.npk:310: dummy
+
+--- Error: Undefined identifier: 'libn_write_all' (Line 713)
+  src/str/string.npk:713: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 714)
+  src/str/string.npk:714: dummy
+
+--- Error: Undefined identifier: 'r'. Did you mean 's'? (Line 715)
+  src/str/string.npk:715: dummy
+

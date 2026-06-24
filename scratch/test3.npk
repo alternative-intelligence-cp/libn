@@ -1,0 +1,5 @@
+pub func:main = int32() {
+    uint8->:p = @cast_unchecked<uint8->>(0x1000i64);
+    if (p[5i64] == 0u8) { pass 1i32; }
+    exit 0i32;
+};

@@ -1,0 +1,7 @@
+extern func:npk_string_format_float_simple = int64(int64:fval, int64:prec);
+
+pub func:main = int32() {
+    drop(npk_string_format_float_simple(0i64, 6i64));
+    exit 0;
+};
+pub func:failsafe = int32(tbb32:err) { exit 1; };

@@ -1,0 +1,19 @@
+[DEBUG parseFuncDecl] nameToken=ret_res, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+PARSING CAST: token=CAST_UNCHECKED isUnchecked=1
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG IR_GEN] Initializer generated for 'total', value = 0x5a74f6aa95e0
+[DEBUG IR_GEN] InitVal type: 0x5a74f6a7bf98
+[DEBUG IR_GEN] Default builder.CreateStore for total
+[DEBUG CODEGEN CALL] Generating call to: ret_res
+[DEBUG IR_GEN] Initializer generated for 'r', value = 0x5a74f6aaa0c0
+[DEBUG IR_GEN] InitVal type: 0x5a74f6aa1450
+[DEBUG IR_GEN] Default builder.CreateStore for r
+[DEBUG ASSIGNMENT] op=168, leftType=1 (POINTER_MEMBER=7)
+[DEBUG CODEGEN CALL] Generating call to: drop
+[DEBUG CODEGEN CALL] Generating call to: test1
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[1m:17:5: [0m[1;33mwarning[0m: [1m[unused-parameter] parameter 'err' is unused in function 'failsafe'[0m
+

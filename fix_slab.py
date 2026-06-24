@@ -1,42 +1,54 @@
-import re
+with open('src/mem/slab.npk', 'r') as f:
+    content = f.read()
 
-with open('/home/randy/Workspace/REPOS/libn/src/mem/slab.npk', 'r') as f:
-    text = f.read()
+# 1. Update slab_refill loop to set canary
+target1 = """        uint8->:hdr_byte = @cast_unchecked<uint8->>(slot_start);
+        hdr_byte[0] = @cast_unchecked<uint8>(i);    // class index in header uint8"""
+replacement1 = """        uint8->:hdr_byte = @cast_unchecked<uint8->>(slot_start);
+        hdr_byte[0] = @cast_unchecked<uint8>(i);    // class index in header uint8
+        hdr_byte[1] = 0xDFu8;                       // 0xDF = free canary"""
+content = content.replace(target1, replacement1)
 
-# Fix slab_alloc signature and returns
-text = text.replace('pub func:slab_alloc = int64(int64:n)', 'pub func:slab_alloc = Result<int64>(int64:n)')
-text = text.replace('pass n;', 'pass r;')
+# 2. Update slab_alloc to set allocated canary
+target2 = """      // Clear the "next" pointer field before handing to user
+      // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
+    next_ptr[0] = 0i64;
 
-# Fix slab_refill usage
-text = re.sub(r'int64:rr = slab_refill\(cls\);\n\s*if \(rr\.is_error\) \{', 
-              r'Result<int64>:rr = slab_refill(cls);\n        if (rr.is_error) {', text)
-text = text.replace('int64:rr = slab_refill(n);\n        if (rr.is_error) {',
-                    'Result<int64>:rr = slab_refill(n);\n        if (rr.is_error) {')
+    pass user_ptr;"""
+replacement2 = """      // Clear the "next" pointer field before handing to user
+      // (The slot was zero-initialized by mmap on first use; on reuse, clear it)
+    next_ptr[0] = 0i64;
+    
+    uint8->:alloc_hdr = @cast_unchecked<uint8->>(head);
+    alloc_hdr[1] = 0xAAu8; // 0xAA = allocated canary
 
-# Fix int64->next_ptr
-text = text.replace('int64:next = raw next_ptr[0];', 'int64:next = next_ptr[0];')
-text = text.replace('slab_freelist_set(n, n);', 'slab_freelist_set(cls, next);')
+    pass user_ptr;"""
+content = content.replace(target2, replacement2)
 
-# Fix slab_free signature
-text = text.replace('pub func:slab_free = int64(int64:ptr)', 'pub func:slab_free = Result<NIL>(int64:ptr)')
-text = text.replace('int64:r = mem_free(ptr);\n        pass hdr;', 'Result<NIL>:r = mem_free(ptr);\n        pass r;')
+# 3. Update slab_free to check double-free
+target3 = """    if ((ptr & 4095i64) == 16i64) {
+          // @cast_unchecked<direct>(Treat)-mmap allocation — use mem_free with the actual ptr.
+          // The direct-mmap header is 16 bytes before the user pointer.
+        Result<int64>:r = mem_free(ptr);
+        return r;
+    }
 
-# Fix slab_alloc_zero signature
-text = text.replace('pub func:slab_alloc_zero = int64(int64:n)', 'pub func:slab_alloc_zero = Result<int64>(int64:n)')
-text = text.replace('int64:r = slab_alloc(n);\n    if (r->is_error) {\n        fail r.error;\n    }\n    int64:ptr = r->value;', 
-                    'Result<int64>:r = slab_alloc(n);\n    if (r.is_error) {\n        fail r.error;\n    }\n    int64:ptr = r.value;')
-text = text.replace('uint8->:p    = @cast_unchecked<uint8->>(r);', 'uint8->:p    = @cast_unchecked<uint8->>(ptr);')
-text = text.replace('int64:sz   = slab_class_size(r);', 'int64:sz   = slab_class_size(cls);')
-text = text.replace('while (zi < zi)', 'while (zi < sz)')
+      // Push slot back onto freelist:"""
+replacement3 = """    if ((ptr & 4095i64) == 16i64) {
+          // @cast_unchecked<direct>(Treat)-mmap allocation — use mem_free with the actual ptr.
+          // The direct-mmap header is 16 bytes before the user pointer.
+        Result<int64>:r = mem_free(ptr);
+        return r;
+    }
+    
+    if (hdr[1] == 0xDFu8) {
+        // Double free detected!
+        fail @cast_unchecked<tbb32>(ERR_INTERNAL);
+    }
+    hdr[1] = 0xDFu8; // set to free canary
 
-# Fix slab_refill loop variables
-text = text.replace('int64:slab_base = i->value;', 'int64:slab_base = r.value;')
+      // Push slot back onto freelist:"""
+content = content.replace(target3, replacement3)
 
-# Fix map methods in sizes? Wait, slab doesn't use map.
-text = text.replace('map.size()', 'map_size') # Wait, earlier error: "Type 'map' has no method 'size'"
-# Let's check slab.npk for map_size. The error was Line 298: Type 'map' has no method 'size'
-# Line 308: Type 'map' has no method 'size'
-
-with open('/home/randy/Workspace/REPOS/libn/src/mem/slab.npk', 'w') as f:
-    f.write(text)
-
+with open('src/mem/slab.npk', 'w') as f:
+    f.write(content)

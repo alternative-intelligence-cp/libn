@@ -1,0 +1,13 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[DEBUG ASSIGNMENT] op=168, leftType=5 (POINTER_MEMBER=7)
+[DEBUG IR_GEN] Initializer generated for 'x', value = 0x598bbd390bb0
+[DEBUG IR_GEN] InitVal type: 0x598bbd370f98
+[DEBUG IR_GEN] Default builder.CreateStore for x
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[DEBUG CODEGEN CALL] Generating call to: proc_exit
+[1m:4:5: [0m[1;33mwarning[0m: [1m[unused-variable] variable 'x' is declared but never used[0m
+
+[1m:7:5: [0m[1;33mwarning[0m: [1m[unused-parameter] parameter 'err' is unused in function 'failsafe'[0m
+
+[1mSummary: [0m[1;33m2 warnings[0m

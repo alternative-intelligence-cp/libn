@@ -152,14 +152,10 @@ func:render_uint = int64(uint64:v, int64:base, int64:buf, bool:upper) {
 
 pub func:str_format_args = int64(int64:buf, int64:buf_size, int64:fmt,
                                   int64->:args, int64:nargs) {
-    if (buf == 0i64 || buf_size <= 0i64) {
-        pass 0i64;
-    }
-
     FmtState:st;
     st->buf  = buf;
-    st.size = buf_size;
-    st.pos  = 0i64;
+    st.size  = is (buf == 0i64) : 0i64 : buf_size;
+    st.pos   = 0i64;
     FmtState->:stp = @st;
 
     uint8->:f = @cast_unchecked<uint8->>(fmt);

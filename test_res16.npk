@@ -1,0 +1,7 @@
+pub func:test1 = NIL() { pass; };
+
+pub func:main = int32() {
+    drop(test1());
+    exit 0;
+};
+pub func:failsafe = int32(tbb32:err) { exit 1; };

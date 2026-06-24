@@ -81,7 +81,7 @@ pub func:str_strcmp = int64(int64:a, int64:b) {
     int64:i = 0i64;
 
       // ── Prologue: uint8-by-uint8 until both aligned ────────────────────
-    while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+    while (((a + i) & 7i64) != 0i64) {
         uint8:ca = pa[i];
         uint8:cb = pb[i];
         if (ca != cb) {

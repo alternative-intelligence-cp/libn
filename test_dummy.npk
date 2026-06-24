@@ -1,0 +1,6 @@
+use "str/strfmt.npk".*;
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+pub func:main = int32() {
+    int64:len = str_snprintf0(0i64, 0i64, 0i64);
+    pass 0i32;
+};

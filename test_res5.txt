@@ -1,0 +1,7 @@
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=test2, peek()==, type=168
+[1mtest_res5.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_res5.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mSummary: [0m[1;31m2 errors[0m

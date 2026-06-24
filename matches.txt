@@ -1,0 +1,1475 @@
+src/proc/exit.npk:37: // @cast_unchecked<raw>(Stored) int64 (pointer to function).
+src/proc/exit.npk:72:     while (i >= 0i64) {
+src/proc/exit.npk:74:         if (fn != 0i64) {
+src/proc/exit.npk:86:     while (i >= 0i64) {
+src/proc/exit.npk:88:         if (fn != 0i64) {
+src/proc/signal.npk:41: // We represent @cast_unchecked<int64>(it). Bit (signo-1) corresponds to signal signo.
+src/proc/signal.npk:77:     pass (mask & (1i64 << (signo - 1i64))) != 0i64;
+src/proc/signal.npk:98:     drop(asm!!!<int64>("x86_64", "mov rax, 15\nsyscall", ""));
+src/proc/signal.npk:105:     int64->:p = @cast_unchecked<int64->>(buf);
+src/proc/signal.npk:108:     p[2] = @cast_unchecked<int64>(@proc_sigreturn_tramp);
+src/proc/signal.npk:114:     pass (@cast_unchecked<int64->>(buf))[0];
+src/proc/signal.npk:132:     drop(_sigact_encode(@cast_unchecked<int64>(@new_act), new_handler, new_flags, new_mask));
+src/proc/signal.npk:136:     int64:old_ptr = is (old_buf != 0i64) : @cast_unchecked<int64>(@old_act) : 0i64;
+src/proc/signal.npk:140:     Result<int64>:r = sys!!(SYS_RT_SIGACTION,
+src/proc/signal.npk:142:                              @cast_unchecked<int64>(@new_act),
+src/proc/signal.npk:147:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/signal.npk:151:     if (old_buf != 0i64) {
+src/proc/signal.npk:153:         int64->:op = @cast_unchecked<int64->>(@old_act);
+src/proc/signal.npk:154:         int64->:cp = @cast_unchecked<int64->>(old_buf);
+src/proc/signal.npk:170:     int64:r = raw sigaction(signo, handler, flags, sigemptyset(), @cast_unchecked<int64>(@old_act));
+src/proc/signal.npk:171:     if (r < 0i64) { pass SIG_ERR; }
+src/proc/signal.npk:172:     return _sigact_handler(@cast_unchecked<int64>(@old_act));
+src/proc/signal.npk:208:     int64:old_p = is (old_ptr != 0i64) : @cast_unchecked<int64>(@old_val) : 0i64;
+src/proc/signal.npk:210:     Result<int64>:r = sys!!(SYS_RT_SIGPROCMASK,
+src/proc/signal.npk:217:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/signal.npk:221:     if (old_ptr != 0i64) {
+src/proc/signal.npk:222:         (@cast_unchecked<int64->>(old_ptr))[0] = old_val;
+src/proc/signal.npk:241:     Result<int64>:r = sys!!(SYS_KILL, pid, signo, 0i64, 0i64, 0i64, 0i64);
+src/proc/signal.npk:243:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/signal.npk:254:     Result<int64>:pid_r = sys_safe(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/signal.npk:256:     Result<int64>:r = sys!!(SYS_TKILL, tid, signo, 0i64, 0i64, 0i64, 0i64);
+src/proc/signal.npk:258:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/env.npk:62:     if (envp == 0i64) {
+src/proc/env.npk:68:     int64->:ep = @cast_unchecked<int64->>(envp);
+src/proc/env.npk:70:     while (ep[n] != 0i64) { n = n + 1i64; }
+src/proc/env.npk:74:     Result<int64>:r = mem_malloc((cap + 1i64) * 8i64);    // +1 for NULL terminator
+src/proc/env.npk:75:     Result<int64>:r2 = mem_malloc((cap + 1i64) * 8i64);
+src/proc/env.npk:88:     int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:92:         (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 0i64;
+src/proc/env.npk:96:     (@cast_unchecked<int64->>(_env_heap_is_alloc))[n] = 0i64;
+src/proc/env.npk:110:     if (name == 0i64 || environ == 0i64) { pass 0i64; }
+src/proc/env.npk:113:     if (nlen == 0i64) { pass 0i64; }
+src/proc/env.npk:115:     int64->:ep = @cast_unchecked<int64->>(environ);
+src/proc/env.npk:120:     while (ep[count] != 0i64) { count = count + 1i64; }
+src/proc/env.npk:123:     while (i >= 0i64) {
+src/proc/env.npk:148:     if (_env_heap_envp != 0i64) { pass true; }
+src/proc/env.npk:151:     pass _env_heap_envp != 0i64;
+src/proc/env.npk:159:     Result<int64>:r = mem_realloc(_env_heap_envp, (new_cap + 1i64) * 8i64);
+src/proc/env.npk:160:     Result<int64>:r2 = mem_realloc(_env_heap_is_alloc, (new_cap + 1i64) * 8i64);
+src/proc/env.npk:181:     if (name == 0i64 || value == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/proc/env.npk:183:     if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/proc/env.npk:196:     if (overwrite == 0i64 && raw getenv(name) != 0i64) { pass 0i64; }
+src/proc/env.npk:201:     Result<int64>:sr = mem_malloc(total);
+src/proc/env.npk:209:     int64->:ep = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:211:     while (ep[i] != 0i64) {
+src/proc/env.npk:222:             if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) {
+src/proc/env.npk:226:             (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 1i64;
+src/proc/env.npk:238:     ep = @cast_unchecked<int64->>(_env_heap_envp);    // re-fetch after possible realloc
+src/proc/env.npk:241:     while (ep[i] != 0i64) { i = i + 1i64; }
+src/proc/env.npk:243:     (@cast_unchecked<int64->>(_env_heap_is_alloc))[i] = 1i64;
+src/proc/env.npk:245:     (@cast_unchecked<int64->>(_env_heap_is_alloc))[i + 1i64] = 0i64;
+src/proc/env.npk:259:     if (name == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/proc/env.npk:261:     if (nlen == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/proc/env.npk:271:     int64->:ep = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:273:     while (ep[count] != 0i64) { count = count + 1i64; }
+src/proc/env.npk:287:             if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) { drop(mem_free(ep[i])); }
+src/proc/env.npk:291:                 (@cast_unchecked<int64->>(_env_heap_is_alloc))[k] = (@cast_unchecked<int64->>(_env_heap_is_alloc))[k + 1i64];
+src/proc/env.npk:317:     if (entry == 0i64) { drop(errno_set(EINVAL)); pass -1i64; }
+src/proc/env.npk:327:     if (eq_pos < 0i64) {
+src/proc/env.npk:334:     int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:336:     while (hp[count] != 0i64) { count = count + 1i64; }
+src/proc/env.npk:350:             if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[j] == 1i64) { drop(mem_free(hp[j])); }
+src/proc/env.npk:352:             (@cast_unchecked<int64->>(_env_heap_is_alloc))[j] = 0i64;   // putenv string is NOT owned by us
+src/proc/env.npk:360:     hp = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:362:     while (hp[count] != 0i64) { count = count + 1i64; }
+src/proc/env.npk:364:     (@cast_unchecked<int64->>(_env_heap_is_alloc))[count] = 0i64;
+src/proc/env.npk:366:     (@cast_unchecked<int64->>(_env_heap_is_alloc))[count + 1i64] = 0i64;
+src/proc/env.npk:380:     if (_env_heap_envp == 0i64) {
+src/proc/env.npk:383:     int64->:hp = @cast_unchecked<int64->>(_env_heap_envp);
+src/proc/env.npk:386:         if ((@cast_unchecked<int64->>(_env_heap_is_alloc))[i] == 1i64) {
+src/proc/wait.npk:15: // They accept the raw @cast_unchecked<int64>(status) (Nitpick convention).
+src/proc/wait.npk:21: //       execlp1("ls"@cast_unchecked<int64>(), "ls"@cast_unchecked<int64>());
+src/proc/wait.npk:25: //   int64:w = waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
+src/proc/wait.npk:39: // All take the raw int32 status @cast_unchecked<int64>(value) (zero-extended).
+src/proc/wait.npk:44:     pass (status & 0x7Fi64) == 0i64;
+src/proc/wait.npk:56:     pass low7 != 0i64 && low7 != 0x7Fi64;
+src/proc/wait.npk:67:     pass (status & 0x80i64) != 0i64;
+src/proc/wait.npk:105:     Result<int64>:r = sys!!(SYS_WAIT4, pid, status_ptr, options, 0i64, 0i64, 0i64);
+src/proc/wait.npk:107:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/wait.npk:136:         if (r <= 0i64) { break; }
+src/proc/wait.npk:160:     if (pid < 0i64) { pass -1i64; }
+src/proc/wait.npk:162:     if (pid == 0i64) {
+src/proc/wait.npk:164:         if (envp != 0i64) {
+src/proc/wait.npk:174:     int64:w = raw waitpid(pid, @cast_unchecked<int64>(@status), 0i64);
+src/proc/wait.npk:175:     if (w < 0i64) { pass -1i64; }
+src/proc/exec.npk:35: //       argv[0] = "/bin/ls"@cast_unchecked<int64>();
+src/proc/exec.npk:36: //       argv[1] = "-l"@cast_unchecked<int64>();
+src/proc/exec.npk:38: //       drop(execv("/bin/ls"@cast_unchecked<int64>(), @cast_unchecked<int64>(@argv)));
+src/proc/exec.npk:60:     Result<int64>:r = sys!!(SYS_EXECVE, path, argv, envp, 0i64, 0i64, 0i64);
+src/proc/exec.npk:62:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/exec.npk:94:     if (name == 0i64 || argv == 0i64) {
+src/proc/exec.npk:100:     if (name_len == 0i64) {
+src/proc/exec.npk:115:     int64:path_key = @cast_unchecked<int64>(@"PATH");
+src/proc/exec.npk:116:     int64:default_path = @cast_unchecked<int64>(@"/usr/local/bin:/usr/bin:/bin");
+src/proc/exec.npk:119:     if (path_str == 0i64) {
+src/proc/exec.npk:142:             if (dir_len > 0i64) {
+src/proc/exec.npk:163:             int64:ret = raw execve(@cast_unchecked<int64>(@candidate), argv, envp);
+src/proc/exec.npk:189:     if (envp == 0i64 || key == 0i64) { pass 0i64; }
+src/proc/exec.npk:191:     int64->:ep = @cast_unchecked<int64->>(envp);
+src/proc/exec.npk:193:     while (ep[i] != 0i64) {
+src/proc/exec.npk:224:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:231:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:237:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:243:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:249:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:257:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:265:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:273:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:281:     return execve(path, @cast_unchecked<int64>(@argv), environ);
+src/proc/exec.npk:288:     return execvp(name, @cast_unchecked<int64>(@argv));
+src/proc/exec.npk:294:     return execvp(name, @cast_unchecked<int64>(@argv));
+src/proc/exec.npk:300:     return execvp(name, @cast_unchecked<int64>(@argv));
+src/proc/exec.npk:306:     return execvp(name, @cast_unchecked<int64>(@argv));
+src/proc/fork.npk:45:     Result<int64>:r = sys!!(SYS_FORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:47:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/fork.npk:61:     Result<int64>:r = sys!!(SYS_VFORK, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:63:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/fork.npk:75:     Result<int64>:r = sys!!(SYS_GETPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:82:     Result<int64>:r = sys!!(SYS_GETPPID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:89:     Result<int64>:r = sys!!(SYS_GETUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:96:     Result<int64>:r = sys!!(SYS_GETEUID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:103:     Result<int64>:r = sys!!(SYS_GETGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:110:     Result<int64>:r = sys!!(SYS_GETEGID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:123:     Result<int64>:r = sys!!(SYS_SETPGID, pid, pgid, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:125:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/fork.npk:133:     Result<int64>:r = sys!!(SYS_GETPGID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:135:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/fork.npk:149:     Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:151:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/proc/fork.npk:159:     Result<int64>:r = sys!!(SYS_GETSID, pid, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk:161:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/open.npk:54:     if (path == 0i64) {
+src/io/open.npk:65:     if (path == 0i64) {
+src/io/open.npk:71:     Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode, 0i64, 0i64, 0i64);
+src/io/open.npk:84:     if (path == 0i64) {
+src/io/open.npk:112:     if (fd < 0i64) {
+src/io/open.npk:126:     if (fd < 0i64) {
+src/io/open.npk:129:     Result<int64>:r = libn_close(fd);
+src/io/open.npk:131:         int64:e = @cast_unchecked<int64>(r.error);
+src/io/open.npk:153:     if (dir_path == 0i64) {
+src/io/open.npk:158:     Result<int64>:r = libn_openat(AT_FDCWD, dir_path, O_TMPFILE | O_RDWR, MODE_SECRET);
+src/io/dup.npk:40:     if (fd < 0i64) {
+src/io/dup.npk:54:     if (fd < 0i64) {
+src/io/dup.npk:76:     if (fd < 0i64 || newfd < 0i64) {
+src/io/dup.npk:81:         Result<int64>:chk = libn_fcntl(fd, F_GETFD, 0i64);
+src/io/dup.npk:101:     if (fd < 0i64 || newfd < 0i64) {
+src/io/dup.npk:128:     if (src_fd < 0i64 || target_fd < 0i64) {
+src/io/dup.npk:140:     Result<int64>:r = libn_dup2(src_fd, target_fd);
+src/io/seek.npk:27:     if (fd < 0i64) {
+src/io/seek.npk:41:     if (fd < 0i64) {
+src/io/seek.npk:57:     if (fd < 0i64) {
+src/io/seek.npk:71:     if (fd < 0i64) {
+src/io/seek.npk:84:     if (fd < 0i64) {
+src/io/seek.npk:101:     if (fd < 0i64) {
+src/io/seek.npk:106:     Result<int64>:saved = libn_lseek(fd, 0i64, SEEK_CUR);
+src/io/seek.npk:112:     Result<int64>:end_pos = libn_lseek(fd, 0i64, SEEK_END);
+src/io/seek.npk:120:     Result<int64>:restore = libn_lseek(fd, saved.value, SEEK_SET);
+src/io/seek.npk:139:     if (fd < 0i64) {
+src/io/write.npk:20: // All functions return Result<int64> where .value is bytes written.
+src/io/write.npk:54:     if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/write.npk:57:     if (n == 0i64) {
+src/io/write.npk:65:         Result<int64>:r = libn_write(fd, buf + total, remaining);
+src/io/write.npk:68:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/write.npk:76:             if (r.value == 0i64) {
+src/io/write.npk:101:     if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/write.npk:104:     if (n == 0i64) {
+src/io/write.npk:108:     Result<int64>:r = libn_write(fd, buf, n);
+src/io/write.npk:125:     if (s == 0i64) {
+src/io/write.npk:146:     return io_write_n(fd, @cast_unchecked<int64>(@b), 1i64);
+src/io/write.npk:173:     if (r < 0i64) { pass r; }
+src/io/write.npk:175:     if (r2 < 0i64) { pass r2; }
+src/io/pipe.npk:46:     if (fds == 0i64) {
+src/io/pipe.npk:64:     if (fds == 0i64) {
+src/io/pipe.npk:78:     if (fds == 0i64) {
+src/io/pipe.npk:92:     pass (@cast_unchecked<int64->>(fds))[0];
+src/io/pipe.npk:96:     pass (@cast_unchecked<int64->>(fds))[1];
+src/io/printf.npk:57:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:76:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:95:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:114:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:134:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:154:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:177:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:202:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:227:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/printf.npk:330:     if (prefix != 0i64) {
+src/io/printf.npk:332:         if (r < 0i64) { pass r; }
+src/io/printf.npk:333:         int64:colon_space = @cast_unchecked<int64>(@": ");
+src/io/printf.npk:335:         if (r2 < 0i64) { pass r2; }
+src/io/printf.npk:342:     int64:e = @cast_unchecked<int64>(libn_errno);
+src/io/printf.npk:347:     if (e <= 0i64) {
+src/io/printf.npk:352:         while (v > 0i64) {
+src/io/printf.npk:353:             (@cast_unchecked<uint8->>(@num_buf))[i] = @cast_unchecked<uint8>((48i64 + (v % 10i64)));
+src/io/printf.npk:358:     int64:num_start = (@cast_unchecked<int64>(@num_buf)) + i + 1i64;
+src/io/printf.npk:359:     Result<int64>:r3 = io_write_str(STDERR_FD, num_start);
+src/io/fcntl.npk:30:     if (fd < 0i64) {
+src/io/fcntl.npk:33:     Result<int64>:r = libn_fcntl(fd, F_GETFD, 0i64);
+src/io/fcntl.npk:37:     pass (r.value & FD_CLOEXEC) != 0i64;
+src/io/fcntl.npk:45:     if (fd < 0i64) {
+src/io/fcntl.npk:48:     Result<int64>:r = libn_fcntl(fd, F_GETFD, 0i64);
+src/io/fcntl.npk:71:     if (fd < 0i64) {
+src/io/fcntl.npk:82:     if (fd < 0i64) {
+src/io/fcntl.npk:98:     if (fd < 0i64) {
+src/io/fcntl.npk:101:     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
+src/io/fcntl.npk:108:     if (fd < 0i64) {
+src/io/fcntl.npk:111:     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
+src/io/fcntl.npk:118:     if (fd < 0i64) {
+src/io/fcntl.npk:121:     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
+src/io/fcntl.npk:123:     pass (r.value & O_NONBLOCK) != 0i64;
+src/io/fcntl.npk:132:     if (fd < 0i64) {
+src/io/fcntl.npk:135:     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
+src/io/fcntl.npk:142:     if (fd < 0i64) {
+src/io/fcntl.npk:145:     Result<int64>:r = libn_fcntl(fd, F_GETFL, 0i64);
+src/io/fcntl.npk:162:     if (fd < 0i64 || min_fd < 0i64) {
+src/io/fcntl.npk:170:     if (fd < 0i64 || min_fd < 0i64) {
+src/io/fcntl.npk:188:     if (fd < 0i64) {
+src/io/fcntl.npk:196:     if (fd < 0i64) {
+src/io/fcntl.npk:210:     if (fd < 0i64) {
+src/io/read.npk:38:     if (fd < 0i64 || buf == 0i64 || n <= 0i64) {
+src/io/read.npk:42:     Result<int64>:r = libn_read(fd, buf, n);
+src/io/read.npk:67:     if (fd < 0i64 || buf == 0i64 || n < 0i64) {
+src/io/read.npk:70:     if (n == 0i64) {
+src/io/read.npk:78:         Result<int64>:r = libn_read(fd, buf + total, remaining);
+src/io/read.npk:81:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/read.npk:88:         if (r.value == 0i64) {
+src/io/read.npk:135:     if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+src/io/read.npk:146:         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
+src/io/read.npk:149:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/read.npk:156:         if (r.value == 0i64) {
+src/io/read.npk:159:             if (count == 0i64) {
+src/io/read.npk:171:             if (count > 0i64 && dst[count - 1i64] == 13u8) {    // '\r'
+src/io/read.npk:202:     if (fd < 0i64 || buf == 0i64 || buf_size <= 0i64) {
+src/io/read.npk:213:         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@one), 1i64);
+src/io/read.npk:216:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/read.npk:222:         if (r.value == 0i64) {
+src/io/read.npk:224:             if (count == 0i64) { pass 0i64; }
+src/io/read.npk:253:     if (fd < 0i64) {
+src/io/read.npk:261:         Result<int64>:r = libn_read(fd, @cast_unchecked<int64>(@b), 1i64);
+src/io/read.npk:263:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/read.npk:267:         if (r.value == 0i64) {
+src/io/read.npk:270:         pass @cast_unchecked<int64>(b[0]);
+src/io/bio/fprintf.npk:52:     if (len <= 0i64) {
+src/io/bio/fprintf.npk:71:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:93:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:115:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:137:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:160:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:183:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:209:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:237:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:265:     int64:buf_ptr = @cast_unchecked<int64>(@buf);
+src/io/bio/fprintf.npk:300:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/io/bio/fprintf.npk:303:     if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:305:     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+src/io/bio/fprintf.npk:311:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/io/bio/fprintf.npk:314:     if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:316:     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+src/io/bio/fprintf.npk:322:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/io/bio/fprintf.npk:325:     if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:327:     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+src/io/bio/fprintf.npk:334:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/io/bio/fprintf.npk:337:     if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:339:     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+src/io/bio/fprintf.npk:346:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/io/bio/fprintf.npk:349:     if (p == 0i64) { pass 0i64; }
+src/io/bio/fprintf.npk:351:     if (out_len != 0i64) { (@cast_unchecked<int64->>(out_len))[0] = len; }
+src/io/bio/fseek.npk:45:     if (fp == 0i64) {
+src/io/bio/fseek.npk:56:     if (f->fd < 0i64) {
+src/io/bio/fseek.npk:62:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64 && f->buf_pos > 0i64) {
+src/io/bio/fseek.npk:63:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fseek.npk:65:             drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fseek.npk:74:         int64:buffered_ahead = f->buf_len - f->buf_pos;
+src/io/bio/fseek.npk:82:     f->buf_pos = 0i64;
+src/io/bio/fseek.npk:83:     f->buf_len = 0i64;
+src/io/bio/fseek.npk:89:     Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, real_offset, whence, 0i64, 0i64, 0i64);
+src/io/bio/fseek.npk:91:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fseek.npk:99:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+src/io/bio/fseek.npk:101:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/fseek.npk:109: // Returns the @cast_unchecked<int64>(position) (>= 0), or -1 on error (errno set).
+src/io/bio/fseek.npk:118:     if (fp == 0i64) {
+src/io/bio/fseek.npk:125:     if (f->fd < 0i64) {
+src/io/bio/fseek.npk:132:     int64:pos = f->file_pos;
+src/io/bio/fseek.npk:139:     if (pos < 0i64) {
+src/io/bio/fseek.npk:154:     if (fp == 0i64) { pass NIL; }
+src/io/bio/fseek.npk:158:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fseek.npk:163:     f->buf_pos = 0i64;
+src/io/bio/fseek.npk:164:     f->buf_len = 0i64;
+src/io/bio/fseek.npk:168:     drop(sys_safe(SYS_LSEEK, f->fd, 0i64, SEEK_SET, 0i64, 0i64, 0i64));
+src/io/bio/fseek.npk:169:     f->file_pos = 0i64;
+src/io/bio/fseek.npk:172:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/fseek.npk:185:     if (fp == 0i64 || pos == 0i64) {
+src/io/bio/fseek.npk:191:     if (p < 0i64) {
+src/io/bio/fseek.npk:195:     (@cast_unchecked<int64->>(pos))[0] = p;
+src/io/bio/fseek.npk:207:     if (fp == 0i64 || pos == 0i64) {
+src/io/bio/fseek.npk:212:     int64:target = (@cast_unchecked<int64->>(pos))[0];
+src/io/bio/stdfiles.npk:64:     Result<int64>:r = sys_safe(SYS_IOCTL, fd, TCGETS, @cast_unchecked<int64>(@termios_buf), 0i64, 0i64, 0i64);
+src/io/bio/stdfiles.npk:82:     if (g_std_init_done != 0i64) {
+src/io/bio/stdfiles.npk:89:     sin->fd       = 0i64;
+src/io/bio/stdfiles.npk:95:     if (stdin_buf != 0i64) {
+src/io/bio/stdfiles.npk:102:     stdin_fp = @cast_unchecked<int64>(@g_stdin_file);
+src/io/bio/stdfiles.npk:108:     sout->buf_mode = is (isatty(1i64) != 0i64) : _IOLBF : _IOFBF;
+src/io/bio/stdfiles.npk:112:     if (stdout_buf != 0i64) {
+src/io/bio/stdfiles.npk:119:     stdout_fp = @cast_unchecked<int64>(@g_stdout_file);
+src/io/bio/stdfiles.npk:128:     serr->buf      = 0i64;
+src/io/bio/stdfiles.npk:129:     serr->buf_cap  = 0i64;
+src/io/bio/stdfiles.npk:130:     stderr_fp = @cast_unchecked<int64>(@g_stderr_file);
+src/io/bio/stdfiles.npk:155:     if (s == 0i64) {
+src/io/bio/fio.npk:50:     if (fp == 0i64 || buf == 0i64) {
+src/io/bio/fio.npk:53:     if (size == 0i64 || nmemb == 0i64) {
+src/io/bio/fio.npk:60:     if ((f->mode & FILE_MODE_READ) == 0i64) {
+src/io/bio/fio.npk:66:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fio.npk:67:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fio.npk:79:         if (total_bytes > 0i64) {
+src/io/bio/fio.npk:90:     while (bytes_read < size * nmemb && (f->flags & (FILE_FLAG_EOF | FILE_FLAG_ERROR)) == 0i64) {
+src/io/bio/fio.npk:91:         int64:buffered = f->buf_len - f->buf_pos;
+src/io/bio/fio.npk:93:         if (buffered > 0i64) {
+src/io/bio/fio.npk:96:             int64:to_copy = is (buffered < remaining) : buffered : remaining;
+src/io/bio/fio.npk:106:             if (f->buf_mode == _IONBF || (f->buf != 0i64 && remaining >= f->buf_cap)) {
+src/io/bio/fio.npk:108:                 Result<int64>:r = sys_safe(SYS_READ, f->fd, dst, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:110:                     int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fio.npk:115:                 if (r.value == 0i64) {
+src/io/bio/fio.npk:124:                 Result<int64>:r = bio_refill_read_buf(fp);
+src/io/bio/fio.npk:128:                 if (r.value == 0i64) {
+src/io/bio/fio.npk:152:     if (fp == 0i64 || buf == 0i64) {
+src/io/bio/fio.npk:155:     if (size == 0i64 || nmemb == 0i64) {
+src/io/bio/fio.npk:162:     if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+src/io/bio/fio.npk:168:     if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
+src/io/bio/fio.npk:178:     if (f->buf_mode == _IONBF || f->buf == 0i64) {
+src/io/bio/fio.npk:181:             Result<int64>:r = sys_safe(SYS_WRITE, f->fd, src, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:183:                 int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fio.npk:196:     while (bytes_written < total_bytes && (f->flags & FILE_FLAG_ERROR) == 0i64) {
+src/io/bio/fio.npk:198:         int64:buf_space  = f->buf_cap - f->buf_pos;
+src/io/bio/fio.npk:200:         if (buf_space == 0i64) {
+src/io/bio/fio.npk:202:             Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fio.npk:210:         if (remaining >= f->buf_cap && f->buf_pos == 0i64) {
+src/io/bio/fio.npk:211:             Result<int64>:wr = sys_safe(SYS_WRITE, f->fd, src, remaining, 0i64, 0i64, 0i64);
+src/io/bio/fio.npk:213:                 int64:e = @cast_unchecked<int64>(wr.error);
+src/io/bio/fio.npk:225:         int64:to_copy = is (buf_space < remaining) : buf_space : remaining;
+src/io/bio/fio.npk:238:             if (nl_pos >= 0i64) {
+src/io/bio/fio.npk:276:     if (fp == 0i64) {
+src/io/bio/fio.npk:279:         while (curr != 0i64) {
+src/io/bio/fio.npk:281:             if ((curr_f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fio.npk:282:                 Result<int64>:r = bio_flush_write_buf(curr);
+src/io/bio/fio.npk:292:     if (f->fd < 0i64) {
+src/io/bio/fio.npk:297:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fio.npk:299:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fio.npk:301:             drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/tmpfile.npk:53: pub fixed int64:TMP_DIR = @cast_unchecked<int64>(@"/tmp/");
+src/io/bio/tmpfile.npk:54: pub fixed int64:TMP_PREFIX = @cast_unchecked<int64>(@"npk_");
+src/io/bio/tmpfile.npk:71:     int64:ptr = @cast_unchecked<int64>(@entropy);
+src/io/bio/tmpfile.npk:72:     Result<int64>:r = libn_getrandom(ptr, 8i64, 0i64);
+src/io/bio/tmpfile.npk:114:     if (tmpl == 0i64) {
+src/io/bio/tmpfile.npk:147:         Result<int64>:r = libn_open(tmpl, flags, 0o600i64);
+src/io/bio/tmpfile.npk:152:         int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/tmpfile.npk:178:     if (tmpl == 0i64) {
+src/io/bio/tmpfile.npk:205:         Result<int64>:r = sys_safe(SYS_MKDIR, tmpl, 0o700i64, 0i64, 0i64, 0i64, 0i64);
+src/io/bio/tmpfile.npk:210:         int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/tmpfile.npk:241:     fixed int64:pfx = @cast_unchecked<int64>(@"/tmp/npk_XXXXXX");
+src/io/bio/tmpfile.npk:242:     int64:pfx_len = raw str_strlen(@cast_unchecked<int64>(pfx));
+src/io/bio/tmpfile.npk:243:     drop(mem_memcpy(@cast_unchecked<int64>(@tmpl), @cast_unchecked<int64>(pfx), pfx_len + 1i64));
+src/io/bio/tmpfile.npk:246:     int64:fd = raw mkstemp(@cast_unchecked<int64>(@tmpl));
+src/io/bio/tmpfile.npk:247:     if (fd < 0i64) {
+src/io/bio/tmpfile.npk:252:     drop(sys_safe(SYS_UNLINK, @cast_unchecked<int64>(@tmpl), 0i64, 0i64, 0i64, 0i64, 0i64));
+src/io/bio/tmpfile.npk:255:     int64:wb_mode = @cast_unchecked<int64>(@"w+b");
+src/io/bio/tmpfile.npk:257:     if (fp == 0i64) {
+src/io/bio/fchar.npk:32: // Returns the @cast_unchecked<an>(character) unsigned uint8 value (0–255) cast to int64,
+src/io/bio/fchar.npk:40:     if (fp == 0i64) {
+src/io/bio/fchar.npk:47:     if ((f->flags & FILE_FLAG_EOF) != 0i64) {
+src/io/bio/fchar.npk:50:     if ((f->flags & FILE_FLAG_ERROR) != 0i64) {
+src/io/bio/fchar.npk:55:     if ((f->mode & FILE_MODE_READ) == 0i64) {
+src/io/bio/fchar.npk:62:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fchar.npk:63:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fchar.npk:71:         int64:ch = f->unget;
+src/io/bio/fchar.npk:78:     if (f->buf_mode == _IONBF || f->buf == 0i64) {
+src/io/bio/fchar.npk:81:             Result<int64>:r = sys_safe(SYS_READ, f->fd, @cast_unchecked<int64>(@one), 1i64, 0i64, 0i64, 0i64);
+src/io/bio/fchar.npk:83:                 int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fchar.npk:88:             if (r.value == 0i64) {
+src/io/bio/fchar.npk:93:             pass @cast_unchecked<int64>(one[0]);
+src/io/bio/fchar.npk:101:         Result<int64>:r = bio_refill_read_buf(fp);
+src/io/bio/fchar.npk:103:         if (r.value == 0i64) {
+src/io/bio/fchar.npk:112:     pass @cast_unchecked<int64>(ch);
+src/io/bio/fchar.npk:124:     if (fp == 0i64) {
+src/io/bio/fchar.npk:130:     if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+src/io/bio/fchar.npk:137:     if ((f->flags & FILE_FLAG_WRITE_MODE) == 0i64 && f->buf_len > f->buf_pos) {
+src/io/bio/fchar.npk:145:     if (f->buf_mode == _IONBF || f->buf == 0i64) {
+src/io/bio/fchar.npk:149:             Result<int64>:r = sys_safe(SYS_WRITE, f->fd, @cast_unchecked<int64>(@one), 1i64, 0i64, 0i64, 0i64);
+src/io/bio/fchar.npk:151:                 int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fchar.npk:165:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fchar.npk:178:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fchar.npk:227:     if (fp == 0i64) {
+src/io/bio/fchar.npk:232:     if (c == FILE_EOF || c < 0i64) {
+src/io/bio/fchar.npk:238:     if ((f->mode & FILE_MODE_READ) == 0i64) {
+src/io/bio/fchar.npk:251:     if (f->file_pos > 0i64) {
+src/io/bio/fchar.npk:256:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF);
+src/io/bio/bio.npk:29: //     FILE              — buffered stream struct (@cast_unchecked<FILE->>(use) or int64 pointer)
+src/io/bio/fstr.npk:48:     if (buf == 0i64 || size <= 0i64 || fp == 0i64) {
+src/io/bio/fstr.npk:60:     if ((f->flags & FILE_FLAG_EOF) != 0i64 && f->unget == FILE_UNGET_EMPTY && f->buf_len <= f->buf_pos) {
+src/io/bio/fstr.npk:69:         int64:c = f->unget;
+src/io/bio/fstr.npk:74:         if (c == 10i64) {
+src/io/bio/fstr.npk:81:         int64:avail = f->buf_len - f->buf_pos;
+src/io/bio/fstr.npk:82:         if (avail <= 0i64) {
+src/io/bio/fstr.npk:83:             Result<int64>:rr = bio_refill_read_buf(fp);
+src/io/bio/fstr.npk:85:                 if (count == 0i64) { pass 0i64; }
+src/io/bio/fstr.npk:88:             if (rr.value == 0i64) {
+src/io/bio/fstr.npk:89:                 if (count == 0i64) { pass 0i64; }
+src/io/bio/fstr.npk:96:         int64:chunk = is (avail < needed) : avail : needed;
+src/io/bio/fstr.npk:98:         int64:nl_ptr = raw mem_memchr(f->buf + f->buf_pos, 10i64, chunk);
+src/io/bio/fstr.npk:99:         if (nl_ptr != 0i64) {
+src/io/bio/fstr.npk:108:         if (nl_ptr != 0i64) {
+src/io/bio/fstr.npk:128:     if (s == 0i64 || fp == 0i64) {
+src/io/bio/fstr.npk:134:     if ((f->mode & FILE_MODE_WRITE) == 0i64) {
+src/io/bio/fstr.npk:142:     if (len == 0i64) {
+src/io/bio/fscanf.npk:9: //   %u         — unsigned decimal integer → int64* (@cast_unchecked<unsigned>(stored) bits)
+src/io/bio/fscanf.npk:67:     int64->:s = @cast_unchecked<int64->>(src);
+src/io/bio/fscanf.npk:78:         pass @cast_unchecked<int64>(c);
+src/io/bio/fscanf.npk:84:     if (c < 0i64) { pass NIL; }    // don't push back EOF
+src/io/bio/fscanf.npk:85:     int64->:s = @cast_unchecked<int64->>(src);
+src/io/bio/fscanf.npk:89:         if (s[2] > 0i64) {
+src/io/bio/fscanf.npk:104:         if (c < 0i64) { pass -1i64; }
+src/io/bio/fscanf.npk:106:         if (c != 32i64 && c != 9i64 && c != 10i64 &&
+src/io/bio/fscanf.npk:124:     if (c < 0i64) { pass 0i64; }
+src/io/bio/fscanf.npk:128:     int64:max = raw is (width > 0i64) : width : 4096i64;
+src/io/bio/fscanf.npk:141:     if (base == 0i64) {
+src/io/bio/fscanf.npk:145:             if ((next == 120i64 || next == 88i64) && chars < max) {    // 'x' or 'X'
+src/io/bio/fscanf.npk:160:     if (c < 0i64) {
+src/io/bio/fscanf.npk:167:     while (chars < max && c >= 0i64) {
+src/io/bio/fscanf.npk:173:             if (c >= 65i64 && c <= 70i64) {    // 'A'..'F'
+src/io/bio/fscanf.npk:180:         if (digit < 0i64 || digit >= base) {
+src/io/bio/fscanf.npk:196:     if (c >= 0i64) {
+src/io/bio/fscanf.npk:202:     if (out != 0i64) {
+src/io/bio/fscanf.npk:203:         (@cast_unchecked<int64->>(out))[0] = value;
+src/io/bio/fscanf.npk:206:     if (consumed != 0i64) {
+src/io/bio/fscanf.npk:207:         (@cast_unchecked<int64->>(consumed))[0] = (@cast_unchecked<int64->>(consumed))[0] + chars;
+src/io/bio/fscanf.npk:218:     if (c < 0i64) { pass 0i64; }
+src/io/bio/fscanf.npk:220:     int64:max = is (width > 0i64) : width : 4096i64;
+src/io/bio/fscanf.npk:225:         if (c < 0i64) { break; }
+src/io/bio/fscanf.npk:227:         if (c == 32i64 || c == 9i64 || c == 10i64 ||
+src/io/bio/fscanf.npk:232:         if (buf != 0i64) {
+src/io/bio/fscanf.npk:238:     if (count == 0i64) { pass 0i64; }
+src/io/bio/fscanf.npk:239:     if (buf != 0i64) { (@cast_unchecked<uint8->>(buf))[count] = 0u8; }
+src/io/bio/fscanf.npk:241:     if (consumed != 0i64) {
+src/io/bio/fscanf.npk:242:         (@cast_unchecked<int64->>(consumed))[0] = (@cast_unchecked<int64->>(consumed))[0] + count;
+src/io/bio/fscanf.npk:258:     int64->:argv  = @cast_unchecked<int64->>(args);
+src/io/bio/fscanf.npk:274:                 if (c >= 0i64) {
+src/io/bio/fscanf.npk:280:                 if (c < 0i64) {
+src/io/bio/fscanf.npk:285:                 if (c != @cast_unchecked<int64>(ch)) {
+src/io/bio/fscanf.npk:305:             width = width * 10i64 + (@cast_unchecked<int64>(f[fi]) - 48i64);
+src/io/bio/fscanf.npk:333:             if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
+src/io/bio/fscanf.npk:346:             if (out != 0i64) {
+src/io/bio/fscanf.npk:347:                 (@cast_unchecked<int64->>(out))[0] = consumed;
+src/io/bio/fscanf.npk:355:             if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
+src/io/bio/fscanf.npk:358:             if (out != 0i64) {
+src/io/bio/fscanf.npk:367:             if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
+src/io/bio/fscanf.npk:369:             int64:r = raw bio_scan_str(src, width, out, @cast_unchecked<int64>(@consumed));
+src/io/bio/fscanf.npk:370:             if (r == 0i64) { pass matched; }
+src/io/bio/fscanf.npk:377:         if (c < 0i64) { if (first) { pass FILE_EOF; } pass matched; }
+src/io/bio/fscanf.npk:398:         int64:r = raw bio_scan_int(src, base, width, out, @cast_unchecked<int64>(@consumed));
+src/io/bio/fscanf.npk:399:         if (r == 0i64) { pass matched; }
+src/io/bio/fscanf.npk:418:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, 0i64, 0i64);
+src/io/bio/fscanf.npk:427:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 1i64);
+src/io/bio/fscanf.npk:436:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 2i64);
+src/io/bio/fscanf.npk:446:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 3i64);
+src/io/bio/fscanf.npk:456:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 4i64);
+src/io/bio/fscanf.npk:466:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 5i64);
+src/io/bio/fscanf.npk:478:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 6i64);
+src/io/bio/fscanf.npk:490:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 7i64);
+src/io/bio/fscanf.npk:502:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 8i64);
+src/io/bio/fscanf.npk:512:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, 0i64, 0i64);
+src/io/bio/fscanf.npk:520:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 1i64);
+src/io/bio/fscanf.npk:528:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 2i64);
+src/io/bio/fscanf.npk:537:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 3i64);
+src/io/bio/fscanf.npk:546:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 4i64);
+src/io/bio/fscanf.npk:555:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 5i64);
+src/io/bio/fscanf.npk:566:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 6i64);
+src/io/bio/fscanf.npk:577:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 7i64);
+src/io/bio/fscanf.npk:588:     return bio_scan_engine(@cast_unchecked<int64>(@src), fmt, @cast_unchecked<int64>(@argv), 8i64);
+src/io/bio/strerror.npk:57:     @cast_unchecked<int64>(@"Success"),
+src/io/bio/strerror.npk:58:     @cast_unchecked<int64>(@"Operation not permitted"),
+src/io/bio/strerror.npk:59:     @cast_unchecked<int64>(@"No such file or directory"),
+src/io/bio/strerror.npk:60:     @cast_unchecked<int64>(@"No such process"),
+src/io/bio/strerror.npk:61:     @cast_unchecked<int64>(@"Interrupted system call"),
+src/io/bio/strerror.npk:62:     @cast_unchecked<int64>(@"Input/output error"),
+src/io/bio/strerror.npk:63:     @cast_unchecked<int64>(@"No such device or address"),
+src/io/bio/strerror.npk:64:     @cast_unchecked<int64>(@"Argument list too long"),
+src/io/bio/strerror.npk:65:     @cast_unchecked<int64>(@"Exec format error"),
+src/io/bio/strerror.npk:66:     @cast_unchecked<int64>(@"Bad file descriptor"),
+src/io/bio/strerror.npk:67:     @cast_unchecked<int64>(@"No child processes"),
+src/io/bio/strerror.npk:68:     @cast_unchecked<int64>(@"Resource temporarily unavailable"),
+src/io/bio/strerror.npk:69:     @cast_unchecked<int64>(@"Cannot allocate memory"),
+src/io/bio/strerror.npk:70:     @cast_unchecked<int64>(@"Permission denied"),
+src/io/bio/strerror.npk:71:     @cast_unchecked<int64>(@"Bad address"),
+src/io/bio/strerror.npk:72:     @cast_unchecked<int64>(@"Block device required"),
+src/io/bio/strerror.npk:73:     @cast_unchecked<int64>(@"Device or resource busy"),
+src/io/bio/strerror.npk:74:     @cast_unchecked<int64>(@"File exists"),
+src/io/bio/strerror.npk:75:     @cast_unchecked<int64>(@"Invalid cross-device link"),
+src/io/bio/strerror.npk:76:     @cast_unchecked<int64>(@"No such device"),
+src/io/bio/strerror.npk:77:     @cast_unchecked<int64>(@"Not a directory"),
+src/io/bio/strerror.npk:78:     @cast_unchecked<int64>(@"Is a directory"),
+src/io/bio/strerror.npk:79:     @cast_unchecked<int64>(@"Invalid argument"),
+src/io/bio/strerror.npk:80:     @cast_unchecked<int64>(@"Too many open files in system"),
+src/io/bio/strerror.npk:81:     @cast_unchecked<int64>(@"Too many open files"),
+src/io/bio/strerror.npk:82:     @cast_unchecked<int64>(@"Inappropriate ioctl for device"),
+src/io/bio/strerror.npk:83:     @cast_unchecked<int64>(@"Text file busy"),
+src/io/bio/strerror.npk:84:     @cast_unchecked<int64>(@"File too large"),
+src/io/bio/strerror.npk:85:     @cast_unchecked<int64>(@"No space left on device"),
+src/io/bio/strerror.npk:86:     @cast_unchecked<int64>(@"Illegal seek"),
+src/io/bio/strerror.npk:87:     @cast_unchecked<int64>(@"Read-only file system"),
+src/io/bio/strerror.npk:88:     @cast_unchecked<int64>(@"Too many links"),
+src/io/bio/strerror.npk:89:     @cast_unchecked<int64>(@"Broken pipe"),
+src/io/bio/strerror.npk:90:     @cast_unchecked<int64>(@"Numerical argument out of domain"),
+src/io/bio/strerror.npk:91:     @cast_unchecked<int64>(@"Numerical result out of range"),
+src/io/bio/strerror.npk:92:     @cast_unchecked<int64>(@"Resource deadlock avoided"),
+src/io/bio/strerror.npk:93:     @cast_unchecked<int64>(@"File name too long"),
+src/io/bio/strerror.npk:94:     @cast_unchecked<int64>(@"No locks available"),
+src/io/bio/strerror.npk:95:     @cast_unchecked<int64>(@"Function not implemented"),
+src/io/bio/strerror.npk:96:     @cast_unchecked<int64>(@"Directory not empty"),
+src/io/bio/strerror.npk:97:     @cast_unchecked<int64>(@"Too many levels of symbolic links"),
+src/io/bio/strerror.npk:99:     @cast_unchecked<int64>(@"No message of desired type"),
+src/io/bio/strerror.npk:100:     @cast_unchecked<int64>(@"Identifier removed"),
+src/io/bio/strerror.npk:118:     @cast_unchecked<int64>(@"No data available"),
+src/io/bio/strerror.npk:119:     @cast_unchecked<int64>(@"Timer expired"),
+src/io/bio/strerror.npk:120:     @cast_unchecked<int64>(@"Out of streams resources"),
+src/io/bio/strerror.npk:124:     @cast_unchecked<int64>(@"Link has been severed"),
+src/io/bio/strerror.npk:128:     @cast_unchecked<int64>(@"Protocol error"),
+src/io/bio/strerror.npk:129:     @cast_unchecked<int64>(@"Multihop attempted"),
+src/io/bio/strerror.npk:131:     @cast_unchecked<int64>(@"Bad message"),
+src/io/bio/strerror.npk:132:     @cast_unchecked<int64>(@"Value too large for defined data type"),
+src/io/bio/strerror.npk:141:     @cast_unchecked<int64>(@"Invalid or incomplete multibyte or wide character"),
+src/io/bio/strerror.npk:145:     @cast_unchecked<int64>(@"Socket operation on non-socket"),
+src/io/bio/strerror.npk:146:     @cast_unchecked<int64>(@"Destination address required"),
+src/io/bio/strerror.npk:147:     @cast_unchecked<int64>(@"Message too long"),
+src/io/bio/strerror.npk:148:     @cast_unchecked<int64>(@"Protocol wrong type for socket"),
+src/io/bio/strerror.npk:149:     @cast_unchecked<int64>(@"Protocol not available"),
+src/io/bio/strerror.npk:150:     @cast_unchecked<int64>(@"Protocol not supported"),
+src/io/bio/strerror.npk:152:     @cast_unchecked<int64>(@"Operation not supported"),
+src/io/bio/strerror.npk:154:     @cast_unchecked<int64>(@"Address family not supported by protocol"),
+src/io/bio/strerror.npk:155:     @cast_unchecked<int64>(@"Address already in use"),
+src/io/bio/strerror.npk:156:     @cast_unchecked<int64>(@"Cannot assign requested address"),
+src/io/bio/strerror.npk:157:     @cast_unchecked<int64>(@"Network is down"),
+src/io/bio/strerror.npk:158:     @cast_unchecked<int64>(@"Network is unreachable"),
+src/io/bio/strerror.npk:159:     @cast_unchecked<int64>(@"Network dropped connection on reset"),
+src/io/bio/strerror.npk:160:     @cast_unchecked<int64>(@"Software caused connection abort"),
+src/io/bio/strerror.npk:161:     @cast_unchecked<int64>(@"Connection reset by peer"),
+src/io/bio/strerror.npk:162:     @cast_unchecked<int64>(@"No buffer space available"),
+src/io/bio/strerror.npk:163:     @cast_unchecked<int64>(@"Transport endpoint is already connected"),
+src/io/bio/strerror.npk:164:     @cast_unchecked<int64>(@"Transport endpoint is not connected"),
+src/io/bio/strerror.npk:167:     @cast_unchecked<int64>(@"Connection timed out"),
+src/io/bio/strerror.npk:168:     @cast_unchecked<int64>(@"Connection refused"),
+src/io/bio/strerror.npk:170:     @cast_unchecked<int64>(@"No route to host"),
+src/io/bio/strerror.npk:171:     @cast_unchecked<int64>(@"Operation already in progress"),
+src/io/bio/strerror.npk:172:     @cast_unchecked<int64>(@"Operation now in progress"),
+src/io/bio/strerror.npk:173:     @cast_unchecked<int64>(@"Stale file handle"),
+src/io/bio/strerror.npk:182:     @cast_unchecked<int64>(@"Operation canceled"),
+src/io/bio/strerror.npk:187:     @cast_unchecked<int64>(@"Owner died"),
+src/io/bio/strerror.npk:188:     @cast_unchecked<int64>(@"State not recoverable"),
+src/io/bio/strerror.npk:209:     if (errnum >= 0i64 && errnum <= 134i64) {
+src/io/bio/strerror.npk:211:         if (msg != 0i64) {
+src/io/bio/strerror.npk:216:     fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
+src/io/bio/strerror.npk:217:     int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+src/io/bio/strerror.npk:218:     drop(mem_memcpy(@cast_unchecked<int64>(@dst), @cast_unchecked<int64>(prefix), prefix_len));
+src/io/bio/strerror.npk:220:     int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+src/io/bio/strerror.npk:221:     drop(mem_memcpy((@cast_unchecked<int64>(dst)) + prefix_len, @cast_unchecked<int64>(@num), num_len + 1i64));
+src/io/bio/strerror.npk:222:     pass @cast_unchecked<int64>(@g_strerror_unknown_buf);
+src/io/bio/strerror.npk:236:     if (buf == 0i64 || buflen <= 0i64) {
+src/io/bio/strerror.npk:241:     if (errnum >= 0i64 && errnum <= 134i64) {
+src/io/bio/strerror.npk:245:     if (msg != 0i64) {
+src/io/bio/strerror.npk:257:     fixed int64:prefix = @cast_unchecked<int64>(@"Unknown error ");
+src/io/bio/strerror.npk:258:     int64:prefix_len = raw str_strlen(@cast_unchecked<int64>(prefix));
+src/io/bio/strerror.npk:261:     int64:num_len = raw str_itoa(errnum, @cast_unchecked<int64>(@num), 24i64);
+src/io/bio/strerror.npk:268:         drop(mem_memcpy(buf, @cast_unchecked<int64>(prefix), copy1));
+src/io/bio/strerror.npk:271:         if (copy2 > 0i64) {
+src/io/bio/strerror.npk:272:             drop(mem_memcpy(buf + copy1, @cast_unchecked<int64>(@num), copy2));
+src/io/bio/strerror.npk:278:     drop(mem_memcpy(buf, @cast_unchecked<int64>(prefix), prefix_len));
+src/io/bio/strerror.npk:279:     drop(mem_memcpy(buf + prefix_len, @cast_unchecked<int64>(@num), num_len + 1i64));
+src/io/bio/strerror.npk:296:     if (prefix != 0i64 && (@cast_unchecked<uint8->>(prefix))[0] != 0u8) {
+src/io/bio/strerror.npk:303:     int64:errnum = @cast_unchecked<int64>(libn_errno);
+src/io/bio/strerror.npk:304:     drop(strerror_r(errnum, @cast_unchecked<int64>(@msg_buf), 256i64));
+src/io/bio/strerror.npk:306:     drop(fputs(@cast_unchecked<int64>(@msg_buf), stderr_fp));
+src/io/bio/fstate.npk:32:     if (fp == 0i64) {
+src/io/bio/fstate.npk:36:     if ((f->flags & FILE_FLAG_EOF) != 0i64) {
+src/io/bio/fstate.npk:49:     if (fp == 0i64) {
+src/io/bio/fstate.npk:53:     if ((f->flags & FILE_FLAG_ERROR) != 0i64) {
+src/io/bio/fstate.npk:67:     if (fp == 0i64) { pass NIL; }
+src/io/bio/fstate.npk:69:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_EOF ^ FILE_FLAG_ERROR);
+src/io/bio/fstate.npk:88:     if (fp == 0i64) {
+src/io/bio/fstate.npk:99:     if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {
+src/io/bio/fstate.npk:101:         f->buf     = 0i64;
+src/io/bio/fstate.npk:102:         f->buf_cap = 0i64;
+src/io/bio/fstate.npk:103:         f->flags   = f->flags & (0i64 - 1i64 ^ FILE_FLAG_BUF_OWN);
+src/io/bio/fstate.npk:106:     f->buf_pos  = 0i64;
+src/io/bio/fstate.npk:107:     f->buf_len  = 0i64;
+src/io/bio/fstate.npk:112:         f->buf     = 0i64;
+src/io/bio/fstate.npk:113:         f->buf_cap = 0i64;
+src/io/bio/fstate.npk:117:     if (buf != 0i64) {
+src/io/bio/fstate.npk:119:         int64:cap = is (size > 0i64) : size : BUFSIZ;
+src/io/bio/fstate.npk:125:         int64:cap = is (size > 0i64) : size : BUFSIZ;
+src/io/bio/fstate.npk:127:         if (newbuf == 0i64) {
+src/io/bio/fstate.npk:151:     if (buf != 0i64) {
+src/io/bio/fopen.npk:53:     f->file_pos = 0i64;
+src/io/bio/fopen.npk:54:     f->buf_pos  = 0i64;
+src/io/bio/fopen.npk:55:     f->buf_len  = 0i64;
+src/io/bio/fopen.npk:69:         f->buf      = 0i64;
+src/io/bio/fopen.npk:70:         f->buf_cap  = 0i64;
+src/io/bio/fopen.npk:82:     if (buf == 0i64) {
+src/io/bio/fopen.npk:106:     if (path == 0i64 || mode == 0i64) {
+src/io/bio/fopen.npk:116:     int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+src/io/bio/fopen.npk:117:     if (parse_ok != 0i64) {
+src/io/bio/fopen.npk:126:     Result<int64>:r = libn_open(path, open_flags, FOPEN_CREAT_MODE);
+src/io/bio/fopen.npk:128:         drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fopen.npk:135:     if (fp == 0i64) {
+src/io/bio/fopen.npk:142:     Result<int64>:init_r = bio_init_stream(fp, fd, file_mode, false);
+src/io/bio/fopen.npk:169:     if (fd < 0i64 || mode == 0i64) {
+src/io/bio/fopen.npk:178:     int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+src/io/bio/fopen.npk:179:     if (parse_ok != 0i64) {
+src/io/bio/fopen.npk:185:     if (fp == 0i64) {
+src/io/bio/fopen.npk:190:     Result<int64>:init_r = bio_init_stream(fp, fd, file_mode_out[0], false);
+src/io/bio/fopen.npk:213:     if (mode == 0i64 || fp == 0i64) {
+src/io/bio/fopen.npk:225:     int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out), @cast_unchecked<int64>(@open_flags_out));
+src/io/bio/fopen.npk:226:     if (parse_ok != 0i64) {
+src/io/bio/fopen.npk:233:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+src/io/bio/fopen.npk:237:     int64:old_fd = f->fd;
+src/io/bio/fopen.npk:238:     bool:buf_owned = (f->flags & FILE_FLAG_BUF_OWN) != 0i64;
+src/io/bio/fopen.npk:240:     if (path != 0i64) {
+src/io/bio/fopen.npk:242:         Result<int64>:r = libn_open(path, open_flags_out[0], FOPEN_CREAT_MODE);
+src/io/bio/fopen.npk:249:             drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fopen.npk:260:     f->buf_pos  = 0i64;
+src/io/bio/fopen.npk:261:     f->buf_len  = 0i64;
+src/io/bio/fopen.npk:262:     f->file_pos = 0i64;
+src/io/bio/fopen.npk:285:     if (fp == 0i64) {
+src/io/bio/fopen.npk:294:     if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64 && f->buf_pos > 0i64) {
+src/io/bio/fopen.npk:295:         Result<int64>:r = bio_flush_write_buf(fp);
+src/io/bio/fopen.npk:297:             drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fopen.npk:304:     int64:fd = f->fd;
+src/io/bio/fopen.npk:305:     bool:is_std = (fd == 0i64 || fd == 1i64 || fd == 2i64);
+src/io/bio/fopen.npk:306:     if (!is_std && fd >= 0i64) {
+src/io/bio/fopen.npk:307:         Result<int64>:r = libn_close(fd);
+src/io/bio/fopen.npk:308:         if (r.is_error && ret == 0i64) {
+src/io/bio/fopen.npk:309:             drop(errno_set(@cast_unchecked<int64>(r.error)));
+src/io/bio/fopen.npk:317:     if ((f->flags & FILE_FLAG_BUF_OWN) != 0i64 && f->buf != 0i64) {
+src/io/bio/fopen.npk:319:         f->buf     = 0i64;
+src/io/bio/fopen.npk:320:         f->buf_cap = 0i64;
+src/io/bio/fopen.npk:328:         f->flags    = 0i64;
+src/io/bio/fopen.npk:329:         f->buf_pos  = 0i64;
+src/io/bio/fopen.npk:330:         f->buf_len  = 0i64;
+src/io/bio/fopen.npk:331:         f->file_pos = 0i64;
+src/io/bio/fopen.npk:345:     if (fp == 0i64) {
+src/io/bio/fopen.npk:350:     if (f->fd < 0i64) {
+src/io/bio/file.npk:4: // operate on a *FILE (represented in @cast_unchecked<int64>(libn) — a pointer to a FILE struct).
+src/io/bio/file.npk:30: //   @cast_unchecked<int64>(Represented): -1 means "no unget char", 0..255 means pending char.
+src/io/bio/file.npk:58: // In libn, FILE* is @cast_unchecked<int64>(represented) (a pointer). Cast with `as FILE->`.
+src/io/bio/file.npk:66:     int64:buf_len;     // read: valid bytes loaded from kernel / write: @cast_unchecked<buf_pos>(same)
+src/io/bio/file.npk:67:     int64:file_pos;    // logical file @cast_unchecked<seen>(position) by caller (bytes from file start)
+src/io/bio/file.npk:121:     Result<int64>:r_p = slab_alloc_zero(80i64);    // 80 bytes = sizeof(FILE), goes in 128-uint8 class
+src/io/bio/file.npk:124:     if (p == 0i64) {
+src/io/bio/file.npk:131:     f->next_global = 0i64;
+src/io/bio/file.npk:138:     if (fp == 0i64) { pass NIL; }
+src/io/bio/file.npk:146:     if (size <= 0i64) {
+src/io/bio/file.npk:158:     if (buf == 0i64) { pass NIL; }
+src/io/bio/file.npk:171:     if (f->buf_pos == 0i64) {
+src/io/bio/file.npk:175:     int64:remaining = f->buf_pos;
+src/io/bio/file.npk:176:     int64:ptr = f->buf;
+src/io/bio/file.npk:178:     while (remaining > 0i64) {
+src/io/bio/file.npk:179:         Result<int64>:r = sys_safe(SYS_WRITE, f->fd, ptr, remaining, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:181:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/file.npk:186:         if (r.value == 0i64) {
+src/io/bio/file.npk:195:     f->buf_pos = 0i64;
+src/io/bio/file.npk:196:     f->buf_len = 0i64;
+src/io/bio/file.npk:197:     f->flags = f->flags & (0i64 - 1i64 ^ FILE_FLAG_WRITE_MODE);
+src/io/bio/file.npk:206:     int64:unread = f->buf_len - f->buf_pos;
+src/io/bio/file.npk:207:     if (unread <= 0i64) {
+src/io/bio/file.npk:208:         f->buf_pos = 0i64;
+src/io/bio/file.npk:209:         f->buf_len = 0i64;
+src/io/bio/file.npk:215:     Result<int64>:r = sys_safe(SYS_LSEEK, f->fd, 0i64 - unread, SEEK_CUR, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:221:     f->buf_pos = 0i64;
+src/io/bio/file.npk:222:     f->buf_len = 0i64;
+src/io/bio/file.npk:233:     if (f->buf_mode == _IONBF || f->buf == 0i64 || f->buf_cap == 0i64) {
+src/io/bio/file.npk:237:     f->buf_pos = 0i64;
+src/io/bio/file.npk:238:     f->buf_len = 0i64;
+src/io/bio/file.npk:241:         Result<int64>:r = sys_safe(SYS_READ, f->fd, f->buf, f->buf_cap, 0i64, 0i64, 0i64);
+src/io/bio/file.npk:243:             int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/file.npk:249:         if (r.value == 0i64) {
+src/io/bio/file.npk:268:     int64->:fmode = @cast_unchecked<int64->>(out_file_mode);
+src/io/bio/file.npk:269:     int64->:oflags = @cast_unchecked<int64->>(out_open_flags);
+src/fs/path.npk:4: // work on NUL-terminated uint8 strings @cast_unchecked<int64>(passed) pointers, matching the
+src/fs/path.npk:32:     if (s == 0i64) {
+src/fs/path.npk:67:     if (path == 0i64) {
+src/fs/path.npk:91: //   a:      first path segment (NUL-terminated, @cast_unchecked<int64>(pointer))
+src/fs/path.npk:92: //   b:      second path segment (NUL-terminated, @cast_unchecked<int64>(pointer))
+src/fs/path.npk:103:     if (a == 0i64 || b == 0i64 || out == 0i64 || out_sz < 1i64) {
+src/fs/path.npk:125:     if (alen == 0i64) {
+src/fs/path.npk:140:     if (blen == 0i64) {
+src/fs/path.npk:193:     if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:203:     if (len == 0i64) {
+src/fs/path.npk:219:     while (i >= 0i64) {
+src/fs/path.npk:227:     if (last_slash < 0i64) {
+src/fs/path.npk:234:     if (last_slash == 0i64) {
+src/fs/path.npk:270:     if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:280:     if (len == 0i64) {
+src/fs/path.npk:302:     while (i >= 0i64) {
+src/fs/path.npk:311:     if (last_slash >= 0i64) {
+src/fs/path.npk:316:     if (blen <= 0i64) {
+src/fs/path.npk:352:     if (path == 0i64) {
+src/fs/path.npk:359:     if (len == 0i64) {
+src/fs/path.npk:366:     while (i >= 0i64) {
+src/fs/path.npk:385:     if (last_dot < 0i64) {
+src/fs/path.npk:405:     if (path == 0i64) {
+src/fs/path.npk:412:     if (len == 0i64) {
+src/fs/path.npk:422:             if (in_component != 0i64) {
+src/fs/path.npk:425:             } else if (i == 0i64) {
+src/fs/path.npk:436:     if (in_component != 0i64) {
+src/fs/path.npk:452:     if (path == 0i64) {
+src/fs/path.npk:479:     if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:488:     if (len == 0i64) {
+src/fs/path.npk:527:     if (path == 0i64 || out == 0i64 || out_sz < 2i64) {
+src/fs/path.npk:536:     if (len == 0i64) {
+src/fs/path.npk:572:             if (comp_len == 0i64) {
+src/fs/path.npk:578:                 if (out_pos > 0i64 && ob[out_pos - 1i64] != 47u8) {
+src/fs/path.npk:609:     if (out_pos == 0i64) {
+src/time/sleep.npk:6: pub func:nanosleep = int64(timespec->:req, timespec->:rem) {
+src/time/sleep.npk:7:     if (@cast_unchecked<int64>(req) == 0i64) {
+src/time/sleep.npk:15:     int64->:req_arr = @cast_unchecked<int64->>(req);
+src/time/sleep.npk:20:         Result<int64>:r = sys_safe(SYS_NANOSLEEP, @cast_unchecked<int64>(@creq), @cast_unchecked<int64>(@crem), 0i64, 0i64, 0i64, 0i64);
+src/time/sleep.npk:23:         int64:err = @cast_unchecked<int64>(r.error);
+src/time/sleep.npk:26:             if (@cast_unchecked<int64>(rem) != 0i64) {
+src/time/sleep.npk:27:                 int64->:rem_arr = @cast_unchecked<int64->>(rem);
+src/time/sleep.npk:38:     if (@cast_unchecked<int64>(rem) != 0i64) {
+src/time/sleep.npk:39:         int64->:rem_arr = @cast_unchecked<int64->>(rem);
+src/time/clock.npk:6: pub func:clock_gettime = int64(int64:clockid, timespec->:tp) {
+src/time/clock.npk:7:     if (@cast_unchecked<int64>(tp) == 0i64) {
+src/time/clock.npk:10:     Result<int64>:r = sys_safe(SYS_CLOCK_GETTIME, clockid, @cast_unchecked<int64>(tp), 0i64, 0i64, 0i64, 0i64);
+src/time/clock.npk:12:         drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
+src/time/clock.npk:16: pub func:clock_getres = int64(int64:clockid, timespec->:res) {
+src/time/clock.npk:17:     if (@cast_unchecked<int64>(res) == 0i64) {
+src/time/clock.npk:20:     Result<int64>:r = sys_safe(SYS_CLOCK_GETRES, clockid, @cast_unchecked<int64>(res), 0i64, 0i64, 0i64, 0i64);
+src/time/clock.npk:22:         drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
+src/time/clock.npk:26: pub func:clock_settime = int64(int64:clockid, timespec->:tp) {
+src/time/clock.npk:27:     if (@cast_unchecked<int64>(tp) == 0i64) {
+src/time/clock.npk:30:     Result<int64>:r = sys_safe(SYS_CLOCK_SETTIME, clockid, @cast_unchecked<int64>(tp), 0i64, 0i64, 0i64, 0i64);
+src/time/clock.npk:32:         drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
+src/time/timeofday.npk:6: pub func:gettimeofday = int64(timeval->:tv, int64:tz) {
+src/time/timeofday.npk:7:     if (@cast_unchecked<int64>(tv) == 0i64) {
+src/time/timeofday.npk:10:     Result<int64>:r = sys_safe(SYS_GETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+src/time/timeofday.npk:12:         drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
+src/time/timeofday.npk:16: pub func:settimeofday = int64(timeval->:tv, int64:tz) {
+src/time/timeofday.npk:17:     if (@cast_unchecked<int64>(tv) == 0i64) {
+src/time/timeofday.npk:20:     Result<int64>:r = sys_safe(SYS_SETTIMEOFDAY, @cast_unchecked<int64>(tv), tz, 0i64, 0i64, 0i64, 0i64);
+src/time/timeofday.npk:22:         drop(errno_set(@cast_unchecked<int64>(r.error))); pass -1i64;
+src/mem/slab.npk:88: fixed int64:SLAB_SLOTS_PER_PAGE_8 = 1i64;     // 2 pages needed (2048 + 1 header > page)
+src/mem/slab.npk:125:     if (n <= 8i64) { pass 0i64; }
+src/mem/slab.npk:141:     if (i < 0i64 || i >= 10i64) { pass 0i64; }
+src/mem/slab.npk:149:     if (i < 0i64 || i >= 10i64) { pass 0i64; }
+src/mem/slab.npk:193:     if (slots == 0i64) {
+src/mem/slab.npk:204:     Result<int64>:r = libn_mmap(0i64, slab_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+src/mem/slab.npk:223:         int64->:next_ptr = @cast_unchecked<int64->>(next_ptr_addr);
+src/mem/slab.npk:224:         next_ptr[0] = 0i64;    // will be @cast_unchecked<we>(overwritten) link
+src/mem/slab.npk:226:         if (j == 0i64) {
+src/mem/slab.npk:233:         if (prev_next_ptr != 0i64) {
+src/mem/slab.npk:234:             int64->:prev = @cast_unchecked<int64->>(prev_next_ptr);
+src/mem/slab.npk:255:     if (n <= 0i64) {
+src/mem/slab.npk:263:         Result<int64>:r = mem_malloc(n);
+src/mem/slab.npk:271:     if (head == 0i64) {
+src/mem/slab.npk:272:         Result<int64>:rr = slab_refill(cls);
+src/mem/slab.npk:277:         if (head == 0i64) {
+src/mem/slab.npk:288:     int64->:next_ptr = @cast_unchecked<int64->>(user_ptr);
+src/mem/slab.npk:305:     if (ptr == 0i64) {
+src/mem/slab.npk:312:     int64:cls = @cast_unchecked<int64>(hdr[0]);
+src/mem/slab.npk:326:         Result<int64>:r = mem_free(ptr);
+src/mem/slab.npk:334:     int64->:next_ptr = @cast_unchecked<int64->>(ptr);
+src/mem/slab.npk:346:     if (r == 0i64) {
+src/mem/slab.npk:371:     if (ptr == 0i64) {
+src/mem/slab.npk:374:     if (n == 0i64) {
+src/mem/slab.npk:381:         Result<int64>:r = mem_realloc(ptr, n);
+src/mem/slab.npk:388:     int64:cls = @cast_unchecked<int64>(hdr[0]);
+src/mem/slab.npk:408:     if (new_ptr == 0i64) {
+src/mem/slab.npk:412:     int64:copy_size = is (old_size < n) : old_size : n;
+src/mem/memcpy.npk:52:     if (num_bytes == 0i64) {
+src/mem/memcpy.npk:55:     if (num_bytes < 0i64) {
+src/mem/memcpy.npk:68:     while (i < num_bytes && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:79:     int64->:di = @cast_unchecked<int64->>((dst + i));
+src/mem/memcpy.npk:84:     int64->:si64 = @cast_unchecked<int64->>((src + i));
+src/mem/memcpy.npk:115:     Result<int64>:r = mem_memcpy(dst, src, num_bytes);
+src/mem/memcpy.npk:137:     if (num_bytes == 0i64) {
+src/mem/memcpy.npk:140:     if (num_bytes < 0i64) {
+src/mem/memcpy.npk:172:         while (i < num_bytes && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:181:         int64->:di = @cast_unchecked<int64->>((dst + i));
+src/mem/memcpy.npk:182:     int64->:si64 = @cast_unchecked<int64->>((src + i));
+src/mem/memcpy.npk:201:         while (i > 0i64 && ((dst + i) & 7i64) != 0i64) {
+src/mem/memcpy.npk:209:             int64->:di_word = @cast_unchecked<int64->>((dst + i));
+src/mem/memcpy.npk:210:             int64->:si_word = @cast_unchecked<int64->>((src + i));
+src/mem/memcpy.npk:215:         while (i > 0i64) {
+src/mem/memcpy.npk:235:     if (src == 0i64 || num_bytes <= 0i64) {
+src/mem/memcpy.npk:244:     Result<int64>:r = mem_malloc(num_bytes);
+src/mem/memcpy.npk:250:     Result<int64>:rc = mem_memcpy(r.value, src, num_bytes);
+src/mem/memutil.npk:39:     pass t != 0i64;
+src/mem/memutil.npk:69:     if (n == 0i64) {
+src/mem/memutil.npk:82:     while (i < n && (((a + i) | (b + i)) & 7i64) != 0i64) {
+src/mem/memutil.npk:83:         int64:ba = @cast_unchecked<int64>(pa[i]);
+src/mem/memutil.npk:84:         int64:bb = @cast_unchecked<int64>(pb[i]);
+src/mem/memutil.npk:93:     int64->:wa = @cast_unchecked<int64->>((a + i));
+src/mem/memutil.npk:94:     int64->:wb = @cast_unchecked<int64->>((b + i));
+src/mem/memutil.npk:108:                 int64:ba = (va >> shift) & 0xFFi64;
+src/mem/memutil.npk:109:                 int64:bb = (vb >> shift) & 0xFFi64;
+src/mem/memutil.npk:123:         int64:ba = @cast_unchecked<int64>(pa[i]);
+src/mem/memutil.npk:124:         int64:bb = @cast_unchecked<int64>(pb[i]);
+src/mem/memutil.npk:143:     if (n == 0i64) {
+src/mem/memutil.npk:150:     pass r == 0i64;
+src/mem/memutil.npk:165:     if (n == 0i64) {
+src/mem/memutil.npk:176:         diff = diff | (@cast_unchecked<int64>(pa[i]) ^ @cast_unchecked<int64>(pb[i]));
+src/mem/memutil.npk:192:     if (n == 0i64 || ptr == 0i64) {
+src/mem/memutil.npk:202:     while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:211:     int64->:pw = @cast_unchecked<int64->>((ptr + i));
+src/mem/memutil.npk:250:     if (n == 0i64 || ptr == 0i64) {
+src/mem/memutil.npk:259:     while (i >= 0i64) {
+src/mem/memutil.npk:286:     if (nlen == 0i64) { pass haystack; }
+src/mem/memutil.npk:287:     if (haystack == 0i64 || needle == 0i64) { pass 0i64; }
+src/mem/memutil.npk:288:     if (nlen > hlen) { pass 0i64; }
+src/mem/memutil.npk:294:         return mem_memchr(haystack, @cast_unchecked<int64>(n[0]), hlen);
+src/mem/memutil.npk:308:         bad_char[@cast_unchecked<int64>(n[i])] = nlen - 1i64 - i;
+src/mem/memutil.npk:316:         while (j >= 0i64 && h[offset + j] == n[j]) {
+src/mem/memutil.npk:319:         if (j < 0i64) {
+src/mem/memutil.npk:322:         offset = offset + bad_char[@cast_unchecked<int64>(h[offset + nlen - 1i64])];
+src/mem/memutil.npk:335:     if (n == 0i64) {
+src/mem/memutil.npk:338:     if (ptr == 0i64) {
+src/mem/memutil.npk:346:     while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:354:     int64->:pw = @cast_unchecked<int64->>((ptr + i));
+src/mem/memutil.npk:358:         if (pw[wi] != 0i64) {
+src/mem/memutil.npk:384:     if (a == b || n <= 0i64) {
+src/mem/memutil.npk:393:     while (i < n && ((a + i) & 7i64) != 0i64) {
+src/mem/memutil.npk:400:     int64->:wa = @cast_unchecked<int64->>((a + i));
+src/mem/memutil.npk:401:     int64->:wb = @cast_unchecked<int64->>((b + i));
+src/mem/memutil.npk:428:     if (ptr == 0i64 || n <= 1i64) {
+src/mem/memutil.npk:456:     pass (ptr & (align - 1i64)) == 0i64;
+src/mem/memset.npk:38:     if (ptr == 0i64) {
+src/mem/memset.npk:41:     if (n == 0i64) {
+src/mem/memset.npk:44:     if (n < 0i64) {
+src/mem/memset.npk:54:     while (i < n && ((ptr + i) & 7i64) != 0i64) {
+src/mem/memset.npk:60:     int64:fill64 = @cast_unchecked<int64>(fill);
+src/mem/memset.npk:66:     int64->:pw = @cast_unchecked<int64->>((ptr + i));
+src/mem/memset.npk:96:     if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:118:     if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:135:     drop(asm!!!<int64>("x86_64", "", "r,~{memory}", ptr));
+src/mem/memset.npk:158:     if (ptr == 0i64 || n <= 0i64) {
+src/mem/memset.npk:164:     int64:p64 = p32 | (p32 << 32i64);
+src/mem/memset.npk:170:     while (i < n && ((ptr + i) & 3i64) != 0i64) {
+src/mem/memset.npk:175:     int64->:pi64 = @cast_unchecked<int64->>((ptr + i));
+src/mem/mmap.npk:87:     pass (addr & PAGE_MASK) == 0i64;
+src/mem/mmap.npk:113:     if (length <= 0i64) {
+src/mem/mmap.npk:116:     Result<int64>:r = libn_mmap(addr, length, prot, flags, fd, offset);
+src/mem/mmap.npk:123:     if (length <= 0i64) {
+src/mem/mmap.npk:126:     Result<int64>:r = libn_munmap(addr, length);
+src/mem/mmap.npk:134:     if ((prot & PROT_EXEC) != 0i64) {
+src/mem/mmap.npk:137:     Result<int64>:r = libn_mprotect(addr, length, prot);
+src/mem/mmap.npk:145:     if (new_size <= 0i64) {
+src/mem/mmap.npk:148:     Result<int64>:r = libn_mremap(old_addr, old_size, new_size, flags, new_addr);
+src/mem/mmap.npk:154:     Result<int64>:r = libn_madvise(addr, length, advice);
+src/mem/mmap.npk:161:     Result<int64>:r = libn_msync(addr, length, flags);
+src/mem/mmap.npk:188:     if (n <= 0i64) {
+src/mem/mmap.npk:199:     Result<int64>:r = libn_mmap(0i64, total, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+src/mem/mmap.npk:206:     int64->:hdr = @cast_unchecked<int64->>(map_start);
+src/mem/mmap.npk:217:     if (n <= 0i64 || size <= 0i64) {
+src/mem/mmap.npk:221:     if (size > 0i64 && n > (9223372036854775807i64 / size)) {
+src/mem/mmap.npk:225:     Result<int64>:r = mem_malloc(total_bytes);
+src/mem/mmap.npk:236:     if (ptr == 0i64) {
+src/mem/mmap.npk:241:     if (new_size == 0i64) {
+src/mem/mmap.npk:254:         int64:cls = @cast_unchecked<int64>(hdr[0]);
+src/mem/mmap.npk:269:         Result<int64>:new_r = mem_malloc(new_size);
+src/mem/mmap.npk:294:     int64->:hdr = @cast_unchecked<int64->>(map_start);
+src/mem/mmap.npk:300:     Result<int64>:rr = libn_mremap(map_start, old_map_size, new_total, MREMAP_MAYMOVE, 0i64);
+src/mem/mmap.npk:304:         int64->:new_hdr = @cast_unchecked<int64->>(new_map);
+src/mem/mmap.npk:311:     Result<int64>:new_r = mem_malloc(new_size);
+src/mem/mmap.npk:341:     if (ptr == 0i64) {
+src/mem/mmap.npk:347:     int64->:hdr = @cast_unchecked<int64->>(map_start);
+src/mem/mmap.npk:350:     if (map_size <= 0i64) {
+src/mem/mmap.npk:360:     Result<int64>:r = libn_munmap(map_start, map_size);
+src/mem/mmap.npk:367:     if (ptr == 0i64) {
+src/mem/mmap.npk:370:     int64->:hdr = @cast_unchecked<int64->>((ptr - ALLOC_HEADER_SIZE));
+src/mem/mmap.npk:376:     if (ptr == 0i64) {
+src/mem/mmap.npk:379:     int64->:hdr = @cast_unchecked<int64->>((ptr - ALLOC_HEADER_SIZE));
+src/mem/mmap.npk:391:     if (n_pages <= 0i64) {
+src/mem/mmap.npk:395:     Result<int64>:r = libn_mmap(0i64, size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+src/mem/mmap.npk:401:     if (n_pages <= 0i64 || addr == 0i64) {
+src/mem/mmap.npk:405:     Result<int64>:r = libn_munmap(addr, size);
+src/mem/mmap.npk:413:     if (n_data_pages <= 0i64) {
+src/mem/mmap.npk:422:     Result<int64>:r = libn_mmap(0i64, total_size, PROT_RW, MAP_ANON_PRIV, -1i64, 0i64);
+src/mem/mmap.npk:429:     Result<int64>:r_bot = libn_mprotect(base, PAGE_SIZE, PROT_NONE);
+src/mem/mmap.npk:437:     Result<int64>:r_top = libn_mprotect(top_guard, PAGE_SIZE, PROT_NONE);
+src/mem/mmap.npk:450:     if (data_ptr == 0i64 || n_data_pages <= 0i64) {
+src/mem/mmap.npk:455:     Result<int64>:r = libn_munmap(base, total_size);
+src/str/strtok.npk:48: pub func:str_strtok_r = int64(int64:str_arg, int64:delim, int64->:saveptr) {
+src/str/strtok.npk:51:     if (str_arg != 0i64) {
+src/str/strtok.npk:54:         if (@cast_unchecked<int64>(saveptr) == 0i64) {
+src/str/strtok.npk:60:     if (s == 0i64 || (@cast_unchecked<uint8->>(s))[0] == 0u8) {
+src/str/strtok.npk:61:         if (@cast_unchecked<int64>(saveptr) != 0i64) { saveptr[0] = 0i64; }
+src/str/strtok.npk:79:         if (@cast_unchecked<int64>(saveptr) != 0i64) { saveptr[0] = 0i64; }
+src/str/strtok.npk:94:         if (@cast_unchecked<int64>(saveptr) != 0i64) { saveptr[0] = s + i + 1i64; }
+src/str/strtok.npk:96:         if (@cast_unchecked<int64>(saveptr) != 0i64) { saveptr[0] = 0i64; }
+src/str/strtok.npk:117: pub func:str_strsep = int64(int64->:stringp, int64:delim) {
+src/str/strtok.npk:118:     if (@cast_unchecked<int64>(stringp) == 0i64) {
+src/str/strtok.npk:121:     if (stringp[0] == 0i64) {
+src/str/strtok.npk:198:                                    StrField->:fields, int64:max_fields) {
+src/str/strtok.npk:199:     if (input == 0i64 || max_fields <= 0i64) {
+src/str/strtok.npk:249:                                   StrField->:lines, int64:max_lines) {
+src/str/strtok.npk:250:     if (input == 0i64 || max_lines <= 0i64) {
+src/str/strtok.npk:267:                 if (len > 0i64 && p[line_start + len - 1i64] == 13u8) {    // '\r'
+src/str/strview.npk:70:     if (s == 0i64) {
+src/str/strview.npk:71:         sv->ptr = 0i64;
+src/str/strview.npk:72:         sv->len = 0i64;
+src/str/strview.npk:84: if (len < 0i64) { sv->len = 0i64; } else { sv->len = len; }
+src/str/strview.npk:91:     if (sb == 0i64) {
+src/str/strview.npk:92:         sv->ptr = 0i64;
+src/str/strview.npk:93:         sv->len = 0i64;
+src/str/strview.npk:104:     sv->ptr = 0i64;
+src/str/strview.npk:105:     sv->len = 0i64;
+src/str/strview.npk:115:     if (start < 0i64) { start = 0i64; }
+src/str/strview.npk:118:         o->len = 0i64;
+src/str/strview.npk:121:     int64:avail = s->len - start;
+src/str/strview.npk:122:     if (len < 0i64 || len > avail) { len = avail; }
+src/str/strview.npk:133:     if (sv == 0i64) { pass 0i64; }
+src/str/strview.npk:139:     if (sv == 0i64) { pass 0i64; }
+src/str/strview.npk:145:     if (sv == 0i64) { pass true; }
+src/str/strview.npk:146:     pass (@cast_unchecked<StrView->>(sv)).len == 0i64;
+src/str/strview.npk:152:     if (sv == 0i64) { pass -1i64; }
+src/str/strview.npk:154:     if (i < 0i64 || i >= s->len) { pass -1i64; }
+src/str/strview.npk:155:     pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[i]));
+src/str/strview.npk:164:     if (sv == 0i64) { pass -1i64; }
+src/str/strview.npk:166:     if (s->len == 0i64) { pass -1i64; }
+src/str/strview.npk:167:     pass @cast_unchecked<int64>(((@cast_unchecked<uint8->>(s->ptr))[s->len - 1i64]));
+src/str/strview.npk:179:     if (sa->len == 0i64) { pass true; }
+src/str/strview.npk:186:     if (s == 0i64) { return strview_is_empty(sv); }
+src/str/strview.npk:190:     if (v->len == 0i64) { pass true; }
+src/str/strview.npk:199:     int64:min_len = is (sa->len < sb->len) : sa->len : sb->len;
+src/str/strview.npk:200:     int64:r = raw mem_memcmp(sa->ptr, sb->ptr, min_len);
+src/str/strview.npk:201:     if (r != 0i64) { pass r; }
+src/str/strview.npk:209:     if (s == 0i64) {
+src/str/strview.npk:211:         if (v->len == 0i64) { pass 0i64; }
+src/str/strview.npk:215:     drop(strview_of(s, @cast_unchecked<int64>(@bv)));
+src/str/strview.npk:216:     return strview_cmp(sv, @cast_unchecked<int64>(@bv));
+src/str/strview.npk:227:     if (p->len == 0i64) { pass true; }
+src/str/strview.npk:234:     if (prefix == 0i64) { pass true; }
+src/str/strview.npk:237:     if (plen == 0i64) { pass true; }
+src/str/strview.npk:246:     if (x->len == 0i64) { pass true; }
+src/str/strview.npk:253:     if (suffix == 0i64) { pass true; }
+src/str/strview.npk:256:     if (xlen == 0i64) { pass true; }
+src/str/strview.npk:280:         if (prefix != 0i64) { plen = raw str_strlen(prefix); }
+src/str/strview.npk:310:         if (suffix != 0i64) { xlen = raw str_strlen(suffix); }
+src/str/strview.npk:326:     if (sv == 0i64) { pass -1i64; }
+src/str/strview.npk:328:     if (s->len == 0i64) { pass -1i64; }
+src/str/strview.npk:329:     int64:found = raw mem_memchr(s->ptr, @cast_unchecked<int64>(c), s->len);
+src/str/strview.npk:330:     if (found == 0i64) { pass -1i64; }
+src/str/strview.npk:337:     if (sv == 0i64) { pass -1i64; }
+src/str/strview.npk:339:     if (s->len == 0i64) { pass -1i64; }
+src/str/strview.npk:340:     int64:found = raw mem_memrchr(s->ptr, @cast_unchecked<int64>(c), s->len);
+src/str/strview.npk:341:     if (found == 0i64) { pass -1i64; }
+src/str/strview.npk:348:     if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+src/str/strview.npk:351:     if (nlen == 0i64) { pass 0i64; }
+src/str/strview.npk:353:     int64:found = raw mem_memmem(s->ptr, s->len, needle, nlen);
+src/str/strview.npk:354:     if (found == 0i64) { pass -1i64; }
+src/str/strview.npk:361:     if (sv == 0i64 || needle == 0i64) { pass -1i64; }
+src/str/strview.npk:364:     if (n->len == 0i64) { pass 0i64; }
+src/str/strview.npk:366:     int64:found = raw mem_memmem(s->ptr, s->len, n->ptr, n->len);
+src/str/strview.npk:367:     if (found == 0i64) { pass -1i64; }
+src/str/strview.npk:373:     pass raw strview_find_char(sv, c) >= 0i64;
+src/str/strview.npk:378:     pass raw strview_find_str(sv, needle) >= 0i64;
+src/str/strview.npk:383:     pass raw strview_find(sv, needle) >= 0i64;
+src/str/strview.npk:395:     if (start < 0i64) { start = 0i64; }
+src/str/strview.npk:396:     if (end_idx < 0i64 || end_idx > s->len) { end_idx = s->len; }
+src/str/strview.npk:406:     if (n < 0i64) { n = 0i64; }
+src/str/strview.npk:416:     if (n < 0i64) { n = 0i64; }
+src/str/strview.npk:444:     int64:n = s->len;
+src/str/strview.npk:446:     while (n > 0i64) {
+src/str/strview.npk:461:     drop(strview_trim_left(sv, @cast_unchecked<int64>(@tmp)));
+src/str/strview.npk:462:     drop(strview_trim_right(@cast_unchecked<int64>(@tmp), out));
+src/str/strview.npk:483:     if (pos < 0i64) {
+src/str/strview.npk:487:         ro->len = 0i64;
+src/str/strview.npk:509:     if (pos < 0i64) {
+src/str/strview.npk:513:         ro->len = 0i64;
+src/str/strview.npk:533: //   strview_of(some_str, @cast_unchecked<int64>(@cur));
+src/str/strview.npk:535: //   while strview_next_token(@cast_unchecked<int64>(@cur), '\n', @cast_unchecked<int64>(@tok)) { ... }
+src/str/strview.npk:538:     if (sv->len == 0i64) { pass false; }
+src/str/strview.npk:544:     bool:found = raw strview_split_once_char(sv_ptr, delim, @cast_unchecked<int64>(@left), @cast_unchecked<int64>(@right));
+src/str/strview.npk:556:         sv->len = 0i64;
+src/str/strview.npk:567:     if (sv->len == 0i64) { pass false; }
+src/str/strview.npk:584:     if (lo->len > 0i64 && p[lo->len - 1i64] == 13u8) {
+src/str/strview.npk:594:         sv->len = 0i64;
+src/str/strview.npk:605: // Returns Result<int64>: Ok(value) or Err if the content is not a valid number.
+src/str/strview.npk:608:     if (sv == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+src/str/strview.npk:610:     if (s->len == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+src/str/strview.npk:617:         drop(mem_memcpy(@cast_unchecked<int64>(@tmp), s->ptr, s->len));
+src/str/strview.npk:619:         return str_parse_i64(@cast_unchecked<int64>(@tmp));
+src/str/strview.npk:621:         Result<int64>:alloc_r = mem_malloc(s->len + 1i64);
+src/str/strview.npk:626:         Result<int64>:r = str_parse_i64(buf);
+src/str/strview.npk:634:     if (sv == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+src/str/strview.npk:636:     if (s->len == 0i64) { fail @cast_unchecked<tbb32>(EINVAL); }
+src/str/strview.npk:640:         drop(mem_memcpy(@cast_unchecked<int64>(@tmp), s->ptr, s->len));
+src/str/strview.npk:642:         return str_parse_u64(@cast_unchecked<int64>(@tmp));
+src/str/strview.npk:644:         Result<int64>:alloc_r = mem_malloc(s->len + 1i64);
+src/str/strview.npk:649:         Result<int64>:r = str_parse_u64(buf);
+src/str/strview.npk:664:     Result<int64>:r = mem_malloc(s->len + 1i64);
+src/str/strview.npk:666:     if (s->len > 0i64) {
+src/str/strview.npk:677:     int64:sb = raw strbuf_new_cap(s->len + 1i64);
+src/str/strview.npk:678:     if (sb == 0i64) { pass 0i64; }
+src/str/strview.npk:679:     if (s->len > 0i64) {
+src/str/strview.npk:688:     if (sv == 0i64 || buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+src/str/strview.npk:690:     int64:n = is (s->len < buflen) : s->len : buflen;
+src/str/strview.npk:691:     if (n > 0i64) { drop(mem_memcpy(buf, s->ptr, n)); }
+src/str/strview.npk:698:     if (buf == 0i64 || buflen <= 0i64) { pass 0i64; }
+src/str/strview.npk:699:     if (sv == 0i64) {
+src/str/strview.npk:705:     int64:n = is (s->len < max) : s->len : max;
+src/str/strview.npk:706:     if (n > 0i64) { drop(mem_memcpy(buf, s->ptr, n)); }
+src/str/strview.npk:714:     if (sv == 0i64) { pass 0i64; }
+src/str/strview.npk:716:     if (s->len == 0i64) { pass 0i64; }
+src/str/strview.npk:717:     Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+src/str/strview.npk:725:     if (sv == 0i64) { pass 0i64; }
+src/str/strview.npk:727:     if (s->len == 0i64) { pass 0i64; }
+src/str/strview.npk:728:     int64:n = raw fwrite(s->ptr, 1i64, s->len, fp);
+src/str/strview.npk:742: //   strviewiter_of_str(@cast_unchecked<int64>(@it), some_text);
+src/str/strview.npk:744: //   while strviewiter_next_line(@cast_unchecked<int64>(@it), @cast_unchecked<int64>(@line)) {
+src/str/strview.npk:750:     int64:ptr;      // pointer into remaining data (same @cast_unchecked<StrView>(semantics).ptr)
+src/str/strview.npk:765:     if (s == 0i64) {
+src/str/strview.npk:791:     if (it == 0i64) { pass 0i64; }
+src/str/strcpy.npk:35:     if (dst == 0i64 || src == 0i64) {
+src/str/strcpy.npk:60:     if (dst == 0i64 || src == 0i64) {
+src/str/strcpy.npk:89:     if (dst == 0i64 || n <= 0i64) {
+src/str/strcpy.npk:92:     if (src == 0i64) {
+src/str/strcpy.npk:125:     if (dst == 0i64 || n <= 0i64) {
+src/str/strcpy.npk:128:     if (src == 0i64) {
+src/str/strcpy.npk:162:     if (src == 0i64) {
+src/str/strcpy.npk:171:     if (r == 0i64) {
+src/str/strcpy.npk:193:     if (src == 0i64) {
+src/str/strcpy.npk:196:     if (n < 0i64) {
+src/str/strcpy.npk:204:     if (r == 0i64) {
+src/str/strchr.npk:25:     if (s == 0i64) {
+src/str/strchr.npk:34:     while (((s + i) & 7i64) != 0i64) {
+src/str/strchr.npk:45:     int64:tword = @cast_unchecked<int64>(target);
+src/str/strchr.npk:54:     int64->:pw = @cast_unchecked<int64->>((s + i));
+src/str/strchr.npk:59:         bool:has_nul = ((v - ONES) & (0i64 - 1i64 ^ v) & HIGHBITS) != 0i64;
+src/str/strchr.npk:62:         bool:has_tgt = ((x - ONES) & (0i64 - 1i64 ^ x) & HIGHBITS) != 0i64;
+src/str/strchr.npk:94:     if (s == 0i64) {
+src/str/strchr.npk:114:     if (s == 0i64) {
+src/str/strchr.npk:149:     if (haystack == 0i64) {
+src/str/strchr.npk:152:     if (needle == 0i64) {
+src/str/strchr.npk:189:     if (haystack == 0i64) {
+src/str/strchr.npk:192:     if (needle == 0i64) {
+src/str/strchr.npk:235: pub func:charset_build = NIL(uint8->:table, int64:charset) {
+src/str/strchr.npk:261:     if (s == 0i64 || accept == 0i64) {
+src/str/strchr.npk:292:     if (s == 0i64) {
+src/str/strchr.npk:295:     if (accept == 0i64) {
+src/str/strchr.npk:320:     if (s == 0i64) {
+src/str/strchr.npk:323:     if (reject == 0i64) {
+src/str/strfmt.npk:63: func:fmt_puts_n = NIL(FmtState->:st, int64:ptr, int64:n) {
+src/str/strfmt.npk:73: func:fmt_pad = NIL(FmtState->:st, uint8:pad_char, int64:n) {
+src/str/strfmt.npk:86: fixed int64:DIGITS_LOWER = @cast_unchecked<int64>(@"0123456789abcdef");
+src/str/strfmt.npk:87: fixed int64:DIGITS_UPPER = @cast_unchecked<int64>(@"0123456789ABCDEF");
+src/str/strfmt.npk:105:     uint64:ubase = @cast_unchecked<uint64>(base);
+src/str/strfmt.npk:111:             d = @cast_unchecked<int64>(u & 0xFu64);
+src/str/strfmt.npk:114:             d = @cast_unchecked<int64>(u & 7u64);
+src/str/strfmt.npk:117:             d = @cast_unchecked<int64>(u & 1u64);
+src/str/strfmt.npk:120:             d = @cast_unchecked<int64>(u % ubase);
+src/str/strfmt.npk:130:     while (ti > 0i64) {
+src/str/strfmt.npk:154:                                   int64->:args, int64:nargs) {
+src/str/strfmt.npk:155:     if (buf == 0i64 || buf_size <= 0i64) {
+src/str/strfmt.npk:204:                 width = width * 10i64 + @cast_unchecked<int64>((f[fi] - 48u8));
+src/str/strfmt.npk:219:                     precision = precision * 10i64 + @cast_unchecked<int64>((f[fi] - 48u8));
+src/str/strfmt.npk:254:             if (sptr == 0i64) {
+src/str/strfmt.npk:255:                 sptr = @cast_unchecked<int64>(@"(null)");
+src/str/strfmt.npk:260:             if (precision >= 0i64 && slen > precision) {
+src/str/strfmt.npk:287:         bool:is_neg = is_signed && arg_val < 0i64;
+src/str/strfmt.npk:291:         nlen = raw render_uint(@cast_unchecked<uint64>(uval), num_base, @cast_unchecked<int64>(@nbuf), is_upper);
+src/str/strfmt.npk:303:         if (flag_alt && num_base == 16i64 && arg_val != 0i64) {
+src/str/strfmt.npk:309:             if (nlen == 0i64 || nbuf[0] != 48u8) {
+src/str/strfmt.npk:324:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+src/str/strfmt.npk:325:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
+src/str/strfmt.npk:329:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+src/str/strfmt.npk:331:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
+src/str/strfmt.npk:335:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@prefix), prefix_len));
+src/str/strfmt.npk:336:             drop(fmt_puts_n(stp, @cast_unchecked<int64>(@nbuf), nlen));
+src/str/strfmt.npk:341:     if (st.size > 0i64) {
+src/str/strfmt.npk:353: // args are @cast_unchecked<an>(passed) int64 array via stack-constructed temporary.
+src/str/strfmt.npk:358:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(0i64), 0i64);
+src/str/strfmt.npk:365:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 1i64);
+src/str/strfmt.npk:372:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 2i64);
+src/str/strfmt.npk:380:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 3i64);
+src/str/strfmt.npk:388:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 4i64);
+src/str/strfmt.npk:397:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 6i64);
+src/str/strfmt.npk:407:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 8i64);
+src/str/strfmt.npk:416:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 5i64);
+src/str/strfmt.npk:426:     return str_format_args(buf, buf_size, fmt, @cast_unchecked<int64->>(@a), 7i64);
+src/str/strlcpy.npk:47:     if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:85:     if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:91:     if (remaining <= 0i64) {
+src/str/strlcpy.npk:120:     if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:152:     if (dst == 0i64 || dst_size == 0i64) {
+src/str/strlcpy.npk:160:     if (r >= 0i64) {
+src/str/strlcpy.npk:178: // Identical to strlcpy but returns a Result<int64>:
+src/str/strlcpy.npk:182: //   Result<int64>:r = str_strlcpy_chk(dst, src, sizeof_dst);
+src/str/strlcpy.npk:190:     if (dst == 0i64) {
+src/str/strconv.npk:16: // libn ADDITION — Result<int64> variants:
+src/str/strconv.npk:17: //   str_parse_i64, str_parse_u64: return Result<int64> instead of errno.
+src/str/strconv.npk:51:         v = @cast_unchecked<int64>((c - 48u8));
+src/str/strconv.npk:53:         v = @cast_unchecked<int64>((c - 55u8));           // 'A'=10, 'B'=11, ...
+src/str/strconv.npk:55:         v = @cast_unchecked<int64>((c - 87u8));           // 'a'=10, 'b'=11, ...
+src/str/strconv.npk:78: pub func:str_strtol = int64(int64:s, int64->:endptr, int64:base) {
+src/str/strconv.npk:79:     if (s == 0i64) {
+src/str/strconv.npk:80:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = 0i64; }
+src/str/strconv.npk:100:     if (base == 0i64) {
+src/str/strconv.npk:121:         if (dv < 0i64) { break; }
+src/str/strconv.npk:140:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s; }
+src/str/strconv.npk:146:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
+src/str/strconv.npk:151:     if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
+src/str/strconv.npk:161: fixed int64:UINT64_MAX = -1i64;    // 0xFFFFFFFFFFFFFFFF (all bits set, re-@cast_unchecked<uint64>(interpreted))
+src/str/strconv.npk:163: pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
+src/str/strconv.npk:164:     if (s == 0i64) {
+src/str/strconv.npk:165:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = 0i64; }
+src/str/strconv.npk:184:     if (base == 0i64) {
+src/str/strconv.npk:204:         if (dv < 0i64) { break; }
+src/str/strconv.npk:209:           // Since UINT64_MAX = (int64)−1 @cast_unchecked<unsigned>(but), use bit tricks:
+src/str/strconv.npk:216:         if (result < 0i64) {
+src/str/strconv.npk:233:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s; }
+src/str/strconv.npk:239:         if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
+src/str/strconv.npk:243:     if (@cast_unchecked<int64>(endptr) != 0i64) { endptr[0] = s + i; }
+src/str/strconv.npk:258:     return str_strtol(s, @cast_unchecked<int64->>(0i64), 10i64);
+src/str/strconv.npk:262: // str_parse_i64 — Safe integer parse with Result<int64>.
+src/str/strconv.npk:272:     if (s == 0i64 || (@cast_unchecked<uint8->>(s))[0] == 0u8) {
+src/str/strconv.npk:278:     int64->:ep = @endptr_val;
+src/str/strconv.npk:288:     if (ep[0] != 0i64 && (@cast_unchecked<uint8->>(ep[0]))[0] != 0u8) {
+src/str/strconv.npk:296: // str_parse_u64 — Safe unsigned integer parse with Result<int64>.
+src/str/strconv.npk:300:     if (s == 0i64 || (@cast_unchecked<uint8->>(s))[0] == 0u8) {
+src/str/strconv.npk:305:     int64->:ep = @endptr_val;
+src/str/strconv.npk:313:     if (ep[0] != 0i64 && (@cast_unchecked<uint8->>(ep[0]))[0] != 0u8) {
+src/str/strconv.npk:325:     if (s == 0i64 || (@cast_unchecked<uint8->>(s))[0] == 0u8) {
+src/str/strconv.npk:333:     int64->:ep = @endptr_val;
+src/str/strconv.npk:341:     if (ep[0] != 0i64 && (@cast_unchecked<uint8->>(ep[0]))[0] != 0u8) {
+src/str/strconv.npk:356:     if (buf == 0i64 || buf_size <= 0i64) {
+src/str/strconv.npk:363:     if (v == 0i64) {
+src/str/strconv.npk:364:         if (buf_size < 2i64) { pass 0i64; }
+src/str/strconv.npk:372:         int64:min_str = @cast_unchecked<int64>(@"-9223372036854775808");
+src/str/strconv.npk:374:         if (buf_size <= s) { pass 0i64; }
+src/str/strconv.npk:381:     bool:neg = v < 0i64;
+src/str/strconv.npk:382:     uint64:u = @cast_unchecked<uint64>(v);
+src/str/strconv.npk:383:     if (neg) { u = @cast_unchecked<uint64>(0i64 - v); }
+src/str/strconv.npk:386:     while (u > 0i64) {
+src/str/strconv.npk:387:         tmp[ti] = @cast_unchecked<uint8>((48i64 + u % 10i64));    // '0' + digit
+src/str/strconv.npk:395:     if (buf_size <= total_len) { pass 0i64; }    // Buffer too small
+src/str/strconv.npk:404:     while (ti > 0i64) {
+src/str/strconv.npk:419:     if (buf == 0i64 || buf_size <= 0i64) { pass 0i64; }
+src/str/strconv.npk:423:     if (v == 0i64) {
+src/str/strconv.npk:424:         if (buf_size < 2i64) { pass 0i64; }
+src/str/strconv.npk:433:       // Simple: do the loop treating @cast_unchecked<positive>(v) int64 (works for 0..INT64_MAX)
+src/str/strconv.npk:438:     uint64:u = @cast_unchecked<uint64>(v);
+src/str/strconv.npk:439:     while (u > 0u64 || ti == 0i64) {
+src/str/strconv.npk:446:     if (buf_size <= ti) { pass 0i64; }
+src/str/strconv.npk:449:     while (ti > 0i64) {
+src/str/strconv.npk:465:     if (buf == 0i64 || buf_size <= 0i64) { pass 0i64; }
+src/str/strconv.npk:473:     if (u == 0i64) {
+src/str/strconv.npk:477:         while (u != 0i64) {
+src/str/strconv.npk:479:             if (digit < 10i64) {
+src/str/strconv.npk:485:               // Problem: int64 >> is arithmetic in Nitpick
+src/str/strconv.npk:486:               // Use: u = (@cast_unchecked<uint64>(u)) >> 4 → in Nitpick we use: u = (u & INT64_MAX) >> 4
+src/str/strconv.npk:496:     if (buf_size <= total) { pass 0i64; }
+src/str/strconv.npk:504:     while (ti > 0i64) {
+src/str/strlen.npk:39:     pass ((v - STRLEN_ONES) & (0i64 - 1i64 ^ v) & STRLEN_HIGHBITS) != 0i64;
+src/str/strlen.npk:53:     if (s == 0i64) {
+src/str/strlen.npk:62:     while (((s + i) & 7i64) != 0i64) {
+src/str/strlen.npk:70:     int64->:pw = @cast_unchecked<int64->>((s + i));
+src/str/strlen.npk:97:     if (s == 0i64 || max_len <= 0i64) {
+src/str/strlen.npk:105:     while (i < max_len && ((s + i) & 7i64) != 0i64) {
+src/str/strlen.npk:113:     int64->:pw = @cast_unchecked<int64->>((s + i));
+src/str/strlen.npk:133: // Like strnlen but returns a Result<int64>. Fails with ERR_TOOLONG if no NUL
+src/str/strlen.npk:148:     if (s == 0i64) {
+src/str/strcmp.npk:58:     pass ((v - STRCMP_ONES) & (0i64 - 1i64 ^ v) & STRCMP_HIGHBITS) != 0i64;
+src/str/strcmp.npk:72:     if (a == 0i64) {
+src/str/strcmp.npk:75:     if (b == 0i64) {
+src/str/strcmp.npk:84:     while ((((a + i) | (b + i)) & 7i64) != 0i64) {
+src/str/strcmp.npk:92:             pass 0i64;    // Both hit NUL simultaneously (since ca==cb)
+src/str/strcmp.npk:98:     int64->:wa = @cast_unchecked<int64->>((a + i));
+src/str/strcmp.npk:99:     int64->:wb = @cast_unchecked<int64->>((b + i));
+src/str/strcmp.npk:134:     if (n == 0i64) {
+src/str/strcmp.npk:140:     if (a == 0i64) {
+src/str/strcmp.npk:143:     if (b == 0i64) {
+src/str/strcmp.npk:176:     if (a == 0i64 || b == 0i64) {
+src/str/strcmp.npk:202:     if (a == 0i64) {
+src/str/strcmp.npk:205:     if (b == 0i64) {
+src/str/strcmp.npk:234:     if (n == 0i64) {
+src/str/strcmp.npk:240:     if (a == 0i64) {
+src/str/strcmp.npk:243:     if (b == 0i64) {
+src/str/strcmp.npk:273:     if (a == 0i64 || b == 0i64) {
+src/str/strbuf.npk:13: // Represented in @cast_unchecked<an>(libn) int64 pointer to a StrBuf struct.
+src/str/strbuf.npk:74:     int64:required = s->len + need + 1i64;
+src/str/strbuf.npk:80:     int64:new_cap = is (s.cap > 0i64) : s.cap : STRBUF_MIN_CAP;
+src/str/strbuf.npk:84:         if (new_cap < 0i64) {
+src/str/strbuf.npk:89:     int64:r = slab_realloc(s->ptr, new_cap);
+src/str/strbuf.npk:90:     if (r == 0i64) {
+src/str/strbuf.npk:111:     int64:cap = is (init_cap > STRBUF_MIN_CAP) : init_cap : STRBUF_MIN_CAP;
+src/str/strbuf.npk:114:     Result<int64>:sr = mem_malloc(24i64);
+src/str/strbuf.npk:119:     Result<int64>:br = mem_malloc(cap);
+src/str/strbuf.npk:127:     s->len = 0i64;
+src/str/strbuf.npk:139:     if (sb == 0i64) { pass NIL; }
+src/str/strbuf.npk:141:     if (s->ptr != 0i64) {
+src/str/strbuf.npk:150:     if (sb == 0i64) { pass NIL; }
+src/str/strbuf.npk:152:     s->len = 0i64;
+src/str/strbuf.npk:153:     if (s->ptr != 0i64) {
+src/str/strbuf.npk:164:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:166:     int64:ptr = s->ptr;
+src/str/strbuf.npk:167:     s->ptr = 0i64;    // prevent double-free in strbuf_free
+src/str/strbuf.npk:177:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:180:     int64:n = s->len;
+src/str/strbuf.npk:181:     Result<int64>:r = mem_malloc(n + 1i64);
+src/str/strbuf.npk:198:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:204:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:211:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:217:     if (sb == 0i64) { pass true; }
+src/str/strbuf.npk:218:     pass (@cast_unchecked<StrBuf->>(sb)).len == 0i64;
+src/str/strbuf.npk:228:     if (sb == 0i64) { pass false; }
+src/str/strbuf.npk:242:     if (sb == 0i64 || ptr == 0i64 || n <= 0i64) { pass false; }
+src/str/strbuf.npk:255:     if (sb == 0i64 || str == 0i64) { pass false; }
+src/str/strbuf.npk:257:     if (n == 0i64) { pass true; }    // appending empty string is a no-op
+src/str/strbuf.npk:263:     if (sb == 0i64 || other == 0i64) { pass false; }
+src/str/strbuf.npk:265:     if (o.len == 0i64) { pass true; }
+src/str/strbuf.npk:271:     if (sb == 0i64 || n <= 0i64) { pass false; }
+src/str/strbuf.npk:274:     drop(mem_memset(s->ptr + s->len, @cast_unchecked<int64>(c), n));
+src/str/strbuf.npk:291:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:293:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:296:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:302:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:304:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:307:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:313:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:315:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:318:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:325:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:327:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:330:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:337:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:339:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:342:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:349:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:351:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:354:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:362:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:364:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:367:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:375:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:377:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:380:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:388:     if (sb == 0i64) { pass -1i64; }
+src/str/strbuf.npk:390:     int64:tmp_ptr = @cast_unchecked<int64>(@tmp);
+src/str/strbuf.npk:393:     if (n == 0i64) { pass 0i64; }
+src/str/strbuf.npk:405:     if (sb == 0i64) { pass NIL; }
+src/str/strbuf.npk:408:     if (n < 0i64) { n = 0i64; }
+src/str/strbuf.npk:416:     if (sb == 0i64) { pass NIL; }
+src/str/strbuf.npk:419:     if (s->len > 0i64 && p[s->len - 1i64] == 10u8) {     // '\n'
+src/str/strbuf.npk:423:     if (s->len > 0i64 && p[s->len - 1i64] == 13u8) {     // '\r'
+src/str/strbuf.npk:437:     if (sb == 0i64) { pass 0i64; }
+src/str/strbuf.npk:439:     if (s->len == 0i64) { pass 0i64; }
+src/str/strbuf.npk:440:     Result<int64>:r = libn_write_all(fd, s->ptr, s->len);
+src/math/math.npk:76:     if (v < 0i64) { pass 0i64 - v; }
+src/math/math.npk:93: // (Nitpick stores @cast_unchecked<int64>(u64) with unsigned bit semantics.)
+src/math/math.npk:100:     if ((a ^ b) < 0i64) {
+src/math/math.npk:103:         if (a < 0i64) { pass b; }    // a has high bit → a >_u b → min is b
+src/math/math.npk:112:     if ((a ^ b) < 0i64) {
+src/math/math.npk:113:         if (a < 0i64) { pass a; }     // a has high bit → a >_u b → max is a
+src/math/math.npk:130:     if (v < 0i64) { pass -1i64; }
+src/math/math.npk:131:     if (v > 0i64) { pass  1i64; }
+src/math/math.npk:149:     if (a > 0i64 && b > 0i64 && r < 0i64) { pass INT64_MAX; }
+src/math/math.npk:150:     if (a < 0i64 && b < 0i64 && r > 0i64) { pass INT64_MIN; }
+src/math/math.npk:159:         if (a >= 0i64) { pass INT64_MAX; }
+src/math/math.npk:162: pass is (a == INT64_MIN) : 0i64 : INT64_MAX;
+src/math/math.npk:170:     if (a == 0i64 || b == 0i64) { pass 0i64; }
+src/math/math.npk:188:         bool:neg = (a < 0i64) ^ (b < 0i64);
+src/math/math.npk:231: pub func:math_div_ceil_i64 = int64(int64:a, int64:b) requires b != 0i64 {
+src/math/math.npk:235:     if (r != 0i64 && (a > 0i64) == (b > 0i64)) {
+src/math/math.npk:243: pub func:math_div_floor_i64 = int64(int64:a, int64:b) requires b != 0i64 {
+src/math/math.npk:247:     if (r != 0i64 && (a < 0i64) != (b < 0i64)) {
+src/math/math.npk:260: pub func:math_mod_pos_i64 = int64(int64:a, int64:b) requires b != 0i64 {
+src/math/math.npk:262:     if (r < 0i64) {
+src/math/math.npk:286:     pass (v & (align - 1i64)) == 0i64;
+src/math/math.npk:295:     if (v <= 0i64) { pass false; }
+src/math/math.npk:296:     pass (v & (v - 1i64)) == 0i64;
+src/math/math.npk:313:     if (v <= 0i64) { pass 0i64; }
+src/math/math.npk:322:     if (v <= 0i64) { pass -1i64; }
+src/math/math.npk:330:     if (v <= 0i64) { pass -1i64; }
+src/math/math.npk:331:     if (v == 1i64) { pass 0i64; }
+src/math/math.npk:361:     if (v == 0i64) { pass 64i64; }
+src/math/math.npk:364:     if ((v & 0xFFFFFFFF00000000i64) == 0i64) { n = n + 32i64; v = v << 32i64; }
+src/math/math.npk:365:     if ((v & 0xFFFF000000000000i64) == 0i64) { n = n + 16i64; v = v << 16i64; }
+src/math/math.npk:366:     if ((v & 0xFF00000000000000i64) == 0i64) { n = n + 8i64;  v = v << 8i64;  }
+src/math/math.npk:367:     if ((v & 0xF000000000000000i64) == 0i64) { n = n + 4i64;  v = v << 4i64;  }
+src/math/math.npk:368:     if ((v & 0xC000000000000000i64) == 0i64) { n = n + 2i64;  v = v << 2i64;  }
+src/math/math.npk:369:     if ((v & 0x8000000000000000i64) == 0i64) { n = n + 1i64;  }
+src/math/math.npk:376:     if (v == 0i64) { pass 64i64; }
+src/math/math.npk:380:     if ((v & 0x00000000FFFFFFFFi64) == 0i64) { n = n + 32i64; v = v >> 32i64; }
+src/math/math.npk:381:     if ((v & 0x000000000000FFFFi64) == 0i64) { n = n + 16i64; v = v >> 16i64; }
+src/math/math.npk:382:     if ((v & 0x00000000000000FFi64) == 0i64) { n = n + 8i64;  v = v >> 8i64;  }
+src/math/math.npk:383:     if ((v & 0x000000000000000Fi64) == 0i64) { n = n + 4i64;  v = v >> 4i64;  }
+src/math/math.npk:384:     if ((v & 0x0000000000000003i64) == 0i64) { n = n + 2i64;  v = v >> 2i64;  }
+src/math/math.npk:385:     if ((v & 0x0000000000000001i64) == 0i64) { n = n + 1i64;  }
+src/math/math.npk:418:     if (n == 0i64) { pass v; }
+src/math/math.npk:425:     if (n == 0i64) { pass v; }
+src/math/math.npk:437:     if (v <= 0i64) { pass 0i64; }
+src/math/math.npk:443:     int64:x = 1i64 << ((bits + 1i64) / 2i64);
+src/math/math.npk:477:     if (a == 0i64) { pass b; }
+src/math/math.npk:478:     if (b == 0i64) { pass a; }
+src/math/math.npk:492:         if (b == 0i64) { break; }
+src/math/math.npk:502:     if (a == 0i64 || b == 0i64) { pass 0i64; }
+src/syscall/syscall.npk:6: //                          Result<int64>. The whitelist excludes dangerous ops like
+src/syscall/syscall.npk:9: //   sys_full(nr, ...)    — all syscalls, returns Result<int64>. For calls that
+src/syscall/syscall.npk:26: //   Unused arguments MUST be @cast_unchecked<0i64>(passed) (not omitted) to avoid ABI issues.
+src/syscall/syscall.npk:34: //   Result<int64>:r = sys_safe(SYS_READ, fd, buf_ptr, nbytes, 0i64, 0i64, 0i64);
+src/syscall/syscall.npk:237: // path: NUL-terminated uint8 string (@cast_unchecked<int64>(pointer))
+src/syscall/syscall.npk:246:     Result<int64>:r = sys3(SYS_OPEN, path, safe_flags, mode);
+src/syscall/syscall.npk:254:     Result<int64>:r = sys4(SYS_OPENAT, dirfd, path, safe_flags, mode);
+src/syscall/syscall.npk:262:     Result<int64>:r = sys1(SYS_CLOSE, fd);
+src/syscall/syscall.npk:270:     Result<int64>:r = sys3(SYS_READ, fd, buf, nbytes);
+src/syscall/syscall.npk:278:     Result<int64>:r = sys3(SYS_WRITE, fd, buf, nbytes);
+src/syscall/syscall.npk:284:     Result<int64>:r = sys4(SYS_PREAD64, fd, buf, nbytes, offset);
+src/syscall/syscall.npk:290:     Result<int64>:r = sys4(SYS_PWRITE64, fd, buf, nbytes, offset);
+src/syscall/syscall.npk:297:     Result<int64>:r = sys3(SYS_LSEEK, fd, offset, whence);
+src/syscall/syscall.npk:303:     Result<int64>:r = sys1(SYS_DUP, fd);
+src/syscall/syscall.npk:309:     Result<int64>:r = sys2(SYS_DUP2, fd, newfd);
+src/syscall/syscall.npk:315:     Result<int64>:r = sys3(SYS_DUP3, fd, newfd, flags);
+src/syscall/syscall.npk:326:     Result<int64>:r = sys3(SYS_FCNTL, fd, cmd, arg);
+src/syscall/syscall.npk:334:     Result<int64>:r = sys3(SYS_IOCTL, fd, request, arg);
+src/syscall/syscall.npk:343:     Result<int64>:r = sys2(SYS_PIPE2, pipefd, flags);
+src/syscall/syscall.npk:355: // Returns: mapped @cast_unchecked<int64>(address), or error.
+src/syscall/syscall.npk:357:     Result<int64>:r = sys_safe(SYS_MMAP, addr, length, prot, flags, fd, offset);
+src/syscall/syscall.npk:363:     Result<int64>:r = sys2(SYS_MUNMAP, addr, length);
+src/syscall/syscall.npk:372:     if ((prot & PROT_EXEC) != 0i64) {
+src/syscall/syscall.npk:375:     Result<int64>:r = sys3(SYS_MPROTECT, addr, length, prot);
+src/syscall/syscall.npk:383:     Result<int64>:r = sys_full3(SYS_MPROTECT, addr, length, prot);
+src/syscall/syscall.npk:390:     Result<int64>:r = sys5(SYS_MREMAP, old_addr, old_size, new_size, flags, new_addr);
+src/syscall/syscall.npk:397:     Result<int64>:r = sys3(SYS_MADVISE, addr, length, advice);
+src/syscall/syscall.npk:404:     Result<int64>:r = sys3(SYS_MSYNC, addr, length, flags);
+src/syscall/syscall.npk:414:     Result<int64>:r = sys2(SYS_CLOCK_GETTIME, clockid, tp);
+src/syscall/syscall.npk:420:     Result<int64>:r = sys2(SYS_CLOCK_GETRES, clockid, res);
+src/syscall/syscall.npk:428:     Result<int64>:r = sys2(SYS_NANOSLEEP, req, rem);
+src/syscall/syscall.npk:434:     Result<int64>:r = sys1(SYS_SCHED_YIELD, 0i64);
+src/syscall/syscall.npk:446:     Result<int64>:r = sys4(SYS_FUTEX, uaddr, FUTEX_WAIT_PRIVATE, val, timeout);
+src/syscall/syscall.npk:453:     Result<int64>:r = sys3(SYS_FUTEX, uaddr, FUTEX_WAKE_PRIVATE, nwake);
+src/syscall/syscall.npk:477:     Result<int64>:r = sys_full1(SYS_FORK, 0i64);
+src/syscall/syscall.npk:485:     Result<int64>:r = sys_full2(SYS_KILL, pid, sig);
+src/syscall/syscall.npk:493:     Result<int64>:r = sys_full3(SYS_TGKILL, tgid, tid, sig);
+src/syscall/syscall.npk:504:     Result<int64>:r = sys5(SYS_STATX, dirfd, path, flags, mask, statxbuf);
+src/syscall/syscall.npk:515:     Result<int64>:r = sys3(SYS_GETRANDOM, buf, len, flags);
+src/syscall/syscall.npk:527:     Result<int64>:r = sys2(SYS_GETCWD, buf, size);
+src/syscall/syscall.npk:533:     Result<int64>:r = sys1(SYS_CHDIR, path);
+src/syscall/syscall.npk:539:     Result<int64>:r = sys1(SYS_FCHDIR, fd);
+src/syscall/syscall.npk:551:     Result<int64>:r = sys3(SYS_GETDENTS64, fd, buf, count);
+src/syscall/syscall.npk:563:     Result<int64>:r = sys_full2(SYS_ARCH_PRCTL, code, addr);
+src/syscall/syscall.npk:570:     Result<int64>:r = sys1(SYS_SET_TID_ADDRESS, tidptr);
+src/syscall/syscall.npk:589:     while (remaining > 0i64) {
+src/syscall/syscall.npk:590:         Result<int64>:r = sys3(SYS_READ, fd, ptr, remaining);
+src/syscall/syscall.npk:592:             if (@cast_unchecked<int64>(r.error) == EINTR) {
+src/syscall/syscall.npk:598:         if (n == 0i64) {
+src/syscall/syscall.npk:616:     while (remaining > 0i64) {
+src/syscall/syscall.npk:617:         Result<int64>:r = sys3(SYS_WRITE, fd, ptr, remaining);
+src/syscall/syscall.npk:619:             if (@cast_unchecked<int64>(r.error) == EINTR) {
+src/syscall/syscall.npk:641:     Result<int64>:r = sys2(SYS_NANOSLEEP, ts_req, 0i64);
+src/syscall/syscall_numbers.npk:12: //   sys(N, ...)    — safe tier (~55 whitelisted), returns Result<int64>
+src/syscall/syscall_numbers.npk:13: //   sys!!(N, ...)  — full tier (all syscalls), returns Result<int64>
+src/syscall/posix_constants.npk:136: pub fixed int64:MAP_EXECUTABLE      = 4096i64;      // @cast_unchecked<executable>(Mark)
+src/syscall/posix_constants.npk:227: // Special handler values (@cast_unchecked<int64>(stored) function pointer slots)
+src/syscall/posix_constants.npk:440: pub fixed int64:EPOLLEXCLUSIVE = 268435456i64;    // 1 << 28
+src/syscall/posix_constants.npk:441: pub fixed int64:EPOLLWAKEUP    = 536870912i64;    // 1 << 29
+src/syscall/posix_constants.npk:442: pub fixed int64:EPOLLONESHOT   = 1073741824i64;   // 1 << 30
+src/syscall/posix_constants.npk:443: pub fixed int64:EPOLLET        = 2147483648i64;   // 1 << 31 — edge-triggered
+src/syscall/posix_constants.npk:500: pub fixed int64:CLONE_PARENT         = 32768i64;         // 0x00008000 — Same @cast_unchecked<caller>(parent)
+src/syscall/errno.npk:8: //   libn's sys() / sys!!() wrappers convert these to Result<int64>{err, val, is_error}.
+src/syscall/errno.npk:10: //     - All errno @cast_unchecked<pub>(constants) fixed int64
+src/syscall/errno.npk:11: //     - err_from_syscall(ret int64) Result<int64>   — converts raw syscall return
+src/syscall/errno.npk:22: //   Result<int64>:r = err_from_syscall(raw_ret);
+src/syscall/errno.npk:72: pub fixed int64:EWOULDBLOCK = EAGAIN;   // Operation would block (@cast_unchecked<EAGAIN>(same) on Linux)
+src/syscall/errno.npk:191: // This allows Result<int64>{err: @cast_unchecked<tbb8>(ENOENT), ...} patterns.
+src/syscall/errno.npk:225: // err_from_syscall — Convert a raw syscall return value to Result<int64>.
+src/syscall/errno.npk:233:     if (ret >= 0i64) {
+src/syscall/errno.npk:275:         (0i64) { pass @cast_unchecked<int64>(@"Success"); },
+src/syscall/errno.npk:276:         (1i64) { pass @cast_unchecked<int64>(@"Operation not permitted"); },
+src/syscall/errno.npk:277:         (2i64) { pass @cast_unchecked<int64>(@"No such file or directory"); },
+src/syscall/errno.npk:278:         (3i64) { pass @cast_unchecked<int64>(@"No such process"); },
+src/syscall/errno.npk:279:         (4i64) { pass @cast_unchecked<int64>(@"Interrupted system call"); },
+src/syscall/errno.npk:280:         (5i64) { pass @cast_unchecked<int64>(@"Input/output error"); },
+src/syscall/errno.npk:281:         (6i64) { pass @cast_unchecked<int64>(@"No such device or address"); },
+src/syscall/errno.npk:282:         (7i64) { pass @cast_unchecked<int64>(@"Argument list too long"); },
+src/syscall/errno.npk:283:         (8i64) { pass @cast_unchecked<int64>(@"Exec format error"); },
+src/syscall/errno.npk:284:         (9i64) { pass @cast_unchecked<int64>(@"Bad file descriptor"); },
+src/syscall/errno.npk:285:         (10i64) { pass @cast_unchecked<int64>(@"No child processes"); },
+src/syscall/errno.npk:286:         (11i64) { pass @cast_unchecked<int64>(@"Resource temporarily unavailable"); },
+src/syscall/errno.npk:287:         (12i64) { pass @cast_unchecked<int64>(@"Out of memory"); },
+src/syscall/errno.npk:288:         (13i64) { pass @cast_unchecked<int64>(@"Permission denied"); },
+src/syscall/errno.npk:289:         (14i64) { pass @cast_unchecked<int64>(@"Bad address"); },
+src/syscall/errno.npk:290:         (15i64) { pass @cast_unchecked<int64>(@"Block device required"); },
+src/syscall/errno.npk:291:         (16i64) { pass @cast_unchecked<int64>(@"Device or resource busy"); },
+src/syscall/errno.npk:292:         (17i64) { pass @cast_unchecked<int64>(@"File exists"); },
+src/syscall/errno.npk:293:         (18i64) { pass @cast_unchecked<int64>(@"Cross-device link"); },
+src/syscall/errno.npk:294:         (19i64) { pass @cast_unchecked<int64>(@"No such device"); },
+src/syscall/errno.npk:295:         (20i64) { pass @cast_unchecked<int64>(@"Not a directory"); },
+src/syscall/errno.npk:296:         (21i64) { pass @cast_unchecked<int64>(@"Is a directory"); },
+src/syscall/errno.npk:297:         (22i64) { pass @cast_unchecked<int64>(@"Invalid argument"); },
+src/syscall/errno.npk:298:         (23i64) { pass @cast_unchecked<int64>(@"Too many open files in system"); },
+src/syscall/errno.npk:299:         (24i64) { pass @cast_unchecked<int64>(@"Too many open files"); },
+src/syscall/errno.npk:300:         (25i64) { pass @cast_unchecked<int64>(@"Inappropriate ioctl for device"); },
+src/syscall/errno.npk:301:         (26i64) { pass @cast_unchecked<int64>(@"Text file busy"); },
+src/syscall/errno.npk:302:         (27i64) { pass @cast_unchecked<int64>(@"File too large"); },
+src/syscall/errno.npk:303:         (28i64) { pass @cast_unchecked<int64>(@"No space left on device"); },
+src/syscall/errno.npk:304:         (29i64) { pass @cast_unchecked<int64>(@"Illegal seek"); },
+src/syscall/errno.npk:305:         (30i64) { pass @cast_unchecked<int64>(@"Read-only file system"); },
+src/syscall/errno.npk:306:         (31i64) { pass @cast_unchecked<int64>(@"Too many links"); },
+src/syscall/errno.npk:307:         (32i64) { pass @cast_unchecked<int64>(@"Broken pipe"); },
+src/syscall/errno.npk:308:         (33i64) { pass @cast_unchecked<int64>(@"Numerical argument out of domain"); },
+src/syscall/errno.npk:309:         (34i64) { pass @cast_unchecked<int64>(@"Numerical result out of range"); },
+src/syscall/errno.npk:310:         (35i64) { pass @cast_unchecked<int64>(@"Resource deadlock avoided"); },
+src/syscall/errno.npk:311:         (36i64) { pass @cast_unchecked<int64>(@"File name too long"); },
+src/syscall/errno.npk:312:         (37i64) { pass @cast_unchecked<int64>(@"No locks available"); },
+src/syscall/errno.npk:313:         (38i64) { pass @cast_unchecked<int64>(@"Function not implemented"); },
+src/syscall/errno.npk:314:         (39i64) { pass @cast_unchecked<int64>(@"Directory not empty"); },
+src/syscall/errno.npk:315:         (40i64) { pass @cast_unchecked<int64>(@"Too many levels of symbolic links"); },
+src/syscall/errno.npk:316:         (42i64) { pass @cast_unchecked<int64>(@"No message of desired type"); },
+src/syscall/errno.npk:317:         (43i64) { pass @cast_unchecked<int64>(@"Identifier removed"); },
+src/syscall/errno.npk:318:         (60i64) { pass @cast_unchecked<int64>(@"Device not a stream"); },
+src/syscall/errno.npk:319:         (61i64) { pass @cast_unchecked<int64>(@"No data available"); },
+src/syscall/errno.npk:320:         (62i64) { pass @cast_unchecked<int64>(@"Timer expired"); },
+src/syscall/errno.npk:321:         (63i64) { pass @cast_unchecked<int64>(@"Out of streams resources"); },
+src/syscall/errno.npk:322:         (71i64) { pass @cast_unchecked<int64>(@"Protocol error"); },
+src/syscall/errno.npk:323:         (74i64) { pass @cast_unchecked<int64>(@"Bad message"); },
+src/syscall/errno.npk:324:         (75i64) { pass @cast_unchecked<int64>(@"Value too large for defined data type"); },
+src/syscall/errno.npk:325:         (84i64) { pass @cast_unchecked<int64>(@"Invalid or incomplete multibyte character"); },
+src/syscall/errno.npk:326:         (88i64) { pass @cast_unchecked<int64>(@"Socket operation on non-socket"); },
+src/syscall/errno.npk:327:         (89i64) { pass @cast_unchecked<int64>(@"Destination address required"); },
+src/syscall/errno.npk:328:         (90i64) { pass @cast_unchecked<int64>(@"Message too long"); },
+src/syscall/errno.npk:329:         (91i64) { pass @cast_unchecked<int64>(@"Protocol wrong type for socket"); },
+src/syscall/errno.npk:330:         (92i64) { pass @cast_unchecked<int64>(@"Protocol not available"); },
+src/syscall/errno.npk:331:         (93i64) { pass @cast_unchecked<int64>(@"Protocol not supported"); },
+src/syscall/errno.npk:332:         (94i64) { pass @cast_unchecked<int64>(@"Socket type not supported"); },
+src/syscall/errno.npk:333:         (95i64) { pass @cast_unchecked<int64>(@"Operation not supported"); },
+src/syscall/errno.npk:334:         (96i64) { pass @cast_unchecked<int64>(@"Protocol family not supported"); },
+src/syscall/errno.npk:335:         (97i64) { pass @cast_unchecked<int64>(@"Address family not supported by protocol"); },
+src/syscall/errno.npk:336:         (98i64) { pass @cast_unchecked<int64>(@"Address already in use"); },
+src/syscall/errno.npk:337:         (99i64) { pass @cast_unchecked<int64>(@"Cannot assign requested address"); },
+src/syscall/errno.npk:338:         (100i64) { pass @cast_unchecked<int64>(@"Network is down"); },
+src/syscall/errno.npk:339:         (101i64) { pass @cast_unchecked<int64>(@"Network is unreachable"); },
+src/syscall/errno.npk:340:         (102i64) { pass @cast_unchecked<int64>(@"Network dropped connection on reset"); },
+src/syscall/errno.npk:341:         (103i64) { pass @cast_unchecked<int64>(@"Software caused connection abort"); },
+src/syscall/errno.npk:342:         (104i64) { pass @cast_unchecked<int64>(@"Connection reset by peer"); },
+src/syscall/errno.npk:343:         (105i64) { pass @cast_unchecked<int64>(@"No buffer space available"); },
+src/syscall/errno.npk:344:         (106i64) { pass @cast_unchecked<int64>(@"Transport endpoint already connected"); },
+src/syscall/errno.npk:345:         (107i64) { pass @cast_unchecked<int64>(@"Transport endpoint not connected"); },
+src/syscall/errno.npk:346:         (108i64) { pass @cast_unchecked<int64>(@"Cannot send after transport endpoint shutdown"); },
+src/syscall/errno.npk:347:         (110i64) { pass @cast_unchecked<int64>(@"Connection timed out"); },
+src/syscall/errno.npk:348:         (111i64) { pass @cast_unchecked<int64>(@"Connection refused"); },
+src/syscall/errno.npk:349:         (112i64) { pass @cast_unchecked<int64>(@"Host is down"); },
+src/syscall/errno.npk:350:         (113i64) { pass @cast_unchecked<int64>(@"No route to host"); },
+src/syscall/errno.npk:351:         (114i64) { pass @cast_unchecked<int64>(@"Operation already in progress"); },
+src/syscall/errno.npk:352:         (115i64) { pass @cast_unchecked<int64>(@"Operation now in progress"); },
+src/syscall/errno.npk:353:         (116i64) { pass @cast_unchecked<int64>(@"Stale file handle"); },
+src/syscall/errno.npk:354:         (122i64) { pass @cast_unchecked<int64>(@"Disk quota exceeded"); },
+src/syscall/errno.npk:355:         (125i64) { pass @cast_unchecked<int64>(@"Operation canceled"); },
+src/syscall/errno.npk:356:         (130i64) { pass @cast_unchecked<int64>(@"Owner died"); },
+src/syscall/errno.npk:357:         (131i64) { pass @cast_unchecked<int64>(@"State not recoverable"); },
+src/syscall/errno.npk:359:         (200i64) { pass @cast_unchecked<int64>(@"libn: integer overflow"); },
+src/syscall/errno.npk:360:         (201i64) { pass @cast_unchecked<int64>(@"libn: bad argument"); },
+src/syscall/errno.npk:361:         (202i64) { pass @cast_unchecked<int64>(@"libn: internal error"); },
+src/syscall/errno.npk:362:         (203i64) { pass @cast_unchecked<int64>(@"libn: unsupported operation"); },
+src/syscall/errno.npk:363:         (204i64) { pass @cast_unchecked<int64>(@"libn: result truncated"); },
+src/syscall/errno.npk:364:         (205i64) { pass @cast_unchecked<int64>(@"libn: not found"); },
+src/syscall/errno.npk:365:         (206i64) { pass @cast_unchecked<int64>(@"libn: try again"); },
+src/syscall/errno.npk:366:         (*) { pass @cast_unchecked<int64>(@"Unknown error"); }

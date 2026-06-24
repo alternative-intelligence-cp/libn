@@ -1,0 +1,3 @@
+2058:[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 196, Column 5: Cannot silently unwrap Result<int64> into 'total' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+2946:[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 134, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m
+2962:[1msrc/all.npk:0:0: [0m[1;31merror[0m: [1mLine 184, Column 5: Cannot silently unwrap Result<int64> into 'fp' of type 'int64'. Declare as Result<int64> and check .is_error, or use 'raw expr' to explicitly assert the call cannot fail.[0m

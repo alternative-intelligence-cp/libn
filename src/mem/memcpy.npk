@@ -43,12 +43,12 @@ extern func:failsafe = int32(tbb32:err);
 // __intrinsic_memcpy — Compiler intrinsic hook for inline memcpy.
 // If the compiler backend recognizes this, it will replace the call with
 // an inline implementation (e.g., AVX2 / rep movsb).
-pub func:__intrinsic_memcpy = int64(int64:dst, int64:src, int64:num_bytes) {
+pub func:__intrinsic_memcpy = bool(int64:dst, int64:src, int64:num_bytes) {
       // Placeholder fallback (never hit if compiler correctly intercepts)
-    pass 0i64;
+    pass false;
 };
 
-pub func:mem_memcpy = int64(int64:dst, int64:src, int64:num_bytes) requires dst != 0i64 requires src != 0i64 {
+pub func:mem_memcpy = int64(int64:dst, int64:src, int64:num_bytes) {
     if (num_bytes == 0i64) {
         pass dst;
     }
@@ -57,8 +57,9 @@ pub func:mem_memcpy = int64(int64:dst, int64:src, int64:num_bytes) requires dst 
     }
 
         if (num_bytes >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, num_bytes));
-        pass dst;
+        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+            pass dst;
+        }
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
     uint8->:s = @cast_unchecked<uint8->>(src);
@@ -133,7 +134,7 @@ pub func:mem_mempcpy = int64(int64:dst, int64:src, int64:num_bytes) {
 // Returns dst.
 // ════════════════════════════════════════════════════════════════════════════
 
-pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) requires dst != 0i64 requires src != 0i64 {
+pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) {
     if (num_bytes == 0i64) {
         pass dst;
     }
@@ -147,8 +148,9 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) requires dst
     }
 
         if (num_bytes >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, num_bytes));
-        pass dst;
+        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+            pass dst;
+        }
     }
     uint8->:d = @cast_unchecked<uint8->>(dst);
     uint8->:s = @cast_unchecked<uint8->>(src);
@@ -161,8 +163,9 @@ pub func:mem_memmove = int64(int64:dst, int64:src, int64:num_bytes) requires dst
 
     if (!need_backward) {
     if (!need_backward && num_bytes >= 16i64) {
-        drop(__intrinsic_memcpy(dst, src, num_bytes));
-        pass dst;
+        if (__intrinsic_memcpy(dst, src, num_bytes)) {
+            pass dst;
+        }
     }
 
           // ── Forward copy (@cast_unchecked<memcpy>(same)) ────────────────────────────

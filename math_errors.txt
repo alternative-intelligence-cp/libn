@@ -1,0 +1,37 @@
+[DEBUG parseFuncDecl] nameToken=math_abs_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_min_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_max_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_min_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_max_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_clamp_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sign_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_add_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_sub_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_mul_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_add_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_sat_sub_u64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_ceil_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_floor_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_div_round_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_mod_pos_i64, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_align_up, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_align_down, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_is_aligned, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_is_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_next_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_prev_pow2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_log2_floor, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_log2_ceil, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_popcount, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_clz, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_ctz, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_parity, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_reverse_bits, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_rol, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_ror, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_isqrt, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_isqrt_ceil, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_gcd, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=math_lcm, peek()==, type=168
+[1msrc/math/math.npk:0:0: [0m[1;31merror[0m: [1mEvery Nitpick program must define a 'func:failsafe = int32(tbb32:err)' function. failsafe is one of two program endpoints (with main). It handles error exits via 'exit <code>' where code > 0.[0m
+

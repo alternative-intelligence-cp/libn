@@ -1,0 +1,356 @@
+src/fs/path.npk : 14 //   path_is_abs(path)              → 1 if absolute (starts with '/'), else 0
+src/fs/path.npk : 70     uint8->:p = @cast_unchecked<uint8->>(path);
+src/fs/path.npk : 71     if (p[0] == 0u8) {
+src/fs/path.npk : 99 //   Err(ENAMETOOLONG) — result would exceed out_sz-1 bytes
+src/fs/path.npk : 149       // Total: a_end + 1 (slash) + blen
+src/fs/path.npk : 162     i = i + 1i64;
+src/fs/path.npk : 168     }
+src/fs/path.npk : 181 //   "/"                → "/"
+src/io/dup.npk : 14 //      io_close(saved_stdout)
+src/io/dup.npk : 70 // with O_CLOEXEC.
+src/io/dup.npk : 71 //
+src/io/dup.npk : 99 
+src/io/dup.npk : 149     pass target_fd;
+src/io/fcntl.npk : 14 //   - Record locking (F_GETLK/F_SETLK/F_SETLKW) — see src/io/lock.npk (v0.57.x)
+src/io/fcntl.npk : 70 pub func:io_get_status_flags = int64(int64:fd) {
+src/io/fcntl.npk : 71     if (fd < 0i64) {
+src/io/fcntl.npk : 99         fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/io/fcntl.npk : 149 
+src/io/fcntl.npk : 162     if (fd < 0i64 || min_fd < 0i64) {
+src/io/fcntl.npk : 168 // io_dupfd_cloexec — Duplicate fd to lowest fd >= min_fd with O_CLOEXEC.
+src/io/fcntl.npk : 181 // ════════════════════════════════════════════════════════════════════════════
+src/io/io.npk : 14 //   v0.4.6  dup.npk    — io_dup, io_dup_cloexec, io_dup2, io_dup3, io_redirect
+src/io/open.npk : 14 //     the return value on close(). Data loss is possible on NFS/CIFS.
+src/io/open.npk : 70     Result<int64>:r = sys_safe(SYS_OPEN, path, safe_flags, mode);
+src/io/open.npk : 71     return r;
+src/io/open.npk : 99 
+src/io/open.npk : 149 // ════════════════════════════════════════════════════════════════════════════
+src/io/pipe.npk : 14 //   io_close(fds[1]);
+src/io/pipe.npk : 70 // ════════════════════════════════════════════════════════════════════════════
+src/io/pipe.npk : 71 // io_pipe_raw — Create a pipe without O_CLOEXEC (inherits across exec).
+src/io/pipe.npk : 99 // ════════════════════════════════════════════════════════════════════════════
+src/io/printf.npk : 14 //   io_eprintf(fmt, ...)       → stderr
+src/io/printf.npk : 70 // ────────────────────────────────────────────────────────────────────────────
+src/io/printf.npk : 71 // 1 format argument
+src/io/printf.npk : 99 
+src/io/printf.npk : 149 // ────────────────────────────────────────────────────────────────────────────
+src/io/printf.npk : 162 };
+src/io/printf.npk : 168 
+src/io/printf.npk : 181 
+src/io/read.npk : 14 //
+src/io/read.npk : 70     if (n == 0i64) {
+src/io/read.npk : 71         pass 0i64;
+src/io/read.npk : 99 // ════════════════════════════════════════════════════════════════════════════
+src/io/read.npk : 149             if (e == EINTR) { continue; }
+src/io/read.npk : 162               // (caller distinguishes via checking for '\n' at end if they care)
+src/io/read.npk : 168         if (c == 10u8) {    // '\n'
+src/io/read.npk : 181       // Buffer full — NUL-terminate and return truncated result
+src/io/seek.npk : 14 
+src/io/seek.npk : 70 pub func:io_tell = int64(int64:fd) {
+src/io/seek.npk : 71     if (fd < 0i64) {
+src/io/seek.npk : 99 
+src/io/write.npk : 14 //     count in an Err result so callers can drain and retry.
+src/io/write.npk : 70             if (e == EINTR) {
+src/io/write.npk : 71                 continue;
+src/io/write.npk : 99 //   Err(EAGAIN)   — fd would block, 0 bytes written
+src/io/write.npk : 149     pass io_write_n(fd, @cast_unchecked<int64>(@b[0]), 1i64);
+src/io/write.npk : 162 // ════════════════════════════════════════════════════════════════════════════
+src/io/write.npk : 168 };
+src/io/write.npk : 181 
+src/math/math.npk : 14 //   math_clamp_i64     — clamp value to [lo, hi]
+src/math/math.npk : 70 
+src/math/math.npk : 71 // math_abs_i64 — Absolute value of a signed int64.
+src/math/math.npk : 99       // if equal sign bits, just compare.
+src/math/math.npk : 149     if (a > 0i64 && b > 0i64 && r < 0i64) { pass INT64_MAX; }
+src/math/math.npk : 162 pass is (a == INT64_MIN) : 0i64 : INT64_MAX;
+src/math/math.npk : 168 // Uses division to check for overflow before multiplying.
+src/math/math.npk : 181       // General case: check if |a * b| > INT64_MAX
+src/mem/memcpy.npk : 14 //   mem_mempcpy: @cast_unchecked<memcpy>(same) but returns (dst + n) instead of dst.
+src/mem/memcpy.npk : 70 
+src/mem/memcpy.npk : 71       // ── Word loop: copy 8 bytes per iteration ────────────────────────
+src/mem/memcpy.npk : 99     i = i + word_count * 8i64;
+src/mem/memcpy.npk : 149     }
+src/mem/memcpy.npk : 162         if (n >= 16i64) {
+src/mem/memcpy.npk : 168 
+src/mem/memcpy.npk : 181           // ── Forward copy (@cast_unchecked<memcpy>(same)) ────────────────────────────
+src/mem/memset.npk : 14 //
+src/mem/memset.npk : 70     }
+src/mem/memset.npk : 71     i = i + word_count * 8i64;
+src/mem/memset.npk : 99 
+src/mem/memset.npk : 149 // POISON_PATTERN — value written to freed memory in debug mode.
+src/mem/memset.npk : 162 
+src/mem/memset.npk : 168         pb[i] = @cast_unchecked<uint8>((p32 >> ((i & 3i64) * 8i64)));
+src/mem/memset.npk : 181     while (i < n) {
+src/mem/memutil.npk : 14 //   str_*  — operates on NUL-terminated strings (defined in str/string.npk)
+src/mem/memutil.npk : 70         pass 0i64;
+src/mem/memutil.npk : 71     }
+src/mem/memutil.npk : 99         int64:vb = wb[wi];
+src/mem/memutil.npk : 149     int64:r = raw mem_memcmp(a, b, n);
+src/mem/memutil.npk : 162 // ════════════════════════════════════════════════════════════════════════════
+src/mem/memutil.npk : 168 
+src/mem/memutil.npk : 181     pass diff;
+src/mem/mmap.npk : 14 //     mapping start (passed to munmap)           returned pointer
+src/mem/mmap.npk : 70 
+src/mem/mmap.npk : 71 // page_align_up — Round n up to the next page boundary.
+src/mem/mmap.npk : 99 // ════════════════════════════════════════════════════════════════════════════
+src/mem/mmap.npk : 149 // mem_madvise_raw — Give hints to the kernel about expected access patterns.
+src/mem/mmap.npk : 162 // ════════════════════════════════════════════════════════════════════════════
+src/mem/mmap.npk : 168 // Allocation layout:
+src/mem/mmap.npk : 181 //
+src/mem/slab.npk : 14 //   are recoverable from the SLAB_GLOBAL table indexed by slot pointer.
+src/mem/slab.npk : 70 fixed int64:SLAB_CLASS_SIZE_7  = 1024i64;
+src/mem/slab.npk : 71 fixed int64:SLAB_CLASS_SIZE_8  = 2048i64;
+src/mem/slab.npk : 99 // GLOBAL FREELIST TABLE
+src/mem/slab.npk : 149 };
+src/mem/slab.npk : 162         (8i64) { pass SLAB_SLOTS_PER_PAGE_8; },
+src/mem/slab.npk : 168 func:slab_freelist_get = int64(int64:i) {
+src/mem/slab.npk : 181 };
+src/proc/env.npk : 14 // libn's _start (v0.12.x) will initialize this. For now, setenv/unsetenv
+src/proc/env.npk : 70     while (ep[n] != 0i64) { n = n + 1i64; }
+src/proc/env.npk : 71 
+src/proc/env.npk : 99 
+src/proc/env.npk : 149     drop(proc_env_init(environ));
+src/proc/env.npk : 162     _env_heap_envp = r.value;
+src/proc/env.npk : 168 
+src/proc/env.npk : 181     int64:nlen = raw str_strlen(name);
+src/proc/exec.npk : 14 //   argv: NULL-terminated array of NUL-terminated argument strings
+src/proc/exec.npk : 70 
+src/proc/exec.npk : 71 pub func:execv = int64(int64:path, int64:argv) {
+src/proc/exec.npk : 99     if (name_len == 0i64) {
+src/proc/exec.npk : 149                 candidate[1] = 47u8;    // '/'
+src/proc/exec.npk : 162             int64:e = libn_errno_get();
+src/proc/exec.npk : 168         }
+src/proc/exec.npk : 181 // or 0 if not found.
+src/proc/exit.npk : 14 //
+src/proc/exit.npk : 70 func:_proc_run_atexit = NIL() {
+src/proc/exit.npk : 71     int64:i = _atexit_count - 1i64;
+src/proc/exit.npk : 99 // Equivalent to POSIX _exit(). Calls SYS_EXIT_GROUP.
+src/proc/exit.npk : 149     _exit(134i64);    // 128 + SIGABRT(6) = 134, the shell exit code for SIGABRT
+src/proc/fork.npk : 14 //   3. Signal handlers, file descriptors, and memory mappings are inherited.
+src/proc/fork.npk : 70 // Process identity
+src/proc/fork.npk : 71 // ════════════════════════════════════════════════════════════════════════════
+src/proc/fork.npk : 99 };
+src/proc/fork.npk : 149     Result<int64>:r = sys!!(SYS_SETSID, 0i64, 0i64, 0i64, 0i64, 0i64, 0i64);
+src/proc/fork.npk : 162         pass -1i64;
+src/proc/proc.npk : 14 // ── Future ─────────────────────────────────────────────────────────────────
+src/proc/signal.npk : 14 //   - malloc/free (allocator uses non-reentrant state)
+src/proc/signal.npk : 70     if (signo < 1i64 || signo > 64i64) { pass mask; }
+src/proc/signal.npk : 71     pass mask & !(1i64 << (signo - 1i64));
+src/proc/signal.npk : 99 syscall", "");
+src/proc/signal.npk : 149         pass -1i64;
+src/proc/signal.npk : 162     pass 0i64;
+src/proc/signal.npk : 168 pub func:signal = int64(int64:signo, int64:handler) {
+src/proc/signal.npk : 181 };
+src/proc/wait.npk : 14 // The WIF*/WEXITSTATUS/WTERMSIG functions decode this correctly.
+src/proc/wait.npk : 70 pub func:wait_stopped = bool(int64:status) {
+src/proc/wait.npk : 71     pass (status & 0xFFi64) == 0x7Fi64;
+src/proc/wait.npk : 99 // ════════════════════════════════════════════════════════════════════════════
+src/proc/wait.npk : 149 //
+src/proc/wait.npk : 162           // Child
+src/proc/wait.npk : 168         _exit(127i64);    // exec failed — 127 is shell's "command not found"
+src/proc/wait.npk : 181         pass 128i64 + wait_termsig(status);
+src/str/strbuf.npk : 14 // Use strbuf_new() to allocate, strbuf_free() when done.
+src/str/strbuf.npk : 70 // Returns true on success, false on OOM.
+src/str/strbuf.npk : 71 func:strbuf_grow = bool(int64:sb, int64:need) {
+src/str/strbuf.npk : 99 // Lifecycle
+src/str/strbuf.npk : 149     if (sb == 0i64) { pass NIL; }
+src/str/strbuf.npk : 162 pub func:strbuf_finish = int64(int64:sb) {
+src/str/strbuf.npk : 168     pass ptr;
+src/str/strbuf.npk : 181     if (r.is_error) {
+src/str/strchr.npk : 14 use "../str/strlen.npk".*;
+src/str/strchr.npk : 70       // Tail: exact scan
+src/str/strchr.npk : 71     while (true) {
+src/str/strchr.npk : 99     uint8:target = @cast_unchecked<uint8>(c);
+src/str/strchr.npk : 149     if (haystack == 0i64) {
+src/str/strchr.npk : 162     }
+src/str/strchr.npk : 168         if (h[i] == first) {
+src/str/strchr.npk : 181     pass 0i64;
+src/str/strcmp.npk : 14 //     Locale-aware comparison is in v0.40.x (locale/collation module).
+src/str/strcmp.npk : 70         pass 0i64;
+src/str/strcmp.npk : 71     }
+src/str/strcmp.npk : 99     int64->:wb = @cast_unchecked<int64->>((b + i));
+src/str/strcmp.npk : 149     int64:i = 0i64;
+src/str/strcmp.npk : 162     }
+src/str/strcmp.npk : 168 // str_strcmp_prefix — True if b is a prefix of a (a starts with b).
+src/str/strcmp.npk : 181     uint8->:pb = @cast_unchecked<uint8->>(b);
+src/str/strconv.npk : 14 //   - Returns 0 if no digits found (ERR_BADARG).
+src/str/strconv.npk : 70 // ════════════════════════════════════════════════════════════════════════════
+src/str/strconv.npk : 71 
+src/str/strconv.npk : 99     if (base == 0i64) {
+src/str/strconv.npk : 149 
+src/str/strconv.npk : 162 pub func:str_strtoul = int64(int64:s, int64->:endptr, int64:base) {
+src/str/strconv.npk : 168     uint8->:p = @cast_unchecked<uint8->>(s);
+src/str/strconv.npk : 181     }
+src/str/strcpy.npk : 14 //   - strndup: allocates a copy of at most n bytes.
+src/str/strcpy.npk : 70         i = i + 1i64;
+src/str/strcpy.npk : 71     }
+src/str/strcpy.npk : 99     uint8->:s = @cast_unchecked<uint8->>(src);
+src/str/strcpy.npk : 149     pass end_idx;
+src/str/strcpy.npk : 162     if (src == 0i64) {
+src/str/strcpy.npk : 168 
+src/str/strcpy.npk : 181 // ════════════════════════════════════════════════════════════════════════════
+src/str/strfmt.npk : 14 //   %p         — pointer (0x + hex address)
+src/str/strfmt.npk : 70 };
+src/str/strfmt.npk : 71 
+src/str/strfmt.npk : 99     }
+src/str/strfmt.npk : 149 
+src/str/strfmt.npk : 162 // ════════════════════════════════════════════════════════════════════════════
+src/str/strfmt.npk : 168     }
+src/str/strfmt.npk : 181         if (f[fi] != 37u8) {    // '%'
+src/str/string.npk : 14 //   v0.3.7  strfmt.npk  — snprintf engine, str_format_args, str_snprintf0-8
+src/str/strlcpy.npk : 14 //
+src/str/strlcpy.npk : 70 //   dst_size: total size of dst buffer (including space for NUL)
+src/str/strlcpy.npk : 71 //
+src/str/strlcpy.npk : 99         append_len = remaining;
+src/str/strlcpy.npk : 149 // ════════════════════════════════════════════════════════════════════════════
+src/str/strlcpy.npk : 162     } else {
+src/str/strlcpy.npk : 168     if (nul_pos < dst_size) {
+src/str/strlcpy.npk : 181 //
+src/str/strlen.npk : 14 //   so the rest of the code can use the safer explicit-length APIs.
+src/str/strlen.npk : 70     int64->:pw = @cast_unchecked<int64->>((s + i));
+src/str/strlen.npk : 71     int64:wi = 0i64;
+src/str/strlen.npk : 99     }
+src/str/strlen.npk : 149         fail @cast_unchecked<tbb32>(ERR_BADARG);
+src/str/strtok.npk : 14 //
+src/str/strtok.npk : 70     int64:i = 0i64;
+src/str/strtok.npk : 71 
+src/str/strtok.npk : 99     pass token_start;
+src/str/strtok.npk : 149 // ════════════════════════════════════════════════════════════════════════════
+src/str/strtok.npk : 162 pub func:str_field_equals = bool(StrField:f, int64:s) {
+src/str/strtok.npk : 168     int64:i = 0i64;
+src/str/strtok.npk : 181 // Returns number of fields found (may be less than actual count if max_fields hit).
+src/str/strview.npk : 14 //   may be anything. To pass to a function expecting a C string, call
+src/str/strview.npk : 70     if (s == 0i64) {
+src/str/strview.npk : 71         sv->ptr = 0i64;
+src/str/strview.npk : 99 };
+src/str/strview.npk : 149 // strview_byte_at — Return the uint8 at index i (0-indexed).
+src/str/strview.npk : 162 
+src/str/strview.npk : 168 };
+src/str/strview.npk : 181     pass mem_equal(sa->ptr, sb->ptr, sa->len);
+src/syscall/errno.npk : 14 //
+src/syscall/errno.npk : 70 pub fixed int64:ENOTEMPTY = 39i64;    // Directory not empty
+src/syscall/errno.npk : 71 pub fixed int64:ELOOP    = 40i64;     // Too many levels of symbolic links
+src/syscall/errno.npk : 99 pub fixed int64:ENONET   = 64i64;     // Machine is not on the network
+src/syscall/errno.npk : 149 
+src/syscall/errno.npk : 162 pub fixed int64:ENOTNAM      = 118i64;
+src/syscall/errno.npk : 168 // ── errno 123–133 ────────────────────────────────────────────────────
+src/syscall/errno.npk : 181 pub fixed int64:EHWPOISON       = 133i64;   // Memory page has hardware error
+src/syscall/posix_constants.npk : 14 // ════════════════════════════════════════════════════════════════════════════
+src/syscall/posix_constants.npk : 70 pub fixed int64:S_IWUSR  = 128i64;       // 0200 — owner: write
+src/syscall/posix_constants.npk : 71 pub fixed int64:S_IXUSR  = 64i64;        // 0100 — owner: execute
+src/syscall/posix_constants.npk : 99 pub fixed int64:W_OK = 2i64;      // Test write permission
+src/syscall/posix_constants.npk : 149 
+src/syscall/posix_constants.npk : 162 pub fixed int64:MADV_DODUMP      = 17i64;
+src/syscall/posix_constants.npk : 168 pub fixed int64:MADV_POPULATE_WRITE = 23i64;
+src/syscall/posix_constants.npk : 181 pub fixed int64:SIGQUIT   = 3i64;      // Terminal quit (Ctrl+\)
+src/syscall/syscall.npk : 14 //                          Only for: _start (before Result machinery is initialized),
+src/syscall/syscall.npk : 70 //   SYS_GETDENTS64, SYS_GETCWD, SYS_READLINKAT,
+src/syscall/syscall.npk : 71 //   SYS_STATX, SYS_GETRANDOM,
+src/syscall/syscall.npk : 99 pub func:sys5 = int64(int64:nr, int64:a1, int64:a2, int64:a3, int64:a4, int64:a5) {
+src/syscall/syscall.npk : 149 
+src/syscall/syscall.npk : 162 //   - Correct argument casting (pointer → int64 where needed)
+src/syscall/syscall.npk : 168 
+src/syscall/syscall.npk : 181 pub func:libn_getuid = int64() {
+src/syscall/syscall_numbers.npk : 14 //   sys!!!(N, ...) — raw tier (bare int64, no Result wrapping)
+src/syscall/syscall_numbers.npk : 70 pub fixed int64:SYS_GETSOCKNAME     = 51i64;
+src/syscall/syscall_numbers.npk : 71 pub fixed int64:SYS_GETPEERNAME     = 52i64;
+src/syscall/syscall_numbers.npk : 99 pub fixed int64:SYS_CHDIR           = 80i64;
+src/syscall/syscall_numbers.npk : 149 pub fixed int64:SYS_RT_SIGTIMEDWAIT = 128i64;
+src/syscall/syscall_numbers.npk : 162 pub fixed int64:SYS_SETPRIORITY     = 141i64;
+src/syscall/syscall_numbers.npk : 168 pub fixed int64:SYS_SCHED_GET_PRIORITY_MIN = 147i64;
+src/syscall/syscall_numbers.npk : 181 pub fixed int64:SYS_ARCH_PRCTL      = 158i64;
+src/time/clock.npk : 14 pub func:clock_getres = int64(int64:clockid, timespec->:res) {
+src/time/sleep.npk : 14         pass(libn_errno_set(@cast_unchecked<int64>(r.error)));
+src/time/timeofday.npk : 14 pub func:settimeofday = int64(timeval->:tv, int64:tz) {
+src/io/bio/bio.npk : 14 //   v0.5.4  fseek.npk    — fseek, ftell, rewind, fgetpos, fsetpos
+src/io/bio/bio.npk : 70 use "../../io/bio/fprintf.npk".*;
+src/io/bio/bio.npk : 71 use "../../io/bio/strerror.npk".*;
+src/io/bio/fchar.npk : 14 // Performance note:
+src/io/bio/fchar.npk : 70         f->file_pos = f->file_pos + 1i64;
+src/io/bio/fchar.npk : 71         pass ch;
+src/io/bio/fchar.npk : 99         if (r.is_error || r.value == 0i64) {
+src/io/bio/fchar.npk : 149                 f->flags = f->flags | FILE_FLAG_ERROR;
+src/io/bio/fchar.npk : 162         if (r.is_error) {
+src/io/bio/fchar.npk : 168     (@cast_unchecked<uint8->>(f->buf))[f->buf_pos] = b;
+src/io/bio/fchar.npk : 181 };
+src/io/bio/file.npk : 14 //     buf[0..buf_len]   — kernel bytes loaded into buffer
+src/io/bio/file.npk : 70 };
+src/io/bio/file.npk : 71 
+src/io/bio/file.npk : 99 pub fixed int64:FILE_FLAG_ERROR     = 0x02i64;    // error indicator (cleared by clearerr)
+src/io/bio/file.npk : 149       // For BUFSIZ (8192) and larger, use the direct-mmap allocator
+src/io/bio/file.npk : 162 
+src/io/bio/file.npk : 168     if (f->buf_pos == 0i64) {
+src/io/bio/file.npk : 181             fail r.error;
+src/io/bio/fio.npk : 14 //   1. If write-mode buffer not yet active (was in read mode), discard read buf.
+src/io/bio/fio.npk : 70 
+src/io/bio/fio.npk : 71     int64:total_bytes = size * nmemb;
+src/io/bio/fio.npk : 99             bytes_read = bytes_read + to_copy;
+src/io/bio/fio.npk : 149 pub func:fwrite = int64(int64:buf, int64:size, int64:nmemb, int64:fp) {
+src/io/bio/fio.npk : 162         pass 0i64;
+src/io/bio/fio.npk : 168     }
+src/io/bio/fio.npk : 181                 int64:e = @cast_unchecked<int64>(r.error);
+src/io/bio/fopen.npk : 14 // allocated in stdfiles.npk. fclose() on them flushes but does NOT close fd 0/1/2
+src/io/bio/fopen.npk : 70     }
+src/io/bio/fopen.npk : 71 
+src/io/bio/fopen.npk : 99 pub func:fopen = int64(int64:path, int64:mode) {
+src/io/bio/fopen.npk : 149 // fdopen — Create a FILE stream from an existing file descriptor.
+src/io/bio/fopen.npk : 162         drop(errno_set(EINVAL));
+src/io/bio/fopen.npk : 168     int64:parse_ok = raw bio_parse_mode(mode, @cast_unchecked<int64>(@file_mode_out[0]), @cast_unchecked<int64>(@open_flags_out[0]));
+src/io/bio/fopen.npk : 181     if (init_r.is_error) {
+src/io/bio/fprintf.npk : 14 //   eprintf0..8  — to stderr (std stream, not raw fd)
+src/io/bio/fprintf.npk : 70     drop(str_snprintf0(buf_ptr, FPRINTF_BUF_SIZE, fmt));
+src/io/bio/fprintf.npk : 71     pass bio_fprint_rendered(fp, buf_ptr);
+src/io/bio/fprintf.npk : 99 };
+src/io/bio/fprintf.npk : 149 
+src/io/bio/fprintf.npk : 162 
+src/io/bio/fprintf.npk : 168 pub func:eprintf4 = int64(int64:fmt, int64:a0, int64:a1, int64:a2, int64:a3) {
+src/io/bio/fprintf.npk : 181     int64:buf_ptr = @cast_unchecked<int64>(@buf[0]);
+src/io/bio/fscanf.npk : 14 //   %n         — store count of bytes consumed so far → int64* output
+src/io/bio/fscanf.npk : 70         uint8:c = str[s[2]];
+src/io/bio/fscanf.npk : 71         if (c == 0u8) {
+src/io/bio/fscanf.npk : 99     while (true) {
+src/io/bio/fscanf.npk : 149                   // c is already '0', will contribute 0 to result
+src/io/bio/fscanf.npk : 162     bool:got_digit = false;
+src/io/bio/fscanf.npk : 168             digit = c - 48i64;
+src/io/bio/fscanf.npk : 181 
+src/io/bio/fseek.npk : 14 //   Accounts for pending unget char.
+src/io/bio/fseek.npk : 70           // The kernel's position is ahead by (buf_len - buf_pos) unread bytes
+src/io/bio/fseek.npk : 71         int64:buffered_ahead = f->buf_len - f->buf_pos;
+src/io/bio/fseek.npk : 99 
+src/io/bio/fseek.npk : 149 
+src/io/bio/fseek.npk : 162     f->unget   = FILE_UNGET_EMPTY;
+src/io/bio/fseek.npk : 168       // Clear all error and EOF flags (this is what distinguishes rewind from fseek)
+src/io/bio/fseek.npk : 181 pub func:fgetpos = int64(int64:fp, int64:pos) {
+src/io/bio/fstate.npk : 14 //
+src/io/bio/fstate.npk : 70 // setvbuf — Set buffering mode and optionally supply a buffer.
+src/io/bio/fstate.npk : 71 //
+src/io/bio/fstate.npk : 99         f->buf_cap = 0i64;
+src/io/bio/fstate.npk : 149         drop(setvbuf(fp, buf, _IOFBF, BUFSIZ));
+src/io/bio/fstate.npk : 162 pub func:setlinebuf = NIL(int64:fp) {
+src/io/bio/fstr.npk : 14 //
+src/io/bio/fstr.npk : 70             }
+src/io/bio/fstr.npk : 71             break;
+src/io/bio/fstr.npk : 99         pass FILE_EOF;
+src/io/bio/stdfiles.npk : 14 //   Once the preprocessor/macro system exists (v1.x), true stdin/stdout/stderr
+src/io/bio/stdfiles.npk : 70     g_std_init_done = 1i64;
+src/io/bio/stdfiles.npk : 71 
+src/io/bio/stdfiles.npk : 99         sout->buf_cap = BUFSIZ;
+src/io/bio/stdfiles.npk : 149 
+src/io/bio/stdfiles.npk : 162     drop(bio_ensure_std_init());
+src/io/bio/stdfiles.npk : 168     int64:r1 = raw fflush(stdin_fp);
+src/io/bio/strerror.npk : 14 // Error strings match glibc strerror() text exactly, enabling cross-platform
+src/io/bio/strerror.npk : 70     { 16i64,  @cast_unchecked<int64>(@"Device or resource busy") },             // EBUSY
+src/io/bio/strerror.npk : 71     { 17i64,  @cast_unchecked<int64>(@"File exists") },                         // EEXIST
+src/io/bio/strerror.npk : 99     { 63i64,  @cast_unchecked<int64>(@"Out of streams resources") },            // ENOSR
+src/io/bio/strerror.npk : 149 pub func:strerror = int64(int64:errnum) {
+src/io/bio/strerror.npk : 162       // Copy "Unknown error "
+src/io/bio/strerror.npk : 168     int64:num_len = str_int64_to_dec(errnum, @cast_unchecked<int64>(@num[0]), 24i64);
+src/io/bio/strerror.npk : 181 // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/tmpfile.npk : 14 //
+src/io/bio/tmpfile.npk : 70     if (r.is_error) { pass 0i64; }
+src/io/bio/tmpfile.npk : 71     pass entropy;
+src/io/bio/tmpfile.npk : 99 // (well, with 6 X chars so "/tmp/myapp_a3f8b2").
+src/io/bio/tmpfile.npk : 149             drop(errno_set(e));
+src/io/bio/tmpfile.npk : 162 // ════════════════════════════════════════════════════════════════════════════
+src/io/bio/tmpfile.npk : 168 // Returns: template pointer on success (with Xs filled), or 0 on error.
+src/io/bio/tmpfile.npk : 181     }

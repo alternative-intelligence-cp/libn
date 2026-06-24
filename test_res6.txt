@@ -1,0 +1,3 @@
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+[1mtest_res6.npk:0:0: [0m[1;31merror[0m: [1mEvery Nitpick program must define a 'func:failsafe = int32(tbb32:err)' function. failsafe is one of two program endpoints (with main). It handles error exits via 'exit <code>' where code > 0.[0m
+

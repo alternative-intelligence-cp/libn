@@ -1,0 +1,12 @@
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=test2, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[1mtest_res.npk:0:0: [0m[1;31merror[0m: [1mLine 2, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_res.npk:0:0: [0m[1;31merror[0m: [1mLine 7, Column 5: Pass value type 'int64' does not match function value type 'Result<int64>'[0m
+
+[1mtest_res.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 5: Function 'main' must return 'int32', but returns 'int64'[0m
+
+[1mtest_res.npk:0:0: [0m[1;31merror[0m: [1mLine 10, Column 27: 'pass' cannot be used in 'main'. Use 'exit <code>' to terminate program endpoints.[0m
+
+[1mSummary: [0m[1;31m4 errors[0m

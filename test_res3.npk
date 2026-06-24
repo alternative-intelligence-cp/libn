@@ -1,0 +1,7 @@
+pub func:test1 = Result<int64>() {
+    pass Result<int64>(5i64);
+};
+
+pub func:test2 = Result<int64>() {
+    return 5i64;
+};

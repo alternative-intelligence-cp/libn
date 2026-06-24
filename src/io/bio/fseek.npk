@@ -135,6 +135,11 @@ pub func:ftell = int64(int64:fp) {
     if (f->unget != FILE_UNGET_EMPTY) {
         pos = pos - 1i64;
     }
+    
+      // For write streams, add buffered bytes
+    if ((f->flags & FILE_FLAG_WRITE_MODE) != 0i64) {
+        pos = pos + f->buf_pos;
+    }
 
     if (pos < 0i64) {
         pos = 0i64;

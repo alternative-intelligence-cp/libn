@@ -158,8 +158,10 @@ pub func:path_join = int64(int64:a, int64:b, int64:out, int64:out_sz) {
         ob[i] = ab[i];
         i = i + 1i64;
     }
-    ob[i] = 47u8;    // '/'
-    i = i + 1i64;
+    if (!(a_end == 1i64 && ab[0] == 47u8)) {
+        ob[i] = 47u8;    // '/'
+        i = i + 1i64;
+    }
     int64:j = 0i64;
     while (j < blen) {
         ob[i] = bb[j];

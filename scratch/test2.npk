@@ -1,0 +1,4 @@
+use "../unsafe/unsafe.npk".*;
+pub func:foo = any->(any->:p) {
+    pass @ptr_add<uint8>(p, 1i64);
+};

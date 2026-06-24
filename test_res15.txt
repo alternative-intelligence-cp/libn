@@ -1,0 +1,14 @@
+[DEBUG parseFuncDecl] nameToken=test1, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[1mtest_res15.npk:1:34: [0m[1;31merror[0m: [1m  Expected ';' after pass statement
+  Found: token '{'[0m
+    1 | pub func:test1 = NIL() { pass NIL{}; };
+                                         [1;32m^[0m
+
+[1mtest_res15.npk:1:36: [0m[1;31merror[0m: [1m  Expected expression, found ';'. Possible empty statement or missing value
+  Found: token ';'[0m
+    1 | pub func:test1 = NIL() { pass NIL{}; };
+                                           [1;32m^[0m
+
+[1mSummary: [0m[1;31m2 errors[0m

@@ -1,0 +1,4 @@
+[DEBUG parseFuncDecl] nameToken=main, peek()==, type=168
+[DEBUG parseFuncDecl] nameToken=failsafe, peek()==, type=168
+[1mtest_res9.npk:0:0: [0m[1;31merror[0m: [1mLine 3, Column 15: Use of uninitialized variable 'arr'[0m
+

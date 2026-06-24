@@ -1,0 +1,6 @@
+pub func:test = Result<int64>() {
+    Result<int64>:r;
+    r.value = 5i64;
+    r.is_error = 0i64;
+    pass r;
+};

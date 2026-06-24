@@ -1,0 +1,6 @@
+use "src/syscall/syscall.npk".*;
+
+func:test = int64(int64:addr) {
+    Result<int64>:r = libn_mmap(@cast_unchecked<any->>(addr), 4096i64, 3i64, 34i64, -1i64, 0i64);
+    return r;
+};

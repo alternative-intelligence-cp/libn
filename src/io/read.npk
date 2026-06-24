@@ -129,6 +129,13 @@ pub func:io_read_exact = int64(int64:fd, int64:buf, int64:n) {
 //   Ok(0)        — EOF with no bytes read (clean EOF)
 //   Err(ERR_EOF) — EOF after some bytes (partial line) — buf is still valid
 //   Err(e)       — I/O error
+//
+// ⚠️ PERFORMANCE WARNING ⚠️
+// Because this operates on an unbuffered fd, it MUST issue a SYS_READ
+// syscall for *every single byte* to avoid over-reading and corrupting
+// the fd's seek pointer. This is catastrophically slow!
+// For 99% of use cases, you MUST use `bio_fgets()` from the `bio/` module
+// which wraps the fd in a 4KB user-space buffer and is orders of magnitude faster.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
@@ -196,6 +203,13 @@ pub func:io_read_line = int64(int64:fd, int64:buf, int64:buf_size) {
 //   Ok(0)        — EOF with 0 bytes
 //   Err(ERR_EOF) — EOF reached before delimiter, partial content in buf
 //   Err(e)       — I/O error
+//
+// ⚠️ PERFORMANCE WARNING ⚠️
+// Because this operates on an unbuffered fd, it MUST issue a SYS_READ
+// syscall for *every single byte* to avoid over-reading and corrupting
+// the fd's seek pointer. This is catastrophically slow!
+// For 99% of use cases, you MUST use `bio_fgets()` from the `bio/` module
+// which wraps the fd in a 4KB user-space buffer and is orders of magnitude faster.
 // ════════════════════════════════════════════════════════════════════════════
 
 pub func:io_read_until = int64(int64:fd, int64:buf, int64:buf_size, uint8:delim) {

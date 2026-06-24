@@ -1,0 +1,9 @@
+extern func:ext_func = int64();
+pub func:pub_func = int64() { pass 0i64; };
+pub func:failsafe = int32(tbb32:err) { exit 1i32; };
+
+pub func:main = int32() {
+    int64:p1 = raw pub_func();
+    int64:p2 = ext_func();
+    exit 0i32;
+};

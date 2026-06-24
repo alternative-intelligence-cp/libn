@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "toolchain": {
+    "compiler_version": "/home/randy/Workspace/REPOS/nitpick/build/nitpickc",
+    "compiler_hash": ""
+  },
+  "targets": {
+    "libn": {
+      "artifact_path": ".nitpick_make/build/liblibn.a",
+      "source_hash": "fnv1a:14695981039346656037",
+      "command_hash": 7630866907543083259,
+      "source_timestamp": 0,
+      "build_timestamp": 1782262201,
+      "build_duration_ms": 2,
+      "dependencies": [],
+      "implicit_inputs": []
+    }
+  }
+}
